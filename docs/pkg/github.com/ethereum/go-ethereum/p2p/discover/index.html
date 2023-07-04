@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>discover - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package discover
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/p2p/discover"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package discover implements the Node Discovery Protocol.
+<p>The Node Discovery protocol provides a way to find RLPx nodes that
+can be connected to. It uses a Kademlia-like protocol to maintain a
+distributed database of the IDs and endpoints of all listening
+nodes.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ReadPacket">type ReadPacket</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Table">type Table</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Table.ReadRandomNodes">func (tab *Table) ReadRandomNodes(buf []*enode.Node) (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TalkRequestHandler">type TalkRequestHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UDPConn">type UDPConn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UDPv4">type UDPv4</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ListenUDP">func ListenUDP(c UDPConn, ln *enode.LocalNode, cfg Config) (*UDPv4, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ListenV4">func ListenV4(c UDPConn, ln *enode.LocalNode, cfg Config) (*UDPv4, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.Close">func (t *UDPv4) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.LookupPubkey">func (t *UDPv4) LookupPubkey(key *ecdsa.PublicKey) []*enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.Ping">func (t *UDPv4) Ping(n *enode.Node) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.RandomNodes">func (t *UDPv4) RandomNodes() enode.Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.RequestENR">func (t *UDPv4) RequestENR(n *enode.Node) (*enode.Node, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.Resolve">func (t *UDPv4) Resolve(n *enode.Node) *enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv4.Self">func (t *UDPv4) Self() *enode.Node</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UDPv5">type UDPv5</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ListenV5">func ListenV5(conn UDPConn, ln *enode.LocalNode, cfg Config) (*UDPv5, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.AllNodes">func (t *UDPv5) AllNodes() []*enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.Close">func (t *UDPv5) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.LocalNode">func (t *UDPv5) LocalNode() *enode.LocalNode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.Lookup">func (t *UDPv5) Lookup(target enode.ID) []*enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.Ping">func (t *UDPv5) Ping(n *enode.Node) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.RandomNodes">func (t *UDPv5) RandomNodes() enode.Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.RegisterTalkHandler">func (t *UDPv5) RegisterTalkHandler(protocol string, handler TalkRequestHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.RequestENR">func (t *UDPv5) RequestENR(n *enode.Node) (*enode.Node, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.Resolve">func (t *UDPv5) Resolve(n *enode.Node) *enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.Self">func (t *UDPv5) Self() *enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDPv5.TalkRequest">func (t *UDPv5) TalkRequest(n *enode.Node, protocol string, request []byte) ([]byte, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/common.go">common.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/lookup.go">lookup.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/node.go">node.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/ntp.go">ntp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/table.go">table.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go">v4_udp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go">v5_udp.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/common.go?s=1376:1882#L29">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config holds settings for the discovery listener.
+
+			<pre>type Config struct {
+    <span class="comment">// These settings are required and configure the UDP listener:</span>
+<span id="Config.PrivateKey"></span>    PrivateKey *<a href="../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>
+
+    <span class="comment">// These settings are optional:</span>
+<span id="Config.NetRestrict"></span>    NetRestrict  *<a href="../netutil/index.html">netutil</a>.<a href="../netutil/index.html#Netlist">Netlist</a>   <span class="comment">// list of allowed IP networks</span>
+<span id="Config.Bootnodes"></span>    Bootnodes    []*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>      <span class="comment">// list of bootstrap nodes</span>
+<span id="Config.Unhandled"></span>    Unhandled    chan&lt;- <a href="index.html#ReadPacket">ReadPacket</a>  <span class="comment">// unhandled packets are sent on this channel</span>
+<span id="Config.Log"></span>    Log          <a href="../../log/index.html">log</a>.<a href="../../log/index.html#Logger">Logger</a>         <span class="comment">// if set, log messages go here</span>
+<span id="Config.ValidSchemes"></span>    ValidSchemes <a href="../enr/index.html">enr</a>.<a href="../enr/index.html#IdentityScheme">IdentityScheme</a> <span class="comment">// allowed identity schemes</span>
+<span id="Config.Clock"></span>    Clock        <a href="../../common/mclock/index.html">mclock</a>.<a href="../../common/mclock/index.html#Clock">Clock</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ReadPacket">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/common.go?s=2421:2479#L62">ReadPacket</a>
+				<a class="permalink" href="index.html#ReadPacket">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReadPacket is a packet that couldn&apos;t be handled. Those packets are sent to the unhandled
+channel if configured.
+
+			<pre>type ReadPacket struct {
+<span id="ReadPacket.Data"></span>    Data []<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="ReadPacket.Addr"></span>    Addr *<a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#UDPAddr">UDPAddr</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Table">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/table.go?s=2456:3017#L57">Table</a>
+				<a class="permalink" href="index.html#Table">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Table is the &apos;node table&apos;, a Kademlia-like index of neighbor nodes. The table keeps
+itself up-to-date by verifying the liveness of neighbors and requesting their node
+records when announcements of a new record version are received.
+
+			<pre>type Table struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Table.ReadRandomNodes">func (*Table) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/table.go?s=4724:4784#L133">ReadRandomNodes</a>
+					<a class="permalink" href="index.html#Table.ReadRandomNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tab *<a href="index.html#Table">Table</a>) ReadRandomNodes(buf []*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>ReadRandomNodes fills the given slice with random nodes from the table. The results
+are guaranteed to be unique for a single invocation, no node will appear twice.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TalkRequestHandler">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=3162:3229#L90">TalkRequestHandler</a>
+				<a class="permalink" href="index.html#TalkRequestHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TalkRequestHandler callback processes a talk request and optionally returns a reply
+
+			<pre>type TalkRequestHandler func(<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#ID">ID</a>, *<a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#UDPAddr">UDPAddr</a>, []<a href="../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UDPConn">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/common.go?s=1137:1321#L21">UDPConn</a>
+				<a class="permalink" href="index.html#UDPConn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDPConn is a network connection on which discovery can operate.
+
+			<pre>type UDPConn interface {
+    ReadFromUDP(b []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, addr *<a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#UDPAddr">UDPAddr</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+    WriteToUDP(b []<a href="../../../../../builtin/index.html#byte">byte</a>, addr *<a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#UDPAddr">UDPAddr</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+    Close() <a href="../../../../../builtin/index.html#error">error</a>
+    LocalAddr() <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Addr">Addr</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UDPv4">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=2287:2672#L57">UDPv4</a>
+				<a class="permalink" href="index.html#UDPv4">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDPv4 implements the v4 wire protocol.
+
+			<pre>type UDPv4 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ListenUDP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/common.go?s=2194:2268#L56">ListenUDP</a>
+					<a class="permalink" href="index.html#ListenUDP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ListenUDP(c <a href="index.html#UDPConn">UDPConn</a>, ln *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#LocalNode">LocalNode</a>, cfg <a href="index.html#Config">Config</a>) (*<a href="index.html#UDPv4">UDPv4</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ListenUDP starts listening for discovery packets on the given UDP socket.
+
+				
+				
+			
+				
+				<h3 id="ListenV4">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=4223:4296#L119">ListenV4</a>
+					<a class="permalink" href="index.html#ListenV4">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ListenV4(c <a href="index.html#UDPConn">UDPConn</a>, ln *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#LocalNode">LocalNode</a>, cfg <a href="index.html#Config">Config</a>) (*<a href="index.html#UDPv4">UDPv4</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="UDPv4.Close">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=5086:5109#L154">Close</a>
+					<a class="permalink" href="index.html#UDPv4.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) Close()</pre>
+				<p>Close shuts down the socket and aborts any running queries.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.LookupPubkey">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=7932:7996#L250">LookupPubkey</a>
+					<a class="permalink" href="index.html#UDPv4.LookupPubkey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) LookupPubkey(key *<a href="../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../crypto/ecdsa/index.html#PublicKey">PublicKey</a>) []*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>LookupPubkey finds the closest nodes to the given public key.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.Ping">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=6347:6388#L200">Ping</a>
+					<a class="permalink" href="index.html#UDPv4.Ping">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) Ping(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Ping sends a ping message to the given node.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.RandomNodes">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=8297:8341#L260">RandomNodes</a>
+					<a class="permalink" href="index.html#UDPv4.RandomNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) RandomNodes() <a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Iterator">Iterator</a></pre>
+				<p>RandomNodes is an iterator yielding nodes from a random walk of the DHT.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.RequestENR">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=10694:10756#L328">RequestENR</a>
+					<a class="permalink" href="index.html#UDPv4.RequestENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) RequestENR(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) (*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RequestENR sends ENRRequest to the given node and waits for a response.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.Resolve">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=5389:5439#L165">Resolve</a>
+					<a class="permalink" href="index.html#UDPv4.Resolve">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) Resolve(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>Resolve searches for a specific node with the given ID and tries to get the most recent
+version of the node record for it. It returns n if the node could not be resolved.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv4.Self">func (*UDPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v4_udp.go?s=4956:4990#L149">Self</a>
+					<a class="permalink" href="index.html#UDPv4.Self">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv4">UDPv4</a>) Self() *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>Self returns the local node.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UDPv5">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=2200:3073#L53">UDPv5</a>
+				<a class="permalink" href="index.html#UDPv5">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDPv5 is the implementation of protocol version 5.
+
+			<pre>type UDPv5 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ListenV5">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=3999:4075#L115">ListenV5</a>
+					<a class="permalink" href="index.html#ListenV5">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ListenV5(conn <a href="index.html#UDPConn">UDPConn</a>, ln *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#LocalNode">LocalNode</a>, cfg <a href="index.html#Config">Config</a>) (*<a href="index.html#UDPv5">UDPv5</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ListenV5 listens on the given connection.
+
+				
+				
+			
+
+			
+				
+				<h3 id="UDPv5.AllNodes">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=6581:6621#L207">AllNodes</a>
+					<a class="permalink" href="index.html#UDPv5.AllNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) AllNodes() []*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>AllNodes returns all the nodes stored in the local table.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.Close">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=5608:5631#L171">Close</a>
+					<a class="permalink" href="index.html#UDPv5.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) Close()</pre>
+				<p>Close shuts down packet processing.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.LocalNode">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=6907:6951#L222">LocalNode</a>
+					<a class="permalink" href="index.html#UDPv5.LocalNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) LocalNode() *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#LocalNode">LocalNode</a></pre>
+				<p>LocalNode returns the current local node running the
+protocol.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.Lookup">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=8216:8269#L261">Lookup</a>
+					<a class="permalink" href="index.html#UDPv5.Lookup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) Lookup(target <a href="../enode/index.html">enode</a>.<a href="../enode/index.html#ID">ID</a>) []*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>Lookup performs a recursive lookup for the given target.
+It returns the closest nodes to target.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.Ping">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=5782:5823#L181">Ping</a>
+					<a class="permalink" href="index.html#UDPv5.Ping">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) Ping(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Ping sends a ping message to the given node.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.RandomNodes">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=7843:7887#L249">RandomNodes</a>
+					<a class="permalink" href="index.html#UDPv5.RandomNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) RandomNodes() <a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Iterator">Iterator</a></pre>
+				<p>RandomNodes returns an iterator that finds random nodes in the DHT.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.RegisterTalkHandler">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=7171:7251#L229">RegisterTalkHandler</a>
+					<a class="permalink" href="index.html#UDPv5.RegisterTalkHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) RegisterTalkHandler(protocol <a href="../../../../../builtin/index.html#string">string</a>, handler <a href="index.html#TalkRequestHandler">TalkRequestHandler</a>)</pre>
+				<p>RegisterTalkHandler adds a handler for &apos;talk requests&apos;. The handler function is called
+whenever a request for the given protocol is received and should return the response
+data or nil.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.RequestENR">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=10504:10566#L341">RequestENR</a>
+					<a class="permalink" href="index.html#UDPv5.RequestENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) RequestENR(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) (*<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RequestENR requests n&apos;s record.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.Resolve">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=6039:6089#L188">Resolve</a>
+					<a class="permalink" href="index.html#UDPv5.Resolve">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) Resolve(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>) *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>Resolve searches for a specific node with the given ID and tries to get the most recent
+version of the node record for it. It returns n if the node could not be resolved.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.Self">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=5502:5536#L166">Self</a>
+					<a class="permalink" href="index.html#UDPv5.Self">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) Self() *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a></pre>
+				<p>Self returns the local node record.
+
+				
+				
+				
+			
+				
+				<h3 id="UDPv5.TalkRequest">func (*UDPv5) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/discover/v5_udp.go?s=7400:7491#L236">TalkRequest</a>
+					<a class="permalink" href="index.html#UDPv5.TalkRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#UDPv5">UDPv5</a>) TalkRequest(n *<a href="../enode/index.html">enode</a>.<a href="../enode/index.html#Node">Node</a>, protocol <a href="../../../../../builtin/index.html#string">string</a>, request []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TalkRequest sends a talk request to n and waits for a response.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="v4wire/index.html">v4wire</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package v4wire implements the Discovery v4 Wire Protocol.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="v5wire/index.html">v5wire</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

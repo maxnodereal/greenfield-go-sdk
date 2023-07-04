@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>event - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package event
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/event"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package event deals with subscriptions to real-time events.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#Feed">type Feed</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Feed.Send">func (f *Feed) Send(value interface{}) (nsent int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Feed.Subscribe">func (f *Feed) Subscribe(channel interface{}) Subscription</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ResubscribeErrFunc">type ResubscribeErrFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ResubscribeFunc">type ResubscribeFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Subscription">type Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSubscription">func NewSubscription(producer func(&lt;-chan struct{}) error) Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Resubscribe">func Resubscribe(backoffMax time.Duration, fn ResubscribeFunc) Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ResubscribeErr">func ResubscribeErr(backoffMax time.Duration, fn ResubscribeErrFunc) Subscription</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubscriptionScope">type SubscriptionScope</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriptionScope.Close">func (sc *SubscriptionScope) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriptionScope.Count">func (sc *SubscriptionScope) Count() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriptionScope.Track">func (sc *SubscriptionScope) Track(s Subscription) Subscription</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TypeMux">type TypeMux</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMux.Post">func (mux *TypeMux) Post(ev interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMux.Stop">func (mux *TypeMux) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMux.Subscribe">func (mux *TypeMux) Subscribe(types ...interface{}) *TypeMuxSubscription</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TypeMuxEvent">type TypeMuxEvent</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TypeMuxSubscription">type TypeMuxSubscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMuxSubscription.Chan">func (s *TypeMuxSubscription) Chan() &lt;-chan *TypeMuxEvent</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMuxSubscription.Closed">func (s *TypeMuxSubscription) Closed() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeMuxSubscription.Unsubscribe">func (s *TypeMuxSubscription) Unsubscribe()</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Feed_acknowledgedEvents">Feed (AcknowledgedEvents)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_NewSubscription">NewSubscription</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SubscriptionScope">SubscriptionScope</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_TypeMux">TypeMux</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go">event.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/feed.go">feed.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go">subscription.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrMuxClosed is returned when Posting on a closed TypeMux.
+
+				<pre>var <span id="ErrMuxClosed">ErrMuxClosed</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;event: mux closed&#34;)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Feed">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/feed.go?s=1341:1794#L25">Feed</a>
+				<a class="permalink" href="index.html#Feed">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Feed implements one-to-many subscriptions where the carrier of events is a channel.
+Values sent to a Feed are delivered to all subscribed channels simultaneously.
+<p>Feeds can only be used with a single type. The type is determined by the first Send or
+Subscribe operation. Subsequent calls to these methods panic if the type does not
+match.
+<p>The zero value is ready to use.
+
+			<pre>type Feed struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_Feed_acknowledgedEvents" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (AcknowledgedEvents)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (AcknowledgedEvents)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// This example shows how the return value of Send can be used for request/reply</span>
+<span class="comment">// interaction between event consumers and producers.</span>
+var feed event.Feed
+type ackedEvent struct {
+    i   int
+    ack chan&lt;- struct{}
+}
+
+<span class="comment">// Consumers wait for events on the feed and acknowledge processing.</span>
+done := make(chan struct{})
+defer close(done)
+for i := 0; i &lt; 3; i++ {
+    ch := make(chan ackedEvent, 100)
+    sub := feed.Subscribe(ch)
+    go func() {
+        defer sub.Unsubscribe()
+        for {
+            select {
+            case ev := &lt;-ch:
+                fmt.Println(ev.i) <span class="comment">// &#34;process&#34; the event</span>
+                ev.ack &lt;- struct{}{}
+            case &lt;-done:
+                return
+            }
+        }
+    }()
+}
+
+<span class="comment">// The producer sends values of type ackedEvent with increasing values of i.</span>
+<span class="comment">// It waits for all consumers to acknowledge before sending the next event.</span>
+for i := 0; i &lt; 3; i++ {
+    acksignal := make(chan struct{})
+    n := feed.Send(ackedEvent{i, acksignal})
+    for ack := 0; ack &lt; n; ack++ {
+        &lt;-acksignal
+    }
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">0
+0
+0
+1
+1
+1
+2
+2
+2
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+				
+				<h3 id="Feed.Send">func (*Feed) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/feed.go?s=4257:4307#L118">Send</a>
+					<a class="permalink" href="index.html#Feed.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#Feed">Feed</a>) Send(value interface{}) (nsent <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Send delivers to all subscribed channels simultaneously.
+It returns the number of subscribers that the value was sent to.
+
+				
+				
+				
+			
+				
+				<h3 id="Feed.Subscribe">func (*Feed) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/feed.go?s=2692:2750#L62">Subscribe</a>
+					<a class="permalink" href="index.html#Feed.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#Feed">Feed</a>) Subscribe(channel interface{}) <a href="index.html#Subscription">Subscription</a></pre>
+				<p>Subscribe adds a channel to the feed. Future sends will be delivered on the channel
+until the subscription is canceled. All channels added must have the same element type.
+<p>The channel should have ample buffer space to avoid blocking other subscribers.
+Slow subscribers are not dropped.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ResubscribeErrFunc">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=4611:4685#L122">ResubscribeErrFunc</a>
+				<a class="permalink" href="index.html#ResubscribeErrFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A ResubscribeErrFunc attempts to establish a subscription.
+For every call but the first, the second argument to this function is
+the error that occurred with the previous subscription.
+
+			<pre>type ResubscribeErrFunc func(<a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, <a href="../../../../builtin/index.html#error">error</a>) (<a href="index.html#Subscription">Subscription</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ResubscribeFunc">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=3463:3527#L94">ResubscribeFunc</a>
+				<a class="permalink" href="index.html#ResubscribeFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A ResubscribeFunc attempts to establish a subscription.
+
+			<pre>type ResubscribeFunc func(<a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>) (<a href="index.html#Subscription">Subscription</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Subscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=1678:1834#L31">Subscription</a>
+				<a class="permalink" href="index.html#Subscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Subscription represents a stream of events. The carrier of the events is typically a
+channel, but isn&apos;t part of the interface.
+<p>Subscriptions can fail while established. Failures are reported through an error
+channel. It receives a value if there is an issue with the subscription (e.g. the
+network connection delivering the events has been closed). Only one value will ever be
+sent.
+<p>The error channel is closed when the subscription ends successfully (i.e. when the
+source of events is closed). It is also closed when Unsubscribe is called.
+<p>The Unsubscribe method cancels the sending of events. You must call Unsubscribe in all
+cases to ensure that resources related to the subscription are released. It can be
+called any number of times.
+
+			<pre>type Subscription interface {
+    Err() &lt;-chan <a href="../../../../builtin/index.html#error">error</a> <span class="comment">// returns the error channel</span>
+    Unsubscribe()      <span class="comment">// cancels sending of events, closing the error channel</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSubscription">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=2068:2139#L39">NewSubscription</a>
+					<a class="permalink" href="index.html#NewSubscription">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSubscription(producer func(&lt;-chan struct{}) <a href="../../../../builtin/index.html#error">error</a>) <a href="index.html#Subscription">Subscription</a></pre>
+				<p>NewSubscription runs a producer function as a subscription in a new goroutine. The
+channel given to the producer is closed when Unsubscribe is called. If fn returns an
+error, it is sent on the subscription&apos;s error channel.
+
+				<div id="example_NewSubscription" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// Create a subscription that sends 10 integers on ch.</span>
+ch := make(chan int)
+sub := event.NewSubscription(func(quit &lt;-chan struct{}) error {
+    for i := 0; i &lt; 10; i++ {
+        select {
+        case ch &lt;- i:
+        case &lt;-quit:
+            fmt.Println(&#34;unsubscribed&#34;)
+            return nil
+        }
+    }
+    return nil
+})
+
+<span class="comment">// This is the consumer. It reads 5 integers, then aborts the subscription.</span>
+<span class="comment">// Note that Unsubscribe waits until the producer has shut down.</span>
+for i := range ch {
+    fmt.Println(i)
+    if i == 4 {
+        sub.Unsubscribe()
+        break
+    }
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">0
+1
+2
+3
+4
+unsubscribed
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Resubscribe">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=3208:3283#L87">Resubscribe</a>
+					<a class="permalink" href="index.html#Resubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Resubscribe(backoffMax <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>, fn <a href="index.html#ResubscribeFunc">ResubscribeFunc</a>) <a href="index.html#Subscription">Subscription</a></pre>
+				<p>Resubscribe calls fn repeatedly to keep a subscription established. When the
+subscription is established, Resubscribe waits for it to fail and calls fn again. This
+process repeats until Unsubscribe is called or the active subscription ends
+successfully.
+<p>Resubscribe applies backoff between calls to fn. The time between calls is adapted
+based on the error rate, but will never exceed backoffMax.
+
+				
+				
+			
+				
+				<h3 id="ResubscribeErr">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=4139:4220#L107">ResubscribeErr</a>
+					<a class="permalink" href="index.html#ResubscribeErr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ResubscribeErr(backoffMax <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>, fn <a href="index.html#ResubscribeErrFunc">ResubscribeErrFunc</a>) <a href="index.html#Subscription">Subscription</a></pre>
+				<p>ResubscribeErr calls fn repeatedly to keep a subscription established. When the
+subscription is established, ResubscribeErr waits for it to fail and calls fn again. This
+process repeats until Unsubscribe is called or the active subscription ends
+successfully.
+<p>The difference between Resubscribe and ResubscribeErr is that with ResubscribeErr,
+the error of the failing subscription is available to the callback for logging
+purposes.
+<p>ResubscribeErr applies backoff between calls to fn. The time between calls is adapted
+based on the error rate, but will never exceed backoffMax.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SubscriptionScope">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=6937:7033#L228">SubscriptionScope</a>
+				<a class="permalink" href="index.html#SubscriptionScope">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubscriptionScope provides a facility to unsubscribe multiple subscriptions at once.
+<p>For code that handle more than one subscription, a scope can be used to conveniently
+unsubscribe all of them with a single call. The example demonstrates a typical use in a
+larger program.
+<p>The zero value is ready to use.
+
+			<pre>type SubscriptionScope struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_SubscriptionScope" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package event_test
+
+import (
+    &#34;fmt&#34;
+    &#34;sync&#34;
+
+    &#34;github.com/ethereum/go-ethereum/event&#34;
+)
+
+<span class="comment">// This example demonstrates how SubscriptionScope can be used to control the lifetime of</span>
+<span class="comment">// subscriptions.</span>
+<span class="comment">//</span>
+<span class="comment">// Our example program consists of two servers, each of which performs a calculation when</span>
+<span class="comment">// requested. The servers also allow subscribing to results of all computations.</span>
+type divServer struct{ results event.Feed }
+type mulServer struct{ results event.Feed }
+
+func (s *divServer) do(a, b int) int {
+    r := a / b
+    s.results.Send(r)
+    return r
+}
+
+func (s *mulServer) do(a, b int) int {
+    r := a * b
+    s.results.Send(r)
+    return r
+}
+
+<span class="comment">// The servers are contained in an App. The app controls the servers and exposes them</span>
+<span class="comment">// through its API.</span>
+type App struct {
+    divServer
+    mulServer
+    scope event.SubscriptionScope
+}
+
+func (s *App) Calc(op byte, a, b int) int {
+    switch op {
+    case &#39;/&#39;:
+        return s.divServer.do(a, b)
+    case &#39;*&#39;:
+        return s.mulServer.do(a, b)
+    default:
+        panic(&#34;invalid op&#34;)
+    }
+}
+
+<span class="comment">// The app&#39;s SubscribeResults method starts sending calculation results to the given</span>
+<span class="comment">// channel. Subscriptions created through this method are tied to the lifetime of the App</span>
+<span class="comment">// because they are registered in the scope.</span>
+func (s *App) SubscribeResults(op byte, ch chan&lt;- int) event.Subscription {
+    switch op {
+    case &#39;/&#39;:
+        return s.scope.Track(s.divServer.results.Subscribe(ch))
+    case &#39;*&#39;:
+        return s.scope.Track(s.mulServer.results.Subscribe(ch))
+    default:
+        panic(&#34;invalid op&#34;)
+    }
+}
+
+<span class="comment">// Stop stops the App, closing all subscriptions created through SubscribeResults.</span>
+func (s *App) Stop() {
+    s.scope.Close()
+}
+
+func ExampleSubscriptionScope() {
+    <span class="comment">// Create the app.</span>
+    var (
+        app  App
+        wg   sync.WaitGroup
+        divs = make(chan int)
+        muls = make(chan int)
+    )
+
+    <span class="comment">// Run a subscriber in the background.</span>
+    divsub := app.SubscribeResults(&#39;/&#39;, divs)
+    mulsub := app.SubscribeResults(&#39;*&#39;, muls)
+    wg.Add(1)
+    go func() {
+        defer wg.Done()
+        defer fmt.Println(&#34;subscriber exited&#34;)
+        defer divsub.Unsubscribe()
+        defer mulsub.Unsubscribe()
+        for {
+            select {
+            case result := &lt;-divs:
+                fmt.Println(&#34;division happened:&#34;, result)
+            case result := &lt;-muls:
+                fmt.Println(&#34;multiplication happened:&#34;, result)
+            case &lt;-divsub.Err():
+                return
+            case &lt;-mulsub.Err():
+                return
+            }
+        }
+    }()
+
+    <span class="comment">// Interact with the app.</span>
+    app.Calc(&#39;/&#39;, 22, 11)
+    app.Calc(&#39;*&#39;, 3, 4)
+
+    <span class="comment">// Stop the app. This shuts down the subscriptions, causing the subscriber to exit.</span>
+    app.Stop()
+    wg.Wait()
+
+    <span class="comment">// Output:</span>
+    <span class="comment">// division happened: 2</span>
+    <span class="comment">// multiplication happened: 12</span>
+    <span class="comment">// subscriber exited</span>
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+				
+				<h3 id="SubscriptionScope.Close">func (*SubscriptionScope) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=7696:7732#L258">Close</a>
+					<a class="permalink" href="index.html#SubscriptionScope.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SubscriptionScope">SubscriptionScope</a>) Close()</pre>
+				<p>Close calls Unsubscribe on all tracked subscriptions and prevents further additions to
+the tracked set. Calls to Track after Close return nil.
+
+				
+				
+				
+			
+				
+				<h3 id="SubscriptionScope.Count">func (*SubscriptionScope) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=7979:8019#L273">Count</a>
+					<a class="permalink" href="index.html#SubscriptionScope.Count">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SubscriptionScope">SubscriptionScope</a>) Count() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>Count returns the number of tracked subscriptions.
+It is meant to be used for debugging.
+
+				
+				
+				
+			
+				
+				<h3 id="SubscriptionScope.Track">func (*SubscriptionScope) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/subscription.go?s=7284:7347#L242">Track</a>
+					<a class="permalink" href="index.html#SubscriptionScope.Track">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SubscriptionScope">SubscriptionScope</a>) Track(s <a href="index.html#Subscription">Subscription</a>) <a href="index.html#Subscription">Subscription</a></pre>
+				<p>Track starts tracking a subscription. If the scope is closed, Track returns nil. The
+returned subscription is a wrapper. Unsubscribing the wrapper removes it from the
+scope.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TypeMux">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=1317:1425#L31">TypeMux</a>
+				<a class="permalink" href="index.html#TypeMux">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A TypeMux dispatches events to registered receivers. Receivers can be
+registered to handle events of certain type. Any operation
+called after mux is stopped will return ErrMuxClosed.
+<p>The zero value is ready to use.
+<p>Deprecated: use Feed
+
+			<pre>type TypeMux struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_TypeMux" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">type someEvent struct{ I int }
+type otherEvent struct{ S string }
+type yetAnotherEvent struct{ X, Y int }
+
+var mux TypeMux
+
+<span class="comment">// Start a subscriber.</span>
+done := make(chan struct{})
+sub := mux.Subscribe(someEvent{}, otherEvent{})
+go func() {
+    for event := range sub.Chan() {
+        fmt.Printf(&#34;Received: %#v\n&#34;, event.Data)
+    }
+    fmt.Println(&#34;done&#34;)
+    close(done)
+}()
+
+<span class="comment">// Post some events.</span>
+mux.Post(someEvent{5})
+mux.Post(yetAnotherEvent{X: 3, Y: 4})
+mux.Post(someEvent{6})
+mux.Post(otherEvent{&#34;whoa&#34;})
+
+<span class="comment">// Stop closes all subscription channels.</span>
+<span class="comment">// The subscriber goroutine will print &#34;done&#34;</span>
+<span class="comment">// and exit.</span>
+mux.Stop()
+
+<span class="comment">// Wait for subscriber to return.</span>
+&lt;-done
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Received: event.someEvent{I:5}
+Received: event.someEvent{I:6}
+Received: event.otherEvent{S:&#34;whoa&#34;}
+done
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+				
+				<h3 id="TypeMux.Post">func (*TypeMux) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=2564:2610#L73">Post</a>
+					<a class="permalink" href="index.html#TypeMux.Post">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mux *<a href="index.html#TypeMux">TypeMux</a>) Post(ev interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Post sends an event to all receivers registered for the given type.
+It returns ErrMuxClosed if the mux has been stopped.
+
+				
+				
+				
+			
+				
+				<h3 id="TypeMux.Stop">func (*TypeMux) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=3059:3085#L95">Stop</a>
+					<a class="permalink" href="index.html#TypeMux.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mux *<a href="index.html#TypeMux">TypeMux</a>) Stop()</pre>
+				<p>Stop closes a mux. The mux can no longer be used.
+Future Post calls will fail with ErrMuxClosed.
+Stop blocks until all current deliveries have finished.
+
+				
+				
+				
+			
+				
+				<h3 id="TypeMux.Subscribe">func (*TypeMux) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=1697:1769#L43">Subscribe</a>
+					<a class="permalink" href="index.html#TypeMux.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mux *<a href="index.html#TypeMux">TypeMux</a>) Subscribe(types ...interface{}) *<a href="index.html#TypeMuxSubscription">TypeMuxSubscription</a></pre>
+				<p>Subscribe creates a subscription for events of the given types. The
+subscription&apos;s channel is closed when it is unsubscribed
+or the mux is closed.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TypeMuxEvent">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=996:1058#L19">TypeMuxEvent</a>
+				<a class="permalink" href="index.html#TypeMuxEvent">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TypeMuxEvent is a time-tagged notification pushed to subscribers.
+
+			<pre>type TypeMuxEvent struct {
+<span id="TypeMuxEvent.Time"></span>    Time <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="TypeMuxEvent.Data"></span>    Data interface{}
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TypeMuxSubscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=3974:4325#L138">TypeMuxSubscription</a>
+				<a class="permalink" href="index.html#TypeMuxSubscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TypeMuxSubscription is a subscription established through TypeMux.
+
+			<pre>type TypeMuxSubscription struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TypeMuxSubscription.Chan">func (*TypeMuxSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=4542:4599#L164">Chan</a>
+					<a class="permalink" href="index.html#TypeMuxSubscription.Chan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#TypeMuxSubscription">TypeMuxSubscription</a>) Chan() &lt;-chan *<a href="index.html#TypeMuxEvent">TypeMuxEvent</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TypeMuxSubscription.Closed">func (*TypeMuxSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=4699:4742#L173">Closed</a>
+					<a class="permalink" href="index.html#TypeMuxSubscription.Closed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#TypeMuxSubscription">TypeMuxSubscription</a>) Closed() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TypeMuxSubscription.Unsubscribe">func (*TypeMuxSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/event/event.go?s=4621:4664#L168">Unsubscribe</a>
+					<a class="permalink" href="index.html#TypeMuxSubscription.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#TypeMuxSubscription">TypeMuxSubscription</a>) Unsubscribe()</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

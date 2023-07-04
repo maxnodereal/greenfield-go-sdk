@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>level - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package level
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/log/level"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package level implements leveled logging on top of Go kit&apos;s log package. To
+use the level package, create a logger as per normal in your func main, and
+wrap it with level.NewFilter.
+<pre>var logger log.Logger
+logger = log.NewLogfmtLogger(os.Stderr)
+logger = level.NewFilter(logger, level.AllowInfo()) // &lt;--
+logger = log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC)
+</pre>
+<p>It&apos;s also possible to configure log level from a string. For instance from
+a flag, environment variable or configuration file.
+<pre>fs := flag.NewFlagSet(&quot;myprogram&quot;)
+lvl := fs.String(&quot;log&quot;, &quot;info&quot;, &quot;debug, info, warn, error&quot;)
+
+var logger log.Logger
+logger = log.NewLogfmtLogger(os.Stderr)
+logger = level.NewFilter(logger, level.Allow(level.ParseDefault(*lvl, level.InfoValue()))) // &lt;--
+logger = log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC)
+</pre>
+<p>Then, at the callsites, use one of the level.Debug, Info, Warn, or Error
+helper methods to emit leveled log events.
+<pre>logger.Log(&quot;foo&quot;, &quot;bar&quot;) // as normal, no level
+level.Debug(logger).Log(&quot;request_id&quot;, reqID, &quot;trace_data&quot;, trace.Get())
+if value &gt; 100 {
+    level.Error(logger).Log(&quot;value&quot;, value)
+}
+</pre>
+<p>NewFilter allows precise control over what happens when a log event is
+emitted without a level key, or if a squelched level is used. Check the
+Option functions for details.
+
+				<div id="example__basic" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Basic)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Basic)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">logger := log.NewLogfmtLogger(os.Stdout)
+level.Debug(logger).Log(&#34;msg&#34;, &#34;this message is at the debug level&#34;)
+level.Info(logger).Log(&#34;msg&#34;, &#34;this message is at the info level&#34;)
+level.Warn(logger).Log(&#34;msg&#34;, &#34;this message is at the warn level&#34;)
+level.Error(logger).Log(&#34;msg&#34;, &#34;this message is at the error level&#34;)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">level=debug msg=&#34;this message is at the debug level&#34;
+level=info msg=&#34;this message is at the info level&#34;
+level=warn msg=&#34;this message is at the warn level&#34;
+level=error msg=&#34;this message is at the error level&#34;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__filtered" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Filtered)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Filtered)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// Set up logger with level filter.</span>
+logger := log.NewLogfmtLogger(os.Stdout)
+logger = level.NewFilter(logger, level.AllowInfo())
+logger = log.With(logger, &#34;caller&#34;, log.DefaultCaller)
+
+<span class="comment">// Use level helpers to log at different levels.</span>
+level.Error(logger).Log(&#34;err&#34;, errors.New(&#34;bad data&#34;))
+level.Info(logger).Log(&#34;event&#34;, &#34;data saved&#34;)
+level.Debug(logger).Log(&#34;next item&#34;, 17) <span class="comment">// filtered</span>
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">level=error caller=example_test.go:33 err=&#34;bad data&#34;
+level=info caller=example_test.go:34 event=&#34;data saved&#34;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__parsed" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Parsed)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Parsed)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">fs := flag.NewFlagSet(&#34;example&#34;, flag.ExitOnError)
+lvl := fs.String(&#34;log-level&#34;, &#34;&#34;, `&#34;debug&#34;, &#34;info&#34;, &#34;warn&#34; or &#34;error&#34;`)
+fs.Parse([]string{&#34;-log-level&#34;, &#34;info&#34;})
+
+<span class="comment">// Set up logger with level filter.</span>
+logger := log.NewLogfmtLogger(os.Stdout)
+logger = level.NewFilter(logger, level.Allow(level.ParseDefault(*lvl, level.DebugValue())))
+logger = log.With(logger, &#34;caller&#34;, log.DefaultCaller)
+
+<span class="comment">// Use level helpers to log at different levels.</span>
+level.Error(logger).Log(&#34;err&#34;, errors.New(&#34;bad data&#34;))
+level.Info(logger).Log(&#34;event&#34;, &#34;data saved&#34;)
+level.Debug(logger).Log(&#34;next item&#34;, 17) <span class="comment">// filtered</span>
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">level=error caller=example_test.go:53 err=&#34;bad data&#34;
+level=info caller=example_test.go:54 event=&#34;data saved&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Debug">func Debug(logger log.Logger) log.Logger</a></dd>
+			
+				
+				<dd><a href="index.html#Error">func Error(logger log.Logger) log.Logger</a></dd>
+			
+				
+				<dd><a href="index.html#Info">func Info(logger log.Logger) log.Logger</a></dd>
+			
+				
+				<dd><a href="index.html#Key">func Key() interface{}</a></dd>
+			
+				
+				<dd><a href="index.html#NewFilter">func NewFilter(next log.Logger, options ...Option) log.Logger</a></dd>
+			
+				
+				<dd><a href="index.html#NewInjector">func NewInjector(next log.Logger, level Value) log.Logger</a></dd>
+			
+				
+				<dd><a href="index.html#Warn">func Warn(logger log.Logger) log.Logger</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Allow">func Allow(v Value) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowAll">func AllowAll() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowDebug">func AllowDebug() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowError">func AllowError() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowInfo">func AllowInfo() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowNone">func AllowNone() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowWarn">func AllowWarn() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNoLevel">func ErrNoLevel(err error) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNotAllowed">func ErrNotAllowed(err error) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SquelchNoLevel">func SquelchNoLevel(squelch bool) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Value">type Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DebugValue">func DebugValue() Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorValue">func ErrorValue() Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InfoValue">func InfoValue() Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Parse">func Parse(level string) (Value, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParseDefault">func ParseDefault(level string, def Value) Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WarnValue">func WarnValue() Value</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example__basic">Package (Basic)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__filtered">Package (Filtered)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__parsed">Package (Parsed)</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/level/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go">level.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrInvalidLevelString is returned whenever an invalid string is passed to Parse.
+
+				<pre>var <span id="ErrInvalidLevelString">ErrInvalidLevelString</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;invalid level string&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Debug">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=760:800#L19">Debug</a>
+				<a class="permalink" href="index.html#Debug">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Debug(logger <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>Debug returns a logger that includes a Key/DebugValue pair.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Error">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=285:325#L4">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Error(logger <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>Error returns a logger that includes a Key/ErrorValue pair.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Info">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=601:640#L14">Info</a>
+				<a class="permalink" href="index.html#Info">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Info(logger <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>Info returns a logger that includes a Key/InfoValue pair.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Key">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=5891:5913#L205">Key</a>
+				<a class="permalink" href="index.html#Key">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Key() interface{}</pre>
+			<p>Key returns the unique key added to log events by the loggers in this
+package.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewFilter">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=1202:1263#L28">NewFilter</a>
+				<a class="permalink" href="index.html#NewFilter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewFilter(next <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>, options ...<a href="index.html#Option">Option</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>NewFilter wraps next and implements level filtering. See the commentary on
+the Option functions for a detailed description of how to configure levels.
+If no options are provided, all leveled log events created with Debug,
+Info, Warn or Error helper methods are squelched and non-leveled log
+events are passed to next unmodified.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewInjector">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=4980:5037#L170">NewInjector</a>
+				<a class="permalink" href="index.html#NewInjector">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewInjector(next <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>, level <a href="index.html#Value">Value</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>NewInjector wraps next and returns a logger that adds a Key/level pair to
+the beginning of log events that don&apos;t already contain a level. In effect,
+this gives a default level to logs without a level.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Warn">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=444:483#L9">Warn</a>
+				<a class="permalink" href="index.html#Warn">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Warn(logger <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a>) <a href="../index.html">log</a>.<a href="../index.html#Logger">Logger</a></pre>
+			<p>Warn returns a logger that includes a Key/WarnValue pair.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=1951:1976#L65">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option sets a parameter for the leveled logger.
+
+			<pre>type Option func(*logger)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Allow">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2019:2045#L68">Allow</a>
+					<a class="permalink" href="index.html#Allow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Allow(v <a href="index.html#Value">Value</a>) <a href="index.html#Option">Option</a></pre>
+				<p>Allow the provided log level to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowAll">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2293:2315#L84">AllowAll</a>
+					<a class="permalink" href="index.html#AllowAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowAll() <a href="index.html#Option">Option</a></pre>
+				<p>AllowAll is an alias for AllowDebug.
+
+				
+				
+			
+				
+				<h3 id="AllowDebug">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2417:2441#L89">AllowDebug</a>
+					<a class="permalink" href="index.html#AllowDebug">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowDebug() <a href="index.html#Option">Option</a></pre>
+				<p>AllowDebug allows error, warn, info and debug level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowError">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2848:2872#L104">AllowError</a>
+					<a class="permalink" href="index.html#AllowError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowError() <a href="index.html#Option">Option</a></pre>
+				<p>AllowError allows only error level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowInfo">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2579:2602#L94">AllowInfo</a>
+					<a class="permalink" href="index.html#AllowInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowInfo() <a href="index.html#Option">Option</a></pre>
+				<p>AllowInfo allows error, warn and info level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowNone">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2957:2980#L109">AllowNone</a>
+					<a class="permalink" href="index.html#AllowNone">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowNone() <a href="index.html#Option">Option</a></pre>
+				<p>AllowNone allows no leveled log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowWarn">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=2721:2744#L99">AllowWarn</a>
+					<a class="permalink" href="index.html#AllowWarn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowWarn() <a href="index.html#Option">Option</a></pre>
+				<p>AllowWarn allows error and warn level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="ErrNoLevel">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=4684:4717#L163">ErrNoLevel</a>
+					<a class="permalink" href="index.html#ErrNoLevel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ErrNoLevel(err <a href="../../../../builtin/index.html#error">error</a>) <a href="index.html#Option">Option</a></pre>
+				<p>ErrNoLevel sets the error to return from Log when it squelches a log event
+with no level. By default, ErrNoLevel is nil; in this case the log event is
+squelched with no error.
+
+				
+				
+			
+				
+				<h3 id="ErrNotAllowed">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=4025:4061#L148">ErrNotAllowed</a>
+					<a class="permalink" href="index.html#ErrNotAllowed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ErrNotAllowed(err <a href="../../../../builtin/index.html#error">error</a>) <a href="index.html#Option">Option</a></pre>
+				<p>ErrNotAllowed sets the error to return from Log when it squelches a log
+event disallowed by the configured Allow[Level] option. By default,
+ErrNotAllowed is nil; in this case the log event is squelched with no
+error.
+
+				
+				
+			
+				
+				<h3 id="SquelchNoLevel">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=4398:4438#L156">SquelchNoLevel</a>
+					<a class="permalink" href="index.html#SquelchNoLevel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SquelchNoLevel(squelch <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Option">Option</a></pre>
+				<p>SquelchNoLevel instructs Log to squelch log events with no level, so that
+they don&apos;t proceed through to the wrapped logger. If SquelchNoLevel is set
+to true and a log event is squelched in this way, the error value
+configured with ErrNoLevel is returned to the caller.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Value">type <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=5751:5804#L198">Value</a>
+				<a class="permalink" href="index.html#Value">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Value is the interface that each of the canonical level values implement.
+It contains unexported methods that prevent types from other packages from
+implementing it and guaranteeing that NewFilter can distinguish the levels
+defined in this package from all other values.
+
+			<pre>type Value interface {
+    String() <a href="../../../../builtin/index.html#string">string</a>
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DebugValue">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=6339:6362#L217">DebugValue</a>
+					<a class="permalink" href="index.html#DebugValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DebugValue() <a href="index.html#Value">Value</a></pre>
+				<p>DebugValue returns the unique value added to log events by Debug.
+
+				
+				
+			
+				
+				<h3 id="ErrorValue">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=5999:6022#L208">ErrorValue</a>
+					<a class="permalink" href="index.html#ErrorValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ErrorValue() <a href="index.html#Value">Value</a></pre>
+				<p>ErrorValue returns the unique value added to log events by Error.
+
+				
+				
+			
+				
+				<h3 id="InfoValue">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=6225:6247#L214">InfoValue</a>
+					<a class="permalink" href="index.html#InfoValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InfoValue() <a href="index.html#Value">Value</a></pre>
+				<p>InfoValue returns the unique value added to log events by Info.
+
+				
+				
+			
+				
+				<h3 id="Parse">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=3273:3312#L120">Parse</a>
+					<a class="permalink" href="index.html#Parse">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Parse(level <a href="../../../../builtin/index.html#string">string</a>) (<a href="index.html#Value">Value</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Parse a string to its corresponding level value. Valid strings are &quot;debug&quot;,
+&quot;info&quot;, &quot;warn&quot;, and &quot;error&quot;. Strings are normalized via strings.TrimSpace and
+strings.ToLower.
+
+				
+				
+			
+				
+				<h3 id="ParseDefault">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=3675:3723#L136">ParseDefault</a>
+					<a class="permalink" href="index.html#ParseDefault">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseDefault(level <a href="../../../../builtin/index.html#string">string</a>, def <a href="index.html#Value">Value</a>) <a href="index.html#Value">Value</a></pre>
+				<p>ParseDefault calls Parse and returns the default Value on error.
+
+				
+				
+			
+				
+				<h3 id="WarnValue">func <a href="http://localhost:6060/src/github.com/go-kit/log/level/level.go?s=6113:6135#L211">WarnValue</a>
+					<a class="permalink" href="index.html#WarnValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WarnValue() <a href="index.html#Value">Value</a></pre>
+				<p>WarnValue returns the unique value added to log events by Warn.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

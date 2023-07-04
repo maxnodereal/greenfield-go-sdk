@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>testutil - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package testutil
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prometheus/client_golang/prometheus/testutil"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package testutil provides helpers to test code using the prometheus package
+of client_golang.
+<p>While writing unit tests to verify correct instrumentation of your code, it&apos;s
+a common mistake to mostly test the instrumentation library instead of your
+own code. Rather than verifying that a prometheus.Counter&apos;s value has changed
+as expected or that it shows up in the exposition after registration, it is
+in general more robust and more faithful to the concept of unit tests to use
+mock implementations of the prometheus.Counter and prometheus.Registerer
+interfaces that simply assert that the Add or Register methods have been
+called with the expected arguments. However, this might be overkill in simple
+scenarios. The ToFloat64 function is provided for simple inspection of a
+single-value metric, but it has to be used with caution.
+<p>End-to-end tests to verify all or larger parts of the metrics exposition can
+be implemented with the CollectAndCompare or GatherAndCompare functions. The
+most appropriate use is not so much testing instrumentation of your code, but
+testing custom prometheus.Collector implementations and in particular whole
+exporters, i.e. programs that retrieve telemetry data from a 3rd party source
+and convert it into Prometheus metrics.
+<p>In a similar pattern, CollectAndLint and GatherAndLint can be used to detect
+metrics that have issues with their name, type, or metadata without being
+necessarily invalid, e.g. a counter with a name missing the “_total” suffix.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#CollectAndCompare">func CollectAndCompare(c prometheus.Collector, expected io.Reader, metricNames ...string) error</a></dd>
+			
+				
+				<dd><a href="index.html#CollectAndCount">func CollectAndCount(c prometheus.Collector, metricNames ...string) int</a></dd>
+			
+				
+				<dd><a href="index.html#CollectAndLint">func CollectAndLint(c prometheus.Collector, metricNames ...string) ([]promlint.Problem, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GatherAndCompare">func GatherAndCompare(g prometheus.Gatherer, expected io.Reader, metricNames ...string) error</a></dd>
+			
+				
+				<dd><a href="index.html#GatherAndCount">func GatherAndCount(g prometheus.Gatherer, metricNames ...string) (int, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GatherAndLint">func GatherAndLint(g prometheus.Gatherer, metricNames ...string) ([]promlint.Problem, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ScrapeAndCompare">func ScrapeAndCompare(url string, expected io.Reader, metricNames ...string) error</a></dd>
+			
+				
+				<dd><a href="index.html#ToFloat64">func ToFloat64(c prometheus.Collector) float64</a></dd>
+			
+				
+				<dd><a href="index.html#TransactionalGatherAndCompare">func TransactionalGatherAndCompare(g prometheus.TransactionalGatherer, expected io.Reader, metricNames ...string) error</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/lint.go">lint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go">testutil.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="CollectAndCompare">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=7342:7437#L179">CollectAndCompare</a>
+				<a class="permalink" href="index.html#CollectAndCompare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CollectAndCompare(c <a href="../index.html">prometheus</a>.<a href="../index.html#Collector">Collector</a>, expected <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>CollectAndCompare registers the provided Collector with a newly created
+pedantic Registry. It then calls GatherAndCompare with that Registry and with
+the provided metricNames.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CollectAndCount">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=5334:5405#L116">CollectAndCount</a>
+				<a class="permalink" href="index.html#CollectAndCount">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CollectAndCount(c <a href="../index.html">prometheus</a>.<a href="../index.html#Collector">Collector</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+			<p>CollectAndCount registers the provided Collector with a newly created
+pedantic Registry. It then calls GatherAndCount with that Registry and with
+the provided metricNames. In the unlikely case that the registration or the
+gathering fails, this function panics. (This is inconsistent with the other
+CollectAnd… functions in this package and has historical reasons. Changing
+the function signature would be a breaking change and will therefore only
+happen with the next major version bump.)
+
+			
+			
+
+		
+			
+			
+			<h2 id="CollectAndLint">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/lint.go?s=928:1022#L16">CollectAndLint</a>
+				<a class="permalink" href="index.html#CollectAndLint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CollectAndLint(c <a href="../index.html">prometheus</a>.<a href="../index.html#Collector">Collector</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) ([]<a href="promlint/index.html">promlint</a>.<a href="promlint/index.html#Problem">Problem</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CollectAndLint registers the provided Collector with a newly created pedantic
+Registry. It then calls GatherAndLint with that Registry and with the
+provided metricNames.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GatherAndCompare">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=7908:8001#L191">GatherAndCompare</a>
+				<a class="permalink" href="index.html#GatherAndCompare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GatherAndCompare(g <a href="../index.html">prometheus</a>.<a href="../index.html#Gatherer">Gatherer</a>, expected <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>GatherAndCompare gathers all metrics from the provided Gatherer and compares
+it to an expected output read from the provided Reader in the Prometheus text
+exposition format. If any metricNames are provided, only metrics with those
+names are compared.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GatherAndCount">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=5907:5985#L132">GatherAndCount</a>
+				<a class="permalink" href="index.html#GatherAndCount">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GatherAndCount(g <a href="../index.html">prometheus</a>.<a href="../index.html#Gatherer">Gatherer</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GatherAndCount gathers all metrics from the provided Gatherer and counts
+them. It returns the number of metric children in all gathered metric
+families together. If any metricNames are provided, only metrics with those
+names are counted.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GatherAndLint">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/lint.go?s=1425:1517#L27">GatherAndLint</a>
+				<a class="permalink" href="index.html#GatherAndLint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GatherAndLint(g <a href="../index.html">prometheus</a>.<a href="../index.html#Gatherer">Gatherer</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) ([]<a href="promlint/index.html">promlint</a>.<a href="promlint/index.html#Problem">Problem</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GatherAndLint gathers all metrics from the provided Gatherer and checks them
+with the linter in the promlint package. If any metricNames are provided,
+only metrics with those names are checked.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ScrapeAndCompare">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=6550:6632#L151">ScrapeAndCompare</a>
+				<a class="permalink" href="index.html#ScrapeAndCompare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ScrapeAndCompare(url <a href="../../../../../builtin/index.html#string">string</a>, expected <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>ScrapeAndCompare calls a remote exporter&apos;s endpoint which is expected to return some metrics in
+plain text format. Then it compares it with the results that the `expected` would return.
+If the `metricNames` is not empty it would filter the comparison only to the given metric names.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ToFloat64">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=4061:4107#L70">ToFloat64</a>
+				<a class="permalink" href="index.html#ToFloat64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ToFloat64(c <a href="../index.html">prometheus</a>.<a href="../index.html#Collector">Collector</a>) <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+			<p>ToFloat64 collects all Metrics from the provided Collector. It expects that
+this results in exactly one Metric being collected, which must be a Gauge,
+Counter, or Untyped. In all other cases, ToFloat64 panics. ToFloat64 returns
+the value of the collected Metric.
+<p>The Collector provided is typically a simple instance of Gauge or Counter, or
+– less commonly – a GaugeVec or CounterVec with exactly one element. But any
+Collector fulfilling the prerequisites described above will do.
+<p>Use this function with caution. It is computationally very expensive and thus
+not suited at all to read values from Metrics in regular code. This is really
+only for testing purposes, and even for testing, other approaches are often
+more appropriate (see this package&apos;s documentation).
+<p>A clear anti-pattern would be to use a metric type from the prometheus
+package to track values that are also needed for something else than the
+exposition of Prometheus metrics. For example, you would like to track the
+number of items in a queue because your code should reject queuing further
+items if a certain limit is reached. It is tempting to track the number of
+items in a prometheus.Gauge, as it is then easily available as a metric for
+exposition, too. However, then you would need to call ToFloat64 in your
+regular code, potentially quite often. The recommended way is to track the
+number of items conventionally (in the way you would have done it without
+considering Prometheus metrics) and then expose the number with a
+prometheus.GaugeFunc.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TransactionalGatherAndCompare">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/testutil/testutil.go?s=8386:8505#L199">TransactionalGatherAndCompare</a>
+				<a class="permalink" href="index.html#TransactionalGatherAndCompare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TransactionalGatherAndCompare(g <a href="../index.html">prometheus</a>.<a href="../index.html#TransactionalGatherer">TransactionalGatherer</a>, expected <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, metricNames ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>TransactionalGatherAndCompare gathers all metrics from the provided Gatherer and compares
+it to an expected output read from the provided Reader in the Prometheus text
+exposition format. If any metricNames are provided, only metrics with those
+names are compared.
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="promlint/index.html">promlint</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package promlint provides a linter for Prometheus metrics.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>autofile - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package autofile
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/libs/autofile"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#GroupCheckDuration">func GroupCheckDuration(duration time.Duration) func(*Group)</a></dd>
+			
+				
+				<dd><a href="index.html#GroupHeadSizeLimit">func GroupHeadSizeLimit(limit int64) func(*Group)</a></dd>
+			
+				
+				<dd><a href="index.html#GroupTotalSizeLimit">func GroupTotalSizeLimit(limit int64) func(*Group)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AutoFile">type AutoFile</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OpenAutoFile">func OpenAutoFile(path string) (*AutoFile, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoFile.Close">func (af *AutoFile) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoFile.Size">func (af *AutoFile) Size() (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoFile.Sync">func (af *AutoFile) Sync() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoFile.Write">func (af *AutoFile) Write(b []byte) (n int, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Group">type Group</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OpenGroup">func OpenGroup(headPath string, groupOptions ...func(*Group)) (*Group, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.Buffered">func (g *Group) Buffered() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.Close">func (g *Group) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.FlushAndSync">func (g *Group) FlushAndSync() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.HeadSizeLimit">func (g *Group) HeadSizeLimit() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.MaxIndex">func (g *Group) MaxIndex() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.MinIndex">func (g *Group) MinIndex() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.NewReader">func (g *Group) NewReader(index int) (*GroupReader, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.OnStart">func (g *Group) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.OnStop">func (g *Group) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.ReadGroupInfo">func (g *Group) ReadGroupInfo() GroupInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.RotateFile">func (g *Group) RotateFile()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.TotalSizeLimit">func (g *Group) TotalSizeLimit() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.Wait">func (g *Group) Wait()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.Write">func (g *Group) Write(p []byte) (nn int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Group.WriteLine">func (g *Group) WriteLine(line string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GroupInfo">type GroupInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GroupReader">type GroupReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GroupReader.Close">func (gr *GroupReader) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GroupReader.CurIndex">func (gr *GroupReader) CurIndex() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GroupReader.Read">func (gr *GroupReader) Read(p []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GroupReader.SetIndex">func (gr *GroupReader) SetIndex(index int) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go">autofile.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go">group.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GroupCheckDuration">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=3038:3098#L106">GroupCheckDuration</a>
+				<a class="permalink" href="index.html#GroupCheckDuration">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GroupCheckDuration(duration <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) func(*<a href="index.html#Group">Group</a>)</pre>
+			<p>GroupCheckDuration allows you to overwrite default groupCheckDuration.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GroupHeadSizeLimit">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=3244:3293#L113">GroupHeadSizeLimit</a>
+				<a class="permalink" href="index.html#GroupHeadSizeLimit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GroupHeadSizeLimit(limit <a href="../../../../../builtin/index.html#int64">int64</a>) func(*<a href="index.html#Group">Group</a>)</pre>
+			<p>GroupHeadSizeLimit allows you to overwrite default head size limit - 10MB.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GroupTotalSizeLimit">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=3445:3495#L120">GroupTotalSizeLimit</a>
+				<a class="permalink" href="index.html#GroupTotalSizeLimit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GroupTotalSizeLimit(limit <a href="../../../../../builtin/index.html#int64">int64</a>) func(*<a href="index.html#Group">Group</a>)</pre>
+			<p>GroupTotalSizeLimit allows you to overwrite default total size limit of the group - 1GB.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AutoFile">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=836:1054#L35">AutoFile</a>
+				<a class="permalink" href="index.html#AutoFile">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AutoFile automatically closes and re-opens file for writing. The file is
+automatically setup to close itself every 1s and upon receiving SIGHUP.
+<p>This is useful for using a log file with the logrotate tool.
+
+			<pre>type AutoFile struct {
+<span id="AutoFile.ID"></span>    ID   <a href="../../../../../builtin/index.html#string">string</a>
+<span id="AutoFile.Path"></span>    Path <a href="../../../../../builtin/index.html#string">string</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="OpenAutoFile">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=1260:1309#L50">OpenAutoFile</a>
+					<a class="permalink" href="index.html#OpenAutoFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func OpenAutoFile(path <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#AutoFile">AutoFile</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenAutoFile creates an AutoFile in the path (with random ID). If there is
+an error, it will be of type *PathError or *ErrPermissionsChanged (if file&apos;s
+permissions got changed (should be 0600)).
+
+				
+				
+			
+
+			
+				
+				<h3 id="AutoFile.Close">func (*AutoFile) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=1966:1999#L83">Close</a>
+					<a class="permalink" href="index.html#AutoFile.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (af *<a href="index.html#AutoFile">AutoFile</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close shuts down the closing goroutine, SIGHUP handler and closes the
+AutoFile.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoFile.Size">func (*AutoFile) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=3773:3814#L169">Size</a>
+					<a class="permalink" href="index.html#AutoFile.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (af *<a href="index.html#AutoFile">AutoFile</a>) Size() (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Size returns the size of the AutoFile. It returns -1 and an error if fails
+get stats or open file.
+Opens AutoFile if needed.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoFile.Sync">func (*AutoFile) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=3057:3089#L138">Sync</a>
+					<a class="permalink" href="index.html#AutoFile.Sync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (af *<a href="index.html#AutoFile">AutoFile</a>) Sync() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Sync commits the current contents of the file to stable storage. Typically,
+this means flushing the file system&apos;s in-memory copy of recently written
+data to disk.
+Opens AutoFile if needed.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoFile.Write">func (*AutoFile) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/autofile.go?s=2644:2698#L120">Write</a>
+					<a class="permalink" href="index.html#AutoFile.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (af *<a href="index.html#AutoFile">AutoFile</a>) Write(b []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write writes len(b) bytes to the AutoFile. It returns the number of bytes
+written and an error, if any. Write returns a non-nil error when n !=
+len(b).
+Opens AutoFile if needed.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Group">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=1191:1986#L44">Group</a>
+				<a class="permalink" href="index.html#Group">&#xb6;</a>
+				
+				
+			</h2>
+			<p>You can open a Group to keep restrictions on an AutoFile, like
+the maximum size of each chunk, and/or the total amount of bytes
+stored in the group.
+<p>The first file to be written in the Group.Dir is the head file.
+<pre>Dir/
+- &lt;HeadPath&gt;
+</pre>
+<p>Once the Head file reaches the size limit, it will be rotated.
+<pre>Dir/
+- &lt;HeadPath&gt;.000   // First rolled file
+- &lt;HeadPath&gt;       // New head path, starts empty.
+									 // The implicit index is 001.
+</pre>
+<p>As more files are written, the index numbers grow...
+<pre>Dir/
+- &lt;HeadPath&gt;.000   // First rolled file
+- &lt;HeadPath&gt;.001   // Second rolled file
+- ...
+- &lt;HeadPath&gt;       // New head path
+</pre>
+<p>The Group can also be used to binary-search for some line,
+assuming that marker lines are written occasionally.
+
+			<pre>type Group struct {
+    <a href="../service/index.html">service</a>.<a href="../service/index.html#BaseService">BaseService</a>
+
+<span id="Group.ID"></span>    ID   <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Group.Head"></span>    Head *<a href="index.html#AutoFile">AutoFile</a> <span class="comment">// The head AutoFile to write to</span>
+
+<span id="Group.Dir"></span>    Dir <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// Directory that contains .Head</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="OpenGroup">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=2098:2175#L70">OpenGroup</a>
+					<a class="permalink" href="index.html#OpenGroup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func OpenGroup(headPath <a href="../../../../../builtin/index.html#string">string</a>, groupOptions ...func(*<a href="index.html#Group">Group</a>)) (*<a href="index.html#Group">Group</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenGroup creates a new Group with head at headPath. It returns an error if
+it fails to open head file.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Group.Buffered">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=5940:5970#L211">Buffered</a>
+					<a class="permalink" href="index.html#Group.Buffered">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) Buffered() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Buffered returns the size of the currently buffered data.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.Close">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=4321:4344#L151">Close</a>
+					<a class="permalink" href="index.html#Group.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) Close()</pre>
+				<p>Close closes the head file. The group must be stopped by this moment.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.FlushAndSync">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=6179:6215#L219">FlushAndSync</a>
+					<a class="permalink" href="index.html#Group.FlushAndSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) FlushAndSync() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>FlushAndSync writes any buffered data to the underlying file and commits the
+current content of the file to stable storage (fsync).
+
+				
+				
+				
+			
+				
+				<h3 id="Group.HeadSizeLimit">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=4558:4595#L162">HeadSizeLimit</a>
+					<a class="permalink" href="index.html#Group.HeadSizeLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) HeadSizeLimit() <a href="../../../../../builtin/index.html#int64">int64</a></pre>
+				<p>HeadSizeLimit returns the current head size limit.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.MaxIndex">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=4880:4910#L176">MaxIndex</a>
+					<a class="permalink" href="index.html#Group.MaxIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) MaxIndex() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>MaxIndex returns index of the last file in the group.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.MinIndex">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=5029:5059#L183">MinIndex</a>
+					<a class="permalink" href="index.html#Group.MinIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) MinIndex() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>MinIndex returns index of the first file in the group.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.NewReader">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=8332:8390#L321">NewReader</a>
+					<a class="permalink" href="index.html#Group.NewReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) NewReader(index <a href="../../../../../builtin/index.html#int">int</a>) (*<a href="index.html#GroupReader">GroupReader</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewReader returns a new group reader.
+CONTRACT: Caller must close the returned GroupReader.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.OnStart">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=3658:3689#L128">OnStart</a>
+					<a class="permalink" href="index.html#Group.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) OnStart() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service by starting the goroutine that checks file
+and group limits.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.OnStop">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=3912:3936#L136">OnStop</a>
+					<a class="permalink" href="index.html#Group.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) OnStop()</pre>
+				<p>OnStop implements service.Service by stopping the goroutine described above.
+NOTE: g.Head must be closed separately using Close.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.ReadGroupInfo">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=8858:8899#L339">ReadGroupInfo</a>
+					<a class="permalink" href="index.html#Group.ReadGroupInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) ReadGroupInfo() <a href="index.html#GroupInfo">GroupInfo</a></pre>
+				<p>Returns info after scanning all files in g.Head&apos;s dir.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.RotateFile">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=7806:7834#L293">RotateFile</a>
+					<a class="permalink" href="index.html#Group.RotateFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) RotateFile()</pre>
+				<p>RotateFile causes group to close the current head and assign it some index.
+Note it does not create a new head.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.TotalSizeLimit">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=4718:4756#L169">TotalSizeLimit</a>
+					<a class="permalink" href="index.html#Group.TotalSizeLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) TotalSizeLimit() <a href="../../../../../builtin/index.html#int64">int64</a></pre>
+				<p>TotalSizeLimit returns total size limit of the group.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.Wait">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=4154:4176#L145">Wait</a>
+					<a class="permalink" href="index.html#Group.Wait">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) Wait()</pre>
+				<p>Wait blocks until all internal goroutines are finished. Supposed to be
+called after Stop.
+
+				
+				
+				
+			
+				
+				<h3 id="Group.Write">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=5421:5472#L194">Write</a>
+					<a class="permalink" href="index.html#Group.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) Write(p []<a href="../../../../../builtin/index.html#byte">byte</a>) (nn <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write writes the contents of p into the current head of the group. It
+returns the number of bytes written. If nn &lt; len(p), it also returns an
+error explaining why the write is short.
+NOTE: Writes are buffered so they don&apos;t write synchronously
+TODO: Make it halt if space is unavailable
+
+				
+				
+				
+			
+				
+				<h3 id="Group.WriteLine">func (*Group) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=5733:5777#L203">WriteLine</a>
+					<a class="permalink" href="index.html#Group.WriteLine">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Group">Group</a>) WriteLine(line <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>WriteLine writes line into the current head of the group. It also appends &quot;\n&quot;.
+NOTE: Writes are buffered so they don&apos;t write synchronously
+TODO: Make it halt if space is unavailable
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GroupInfo">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=8547:8798#L331">GroupInfo</a>
+				<a class="permalink" href="index.html#GroupInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GroupInfo holds information about the group.
+
+			<pre>type GroupInfo struct {
+<span id="GroupInfo.MinIndex"></span>    MinIndex  <a href="../../../../../builtin/index.html#int">int</a>   <span class="comment">// index of the first file in the group, including head</span>
+<span id="GroupInfo.MaxIndex"></span>    MaxIndex  <a href="../../../../../builtin/index.html#int">int</a>   <span class="comment">// index of the last file in the group, including head</span>
+<span id="GroupInfo.TotalSize"></span>    TotalSize <a href="../../../../../builtin/index.html#int64">int64</a> <span class="comment">// total size of the group</span>
+<span id="GroupInfo.HeadSize"></span>    HeadSize  <a href="../../../../../builtin/index.html#int64">int64</a> <span class="comment">// size of the head</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GroupReader">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=10743:10878#L413">GroupReader</a>
+				<a class="permalink" href="index.html#GroupReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GroupReader provides an interface for reading from a Group.
+
+			<pre>type GroupReader struct {
+    *<a href="index.html#Group">Group</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="GroupReader.Close">func (*GroupReader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=11099:11135#L433">Close</a>
+					<a class="permalink" href="index.html#GroupReader.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gr *<a href="index.html#GroupReader">GroupReader</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the GroupReader by closing the cursor file.
+
+				
+				
+				
+			
+				
+				<h3 id="GroupReader.CurIndex">func (*GroupReader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=12928:12965#L518">CurIndex</a>
+					<a class="permalink" href="index.html#GroupReader.CurIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gr *<a href="index.html#GroupReader">GroupReader</a>) CurIndex() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>CurIndex returns cursor&apos;s file index.
+
+				
+				
+				
+			
+				
+				<h3 id="GroupReader.Read">func (*GroupReader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=11458:11514#L450">Read</a>
+					<a class="permalink" href="index.html#GroupReader.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gr *<a href="index.html#GroupReader">GroupReader</a>) Read(p []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Read implements io.Reader, reading bytes from the current Reader
+incrementing index until enough bytes are read.
+
+				
+				
+				
+			
+				
+				<h3 id="GroupReader.SetIndex">func (*GroupReader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/autofile/group.go?s=13118:13166#L526">SetIndex</a>
+					<a class="permalink" href="index.html#GroupReader.SetIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gr *<a href="index.html#GroupReader">GroupReader</a>) SetIndex(index <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SetIndex sets the cursor&apos;s file index to index by opening a file at this
+position.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="cmd/index.html">cmd</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

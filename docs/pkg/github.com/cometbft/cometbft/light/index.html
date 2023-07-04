@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>light - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package light
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/light"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>package light provides a light client implementation.
+<p>The concept of light clients was introduced in the Bitcoin white paper. It
+describes a watcher of distributed consensus process that only validates the
+consensus algorithm and not the state machine transactions within.
+<p>CometBFT light clients allow bandwidth &amp; compute-constrained devices, such as
+smartphones, low-power embedded chips, or other blockchains to efficiently
+verify the consensus of a CometBFT blockchain. This forms the basis of safe
+and efficient state synchronization for new network nodes and inter-blockchain
+communication (where a light client of one CometBFT instance runs in another
+chain&apos;s state machine).
+<p>In a network that is expected to reliably punish validators for misbehavior by
+slashing bonded stake and where the validator set changes infrequently, clients
+can take advantage of this assumption to safely synchronize a light client
+without downloading the intervening headers.
+<p>Light clients (and full nodes) operating in the Proof Of Stake context need a
+trusted block height from a trusted source that is no older than 1 unbonding
+window plus a configurable evidence submission synchrony bound. This is called
+weak subjectivity.
+<p>Weak subjectivity is required in Proof of Stake blockchains because it is
+costless for an attacker to buy up voting keys that are no longer bonded and
+fork the network at some point in its prior history. See Vitalik&apos;s post at
+[Proof of Stake: How I Learned to Love Weak
+Subjectivity](<a href="https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/">https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/</a>).
+<p>NOTE: CometBFT provides a somewhat different (stronger) light client model
+than Bitcoin under eclipse, since the eclipsing node(s) can only fool the light
+client if they have two-thirds of the private keys from the last root-of-trust.
+<h3 id="hdr-Common_structures">Common structures</h3>
+<p>* SignedHeader
+<p>SignedHeader is a block header along with a commit -- enough validator
+precommit-vote signatures to prove its validity (&gt; 2/3 of the voting power)
+given the validator set responsible for signing that header.
+<p>The hash of the next validator set is included and signed in the SignedHeader.
+This lets the light client keep track of arbitrary changes to the validator set,
+as every change to the validator set must be approved by inclusion in the
+header and signed in the commit.
+<p>In the worst case, with every block changing the validators around completely,
+a light client can sync up with every block header to verify each validator set
+change on the chain. In practice, most applications will not have frequent
+drastic updates to the validator set, so the logic defined in this package for
+light client syncing is optimized to use intelligent bisection.
+<h3 id="hdr-What_this_package_provides">What this package provides</h3>
+<p>This package provides three major things:
+<p>1. Client implementation (see client.go)
+2. Pure functions to verify a new header (see verifier.go)
+3. Secure RPC proxy
+<p>## 1. Client implementation (see client.go)
+<p>Example usage:
+<pre>db, err := dbm.NewGoLevelDB(&quot;light-client-db&quot;, dbDir)
+if err != nil {
+	// handle error
+}
+
+c, err := NewHTTPClient(
+	chainID,
+	TrustOptions{
+		Period: 504 * time.Hour, // 21 days
+		Height: 100,
+		Hash:   header.Hash(),
+	},
+	&quot;http://localhost:26657&quot;,
+	[]string{&quot;http://witness1:26657&quot;},
+	dbs.New(db, &quot;&quot;),
+)
+if err != nil {
+	// handle error
+}
+
+h, err := c.TrustedHeader(100)
+if err != nil {
+	// handle error
+}
+fmt.Println(&quot;header&quot;, h)
+</pre>
+<p>Check out other examples in example_test.go
+<p>## 2. Pure functions to verify a new header (see verifier.go)
+<p>Verify function verifies a new header against some trusted header. See
+<a href="https://github.com/cometbft/cometbft/blob/v0.37.x/spec/light-client/verification/README.md">https://github.com/cometbft/cometbft/blob/v0.37.x/spec/light-client/verification/README.md</a>
+for details.
+<p>There are two methods of verification: sequential and bisection
+<p>Sequential uses the headers hashes and the validator sets to verify each adjacent header until
+it reaches the target header.
+<p>Bisection finds the middle header between a trusted and new header, reiterating the action until it
+verifies a header. A cache of headers requested by the primary is kept such that when a
+verification is made, and the light client tries again to verify the new header in the middle,
+the light client does not need to ask for all the same headers again.
+<p>refer to docs/imgs/light_client_bisection_alg.png
+<p>## 3. Secure RPC proxy
+<p>CometBFT RPC exposes a lot of info, but a malicious node could return any
+data it wants to queries, or even to block headers, even making up fake
+signatures from non-existent validators to justify it. Secure RPC proxy serves
+as a wrapper, which verifies all the headers, using a light client connected to
+some other node.
+<p>See
+<a href="https://docs.cometbft.com/v0.37/core/light-client.html">https://docs.cometbft.com/v0.37/core/light-client.html</a>
+for usage example.
+Or see
+<a href="https://github.com/cometbft/cometbft/tree/v0.37.x/spec/consensus/light-client">https://github.com/cometbft/cometbft/tree/v0.37.x/spec/consensus/light-client</a>
+for the full spec
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#HeaderExpired">func HeaderExpired(h *types.SignedHeader, trustingPeriod time.Duration, now time.Time) bool</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateTrustLevel">func ValidateTrustLevel(lvl cmtmath.Fraction) error</a></dd>
+			
+				
+				<dd><a href="index.html#Verify">func Verify(trustedHeader *types.SignedHeader, trustedVals *types.ValidatorSet, untrustedHeader *types.SignedHeader, untrustedVals *types.ValidatorSet, trustingPeriod time.Duration, now time.Time, maxClockDrift time.Duration, trustLevel cmtmath.Fraction) error</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyAdjacent">func VerifyAdjacent(trustedHeader *types.SignedHeader, untrustedHeader *types.SignedHeader, untrustedVals *types.ValidatorSet, trustingPeriod time.Duration, now time.Time, maxClockDrift time.Duration) error</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyBackwards">func VerifyBackwards(untrustedHeader, trustedHeader *types.Header) error</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyNonAdjacent">func VerifyNonAdjacent(trustedHeader *types.SignedHeader, trustedVals *types.ValidatorSet, untrustedHeader *types.SignedHeader, untrustedVals *types.ValidatorSet, trustingPeriod time.Duration, now time.Time, maxClockDrift time.Duration, trustLevel cmtmath.Fraction) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(ctx context.Context, chainID string, trustOptions TrustOptions, primary provider.Provider, witnesses []provider.Provider, trustedStore store.Store, options ...Option) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClientFromTrustedStore">func NewClientFromTrustedStore(chainID string, trustingPeriod time.Duration, primary provider.Provider, witnesses []provider.Provider, trustedStore store.Store, options ...Option) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHTTPClient">func NewHTTPClient(ctx context.Context, chainID string, trustOptions TrustOptions, primaryAddress string, witnessesAddresses []string, trustedStore store.Store, options ...Option) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHTTPClientFromTrustedStore">func NewHTTPClientFromTrustedStore(chainID string, trustingPeriod time.Duration, primaryAddress string, witnessesAddresses []string, trustedStore store.Store, options ...Option) (*Client, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ChainID">func (c *Client) ChainID() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Cleanup">func (c *Client) Cleanup() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.FirstTrustedHeight">func (c *Client) FirstTrustedHeight() (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.LastTrustedHeight">func (c *Client) LastTrustedHeight() (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Primary">func (c *Client) Primary() provider.Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.TrustedLightBlock">func (c *Client) TrustedLightBlock(height int64) (*types.LightBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Update">func (c *Client) Update(ctx context.Context, now time.Time) (*types.LightBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.VerifyHeader">func (c *Client) VerifyHeader(ctx context.Context, newHeader *types.Header, now time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.VerifyLightBlockAtHeight">func (c *Client) VerifyLightBlockAtHeight(ctx context.Context, height int64, now time.Time) (*types.LightBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Witnesses">func (c *Client) Witnesses() []provider.Provider</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrInvalidHeader">type ErrInvalidHeader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrInvalidHeader.Error">func (e ErrInvalidHeader) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrNewValSetCantBeTrusted">type ErrNewValSetCantBeTrusted</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNewValSetCantBeTrusted.Error">func (e ErrNewValSetCantBeTrusted) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrOldHeaderExpired">type ErrOldHeaderExpired</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrOldHeaderExpired.Error">func (e ErrOldHeaderExpired) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrVerificationFailed">type ErrVerificationFailed</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrVerificationFailed.Error">func (e ErrVerificationFailed) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrVerificationFailed.Unwrap">func (e ErrVerificationFailed) Unwrap() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfirmationFunction">func ConfirmationFunction(fn func(action string) bool) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger">func Logger(l log.Logger) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxBlockLag">func MaxBlockLag(d time.Duration) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxClockDrift">func MaxClockDrift(d time.Duration) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxRetryAttempts">func MaxRetryAttempts(max uint16) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PruningSize">func PruningSize(h uint16) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SequentialVerification">func SequentialVerification() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkippingVerification">func SkippingVerification(trustLevel cmtmath.Fraction) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TrustOptions">type TrustOptions</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TrustOptions.ValidateBasic">func (opts TrustOptions) ValidateBasic() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Client_Update">Client.Update</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Client_VerifyLightBlockAtHeight">Client.VerifyLightBlockAtHeight</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/detector.go">detector.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/setup.go">setup.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/trust_options.go">trust_options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go">verifier.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// DefaultTrustLevel - new header can be trusted if at least one correct</span>
+    <span class="comment">// validator signed it.</span>
+    <span id="DefaultTrustLevel">DefaultTrustLevel</span> = <a href="../libs/math/index.html">cmtmath</a>.<a href="../libs/math/index.html#Fraction">Fraction</a>{<a href="../libs/math/index.html#Fraction.Numerator">Numerator</a>: 1, <a href="../libs/math/index.html#Fraction.Denominator">Denominator</a>: 3}
+)</pre>
+			
+				<p>ErrFailedHeaderCrossReferencing is returned when the detector was not able to cross reference the header
+with any of the connected witnesses.
+
+				<pre>var <span id="ErrFailedHeaderCrossReferencing">ErrFailedHeaderCrossReferencing</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;all witnesses have either not responded, don&#39;t have the &#34; +
+    &#34; blocks or sent invalid blocks. You should look to change your witnesses&#34; +
+    &#34;  or review the light client&#39;s logs for more information&#34;)</pre>
+			
+				<p>ErrLightClientAttack is returned when the light client has detected an attempt
+to verify a false header and has sent the evidence to either a witness or primary.
+
+				<pre>var <span id="ErrLightClientAttack">ErrLightClientAttack</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(`attempted attack detected.
+    Light client received valid conflicting header from witness.
+    Unable to verify header. Evidence has been sent to both providers.
+    Check logs for full evidence and trace`,
+)</pre>
+			
+				<p>ErrNoWitnesses means that there are not enough witnesses connected to
+continue running the light client.
+
+				<pre>var <span id="ErrNoWitnesses">ErrNoWitnesses</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;no witnesses connected. please reset light client&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="HeaderExpired">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=6857:6948#L197">HeaderExpired</a>
+				<a class="permalink" href="index.html#HeaderExpired">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HeaderExpired(h *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>, trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>, now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>HeaderExpired return true if the given header expired.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateTrustLevel">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=6535:6586#L187">ValidateTrustLevel</a>
+				<a class="permalink" href="index.html#ValidateTrustLevel">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateTrustLevel(lvl <a href="../libs/math/index.html">cmtmath</a>.<a href="../libs/math/index.html#Fraction">Fraction</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>ValidateTrustLevel checks that trustLevel is within the allowed range [1/3,
+1]. If not, it returns an error. 1/3 is the minimum amount of trust needed
+which does not break the security model.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Verify">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=4455:4786#L125">Verify</a>
+				<a class="permalink" href="index.html#Verify">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Verify(
+    trustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    trustedVals *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>,
+    untrustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    untrustedVals *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>,
+    trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>,
+    maxClockDrift <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    trustLevel <a href="../libs/math/index.html">cmtmath</a>.<a href="../libs/math/index.html#Fraction">Fraction</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Verify combines both VerifyAdjacent and VerifyNonAdjacent functions.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyAdjacent">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=3127:3380#L83">VerifyAdjacent</a>
+				<a class="permalink" href="index.html#VerifyAdjacent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyAdjacent(
+    trustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    untrustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    untrustedVals *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>,
+    trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>,
+    maxClockDrift <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>VerifyAdjacent verifies directly adjacent untrustedHeader against
+trustedHeader. It ensures that:
+<pre>a) trustedHeader can still be trusted (if not, ErrOldHeaderExpired is returned)
+b) untrustedHeader is valid (if not, ErrInvalidHeader is returned)
+c) untrustedHeader.ValidatorsHash equals trustedHeader.NextValidatorsHash
+d) more than 2/3 of new validators (untrustedVals) have signed h2
+  (otherwise, ErrInvalidHeader is returned)
+e) headers are adjacent.
+</pre>
+<p>maxClockDrift defines how much untrustedHeader.Time can drift into the
+future.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyBackwards">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=7429:7501#L211">VerifyBackwards</a>
+				<a class="permalink" href="index.html#VerifyBackwards">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyBackwards(untrustedHeader, trustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#Header">Header</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>VerifyBackwards verifies an untrusted header with a height one less than
+that of an adjacent trusted header. It ensures that:
+<pre>	a) untrusted header is valid
+ b) untrusted header has a time before the trusted header
+ c) that the LastBlockID hash of the trusted header is the same as the hash
+ of the trusted header
+
+ For any of these cases ErrInvalidHeader is returned.
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyNonAdjacent">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/verifier.go?s=954:1296#L22">VerifyNonAdjacent</a>
+				<a class="permalink" href="index.html#VerifyNonAdjacent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyNonAdjacent(
+    trustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    trustedVals *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>,
+    untrustedHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#SignedHeader">SignedHeader</a>,
+    untrustedVals *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>,
+    trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>,
+    maxClockDrift <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    trustLevel <a href="../libs/math/index.html">cmtmath</a>.<a href="../libs/math/index.html#Fraction">Fraction</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>VerifyNonAdjacent verifies non-adjacent untrustedHeader against
+trustedHeader. It ensures that:
+<pre>	a) trustedHeader can still be trusted (if not, ErrOldHeaderExpired is returned)
+	b) untrustedHeader is valid (if not, ErrInvalidHeader is returned)
+	c) trustLevel ([1/3, 1]) of trustedHeaderVals (or trustedHeaderNextVals)
+ signed correctly (if not, ErrNewValSetCantBeTrusted is returned)
+	d) more than 2/3 of untrustedVals have signed h2
+   (otherwise, ErrInvalidHeader is returned)
+ e) headers are non-adjacent.
+</pre>
+<p>maxClockDrift defines how much untrustedHeader.Time can drift into the
+future.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=4203:5081#L123">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client represents a light client, connected to a single chain, which gets
+light blocks from a primary provider, verifies them either sequentially or by
+skipping some and stores them in a trusted store (usually, a local FS).
+<p>Default verification: SkippingVerification(DefaultTrustLevel)
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=5599:5807#L164">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(
+    ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>,
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+    trustOptions <a href="index.html#TrustOptions">TrustOptions</a>,
+    primary <a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a>,
+    witnesses []<a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a>,
+    trustedStore <a href="store/index.html">store</a>.<a href="store/index.html#Store">Store</a>,
+    options ...<a href="index.html#Option">Option</a>,
+) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewClient returns a new light client. It returns an error if it fails to
+obtain the light block from the primary or they are invalid (e.g. trust
+hash does not match with the one from the headers).
+<p>Witnesses are providers, which will be used for cross-checking the primary
+provider. At least one witness must be given when skipping verification is
+used (default). A witness can become a primary iff the current primary is
+unavailable.
+<p>See all Option(s) for the additional configuration.
+
+				
+				
+			
+				
+				<h3 id="NewClientFromTrustedStore">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=6651:6856#L202">NewClientFromTrustedStore</a>
+					<a class="permalink" href="index.html#NewClientFromTrustedStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClientFromTrustedStore(
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+    trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    primary <a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a>,
+    witnesses []<a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a>,
+    trustedStore <a href="store/index.html">store</a>.<a href="store/index.html#Store">Store</a>,
+    options ...<a href="index.html#Option">Option</a>,
+) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewClientFromTrustedStore initializes existing client from the trusted store.
+<p>See NewClient
+
+				
+				
+			
+				
+				<h3 id="NewHTTPClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/setup.go?s=482:686#L8">NewHTTPClient</a>
+					<a class="permalink" href="index.html#NewHTTPClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHTTPClient(
+    ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>,
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+    trustOptions <a href="index.html#TrustOptions">TrustOptions</a>,
+    primaryAddress <a href="../../../../builtin/index.html#string">string</a>,
+    witnessesAddresses []<a href="../../../../builtin/index.html#string">string</a>,
+    trustedStore <a href="store/index.html">store</a>.<a href="store/index.html#Store">Store</a>,
+    options ...<a href="index.html#Option">Option</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewHTTPClient initiates an instance of a light client using HTTP addresses
+for both the primary provider and witnesses of the light client. A trusted
+header and hash must be passed to initialize the client.
+<p>See all Option(s) for the additional configuration.
+See NewClient.
+
+				
+				
+			
+				
+				<h3 id="NewHTTPClientFromTrustedStore">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/setup.go?s=1256:1457#L38">NewHTTPClientFromTrustedStore</a>
+					<a class="permalink" href="index.html#NewHTTPClientFromTrustedStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHTTPClientFromTrustedStore(
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+    trustingPeriod <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>,
+    primaryAddress <a href="../../../../builtin/index.html#string">string</a>,
+    witnessesAddresses []<a href="../../../../builtin/index.html#string">string</a>,
+    trustedStore <a href="store/index.html">store</a>.<a href="store/index.html#Store">Store</a>,
+    options ...<a href="index.html#Option">Option</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewHTTPClientFromTrustedStore initiates an instance of a light client using
+HTTP addresses for both the primary provider and witnesses and uses a
+trusted store as the root of trust.
+<p>See all Option(s) for the additional configuration.
+See NewClientFromTrustedStore.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.ChainID">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=28082:28115#L839">ChainID</a>
+					<a class="permalink" href="index.html#Client.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ChainID() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>ChainID returns the chain ID the light client was configured with.
+<p>Safe for concurrent use by multiple goroutines.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Cleanup">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=28719:28751#L863">Cleanup</a>
+					<a class="permalink" href="index.html#Client.Cleanup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Cleanup() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Cleanup removes all the data (headers and validator sets) stored. Note: the
+client must be stopped at this point.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.FirstTrustedHeight">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=27853:27905#L832">FirstTrustedHeight</a>
+					<a class="permalink" href="index.html#Client.FirstTrustedHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) FirstTrustedHeight() (<a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FirstTrustedHeight returns a first trusted height. -1 and nil are returned if
+there are no trusted headers.
+<p>Safe for concurrent use by multiple goroutines.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.LastTrustedHeight">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=27582:27633#L824">LastTrustedHeight</a>
+					<a class="permalink" href="index.html#Client.LastTrustedHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) LastTrustedHeight() (<a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LastTrustedHeight returns a last trusted height. -1 and nil are returned if
+there are no trusted headers.
+<p>Safe for concurrent use by multiple goroutines.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Primary">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=28240:28284#L846">Primary</a>
+					<a class="permalink" href="index.html#Client.Primary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Primary() <a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a></pre>
+				<p>Primary returns the primary provider.
+<p>NOTE: provider may be not safe for concurrent access.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.TrustedLightBlock">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=12987:13062#L394">TrustedLightBlock</a>
+					<a class="permalink" href="index.html#Client.TrustedLightBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) TrustedLightBlock(height <a href="../../../../builtin/index.html#int64">int64</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TrustedLightBlock returns a trusted light block at the given height (0 - the latest).
+<p>It returns an error if:
+<ul>
+<li>there are some issues with the trusted store, although that should not
+happen normally;
+<li>negative height is passed;
+<li>header has not been verified yet and is therefore not in the store
+</ul>
+<p>Safe for concurrent use by multiple goroutines.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Update">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=13937:14023#L426">Update</a>
+					<a class="permalink" href="index.html#Client.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Update(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Update attempts to advance the state by downloading the latest light
+block and verifying it. It returns a new light block on a successful
+update. Otherwise, it returns nil (plus an error, if any).
+
+				
+				<div id="example_Client_Update" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		<p>Automatically getting new headers and verifying them.
+</p>
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// give CometBFT time to generate some blocks</span>
+time.Sleep(5 * time.Second)
+
+dbDir, err := os.MkdirTemp(&#34;&#34;, &#34;light-client-example&#34;)
+if err != nil {
+    stdlog.Fatal(err)
+}
+defer os.RemoveAll(dbDir)
+
+var (
+    config  = rpctest.GetConfig()
+    chainID = config.ChainID()
+)
+
+primary, err := httpp.New(chainID, config.RPC.ListenAddress)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+block, err := primary.LightBlock(context.Background(), 2)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+db, err := dbm.NewGoLevelDB(&#34;light-client-db&#34;, dbDir)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+c, err := light.NewClient(
+    context.Background(),
+    chainID,
+    light.TrustOptions{
+        Period: 504 * time.Hour, <span class="comment">// 21 days</span>
+        Height: 2,
+        Hash:   block.Hash(),
+    },
+    primary,
+    []provider.Provider{primary}, <span class="comment">// NOTE: primary should not be used here</span>
+    dbs.New(db, chainID),
+    light.Logger(log.TestingLogger()),
+)
+if err != nil {
+    stdlog.Fatal(err)
+}
+defer func() {
+    if err := c.Cleanup(); err != nil {
+        stdlog.Fatal(err)
+    }
+}()
+
+time.Sleep(2 * time.Second)
+
+h, err := c.Update(context.Background(), time.Now())
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+if h != nil &amp;&amp; h.Height &gt; 2 {
+    fmt.Println(&#34;successful update&#34;)
+} else {
+    fmt.Println(&#34;update failed&#34;)
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">successful update
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Client.VerifyHeader">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=17234:17330#L515">VerifyHeader</a>
+					<a class="permalink" href="index.html#Client.VerifyHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) VerifyHeader(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, newHeader *<a href="../types/index.html">types</a>.<a href="../types/index.html#Header">Header</a>, now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>VerifyHeader verifies a new header against the trusted state. It returns
+immediately if newHeader exists in trustedStore (no verification is
+needed). Else it performs one of the two types of verification:
+<p>SequentialVerification: verifies that 2/3 of the trusted validator set has
+signed the new header. If the headers are not adjacent, **all** intermediate
+headers will be requested. Intermediate headers are not saved to database.
+<p>SkippingVerification(trustLevel): verifies that {trustLevel} of the trusted
+validator set has signed the new header. If it&apos;s not the case and the
+headers are not adjacent, verifySkipping is performed and necessary (not all)
+intermediate headers will be requested. See the specification for details.
+Intermediate headers are not saved to database.
+<a href="https://github.com/cometbft/cometbft/blob/v0.37.x/spec/consensus/light-client.md">https://github.com/cometbft/cometbft/blob/v0.37.x/spec/consensus/light-client.md</a>
+<p>If the header, which is older than the currently trusted header, is
+requested and the light client does not have it, VerifyHeader will perform:
+<pre>a) verifySkipping verification if nearest trusted header is found &amp; not expired
+b) backwards verification in all other cases
+</pre>
+<p>It returns ErrOldHeaderExpired if the latest trusted header expired.
+<p>If the primary provides an invalid header (ErrInvalidHeader), it is rejected
+and replaced by another provider until all are exhausted.
+<p>If, at any moment, a LightBlock is not found by the primary provider as part of
+verification then the provider will be replaced by another and the process will
+restart.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.VerifyLightBlockAtHeight">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=15025:15143#L464">VerifyLightBlockAtHeight</a>
+					<a class="permalink" href="index.html#Client.VerifyLightBlockAtHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) VerifyLightBlockAtHeight(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, height <a href="../../../../builtin/index.html#int64">int64</a>, now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>VerifyLightBlockAtHeight fetches the light block at the given height
+and verifies it. It returns the block immediately if it exists in
+the trustedStore (no verification is needed).
+<p>height must be &gt; 0.
+<p>It returns provider.ErrlightBlockNotFound if light block is not found by
+primary.
+<p>It will replace the primary provider if an error from a request to the provider occurs
+
+				
+				<div id="example_Client_VerifyLightBlockAtHeight" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		<p>Manually getting light blocks and verifying them.
+</p>
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// give CometBFT time to generate some blocks</span>
+time.Sleep(5 * time.Second)
+
+dbDir, err := os.MkdirTemp(&#34;&#34;, &#34;light-client-example&#34;)
+if err != nil {
+    stdlog.Fatal(err)
+}
+defer os.RemoveAll(dbDir)
+
+var (
+    config  = rpctest.GetConfig()
+    chainID = config.ChainID()
+)
+
+primary, err := httpp.New(chainID, config.RPC.ListenAddress)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+block, err := primary.LightBlock(context.Background(), 2)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+db, err := dbm.NewGoLevelDB(&#34;light-client-db&#34;, dbDir)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+c, err := light.NewClient(
+    context.Background(),
+    chainID,
+    light.TrustOptions{
+        Period: 504 * time.Hour, <span class="comment">// 21 days</span>
+        Height: 2,
+        Hash:   block.Hash(),
+    },
+    primary,
+    []provider.Provider{primary}, <span class="comment">// NOTE: primary should not be used here</span>
+    dbs.New(db, chainID),
+    light.Logger(log.TestingLogger()),
+)
+if err != nil {
+    stdlog.Fatal(err)
+}
+defer func() {
+    if err := c.Cleanup(); err != nil {
+        stdlog.Fatal(err)
+    }
+}()
+
+_, err = c.VerifyLightBlockAtHeight(context.Background(), 3, time.Now())
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+h, err := c.TrustedLightBlock(3)
+if err != nil {
+    stdlog.Fatal(err)
+}
+
+fmt.Println(&#34;got header&#34;, h.Height)
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">got header 3
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Client.Witnesses">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=28469:28517#L855">Witnesses</a>
+					<a class="permalink" href="index.html#Client.Witnesses">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Witnesses() []<a href="provider/index.html">provider</a>.<a href="provider/index.html#Provider">Provider</a></pre>
+				<p>Witnesses returns the witness providers.
+<p>NOTE: providers may be not safe for concurrent access.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrInvalidHeader">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=918:964#L25">ErrInvalidHeader</a>
+				<a class="permalink" href="index.html#ErrInvalidHeader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrInvalidHeader means the header either failed the basic validation or
+commit is not signed by 2/3+.
+
+			<pre>type ErrInvalidHeader struct {
+<span id="ErrInvalidHeader.Reason"></span>    Reason <a href="../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrInvalidHeader.Error">func (ErrInvalidHeader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=966:1006#L29">Error</a>
+					<a class="permalink" href="index.html#ErrInvalidHeader.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrInvalidHeader">ErrInvalidHeader</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrNewValSetCantBeTrusted">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=608:693#L15">ErrNewValSetCantBeTrusted</a>
+				<a class="permalink" href="index.html#ErrNewValSetCantBeTrusted">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrNewValSetCantBeTrusted means the new validator set cannot be trusted
+because &lt; 1/3rd (+trustLevel+) of the old validator set has signed.
+
+			<pre>type ErrNewValSetCantBeTrusted struct {
+<span id="ErrNewValSetCantBeTrusted.Reason"></span>    Reason <a href="../types/index.html">types</a>.<a href="../types/index.html#ErrNotEnoughVotingPowerSigned">ErrNotEnoughVotingPowerSigned</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrNewValSetCantBeTrusted.Error">func (ErrNewValSetCantBeTrusted) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=695:744#L19">Error</a>
+					<a class="permalink" href="index.html#ErrNewValSetCantBeTrusted.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrNewValSetCantBeTrusted">ErrNewValSetCantBeTrusted</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrOldHeaderExpired">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=271:336#L4">ErrOldHeaderExpired</a>
+				<a class="permalink" href="index.html#ErrOldHeaderExpired">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrOldHeaderExpired means the old (trusted) header has expired according to
+the given trustingPeriod and current time. If so, the light client must be
+reset subjectively.
+
+			<pre>type ErrOldHeaderExpired struct {
+<span id="ErrOldHeaderExpired.At"></span>    At  <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="ErrOldHeaderExpired.Now"></span>    Now <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrOldHeaderExpired.Error">func (ErrOldHeaderExpired) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=338:381#L9">Error</a>
+					<a class="permalink" href="index.html#ErrOldHeaderExpired.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrOldHeaderExpired">ErrOldHeaderExpired</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrVerificationFailed">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=1608:1687#L41">ErrVerificationFailed</a>
+				<a class="permalink" href="index.html#ErrVerificationFailed">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrVerificationFailed means either sequential or skipping verification has
+failed to verify from header #1 to header #2 due to some reason.
+
+			<pre>type ErrVerificationFailed struct {
+<span id="ErrVerificationFailed.From"></span>    From   <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrVerificationFailed.To"></span>    To     <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrVerificationFailed.Reason"></span>    Reason <a href="../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrVerificationFailed.Error">func (ErrVerificationFailed) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=1794:1839#L52">Error</a>
+					<a class="permalink" href="index.html#ErrVerificationFailed.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrVerificationFailed">ErrVerificationFailed</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ErrVerificationFailed.Unwrap">func (ErrVerificationFailed) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/errors.go?s=1726:1771#L48">Unwrap</a>
+					<a class="permalink" href="index.html#ErrVerificationFailed.Unwrap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrVerificationFailed">ErrVerificationFailed</a>) Unwrap() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Unwrap returns underlying reason.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=1109:1134#L35">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option sets a parameter for the light client.
+
+			<pre>type Option func(*<a href="index.html#Client">Client</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ConfirmationFunction">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=2714:2775#L75">ConfirmationFunction</a>
+					<a class="permalink" href="index.html#ConfirmationFunction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ConfirmationFunction(fn func(action <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Option">Option</a></pre>
+				<p>ConfirmationFunction option can be used to prompt to confirm an action. For
+example, remove newer headers if the light client is being reset with an
+older header. No confirmation is required by default!
+
+				
+				
+			
+				
+				<h3 id="Logger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=2895:2927#L82">Logger</a>
+					<a class="permalink" href="index.html#Logger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Logger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>) <a href="index.html#Option">Option</a></pre>
+				<p>Logger option can be used to set a logger for the client.
+
+				
+				
+			
+				
+				<h3 id="MaxBlockLag">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=3807:3847#L112">MaxBlockLag</a>
+					<a class="permalink" href="index.html#MaxBlockLag">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MaxBlockLag(d <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#Option">Option</a></pre>
+				<p>MaxBlockLag represents the maximum time difference between the realtime
+that a block is received and the timestamp of that block.
+One can approximate it to the maximum block production time
+<p>As an example, say the light client received block B at a time
+12:05 (this is the real time) and the time on the block
+was 12:00. Then the lag here is 5 minutes.
+Default: 10s
+
+				
+				
+			
+				
+				<h3 id="MaxClockDrift">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=3319:3361#L98">MaxClockDrift</a>
+					<a class="permalink" href="index.html#MaxClockDrift">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MaxClockDrift(d <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#Option">Option</a></pre>
+				<p>MaxClockDrift defines how much new header&apos;s time can drift into
+the future relative to the light clients local time. Default: 10s.
+
+				
+				
+			
+				
+				<h3 id="MaxRetryAttempts">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=3080:3120#L90">MaxRetryAttempts</a>
+					<a class="permalink" href="index.html#MaxRetryAttempts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MaxRetryAttempts(max <a href="../../../../builtin/index.html#uint16">uint16</a>) <a href="index.html#Option">Option</a></pre>
+				<p>MaxRetryAttempts option can be used to set max attempts before replacing
+primary with a witness.
+
+				
+				
+			
+				
+				<h3 id="PruningSize">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=2414:2447#L66">PruningSize</a>
+					<a class="permalink" href="index.html#PruningSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PruningSize(h <a href="../../../../builtin/index.html#uint16">uint16</a>) <a href="index.html#Option">Option</a></pre>
+				<p>PruningSize option sets the maximum amount of light blocks that the light
+client stores. When Prune() is run, all light blocks that are earlier than
+the h amount of light blocks will be removed from the store.
+Default: 1000. A pruning size of 0 will not prune the light client at all.
+
+				
+				
+			
+				
+				<h3 id="SequentialVerification">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=1350:1386#L40">SequentialVerification</a>
+					<a class="permalink" href="index.html#SequentialVerification">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SequentialVerification() <a href="index.html#Option">Option</a></pre>
+				<p>SequentialVerification option configures the light client to sequentially
+check the blocks (every block, in ascending height order). Note this is
+much slower than SkippingVerification, albeit more secure.
+
+				
+				
+			
+				
+				<h3 id="SkippingVerification">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/client.go?s=1961:2022#L55">SkippingVerification</a>
+					<a class="permalink" href="index.html#SkippingVerification">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SkippingVerification(trustLevel <a href="../libs/math/index.html">cmtmath</a>.<a href="../libs/math/index.html#Fraction">Fraction</a>) <a href="index.html#Option">Option</a></pre>
+				<p>SkippingVerification option configures the light client to skip blocks as
+long as {trustLevel} of the old validator set signed the new header. The
+verifySkipping algorithm from the specification is used for finding the minimal
+&quot;trust path&quot;.
+<p>trustLevel - fraction of the old validator set (in terms of voting power),
+which must sign the new header in order for us to trust it. NOTE this only
+applies to non-adjacent headers. For adjacent headers, sequential
+verification is used.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TrustOptions">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/trust_options.go?s=714:1220#L11">TrustOptions</a>
+				<a class="permalink" href="index.html#TrustOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TrustOptions are the trust parameters needed when a new light client
+connects to the network or when an existing light client that has been
+offline for longer than the trusting period connects to the network.
+<p>The expectation is the user will get this information from a trusted source
+like a validator, a friend, or a secure website. A more user friendly
+solution with trust tradeoffs is that we establish an https based protocol
+with a default end point that populates this information. Also an on-chain
+registry of roots-of-trust (e.g. on the Cosmos Hub) seems likely in the
+future.
+
+			<pre>type TrustOptions struct {
+    <span class="comment">// tp: trusting period.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Should be significantly less than the unbonding period (e.g. unbonding</span>
+    <span class="comment">// period = 3 weeks, trusting period = 2 weeks).</span>
+    <span class="comment">//</span>
+    <span class="comment">// More specifically, trusting period + time needed to check headers + time</span>
+    <span class="comment">// needed to report and punish misbehavior should be less than the unbonding</span>
+    <span class="comment">// period.</span>
+<span id="TrustOptions.Period"></span>    Period <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>
+
+    <span class="comment">// Header&#39;s Height and Hash must both be provided to force the trusting of a</span>
+    <span class="comment">// particular header.</span>
+<span id="TrustOptions.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="TrustOptions.Hash"></span>    Hash   []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TrustOptions.ValidateBasic">func (TrustOptions) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/trust_options.go?s=1266:1312#L29">ValidateBasic</a>
+					<a class="permalink" href="index.html#TrustOptions.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (opts <a href="index.html#TrustOptions">TrustOptions</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="provider/index.html">provider</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="provider/http/index.html">http</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="provider/mock/index.html">mock</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="proxy/index.html">proxy</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="rpc/index.html">rpc</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="rpc/mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="store/index.html">store</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="store/db/index.html">db</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

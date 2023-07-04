@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>orm - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package orm
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/x/group/internal/orm"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package orm is a convenient object to data store mapper.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#AddLengthPrefix">func AddLengthPrefix(bytes []byte) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeSequence">func DecodeSequence(bz []byte) uint64</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeSequence">func EncodeSequence(val uint64) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#NullTerminatedBytes">func NullTerminatedBytes(s string) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#Paginate">func Paginate(it Iterator, pageRequest *query.PageRequest, dest ModelSlicePtr) (*query.PageResponse, error)</a></dd>
+			
+				
+				<dd><a href="index.html#PrefixRange">func PrefixRange(prefix []byte) ([]byte, []byte)</a></dd>
+			
+				
+				<dd><a href="index.html#PrimaryKey">func PrimaryKey(obj PrimaryKeyed) []byte</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AfterDeleteInterceptor">type AfterDeleteInterceptor</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AfterSetInterceptor">type AfterSetInterceptor</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AutoUInt64Table">type AutoUInt64Table</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAutoUInt64Table">func NewAutoUInt64Table(prefixData [2]byte, prefixSeq byte, model codec.ProtoMarshaler, cdc codec.Codec) (*AutoUInt64Table, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.AddAfterDeleteInterceptor">func (a AutoUInt64Table) AddAfterDeleteInterceptor(interceptor AfterDeleteInterceptor)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.AddAfterSetInterceptor">func (a AutoUInt64Table) AddAfterSetInterceptor(interceptor AfterSetInterceptor)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Create">func (a AutoUInt64Table) Create(store sdk.KVStore, obj codec.ProtoMarshaler) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Delete">func (a AutoUInt64Table) Delete(store sdk.KVStore, rowID uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Export">func (a AutoUInt64Table) Export(store sdk.KVStore, dest ModelSlicePtr) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.GetOne">func (a AutoUInt64Table) GetOne(store sdk.KVStore, rowID uint64, dest codec.ProtoMarshaler) (RowID, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Has">func (a AutoUInt64Table) Has(store sdk.KVStore, rowID uint64) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Import">func (a AutoUInt64Table) Import(store sdk.KVStore, data interface{}, seqValue uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.PrefixScan">func (a AutoUInt64Table) PrefixScan(store sdk.KVStore, start, end uint64) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.ReversePrefixScan">func (a AutoUInt64Table) ReversePrefixScan(store sdk.KVStore, start uint64, end uint64) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.RowGetter">func (a AutoUInt64Table) RowGetter() RowGetter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Sequence">func (a AutoUInt64Table) Sequence() Sequence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Set">func (a AutoUInt64Table) Set(store sdk.KVStore, rowID RowID, newValue codec.ProtoMarshaler) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AutoUInt64Table.Update">func (a AutoUInt64Table) Update(store sdk.KVStore, rowID uint64, newValue codec.ProtoMarshaler) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GasCountingMockContext">type GasCountingMockContext</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGasCountingMockContext">func NewGasCountingMockContext() *GasCountingMockContext</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasCountingMockContext.GasConsumed">func (g GasCountingMockContext) GasConsumed() storetypes.Gas</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasCountingMockContext.GasRemaining">func (g GasCountingMockContext) GasRemaining() storetypes.Gas</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasCountingMockContext.KVStore">func (g GasCountingMockContext) KVStore(store storetypes.KVStore) storetypes.KVStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasCountingMockContext.ResetGasMeter">func (g *GasCountingMockContext) ResetGasMeter()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Index">type Index</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Indexable">type Indexable</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Indexer">type Indexer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewIndexer">func NewIndexer(indexerFunc IndexerFunc) (*Indexer, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewUniqueIndexer">func NewUniqueIndexer(f UniqueIndexerFunc) (*Indexer, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Indexer.IndexerFunc">func (i Indexer) IndexerFunc() IndexerFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Indexer.OnCreate">func (i Indexer) OnCreate(store sdk.KVStore, rowID RowID, value interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Indexer.OnDelete">func (i Indexer) OnDelete(store sdk.KVStore, rowID RowID, value interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Indexer.OnUpdate">func (i Indexer) OnUpdate(store sdk.KVStore, rowID RowID, newValue, oldValue interface{}) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IndexerFunc">type IndexerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInvalidIterator">func NewInvalidIterator() Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSingleValueIterator">func NewSingleValueIterator(rowID RowID, val []byte) Iterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IteratorFunc">type IteratorFunc</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IteratorFunc.Close">func (i IteratorFunc) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IteratorFunc.LoadNext">func (i IteratorFunc) LoadNext(dest codec.ProtoMarshaler) (RowID, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LimitedIterator">type LimitedIterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LimitIterator">func LimitIterator(parent Iterator, max int) (*LimitedIterator, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LimitedIterator.Close">func (i LimitedIterator) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LimitedIterator.LoadNext">func (i *LimitedIterator) LoadNext(dest codec.ProtoMarshaler) (RowID, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockContext">type MockContext</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMockContext">func NewMockContext() *MockContext</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockContext.KVStore">func (m MockContext) KVStore(key storetypes.StoreKey) sdk.KVStore</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ModelSlicePtr">type ModelSlicePtr</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MultiKeyIndex">type MultiKeyIndex</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewIndex">func NewIndex(tb Indexable, prefix byte, indexerF IndexerFunc, indexKey interface{}) (MultiKeyIndex, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiKeyIndex.Get">func (i MultiKeyIndex) Get(store sdk.KVStore, searchKey interface{}) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiKeyIndex.GetPaginated">func (i MultiKeyIndex) GetPaginated(store sdk.KVStore, searchKey interface{}, pageRequest *query.PageRequest) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiKeyIndex.Has">func (i MultiKeyIndex) Has(store sdk.KVStore, key interface{}) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiKeyIndex.PrefixScan">func (i MultiKeyIndex) PrefixScan(store sdk.KVStore, startI interface{}, endI interface{}) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiKeyIndex.ReversePrefixScan">func (i MultiKeyIndex) ReversePrefixScan(store sdk.KVStore, startI interface{}, endI interface{}) (Iterator, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PrimaryKeyTable">type PrimaryKeyTable</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPrimaryKeyTable">func NewPrimaryKeyTable(prefixData [2]byte, model PrimaryKeyed, cdc codec.Codec) (*PrimaryKeyTable, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.AddAfterDeleteInterceptor">func (a PrimaryKeyTable) AddAfterDeleteInterceptor(interceptor AfterDeleteInterceptor)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.AddAfterSetInterceptor">func (a PrimaryKeyTable) AddAfterSetInterceptor(interceptor AfterSetInterceptor)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Contains">func (a PrimaryKeyTable) Contains(store sdk.KVStore, obj PrimaryKeyed) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Create">func (a PrimaryKeyTable) Create(store sdk.KVStore, obj PrimaryKeyed) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Delete">func (a PrimaryKeyTable) Delete(store sdk.KVStore, obj PrimaryKeyed) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Export">func (a PrimaryKeyTable) Export(store sdk.KVStore, dest ModelSlicePtr) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.GetOne">func (a PrimaryKeyTable) GetOne(store sdk.KVStore, primKey RowID, dest codec.ProtoMarshaler) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Has">func (a PrimaryKeyTable) Has(store sdk.KVStore, primaryKey RowID) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Import">func (a PrimaryKeyTable) Import(store sdk.KVStore, data interface{}, seqValue uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.PrefixScan">func (a PrimaryKeyTable) PrefixScan(store sdk.KVStore, start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.ReversePrefixScan">func (a PrimaryKeyTable) ReversePrefixScan(store sdk.KVStore, start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.RowGetter">func (a PrimaryKeyTable) RowGetter() RowGetter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Set">func (a PrimaryKeyTable) Set(store sdk.KVStore, newValue PrimaryKeyed) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrimaryKeyTable.Update">func (a PrimaryKeyTable) Update(store sdk.KVStore, newValue PrimaryKeyed) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PrimaryKeyed">type PrimaryKeyed</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RowGetter">type RowGetter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTypeSafeRowGetter">func NewTypeSafeRowGetter(prefixKey [2]byte, model reflect.Type, cdc codec.Codec) RowGetter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RowID">type RowID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#First">func First(it Iterator, dest codec.ProtoMarshaler) (RowID, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadAll">func ReadAll(it Iterator, dest ModelSlicePtr) ([]RowID, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RowID.Bytes">func (r RowID) Bytes() []byte</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Sequence">type Sequence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSequence">func NewSequence(prefix byte) Sequence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Sequence.CurVal">func (s Sequence) CurVal(store sdk.KVStore) uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Sequence.InitVal">func (s Sequence) InitVal(store sdk.KVStore, seq uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Sequence.NextVal">func (s Sequence) NextVal(store sdk.KVStore) uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Sequence.PeekNextVal">func (s Sequence) PeekNextVal(store sdk.KVStore) uint64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TableExportable">type TableExportable</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UniqueIndex">type UniqueIndex</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewUniqueIndex">func NewUniqueIndex(tb Indexable, prefix byte, uniqueIndexerFunc UniqueIndexerFunc, indexKey interface{}) (UniqueIndex, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UniqueIndexerFunc">type UniqueIndexerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Validateable">type Validateable</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go">auto_uint64.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/genesis.go">genesis.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go">index.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go">indexer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/key_codec.go">key_codec.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go">primary_key.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go">sequence.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go">table.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go">testsupport.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>EncodedSeqLength number of bytes used for the binary representation of a sequence value.
+
+				<pre>const <span id="EncodedSeqLength">EncodedSeqLength</span> = 8</pre>
+			
+				<p>MaxBytesLen is the maximum allowed length for a key part of type []byte
+
+				<pre>const <span id="MaxBytesLen">MaxBytesLen</span> = 255</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AddLengthPrefix">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/key_codec.go?s=1631:1672#L49">AddLengthPrefix</a>
+				<a class="permalink" href="index.html#AddLengthPrefix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddLengthPrefix(bytes []<a href="../../../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>AddLengthPrefix prefixes the byte array with its length as 8 bytes. The function will panic
+if the bytes length is bigger than 255.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeSequence">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=2097:2134#L56">DecodeSequence</a>
+				<a class="permalink" href="index.html#DecodeSequence">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeSequence(bz []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#uint64">uint64</a></pre>
+			<p>DecodeSequence converts the binary representation into an Uint64 value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeSequence">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=2416:2454#L68">EncodeSequence</a>
+				<a class="permalink" href="index.html#EncodeSequence">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeSequence(val <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>EncodeSequence converts the sequence value into the binary representation.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NullTerminatedBytes">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/key_codec.go?s=2111:2152#L62">NullTerminatedBytes</a>
+				<a class="permalink" href="index.html#NullTerminatedBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NullTerminatedBytes(s <a href="../../../../../../../builtin/index.html#string">string</a>) []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>NullTerminatedBytes converts string to byte array and null terminate it
+
+			
+			
+
+		
+			
+			
+			<h2 id="Paginate">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=4130:4243#L111">Paginate</a>
+				<a class="permalink" href="index.html#Paginate">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Paginate(
+    it <a href="index.html#Iterator">Iterator</a>,
+    pageRequest *<a href="../../../../types/query/index.html">query</a>.<a href="../../../../types/query/index.html#PageRequest">PageRequest</a>,
+    dest <a href="index.html#ModelSlicePtr">ModelSlicePtr</a>,
+) (*<a href="../../../../types/query/index.html">query</a>.<a href="../../../../types/query/index.html#PageResponse">PageResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Paginate does pagination with a given Iterator based on the provided
+PageRequest and unmarshals the results into the dest interface that must be
+an non-nil pointer to a slice.
+<p>If pageRequest is nil, then we will use these default values:
+<ul>
+<li>Offset: 0
+<li>Key: nil
+<li>Limit: 100
+<li>CountTotal: true
+</ul>
+<p>If pageRequest.Key was provided, it got used beforehand to instantiate the Iterator,
+using for instance UInt64Index.GetPaginated method. Only one of pageRequest.Offset or
+pageRequest.Key should be set. Using pageRequest.Key is more efficient for querying
+the next page.
+<p>If pageRequest.CountTotal is set, we&apos;ll visit all iterators elements.
+pageRequest.CountTotal is only respected when offset is used.
+<p>This function will call it.Close().
+
+			
+			
+
+		
+			
+			
+			<h2 id="PrefixRange">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=9328:9376#L261">PrefixRange</a>
+				<a class="permalink" href="index.html#PrefixRange">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PrefixRange(prefix []<a href="../../../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#byte">byte</a>)</pre>
+			<p>PrefixRange turns a prefix into a (start, end) range. The start is the given prefix value and
+the end is calculated by adding 1 bit to the start value. Nil is not allowed as prefix.
+<pre>Example: []byte{1, 3, 4} becomes []byte{1, 3, 5}
+		 []byte{15, 42, 255, 255} becomes []byte{15, 43, 0, 0}
+</pre>
+<p>In case of an overflow the end is set to nil.
+<pre>Example: []byte{255, 255, 255, 255} becomes nil
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PrimaryKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=1656:1696#L40">PrimaryKey</a>
+				<a class="permalink" href="index.html#PrimaryKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PrimaryKey(obj <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>PrimaryKey returns the immutable and serialized primary key of this object.
+The primary key has to be unique within it&apos;s domain so that not two with same
+value can exist in the same table. This means PrimaryKeyFields() has to
+return a unique value for each object.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AfterDeleteInterceptor">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=4187:4285#L89">AfterDeleteInterceptor</a>
+				<a class="permalink" href="index.html#AfterDeleteInterceptor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AfterDeleteInterceptor defines a callback function to be called on Delete operations.
+
+			<pre>type AfterDeleteInterceptor func(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, value <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AfterSetInterceptor">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=3988:4096#L86">AfterSetInterceptor</a>
+				<a class="permalink" href="index.html#AfterSetInterceptor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AfterSetInterceptor defines a callback function to be called on Create + Update.
+
+			<pre>type AfterSetInterceptor func(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, newValue, oldValue <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AutoUInt64Table">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=306:359#L5">AutoUInt64Table</a>
+				<a class="permalink" href="index.html#AutoUInt64Table">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AutoUInt64Table is the table type with an auto incrementing ID.
+
+			<pre>type AutoUInt64Table struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAutoUInt64Table">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=414:544#L11">NewAutoUInt64Table</a>
+					<a class="permalink" href="index.html#NewAutoUInt64Table">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAutoUInt64Table(prefixData [2]<a href="../../../../../../../builtin/index.html#byte">byte</a>, prefixSeq <a href="../../../../../../../builtin/index.html#byte">byte</a>, model <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>, cdc <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#Codec">Codec</a>) (*<a href="index.html#AutoUInt64Table">AutoUInt64Table</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewAutoUInt64Table creates a new AutoUInt64Table.
+
+				
+				
+			
+
+			
+				
+				<h3 id="AutoUInt64Table.AddAfterDeleteInterceptor">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1966:2043#L55">AddAfterDeleteInterceptor</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.AddAfterDeleteInterceptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) AddAfterDeleteInterceptor(interceptor <a href="index.html#AfterDeleteInterceptor">AfterDeleteInterceptor</a>)</pre>
+				<p>AddAfterDeleteInterceptor can be used to register a callback function that is executed after an object is deleted.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.AddAfterSetInterceptor">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1725:1796#L50">AddAfterSetInterceptor</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.AddAfterSetInterceptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) AddAfterSetInterceptor(interceptor <a href="index.html#AfterSetInterceptor">AfterSetInterceptor</a>)</pre>
+				<p>AddAfterSetInterceptor can be used to register a callback function that is executed after an object is created and/or updated.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Create">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=913:1005#L27">Create</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Create(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, obj <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Create a new persistent object with an auto generated uint64 primary key. The
+key is returned.
+<p>Create iterates through the registered callbacks that may add secondary index
+keys.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Delete">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=1982:2052#L52">Delete</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Delete(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete removes the object under the rowID key. It expects the key to exists already
+and fails with a `ErrNotFound` otherwise. Any caller must therefore make sure that this contract
+is fulfilled.
+<p>Delete iterates though the registered callbacks and removes secondary index keys by them.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Export">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=4666:4752#L112">Export</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Export">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Export(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, dest <a href="index.html#ModelSlicePtr">ModelSlicePtr</a>) (<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Export stores all the values in the table in the passed ModelSlicePtr and
+returns the current value of the associated sequence.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.GetOne">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=2428:2534#L63">GetOne</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.GetOne">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) GetOne(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="../../../../../../../builtin/index.html#uint64">uint64</a>, dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetOne load the object persisted for the given RowID into the dest parameter.
+If none exists `ErrNotFound` is returned instead. Parameters must not be nil.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Has">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=2144:2210#L57">Has</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Has(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Has checks if a rowID exists.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Import">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=5011:5102#L122">Import</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Import">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Import(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, data interface{}, seqValue <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Import clears the table and initializes it from the given data interface{}.
+data should be a slice of structs that implement PrimaryKeyed.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.PrefixScan">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=3428:3519#L88">PrefixScan</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.PrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) PrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, start, end <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PrefixScan returns an Iterator over a domain of keys in ascending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(1, math.MaxUint64)
+<p>WARNING: The use of a PrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits.
+Example:
+<pre>it, err := idx.PrefixScan(ctx, start, end)
+if err !=nil {
+	return err
+}
+const defaultLimit = 20
+it = LimitIterator(it, defaultLimit)
+</pre>
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.ReversePrefixScan">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=4220:4325#L101">ReversePrefixScan</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.ReversePrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) ReversePrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, start <a href="../../../../../../../builtin/index.html#uint64">uint64</a>, end <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReversePrefixScan returns an Iterator over a domain of keys in descending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid  and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(1, math.MaxUint64)
+<p>WARNING: The use of a ReversePrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits. See `LimitIterator`
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.RowGetter">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1498:1534#L45">RowGetter</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.RowGetter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) RowGetter() <a href="index.html#RowGetter">RowGetter</a></pre>
+				<p>RowGetter returns a type safe RowGetter.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Sequence">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=4468:4512#L106">Sequence</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Sequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Sequence() <a href="index.html#Sequence">Sequence</a></pre>
+				<p>Sequence returns the sequence used by this table
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Set">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=3294:3381#L91">Set</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Set(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, newValue <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Set persists the given object under the rowID key. It does not check if the
+key already exists and overwrites the value if it does.
+<p>Set iterates through the registered callbacks that may add secondary index
+keys.
+
+				
+				
+				
+			
+				
+				<h3 id="AutoUInt64Table.Update">func (AutoUInt64Table) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/auto_uint64.go?s=1512:1613#L43">Update</a>
+					<a class="permalink" href="index.html#AutoUInt64Table.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AutoUInt64Table">AutoUInt64Table</a>) Update(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="../../../../../../../builtin/index.html#uint64">uint64</a>, newValue <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Update updates the given object under the rowID key. It expects the key to
+exists already and fails with an `ErrNotFound` otherwise. Any caller must
+therefore make sure that this contract is fulfilled. Parameters must not be
+nil.
+<p>Update iterates through the registered callbacks that may add or remove
+secondary index keys.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GasCountingMockContext">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=1672:1733#L67">GasCountingMockContext</a>
+				<a class="permalink" href="index.html#GasCountingMockContext">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type GasCountingMockContext struct {
+<span id="GasCountingMockContext.GasMeter"></span>    GasMeter <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#GasMeter">GasMeter</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGasCountingMockContext">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=1735:1791#L71">NewGasCountingMockContext</a>
+					<a class="permalink" href="index.html#NewGasCountingMockContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGasCountingMockContext() *<a href="index.html#GasCountingMockContext">GasCountingMockContext</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="GasCountingMockContext.GasConsumed">func (GasCountingMockContext) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=1996:2056#L81">GasConsumed</a>
+					<a class="permalink" href="index.html#GasCountingMockContext.GasConsumed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g <a href="index.html#GasCountingMockContext">GasCountingMockContext</a>) GasConsumed() <a href="../../../../store/types/index.html">storetypes</a>.<a href="../../../../store/types/index.html#Gas">Gas</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GasCountingMockContext.GasRemaining">func (GasCountingMockContext) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=2095:2156#L85">GasRemaining</a>
+					<a class="permalink" href="index.html#GasCountingMockContext.GasRemaining">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g <a href="index.html#GasCountingMockContext">GasCountingMockContext</a>) GasRemaining() <a href="../../../../store/types/index.html">storetypes</a>.<a href="../../../../store/types/index.html#Gas">Gas</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GasCountingMockContext.KVStore">func (GasCountingMockContext) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=1892:1976#L77">KVStore</a>
+					<a class="permalink" href="index.html#GasCountingMockContext.KVStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g <a href="index.html#GasCountingMockContext">GasCountingMockContext</a>) KVStore(store <a href="../../../../store/types/index.html">storetypes</a>.<a href="../../../../store/types/index.html#KVStore">KVStore</a>) <a href="../../../../store/types/index.html">storetypes</a>.<a href="../../../../store/types/index.html#KVStore">KVStore</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GasCountingMockContext.ResetGasMeter">func (*GasCountingMockContext) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=2196:2244#L89">ResetGasMeter</a>
+					<a class="permalink" href="index.html#GasCountingMockContext.ResetGasMeter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#GasCountingMockContext">GasCountingMockContext</a>) ResetGasMeter()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Index">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=1057:3125#L25">Index</a>
+				<a class="permalink" href="index.html#Index">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Index allows efficient prefix scans is stored as key = concat(indexKeyBytes, rowIDUint64) with value empty
+so that the row PrimaryKey is allows a fixed with 8 byte integer. This allows the MultiKeyIndex key bytes to be
+variable length and scanned iteratively.
+
+			<pre>type Index interface {
+    <span class="comment">// Has checks if a key exists. Panics on nil key.</span>
+    Has(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, key interface{}) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Get returns a result iterator for the searchKey.</span>
+    <span class="comment">// searchKey must not be nil.</span>
+    Get(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, searchKey interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// GetPaginated returns a result iterator for the searchKey and optional pageRequest.</span>
+    <span class="comment">// searchKey must not be nil.</span>
+    GetPaginated(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, searchKey interface{}, pageRequest *<a href="../../../../types/query/index.html">query</a>.<a href="../../../../types/query/index.html#PageRequest">PageRequest</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// PrefixScan returns an Iterator over a domain of keys in ascending order. End is exclusive.</span>
+    <span class="comment">// Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid and error is returned.</span>
+    <span class="comment">// Iterator must be closed by caller.</span>
+    <span class="comment">// To iterate over entire domain, use PrefixScan(nil, nil)</span>
+    <span class="comment">//</span>
+    <span class="comment">// WARNING: The use of a PrefixScan can be very expensive in terms of Gas. Please make sure you do not expose</span>
+    <span class="comment">// this as an endpoint to the public without further limits.</span>
+    <span class="comment">// Example:</span>
+    <span class="comment">//			it, err := idx.PrefixScan(ctx, start, end)</span>
+    <span class="comment">//			if err !=nil {</span>
+    <span class="comment">//				return err</span>
+    <span class="comment">//			}</span>
+    <span class="comment">//			const defaultLimit = 20</span>
+    <span class="comment">//			it = LimitIterator(it, defaultLimit)</span>
+    <span class="comment">//</span>
+    <span class="comment">// CONTRACT: No writes may happen within a domain while an iterator exists over it.</span>
+    PrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, startI interface{}, endI interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// ReversePrefixScan returns an Iterator over a domain of keys in descending order. End is exclusive.</span>
+    <span class="comment">// Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid  and error is returned.</span>
+    <span class="comment">// Iterator must be closed by caller.</span>
+    <span class="comment">// To iterate over entire domain, use PrefixScan(nil, nil)</span>
+    <span class="comment">//</span>
+    <span class="comment">// WARNING: The use of a ReversePrefixScan can be very expensive in terms of Gas. Please make sure you do not expose</span>
+    <span class="comment">// this as an endpoint to the public without further limits. See `LimitIterator`</span>
+    <span class="comment">//</span>
+    <span class="comment">// CONTRACT: No writes may happen within a domain while an iterator exists over it.</span>
+    ReversePrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, startI interface{}, endI interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Indexable">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=3731:3902#L79">Indexable</a>
+				<a class="permalink" href="index.html#Indexable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Indexable types are used to setup new tables.
+This interface provides a set of functions that can be called by indexes to register and interact with the tables.
+
+			<pre>type Indexable interface {
+    RowGetter() <a href="index.html#RowGetter">RowGetter</a>
+    AddAfterSetInterceptor(interceptor <a href="index.html#AfterSetInterceptor">AfterSetInterceptor</a>)
+    AddAfterDeleteInterceptor(interceptor <a href="index.html#AfterDeleteInterceptor">AfterDeleteInterceptor</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Indexer">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=532:667#L6">Indexer</a>
+				<a class="permalink" href="index.html#Indexer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Indexer manages the persistence of an Index based on searchable keys and operations.
+
+			<pre>type Indexer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewIndexer">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=755:813#L12">NewIndexer</a>
+					<a class="permalink" href="index.html#NewIndexer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewIndexer(indexerFunc <a href="index.html#IndexerFunc">IndexerFunc</a>) (*<a href="index.html#Indexer">Indexer</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewIndexer returns an indexer that supports multiple reference keys for an entity.
+
+				
+				
+			
+				
+				<h3 id="NewUniqueIndexer">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=1124:1184#L23">NewUniqueIndexer</a>
+					<a class="permalink" href="index.html#NewUniqueIndexer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewUniqueIndexer(f <a href="index.html#UniqueIndexerFunc">UniqueIndexerFunc</a>) (*<a href="index.html#Indexer">Indexer</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewUniqueIndexer returns an indexer that requires exactly one reference keys for an entity.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Indexer.IndexerFunc">func (Indexer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=1690:1732#L43">IndexerFunc</a>
+					<a class="permalink" href="index.html#Indexer.IndexerFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#Indexer">Indexer</a>) IndexerFunc() <a href="index.html#IndexerFunc">IndexerFunc</a></pre>
+				<p>IndexerFunc returns the indexer IndexerFunc,
+ensuring it has been prune from empty keys.
+
+				
+				
+				
+			
+				
+				<h3 id="Indexer.OnCreate">func (Indexer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=1829:1911#L48">OnCreate</a>
+					<a class="permalink" href="index.html#Indexer.OnCreate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#Indexer">Indexer</a>) OnCreate(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, value interface{}) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnCreate persists the secondary index entries for the new object.
+
+				
+				
+				
+			
+				
+				<h3 id="Indexer.OnDelete">func (Indexer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=2238:2320#L63">OnDelete</a>
+					<a class="permalink" href="index.html#Indexer.OnDelete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#Indexer">Indexer</a>) OnDelete(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, value interface{}) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnDelete removes the secondary index entries for the deleted object.
+
+				
+				
+				
+			
+				
+				<h3 id="Indexer.OnUpdate">func (Indexer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=2700:2795#L80">OnUpdate</a>
+					<a class="permalink" href="index.html#Indexer.OnUpdate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#Indexer">Indexer</a>) OnUpdate(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, newValue, oldValue interface{}) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnUpdate rebuilds the secondary index entries for the updated object.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IndexerFunc">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=242:305#L1">IndexerFunc</a>
+				<a class="permalink" href="index.html#IndexerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IndexerFunc creates one or multiple index keys for the source object.
+
+			<pre>type IndexerFunc func(value interface{}) ([]interface{}, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=3194:3562#L68">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator allows iteration through a sequence of key value pairs
+
+			<pre>type Iterator interface {
+    <span class="comment">// LoadNext loads the next value in the sequence into the pointer passed as dest and returns the key. If there</span>
+    <span class="comment">// are no more items the ErrORMIteratorDone error is returned</span>
+    <span class="comment">// The key is the rowID.</span>
+    LoadNext(dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Close releases the iterator and should be called at the end of iteration</span>
+    <a href="../../../../../../../io/index.html">io</a>.<a href="../../../../../../../io/index.html#Closer">Closer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewInvalidIterator">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=1392:1426#L37">NewInvalidIterator</a>
+					<a class="permalink" href="index.html#NewInvalidIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInvalidIterator() <a href="index.html#Iterator">Iterator</a></pre>
+				<p>Iterator that return ErrORMInvalidIterator only.
+
+				
+				
+			
+				
+				<h3 id="NewSingleValueIterator">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=936:997#L22">NewSingleValueIterator</a>
+					<a class="permalink" href="index.html#NewSingleValueIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSingleValueIterator(rowID <a href="index.html#RowID">RowID</a>, val []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="IteratorFunc">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=460:524#L8">IteratorFunc</a>
+				<a class="permalink" href="index.html#IteratorFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IteratorFunc is a function type that satisfies the Iterator interface
+The passed function is called on LoadNext operations.
+
+			<pre>type IteratorFunc func(dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IteratorFunc.Close">func (IteratorFunc) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=883:918#L18">Close</a>
+					<a class="permalink" href="index.html#IteratorFunc.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#IteratorFunc">IteratorFunc</a>) Close() <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close always returns nil
+
+				
+				
+				
+			
+				
+				<h3 id="IteratorFunc.LoadNext">func (IteratorFunc) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=761:833#L13">LoadNext</a>
+					<a class="permalink" href="index.html#IteratorFunc.LoadNext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#IteratorFunc">IteratorFunc</a>) LoadNext(dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadNext loads the next value in the sequence into the pointer passed as dest and returns the key. If there
+are no more items the errors.ErrORMIteratorDone error is returned
+The key is the rowID and not any MultiKeyIndex key.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LimitedIterator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=1618:1694#L44">LimitedIterator</a>
+				<a class="permalink" href="index.html#LimitedIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LimitedIterator returns up to defined maximum number of elements.
+
+			<pre>type LimitedIterator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="LimitIterator">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=1851:1921#L52">LimitIterator</a>
+					<a class="permalink" href="index.html#LimitIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LimitIterator(parent <a href="index.html#Iterator">Iterator</a>, max <a href="../../../../../../../builtin/index.html#int">int</a>) (*<a href="index.html#LimitedIterator">LimitedIterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LimitIterator returns a new iterator that returns max number of elements.
+The parent iterator must not be nil
+max can be 0 or any positive number
+
+				
+				
+			
+
+			
+				
+				<h3 id="LimitedIterator.Close">func (LimitedIterator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=2783:2821#L74">Close</a>
+					<a class="permalink" href="index.html#LimitedIterator.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LimitedIterator">LimitedIterator</a>) Close() <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close releases the iterator and should be called at the end of iteration
+
+				
+				
+				
+			
+				
+				<h3 id="LimitedIterator.LoadNext">func (*LimitedIterator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=2494:2570#L65">LoadNext</a>
+					<a class="permalink" href="index.html#LimitedIterator.LoadNext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#LimitedIterator">LimitedIterator</a>) LoadNext(dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadNext loads the next value in the sequence into the pointer passed as dest and returns the key. If there
+are no more items or the defined max number of elements was returned the `errors.ErrORMIteratorDone` error is returned
+The key is the rowID and not any MultiKeyIndex key.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockContext">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=207:287#L2">MockContext</a>
+				<a class="permalink" href="index.html#MockContext">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type MockContext struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockContext">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=289:323#L7">NewMockContext</a>
+					<a class="permalink" href="index.html#NewMockContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMockContext() *<a href="index.html#MockContext">MockContext</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="MockContext.KVStore">func (MockContext) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/testsupport.go?s=441:506#L15">KVStore</a>
+					<a class="permalink" href="index.html#MockContext.KVStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#MockContext">MockContext</a>) KVStore(key <a href="../../../../store/types/index.html">storetypes</a>.<a href="../../../../store/types/index.html#StoreKey">StoreKey</a>) <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ModelSlicePtr">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=7159:7189#L216">ModelSlicePtr</a>
+				<a class="permalink" href="index.html#ModelSlicePtr">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ModelSlicePtr represents a pointer to a slice of models. Think of it as
+*[]Model Because of Go&apos;s type system, using []Model type would not work for us.
+Instead we use a placeholder type and the validation is done during the
+runtime.
+
+			<pre>type ModelSlicePtr interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MultiKeyIndex">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=898:1039#L16">MultiKeyIndex</a>
+				<a class="permalink" href="index.html#MultiKeyIndex">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MultiKeyIndex is an index where multiple entries can point to the same underlying object as opposite to a unique index
+where only one entry is allowed.
+
+			<pre>type MultiKeyIndex struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewIndex">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=1208:1315#L27">NewIndex</a>
+					<a class="permalink" href="index.html#NewIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewIndex(tb <a href="index.html#Indexable">Indexable</a>, prefix <a href="../../../../../../../builtin/index.html#byte">byte</a>, indexerF <a href="index.html#IndexerFunc">IndexerFunc</a>, indexKey interface{}) (<a href="index.html#MultiKeyIndex">MultiKeyIndex</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewIndex builds a MultiKeyIndex.
+Only single-field indexes are supported and `indexKey` represents such a field value,
+which can be []byte, string or uint64.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MultiKeyIndex.Get">func (MultiKeyIndex) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=2793:2879#L76">Get</a>
+					<a class="permalink" href="index.html#MultiKeyIndex.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>) Get(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, searchKey interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get returns a result iterator for the searchKey. Parameters must not be nil.
+
+				
+				
+				
+			
+				
+				<h3 id="MultiKeyIndex.GetPaginated">func (MultiKeyIndex) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=3345:3472#L89">GetPaginated</a>
+					<a class="permalink" href="index.html#MultiKeyIndex.GetPaginated">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>) GetPaginated(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, searchKey interface{}, pageRequest *<a href="../../../../types/query/index.html">query</a>.<a href="../../../../types/query/index.html#PageRequest">PageRequest</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetPaginated creates an iterator for the searchKey
+starting from pageRequest.Key if provided.
+The pageRequest.Key is the rowID while searchKey is a MultiKeyIndex key.
+
+				
+				
+				
+			
+				
+				<h3 id="MultiKeyIndex.Has">func (MultiKeyIndex) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=2404:2480#L64">Has</a>
+					<a class="permalink" href="index.html#MultiKeyIndex.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>) Has(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, key interface{}) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has checks if a key exists. Returns an error on nil key.
+
+				
+				
+				
+			
+				
+				<h3 id="MultiKeyIndex.PrefixScan">func (MultiKeyIndex) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=4717:4825#L125">PrefixScan</a>
+					<a class="permalink" href="index.html#MultiKeyIndex.PrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>) PrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, startI interface{}, endI interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PrefixScan returns an Iterator over a domain of keys in ascending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(nil, nil)
+<p>WARNING: The use of a PrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits.
+Example:
+<pre>it, err := idx.PrefixScan(ctx, start, end)
+if err !=nil {
+	return err
+}
+const defaultLimit = 20
+it = LimitIterator(it, defaultLimit)
+</pre>
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+				
+				<h3 id="MultiKeyIndex.ReversePrefixScan">func (MultiKeyIndex) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=5708:5823#L145">ReversePrefixScan</a>
+					<a class="permalink" href="index.html#MultiKeyIndex.ReversePrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>) ReversePrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, startI interface{}, endI interface{}) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReversePrefixScan returns an Iterator over a domain of keys in descending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid  and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(nil, nil)
+<p>WARNING: The use of a ReversePrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits. See `LimitIterator`
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PrimaryKeyTable">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=370:409#L5">PrimaryKeyTable</a>
+				<a class="permalink" href="index.html#PrimaryKeyTable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PrimaryKeyTable provides simpler object style orm methods without passing database RowIDs.
+Entries are persisted and loaded with a reference to their unique primary key.
+
+			<pre>type PrimaryKeyTable struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPrimaryKeyTable">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=464:570#L10">NewPrimaryKeyTable</a>
+					<a class="permalink" href="index.html#NewPrimaryKeyTable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrimaryKeyTable(prefixData [2]<a href="../../../../../../../builtin/index.html#byte">byte</a>, model <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>, cdc <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#Codec">Codec</a>) (*<a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewPrimaryKeyTable creates a new PrimaryKeyTable.
+
+				
+				
+			
+
+			
+				
+				<h3 id="PrimaryKeyTable.AddAfterDeleteInterceptor">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1966:2043#L55">AddAfterDeleteInterceptor</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.AddAfterDeleteInterceptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) AddAfterDeleteInterceptor(interceptor <a href="index.html#AfterDeleteInterceptor">AfterDeleteInterceptor</a>)</pre>
+				<p>AddAfterDeleteInterceptor can be used to register a callback function that is executed after an object is deleted.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.AddAfterSetInterceptor">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1725:1796#L50">AddAfterSetInterceptor</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.AddAfterSetInterceptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) AddAfterSetInterceptor(interceptor <a href="index.html#AfterSetInterceptor">AfterSetInterceptor</a>)</pre>
+				<p>AddAfterSetInterceptor can be used to register a callback function that is executed after an object is created and/or updated.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Contains">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=3763:3838#L95">Contains</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Contains(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, obj <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Contains returns true when an object with same type and primary key is persisted in this table.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Create">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=2054:2128#L54">Create</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Create(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, obj <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Create persists the given object under their primary key. It checks if the
+key already exists and may return an `ErrUniqueConstraint`.
+<p>Create iterates through the registered callbacks that may add secondary
+index keys.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Delete">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=3349:3423#L85">Delete</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Delete(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, obj <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete removes the object. It expects the primary key to exists already and
+fails with a `ErrNotFound` otherwise. Any caller must therefore make sure
+that this contract is fulfilled.
+<p>Delete iterates through the registered callbacks that remove secondary index
+keys.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Export">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=6007:6093#L143">Export</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Export">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Export(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, dest <a href="index.html#ModelSlicePtr">ModelSlicePtr</a>) (<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Export stores all the values in the table in the passed ModelSlicePtr.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.GetOne">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=4138:4236#L104">GetOne</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.GetOne">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) GetOne(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, primKey <a href="index.html#RowID">RowID</a>, dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>GetOne loads the object persisted for the given primary Key into the dest parameter.
+If none exists `ErrNotFound` is returned instead. Parameters must not be nil.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Has">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=3549:3619#L90">Has</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Has(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, primaryKey <a href="index.html#RowID">RowID</a>) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Has checks if a key exists. Always returns false on nil or empty key.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Import">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=6280:6371#L149">Import</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Import">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Import(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, data interface{}, seqValue <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Import clears the table and initializes it from the given data interface{}.
+data should be a slice of structs that implement PrimaryKeyed.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.PrefixScan">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=5025:5116#L125">PrefixScan</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.PrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) PrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, start, end []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PrefixScan returns an Iterator over a domain of keys in ascending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(nil, nil)
+<p>WARNING: The use of a PrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits.
+Example:
+<pre>it, err := idx.PrefixScan(ctx, start, end)
+if err !=nil {
+	return err
+}
+const defaultLimit = 20
+it = LimitIterator(it, defaultLimit)
+</pre>
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.ReversePrefixScan">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=5776:5874#L138">ReversePrefixScan</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.ReversePrefixScan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) ReversePrefixScan(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, start, end []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReversePrefixScan returns an Iterator over a domain of keys in descending order. End is exclusive.
+Start is an MultiKeyIndex key or prefix. It must be less than end, or the Iterator is invalid  and error is returned.
+Iterator must be closed by caller.
+To iterate over entire domain, use PrefixScan(nil, nil)
+<p>WARNING: The use of a ReversePrefixScan can be very expensive in terms of Gas. Please make sure you do not expose
+this as an endpoint to the public without further limits. See `LimitIterator`
+<p>CONTRACT: No writes may happen within a domain while an iterator exists over it.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.RowGetter">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/table.go?s=1498:1534#L45">RowGetter</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.RowGetter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) RowGetter() <a href="index.html#RowGetter">RowGetter</a></pre>
+				<p>RowGetter returns a type safe RowGetter.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Set">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=2924:3000#L75">Set</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Set(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, newValue <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Set persists the given object under the rowID key. It does not check if the
+key already exists and overwrites the value if it does.
+<p>Set iterates through the registered callbacks that may add secondary index
+keys.
+
+				
+				
+				
+			
+				
+				<h3 id="PrimaryKeyTable.Update">func (PrimaryKeyTable) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=2549:2628#L66">Update</a>
+					<a class="permalink" href="index.html#PrimaryKeyTable.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#PrimaryKeyTable">PrimaryKeyTable</a>) Update(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, newValue <a href="index.html#PrimaryKeyed">PrimaryKeyed</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Update updates the given object under the primary key. It expects the key to
+exists already and fails with an `ErrNotFound` otherwise. Any caller must
+therefore make sure that this contract is fulfilled. Parameters must not be
+nil.
+<p>Update iterates through the registered callbacks that may add or remove
+secondary index keys.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PrimaryKeyed">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/primary_key.go?s=795:1377#L21">PrimaryKeyed</a>
+				<a class="permalink" href="index.html#PrimaryKeyed">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PrimaryKeyed defines an object type that is aware of its immutable primary key.
+
+			<pre>type PrimaryKeyed interface {
+    <span class="comment">// PrimaryKeyFields returns the fields of the object that will make up</span>
+    <span class="comment">// the primary key. The PrimaryKey function will encode and concatenate</span>
+    <span class="comment">// the fields to build the primary key.</span>
+    <span class="comment">//</span>
+    <span class="comment">// PrimaryKey parts can be []byte, string, and uint64 types. []byte is</span>
+    <span class="comment">// encoded with a length prefix, strings are null-terminated, and</span>
+    <span class="comment">// uint64 are encoded using 8 byte big endian.</span>
+    <span class="comment">//</span>
+    <span class="comment">// IMPORTANT: []byte parts are encoded with a single byte length prefix,</span>
+    <span class="comment">// so cannot be longer than 255 bytes.</span>
+    PrimaryKeyFields() []interface{}
+    <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RowGetter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=4507:4591#L93">RowGetter</a>
+				<a class="permalink" href="index.html#RowGetter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RowGetter loads a persistent object by row ID into the destination object. The dest parameter must therefore be a pointer.
+Any implementation must return `sdkerrors.ErrNotFound` when no object for the rowID exists
+
+			<pre>type RowGetter func(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, rowID <a href="index.html#RowID">RowID</a>, dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTypeSafeRowGetter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=4678:4769#L96">NewTypeSafeRowGetter</a>
+					<a class="permalink" href="index.html#NewTypeSafeRowGetter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTypeSafeRowGetter(prefixKey [2]<a href="../../../../../../../builtin/index.html#byte">byte</a>, model <a href="../../../../../../../reflect/index.html">reflect</a>.<a href="../../../../../../../reflect/index.html#Type">Type</a>, cdc <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#Codec">Codec</a>) <a href="index.html#RowGetter">RowGetter</a></pre>
+				<p>NewTypeSafeRowGetter returns a `RowGetter` with type check on the dest parameter.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="RowID">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=421:438#L9">RowID</a>
+				<a class="permalink" href="index.html#RowID">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Unique identifier of a persistent table.
+
+			<pre>type RowID []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="First">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=3047:3112#L80">First</a>
+					<a class="permalink" href="index.html#First">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func First(it <a href="index.html#Iterator">Iterator</a>, dest <a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#ProtoMarshaler">ProtoMarshaler</a>) (<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>First loads the first element into the given destination type and closes the iterator.
+When the iterator is closed or has no elements the according error is passed as return value.
+
+				
+				
+			
+				
+				<h3 id="ReadAll">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/iterator.go?s=7537:7599#L226">ReadAll</a>
+					<a class="permalink" href="index.html#ReadAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ReadAll(it <a href="index.html#Iterator">Iterator</a>, dest <a href="index.html#ModelSlicePtr">ModelSlicePtr</a>) ([]<a href="index.html#RowID">RowID</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadAll consumes all values for the iterator and stores them in a new slice at the passed ModelSlicePtr.
+The slice can be empty when the iterator does not return any values but not nil. The iterator
+is closed afterwards.
+Example:
+<pre>var loaded []testdata.GroupInfo
+rowIDs, err := ReadAll(it, &amp;loaded)
+require.NoError(t, err)
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="RowID.Bytes">func (RowID) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=468:497#L12">Bytes</a>
+					<a class="permalink" href="index.html#RowID.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#RowID">RowID</a>) Bytes() []<a href="../../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Bytes returns raw bytes.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Sequence">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=417:454#L6">Sequence</a>
+				<a class="permalink" href="index.html#Sequence">&#xb6;</a>
+				
+				
+			</h2>
+			<p>sequence is a persistent unique key generator based on a counter.
+
+			<pre>type Sequence struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSequence">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=456:494#L10">NewSequence</a>
+					<a class="permalink" href="index.html#NewSequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSequence(prefix <a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Sequence">Sequence</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Sequence.CurVal">func (Sequence) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=910:960#L27">CurVal</a>
+					<a class="permalink" href="index.html#Sequence.CurVal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Sequence">Sequence</a>) CurVal(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>) <a href="../../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>CurVal returns the last value used. 0 if none.
+
+				
+				
+				
+			
+				
+				<h3 id="Sequence.InitVal">func (Sequence) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=1719:1781#L46">InitVal</a>
+					<a class="permalink" href="index.html#Sequence.InitVal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Sequence">Sequence</a>) InitVal(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, seq <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InitVal sets the start value for the sequence. It must be called only once on an empty DB.
+Otherwise an error is returned when the key exists. The given start value is stored as current
+value.
+<p>It is recommended to call this method only for a sequence start value other than `1` as the
+method consumes unnecessary gas otherwise. A scenario would be an import from genesis.
+
+				
+				
+				
+			
+				
+				<h3 id="Sequence.NextVal">func (Sequence) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=616:667#L17">NextVal</a>
+					<a class="permalink" href="index.html#Sequence.NextVal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Sequence">Sequence</a>) NextVal(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>) <a href="../../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>NextVal increments and persists the counter by one and returns the value.
+
+				
+				
+				
+			
+				
+				<h3 id="Sequence.PeekNextVal">func (Sequence) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/sequence.go?s=1149:1204#L34">PeekNextVal</a>
+					<a class="permalink" href="index.html#Sequence.PeekNextVal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Sequence">Sequence</a>) PeekNextVal(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>) <a href="../../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>PeekNextVal returns the CurVal + increment step. Not persistent.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TableExportable">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/genesis.go?s=136:738#L1">TableExportable</a>
+				<a class="permalink" href="index.html#TableExportable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TableExportable defines the methods to import and export a table.
+
+			<pre>type TableExportable interface {
+    <span class="comment">// Export stores all the values in the table in the passed</span>
+    <span class="comment">// ModelSlicePtr. If the table has an associated sequence, then its</span>
+    <span class="comment">// current value is returned, otherwise 0 is returned by default.</span>
+    Export(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, dest <a href="index.html#ModelSlicePtr">ModelSlicePtr</a>) (<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Import clears the table and initializes it from the given data</span>
+    <span class="comment">// interface{}. data should be a slice of structs that implement</span>
+    <span class="comment">// PrimaryKeyed. The seqValue is optional and only</span>
+    <span class="comment">// used with tables that have an associated sequence.</span>
+    Import(store <a href="../../../../types/index.html">sdk</a>.<a href="../../../../types/index.html#KVStore">KVStore</a>, data interface{}, seqValue <a href="../../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UniqueIndex">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=7450:7492#L204">UniqueIndex</a>
+				<a class="permalink" href="index.html#UniqueIndex">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type UniqueIndex struct {
+    <a href="index.html#MultiKeyIndex">MultiKeyIndex</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUniqueIndex">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/index.go?s=7575:7701#L209">NewUniqueIndex</a>
+					<a class="permalink" href="index.html#NewUniqueIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewUniqueIndex(tb <a href="index.html#Indexable">Indexable</a>, prefix <a href="../../../../../../../builtin/index.html#byte">byte</a>, uniqueIndexerFunc <a href="index.html#UniqueIndexerFunc">UniqueIndexerFunc</a>, indexKey interface{}) (<a href="index.html#UniqueIndex">UniqueIndex</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewUniqueIndex create a new Index object where duplicate keys are prohibited.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="UniqueIndexerFunc">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/indexer.go?s=375:442#L3">UniqueIndexerFunc</a>
+				<a class="permalink" href="index.html#UniqueIndexerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IndexerFunc creates exactly one index key for the source object.
+
+			<pre>type UniqueIndexerFunc func(value interface{}) (interface{}, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Validateable">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/group/internal/orm/types.go?s=636:786#L17">Validateable</a>
+				<a class="permalink" href="index.html#Validateable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Validateable is an interface that ProtoMarshaler types can implement and is called on any orm save or update operation.
+
+			<pre>type Validateable interface {
+    <span class="comment">// ValidateBasic is a sanity check on the data. Any error returned prevents create or updates.</span>
+    ValidateBasic() <a href="../../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

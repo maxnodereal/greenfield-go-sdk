@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>slasherkv - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package slasherkv
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package slasherkv defines a bolt-db, key-value store implementation
+of the slasher database interface for Prysm.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKVStore">func NewKVStore(ctx context.Context, dirPath string, config *Config) (*Store, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.AttestationRecordForValidator">func (s *Store) AttestationRecordForValidator(ctx context.Context, validatorIdx types.ValidatorIndex, targetEpoch types.Epoch) (*slashertypes.IndexedAttestationWrapper, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.BlockProposalForValidator">func (s *Store) BlockProposalForValidator(ctx context.Context, validatorIdx types.ValidatorIndex, slot types.Slot) (*slashertypes.SignedBlockHeaderWrapper, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.CheckAttesterDoubleVotes">func (s *Store) CheckAttesterDoubleVotes(ctx context.Context, attestations []*slashertypes.IndexedAttestationWrapper) ([]*slashertypes.AttesterDoubleVote, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.CheckDoubleBlockProposals">func (s *Store) CheckDoubleBlockProposals(ctx context.Context, proposals []*slashertypes.SignedBlockHeaderWrapper) ([]*ethpb.ProposerSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.ClearDB">func (s *Store) ClearDB() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Close">func (s *Store) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DatabasePath">func (s *Store) DatabasePath() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HighestAttestations">func (s *Store) HighestAttestations(_ context.Context, indices []types.ValidatorIndex) ([]*ethpb.HighestAttestation, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LastEpochWrittenForValidators">func (s *Store) LastEpochWrittenForValidators(ctx context.Context, validatorIndices []types.ValidatorIndex) ([]*slashertypes.AttestedEpochForValidator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LoadSlasherChunks">func (s *Store) LoadSlasherChunks(ctx context.Context, kind slashertypes.ChunkKind, diskKeys [][]byte) ([][]uint16, []bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.PruneAttestationsAtEpoch">func (s *Store) PruneAttestationsAtEpoch(_ context.Context, maxEpoch types.Epoch) (numPruned uint, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.PruneProposalsAtEpoch">func (s *Store) PruneProposalsAtEpoch(ctx context.Context, maxEpoch types.Epoch) (numPruned uint, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveAttestationRecordsForValidators">func (s *Store) SaveAttestationRecordsForValidators(ctx context.Context, attestations []*slashertypes.IndexedAttestationWrapper) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveBlockProposals">func (s *Store) SaveBlockProposals(ctx context.Context, proposals []*slashertypes.SignedBlockHeaderWrapper) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveLastEpochsWrittenForValidators">func (s *Store) SaveLastEpochsWrittenForValidators(ctx context.Context, epochByValidator map[types.ValidatorIndex]types.Epoch) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveSlasherChunks">func (s *Store) SaveSlasherChunks(ctx context.Context, kind slashertypes.ChunkKind, chunkKeys [][]byte, chunks [][]uint16) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go">kv.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/pruning.go">pruning.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/schema.go">schema.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go">slasher.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// DatabaseFileName is the name of the beacon node database.</span>
+    <span id="DatabaseFileName">DatabaseFileName</span> = &#34;slasher.db&#34;
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=603:646#L17">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config for the bolt db kv store.
+
+			<pre>type Config struct {
+<span id="Config.InitialMMapSize"></span>    InitialMMapSize <a href="../../../../../../builtin/index.html#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=793:888#L23">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store defines an implementation of the Prysm Database interface
+using BoltDB as the underlying persistent kv-store for Ethereum consensus.
+
+			<pre>type Store struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewKVStore">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=1103:1187#L32">NewKVStore</a>
+					<a class="permalink" href="index.html#NewKVStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKVStore(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, dirPath <a href="../../../../../../builtin/index.html#string">string</a>, config *<a href="index.html#Config">Config</a>) (*<a href="index.html#Store">Store</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKVStore initializes a new boltDB key-value store at the directory
+path specified, creates the kv-buckets based on the schema, and stores
+an open connection db object as a property of the Store struct.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Store.AttestationRecordForValidator">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=6258:6437#L173">AttestationRecordForValidator</a>
+					<a class="permalink" href="index.html#Store.AttestationRecordForValidator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) AttestationRecordForValidator(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, validatorIdx <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>, targetEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AttestationRecordForValidator given a validator index and a target epoch,
+retrieves an existing attestation record we have stored in the database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.BlockProposalForValidator">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=12559:12725#L349">BlockProposalForValidator</a>
+					<a class="permalink" href="index.html#Store.BlockProposalForValidator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) BlockProposalForValidator(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, validatorIdx <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>,
+) (*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#SignedBlockHeaderWrapper">SignedBlockHeaderWrapper</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockProposalForValidator given a validator index and a slot
+retrieves an existing proposal record we have stored in the database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.CheckAttesterDoubleVotes">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=3445:3610#L105">CheckAttesterDoubleVotes</a>
+					<a class="permalink" href="index.html#Store.CheckAttesterDoubleVotes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) CheckAttesterDoubleVotes(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, attestations []*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>,
+) ([]*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#AttesterDoubleVote">AttesterDoubleVote</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CheckAttesterDoubleVotes retries any slashable double votes that exist
+for a series of input attestations.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.CheckDoubleBlockProposals">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=11138:11291#L310">CheckDoubleBlockProposals</a>
+					<a class="permalink" href="index.html#Store.CheckDoubleBlockProposals">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) CheckDoubleBlockProposals(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, proposals []*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#SignedBlockHeaderWrapper">SignedBlockHeaderWrapper</a>,
+) ([]*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CheckDoubleBlockProposals takes in a list of proposals and for each,
+checks if there already exists a proposal at the same slot+validatorIndex combination. If so,
+We check if the existing signing root is not-empty and is different than the incoming
+proposal signing root. If so, we return a double block proposal object.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.ClearDB">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=2281:2312#L82">ClearDB</a>
+					<a class="permalink" href="index.html#Store.ClearDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) ClearDB() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ClearDB removes the previously stored database in the data directory.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Close">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=2597:2626#L93">Close</a>
+					<a class="permalink" href="index.html#Store.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Close() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying BoltDB database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DatabasePath">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/kv.go?s=2706:2743#L98">DatabasePath</a>
+					<a class="permalink" href="index.html#Store.DatabasePath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) DatabasePath() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>DatabasePath at which this database writes files.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HighestAttestations">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=14379:14507#L411">HighestAttestations</a>
+					<a class="permalink" href="index.html#Store.HighestAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HighestAttestations(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    indices []<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+) ([]*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#HighestAttestation">HighestAttestation</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HighestAttestations retrieves the last attestation data from the database for all indices.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LastEpochWrittenForValidators">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=762:924#L21">LastEpochWrittenForValidators</a>
+					<a class="permalink" href="index.html#Store.LastEpochWrittenForValidators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LastEpochWrittenForValidators(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, validatorIndices []<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+) ([]*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#AttestedEpochForValidator">AttestedEpochForValidator</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LastEpochWrittenForValidators given a list of validator indices returns the latest
+epoch we have recorded the validators writing data for.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LoadSlasherChunks">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=9020:9154#L249">LoadSlasherChunks</a>
+					<a class="permalink" href="index.html#Store.LoadSlasherChunks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LoadSlasherChunks(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, kind <a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#ChunkKind">ChunkKind</a>, diskKeys [][]<a href="../../../../../../builtin/index.html#byte">byte</a>,
+) ([][]<a href="../../../../../../builtin/index.html#uint16">uint16</a>, []<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadSlasherChunks given a chunk kind and a disk keys, retrieves chunks for a validator
+min or max span used by slasher from our database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.PruneAttestationsAtEpoch">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/pruning.go?s=359:472#L6">PruneAttestationsAtEpoch</a>
+					<a class="permalink" href="index.html#Store.PruneAttestationsAtEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) PruneAttestationsAtEpoch(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, maxEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (numPruned <a href="../../../../../../builtin/index.html#uint">uint</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PruneAttestationsAtEpoch deletes all attestations from the slasher DB with target epoch
+less than or equal to the specified epoch.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.PruneProposalsAtEpoch">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/pruning.go?s=2589:2701#L77">PruneProposalsAtEpoch</a>
+					<a class="permalink" href="index.html#Store.PruneProposalsAtEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) PruneProposalsAtEpoch(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, maxEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (numPruned <a href="../../../../../../builtin/index.html#uint">uint</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PruneProposalsAtEpoch deletes all proposals from the slasher DB with epoch
+less than or equal to the specified epoch.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveAttestationRecordsForValidators">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=7304:7443#L204">SaveAttestationRecordsForValidators</a>
+					<a class="permalink" href="index.html#Store.SaveAttestationRecordsForValidators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveAttestationRecordsForValidators(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    attestations []*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveAttestationRecordsForValidators saves attestation records for the specified indices.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveBlockProposals">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=13392:13509#L377">SaveBlockProposals</a>
+					<a class="permalink" href="index.html#Store.SaveBlockProposals">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveBlockProposals(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, proposals []*<a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#SignedBlockHeaderWrapper">SignedBlockHeaderWrapper</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveBlockProposals takes in a list of block proposals and saves them to our
+proposal records bucket in the database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveLastEpochsWrittenForValidators">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=1880:2016#L53">SaveLastEpochsWrittenForValidators</a>
+					<a class="permalink" href="index.html#Store.SaveLastEpochsWrittenForValidators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveLastEpochsWrittenForValidators(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, epochByValidator map[<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>]<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveLastEpochsWrittenForValidators updates the latest epoch a slice
+of validator indices has attested to.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveSlasherChunks">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/slasherkv/slasher.go?s=9998:10130#L280">SaveSlasherChunks</a>
+					<a class="permalink" href="index.html#Store.SaveSlasherChunks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveSlasherChunks(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, kind <a href="../../slasher/types/index.html">slashertypes</a>.<a href="../../slasher/types/index.html#ChunkKind">ChunkKind</a>, chunkKeys [][]<a href="../../../../../../builtin/index.html#byte">byte</a>, chunks [][]<a href="../../../../../../builtin/index.html#uint16">uint16</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveSlasherChunks given a chunk kind, list of disk keys, and list of chunks,
+saves the chunks to our database for use by slasher in slashing detection.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>log - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package log
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/log"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package log15 provides an opinionated, simple toolkit for best-practice logging that is
+both human and machine readable. It is modeled after the standard library&apos;s io and net/http
+packages.
+<p>This package enforces you to only log key/value pairs. Keys must be strings. Values may be
+any type that you like. The default output format is logfmt, but you may also choose to use
+JSON instead if that suits you. Here&apos;s how you log:
+<pre>log.Info(&quot;page accessed&quot;, &quot;path&quot;, r.URL.Path, &quot;user_id&quot;, user.id)
+</pre>
+<p>This will output a line that looks like:
+<pre>lvl=info t=2014-05-02T16:07:23-0700 msg=&quot;page accessed&quot; path=/org/71/profile user_id=9
+</pre>
+<h3 id="hdr-Getting_Started">Getting Started</h3>
+<p>To get started, you&apos;ll want to import the library:
+<pre>import log &quot;github.com/inconshreveable/log15&quot;
+</pre>
+<p>Now you&apos;re ready to start logging:
+<pre>func main() {
+    log.Info(&quot;Program starting&quot;, &quot;args&quot;, os.Args())
+}
+</pre>
+<h3 id="hdr-Convention">Convention</h3>
+<p>Because recording a human-meaningful message is common and good practice, the first argument to every
+logging method is the value to the *implicit* key &apos;msg&apos;.
+<p>Additionally, the level you choose for a message will be automatically added with the key &apos;lvl&apos;, and so
+will the current timestamp with key &apos;t&apos;.
+<p>You may supply any additional context as a set of key/value pairs to the logging function. log15 allows
+you to favor terseness, ordering, and speed over safety. This is a reasonable tradeoff for
+logging functions. You don&apos;t need to explicitly state keys/values, log15 understands that they alternate
+in the variadic argument list:
+<pre>log.Warn(&quot;size out of bounds&quot;, &quot;low&quot;, lowBound, &quot;high&quot;, highBound, &quot;val&quot;, val)
+</pre>
+<p>If you really do favor your type-safety, you may choose to pass a log.Ctx instead:
+<pre>log.Warn(&quot;size out of bounds&quot;, log.Ctx{&quot;low&quot;: lowBound, &quot;high&quot;: highBound, &quot;val&quot;: val})
+</pre>
+<h3 id="hdr-Context_loggers">Context loggers</h3>
+<p>Frequently, you want to add context to a logger so that you can track actions associated with it. An http
+request is a good example. You can easily create new loggers that have context that is automatically included
+with each log line:
+<pre>requestlogger := log.New(&quot;path&quot;, r.URL.Path)
+
+// later
+requestlogger.Debug(&quot;db txn commit&quot;, &quot;duration&quot;, txnTimer.Finish())
+</pre>
+<p>This will output a log line that includes the path context that is attached to the logger:
+<pre>lvl=dbug t=2014-05-02T16:07:23-0700 path=/repo/12/add_hook msg=&quot;db txn commit&quot; duration=0.12
+</pre>
+<h3 id="hdr-Handlers">Handlers</h3>
+<p>The Handler interface defines where log lines are printed to and how they are formatted. Handler is a
+single interface that is inspired by net/http&apos;s handler interface:
+<pre>type Handler interface {
+    Log(r *Record) error
+}
+</pre>
+<p>Handlers can filter records, format them, or dispatch to multiple other Handlers.
+This package implements a number of Handlers for common logging patterns that are
+easily composed to create flexible, custom logging structures.
+<p>Here&apos;s an example handler that prints logfmt output to Stdout:
+<pre>handler := log.StreamHandler(os.Stdout, log.LogfmtFormat())
+</pre>
+<p>Here&apos;s an example handler that defers to two other handlers. One handler only prints records
+from the rpc package in logfmt to standard out. The other prints records at Error level
+or above in JSON formatted output to the file /var/log/service.json
+<pre>handler := log.MultiHandler(
+    log.LvlFilterHandler(log.LvlError, log.Must.FileHandler(&quot;/var/log/service.json&quot;, log.JSONFormat())),
+    log.MatchFilterHandler(&quot;pkg&quot;, &quot;app/rpc&quot; log.StdoutHandler())
+)
+</pre>
+<h3 id="hdr-Logging_File_Names_and_Line_Numbers">Logging File Names and Line Numbers</h3>
+<p>This package implements three Handlers that add debugging information to the
+context, CallerFileHandler, CallerFuncHandler and CallerStackHandler. Here&apos;s
+an example that adds the source file and line number of each logging call to
+the context.
+<pre>h := log.CallerFileHandler(log.StdoutHandler)
+log.Root().SetHandler(h)
+...
+log.Error(&quot;open file&quot;, &quot;err&quot;, err)
+</pre>
+<p>This will output a line that looks like:
+<pre>lvl=eror t=2014-05-02T16:07:23-0700 msg=&quot;open file&quot; err=&quot;file not found&quot; caller=data.go:42
+</pre>
+<p>Here&apos;s an example that logs the call stack rather than just the call site.
+<pre>h := log.CallerStackHandler(&quot;%+v&quot;, log.StdoutHandler)
+log.Root().SetHandler(h)
+...
+log.Error(&quot;open file&quot;, &quot;err&quot;, err)
+</pre>
+<p>This will output a line that looks like:
+<pre>lvl=eror t=2014-05-02T16:07:23-0700 msg=&quot;open file&quot; err=&quot;file not found&quot; stack=&quot;[pkg/data.go:42 pkg/cmd/main.go]&quot;
+</pre>
+<p>The &quot;%+v&quot; format instructs the handler to include the path of the source file
+relative to the compile time GOPATH. The github.com/go-stack/stack package
+documents the full list of formatting verbs and modifiers available.
+<h3 id="hdr-Custom_Handlers">Custom Handlers</h3>
+<p>The Handler interface is so simple that it&apos;s also trivial to write your own. Let&apos;s create an
+example handler which tries to write to one handler, but if that fails it falls back to
+writing to another handler and includes the error that it encountered when trying to write
+to the primary. This might be useful when trying to log over a network socket, but if that
+fails you want to log those records to a file on disk.
+<pre>type BackupHandler struct {
+    Primary Handler
+    Secondary Handler
+}
+
+func (h *BackupHandler) Log (r *Record) error {
+    err := h.Primary.Log(r)
+    if err != nil {
+        r.Ctx = append(ctx, &quot;primary_err&quot;, err)
+        return h.Secondary.Log(r)
+    }
+    return nil
+}
+</pre>
+<p>This pattern is so useful that a generic version that handles an arbitrary number of Handlers
+is included as part of this library called FailoverHandler.
+<h3 id="hdr-Logging_Expensive_Operations">Logging Expensive Operations</h3>
+<p>Sometimes, you want to log values that are extremely expensive to compute, but you don&apos;t want to pay
+the price of computing them if you haven&apos;t turned up your logging level to a high level of detail.
+<p>This package provides a simple type to annotate a logging operation that you want to be evaluated
+lazily, just when it is about to be logged, so that it would not be evaluated if an upstream Handler
+filters it out. Just wrap any function which takes no arguments with the log.Lazy type. For example:
+<pre>func factorRSAKey() (factors []int) {
+    // return the factors of a very large number
+}
+
+log.Debug(&quot;factors&quot;, log.Lazy{factorRSAKey})
+</pre>
+<p>If this message is not logged for any reason (like logging at the Error level), then
+factorRSAKey is never evaluated.
+<h3 id="hdr-Dynamic_context_values">Dynamic context values</h3>
+<p>The same log.Lazy mechanism can be used to attach context to a logger which you want to be
+evaluated when the message is logged, but not when the logger is created. For example, let&apos;s imagine
+a game where you have Player objects:
+<pre>type Player struct {
+    name string
+    alive bool
+    log.Logger
+}
+</pre>
+<p>You always want to log a player&apos;s name and whether they&apos;re alive or dead, so when you create the player
+object, you might do:
+<pre>p := &amp;Player{name: name, alive: true}
+p.Logger = log.New(&quot;name&quot;, p.name, &quot;alive&quot;, p.alive)
+</pre>
+<p>Only now, even after a player has died, the logger will still report they are alive because the logging
+context is evaluated when the logger was created. By using the Lazy wrapper, we can defer the evaluation
+of whether the player is alive or not to each log message, so that the log records will reflect the player&apos;s
+current state no matter when the log message is written:
+<pre>p := &amp;Player{name: name, alive: true}
+isAlive := func() bool { return p.alive }
+player.Logger = log.New(&quot;name&quot;, p.name, &quot;alive&quot;, log.Lazy{isAlive})
+</pre>
+<h3 id="hdr-Terminal_Format">Terminal Format</h3>
+<p>If log15 detects that stdout is a terminal, it will configure the default
+handler for it (which is log.StdoutHandler) to use TerminalFormat. This format
+logs records nicely for your terminal, including color-coded output based
+on log level.
+<h3 id="hdr-Error_Handling">Error Handling</h3>
+<p>Becasuse log15 allows you to step around the type system, there are a few ways you can specify
+invalid arguments to the logging functions. You could, for example, wrap something that is not
+a zero-argument function with log.Lazy or pass a context key that is not a string. Since logging libraries
+are typically the mechanism by which errors are reported, it would be onerous for the logging functions
+to return errors. Instead, log15 handles errors by making these guarantees to you:
+<p>- Any log record containing an error will still be printed with the error explained to you as part of the log record.
+<p>- Any log record containing an error will include the context key LOG15_ERROR, enabling you to easily
+(and if you like, automatically) detect if any of your logging calls are passing bad values.
+<p>Understanding this, you might wonder why the Handler interface can return an error value in its Log method. Handlers
+are encouraged to return errors only if they fail to write their log records out to an external source like if the
+syslog daemon is not responding. This allows the construction of useful handlers which cope with those failures
+like the FailoverHandler.
+<h3 id="hdr-Library_Use">Library Use</h3>
+<p>log15 is intended to be useful for library authors as a way to provide configurable logging to
+users of their library. Best practice for use in a library is to always disable all output for your logger
+by default and to provide a public Logger instance that consumers of your library can configure. Like so:
+<pre>package yourlib
+
+import &quot;github.com/inconshreveable/log15&quot;
+
+var Log = log.New()
+
+func init() {
+    Log.SetHandler(log.DiscardHandler())
+}
+</pre>
+<p>Users of your library may then enable it if they like:
+<pre>import &quot;github.com/inconshreveable/log15&quot;
+import &quot;example.com/yourlib&quot;
+
+func main() {
+    handler := // custom handler setup
+    yourlib.Log.SetHandler(handler)
+}
+</pre>
+<h3 id="hdr-Best_practices_attaching_logger_context">Best practices attaching logger context</h3>
+<p>The ability to attach context to a logger is a powerful one. Where should you do it and why?
+I favor embedding a Logger directly into any persistent object in my application and adding
+unique, tracing context keys to it. For instance, imagine I am writing a web browser:
+<pre>type Tab struct {
+    url string
+    render *RenderingContext
+    // ...
+
+    Logger
+}
+
+func NewTab(url string) *Tab {
+    return &amp;Tab {
+        // ...
+        url: url,
+
+        Logger: log.New(&quot;url&quot;, url),
+    }
+}
+</pre>
+<p>When a new tab is created, I assign a logger to it with the url of
+the tab as context so it can easily be traced through the logs.
+Now, whenever we perform any operation with the tab, we&apos;ll log with its
+embedded logger and it will include the tab title automatically:
+<pre>tab.Debug(&quot;moved position&quot;, &quot;idx&quot;, tab.idx)
+</pre>
+<p>There&apos;s only one problem. What if the tab url changes? We could
+use log.Lazy to make sure the current url is always written, but that
+would mean that we couldn&apos;t trace a tab&apos;s full lifetime through our
+logs after the user navigate to a new URL.
+<p>Instead, think about what values to attach to your loggers the
+same way you think about what to use as a key in a SQL database schema.
+If it&apos;s possible to use a natural key that is unique for the lifetime of the
+object, do so. But otherwise, log15&apos;s ext package has a handy RandId
+function to let you generate what you might call &quot;surrogate keys&quot;
+They&apos;re just random hex identifiers to use for tracing. Back to our
+Tab example, we would prefer to set up our Logger like so:
+<pre>import logext &quot;github.com/inconshreveable/log15/ext&quot;
+
+t := &amp;Tab {
+    // ...
+    url: url,
+}
+
+t.Logger = log.New(&quot;id&quot;, logext.RandId(8), &quot;url&quot;, log.Lazy{t.getUrl})
+return t
+</pre>
+<p>Now we&apos;ll have a unique traceable identifier even across loading new urls, but
+we&apos;ll still be able to see the tab&apos;s current url in the log messages.
+<h3 id="hdr-Must">Must</h3>
+<p>For all Handler functions which can return an error, there is a version of that
+function which will return no error but panics on failure. They are all available
+on the Must object. For example:
+<pre>log.Must.FileHandler(&quot;/path&quot;, log.JSONFormat)
+log.Must.NetHandler(&quot;tcp&quot;, &quot;:1234&quot;, log.JSONFormat)
+</pre>
+<h3 id="hdr-Inspiration_and_Credit">Inspiration and Credit</h3>
+<p>All of the following excellent projects inspired the design of this library:
+<p>code.google.com/p/log4go
+<p>github.com/op/go-logging
+<p>github.com/technoweenie/grohl
+<p>github.com/Sirupsen/logrus
+<p>github.com/kr/logfmt
+<p>github.com/spacemonkeygo/spacelog
+<p>golang&apos;s stdlib, notably io and net/http
+<h3 id="hdr-The_Name">The Name</h3>
+<p><a href="https://xkcd.com/927/">https://xkcd.com/927/</a>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Crit">func Crit(msg string, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Debug">func Debug(msg string, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Error">func Error(msg string, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#FormatLogfmtInt64">func FormatLogfmtInt64(n int64) string</a></dd>
+			
+				
+				<dd><a href="index.html#FormatLogfmtUint64">func FormatLogfmtUint64(n uint64) string</a></dd>
+			
+				
+				<dd><a href="index.html#Info">func Info(msg string, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Output">func Output(msg string, lvl Lvl, calldepth int, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#PrintOrigins">func PrintOrigins(print bool)</a></dd>
+			
+				
+				<dd><a href="index.html#Trace">func Trace(msg string, ctx ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Warn">func Warn(msg string, ctx ...interface{})</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Ctx">type Ctx</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Format">type Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FormatFunc">func FormatFunc(f func(*Record) []byte) Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONFormat">func JSONFormat() Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONFormatEx">func JSONFormatEx(pretty, lineSeparated bool) Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONFormatOrderedEx">func JSONFormatOrderedEx(pretty, lineSeparated bool) Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogfmtFormat">func LogfmtFormat() Format</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TerminalFormat">func TerminalFormat(usecolor bool) Format</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GlogHandler">type GlogHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGlogHandler">func NewGlogHandler(h Handler) *GlogHandler</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GlogHandler.BacktraceAt">func (h *GlogHandler) BacktraceAt(location string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GlogHandler.Log">func (h *GlogHandler) Log(r *Record) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GlogHandler.SetHandler">func (h *GlogHandler) SetHandler(nh Handler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GlogHandler.Verbosity">func (h *GlogHandler) Verbosity(level Lvl)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GlogHandler.Vmodule">func (h *GlogHandler) Vmodule(ruleset string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Handler">type Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BufferedHandler">func BufferedHandler(bufSize int, h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallerFileHandler">func CallerFileHandler(h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallerFuncHandler">func CallerFuncHandler(h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallerStackHandler">func CallerStackHandler(format string, h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChannelHandler">func ChannelHandler(recs chan&lt;- *Record) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DiscardHandler">func DiscardHandler() Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FailoverHandler">func FailoverHandler(hs ...Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileHandler">func FileHandler(path string, fmtr Format) (Handler, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterHandler">func FilterHandler(fn func(r *Record) bool, h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FuncHandler">func FuncHandler(fn func(r *Record) error) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyHandler">func LazyHandler(h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LvlFilterHandler">func LvlFilterHandler(maxLvl Lvl, h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MatchFilterHandler">func MatchFilterHandler(key string, value interface{}, h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultiHandler">func MultiHandler(hs ...Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NetHandler">func NetHandler(network, addr string, fmtr Format) (Handler, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamHandler">func StreamHandler(wr io.Writer, fmtr Format) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncHandler">func SyncHandler(h Handler) Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyslogHandler">func SyslogHandler(priority syslog.Priority, tag string, fmtr Format) (Handler, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyslogNetHandler">func SyslogNetHandler(net, addr string, priority syslog.Priority, tag string, fmtr Format) (Handler, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Lazy">type Lazy</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Logger">type Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(ctx ...interface{}) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Root">func Root() Logger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Lvl">type Lvl</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LvlFromString">func LvlFromString(lvlString string) (Lvl, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Lvl.AlignedString">func (l Lvl) AlignedString() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Lvl.String">func (l Lvl) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record">type Record</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RecordKeyNames">type RecordKeyNames</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TerminalStringer">type TerminalStringer</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go">format.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go">handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go">handler_glog.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_go14.go">handler_go14.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go">logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go">root.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/syslog.go">syslog.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="StdoutHandler">StdoutHandler</span> = <a href="index.html#StreamHandler">StreamHandler</a>(<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#Stdout">Stdout</a>, <a href="index.html#LogfmtFormat">LogfmtFormat</a>())
+    <span id="StderrHandler">StderrHandler</span> = <a href="index.html#StreamHandler">StreamHandler</a>(<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#Stderr">Stderr</a>, <a href="index.html#LogfmtFormat">LogfmtFormat</a>())
+)</pre>
+			
+				<p>Must provides the following Handler creation functions
+which instead of returning an error parameter only return a Handler
+and panic on failure: FileHandler, NetHandler, SyslogHandler, SyslogNetHandler
+
+				<pre>var <span id="Must">Must</span> muster</pre>
+			
+		
+		
+			
+			
+			<h2 id="Crit">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=1452:1493#L48">Crit</a>
+				<a class="permalink" href="index.html#Crit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Crit(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Crit is a convenient alias for Root().Crit
+
+			
+			
+
+		
+			
+			
+			<h2 id="Debug">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=906:948#L28">Debug</a>
+				<a class="permalink" href="index.html#Debug">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Debug(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Debug is a convenient alias for Root().Debug
+
+			
+			
+
+		
+			
+			
+			<h2 id="Error">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=1315:1357#L43">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Error(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Error is a convenient alias for Root().Error
+
+			
+			
+
+		
+			
+			
+			<h2 id="FormatLogfmtInt64">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=10084:10122#L381">FormatLogfmtInt64</a>
+				<a class="permalink" href="index.html#FormatLogfmtInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FormatLogfmtInt64(n <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>FormatLogfmtInt64 formats n with thousand separators.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FormatLogfmtUint64">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=10292:10332#L389">FormatLogfmtUint64</a>
+				<a class="permalink" href="index.html#FormatLogfmtUint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FormatLogfmtUint64(n <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>FormatLogfmtUint64 formats n with thousand separators.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Info">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=1043:1084#L33">Info</a>
+				<a class="permalink" href="index.html#Info">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Info(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Info is a convenient alias for Root().Info
+
+			
+			
+
+		
+			
+			
+			<h2 id="Output">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=1862:1929#L58">Output</a>
+				<a class="permalink" href="index.html#Output">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Output(msg <a href="../../../../builtin/index.html#string">string</a>, lvl <a href="index.html#Lvl">Lvl</a>, calldepth <a href="../../../../builtin/index.html#int">int</a>, ctx ...interface{})</pre>
+			<p>Output is a convenient alias for write, allowing for the modification of
+the calldepth (number of stack frames to skip).
+calldepth influences the reported line number of the log message.
+A calldepth of zero reports the immediate caller of Output.
+Non-zero calldepth skips as many stack frames.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PrintOrigins">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=560:589#L22">PrintOrigins</a>
+				<a class="permalink" href="index.html#PrintOrigins">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PrintOrigins(print <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+			<p>PrintOrigins sets or unsets log location (file:line) printing for terminal
+format output.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Trace">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=767:809#L23">Trace</a>
+				<a class="permalink" href="index.html#Trace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Trace(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Trace is a convenient alias for Root().Trace
+
+			
+			
+
+		
+			
+			
+			<h2 id="Warn">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=1178:1219#L38">Warn</a>
+				<a class="permalink" href="index.html#Warn">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Warn(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})</pre>
+			<p>Warn is a convenient alias for Root().Warn
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Ctx">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=5309:5340#L222">Ctx</a>
+				<a class="permalink" href="index.html#Ctx">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Ctx is a map of key/value pairs to pass as context to a log function
+Use this only if you really need greater safety around the arguments you pass
+to the logging functions.
+
+			<pre>type Ctx map[<a href="../../../../builtin/index.html#string">string</a>]interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Format">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=1296:1347#L45">Format</a>
+				<a class="permalink" href="index.html#Format">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Format interface {
+    Format(r *<a href="index.html#Record">Record</a>) []<a href="../../../../builtin/index.html#byte">byte</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FormatFunc">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=1454:1500#L51">FormatFunc</a>
+					<a class="permalink" href="index.html#FormatFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FormatFunc(f func(*<a href="index.html#Record">Record</a>) []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Format">Format</a></pre>
+				<p>FormatFunc returns a new Format object which uses
+the given function to perform record formatting.
+
+				
+				
+			
+				
+				<h3 id="JSONFormat">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=5545:5569#L193">JSONFormat</a>
+					<a class="permalink" href="index.html#JSONFormat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func JSONFormat() <a href="index.html#Format">Format</a></pre>
+				<p>JSONFormat formats log records as JSON objects separated by newlines.
+It is the equivalent of JSONFormatEx(false, true).
+
+				
+				
+			
+				
+				<h3 id="JSONFormatEx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=6907:6959#L242">JSONFormatEx</a>
+					<a class="permalink" href="index.html#JSONFormatEx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func JSONFormatEx(pretty, lineSeparated <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Format">Format</a></pre>
+				<p>JSONFormatEx formats log records as JSON objects. If pretty is true,
+records will be pretty-printed. If lineSeparated is true, records
+will be logged with a new line between each record.
+
+				
+				
+			
+				
+				<h3 id="JSONFormatOrderedEx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=5811:5870#L200">JSONFormatOrderedEx</a>
+					<a class="permalink" href="index.html#JSONFormatOrderedEx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func JSONFormatOrderedEx(pretty, lineSeparated <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Format">Format</a></pre>
+				<p>JSONFormatOrderedEx formats log records as JSON arrays. If pretty is true,
+records will be pretty-printed. If lineSeparated is true, records
+will be logged with a new line between each record.
+
+				
+				
+			
+				
+				<h3 id="LogfmtFormat">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=4219:4245#L143">LogfmtFormat</a>
+					<a class="permalink" href="index.html#LogfmtFormat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LogfmtFormat() <a href="index.html#Format">Format</a></pre>
+				<p>LogfmtFormat prints records in logfmt format, an easy machine-parseable but human-readable
+format for key/value pairs.
+<p>For more details see: <a href="http://godoc.org/github.com/kr/logfmt">http://godoc.org/github.com/kr/logfmt</a>
+
+				
+				
+			
+				
+				<h3 id="TerminalFormat">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=2251:2292#L78">TerminalFormat</a>
+					<a class="permalink" href="index.html#TerminalFormat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TerminalFormat(usecolor <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Format">Format</a></pre>
+				<p>TerminalFormat formats log records optimized for human readability on
+a terminal with color-coded level output and terser human friendly timestamp.
+This format should only be used for interactive programs or while developing.
+<pre>[LEVEL] [TIME] MESSAGE key=value key=value ...
+</pre>
+<p>Example:
+<pre>[DBUG] [May 16 20:58:45] remove route ns=haproxy addr=127.0.0.1:50002
+</pre>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="GlogHandler">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=1395:1959#L29">GlogHandler</a>
+				<a class="permalink" href="index.html#GlogHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GlogHandler is a log handler that mimics the filtering features of Google&apos;s
+glog logger: setting global log levels; overriding with callsite pattern
+matches; and requesting backtraces at certain positions.
+
+			<pre>type GlogHandler struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGlogHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=2111:2154#L44">NewGlogHandler</a>
+					<a class="permalink" href="index.html#NewGlogHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGlogHandler(h <a href="index.html#Handler">Handler</a>) *<a href="index.html#GlogHandler">GlogHandler</a></pre>
+				<p>NewGlogHandler creates a new log handler with filtering functionality similar
+to Google&apos;s glog logger. The returned handler implements Handler.
+
+				
+				
+			
+
+			
+				
+				<h3 id="GlogHandler.BacktraceAt">func (*GlogHandler) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=4969:5025#L141">BacktraceAt</a>
+					<a class="permalink" href="index.html#GlogHandler.BacktraceAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#GlogHandler">GlogHandler</a>) BacktraceAt(location <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>BacktraceAt sets the glog backtrace location. When set to a file and line
+number holding a logging statement, a stack trace will be written to the Info
+log whenever execution hits that statement.
+<p>Unlike with Vmodule, the &quot;.go&quot; must be present.
+
+				
+				
+				
+			
+				
+				<h3 id="GlogHandler.Log">func (*GlogHandler) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=5851:5893#L171">Log</a>
+					<a class="permalink" href="index.html#GlogHandler.Log">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#GlogHandler">GlogHandler</a>) Log(r *<a href="index.html#Record">Record</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Log implements Handler.Log, filtering a log record through the global, local
+and backtrace filters, finally emitting it if either allow it through.
+
+				
+				
+				
+			
+				
+				<h3 id="GlogHandler.SetHandler">func (*GlogHandler) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=2279:2323#L51">SetHandler</a>
+					<a class="permalink" href="index.html#GlogHandler.SetHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#GlogHandler">GlogHandler</a>) SetHandler(nh <a href="index.html#Handler">Handler</a>)</pre>
+				<p>SetHandler updates the handler to write records to the specified sub-handler.
+
+				
+				
+				
+			
+				
+				<h3 id="GlogHandler.Verbosity">func (*GlogHandler) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=2649:2691#L64">Verbosity</a>
+					<a class="permalink" href="index.html#GlogHandler.Verbosity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#GlogHandler">GlogHandler</a>) Verbosity(level <a href="index.html#Lvl">Lvl</a>)</pre>
+				<p>Verbosity sets the glog verbosity ceiling. The verbosity of individual packages
+and source files can be raised using Vmodule.
+
+				
+				
+				
+			
+				
+				<h3 id="GlogHandler.Vmodule">func (*GlogHandler) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler_glog.go?s=3265:3316#L83">Vmodule</a>
+					<a class="permalink" href="index.html#GlogHandler.Vmodule">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#GlogHandler">GlogHandler</a>) Vmodule(ruleset <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Vmodule sets the glog verbosity pattern.
+<p>The syntax of the argument is a comma-separated list of pattern=N, where the
+pattern is a literal file name or &quot;glob&quot; pattern matching and N is a V level.
+<p>For instance:
+<pre>pattern=&quot;gopher.go=3&quot;
+ sets the V level to 3 in all Go files named &quot;gopher.go&quot;
+
+pattern=&quot;foo=3&quot;
+ sets V to 3 in all files of any packages whose import path ends in &quot;foo&quot;
+
+pattern=&quot;foo/*=3&quot;
+ sets V to 3 in all files of any packages whose import path contains &quot;foo&quot;
+</pre>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Handler">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=362:410#L8">Handler</a>
+				<a class="permalink" href="index.html#Handler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Handler defines where and how log records are written.
+A Logger prints its log records by writing to a Handler.
+Handlers are composable, providing you great flexibility in combining
+them to achieve the logging structure that suits your applications.
+
+			<pre>type Handler interface {
+    Log(r *<a href="index.html#Record">Record</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BufferedHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=7846:7898#L251">BufferedHandler</a>
+					<a class="permalink" href="index.html#BufferedHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BufferedHandler(bufSize <a href="../../../../builtin/index.html#int">int</a>, h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>BufferedHandler writes all records to a buffered
+channel of the given size which flushes into the wrapped
+handler whenever it is available for writing. Since these
+writes happen asynchronously, all writes to a BufferedHandler
+never return an error and any errors from the wrapped handler are ignored.
+
+				
+				
+			
+				
+				<h3 id="CallerFileHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=2690:2731#L89">CallerFileHandler</a>
+					<a class="permalink" href="index.html#CallerFileHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CallerFileHandler(h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>CallerFileHandler returns a Handler that adds the line number and file of
+the calling function to the context with key &quot;caller&quot;.
+
+				
+				
+			
+				
+				<h3 id="CallerFuncHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=2965:3006#L98">CallerFuncHandler</a>
+					<a class="permalink" href="index.html#CallerFuncHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CallerFuncHandler(h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>CallerFuncHandler returns a Handler that adds the calling function name to
+the context with key &quot;fn&quot;.
+
+				
+				
+			
+				
+				<h3 id="CallerStackHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=3664:3721#L115">CallerStackHandler</a>
+					<a class="permalink" href="index.html#CallerStackHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CallerStackHandler(format <a href="../../../../builtin/index.html#string">string</a>, h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>CallerStackHandler returns a Handler that adds a stack trace to the context
+with key &quot;stack&quot;. The stack trace is formatted as a space separated list of
+call sites inside matching []&apos;s. The most recent call site is listed first.
+Each call site is formatted according to format. See the documentation of
+package github.com/go-stack/stack for the list of supported formats.
+
+				
+				
+			
+				
+				<h3 id="ChannelHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=7403:7451#L239">ChannelHandler</a>
+					<a class="permalink" href="index.html#ChannelHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ChannelHandler(recs chan&lt;- *<a href="index.html#Record">Record</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>ChannelHandler writes all records to the given channel.
+It blocks if the channel is full. Useful for async processing
+of log messages, it&apos;s used by BufferedHandler.
+
+				
+				
+			
+				
+				<h3 id="DiscardHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=9708:9737#L324">DiscardHandler</a>
+					<a class="permalink" href="index.html#DiscardHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DiscardHandler() <a href="index.html#Handler">Handler</a></pre>
+				<p>DiscardHandler reports success for all writes but does nothing.
+It is useful for dynamically disabling logging at runtime via
+a Logger&apos;s SetHandler method.
+
+				
+				
+			
+				
+				<h3 id="FailoverHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=6951:6994#L221">FailoverHandler</a>
+					<a class="permalink" href="index.html#FailoverHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FailoverHandler(hs ...<a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>FailoverHandler writes all log records to the first handler
+specified, but will failover and write to the second handler if
+the first handler has failed, and so on for all handlers specified.
+For example you might want to log to a network socket, but failover
+to writing to a file if the network fails, and then to
+standard out if the file write fails:
+<pre>log.FailoverHandler(
+    log.Must.NetHandler(&quot;tcp&quot;, &quot;:9090&quot;, log.JSONFormat()),
+    log.Must.FileHandler(&quot;/var/log/app.log&quot;, log.LogfmtFormat()),
+    log.StdoutHandler)
+</pre>
+<p>All writes that do not go to the first handler will add context with keys of
+the form &quot;failover_err_{idx}&quot; which explain the error encountered while
+trying to write to the handlers before them in the list.
+
+				
+				
+			
+				
+				<h3 id="FileHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=1731:1790#L56">FileHandler</a>
+					<a class="permalink" href="index.html#FileHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FileHandler(path <a href="../../../../builtin/index.html#string">string</a>, fmtr <a href="index.html#Format">Format</a>) (<a href="index.html#Handler">Handler</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FileHandler returns a handler which writes log records to the give file
+using the given format. If the path
+already exists, FileHandler will append to the given file. If it does not,
+FileHandler will create the file with mode 0644.
+
+				
+				
+			
+				
+				<h3 id="FilterHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=4376:4438#L138">FilterHandler</a>
+					<a class="permalink" href="index.html#FilterHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FilterHandler(fn func(r *<a href="index.html#Record">Record</a>) <a href="../../../../builtin/index.html#bool">bool</a>, h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>FilterHandler returns a Handler that only writes records to the
+wrapped Handler if the given function evaluates true. For example,
+to only log records where the &apos;err&apos; key is not nil:
+<pre>logger.SetHandler(FilterHandler(func(r *Record) bool {
+    for i := 0; i &lt; len(r.Ctx); i += 2 {
+        if r.Ctx[i] == &quot;err&quot; {
+            return r.Ctx[i+1] != nil
+        }
+    }
+    return false
+}, h))
+</pre>
+
+				
+				
+			
+				
+				<h3 id="FuncHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=491:541#L14">FuncHandler</a>
+					<a class="permalink" href="index.html#FuncHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FuncHandler(fn func(r *<a href="index.html#Record">Record</a>) <a href="../../../../builtin/index.html#error">error</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>FuncHandler returns a Handler that logs records with the given
+function.
+
+				
+				
+			
+				
+				<h3 id="LazyHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=8287:8322#L265">LazyHandler</a>
+					<a class="permalink" href="index.html#LazyHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LazyHandler(h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>LazyHandler writes all values to the wrapped handler after evaluating
+any lazy functions in the record&apos;s context. It is already wrapped
+around StreamHandler and SyslogHandler in this library, you&apos;ll only need
+it if you write your own Handler.
+
+				
+				
+			
+				
+				<h3 id="LvlFilterHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=5498:5550#L181">LvlFilterHandler</a>
+					<a class="permalink" href="index.html#LvlFilterHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LvlFilterHandler(maxLvl <a href="index.html#Lvl">Lvl</a>, h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>LvlFilterHandler returns a Handler that only writes
+records which are less than the given verbosity
+level to the wrapped Handler. For example, to only
+log Error/Crit records:
+<pre>log.LvlFilterHandler(log.LvlError, log.StdoutHandler)
+</pre>
+
+				
+				
+			
+				
+				<h3 id="MatchFilterHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=4822:4895#L154">MatchFilterHandler</a>
+					<a class="permalink" href="index.html#MatchFilterHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MatchFilterHandler(key <a href="../../../../builtin/index.html#string">string</a>, value interface{}, h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>MatchFilterHandler returns a Handler that only writes records
+to the wrapped Handler if the given key in the logged
+context matches the value. For example, to only log records
+from your ui package:
+<pre>log.MatchFilterHandler(&quot;pkg&quot;, &quot;app/ui&quot;, log.StdoutHandler)
+</pre>
+
+				
+				
+			
+				
+				<h3 id="MultiHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=5981:6021#L196">MultiHandler</a>
+					<a class="permalink" href="index.html#MultiHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MultiHandler(hs ...<a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>MultiHandler dispatches any write to each of its handlers.
+This is useful for writing different types of log information
+to different locations. For example, to log to a file and
+standard error:
+<pre>log.MultiHandler(
+    log.Must.FileHandler(&quot;/var/log/app.log&quot;, log.LogfmtFormat()),
+    log.StderrHandler)
+</pre>
+
+				
+				
+			
+				
+				<h3 id="NetHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=2054:2121#L66">NetHandler</a>
+					<a class="permalink" href="index.html#NetHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NetHandler(network, addr <a href="../../../../builtin/index.html#string">string</a>, fmtr <a href="index.html#Format">Format</a>) (<a href="index.html#Handler">Handler</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NetHandler opens a socket to the given address and writes records
+over the connection.
+
+				
+				
+			
+				
+				<h3 id="StreamHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=965:1018#L31">StreamHandler</a>
+					<a class="permalink" href="index.html#StreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StreamHandler(wr <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, fmtr <a href="index.html#Format">Format</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>StreamHandler writes log records to an io.Writer
+with the given format. StreamHandler can be used
+to easily begin writing log records to other
+outputs.
+<p>StreamHandler wraps itself with LazyHandler and SyncHandler
+to evaluate Lazy objects and perform safe concurrent writes.
+
+				
+				
+			
+				
+				<h3 id="SyncHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/handler.go?s=1328:1363#L42">SyncHandler</a>
+					<a class="permalink" href="index.html#SyncHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SyncHandler(h <a href="index.html#Handler">Handler</a>) <a href="index.html#Handler">Handler</a></pre>
+				<p>SyncHandler can be wrapped around a handler to guarantee that
+only a single Log operation can proceed at a time. It&apos;s necessary
+for thread-safe concurrent writes.
+
+				
+				
+			
+				
+				<h3 id="SyslogHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/syslog.go?s=226:312#L3">SyslogHandler</a>
+					<a class="permalink" href="index.html#SyslogHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SyslogHandler(priority <a href="../../../../log/syslog/index.html">syslog</a>.<a href="../../../../log/syslog/index.html#Priority">Priority</a>, tag <a href="../../../../builtin/index.html#string">string</a>, fmtr <a href="index.html#Format">Format</a>) (<a href="index.html#Handler">Handler</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SyslogHandler opens a connection to the system syslog daemon by calling
+syslog.New and writes all records to it.
+
+				
+				
+			
+				
+				<h3 id="SyslogNetHandler">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/syslog.go?s=501:608#L10">SyslogNetHandler</a>
+					<a class="permalink" href="index.html#SyslogNetHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SyslogNetHandler(net, addr <a href="../../../../builtin/index.html#string">string</a>, priority <a href="../../../../log/syslog/index.html">syslog</a>.<a href="../../../../log/syslog/index.html#Priority">Priority</a>, tag <a href="../../../../builtin/index.html#string">string</a>, fmtr <a href="index.html#Format">Format</a>) (<a href="index.html#Handler">Handler</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SyslogNetHandler opens a connection to a log daemon over the network and writes
+all log records to it.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Lazy">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=5089:5125#L215">Lazy</a>
+				<a class="permalink" href="index.html#Lazy">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Lazy allows you to defer calculation of a logged value that is expensive
+to compute until it is certain that it must be evaluated with the given filters.
+<p>Lazy may also be used in conjunction with a Logger&apos;s New() function
+to generate a child logger which always reports the current value of changing
+state.
+<p>You may wrap any function which takes no arguments to Lazy. It may return any
+number of values of any type.
+
+			<pre>type Lazy struct {
+<span id="Lazy.Fn"></span>    Fn interface{}
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Logger">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=1906:2528#L99">Logger</a>
+				<a class="permalink" href="index.html#Logger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Logger writes key/value pairs to a Handler
+
+			<pre>type Logger interface {
+    <span class="comment">// New returns a new Logger that has this logger&#39;s context plus the given context</span>
+    New(ctx ...interface{}) <a href="index.html#Logger">Logger</a>
+
+    <span class="comment">// GetHandler gets the handler associated with the logger.</span>
+    GetHandler() <a href="index.html#Handler">Handler</a>
+
+    <span class="comment">// SetHandler updates the logger to write records to the specified handler.</span>
+    SetHandler(h <a href="index.html#Handler">Handler</a>)
+
+    <span class="comment">// Log a message at the given level with context key/value pairs</span>
+    Trace(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+    Debug(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+    Info(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+    Warn(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+    Error(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+    Crit(msg <a href="../../../../builtin/index.html#string">string</a>, ctx ...interface{})
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=364:399#L9">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(ctx ...interface{}) <a href="index.html#Logger">Logger</a></pre>
+				<p>New returns a new logger with the given context.
+New is a convenient alias for Root().New
+
+				
+				
+			
+				
+				<h3 id="Root">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/root.go?s=462:480#L14">Root</a>
+					<a class="permalink" href="index.html#Root">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Root() <a href="index.html#Logger">Logger</a></pre>
+				<p>Root returns the root logger
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Lvl">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=211:223#L8">Lvl</a>
+				<a class="permalink" href="index.html#Lvl">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Lvl <a href="../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="LvlCrit">LvlCrit</span> <a href="index.html#Lvl">Lvl</a> = <a href="../../../../builtin/index.html#iota">iota</a>
+    <span id="LvlError">LvlError</span>
+    <span id="LvlWarn">LvlWarn</span>
+    <span id="LvlInfo">LvlInfo</span>
+    <span id="LvlDebug">LvlDebug</span>
+    <span id="LvlTrace">LvlTrace</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="LvlFromString">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=1099:1148#L61">LvlFromString</a>
+					<a class="permalink" href="index.html#LvlFromString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LvlFromString(lvlString <a href="../../../../builtin/index.html#string">string</a>) (<a href="index.html#Lvl">Lvl</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LvlFromString returns the appropriate Lvl from a string name.
+Useful for parsing command line args and configuration files.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Lvl.AlignedString">func (Lvl) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=380:415#L20">AlignedString</a>
+					<a class="permalink" href="index.html#Lvl.AlignedString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l <a href="index.html#Lvl">Lvl</a>) AlignedString() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>AlignedString returns a 5-character string containing the name of a Lvl.
+
+				
+				
+				
+			
+				
+				<h3 id="Lvl.String">func (Lvl) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=700:728#L40">String</a>
+					<a class="permalink" href="index.html#Lvl.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l <a href="index.html#Lvl">Lvl</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Strings returns the name of a Lvl.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=1550:1693#L81">Record</a>
+				<a class="permalink" href="index.html#Record">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Record is what a Logger asks its handler to write
+
+			<pre>type Record struct {
+<span id="Record.Time"></span>    Time     <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="Record.Lvl"></span>    Lvl      <a href="index.html#Lvl">Lvl</a>
+<span id="Record.Msg"></span>    Msg      <a href="../../../../builtin/index.html#string">string</a>
+<span id="Record.Ctx"></span>    Ctx      []interface{}
+<span id="Record.Call"></span>    Call     <a href="../../../go-stack/stack/index.html">stack</a>.<a href="../../../go-stack/stack/index.html#Call">Call</a>
+<span id="Record.KeyNames"></span>    KeyNames <a href="index.html#RecordKeyNames">RecordKeyNames</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RecordKeyNames">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/logger.go?s=1774:1856#L91">RecordKeyNames</a>
+				<a class="permalink" href="index.html#RecordKeyNames">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RecordKeyNames gets stored in a Record when the write function is executed.
+
+			<pre>type RecordKeyNames struct {
+<span id="RecordKeyNames.Time"></span>    Time <a href="../../../../builtin/index.html#string">string</a>
+<span id="RecordKeyNames.Msg"></span>    Msg  <a href="../../../../builtin/index.html#string">string</a>
+<span id="RecordKeyNames.Lvl"></span>    Lvl  <a href="../../../../builtin/index.html#string">string</a>
+<span id="RecordKeyNames.Ctx"></span>    Ctx  <a href="../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TerminalStringer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/log/format.go?s=1799:1859#L64">TerminalStringer</a>
+				<a class="permalink" href="index.html#TerminalStringer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TerminalStringer is an analogous interface to the stdlib stringer, allowing
+own types to have custom shortened serialization formats when printed to the
+screen.
+
+			<pre>type TerminalStringer interface {
+    TerminalString() <a href="../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

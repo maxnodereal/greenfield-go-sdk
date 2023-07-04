@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>grpc - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package grpc
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/grpc"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package grpc provides a gRPC binding for endpoints.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#EncodeKeyValue">func EncodeKeyValue(key, val string) (string, string)</a></dd>
+			
+				
+				<dd><a href="index.html#Interceptor">func Interceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(cc *grpc.ClientConn, serviceName string, method string, enc EncodeRequestFunc, dec DecodeResponseFunc, grpcReply interface{}, options ...ClientOption) *Client</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Endpoint">func (c Client) Endpoint() endpoint.Endpoint</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ClientFinalizerFunc">type ClientFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientOption">type ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientAfter">func ClientAfter(after ...ClientResponseFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientBefore">func ClientBefore(before ...ClientRequestFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientFinalizer">func ClientFinalizer(f ...ClientFinalizerFunc) ClientOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientRequestFunc">type ClientRequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetRequestHeader">func SetRequestHeader(key, val string) ClientRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientResponseFunc">type ClientResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeResponseFunc">type DecodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeRequestFunc">type EncodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Handler">type Handler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer(e endpoint.Endpoint, dec DecodeRequestFunc, enc EncodeResponseFunc, options ...ServerOption) *Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeGRPC">func (s Server) ServeGRPC(ctx context.Context, req interface{}) (retctx context.Context, resp interface{}, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerFinalizerFunc">type ServerFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerOption">type ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerAfter">func ServerAfter(after ...ServerResponseFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerBefore">func ServerBefore(before ...ServerRequestFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorHandler">func ServerErrorHandler(errorHandler transport.ErrorHandler) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorLogger">func ServerErrorLogger(logger log.Logger) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerFinalizer">func ServerFinalizer(f ...ServerFinalizerFunc) ServerOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerRequestFunc">type ServerRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerResponseFunc">type ServerResponseFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetResponseHeader">func SetResponseHeader(key, val string) ServerResponseFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetResponseTrailer">func SetResponseTrailer(key, val string) ServerResponseFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go">request_response_funcs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go">server.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="ContextKeyRequestMethod">ContextKeyRequestMethod</span> contextKey = <a href="../../../../../builtin/index.html#iota">iota</a>
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="EncodeKeyValue">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=2554:2607#L59">EncodeKeyValue</a>
+				<a class="permalink" href="index.html#EncodeKeyValue">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeKeyValue(key, val <a href="../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+			<p>EncodeKeyValue sanitizes a key-value pair for use in gRPC metadata headers.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Interceptor">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=4673:4816#L153">Interceptor</a>
+				<a class="permalink" href="index.html#Interceptor">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Interceptor(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, req interface{}, info *<a href="../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../google.golang.org/grpc/index.html#UnaryServerInfo">UnaryServerInfo</a>, handler <a href="../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../google.golang.org/grpc/index.html#UnaryHandler">UnaryHandler</a>,
+) (resp interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Interceptor is a grpc UnaryInterceptor that injects the method name into
+context so it can be consumed by Go kit gRPC middlewares. The Interceptor
+typically is added at creation time of the grpc-go server.
+Like this: `grpc.NewServer(grpc.UnaryInterceptor(kitgrpc.Interceptor))`
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=246:529#L6">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client wraps a gRPC connection and provides a method that implements
+endpoint.Endpoint.
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=695:878#L21">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(
+    cc *<a href="../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../google.golang.org/grpc/index.html#ClientConn">ClientConn</a>,
+    serviceName <a href="../../../../../builtin/index.html#string">string</a>,
+    method <a href="../../../../../builtin/index.html#string">string</a>,
+    enc <a href="index.html#EncodeRequestFunc">EncodeRequestFunc</a>,
+    dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>,
+    grpcReply interface{},
+    options ...<a href="index.html#ClientOption">ClientOption</a>,
+) *<a href="index.html#Client">Client</a></pre>
+				<p>NewClient constructs a usable Client for a single remote endpoint.
+Pass an zero-value protobuf message of the RPC response type as
+the grpcReply argument.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.Endpoint">func (Client) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=2499:2543#L77">Endpoint</a>
+					<a class="permalink" href="index.html#Client.Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="index.html#Client">Client</a>) Endpoint() <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a></pre>
+				<p>Endpoint returns a usable endpoint that will invoke the gRPC specified by the
+client.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ClientFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=3894:3955#L130">ClientFinalizerFunc</a>
+				<a class="permalink" href="index.html#ClientFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientFinalizerFunc can be used to perform work at the end of a client gRPC
+request, after the response is returned. The principal
+intended use is for error logging. Additional response parameters are
+provided in the context under keys with the ContextKeyResponse prefix.
+Note: err may be nil. There maybe also no additional response parameters depending on
+when an error occurs.
+
+			<pre>type ClientFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=1547:1578#L54">ClientOption</a>
+				<a class="permalink" href="index.html#ClientOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientOption sets an optional parameter for clients.
+
+			<pre>type ClientOption func(*<a href="index.html#Client">Client</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ClientAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=2038:2096#L65">ClientAfter</a>
+					<a class="permalink" href="index.html#ClientAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientAfter(after ...<a href="index.html#ClientResponseFunc">ClientResponseFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientAfter sets the ClientResponseFuncs that are applied to the incoming
+gRPC response prior to it being decoded. This is useful for obtaining
+response metadata and adding onto the context prior to decoding.
+
+				
+				
+			
+				
+				<h3 id="ClientBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=1688:1747#L58">ClientBefore</a>
+					<a class="permalink" href="index.html#ClientBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientBefore(before ...<a href="index.html#ClientRequestFunc">ClientRequestFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientBefore sets the RequestFuncs that are applied to the outgoing gRPC
+request before it&apos;s invoked.
+
+				
+				
+			
+				
+				<h3 id="ClientFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/client.go?s=2274:2333#L71">ClientFinalizer</a>
+					<a class="permalink" href="index.html#ClientFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientFinalizer(f ...<a href="index.html#ClientFinalizerFunc">ClientFinalizerFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientFinalizer is executed at the end of every gRPC request.
+By default, no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=387:461#L9">ClientRequestFunc</a>
+				<a class="permalink" href="index.html#ClientRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientRequestFunc may take information from context and use it to construct
+metadata headers to be transported to the server. ClientRequestFuncs are
+executed after creating the request but prior to sending the gRPC request to
+the server.
+
+			<pre>type ClientRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetRequestHeader">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=1570:1626#L30">SetRequestHeader</a>
+					<a class="permalink" href="index.html#SetRequestHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetRequestHeader(key, val <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#ClientRequestFunc">ClientRequestFunc</a></pre>
+				<p>SetRequestHeader returns a ClientRequestFunc that sets the specified metadata
+key-value pair.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=1362:1468#L26">ClientResponseFunc</a>
+				<a class="permalink" href="index.html#ClientResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientResponseFunc may take information from a gRPC metadata header and/or
+trailer and make the responses available for consumption. ClientResponseFuncs
+are only executed in clients, after a request has been made, but prior to it
+being decoded.
+
+			<pre>type ClientResponseFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, header <a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>, trailer <a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/encode_decode.go?s=325:415#L1">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from a gRPC request.
+It&apos;s designed to be used in gRPC servers, for server-side endpoints. One
+straightforward DecodeRequestFunc could be something that decodes from the
+gRPC request message to the concrete request type.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) (request interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/encode_decode.go?s=1469:1561#L19">DecodeResponseFunc</a>
+				<a class="permalink" href="index.html#DecodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeResponseFunc extracts a user-domain response object from a gRPC
+response object. It&apos;s designed to be used in gRPC clients, for client-side
+endpoints. One straightforward DecodeResponseFunc could be something that
+decodes from the gRPC response message to the concrete response type.
+
+			<pre>type DecodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) (response interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/encode_decode.go?s=696:786#L7">EncodeRequestFunc</a>
+				<a class="permalink" href="index.html#EncodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeRequestFunc encodes the passed request object into the gRPC request
+object. It&apos;s designed to be used in gRPC clients, for client-side endpoints.
+One straightforward EncodeRequestFunc could something that encodes the object
+directly to the gRPC request message.
+
+			<pre>type EncodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) (request interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/encode_decode.go?s=1074:1166#L13">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object to the gRPC response
+message. It&apos;s designed to be used in gRPC servers, for server-side endpoints.
+One straightforward EncodeResponseFunc could be something that encodes the
+object directly to the gRPC response message.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) (response interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Handler">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=390:507#L7">Handler</a>
+				<a class="permalink" href="index.html#Handler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Handler which should be called from the gRPC binding of the service
+implementation. The incoming request parameter, and returned response
+parameter, are both gRPC types, not user-domain.
+
+			<pre>type Handler interface {
+    ServeGRPC(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, request interface{}) (<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=566:827#L12">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server wraps an endpoint and implements grpc.Handler.
+
+			<pre>type Server struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=1196:1318#L27">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer(
+    e <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a>,
+    dec <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>,
+    enc <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>,
+    options ...<a href="index.html#ServerOption">ServerOption</a>,
+) *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer constructs a new server, which implements wraps the provided
+endpoint and implements the Handler interface. Consumers should write
+bindings that adapt the concrete gRPC methods from their compiled protobuf
+definitions to individual handlers. Request and response objects are from the
+caller business domain, not gRPC request and reply types.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.ServeGRPC">func (Server) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=2940:3057#L80">ServeGRPC</a>
+					<a class="permalink" href="index.html#Server.ServeGRPC">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Server">Server</a>) ServeGRPC(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, req interface{}) (retctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, resp interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ServeGRPC implements the Handler interface.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=4320:4381#L147">ServerFinalizerFunc</a>
+				<a class="permalink" href="index.html#ServerFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerFinalizerFunc can be used to perform work at the end of an gRPC
+request, after the response has been written to the client.
+
+			<pre>type ServerFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=1584:1615#L46">ServerOption</a>
+				<a class="permalink" href="index.html#ServerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerOption sets an optional parameter for servers.
+
+			<pre>type ServerOption func(*<a href="index.html#Server">Server</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ServerAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=1995:2053#L56">ServerAfter</a>
+					<a class="permalink" href="index.html#ServerAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerAfter(after ...<a href="index.html#ServerResponseFunc">ServerResponseFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerAfter functions are executed on the gRPC response writer after the
+endpoint is invoked, but before anything is written to the client.
+
+				
+				
+			
+				
+				<h3 id="ServerBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=1717:1776#L50">ServerBefore</a>
+					<a class="permalink" href="index.html#ServerBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerBefore(before ...<a href="index.html#ServerRequestFunc">ServerRequestFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerBefore functions are executed on the gRPC request object before the
+request is decoded.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=2515:2588#L69">ServerErrorHandler</a>
+					<a class="permalink" href="index.html#ServerErrorHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorHandler(errorHandler <a href="../index.html">transport</a>.<a href="../index.html#ErrorHandler">ErrorHandler</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorHandler is used to handle non-terminal errors. By default, non-terminal errors
+are ignored.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=2264:2318#L63">ServerErrorLogger</a>
+					<a class="permalink" href="index.html#ServerErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorLogger is used to log non-terminal errors. By default, no errors
+are logged.
+Deprecated: Use ServerErrorHandler instead.
+
+				
+				
+			
+				
+				<h3 id="ServerFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/server.go?s=2760:2819#L75">ServerFinalizer</a>
+					<a class="permalink" href="index.html#ServerFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerFinalizer(f ...<a href="index.html#ServerFinalizerFunc">ServerFinalizerFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerFinalizer is executed at the end of every gRPC request.
+By default, no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ServerRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=666:739#L14">ServerRequestFunc</a>
+				<a class="permalink" href="index.html#ServerRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerRequestFunc may take information from the received metadata header and
+use it to place items in the request scoped context. ServerRequestFuncs are
+executed prior to invoking the endpoint.
+
+			<pre>type ServerRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=995:1103#L20">ServerResponseFunc</a>
+				<a class="permalink" href="index.html#ServerResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerResponseFunc may take information from a request context and use it to
+manipulate the gRPC response metadata headers and trailers. ResponseFuncs are
+only executed in servers, after invoking the endpoint but prior to writing a
+response.
+
+			<pre>type ServerResponseFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, header *<a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>, trailer *<a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetResponseHeader">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=1891:1949#L40">SetResponseHeader</a>
+					<a class="permalink" href="index.html#SetResponseHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetResponseHeader(key, val <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#ServerResponseFunc">ServerResponseFunc</a></pre>
+				<p>SetResponseHeader returns a ResponseFunc that sets the specified metadata
+key-value pair.
+
+				
+				
+			
+				
+				<h3 id="SetResponseTrailer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/grpc/request_response_funcs.go?s=2231:2290#L50">SetResponseTrailer</a>
+					<a class="permalink" href="index.html#SetResponseTrailer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetResponseTrailer(key, val <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#ServerResponseFunc">ServerResponseFunc</a></pre>
+				<p>SetResponseTrailer returns a ResponseFunc that sets the specified metadata
+key-value pair.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

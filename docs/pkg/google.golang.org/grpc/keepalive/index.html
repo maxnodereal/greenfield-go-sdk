@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>keepalive - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package keepalive
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/keepalive"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package keepalive defines configurable parameters for point-to-point
+healthcheck.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#ClientParameters">type ClientParameters</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EnforcementPolicy">type EnforcementPolicy</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerParameters">type ServerParameters</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/keepalive/keepalive.go">keepalive.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="ClientParameters">type <a href="http://localhost:6060/src/google.golang.org/grpc/keepalive/keepalive.go?s=1147:1911#L23">ClientParameters</a>
+				<a class="permalink" href="index.html#ClientParameters">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientParameters is used to set keepalive parameters on the client-side.
+These configure how the client will actively probe to notice when a
+connection is broken and send pings so intermediaries will be aware of the
+liveness of the connection. Make sure these parameters are set in
+coordination with the keepalive policy on the server, as incompatible
+settings can result in closing of connection.
+
+			<pre>type ClientParameters struct {
+    <span class="comment">// After a duration of this time if the client doesn&#39;t see any activity it</span>
+    <span class="comment">// pings the server to see if the transport is still alive.</span>
+    <span class="comment">// If set below 10s, a minimum value of 10s will be used instead.</span>
+<span id="ClientParameters.Time"></span>    Time <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is infinity.</span>
+    <span class="comment">// After having pinged for keepalive check, the client waits for a duration</span>
+    <span class="comment">// of Timeout and if no activity is seen even after that the connection is</span>
+    <span class="comment">// closed.</span>
+<span id="ClientParameters.Timeout"></span>    Timeout <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is 20 seconds.</span>
+    <span class="comment">// If true, client sends keepalive pings even with no active RPCs. If false,</span>
+    <span class="comment">// when there are no active RPCs, Time and Timeout will be ignored and no</span>
+    <span class="comment">// keepalive pings will be sent.</span>
+<span id="ClientParameters.PermitWithoutStream"></span>    PermitWithoutStream <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// false by default.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EnforcementPolicy">type <a href="http://localhost:6060/src/google.golang.org/grpc/keepalive/keepalive.go?s=3560:4018#L67">EnforcementPolicy</a>
+				<a class="permalink" href="index.html#EnforcementPolicy">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EnforcementPolicy is used to set keepalive enforcement policy on the
+server-side. Server will close connection with a client that violates this
+policy.
+
+			<pre>type EnforcementPolicy struct {
+<span id="EnforcementPolicy.MinTime"></span>    <span class="comment">// MinTime is the minimum amount of time a client should wait before sending</span>
+    <span class="comment">// a keepalive ping.</span>
+    MinTime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is 5 minutes.</span>
+    <span class="comment">// If true, server allows keepalive pings even when there are no active</span>
+    <span class="comment">// streams(RPCs). If false, and client sends ping when there are no active</span>
+    <span class="comment">// streams, server will send GOAWAY and close the connection.</span>
+<span id="EnforcementPolicy.PermitWithoutStream"></span>    PermitWithoutStream <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// false by default.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerParameters">type <a href="http://localhost:6060/src/google.golang.org/grpc/keepalive/keepalive.go?s=2004:3397#L40">ServerParameters</a>
+				<a class="permalink" href="index.html#ServerParameters">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerParameters is used to set keepalive and max-age parameters on the
+server-side.
+
+			<pre>type ServerParameters struct {
+<span id="ServerParameters.MaxConnectionIdle"></span>    <span class="comment">// MaxConnectionIdle is a duration for the amount of time after which an</span>
+    <span class="comment">// idle connection would be closed by sending a GoAway. Idleness duration is</span>
+    <span class="comment">// defined since the most recent time the number of outstanding RPCs became</span>
+    <span class="comment">// zero or the connection establishment.</span>
+    MaxConnectionIdle <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is infinity.</span>
+<span id="ServerParameters.MaxConnectionAge"></span>    <span class="comment">// MaxConnectionAge is a duration for the maximum amount of time a</span>
+    <span class="comment">// connection may exist before it will be closed by sending a GoAway. A</span>
+    <span class="comment">// random jitter of +/-10% will be added to MaxConnectionAge to spread out</span>
+    <span class="comment">// connection storms.</span>
+    MaxConnectionAge <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is infinity.</span>
+<span id="ServerParameters.MaxConnectionAgeGrace"></span>    <span class="comment">// MaxConnectionAgeGrace is an additive period after MaxConnectionAge after</span>
+    <span class="comment">// which the connection will be forcibly closed.</span>
+    MaxConnectionAgeGrace <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is infinity.</span>
+    <span class="comment">// After a duration of this time if the server doesn&#39;t see any activity it</span>
+    <span class="comment">// pings the client to see if the transport is still alive.</span>
+    <span class="comment">// If set below 1s, a minimum value of 1s will be used instead.</span>
+<span id="ServerParameters.Time"></span>    Time <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is 2 hours.</span>
+    <span class="comment">// After having pinged for keepalive check, the server waits for a duration</span>
+    <span class="comment">// of Timeout and if no activity is seen even after that the connection is</span>
+    <span class="comment">// closed.</span>
+<span id="ServerParameters.Timeout"></span>    Timeout <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a> <span class="comment">// The current default value is 20 seconds.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

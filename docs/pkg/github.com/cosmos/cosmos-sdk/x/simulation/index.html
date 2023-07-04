@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>simulation - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package simulation
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/x/simulation"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package simulation implements a full fledged Cosmos SDK application used for executing
+simulation test suites.
+<h3 id="hdr-Simulation_App">Simulation App</h3>
+<p>The SimApp type defines an application used for running extensive simulation
+testing suites. It contains all core modules, including governance, staking,
+slashing, and distribution.
+<p>Simulation is executed with various inputs including the number of blocks to
+simulate, the block size, whether the app should commit or not, the invariant
+checking period, and a seed which is used as a source of pseudo-randomness.
+<p>In addition to the various inputs, simulation runs mainly in three modes:
+<p>1. Completely random where the initial state, module parameters and simulation
+parameters are pseudo-randomly generated.
+<p>2. From a genesis file where the initial state and the module parameters are defined.
+This mode is helpful for running simulations on a known state such as a live
+network export where a new (mostly likely breaking) version of the application
+needs to be tested.
+<p>3. From a params file where the initial state is pseudo-randomly generated but the
+module and simulation parameters can be provided manually. This allows for a more
+controlled and deterministic simulation setup while allowing the state space to
+still be pseudo-randomly simulated.
+<p>The simulation test suite also supports testing determinism and import/export
+functionality.
+<h3 id="hdr-Randomness">Randomness</h3>
+<p>Currently, simulation uses a single seed (integer) as a source for a PRNG by
+which all random operations are executed from. Any call to the PRNG changes all
+future operations as the internal state of the PRNG is modified. For example,
+if a new message type is created and needs to be simulated, the new introduced
+PRNG call will change all subsequent operations.
+<p>This may can often be problematic when testing fixes to simulation faults. One
+current solution to this is to use a params file as mentioned above. In the future
+the simulation suite is expected to support a series of PRNGs that can be used
+uniquely per module and simulation component so that they will not effect each
+others state execution outcome.
+<h3 id="hdr-Usage">Usage</h3>
+<p>To execute a completely pseudo-random simulation:
+<pre> $ go test -mod=readonly github.com/cosmos/cosmos-sdk/simapp \
+	-run=TestFullAppSimulation \
+	-Enabled=true \
+	-NumBlocks=100 \
+	-BlockSize=200 \
+	-Commit=true \
+	-Seed=99 \
+	-Period=5 \
+	-v -timeout 24h
+</pre>
+<p>To execute simulation from a genesis file:
+<pre> $ go test -mod=readonly github.com/cosmos/cosmos-sdk/simapp \
+ 	-run=TestFullAppSimulation \
+ 	-Enabled=true \
+ 	-NumBlocks=100 \
+ 	-BlockSize=200 \
+ 	-Commit=true \
+ 	-Seed=99 \
+ 	-Period=5 \
+	-Genesis=/path/to/genesis.json \
+ 	-v -timeout 24h
+</pre>
+<p>To execute simulation from a simulation params file:
+<pre> $ go test -mod=readonly github.com/cosmos/cosmos-sdk/simapp \
+	-run=TestFullAppSimulation \
+	-Enabled=true \
+	-NumBlocks=100 \
+	-BlockSize=200 \
+	-Commit=true \
+	-Seed=99 \
+	-Period=5 \
+	-Params=/path/to/params.json \
+	-v -timeout 24h
+</pre>
+<p>To export the simulation params to a file at a given block height:
+<pre> $ go test -mod=readonly github.com/cosmos/cosmos-sdk/simapp \
+ 	-run=TestFullAppSimulation \
+ 	-Enabled=true \
+ 	-NumBlocks=100 \
+ 	-BlockSize=200 \
+ 	-Commit=true \
+ 	-Seed=99 \
+ 	-Period=5 \
+	-ExportParamsPath=/path/to/params.json \
+	-ExportParamsHeight=50 \
+	 -v -timeout 24h
+</pre>
+<p>To export the simulation app state (i.e genesis) to a file:
+<pre> $ go test -mod=readonly github.com/cosmos/cosmos-sdk/simapp \
+ 	-run=TestFullAppSimulation \
+ 	-Enabled=true \
+ 	-NumBlocks=100 \
+ 	-BlockSize=200 \
+ 	-Commit=true \
+ 	-Seed=99 \
+ 	-Period=5 \
+	-ExportStatePath=/path/to/genesis.json \
+	 v -timeout 24h
+</pre>
+<h3 id="hdr-Params">Params</h3>
+<p>Params that are provided to simulation from a JSON file are used to used to set
+both module parameters and simulation parameters. See sim_test.go for the full
+set of parameters that can be provided.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#CreateTransitionMatrix">func CreateTransitionMatrix(weights [][]int) (simulation.TransitionMatrix, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenAndDeliverTx">func GenAndDeliverTx(txCtx OperationInput, fees sdk.Coins) (simtypes.OperationMsg, []simtypes.FutureOperation, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenAndDeliverTxWithRandFees">func GenAndDeliverTxWithRandFees(txCtx OperationInput) (simtypes.OperationMsg, []simtypes.FutureOperation, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetMemberOfInitialState">func GetMemberOfInitialState(r *rand.Rand, weights []int) int</a></dd>
+			
+				
+				<dd><a href="index.html#NewSimLegacyParamChange">func NewSimLegacyParamChange(subspace, key string, simVal simulation.SimValFn) simulation.LegacyParamChange</a></dd>
+			
+				
+				<dd><a href="index.html#NewWeightedProposalContent">func NewWeightedProposalContent(appParamsKey string, defaultWeight int, contentSimulatorFn simulation.ContentSimulatorFn) simulation.WeightedProposalContent</a></dd>
+			
+				
+				<dd><a href="index.html#NewWeightedProposalMsg">func NewWeightedProposalMsg(appParamsKey string, defaultWeight int, msgSimulatorFn simulation.MsgSimulatorFn) simulation.WeightedProposalMsg</a></dd>
+			
+				
+				<dd><a href="index.html#RandomRequestBeginBlock">func RandomRequestBeginBlock(r *rand.Rand, params Params, validators mockValidators, pastTimes []time.Time, pastVoteInfos [][]abci.VoteInfo, event func(route, op, evResult string), header tmproto.Header) abci.RequestBeginBlock</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AccountKeeper">type AccountKeeper</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BankKeeper">type BankKeeper</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DummyLogWriter">type DummyLogWriter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyLogWriter.AddEntry">func (lw *DummyLogWriter) AddEntry(_ OperationEntry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyLogWriter.PrintLogs">func (lw *DummyLogWriter) PrintLogs()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EventStats">type EventStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEventStats">func NewEventStats() EventStats</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventStats.ExportJSON">func (es EventStats) ExportJSON(path string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventStats.Print">func (es EventStats) Print(w io.Writer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventStats.Tally">func (es EventStats) Tally(route, op, evResult string)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LegacyParamChange">type LegacyParamChange</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyParamChange.ComposedKey">func (spc LegacyParamChange) ComposedKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyParamChange.Key">func (spc LegacyParamChange) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyParamChange.SimValue">func (spc LegacyParamChange) SimValue() simulation.SimValFn</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyParamChange.Subspace">func (spc LegacyParamChange) Subspace() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LogWriter">type LogWriter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLogWriter">func NewLogWriter(testingmode bool) LogWriter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#OperationEntry">type OperationEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BeginBlockEntry">func BeginBlockEntry(height int64) OperationEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EndBlockEntry">func EndBlockEntry(height int64) OperationEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgEntry">func MsgEntry(height, order int64, opMsg simulation.OperationMsg) OperationEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewOperationEntry">func NewOperationEntry(entry string, height, order int64, op json.RawMessage) OperationEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueuedMsgEntry">func QueuedMsgEntry(height int64, opMsg simulation.OperationMsg) OperationEntry</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OperationEntry.MustMarshal">func (oe OperationEntry) MustMarshal() json.RawMessage</a></dd>
+				
+			
+				
+				<dd><a href="index.html#OperationInput">type OperationInput</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#OperationQueue">type OperationQueue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewOperationQueue">func NewOperationQueue() OperationQueue</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Params">type Params</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RandomParams">func RandomParams(r *rand.Rand) Params</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulateFromSeed">func SimulateFromSeed(tb testing.TB, w io.Writer, app *baseapp.BaseApp, appStateFn simulation.AppStateFn, randAccFn simulation.RandomAccountFn, ops WeightedOperations, blockedAddrs map[string]bool, config simulation.Config, cdc codec.JSONCodec) (stopEarly bool, exportedParams Params, err error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.BlockSizeTransitionMatrix">func (p Params) BlockSizeTransitionMatrix() simulation.TransitionMatrix</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.EvidenceFraction">func (p Params) EvidenceFraction() float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.InitialLivenessWeightings">func (p Params) InitialLivenessWeightings() []int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.LivenessTransitionMatrix">func (p Params) LivenessTransitionMatrix() simulation.TransitionMatrix</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.NumKeys">func (p Params) NumKeys() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Params.PastEvidenceFraction">func (p Params) PastEvidenceFraction() float64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StandardLogWriter">type StandardLogWriter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StandardLogWriter.AddEntry">func (lw *StandardLogWriter) AddEntry(opEntry OperationEntry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StandardLogWriter.PrintLogs">func (lw *StandardLogWriter) PrintLogs()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TransitionMatrix">type TransitionMatrix</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TransitionMatrix.NextState">func (t TransitionMatrix) NextState(r *rand.Rand, i int) int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WeightedOperation">type WeightedOperation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWeightedOperation">func NewWeightedOperation(weight int, op simulation.Operation) WeightedOperation</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedOperation.Op">func (w WeightedOperation) Op() simulation.Operation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedOperation.Weight">func (w WeightedOperation) Weight() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WeightedOperations">type WeightedOperations</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WeightedProposalContent">type WeightedProposalContent</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalContent.AppParamsKey">func (w WeightedProposalContent) AppParamsKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalContent.ContentSimulatorFn">func (w WeightedProposalContent) ContentSimulatorFn() simulation.ContentSimulatorFn</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalContent.DefaultWeight">func (w WeightedProposalContent) DefaultWeight() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WeightedProposalMsg">type WeightedProposalMsg</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalMsg.AppParamsKey">func (w WeightedProposalMsg) AppParamsKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalMsg.DefaultWeight">func (w WeightedProposalMsg) DefaultWeight() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WeightedProposalMsg.MsgSimulatorFn">func (w WeightedProposalMsg) MsgSimulatorFn() simulation.MsgSimulatorFn</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go">event_stats.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/expected_keepers.go">expected_keepers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/mock_tendermint.go">mock_tendermint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go">operation.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go">params.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/simulate.go">simulate.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/transition_matrix.go">transition_matrix.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>entry kinds for use within OperationEntry
+
+				<pre>const (
+    <span id="BeginBlockEntryKind">BeginBlockEntryKind</span> = &#34;begin_block&#34;
+    <span id="EndBlockEntryKind">EndBlockEntryKind</span>   = &#34;end_block&#34;
+    <span id="MsgEntryKind">MsgEntryKind</span>        = &#34;msg&#34;
+    <span id="QueuedMsgEntryKind">QueuedMsgEntryKind</span>  = &#34;queued_msg&#34;
+)</pre>
+			
+				
+				<pre>const <span id="AverageBlockTime">AverageBlockTime</span> = 6 * <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Second">Second</a></pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="CreateTransitionMatrix">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/transition_matrix.go?s=686:767#L14">CreateTransitionMatrix</a>
+				<a class="permalink" href="index.html#CreateTransitionMatrix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CreateTransitionMatrix(weights [][]<a href="../../../../../builtin/index.html#int">int</a>) (<a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#TransitionMatrix">TransitionMatrix</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CreateTransitionMatrix creates a transition matrix from the provided weights.
+TODO: Provide example usage
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenAndDeliverTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/util.go?s=2996:3113#L91">GenAndDeliverTx</a>
+				<a class="permalink" href="index.html#GenAndDeliverTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenAndDeliverTx(txCtx <a href="index.html#OperationInput">OperationInput</a>, fees <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Coins">Coins</a>) (<a href="../../types/simulation/index.html">simtypes</a>.<a href="../../types/simulation/index.html#OperationMsg">OperationMsg</a>, []<a href="../../types/simulation/index.html">simtypes</a>.<a href="../../types/simulation/index.html#FutureOperation">FutureOperation</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenAndDeliverTx generates a transactions and delivers it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenAndDeliverTxWithRandFees">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/util.go?s=2208:2321#L71">GenAndDeliverTxWithRandFees</a>
+				<a class="permalink" href="index.html#GenAndDeliverTxWithRandFees">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenAndDeliverTxWithRandFees(txCtx <a href="index.html#OperationInput">OperationInput</a>) (<a href="../../types/simulation/index.html">simtypes</a>.<a href="../../types/simulation/index.html#OperationMsg">OperationMsg</a>, []<a href="../../types/simulation/index.html">simtypes</a>.<a href="../../types/simulation/index.html#FutureOperation">FutureOperation</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenAndDeliverTxWithRandFees generates a transaction with a random fee and delivers it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetMemberOfInitialState">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/transition_matrix.go?s=1665:1726#L51">GetMemberOfInitialState</a>
+				<a class="permalink" href="index.html#GetMemberOfInitialState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetMemberOfInitialState(r *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>, weights []<a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+			<p>GetMemberOfInitialState takes an initial array of weights, of size n.
+It returns a weighted random number in [0,n).
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewSimLegacyParamChange">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=3034:3141#L106">NewSimLegacyParamChange</a>
+				<a class="permalink" href="index.html#NewSimLegacyParamChange">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewSimLegacyParamChange(subspace, key <a href="../../../../../builtin/index.html#string">string</a>, simVal <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#SimValFn">SimValFn</a>) <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#LegacyParamChange">LegacyParamChange</a></pre>
+			<p>NewSimLegacyParamChange creates a new LegacyParamChange instance
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewWeightedProposalContent">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=4679:4835#L150">NewWeightedProposalContent</a>
+				<a class="permalink" href="index.html#NewWeightedProposalContent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewWeightedProposalContent(appParamsKey <a href="../../../../../builtin/index.html#string">string</a>, defaultWeight <a href="../../../../../builtin/index.html#int">int</a>, contentSimulatorFn <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#ContentSimulatorFn">ContentSimulatorFn</a>) <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#WeightedProposalContent">WeightedProposalContent</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewWeightedProposalMsg">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=3659:3799#L123">NewWeightedProposalMsg</a>
+				<a class="permalink" href="index.html#NewWeightedProposalMsg">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewWeightedProposalMsg(appParamsKey <a href="../../../../../builtin/index.html#string">string</a>, defaultWeight <a href="../../../../../builtin/index.html#int">int</a>, msgSimulatorFn <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#MsgSimulatorFn">MsgSimulatorFn</a>) <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#WeightedProposalMsg">WeightedProposalMsg</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="RandomRequestBeginBlock">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/mock_tendermint.go?s=2757:2988#L107">RandomRequestBeginBlock</a>
+				<a class="permalink" href="index.html#RandomRequestBeginBlock">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RandomRequestBeginBlock(r *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>, params <a href="index.html#Params">Params</a>,
+    validators mockValidators, pastTimes []<a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>,
+    pastVoteInfos [][]<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#VoteInfo">VoteInfo</a>,
+    event func(route, op, evResult <a href="../../../../../builtin/index.html#string">string</a>), header <a href="../../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../../cometbft/cometbft/proto/tendermint/types/index.html#Header">Header</a>,
+) <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a></pre>
+			<p>RandomRequestBeginBlock generates a list of signing validators according to
+the provided list of validators, signing fraction, and evidence fraction
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AccountKeeper">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/expected_keepers.go?s=203:300#L1">AccountKeeper</a>
+				<a class="permalink" href="index.html#AccountKeeper">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccountKeeper defines the expected account keeper used for simulations (noalias)
+
+			<pre>type AccountKeeper interface {
+    GetAccount(ctx <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, addr <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>) <a href="../auth/types/index.html">types</a>.<a href="../auth/types/index.html#AccountI">AccountI</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BankKeeper">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/expected_keepers.go?s=384:477#L4">BankKeeper</a>
+				<a class="permalink" href="index.html#BankKeeper">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BankKeeper defines the expected interface needed to retrieve account balances.
+
+			<pre>type BankKeeper interface {
+    SpendableCoins(ctx <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, addr <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>) <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Coins">Coins</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DummyLogWriter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=1438:1466#L61">DummyLogWriter</a>
+				<a class="permalink" href="index.html#DummyLogWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>dummy log writter
+
+			<pre>type DummyLogWriter struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DummyLogWriter.AddEntry">func (*DummyLogWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=1482:1534#L64">AddEntry</a>
+					<a class="permalink" href="index.html#DummyLogWriter.AddEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lw *<a href="index.html#DummyLogWriter">DummyLogWriter</a>) AddEntry(_ <a href="index.html#OperationEntry">OperationEntry</a>)</pre>
+				<p>do nothing
+
+				
+				
+				
+			
+				
+				<h3 id="DummyLogWriter.PrintLogs">func (*DummyLogWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=1553:1590#L67">PrintLogs</a>
+					<a class="permalink" href="index.html#DummyLogWriter.PrintLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lw *<a href="index.html#DummyLogWriter">DummyLogWriter</a>) PrintLogs()</pre>
+				<p>do nothing
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EventStats">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go?s=175:227#L2">EventStats</a>
+				<a class="permalink" href="index.html#EventStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EventStats defines an object that keeps a tally of each event that has occurred
+during a simulation.
+
+			<pre>type EventStats map[<a href="../../../../../builtin/index.html#string">string</a>]map[<a href="../../../../../builtin/index.html#string">string</a>]map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../builtin/index.html#int">int</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEventStats">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go?s=284:315#L5">NewEventStats</a>
+					<a class="permalink" href="index.html#NewEventStats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEventStats() <a href="index.html#EventStats">EventStats</a></pre>
+				<p>NewEventStats creates a new empty EventStats object
+
+				
+				
+			
+
+			
+				
+				<h3 id="EventStats.ExportJSON">func (EventStats) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go?s=903:947#L35">ExportJSON</a>
+					<a class="permalink" href="index.html#EventStats.ExportJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es <a href="index.html#EventStats">EventStats</a>) ExportJSON(path <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>ExportJSON saves the event stats as a JSON file on a given path
+
+				
+				
+				
+			
+				
+				<h3 id="EventStats.Print">func (EventStats) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go?s=682:721#L25">Print</a>
+					<a class="permalink" href="index.html#EventStats.Print">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es <a href="index.html#EventStats">EventStats</a>) Print(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>)</pre>
+				<p>Print the event stats in JSON format.
+
+				
+				
+				
+			
+				
+				<h3 id="EventStats.Tally">func (EventStats) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/event_stats.go?s=398:452#L10">Tally</a>
+					<a class="permalink" href="index.html#EventStats.Tally">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es <a href="index.html#EventStats">EventStats</a>) Tally(route, op, evResult <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>Tally increases the count of a simulation event.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LegacyParamChange">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=2470:2567#L82">LegacyParamChange</a>
+				<a class="permalink" href="index.html#LegacyParamChange">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LegacyParamChange defines the object used for simulating parameter change proposals
+
+			<pre>type LegacyParamChange struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LegacyParamChange.ComposedKey">func (LegacyParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=2870:2919#L101">ComposedKey</a>
+					<a class="permalink" href="index.html#LegacyParamChange.ComposedKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (spc <a href="index.html#LegacyParamChange">LegacyParamChange</a>) ComposedKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>ComposedKey creates a new composed key for the legacy param change proposal
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyParamChange.Key">func (LegacyParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=2642:2683#L92">Key</a>
+					<a class="permalink" href="index.html#LegacyParamChange.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (spc <a href="index.html#LegacyParamChange">LegacyParamChange</a>) Key() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LegacyParamChange.SimValue">func (LegacyParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=2705:2764#L96">SimValue</a>
+					<a class="permalink" href="index.html#LegacyParamChange.SimValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (spc <a href="index.html#LegacyParamChange">LegacyParamChange</a>) SimValue() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#SimValFn">SimValFn</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LegacyParamChange.Subspace">func (LegacyParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=2569:2615#L88">Subspace</a>
+					<a class="permalink" href="index.html#LegacyParamChange.Subspace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (spc <a href="index.html#LegacyParamChange">LegacyParamChange</a>) Subspace() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LogWriter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=76:143#L1">LogWriter</a>
+				<a class="permalink" href="index.html#LogWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>log writter
+
+			<pre>type LogWriter interface {
+    AddEntry(<a href="index.html#OperationEntry">OperationEntry</a>)
+    PrintLogs()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLogWriter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=220:265#L7">NewLogWriter</a>
+					<a class="permalink" href="index.html#NewLogWriter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLogWriter(testingmode <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#LogWriter">LogWriter</a></pre>
+				<p>LogWriter - return a dummy or standard log writer given the testingmode
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="OperationEntry">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=404:674#L10">OperationEntry</a>
+				<a class="permalink" href="index.html#OperationEntry">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OperationEntry - an operation entry for logging (ex. BeginBlock, EndBlock, XxxMsg, etc)
+
+			<pre>type OperationEntry struct {
+<span id="OperationEntry.EntryKind"></span>    EntryKind <a href="../../../../../builtin/index.html#string">string</a>          `json:&#34;entry_kind&#34; yaml:&#34;entry_kind&#34;`
+<span id="OperationEntry.Height"></span>    Height    <a href="../../../../../builtin/index.html#int64">int64</a>           `json:&#34;height&#34; yaml:&#34;height&#34;`
+<span id="OperationEntry.Order"></span>    Order     <a href="../../../../../builtin/index.html#int64">int64</a>           `json:&#34;order&#34; yaml:&#34;order&#34;`
+<span id="OperationEntry.Operation"></span>    Operation <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a> `json:&#34;operation&#34; yaml:&#34;operation&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BeginBlockEntry">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=991:1040#L28">BeginBlockEntry</a>
+					<a class="permalink" href="index.html#BeginBlockEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BeginBlockEntry(height <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="index.html#OperationEntry">OperationEntry</a></pre>
+				<p>BeginBlockEntry - operation entry for begin block
+
+				
+				
+			
+				
+				<h3 id="EndBlockEntry">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=1159:1206#L33">EndBlockEntry</a>
+					<a class="permalink" href="index.html#EndBlockEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EndBlockEntry(height <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="index.html#OperationEntry">OperationEntry</a></pre>
+				<p>EndBlockEntry - operation entry for end block
+
+				
+				
+			
+				
+				<h3 id="MsgEntry">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=1321:1401#L38">MsgEntry</a>
+					<a class="permalink" href="index.html#MsgEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MsgEntry(height, order <a href="../../../../../builtin/index.html#int64">int64</a>, opMsg <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#OperationMsg">OperationMsg</a>) <a href="index.html#OperationEntry">OperationEntry</a></pre>
+				<p>MsgEntry - operation entry for standard msg
+
+				
+				
+			
+				
+				<h3 id="NewOperationEntry">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=735:827#L18">NewOperationEntry</a>
+					<a class="permalink" href="index.html#NewOperationEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewOperationEntry(entry <a href="../../../../../builtin/index.html#string">string</a>, height, order <a href="../../../../../builtin/index.html#int64">int64</a>, op <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) <a href="index.html#OperationEntry">OperationEntry</a></pre>
+				<p>NewOperationEntry creates a new OperationEntry instance
+
+				
+				
+			
+				
+				<h3 id="QueuedMsgEntry">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=1556:1635#L43">QueuedMsgEntry</a>
+					<a class="permalink" href="index.html#QueuedMsgEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func QueuedMsgEntry(height <a href="../../../../../builtin/index.html#int64">int64</a>, opMsg <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#OperationMsg">OperationMsg</a>) <a href="index.html#OperationEntry">OperationEntry</a></pre>
+				<p>QueuedMsgEntry creates an operation entry for a given queued message.
+
+				
+				
+			
+
+			
+				
+				<h3 id="OperationEntry.MustMarshal">func (OperationEntry) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=1781:1835#L48">MustMarshal</a>
+					<a class="permalink" href="index.html#OperationEntry.MustMarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (oe <a href="index.html#OperationEntry">OperationEntry</a>) MustMarshal() <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>MustMarshal marshals the operation entry, panic on error.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OperationInput">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/util.go?s=1734:2116#L55">OperationInput</a>
+				<a class="permalink" href="index.html#OperationInput">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OperationInput is a struct that holds all the needed values to generate a tx and deliver it
+
+			<pre>type OperationInput struct {
+<span id="OperationInput.R"></span>    R               *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>
+<span id="OperationInput.App"></span>    App             *<a href="../../baseapp/index.html">baseapp</a>.<a href="../../baseapp/index.html#BaseApp">BaseApp</a>
+<span id="OperationInput.TxGen"></span>    TxGen           <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxConfig">TxConfig</a>
+<span id="OperationInput.Cdc"></span>    Cdc             *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#ProtoCodec">ProtoCodec</a>
+<span id="OperationInput.Msg"></span>    Msg             <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>
+<span id="OperationInput.MsgType"></span>    MsgType         <a href="../../../../../builtin/index.html#string">string</a>
+<span id="OperationInput.CoinsSpentInMsg"></span>    CoinsSpentInMsg <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Coins">Coins</a>
+<span id="OperationInput.Context"></span>    Context         <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>
+<span id="OperationInput.SimAccount"></span>    SimAccount      <a href="../../types/simulation/index.html">simtypes</a>.<a href="../../types/simulation/index.html#Account">Account</a>
+<span id="OperationInput.AccountKeeper"></span>    AccountKeeper   <a href="index.html#AccountKeeper">AccountKeeper</a>
+<span id="OperationInput.Bankkeeper"></span>    Bankkeeper      <a href="index.html#BankKeeper">BankKeeper</a>
+<span id="OperationInput.ModuleName"></span>    ModuleName      <a href="../../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OperationQueue">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=1979:2029#L58">OperationQueue</a>
+				<a class="permalink" href="index.html#OperationQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OperationQueue defines an object for a queue of operations
+
+			<pre>type OperationQueue map[<a href="../../../../../builtin/index.html#int">int</a>][]<a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#Operation">Operation</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOperationQueue">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=2091:2130#L61">NewOperationQueue</a>
+					<a class="permalink" href="index.html#NewOperationQueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewOperationQueue() <a href="index.html#OperationQueue">OperationQueue</a></pre>
+				<p>NewOperationQueue creates a new OperationQueue instance.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Params">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1016:1282#L34">Params</a>
+				<a class="permalink" href="index.html#Params">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Params define the parameters necessary for running the simulations
+
+			<pre>type Params struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="RandomParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1863:1901#L68">RandomParams</a>
+					<a class="permalink" href="index.html#RandomParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RandomParams(r *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>) <a href="index.html#Params">Params</a></pre>
+				<p>RandomParams returns random simulation parameters
+
+				
+				
+			
+				
+				<h3 id="SimulateFromSeed">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/simulate.go?s=1364:1671#L41">SimulateFromSeed</a>
+					<a class="permalink" href="index.html#SimulateFromSeed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SimulateFromSeed(
+    tb <a href="../../../../../testing/index.html">testing</a>.<a href="../../../../../testing/index.html#TB">TB</a>,
+    w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>,
+    app *<a href="../../baseapp/index.html">baseapp</a>.<a href="../../baseapp/index.html#BaseApp">BaseApp</a>,
+    appStateFn <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#AppStateFn">AppStateFn</a>,
+    randAccFn <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#RandomAccountFn">RandomAccountFn</a>,
+    ops <a href="index.html#WeightedOperations">WeightedOperations</a>,
+    blockedAddrs map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../builtin/index.html#bool">bool</a>,
+    config <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#Config">Config</a>,
+    cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>,
+) (stopEarly <a href="../../../../../builtin/index.html#bool">bool</a>, exportedParams <a href="index.html#Params">Params</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SimulateFromSeed tests an application by running the provided
+operations, testing the provided invariants, but using the provided config.Seed.
+TODO: split this monster function up
+
+				
+				
+			
+
+			
+				
+				<h3 id="Params.BlockSizeTransitionMatrix">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1697:1768#L63">BlockSizeTransitionMatrix</a>
+					<a class="permalink" href="index.html#Params.BlockSizeTransitionMatrix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) BlockSizeTransitionMatrix() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#TransitionMatrix">TransitionMatrix</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Params.EvidenceFraction">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1420:1462#L51">EvidenceFraction</a>
+					<a class="permalink" href="index.html#Params.EvidenceFraction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) EvidenceFraction() <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Params.InitialLivenessWeightings">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1495:1544#L55">InitialLivenessWeightings</a>
+					<a class="permalink" href="index.html#Params.InitialLivenessWeightings">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) InitialLivenessWeightings() []<a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Params.LivenessTransitionMatrix">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1586:1656#L59">LivenessTransitionMatrix</a>
+					<a class="permalink" href="index.html#Params.LivenessTransitionMatrix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) LivenessTransitionMatrix() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#TransitionMatrix">TransitionMatrix</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Params.NumKeys">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1367:1396#L47">NumKeys</a>
+					<a class="permalink" href="index.html#Params.NumKeys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) NumKeys() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Params.PastEvidenceFraction">func (Params) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=1284:1330#L43">PastEvidenceFraction</a>
+					<a class="permalink" href="index.html#Params.PastEvidenceFraction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Params">Params</a>) PastEvidenceFraction() <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StandardLogWriter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=365:464#L16">StandardLogWriter</a>
+				<a class="permalink" href="index.html#StandardLogWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>log writter
+
+			<pre>type StandardLogWriter struct {
+<span id="StandardLogWriter.OpEntries"></span>    OpEntries []<a href="index.html#OperationEntry">OperationEntry</a> `json:&#34;op_entries&#34; yaml:&#34;op_entries&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StandardLogWriter.AddEntry">func (*StandardLogWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=501:562#L21">AddEntry</a>
+					<a class="permalink" href="index.html#StandardLogWriter.AddEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lw *<a href="index.html#StandardLogWriter">StandardLogWriter</a>) AddEntry(opEntry <a href="index.html#OperationEntry">OperationEntry</a>)</pre>
+				<p>add an entry to the log writter
+
+				
+				
+				
+			
+				
+				<h3 id="StandardLogWriter.PrintLogs">func (*StandardLogWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/log.go?s=665:705#L26">PrintLogs</a>
+					<a class="permalink" href="index.html#StandardLogWriter.PrintLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lw *<a href="index.html#StandardLogWriter">StandardLogWriter</a>) PrintLogs()</pre>
+				<p>PrintLogs - print the logs to a simulation file
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TransitionMatrix">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/transition_matrix.go?s=472:572#L5">TransitionMatrix</a>
+				<a class="permalink" href="index.html#TransitionMatrix">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TransitionMatrix is _almost_ a left stochastic matrix.  It is technically
+not one due to not normalizing the column values.  In the future, if we want
+to find the steady state distribution, it will be quite easy to normalize
+these values to get a stochastic matrix.  Floats aren&apos;t currently used as
+the default due to non-determinism across architectures
+
+			<pre>type TransitionMatrix struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TransitionMatrix.NextState">func (TransitionMatrix) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/transition_matrix.go?s=1272:1332#L36">NextState</a>
+					<a class="permalink" href="index.html#TransitionMatrix.NextState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t <a href="index.html#TransitionMatrix">TransitionMatrix</a>) NextState(r *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>, i <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>NextState returns the next state randomly chosen using r, and the weightings
+provided in the transition matrix.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WeightedOperation">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=3262:3336#L100">WeightedOperation</a>
+				<a class="permalink" href="index.html#WeightedOperation">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WeightedOperation is an operation with associated weight.
+This is used to bias the selection operation within the simulator.
+
+			<pre>type WeightedOperation struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWeightedOperation">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=3536:3616#L114">NewWeightedOperation</a>
+					<a class="permalink" href="index.html#NewWeightedOperation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWeightedOperation(weight <a href="../../../../../builtin/index.html#int">int</a>, op <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#Operation">Operation</a>) <a href="index.html#WeightedOperation">WeightedOperation</a></pre>
+				<p>NewWeightedOperation creates a new WeightedOperation instance
+
+				
+				
+			
+
+			
+				
+				<h3 id="WeightedOperation.Op">func (WeightedOperation) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=3400:3452#L109">Op</a>
+					<a class="permalink" href="index.html#WeightedOperation.Op">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedOperation">WeightedOperation</a>) Op() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#Operation">Operation</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="WeightedOperation.Weight">func (WeightedOperation) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=3338:3377#L105">Weight</a>
+					<a class="permalink" href="index.html#WeightedOperation.Weight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedOperation">WeightedOperation</a>) Weight() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WeightedOperations">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/operation.go?s=3759:3813#L122">WeightedOperations</a>
+				<a class="permalink" href="index.html#WeightedOperations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WeightedOperations is the group of all weighted operations to simulate.
+
+			<pre>type WeightedOperations []<a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#WeightedOperation">WeightedOperation</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="WeightedProposalContent">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=4353:4677#L144">WeightedProposalContent</a>
+				<a class="permalink" href="index.html#WeightedProposalContent">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WeightedProposalContent defines a common struct for proposal content defined by external modules (i.e outside gov)
+
+			<pre>type WeightedProposalContent struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="WeightedProposalContent.AppParamsKey">func (WeightedProposalContent) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=4993:5047#L154">AppParamsKey</a>
+					<a class="permalink" href="index.html#WeightedProposalContent.AppParamsKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalContent">WeightedProposalContent</a>) AppParamsKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="WeightedProposalContent.ContentSimulatorFn">func (WeightedProposalContent) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=5158:5241#L162">ContentSimulatorFn</a>
+					<a class="permalink" href="index.html#WeightedProposalContent.ContentSimulatorFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalContent">WeightedProposalContent</a>) ContentSimulatorFn() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#ContentSimulatorFn">ContentSimulatorFn</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="WeightedProposalContent.DefaultWeight">func (WeightedProposalContent) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=5076:5128#L158">DefaultWeight</a>
+					<a class="permalink" href="index.html#WeightedProposalContent.DefaultWeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalContent">WeightedProposalContent</a>) DefaultWeight() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WeightedProposalMsg">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=3365:3657#L117">WeightedProposalMsg</a>
+				<a class="permalink" href="index.html#WeightedProposalMsg">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WeightedProposalMsg defines a common struct for proposal msgs defined by external modules (i.e outside gov)
+
+			<pre>type WeightedProposalMsg struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="WeightedProposalMsg.AppParamsKey">func (WeightedProposalMsg) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=3924:3974#L127">AppParamsKey</a>
+					<a class="permalink" href="index.html#WeightedProposalMsg.AppParamsKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalMsg">WeightedProposalMsg</a>) AppParamsKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="WeightedProposalMsg.DefaultWeight">func (WeightedProposalMsg) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=4003:4051#L131">DefaultWeight</a>
+					<a class="permalink" href="index.html#WeightedProposalMsg.DefaultWeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalMsg">WeightedProposalMsg</a>) DefaultWeight() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="WeightedProposalMsg.MsgSimulatorFn">func (WeightedProposalMsg) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/simulation/params.go?s=4081:4152#L135">MsgSimulatorFn</a>
+					<a class="permalink" href="index.html#WeightedProposalMsg.MsgSimulatorFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#WeightedProposalMsg">WeightedProposalMsg</a>) MsgSimulatorFn() <a href="../../types/simulation/index.html">simulation</a>.<a href="../../types/simulation/index.html#MsgSimulatorFn">MsgSimulatorFn</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="client/index.html">client</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="client/cli/index.html">cli</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

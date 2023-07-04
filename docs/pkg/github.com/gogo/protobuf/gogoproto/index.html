@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>gogoproto - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package gogoproto
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/gogo/protobuf/gogoproto"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package gogoproto provides extensions for protocol buffers to achieve:
+<ul>
+<li>fast marshalling and unmarshalling.
+<li>peace of mind by optionally generating test and benchmark code.
+<li>more canonical Go structures.
+<li>less typing by optionally generating extra helper code.
+<li>goprotobuf compatibility
+</ul>
+<h3 id="hdr-More_Canonical_Go_Structures">More Canonical Go Structures</h3>
+<p>A lot of time working with a goprotobuf struct will lead you to a place where you create another struct that is easier to work with and then have a function to copy the values between the two structs.
+You might also find that basic structs that started their life as part of an API need to be sent over the wire. With gob, you could just send it. With goprotobuf, you need to make a parallel struct.
+Gogoprotobuf tries to fix these problems with the nullable, embed, customtype and customname field extensions.
+<ul>
+<li>nullable, if false, a field is generated without a pointer (see warning below).
+<li>embed, if true, the field is generated as an embedded field.
+<li>customtype, It works with the Marshal and Unmarshal methods, to allow you to have your own types in your struct, but marshal to bytes. For example, custom.Uuid or custom.Fixed128
+<li>customname (beta), Changes the generated fieldname. This is especially useful when generated methods conflict with fieldnames.
+<li>casttype (beta), Changes the generated fieldtype.  All generated code assumes that this type is castable to the protocol buffer field type.  It does not work for structs or enums.
+<li>castkey (beta), Changes the generated fieldtype for a map key.  All generated code assumes that this type is castable to the protocol buffer field type.  Only supported on maps.
+<li>castvalue (beta), Changes the generated fieldtype for a map value.  All generated code assumes that this type is castable to the protocol buffer field type.  Only supported on maps.
+</ul>
+<p>Warning about nullable: According to the Protocol Buffer specification, you should be able to tell whether a field is set or unset. With the option nullable=false this feature is lost, since your non-nullable fields will always be set. It can be seen as a layer on top of Protocol Buffers, where before and after marshalling all non-nullable fields are set and they cannot be unset.
+<p>Let us look at:
+<pre>github.com/gogo/protobuf/test/example/example.proto
+</pre>
+<p>for a quicker overview.
+<p>The following message:
+<pre>  package test;
+
+  import &quot;github.com/gogo/protobuf/gogoproto/gogo.proto&quot;;
+
+	message A {
+		optional string Description = 1 [(gogoproto.nullable) = false];
+		optional int64 Number = 2 [(gogoproto.nullable) = false];
+		optional bytes Id = 3 [(gogoproto.customtype) = &quot;github.com/gogo/protobuf/test/custom.Uuid&quot;, (gogoproto.nullable) = false];
+	}
+</pre>
+<p>Will generate a go struct which looks a lot like this:
+<pre>type A struct {
+	Description string
+	Number      int64
+	Id          github_com_gogo_protobuf_test_custom.Uuid
+}
+</pre>
+<p>You will see there are no pointers, since all fields are non-nullable.
+You will also see a custom type which marshals to a string.
+Be warned it is your responsibility to test your custom types thoroughly.
+You should think of every possible empty and nil case for your marshaling, unmarshaling and size methods.
+<p>Next we will embed the message A in message B.
+<pre>message B {
+	optional A A = 1 [(gogoproto.nullable) = false, (gogoproto.embed) = true];
+	repeated bytes G = 2 [(gogoproto.customtype) = &quot;github.com/gogo/protobuf/test/custom.Uint128&quot;, (gogoproto.nullable) = false];
+}
+</pre>
+<p>See below that A is embedded in B.
+<pre>type B struct {
+	A
+	G []github_com_gogo_protobuf_test_custom.Uint128
+}
+</pre>
+<p>Also see the repeated custom type.
+<pre>type Uint128 [2]uint64
+</pre>
+<p>Next we will create a custom name for one of our fields.
+<pre>message C {
+	optional int64 size = 1 [(gogoproto.customname) = &quot;MySize&quot;];
+}
+</pre>
+<p>See below that the field&apos;s name is MySize and not Size.
+<pre>type C struct {
+	MySize		*int64
+}
+</pre>
+<p>The is useful when having a protocol buffer message with a field name which conflicts with a generated method.
+As an example, having a field name size and using the sizer plugin to generate a Size method will cause a go compiler error.
+Using customname you can fix this error without changing the field name.
+This is typically useful when working with a protocol buffer that was designed before these methods and/or the go language were avialable.
+<p>Gogoprotobuf also has some more subtle changes, these could be changed back:
+<ul>
+<li>the generated package name for imports do not have the extra /filename.pb,
+but are actually the imports specified in the .proto file.
+</ul>
+<p>Gogoprotobuf also has lost some features which should be brought back with time:
+<ul>
+<li>Marshalling and unmarshalling with reflect and without the unsafe package,
+this requires work in pointer_reflect.go
+</ul>
+<p>Why does nullable break protocol buffer specifications:
+<p>The protocol buffer specification states, somewhere, that you should be able to tell whether a
+field is set or unset.  With the option nullable=false this feature is lost,
+since your non-nullable fields will always be set.  It can be seen as a layer on top of
+protocol buffers, where before and after marshalling all non-nullable fields are set
+and they cannot be unset.
+<p>Goprotobuf Compatibility:
+<p>Gogoprotobuf is compatible with Goprotobuf, because it is compatible with protocol buffers.
+Gogoprotobuf generates the same code as goprotobuf if no extensions are used.
+The enumprefix, getters and stringer extensions can be used to remove some of the unnecessary code generated by goprotobuf:
+<ul>
+<li>gogoproto_import, if false, the generated code imports github.com/golang/protobuf/proto instead of github.com/gogo/protobuf/proto.
+<li>goproto_enum_prefix, if false, generates the enum constant names without the messagetype prefix
+<li>goproto_enum_stringer (experimental), if false, the enum is generated without the default string method, this is useful for rather using enum_stringer, or allowing you to write your own string method.
+<li>goproto_getters, if false, the message is generated without get methods, this is useful when you would rather want to use face
+<li>goproto_stringer, if false, the message is generated without the default string method, this is useful for rather using stringer, or allowing you to write your own string method.
+<li>goproto_extensions_map (beta), if false, the extensions field is generated as type []byte instead of type map[int32]proto.Extension
+<li>goproto_unrecognized (beta), if false, XXX_unrecognized field is not generated. This is useful in conjunction with gogoproto.nullable=false, to generate structures completely devoid of pointers and reduce GC pressure at the cost of losing information about unrecognized fields.
+<li>goproto_registration (beta), if true, the generated files will register all messages and types against both gogo/protobuf and golang/protobuf. This is necessary when using third-party packages which read registrations from golang/protobuf (such as the grpc-gateway).
+</ul>
+<p>Less Typing and Peace of Mind is explained in their specific plugin folders godoc:
+<ul>
+<li>github.com/gogo/protobuf/plugin/&lt;extension_name&gt;
+</ul>
+<p>If you do not use any of these extension the code that is generated
+will be the same as if goprotobuf has generated it.
+<p>The most complete way to see examples is to look at
+<pre>github.com/gogo/protobuf/test/thetest.proto
+</pre>
+<p>Gogoprototest is a seperate project,
+because we want to keep gogoprotobuf independent of goprotobuf,
+but we still want to test it thoroughly.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#EnabledGoEnumPrefix">func EnabledGoEnumPrefix(file *google_protobuf.FileDescriptorProto, enum *google_protobuf.EnumDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#EnabledGoStringer">func EnabledGoStringer(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#GetCastKey">func GetCastKey(field *google_protobuf.FieldDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetCastType">func GetCastType(field *google_protobuf.FieldDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetCastValue">func GetCastValue(field *google_protobuf.FieldDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetCustomName">func GetCustomName(field *google_protobuf.FieldDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetCustomType">func GetCustomType(field *google_protobuf.FieldDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetEnumCustomName">func GetEnumCustomName(field *google_protobuf.EnumDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetEnumValueCustomName">func GetEnumValueCustomName(field *google_protobuf.EnumValueDescriptorProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetJsonTag">func GetJsonTag(field *google_protobuf.FieldDescriptorProto) *string</a></dd>
+			
+				
+				<dd><a href="index.html#GetMoreTags">func GetMoreTags(field *google_protobuf.FieldDescriptorProto) *string</a></dd>
+			
+				
+				<dd><a href="index.html#HasBenchGen">func HasBenchGen(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasCompare">func HasCompare(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasDescription">func HasDescription(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasEnumDecl">func HasEnumDecl(file *google_protobuf.FileDescriptorProto, enum *google_protobuf.EnumDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasEqual">func HasEqual(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasExtensionsMap">func HasExtensionsMap(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasGoGetters">func HasGoGetters(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasGoString">func HasGoString(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasMessageName">func HasMessageName(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasPopulate">func HasPopulate(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasSizecache">func HasSizecache(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasTestGen">func HasTestGen(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasTypeDecl">func HasTypeDecl(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasUnkeyed">func HasUnkeyed(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasUnrecognized">func HasUnrecognized(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#HasVerboseEqual">func HasVerboseEqual(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#ImportsGoGoProto">func ImportsGoGoProto(file *google_protobuf.FileDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsCastKey">func IsCastKey(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsCastType">func IsCastType(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsCastValue">func IsCastValue(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsCustomName">func IsCustomName(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsCustomType">func IsCustomType(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsEmbed">func IsEmbed(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsEnumCustomName">func IsEnumCustomName(field *google_protobuf.EnumDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsEnumStringer">func IsEnumStringer(file *google_protobuf.FileDescriptorProto, enum *google_protobuf.EnumDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsEnumValueCustomName">func IsEnumValueCustomName(field *google_protobuf.EnumValueDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsFace">func IsFace(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsGoEnumStringer">func IsGoEnumStringer(file *google_protobuf.FileDescriptorProto, enum *google_protobuf.EnumDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsMarshaler">func IsMarshaler(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsNullable">func IsNullable(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsProto3">func IsProto3(file *google_protobuf.FileDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsProtoSizer">func IsProtoSizer(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsSizer">func IsSizer(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStableMarshaler">func IsStableMarshaler(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdBool">func IsStdBool(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdBytes">func IsStdBytes(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdDouble">func IsStdDouble(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdDuration">func IsStdDuration(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdFloat">func IsStdFloat(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdInt32">func IsStdInt32(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdInt64">func IsStdInt64(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdString">func IsStdString(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdTime">func IsStdTime(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdType">func IsStdType(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdUInt32">func IsStdUInt32(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStdUInt64">func IsStdUInt64(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsStringer">func IsStringer(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsUnion">func IsUnion(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsUnmarshaler">func IsUnmarshaler(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsUnsafeMarshaler">func IsUnsafeMarshaler(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsUnsafeUnmarshaler">func IsUnsafeUnmarshaler(file *google_protobuf.FileDescriptorProto, message *google_protobuf.DescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsWktPtr">func IsWktPtr(field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#NeedsNilCheck">func NeedsNilCheck(proto3 bool, field *google_protobuf.FieldDescriptorProto) bool</a></dd>
+			
+				
+				<dd><a href="index.html#RegistersGolangProto">func RegistersGolangProto(file *google_protobuf.FileDescriptorProto) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#EnableFunc">type EnableFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/gogo.pb.go">gogo.pb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go">helper.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="E_Benchgen">E_Benchgen</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64016,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.benchgen&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64016,opt,name=benchgen&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_BenchgenAll">E_BenchgenAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63016,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.benchgen_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63016,opt,name=benchgen_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Castkey">E_Castkey</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65008,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.castkey&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65008,opt,name=castkey&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Casttype">E_Casttype</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65007,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.casttype&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65007,opt,name=casttype&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Castvalue">E_Castvalue</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65009,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.castvalue&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65009,opt,name=castvalue&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Compare">E_Compare</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64029,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.compare&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64029,opt,name=compare&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_CompareAll">E_CompareAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63029,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.compare_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63029,opt,name=compare_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Customname">E_Customname</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65004,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65004,opt,name=customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Customtype">E_Customtype</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65003,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.customtype&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65003,opt,name=customtype&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Description">E_Description</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64014,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.description&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64014,opt,name=description&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_DescriptionAll">E_DescriptionAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63014,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.description_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63014,opt,name=description_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Embed">E_Embed</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65002,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.embed&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,65002,opt,name=embed&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EnumCustomname">E_EnumCustomname</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumOptions">EnumOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         62023,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enum_customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,62023,opt,name=enum_customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EnumStringer">E_EnumStringer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumOptions">EnumOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         62022,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enum_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,62022,opt,name=enum_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EnumStringerAll">E_EnumStringerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63022,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enum_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63022,opt,name=enum_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Enumdecl">E_Enumdecl</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumOptions">EnumOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         62024,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enumdecl&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,62024,opt,name=enumdecl&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EnumdeclAll">E_EnumdeclAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63031,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enumdecl_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63031,opt,name=enumdecl_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EnumvalueCustomname">E_EnumvalueCustomname</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumValueOptions">EnumValueOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         66001,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.enumvalue_customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,66001,opt,name=enumvalue_customname&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Equal">E_Equal</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64013,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.equal&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64013,opt,name=equal&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_EqualAll">E_EqualAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63013,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.equal_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63013,opt,name=equal_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Face">E_Face</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64005,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.face&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64005,opt,name=face&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_FaceAll">E_FaceAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63005,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.face_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63005,opt,name=face_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GogoprotoImport">E_GogoprotoImport</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63027,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.gogoproto_import&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63027,opt,name=gogoproto_import&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoEnumPrefix">E_GoprotoEnumPrefix</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumOptions">EnumOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         62001,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_enum_prefix&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,62001,opt,name=goproto_enum_prefix&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoEnumPrefixAll">E_GoprotoEnumPrefixAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63002,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_enum_prefix_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63002,opt,name=goproto_enum_prefix_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoEnumStringer">E_GoprotoEnumStringer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumOptions">EnumOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         62021,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_enum_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,62021,opt,name=goproto_enum_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoEnumStringerAll">E_GoprotoEnumStringerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63021,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_enum_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63021,opt,name=goproto_enum_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoExtensionsMap">E_GoprotoExtensionsMap</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64025,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_extensions_map&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64025,opt,name=goproto_extensions_map&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoExtensionsMapAll">E_GoprotoExtensionsMapAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63025,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_extensions_map_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63025,opt,name=goproto_extensions_map_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoGetters">E_GoprotoGetters</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64001,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_getters&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64001,opt,name=goproto_getters&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoGettersAll">E_GoprotoGettersAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63001,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_getters_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63001,opt,name=goproto_getters_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoRegistration">E_GoprotoRegistration</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63032,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_registration&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63032,opt,name=goproto_registration&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoSizecache">E_GoprotoSizecache</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64034,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_sizecache&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64034,opt,name=goproto_sizecache&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoSizecacheAll">E_GoprotoSizecacheAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63034,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_sizecache_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63034,opt,name=goproto_sizecache_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoStringer">E_GoprotoStringer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64003,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64003,opt,name=goproto_stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoStringerAll">E_GoprotoStringerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63003,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63003,opt,name=goproto_stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoUnkeyed">E_GoprotoUnkeyed</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64035,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_unkeyed&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64035,opt,name=goproto_unkeyed&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoUnkeyedAll">E_GoprotoUnkeyedAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63035,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_unkeyed_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63035,opt,name=goproto_unkeyed_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoUnrecognized">E_GoprotoUnrecognized</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64026,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_unrecognized&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64026,opt,name=goproto_unrecognized&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GoprotoUnrecognizedAll">E_GoprotoUnrecognizedAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63026,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.goproto_unrecognized_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63026,opt,name=goproto_unrecognized_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Gostring">E_Gostring</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64006,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.gostring&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64006,opt,name=gostring&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_GostringAll">E_GostringAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63006,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.gostring_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63006,opt,name=gostring_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Jsontag">E_Jsontag</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65005,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.jsontag&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65005,opt,name=jsontag&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Marshaler">E_Marshaler</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64017,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64017,opt,name=marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_MarshalerAll">E_MarshalerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63017,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63017,opt,name=marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Messagename">E_Messagename</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64033,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.messagename&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64033,opt,name=messagename&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_MessagenameAll">E_MessagenameAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63033,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.messagename_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63033,opt,name=messagename_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Moretags">E_Moretags</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#string">string</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65006,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.moretags&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;bytes,65006,opt,name=moretags&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Nullable">E_Nullable</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65001,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.nullable&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,65001,opt,name=nullable&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Onlyone">E_Onlyone</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64009,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.onlyone&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64009,opt,name=onlyone&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_OnlyoneAll">E_OnlyoneAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63009,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.onlyone_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63009,opt,name=onlyone_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Populate">E_Populate</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64007,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.populate&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64007,opt,name=populate&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_PopulateAll">E_PopulateAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63007,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.populate_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63007,opt,name=populate_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Protosizer">E_Protosizer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64028,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.protosizer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64028,opt,name=protosizer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_ProtosizerAll">E_ProtosizerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63028,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.protosizer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63028,opt,name=protosizer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Sizer">E_Sizer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64020,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.sizer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64020,opt,name=sizer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_SizerAll">E_SizerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63020,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.sizer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63020,opt,name=sizer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_StableMarshaler">E_StableMarshaler</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64019,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stable_marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64019,opt,name=stable_marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_StableMarshalerAll">E_StableMarshalerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63019,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stable_marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63019,opt,name=stable_marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Stdduration">E_Stdduration</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65011,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stdduration&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,65011,opt,name=stdduration&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Stdtime">E_Stdtime</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65010,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stdtime&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,65010,opt,name=stdtime&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Stringer">E_Stringer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         67008,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,67008,opt,name=stringer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_StringerAll">E_StringerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63008,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63008,opt,name=stringer_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Testgen">E_Testgen</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64015,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.testgen&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64015,opt,name=testgen&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_TestgenAll">E_TestgenAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63015,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.testgen_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63015,opt,name=testgen_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Typedecl">E_Typedecl</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64030,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.typedecl&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64030,opt,name=typedecl&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_TypedeclAll">E_TypedeclAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63030,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.typedecl_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63030,opt,name=typedecl_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Unmarshaler">E_Unmarshaler</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64018,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unmarshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64018,opt,name=unmarshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_UnmarshalerAll">E_UnmarshalerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63018,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unmarshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63018,opt,name=unmarshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_UnsafeMarshaler">E_UnsafeMarshaler</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64023,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unsafe_marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64023,opt,name=unsafe_marshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_UnsafeMarshalerAll">E_UnsafeMarshalerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63023,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unsafe_marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63023,opt,name=unsafe_marshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_UnsafeUnmarshaler">E_UnsafeUnmarshaler</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64024,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unsafe_unmarshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64024,opt,name=unsafe_unmarshaler&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_UnsafeUnmarshalerAll">E_UnsafeUnmarshalerAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63024,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.unsafe_unmarshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63024,opt,name=unsafe_unmarshaler_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_VerboseEqual">E_VerboseEqual</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#MessageOptions">MessageOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         64004,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.verbose_equal&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,64004,opt,name=verbose_equal&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_VerboseEqualAll">E_VerboseEqualAll</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileOptions">FileOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         63004,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.verbose_equal_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,63004,opt,name=verbose_equal_all&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="E_Wktpointer">E_Wktpointer</span> = &amp;<a href="../proto/index.html">proto</a>.<a href="../proto/index.html#ExtensionDesc">ExtensionDesc</a>{
+    <a href="../proto/index.html#ExtensionDesc.ExtendedType">ExtendedType</a>:  (*<a href="../protoc-gen-gogo/descriptor/index.html">descriptor</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldOptions">FieldOptions</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.ExtensionType">ExtensionType</a>: (*<a href="../../../../builtin/index.html#bool">bool</a>)(<a href="../../../../builtin/index.html#nil">nil</a>),
+    <a href="../proto/index.html#ExtensionDesc.Field">Field</a>:         65012,
+    <a href="../proto/index.html#ExtensionDesc.Name">Name</a>:          &#34;gogoproto.wktpointer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Tag">Tag</a>:           &#34;varint,65012,opt,name=wktpointer&#34;,
+    <a href="../proto/index.html#ExtensionDesc.Filename">Filename</a>:      &#34;gogo.proto&#34;,
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="EnabledGoEnumPrefix">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=8797:8912#L283">EnabledGoEnumPrefix</a>
+				<a class="permalink" href="index.html#EnabledGoEnumPrefix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EnabledGoEnumPrefix(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, enum *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EnabledGoStringer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=9052:9164#L287">EnabledGoStringer</a>
+				<a class="permalink" href="index.html#EnabledGoStringer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EnabledGoStringer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetCastKey">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=6219:6286#L166">GetCastKey</a>
+				<a class="permalink" href="index.html#GetCastKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCastKey(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetCastType">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=5943:6011#L153">GetCastType</a>
+				<a class="permalink" href="index.html#GetCastType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCastType(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetCastValue">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=6493:6562#L179">GetCastValue</a>
+				<a class="permalink" href="index.html#GetCastValue">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCastValue(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=7262:7332#L216">GetCustomName</a>
+				<a class="permalink" href="index.html#GetCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetCustomType">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=5663:5733#L140">GetCustomType</a>
+				<a class="permalink" href="index.html#GetCustomType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCustomType(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetEnumCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=7542:7615#L229">GetEnumCustomName</a>
+				<a class="permalink" href="index.html#GetEnumCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetEnumCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetEnumValueCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=7829:7912#L242">GetEnumValueCustomName</a>
+				<a class="permalink" href="index.html#GetEnumValueCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetEnumValueCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumValueDescriptorProto">EnumValueDescriptorProto</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetJsonTag">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=8131:8199#L255">GetJsonTag</a>
+				<a class="permalink" href="index.html#GetJsonTag">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetJsonTag(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) *<a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetMoreTags">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=8407:8476#L268">GetMoreTags</a>
+				<a class="permalink" href="index.html#GetMoreTags">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetMoreTags(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) *<a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasBenchGen">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=11624:11730#L331">HasBenchGen</a>
+				<a class="permalink" href="index.html#HasBenchGen">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasBenchGen(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasCompare">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=14814:14919#L387">HasCompare</a>
+				<a class="permalink" href="index.html#HasCompare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasCompare(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasDescription">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=10922:11031#L319">HasDescription</a>
+				<a class="permalink" href="index.html#HasDescription">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasDescription(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasEnumDecl">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=5203:5310#L132">HasEnumDecl</a>
+				<a class="permalink" href="index.html#HasEnumDecl">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasEnumDecl(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, enum *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasEqual">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=10005:10108#L303">HasEqual</a>
+				<a class="permalink" href="index.html#HasEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasEqual(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasExtensionsMap">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=14048:14159#L371">HasExtensionsMap</a>
+				<a class="permalink" href="index.html#HasExtensionsMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasExtensionsMap(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasGoGetters">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=9303:9410#L291">HasGoGetters</a>
+				<a class="permalink" href="index.html#HasGoGetters">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasGoGetters(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasGoString">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=9773:9879#L299">HasGoString</a>
+				<a class="permalink" href="index.html#HasGoString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasGoString(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasMessageName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=15197:15306#L395">HasMessageName</a>
+				<a class="permalink" href="index.html#HasMessageName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasMessageName(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasPopulate">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=11163:11269#L323">HasPopulate</a>
+				<a class="permalink" href="index.html#HasPopulate">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasPopulate(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasSizecache">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=15438:15545#L399">HasSizecache</a>
+				<a class="permalink" href="index.html#HasSizecache">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasSizecache(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasTestGen">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=11395:11500#L327">HasTestGen</a>
+				<a class="permalink" href="index.html#HasTestGen">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasTestGen(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasTypeDecl">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=5432:5538#L136">HasTypeDecl</a>
+				<a class="permalink" href="index.html#HasTypeDecl">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasTypeDecl(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasUnkeyed">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=15686:15791#L403">HasUnkeyed</a>
+				<a class="permalink" href="index.html#HasUnkeyed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasUnkeyed(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasUnrecognized">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=14308:14418#L375">HasUnrecognized</a>
+				<a class="permalink" href="index.html#HasUnrecognized">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasUnrecognized(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasVerboseEqual">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=10228:10338#L307">HasVerboseEqual</a>
+				<a class="permalink" href="index.html#HasVerboseEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasVerboseEqual(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ImportsGoGoProto">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=14669:14738#L383">ImportsGoGoProto</a>
+				<a class="permalink" href="index.html#ImportsGoGoProto">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ImportsGoGoProto(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsCastKey">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=4907:4971#L116">IsCastKey</a>
+				<a class="permalink" href="index.html#IsCastKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsCastKey(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsCastType">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=4759:4824#L108">IsCastType</a>
+				<a class="permalink" href="index.html#IsCastType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsCastType(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsCastValue">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=5053:5119#L124">IsCastValue</a>
+				<a class="permalink" href="index.html#IsCastValue">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsCastValue(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=6771:6838#L192">IsCustomName</a>
+				<a class="permalink" href="index.html#IsCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsCustomType">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=4607:4674#L100">IsCustomType</a>
+				<a class="permalink" href="index.html#IsCustomType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsCustomType(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsEmbed">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=1591:1653#L24">IsEmbed</a>
+				<a class="permalink" href="index.html#IsEmbed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEmbed(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsEnumCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=6925:6995#L200">IsEnumCustomName</a>
+				<a class="permalink" href="index.html#IsEnumCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEnumCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsEnumStringer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=13297:13407#L359">IsEnumStringer</a>
+				<a class="permalink" href="index.html#IsEnumStringer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEnumStringer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, enum *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsEnumValueCustomName">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=7086:7166#L208">IsEnumValueCustomName</a>
+				<a class="permalink" href="index.html#IsEnumValueCustomName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEnumValueCustomName(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumValueDescriptorProto">EnumValueDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsFace">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=10703:10804#L315">IsFace</a>
+				<a class="permalink" href="index.html#IsFace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsFace(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsGoEnumStringer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=13041:13153#L355">IsGoEnumStringer</a>
+				<a class="permalink" href="index.html#IsGoEnumStringer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsGoEnumStringer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, enum *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#EnumDescriptorProto">EnumDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsMarshaler">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=11856:11962#L335">IsMarshaler</a>
+				<a class="permalink" href="index.html#IsMarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsMarshaler(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsNullable">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=1721:1786#L28">IsNullable</a>
+				<a class="permalink" href="index.html#IsNullable">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsNullable(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsProto3">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=14565:14626#L379">IsProto3</a>
+				<a class="permalink" href="index.html#IsProto3">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsProto3(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsProtoSizer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=12804:12911#L351">IsProtoSizer</a>
+				<a class="permalink" href="index.html#IsProtoSizer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsProtoSizer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsSizer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=12582:12684#L347">IsSizer</a>
+				<a class="permalink" href="index.html#IsSizer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsSizer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStableMarshaler">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=12330:12442#L343">IsStableMarshaler</a>
+				<a class="permalink" href="index.html#IsStableMarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStableMarshaler(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdBool">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=3278:3342#L64">IsStdBool</a>
+				<a class="permalink" href="index.html#IsStdBool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdBool(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdBytes">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=3658:3723#L72">IsStdBytes</a>
+				<a class="permalink" href="index.html#IsStdBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdBytes(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdDouble">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=2132:2198#L40">IsStdDouble</a>
+				<a class="permalink" href="index.html#IsStdDouble">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdDouble(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdDuration">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=1990:2058#L36">IsStdDuration</a>
+				<a class="permalink" href="index.html#IsStdDuration">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdDuration(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdFloat">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=2324:2389#L44">IsStdFloat</a>
+				<a class="permalink" href="index.html#IsStdFloat">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdFloat(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdInt32">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=2896:2961#L56">IsStdInt32</a>
+				<a class="permalink" href="index.html#IsStdInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdInt32(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdInt64">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=2514:2579#L48">IsStdInt64</a>
+				<a class="permalink" href="index.html#IsStdInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdInt64(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdString">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=3466:3532#L68">IsStdString</a>
+				<a class="permalink" href="index.html#IsStdString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdString(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdTime">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=1856:1920#L32">IsStdTime</a>
+				<a class="permalink" href="index.html#IsStdTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdTime(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdType">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=3848:3912#L76">IsStdType</a>
+				<a class="permalink" href="index.html#IsStdType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdType(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdUInt32">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=3086:3152#L60">IsStdUInt32</a>
+				<a class="permalink" href="index.html#IsStdUInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdUInt32(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStdUInt64">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=2704:2770#L52">IsStdUInt64</a>
+				<a class="permalink" href="index.html#IsStdUInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStdUInt64(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsStringer">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=10472:10577#L311">IsStringer</a>
+				<a class="permalink" href="index.html#IsStringer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsStringer(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsUnion">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=9547:9649#L295">IsUnion</a>
+				<a class="permalink" href="index.html#IsUnion">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsUnion(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsUnmarshaler">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=12090:12198#L339">IsUnmarshaler</a>
+				<a class="permalink" href="index.html#IsUnmarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsUnmarshaler(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsUnsafeMarshaler">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=13538:13650#L363">IsUnsafeMarshaler</a>
+				<a class="permalink" href="index.html#IsUnsafeMarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsUnsafeMarshaler(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsUnsafeUnmarshaler">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=13790:13904#L367">IsUnsafeUnmarshaler</a>
+				<a class="permalink" href="index.html#IsUnsafeUnmarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsUnsafeUnmarshaler(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsWktPtr">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=4171:4234#L85">IsWktPtr</a>
+				<a class="permalink" href="index.html#IsWktPtr">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsWktPtr(field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NeedsNilCheck">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=4307:4388#L89">NeedsNilCheck</a>
+				<a class="permalink" href="index.html#NeedsNilCheck">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NeedsNilCheck(proto3 <a href="../../../../builtin/index.html#bool">bool</a>, field *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FieldDescriptorProto">FieldDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="RegistersGolangProto">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=15043:15116#L391">RegistersGolangProto</a>
+				<a class="permalink" href="index.html#RegistersGolangProto">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegistersGolangProto(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="EnableFunc">type <a href="http://localhost:6060/src/github.com/gogo/protobuf/gogoproto/helper.go?s=8685:8795#L281">EnableFunc</a>
+				<a class="permalink" href="index.html#EnableFunc">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type EnableFunc func(file *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#FileDescriptorProto">FileDescriptorProto</a>, message *<a href="../protoc-gen-gogo/descriptor/index.html">google_protobuf</a>.<a href="../protoc-gen-gogo/descriptor/index.html#DescriptorProto">DescriptorProto</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

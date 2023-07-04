@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>rpc - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package rpc
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/light/rpc"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(next rpcclient.Client, lc LightClient, opts ...Option) *Client</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ABCIInfo">func (c *Client) ABCIInfo(ctx context.Context) (*ctypes.ResultABCIInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ABCIQuery">func (c *Client) ABCIQuery(ctx context.Context, path string, data cmtbytes.HexBytes) (*ctypes.ResultABCIQuery, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ABCIQueryWithOptions">func (c *Client) ABCIQueryWithOptions(ctx context.Context, path string, data cmtbytes.HexBytes, opts rpcclient.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Block">func (c *Client) Block(ctx context.Context, height *int64) (*ctypes.ResultBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BlockByHash">func (c *Client) BlockByHash(ctx context.Context, hash []byte) (*ctypes.ResultBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BlockResults">func (c *Client) BlockResults(ctx context.Context, height *int64) (*ctypes.ResultBlockResults, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BlockSearch">func (c *Client) BlockSearch(ctx context.Context, query string, page, perPage *int, orderBy string) (*ctypes.ResultBlockSearch, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BlockchainInfo">func (c *Client) BlockchainInfo(ctx context.Context, minHeight, maxHeight int64) (*ctypes.ResultBlockchainInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BroadcastEvidence">func (c *Client) BroadcastEvidence(ctx context.Context, ev types.Evidence) (*ctypes.ResultBroadcastEvidence, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BroadcastTxAsync">func (c *Client) BroadcastTxAsync(ctx context.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BroadcastTxCommit">func (c *Client) BroadcastTxCommit(ctx context.Context, tx types.Tx) (*ctypes.ResultBroadcastTxCommit, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BroadcastTxSync">func (c *Client) BroadcastTxSync(ctx context.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.CheckTx">func (c *Client) CheckTx(ctx context.Context, tx types.Tx) (*ctypes.ResultCheckTx, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Commit">func (c *Client) Commit(ctx context.Context, height *int64) (*ctypes.ResultCommit, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ConsensusParams">func (c *Client) ConsensusParams(ctx context.Context, height *int64) (*ctypes.ResultConsensusParams, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ConsensusState">func (c *Client) ConsensusState(ctx context.Context) (*ctypes.ResultConsensusState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.DumpConsensusState">func (c *Client) DumpConsensusState(ctx context.Context) (*ctypes.ResultDumpConsensusState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Genesis">func (c *Client) Genesis(ctx context.Context) (*ctypes.ResultGenesis, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.GenesisChunked">func (c *Client) GenesisChunked(ctx context.Context, id uint) (*ctypes.ResultGenesisChunk, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Header">func (c *Client) Header(ctx context.Context, height *int64) (*ctypes.ResultHeader, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.HeaderByHash">func (c *Client) HeaderByHash(ctx context.Context, hash cmtbytes.HexBytes) (*ctypes.ResultHeader, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Health">func (c *Client) Health(ctx context.Context) (*ctypes.ResultHealth, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.NetInfo">func (c *Client) NetInfo(ctx context.Context) (*ctypes.ResultNetInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.NumUnconfirmedTxs">func (c *Client) NumUnconfirmedTxs(ctx context.Context) (*ctypes.ResultUnconfirmedTxs, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.OnStart">func (c *Client) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.OnStop">func (c *Client) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.RegisterOpDecoder">func (c *Client) RegisterOpDecoder(typ string, dec merkle.OpDecoder)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Status">func (c *Client) Status(ctx context.Context) (*ctypes.ResultStatus, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Subscribe">func (c *Client) Subscribe(ctx context.Context, subscriber, query string, outCapacity ...int) (out &lt;-chan ctypes.ResultEvent, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.SubscribeWS">func (c *Client) SubscribeWS(ctx *rpctypes.Context, query string) (*ctypes.ResultSubscribe, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Tx">func (c *Client) Tx(ctx context.Context, hash []byte, prove bool) (*ctypes.ResultTx, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.TxSearch">func (c *Client) TxSearch(ctx context.Context, query string, prove bool, page, perPage *int, orderBy string) (*ctypes.ResultTxSearch, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.UnconfirmedTxs">func (c *Client) UnconfirmedTxs(ctx context.Context, limit *int) (*ctypes.ResultUnconfirmedTxs, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Unsubscribe">func (c *Client) Unsubscribe(ctx context.Context, subscriber, query string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.UnsubscribeAll">func (c *Client) UnsubscribeAll(ctx context.Context, subscriber string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.UnsubscribeAllWS">func (c *Client) UnsubscribeAllWS(ctx *rpctypes.Context) (*ctypes.ResultUnsubscribe, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.UnsubscribeWS">func (c *Client) UnsubscribeWS(ctx *rpctypes.Context, query string) (*ctypes.ResultUnsubscribe, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Validators">func (c *Client) Validators(ctx context.Context, height *int64, pagePtr, perPagePtr *int) (*ctypes.ResultValidators, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#KeyPathFunc">type KeyPathFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultMerkleKeyPathFn">func DefaultMerkleKeyPathFn() KeyPathFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LightClient">type LightClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#KeyPathFn">func KeyPathFn(fn KeyPathFunc) Option</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go">client.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=1440:1643#L34">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client is an RPC client, which uses light#Client to verify data (if it can
+be proved). Note, merkle.DefaultProofRuntime is used to verify values
+returned by ABCI#Query.
+
+			<pre>type Client struct {
+    <a href="../../libs/service/index.html">service</a>.<a href="../../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=2890:2967#L81">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(next <a href="../../rpc/client/index.html">rpcclient</a>.<a href="../../rpc/client/index.html#Client">Client</a>, lc <a href="index.html#LightClient">LightClient</a>, opts ...<a href="index.html#Option">Option</a>) *<a href="index.html#Client">Client</a></pre>
+				<p>NewClient returns a new client.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.ABCIInfo">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3529:3607#L113">ABCIInfo</a>
+					<a class="permalink" href="index.html#Client.ABCIInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ABCIInfo(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultABCIInfo">ResultABCIInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.ABCIQuery">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3682:3799#L118">ABCIQuery</a>
+					<a class="permalink" href="index.html#Client.ABCIQuery">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ABCIQuery(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, path <a href="../../../../../builtin/index.html#string">string</a>, data <a href="../../libs/bytes/index.html">cmtbytes</a>.<a href="../../libs/bytes/index.html#HexBytes">HexBytes</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultABCIQuery">ResultABCIQuery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ABCIQuery requests proof by default.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.ABCIQueryWithOptions">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3953:4115#L123">ABCIQueryWithOptions</a>
+					<a class="permalink" href="index.html#Client.ABCIQueryWithOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ABCIQueryWithOptions(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, path <a href="../../../../../builtin/index.html#string">string</a>, data <a href="../../libs/bytes/index.html">cmtbytes</a>.<a href="../../libs/bytes/index.html#HexBytes">HexBytes</a>,
+    opts <a href="../../rpc/client/index.html">rpcclient</a>.<a href="../../rpc/client/index.html#ABCIQueryOptions">ABCIQueryOptions</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultABCIQuery">ResultABCIQuery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ABCIQueryWithOptions returns an error if opts.Prove is false.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Block">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=9312:9399#L303">Block</a>
+					<a class="permalink" href="index.html#Client.Block">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Block(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBlock">ResultBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Block calls rpcclient#Block and then verifies the result.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.BlockByHash">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=10225:10316#L337">BlockByHash</a>
+					<a class="permalink" href="index.html#Client.BlockByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BlockByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash []<a href="../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBlock">ResultBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockByHash calls rpcclient#BlockByHash and then verifies the result.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.BlockResults">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=11226:11327#L372">BlockResults</a>
+					<a class="permalink" href="index.html#Client.BlockResults">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BlockResults(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBlockResults">ResultBlockResults</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockResults returns the block results for the given height. If no height is
+provided, the results of the block preceding the latest are returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.BlockSearch">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=15055:15196#L515">BlockSearch</a>
+					<a class="permalink" href="index.html#Client.BlockSearch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BlockSearch(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    query <a href="../../../../../builtin/index.html#string">string</a>,
+    page, perPage *<a href="../../../../../builtin/index.html#int">int</a>,
+    orderBy <a href="../../../../../builtin/index.html#string">string</a>,
+) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBlockSearch">ResultBlockSearch</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.BlockchainInfo">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=7856:7974#L255">BlockchainInfo</a>
+					<a class="permalink" href="index.html#Client.BlockchainInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BlockchainInfo(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, minHeight, maxHeight <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBlockchainInfo">ResultBlockchainInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockchainInfo calls rpcclient#BlockchainInfo and then verifies every header
+returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.BroadcastEvidence">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=16155:16270#L555">BroadcastEvidence</a>
+					<a class="permalink" href="index.html#Client.BroadcastEvidence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BroadcastEvidence(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, ev <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Evidence">Evidence</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBroadcastEvidence">ResultBroadcastEvidence</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.BroadcastTxAsync">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=5844:5946#L188">BroadcastTxAsync</a>
+					<a class="permalink" href="index.html#Client.BroadcastTxAsync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BroadcastTxAsync(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBroadcastTx">ResultBroadcastTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.BroadcastTxCommit">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=5687:5796#L184">BroadcastTxCommit</a>
+					<a class="permalink" href="index.html#Client.BroadcastTxCommit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BroadcastTxCommit(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBroadcastTxCommit">ResultBroadcastTxCommit</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.BroadcastTxSync">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=5993:6094#L192">BroadcastTxSync</a>
+					<a class="permalink" href="index.html#Client.BroadcastTxSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BroadcastTxSync(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultBroadcastTx">ResultBroadcastTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.CheckTx">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6427:6516#L204">CheckTx</a>
+					<a class="permalink" href="index.html#Client.CheckTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) CheckTx(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultCheckTx">ResultCheckTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Commit">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=13835:13924#L468">Commit</a>
+					<a class="permalink" href="index.html#Client.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Commit(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultCommit">ResultCommit</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.ConsensusParams">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6938:7045#L220">ConsensusParams</a>
+					<a class="permalink" href="index.html#Client.ConsensusParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ConsensusParams(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultConsensusParams">ResultConsensusParams</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.ConsensusState">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6807:6897#L216">ConsensusState</a>
+					<a class="permalink" href="index.html#Client.ConsensusState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ConsensusState(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultConsensusState">ResultConsensusState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.DumpConsensusState">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6664:6762#L212">DumpConsensusState</a>
+					<a class="permalink" href="index.html#Client.DumpConsensusState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) DumpConsensusState(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultDumpConsensusState">ResultDumpConsensusState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Genesis">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=8999:9075#L294">Genesis</a>
+					<a class="permalink" href="index.html#Client.Genesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Genesis(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultGenesis">ResultGenesis</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.GenesisChunked">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=9109:9206#L298">GenesisChunked</a>
+					<a class="permalink" href="index.html#Client.GenesisChunked">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) GenesisChunked(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="../../../../../builtin/index.html#uint">uint</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultGenesisChunk">ResultGenesisChunk</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Header">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=12916:13005#L435">Header</a>
+					<a class="permalink" href="index.html#Client.Header">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Header(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultHeader">ResultHeader</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Header fetches and verifies the header directly via the light client
+
+				
+				
+				
+			
+				
+				<h3 id="Client.HeaderByHash">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=13250:13354#L445">HeaderByHash</a>
+					<a class="permalink" href="index.html#Client.HeaderByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) HeaderByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../libs/bytes/index.html">cmtbytes</a>.<a href="../../libs/bytes/index.html#HexBytes">HexBytes</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultHeader">ResultHeader</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HeaderByHash calls rpcclient#HeaderByHash and updates the client if it&apos;s falling behind.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Health">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=7656:7730#L249">Health</a>
+					<a class="permalink" href="index.html#Client.Health">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Health(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultHealth">ResultHealth</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.NetInfo">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6554:6630#L208">NetInfo</a>
+					<a class="permalink" href="index.html#Client.NetInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) NetInfo(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultNetInfo">ResultNetInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.NumUnconfirmedTxs">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6290:6383#L200">NumUnconfirmedTxs</a>
+					<a class="permalink" href="index.html#Client.NumUnconfirmedTxs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) NumUnconfirmedTxs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultUnconfirmedTxs">ResultUnconfirmedTxs</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.OnStart">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3160:3192#L94">OnStart</a>
+					<a class="permalink" href="index.html#Client.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) OnStart() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.OnStop">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3263:3288#L101">OnStop</a>
+					<a class="permalink" href="index.html#Client.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) OnStop()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.RegisterOpDecoder">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=17210:17278#L588">RegisterOpDecoder</a>
+					<a class="permalink" href="index.html#Client.RegisterOpDecoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) RegisterOpDecoder(typ <a href="../../../../../builtin/index.html#string">string</a>, dec <a href="../../crypto/merkle/index.html">merkle</a>.<a href="../../crypto/merkle/index.html#OpDecoder">OpDecoder</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Status">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=3422:3496#L109">Status</a>
+					<a class="permalink" href="index.html#Client.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Status(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultStatus">ResultStatus</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Subscribe">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=16318:16455#L559">Subscribe</a>
+					<a class="permalink" href="index.html#Client.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Subscribe(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subscriber, query <a href="../../../../../builtin/index.html#string">string</a>,
+    outCapacity ...<a href="../../../../../builtin/index.html#int">int</a>) (out &lt;-chan <a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultEvent">ResultEvent</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.SubscribeWS">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=17478:17576#L595">SubscribeWS</a>
+					<a class="permalink" href="index.html#Client.SubscribeWS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) SubscribeWS(ctx *<a href="../../rpc/jsonrpc/types/index.html">rpctypes</a>.<a href="../../rpc/jsonrpc/types/index.html#Context">Context</a>, query <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultSubscribe">ResultSubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeWS subscribes for events using the given query and remote address as
+a subscriber, but does not verify responses (UNSAFE)!
+TODO: verify data
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Tx">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=14359:14450#L484">Tx</a>
+					<a class="permalink" href="index.html#Client.Tx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Tx(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash []<a href="../../../../../builtin/index.html#byte">byte</a>, prove <a href="../../../../../builtin/index.html#bool">bool</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultTx">ResultTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Tx calls rpcclient#Tx method and then verifies the proof if such was
+requested.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.TxSearch">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=14834:14982#L505">TxSearch</a>
+					<a class="permalink" href="index.html#Client.TxSearch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) TxSearch(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    query <a href="../../../../../builtin/index.html#string">string</a>,
+    prove <a href="../../../../../builtin/index.html#bool">bool</a>,
+    page, perPage *<a href="../../../../../builtin/index.html#int">int</a>,
+    orderBy <a href="../../../../../builtin/index.html#string">string</a>,
+) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultTxSearch">ResultTxSearch</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.UnconfirmedTxs">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=6140:6242#L196">UnconfirmedTxs</a>
+					<a class="permalink" href="index.html#Client.UnconfirmedTxs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) UnconfirmedTxs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, limit *<a href="../../../../../builtin/index.html#int">int</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultUnconfirmedTxs">ResultUnconfirmedTxs</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.Unsubscribe">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=16526:16607#L564">Unsubscribe</a>
+					<a class="permalink" href="index.html#Client.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Unsubscribe(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subscriber, query <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.UnsubscribeAll">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=16664:16741#L568">UnsubscribeAll</a>
+					<a class="permalink" href="index.html#Client.UnsubscribeAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) UnsubscribeAll(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subscriber <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Client.UnsubscribeAllWS">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=18575:18666#L633">UnsubscribeAllWS</a>
+					<a class="permalink" href="index.html#Client.UnsubscribeAllWS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) UnsubscribeAllWS(ctx *<a href="../../rpc/jsonrpc/types/index.html">rpctypes</a>.<a href="../../rpc/jsonrpc/types/index.html#Context">Context</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultUnsubscribe">ResultUnsubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>UnsubscribeAllWS calls original client&apos;s UnsubscribeAll using remote address
+as a subscriber.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.UnsubscribeWS">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=18214:18316#L623">UnsubscribeWS</a>
+					<a class="permalink" href="index.html#Client.UnsubscribeWS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) UnsubscribeWS(ctx *<a href="../../rpc/jsonrpc/types/index.html">rpctypes</a>.<a href="../../rpc/jsonrpc/types/index.html#Context">Context</a>, query <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultUnsubscribe">ResultUnsubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>UnsubscribeWS calls original client&apos;s Unsubscribe using remote address as a
+subscriber.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Validators">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=15312:15441#L525">Validators</a>
+					<a class="permalink" href="index.html#Client.Validators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Validators(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    height *<a href="../../../../../builtin/index.html#int64">int64</a>,
+    pagePtr, perPagePtr *<a href="../../../../../builtin/index.html#int">int</a>,
+) (*<a href="../../rpc/core/types/index.html">ctypes</a>.<a href="../../rpc/core/types/index.html#ResultValidators">ResultValidators</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Validators fetches and verifies validators.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="KeyPathFunc">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=703:773#L17">KeyPathFunc</a>
+				<a class="permalink" href="index.html#KeyPathFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyPathFunc builds a merkle path out of the given path and key.
+
+			<pre>type KeyPathFunc func(path <a href="../../../../../builtin/index.html#string">string</a>, key []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../crypto/merkle/index.html">merkle</a>.<a href="../../crypto/merkle/index.html#KeyPath">KeyPath</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultMerkleKeyPathFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=2269:2310#L62">DefaultMerkleKeyPathFn</a>
+					<a class="permalink" href="index.html#DefaultMerkleKeyPathFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultMerkleKeyPathFn() <a href="index.html#KeyPathFunc">KeyPathFunc</a></pre>
+				<p>DefaultMerkleKeyPathFn creates a function used to generate merkle key paths
+from a path string and a key. This is the default used by the cosmos SDK.
+This merkle key paths are required when verifying /abci_query calls
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="LightClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=937:1219#L22">LightClient</a>
+				<a class="permalink" href="index.html#LightClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LightClient is an interface that contains functionality needed by Client from the light client.
+
+			<pre>type LightClient interface {
+    ChainID() <a href="../../../../../builtin/index.html#string">string</a>
+    Update(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, now <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) (*<a href="../../types/index.html">types</a>.<a href="../../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    VerifyLightBlockAtHeight(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height <a href="../../../../../builtin/index.html#int64">int64</a>, now <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) (*<a href="../../types/index.html">types</a>.<a href="../../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    TrustedLightBlock(height <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../types/index.html">types</a>.<a href="../../types/index.html#LightBlock">LightBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=1723:1748#L48">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option allow you to tweak Client.
+
+			<pre>type Option func(*<a href="index.html#Client">Client</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="KeyPathFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/light/rpc/client.go?s=1951:1988#L53">KeyPathFn</a>
+					<a class="permalink" href="index.html#KeyPathFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func KeyPathFn(fn <a href="index.html#KeyPathFunc">KeyPathFunc</a>) <a href="index.html#Option">Option</a></pre>
+				<p>KeyPathFn option can be used to set a function, which parses a given path
+and builds the merkle path for the prover. It must be provided if you want
+to call ABCIQuery or ABCIQueryWithOptions.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

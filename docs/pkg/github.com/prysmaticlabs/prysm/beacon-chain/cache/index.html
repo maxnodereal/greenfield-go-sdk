@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>cache - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package cache
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/cache"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package cache includes all important caches for the runtime
+of an Ethereum Beacon Node, ensuring the node does not spend
+resources computing duplicate operations such as committee
+calculations for validators during the same epoch, etc.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#AttestationCache">type AttestationCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAttestationCache">func NewAttestationCache() *AttestationCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AttestationCache.Get">func (c *AttestationCache) Get(ctx context.Context, req *ethpb.AttestationDataRequest) (*ethpb.AttestationData, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AttestationCache.MarkInProgress">func (c *AttestationCache) MarkInProgress(req *ethpb.AttestationDataRequest) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AttestationCache.MarkNotInProgress">func (c *AttestationCache) MarkNotInProgress(req *ethpb.AttestationDataRequest) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AttestationCache.Put">func (c *AttestationCache) Put(_ context.Context, req *ethpb.AttestationDataRequest, res *ethpb.AttestationData) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BalanceCache">type BalanceCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEffectiveBalanceCache">func NewEffectiveBalanceCache() *BalanceCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BalanceCache.AddTotalEffectiveBalance">func (c *BalanceCache) AddTotalEffectiveBalance(st state.ReadOnlyBeaconState, balance uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BalanceCache.Get">func (c *BalanceCache) Get(st state.ReadOnlyBeaconState) (uint64, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CheckpointStateCache">type CheckpointStateCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCheckpointStateCache">func NewCheckpointStateCache() *CheckpointStateCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CheckpointStateCache.AddCheckpointState">func (c *CheckpointStateCache) AddCheckpointState(cp *ethpb.Checkpoint, s state.ReadOnlyBeaconState) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CheckpointStateCache.StateByCheckpoint">func (c *CheckpointStateCache) StateByCheckpoint(cp *ethpb.Checkpoint) (state.BeaconState, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CommitteeCache">type CommitteeCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCommitteesCache">func NewCommitteesCache() *CommitteeCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.ActiveIndices">func (c *CommitteeCache) ActiveIndices(ctx context.Context, seed [32]byte) ([]types.ValidatorIndex, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.ActiveIndicesCount">func (c *CommitteeCache) ActiveIndicesCount(ctx context.Context, seed [32]byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.AddCommitteeShuffledList">func (c *CommitteeCache) AddCommitteeShuffledList(committees *Committees) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.Committee">func (c *CommitteeCache) Committee(ctx context.Context, slot types.Slot, seed [32]byte, index types.CommitteeIndex) ([]types.ValidatorIndex, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.HasEntry">func (c *CommitteeCache) HasEntry(seed string) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.MarkInProgress">func (c *CommitteeCache) MarkInProgress(seed [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommitteeCache.MarkNotInProgress">func (c *CommitteeCache) MarkNotInProgress(seed [32]byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Committees">type Committees</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ProposerIndices">type ProposerIndices</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ProposerIndicesCache">type ProposerIndicesCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewProposerIndicesCache">func NewProposerIndicesCache() *ProposerIndicesCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposerIndicesCache.AddProposerIndices">func (c *ProposerIndicesCache) AddProposerIndices(p *ProposerIndices) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposerIndicesCache.HasProposerIndices">func (c *ProposerIndicesCache) HasProposerIndices(r [32]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposerIndicesCache.ProposerIndices">func (c *ProposerIndicesCache) ProposerIndices(r [32]byte) ([]types.ValidatorIndex, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SkipSlotCache">type SkipSlotCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSkipSlotCache">func NewSkipSlotCache() *SkipSlotCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.Disable">func (c *SkipSlotCache) Disable()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.Enable">func (c *SkipSlotCache) Enable()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.Get">func (c *SkipSlotCache) Get(ctx context.Context, r [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.MarkInProgress">func (c *SkipSlotCache) MarkInProgress(r [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.MarkNotInProgress">func (c *SkipSlotCache) MarkNotInProgress(r [32]byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SkipSlotCache.Put">func (c *SkipSlotCache) Put(_ context.Context, r [32]byte, state state.BeaconState)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SyncCommitteeCache">type SyncCommitteeCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSyncCommittee">func NewSyncCommittee() *SyncCommitteeCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncCommitteeCache.CurrentPeriodIndexPosition">func (s *SyncCommitteeCache) CurrentPeriodIndexPosition(root [32]byte, valIdx types.ValidatorIndex) ([]types.CommitteeIndex, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncCommitteeCache.NextPeriodIndexPosition">func (s *SyncCommitteeCache) NextPeriodIndexPosition(root [32]byte, valIdx types.ValidatorIndex) ([]types.CommitteeIndex, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncCommitteeCache.UpdatePositionsInCommittee">func (s *SyncCommitteeCache) UpdatePositionsInCommittee(syncCommitteeBoundaryRoot [32]byte, st state.BeaconStateAltair) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SyncCommitteeHeadStateCache">type SyncCommitteeHeadStateCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSyncCommitteeHeadState">func NewSyncCommitteeHeadState() *SyncCommitteeHeadStateCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncCommitteeHeadStateCache.Get">func (c *SyncCommitteeHeadStateCache) Get(slot types.Slot) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncCommitteeHeadStateCache.Put">func (c *SyncCommitteeHeadStateCache) Put(slot types.Slot, st state.BeaconState) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/active_balance.go">active_balance.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go">attestation_data.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/checkpoint_state.go">checkpoint_state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go">committee.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committees.go">committees.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/common.go">common.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/error.go">error.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go">proposer_indices.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices_type.go">proposer_indices_type.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go">skip_slot_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/subnet_ids.go">subnet_ids.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go">sync_committee.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee_head_state.go">sync_committee_head_state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_subnet_ids.go">sync_subnet_ids.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+
+    <span class="comment">// CommitteeCacheMiss tracks the number of committee requests that aren&#39;t present in the cache.</span>
+    <span id="CommitteeCacheMiss">CommitteeCacheMiss</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;committee_cache_miss&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of committee requests that aren&#39;t present in the cache.&#34;,
+    })
+    <span class="comment">// CommitteeCacheHit tracks the number of committee requests that are in the cache.</span>
+    <span id="CommitteeCacheHit">CommitteeCacheHit</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;committee_cache_hit&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of committee requests that are present in the cache.&#34;,
+    })
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNilValueProvided for when we try to put a nil value in a cache.</span>
+    <span id="ErrNilValueProvided">ErrNilValueProvided</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;nil value provided on Put()&#34;)
+    <span class="comment">// ErrIncorrectType for when the state is of the incorrect type.</span>
+    <span id="ErrIncorrectType">ErrIncorrectType</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;incorrect state type provided&#34;)
+    <span class="comment">// ErrNotFound for cache fetches that return a nil value.</span>
+    <span id="ErrNotFound">ErrNotFound</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;not found in cache&#34;)
+    <span class="comment">// ErrNonExistingSyncCommitteeKey when sync committee key (root) does not exist in cache.</span>
+    <span id="ErrNonExistingSyncCommitteeKey">ErrNonExistingSyncCommitteeKey</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;does not exist sync committee key&#34;)
+)</pre>
+			
+				
+				<pre>var (
+
+    <span class="comment">// ProposerIndicesCacheMiss tracks the number of proposerIndices requests that aren&#39;t present in the cache.</span>
+    <span id="ProposerIndicesCacheMiss">ProposerIndicesCacheMiss</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;proposer_indices_cache_miss&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of proposer indices requests that aren&#39;t present in the cache.&#34;,
+    })
+    <span class="comment">// ProposerIndicesCacheHit tracks the number of proposerIndices requests that are in the cache.</span>
+    <span id="ProposerIndicesCacheHit">ProposerIndicesCacheHit</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;proposer_indices_cache_hit&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of proposer indices requests that are present in the cache.&#34;,
+    })
+)</pre>
+			
+				
+				<pre>var (
+
+    <span class="comment">// SyncCommitteeCacheMiss tracks the number of committee requests that aren&#39;t present in the cache.</span>
+    <span id="SyncCommitteeCacheMiss">SyncCommitteeCacheMiss</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;sync_committee_index_cache_miss_total&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of committee requests that aren&#39;t present in the sync committee index cache.&#34;,
+    })
+    <span class="comment">// SyncCommitteeCacheHit tracks the number of committee requests that are in the cache.</span>
+    <span id="SyncCommitteeCacheHit">SyncCommitteeCacheHit</span> = <a href="../../../../prometheus/client_golang/prometheus/promauto/index.html">promauto</a>.<a href="../../../../prometheus/client_golang/prometheus/promauto/index.html#NewCounter">NewCounter</a>(<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>{
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Name">Name</a>: &#34;sync_committee_index_cache_hit_total&#34;,
+        <a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts.Help">Help</a>: &#34;The number of committee requests that are present in the sync committee index cache.&#34;,
+    })
+)</pre>
+			
+				<p>ErrAlreadyInProgress appears when attempting to mark a cache as in progress while it is
+already in progress. The client should handle this error and wait for the in progress
+data to resolve via Get.
+
+				<pre>var <span id="ErrAlreadyInProgress">ErrAlreadyInProgress</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;already in progress&#34;)</pre>
+			
+				<p>ErrNotCommittee will be returned when a cache object is not a pointer to
+a Committee struct.
+
+				<pre>var <span id="ErrNotCommittee">ErrNotCommittee</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;object is not a committee struct&#34;)</pre>
+			
+				<p>ErrNotProposerIndices will be returned when a cache object is not a pointer to
+a ProposerIndices struct.
+
+				<pre>var <span id="ErrNotProposerIndices">ErrNotProposerIndices</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;object is not a proposer indices struct&#34;)</pre>
+			
+				<p>SubnetIDs for attester and aggregator.
+
+				<pre>var <span id="SubnetIDs">SubnetIDs</span> = newSubnetIDs()</pre>
+			
+				<p>SyncSubnetIDs for sync committee participant.
+
+				<pre>var <span id="SyncSubnetIDs">SyncSubnetIDs</span> = newSyncSubnetIDs()</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AttestationCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=1348:1457#L34">AttestationCache</a>
+				<a class="permalink" href="index.html#AttestationCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AttestationCache is used to store the cached results of an AttestationData request.
+
+			<pre>type AttestationCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAttestationCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=1524:1568#L41">NewAttestationCache</a>
+					<a class="permalink" href="index.html#NewAttestationCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAttestationCache() *<a href="index.html#AttestationCache">AttestationCache</a></pre>
+				<p>NewAttestationCache initializes the map and underlying cache.
+
+				
+				
+			
+
+			
+				
+				<h3 id="AttestationCache.Get">func (*AttestationCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=1788:1906#L50">Get</a>
+					<a class="permalink" href="index.html#AttestationCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AttestationCache">AttestationCache</a>) Get(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, req *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationDataRequest">AttestationDataRequest</a>) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationData">AttestationData</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get waits for any in progress calculation to complete before returning a
+cached response, if any.
+
+				
+				
+				
+			
+				
+				<h3 id="AttestationCache.MarkInProgress">func (*AttestationCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=3032:3114#L98">MarkInProgress</a>
+					<a class="permalink" href="index.html#AttestationCache.MarkInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AttestationCache">AttestationCache</a>) MarkInProgress(req *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationDataRequest">AttestationDataRequest</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>MarkInProgress a request so that any other similar requests will block on
+Get until MarkNotInProgress is called.
+
+				
+				
+				
+			
+				
+				<h3 id="AttestationCache.MarkNotInProgress">func (*AttestationCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=3400:3485#L114">MarkNotInProgress</a>
+					<a class="permalink" href="index.html#AttestationCache.MarkNotInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AttestationCache">AttestationCache</a>) MarkNotInProgress(req *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationDataRequest">AttestationDataRequest</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>MarkNotInProgress will release the lock on a given request. This should be
+called after put.
+
+				
+				
+				
+			
+				
+				<h3 id="AttestationCache.Put">func (*AttestationCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/attestation_data.go?s=3652:3770#L126">Put</a>
+					<a class="permalink" href="index.html#AttestationCache.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AttestationCache">AttestationCache</a>) Put(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, req *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationDataRequest">AttestationDataRequest</a>, res *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttestationData">AttestationData</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Put the response in the cache.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BalanceCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/active_balance.go?s=1235:1301#L27">BalanceCache</a>
+				<a class="permalink" href="index.html#BalanceCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BalanceCache is a struct with 1 LRU cache for looking up balance by epoch.
+
+			<pre>type BalanceCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEffectiveBalanceCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/active_balance.go?s=1415:1460#L33">NewEffectiveBalanceCache</a>
+					<a class="permalink" href="index.html#NewEffectiveBalanceCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEffectiveBalanceCache() *<a href="index.html#BalanceCache">BalanceCache</a></pre>
+				<p>NewEffectiveBalanceCache creates a new effective balance cache for storing/accessing total balance by epoch.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BalanceCache.AddTotalEffectiveBalance">func (*BalanceCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/active_balance.go?s=1660:1759#L40">AddTotalEffectiveBalance</a>
+					<a class="permalink" href="index.html#BalanceCache.AddTotalEffectiveBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BalanceCache">BalanceCache</a>) AddTotalEffectiveBalance(st <a href="../state/index.html">state</a>.<a href="../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, balance <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>AddTotalEffectiveBalance adds a new total effective balance entry for current balance for state `st` into the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="BalanceCache.Get">func (*BalanceCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/active_balance.go?s=2055:2127#L57">Get</a>
+					<a class="permalink" href="index.html#BalanceCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BalanceCache">BalanceCache</a>) Get(st <a href="../state/index.html">state</a>.<a href="../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>) (<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get returns the current epoch&apos;s effective balance for state `st` in cache.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CheckpointStateCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/checkpoint_state.go?s=1178:1252#L23">CheckpointStateCache</a>
+				<a class="permalink" href="index.html#CheckpointStateCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CheckpointStateCache is a struct with 1 queue for looking up state by checkpoint.
+
+			<pre>type CheckpointStateCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCheckpointStateCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/checkpoint_state.go?s=1357:1409#L29">NewCheckpointStateCache</a>
+					<a class="permalink" href="index.html#NewCheckpointStateCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCheckpointStateCache() *<a href="index.html#CheckpointStateCache">CheckpointStateCache</a></pre>
+				<p>NewCheckpointStateCache creates a new checkpoint state cache for storing/accessing processed state.
+
+				
+				
+			
+
+			
+				
+				<h3 id="CheckpointStateCache.AddCheckpointState">func (*CheckpointStateCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/checkpoint_state.go?s=2325:2431#L59">AddCheckpointState</a>
+					<a class="permalink" href="index.html#CheckpointStateCache.AddCheckpointState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CheckpointStateCache">CheckpointStateCache</a>) AddCheckpointState(cp *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>, s <a href="../state/index.html">state</a>.<a href="../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>AddCheckpointState adds CheckpointState object to the cache. This method also trims the least
+recently added CheckpointState object if the cache size has ready the max cache size limit.
+
+				
+				
+				
+			
+				
+				<h3 id="CheckpointStateCache.StateByCheckpoint">func (*CheckpointStateCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/checkpoint_state.go?s=1648:1745#L37">StateByCheckpoint</a>
+					<a class="permalink" href="index.html#CheckpointStateCache.StateByCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CheckpointStateCache">CheckpointStateCache</a>) StateByCheckpoint(cp *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>) (<a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateByCheckpoint fetches state by checkpoint. Returns true with a
+reference to the CheckpointState info, if exists. Otherwise returns false, nil.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CommitteeCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=1359:1477#L30">CommitteeCache</a>
+				<a class="permalink" href="index.html#CommitteeCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CommitteeCache is a struct with 1 queue for looking up shuffled indices list by seed.
+
+			<pre>type CommitteeCache struct {
+<span id="CommitteeCache.CommitteeCache"></span>    CommitteeCache *<a href="../../../../hashicorp/golang-lru/index.html">lru</a>.<a href="../../../../hashicorp/golang-lru/index.html#Cache">Cache</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCommitteesCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=1851:1892#L46">NewCommitteesCache</a>
+					<a class="permalink" href="index.html#NewCommitteesCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCommitteesCache() *<a href="index.html#CommitteeCache">CommitteeCache</a></pre>
+				<p>NewCommitteesCache creates a new committee cache for storing/accessing shuffled indices of a committee.
+
+				
+				
+			
+
+			
+				
+				<h3 id="CommitteeCache.ActiveIndices">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=3801:3907#L105">ActiveIndices</a>
+					<a class="permalink" href="index.html#CommitteeCache.ActiveIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) ActiveIndices(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, seed [32]<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ActiveIndices returns the active indices of a given seed stored in cache.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.ActiveIndicesCount">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=4330:4422#L127">ActiveIndicesCount</a>
+					<a class="permalink" href="index.html#CommitteeCache.ActiveIndicesCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) ActiveIndicesCount(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, seed [32]<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ActiveIndicesCount returns the active indices count of a given seed stored in cache.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.AddCommitteeShuffledList">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=3473:3552#L93">AddCommitteeShuffledList</a>
+					<a class="permalink" href="index.html#CommitteeCache.AddCommitteeShuffledList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) AddCommitteeShuffledList(committees *<a href="index.html#Committees">Committees</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>AddCommitteeShuffledList adds Committee shuffled list object to the cache. T
+his method also trims the least recently list if the cache size has ready the max cache size limit.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.Committee">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=2241:2388#L55">Committee</a>
+					<a class="permalink" href="index.html#CommitteeCache.Committee">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) Committee(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, slot <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Slot">Slot</a>, seed [32]<a href="../../../../../builtin/index.html#byte">byte</a>, index <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) ([]<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Committee fetches the shuffled indices by slot and committee index. Every list of indices
+represent one committee. Returns true if the list exists with slot and committee index. Otherwise returns false, nil.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.HasEntry">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=4817:4868#L149">HasEntry</a>
+					<a class="permalink" href="index.html#CommitteeCache.HasEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) HasEntry(seed <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasEntry returns true if the committee cache has a value.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.MarkInProgress">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=5041:5101#L156">MarkInProgress</a>
+					<a class="permalink" href="index.html#CommitteeCache.MarkInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) MarkInProgress(seed [32]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>MarkInProgress a request so that any other similar requests will block on
+Get until MarkNotInProgress is called.
+
+				
+				
+				
+			
+				
+				<h3 id="CommitteeCache.MarkNotInProgress">func (*CommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committee.go?s=5351:5414#L169">MarkNotInProgress</a>
+					<a class="permalink" href="index.html#CommitteeCache.MarkNotInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommitteeCache">CommitteeCache</a>) MarkNotInProgress(seed [32]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>MarkNotInProgress will release the lock on a given request. This should be
+called after put.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Committees">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/committees.go?s=304:460#L4">Committees</a>
+				<a class="permalink" href="index.html#Committees">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Committees defines the shuffled committees seed.
+
+			<pre>type Committees struct {
+<span id="Committees.CommitteeCount"></span>    CommitteeCount  <a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Committees.Seed"></span>    Seed            [32]<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="Committees.ShuffledIndices"></span>    ShuffledIndices []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>
+<span id="Committees.SortedIndices"></span>    SortedIndices   []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ProposerIndices">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices_type.go?s=344:441#L4">ProposerIndices</a>
+				<a class="permalink" href="index.html#ProposerIndices">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProposerIndices defines the cached struct for proposer indices.
+
+			<pre>type ProposerIndices struct {
+<span id="ProposerIndices.BlockRoot"></span>    BlockRoot       [32]<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="ProposerIndices.ProposerIndices"></span>    ProposerIndices []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ProposerIndicesCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go?s=1192:1297#L22">ProposerIndicesCache</a>
+				<a class="permalink" href="index.html#ProposerIndicesCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProposerIndicesCache is a struct with 1 queue for looking up proposer indices by root.
+
+			<pre>type ProposerIndicesCache struct {
+<span id="ProposerIndicesCache.ProposerIndicesCache"></span>    ProposerIndicesCache *<a href="http://localhost:6060/pkg/k8s.io/client-go/tools/cache/">cache</a>.<a href="http://localhost:6060/pkg/k8s.io/client-go/tools/cache/#FIFO">FIFO</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProposerIndicesCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go?s=1710:1762#L38">NewProposerIndicesCache</a>
+					<a class="permalink" href="index.html#NewProposerIndicesCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewProposerIndicesCache() *<a href="index.html#ProposerIndicesCache">ProposerIndicesCache</a></pre>
+				<p>NewProposerIndicesCache creates a new proposer indices cache for storing/accessing proposer index assignments of an epoch.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProposerIndicesCache.AddProposerIndices">func (*ProposerIndicesCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go?s=2031:2106#L46">AddProposerIndices</a>
+					<a class="permalink" href="index.html#ProposerIndicesCache.AddProposerIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ProposerIndicesCache">ProposerIndicesCache</a>) AddProposerIndices(p *<a href="index.html#ProposerIndices">ProposerIndices</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>AddProposerIndices adds ProposerIndices object to the cache.
+This method also trims the least recently list if the cache size has ready the max cache size limit.
+
+				
+				
+				
+			
+				
+				<h3 id="ProposerIndicesCache.HasProposerIndices">func (*ProposerIndicesCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go?s=2378:2453#L58">HasProposerIndices</a>
+					<a class="permalink" href="index.html#ProposerIndicesCache.HasProposerIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ProposerIndicesCache">ProposerIndicesCache</a>) HasProposerIndices(r [32]<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasProposerIndices returns the proposer indices of a block root seed.
+
+				
+				
+				
+			
+				
+				<h3 id="ProposerIndicesCache.ProposerIndices">func (*ProposerIndicesCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/proposer_indices.go?s=2688:2778#L69">ProposerIndices</a>
+					<a class="permalink" href="index.html#ProposerIndicesCache.ProposerIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ProposerIndicesCache">ProposerIndicesCache</a>) ProposerIndices(r [32]<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ProposerIndices returns the proposer indices of a block root seed.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SkipSlotCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=803:1004#L20">SkipSlotCache</a>
+				<a class="permalink" href="index.html#SkipSlotCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SkipSlotCache is used to store the cached results of processing skip slots in transition.ProcessSlots.
+
+			<pre>type SkipSlotCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSkipSlotCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=1068:1106#L28">NewSkipSlotCache</a>
+					<a class="permalink" href="index.html#NewSkipSlotCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSkipSlotCache() *<a href="index.html#SkipSlotCache">SkipSlotCache</a></pre>
+				<p>NewSkipSlotCache initializes the map and underlying cache.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SkipSlotCache.Disable">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=1329:1362#L41">Disable</a>
+					<a class="permalink" href="index.html#SkipSlotCache.Disable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) Disable()</pre>
+				<p>Disable the skip slot cache.
+
+				
+				
+				
+			
+				
+				<h3 id="SkipSlotCache.Enable">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=1239:1271#L36">Enable</a>
+					<a class="permalink" href="index.html#SkipSlotCache.Enable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) Enable()</pre>
+				<p>Enable the skip slot cache.
+
+				
+				
+				
+			
+				
+				<h3 id="SkipSlotCache.Get">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=1491:1578#L47">Get</a>
+					<a class="permalink" href="index.html#SkipSlotCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) Get(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r [32]<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get waits for any in progress calculation to complete before returning a
+cached response, if any.
+
+				
+				
+				
+			
+				
+				<h3 id="SkipSlotCache.MarkInProgress">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=2843:2899#L96">MarkInProgress</a>
+					<a class="permalink" href="index.html#SkipSlotCache.MarkInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) MarkInProgress(r [32]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>MarkInProgress a request so that any other similar requests will block on
+Get until MarkNotInProgress is called.
+
+				
+				
+				
+			
+				
+				<h3 id="SkipSlotCache.MarkNotInProgress">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=3168:3221#L113">MarkNotInProgress</a>
+					<a class="permalink" href="index.html#SkipSlotCache.MarkNotInProgress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) MarkNotInProgress(r [32]<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>MarkNotInProgress will release the lock on a given request. This should be
+called after put.
+
+				
+				
+				
+			
+				
+				<h3 id="SkipSlotCache.Put">func (*SkipSlotCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/skip_slot_cache.go?s=3355:3438#L125">Put</a>
+					<a class="permalink" href="index.html#SkipSlotCache.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SkipSlotCache">SkipSlotCache</a>) Put(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r [32]<a href="../../../../../builtin/index.html#byte">byte</a>, state <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>)</pre>
+				<p>Put the response in the cache.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SyncCommitteeCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go?s=1255:1328#L23">SyncCommitteeCache</a>
+				<a class="permalink" href="index.html#SyncCommitteeCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SyncCommitteeCache utilizes a FIFO cache to sufficiently cache validator position within sync committee.
+It is thread safe with concurrent read write.
+
+			<pre>type SyncCommitteeCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSyncCommittee">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go?s=2041:2084#L43">NewSyncCommittee</a>
+					<a class="permalink" href="index.html#NewSyncCommittee">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSyncCommittee() *<a href="index.html#SyncCommitteeCache">SyncCommitteeCache</a></pre>
+				<p>NewSyncCommittee initializes and returns a new SyncCommitteeCache.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SyncCommitteeCache.CurrentPeriodIndexPosition">func (*SyncCommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go?s=2573:2704#L53">CurrentPeriodIndexPosition</a>
+					<a class="permalink" href="index.html#SyncCommitteeCache.CurrentPeriodIndexPosition">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SyncCommitteeCache">SyncCommitteeCache</a>) CurrentPeriodIndexPosition(root [32]<a href="../../../../../builtin/index.html#byte">byte</a>, valIdx <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>) ([]<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CurrentPeriodIndexPosition returns current period index position of a validator index with respect with
+sync committee. If the input validator index has no assignment, an empty list will be returned.
+If the input root does not exist in cache, `ErrNonExistingSyncCommitteeKey` is returned.
+Manual checking of state for index position in state is recommended when `ErrNonExistingSyncCommitteeKey` is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="SyncCommitteeCache.NextPeriodIndexPosition">func (*SyncCommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go?s=3344:3472#L72">NextPeriodIndexPosition</a>
+					<a class="permalink" href="index.html#SyncCommitteeCache.NextPeriodIndexPosition">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SyncCommitteeCache">SyncCommitteeCache</a>) NextPeriodIndexPosition(root [32]<a href="../../../../../builtin/index.html#byte">byte</a>, valIdx <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>) ([]<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NextPeriodIndexPosition returns next period index position of a validator index in respect with sync committee.
+If the input validator index has no assignment, an empty list will be returned.
+If the input root does not exist in cache, `ErrNonExistingSyncCommitteeKey` is returned.
+Manual checking of state for index position in state is recommended when `ErrNonExistingSyncCommitteeKey` is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="SyncCommitteeCache.UpdatePositionsInCommittee">func (*SyncCommitteeCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee.go?s=4746:4871#L115">UpdatePositionsInCommittee</a>
+					<a class="permalink" href="index.html#SyncCommitteeCache.UpdatePositionsInCommittee">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SyncCommitteeCache">SyncCommitteeCache</a>) UpdatePositionsInCommittee(syncCommitteeBoundaryRoot [32]<a href="../../../../../builtin/index.html#byte">byte</a>, st <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconStateAltair">BeaconStateAltair</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UpdatePositionsInCommittee updates caching of validators position in sync committee in respect to
+current epoch and next epoch. This should be called when `current_sync_committee` and `next_sync_committee`
+change and that happens every `EPOCHS_PER_SYNC_COMMITTEE_PERIOD`.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SyncCommitteeHeadStateCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee_head_state.go?s=502:583#L6">SyncCommitteeHeadStateCache</a>
+				<a class="permalink" href="index.html#SyncCommitteeHeadStateCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SyncCommitteeHeadStateCache for the latest head state requested by a sync committee participant.
+
+			<pre>type SyncCommitteeHeadStateCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSyncCommitteeHeadState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee_head_state.go?s=683:744#L12">NewSyncCommitteeHeadState</a>
+					<a class="permalink" href="index.html#NewSyncCommitteeHeadState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSyncCommitteeHeadState() *<a href="index.html#SyncCommitteeHeadStateCache">SyncCommitteeHeadStateCache</a></pre>
+				<p>NewSyncCommitteeHeadState initializes a LRU cache for `SyncCommitteeHeadState` with size of 1.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SyncCommitteeHeadStateCache.Get">func (*SyncCommitteeHeadStateCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee_head_state.go?s=1409:1494#L37">Get</a>
+					<a class="permalink" href="index.html#SyncCommitteeHeadStateCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SyncCommitteeHeadStateCache">SyncCommitteeHeadStateCache</a>) Get(slot <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get `state` using `slot` as key. Return nil if nothing is found.
+
+				
+				
+				
+			
+				
+				<h3 id="SyncCommitteeHeadStateCache.Put">func (*SyncCommitteeHeadStateCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/sync_committee_head_state.go?s=962:1048#L18">Put</a>
+					<a class="permalink" href="index.html#SyncCommitteeHeadStateCache.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SyncCommitteeHeadStateCache">SyncCommitteeHeadStateCache</a>) Put(slot <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Slot">Slot</a>, st <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Put `slot` as key and `state` as value onto the cache.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="depositcache/index.html">depositcache</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package depositcache is the source of validator deposits maintained in-memory by the beacon node – deposits processed from the eth1 powchain are then stored in this cache to be accessed by any other service during a beacon node&#39;s runtime.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

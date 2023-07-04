@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>awslambda - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package awslambda
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/awslambda"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package awslambda provides an AWS Lambda transport layer.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultErrorEncoder">func DefaultErrorEncoder(ctx context.Context, err error) ([]byte, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorEncoder">type ErrorEncoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Handler">type Handler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHandler">func NewHandler(e endpoint.Endpoint, dec DecodeRequestFunc, enc EncodeResponseFunc, options ...HandlerOption) *Handler</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handler.Invoke">func (h *Handler) Invoke(ctx context.Context, payload []byte) (resp []byte, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HandlerFinalizerFunc">type HandlerFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HandlerOption">type HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerAfter">func HandlerAfter(after ...HandlerResponseFunc) HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerBefore">func HandlerBefore(before ...HandlerRequestFunc) HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerErrorEncoder">func HandlerErrorEncoder(ee ErrorEncoder) HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerErrorHandler">func HandlerErrorHandler(errorHandler transport.ErrorHandler) HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerErrorLogger">func HandlerErrorLogger(logger log.Logger) HandlerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandlerFinalizer">func HandlerFinalizer(f ...HandlerFinalizerFunc) HandlerOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HandlerRequestFunc">type HandlerRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HandlerResponseFunc">type HandlerResponseFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go">handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/request_response_funcs.go">request_response_funcs.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="DefaultErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=2575:2647#L75">DefaultErrorEncoder</a>
+				<a class="permalink" href="index.html#DefaultErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultErrorEncoder(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultErrorEncoder defines the default behavior of encoding an error response,
+where it returns nil, and the error itself.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/encode_decode.go?s=132:205#L1">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from an
+AWS Lambda payload.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, []<a href="../../../../../builtin/index.html#byte">byte</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/encode_decode.go?s=321:395#L3">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object into []byte,
+ready to be sent as AWS Lambda response.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorEncoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/encode_decode.go?s=451:521#L6">ErrorEncoder</a>
+				<a class="permalink" href="index.html#ErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorEncoder is responsible for encoding an error.
+
+			<pre>type ErrorEncoder func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Handler">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=167:459#L2">Handler</a>
+				<a class="permalink" href="index.html#Handler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Handler wraps an endpoint.
+
+			<pre>type Handler struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=555:680#L15">NewHandler</a>
+					<a class="permalink" href="index.html#NewHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHandler(
+    e <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a>,
+    dec <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>,
+    enc <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>,
+    options ...<a href="index.html#HandlerOption">HandlerOption</a>,
+) *<a href="index.html#Handler">Handler</a></pre>
+				<p>NewHandler constructs a new handler, which implements
+the AWS lambda.Handler interface.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Handler.Invoke">func (*Handler) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=2743:2834#L80">Invoke</a>
+					<a class="permalink" href="index.html#Handler.Invoke">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handler">Handler</a>) Invoke(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    payload []<a href="../../../../../builtin/index.html#byte">byte</a>,
+) (resp []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Invoke represents implementation of the AWS lambda.Handler interface.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HandlerFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/request_response_funcs.go?s=776:851#L11">HandlerFinalizerFunc</a>
+				<a class="permalink" href="index.html#HandlerFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HandlerFinalizerFunc is executed at the end of Invoke.
+This can be used for logging purposes.
+
+			<pre>type HandlerFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, resp []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HandlerOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=986:1019#L35">HandlerOption</a>
+				<a class="permalink" href="index.html#HandlerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HandlerOption sets an optional parameter for handlers.
+
+			<pre>type HandlerOption func(*<a href="index.html#Handler">Handler</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="HandlerAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=1362:1423#L45">HandlerAfter</a>
+					<a class="permalink" href="index.html#HandlerAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerAfter(after ...<a href="index.html#HandlerResponseFunc">HandlerResponseFunc</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerAfter functions are only executed after invoking the endpoint
+but prior to returning a response.
+
+				
+				
+			
+				
+				<h3 id="HandlerBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=1116:1178#L39">HandlerBefore</a>
+					<a class="permalink" href="index.html#HandlerBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerBefore(before ...<a href="index.html#HandlerRequestFunc">HandlerRequestFunc</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerBefore functions are executed on the payload byte,
+before the request is decoded.
+
+				
+				
+			
+				
+				<h3 id="HandlerErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=2081:2136#L63">HandlerErrorEncoder</a>
+					<a class="permalink" href="index.html#HandlerErrorEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerErrorEncoder(ee <a href="index.html#ErrorEncoder">ErrorEncoder</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerErrorEncoder is used to encode errors.
+
+				
+				
+			
+				
+				<h3 id="HandlerErrorHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=1892:1967#L58">HandlerErrorHandler</a>
+					<a class="permalink" href="index.html#HandlerErrorHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerErrorHandler(errorHandler <a href="../index.html">transport</a>.<a href="../index.html#ErrorHandler">ErrorHandler</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerErrorHandler is used to handle non-terminal errors.
+By default, non-terminal errors are ignored.
+
+				
+				
+			
+				
+				<h3 id="HandlerErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=1637:1693#L52">HandlerErrorLogger</a>
+					<a class="permalink" href="index.html#HandlerErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerErrorLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerErrorLogger is used to log non-terminal errors.
+By default, no errors are logged.
+Deprecated: Use HandlerErrorHandler instead.
+
+				
+				
+			
+				
+				<h3 id="HandlerFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/handler.go?s=2308:2370#L69">HandlerFinalizer</a>
+					<a class="permalink" href="index.html#HandlerFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandlerFinalizer(f ...<a href="index.html#HandlerFinalizerFunc">HandlerFinalizerFunc</a>) <a href="index.html#HandlerOption">HandlerOption</a></pre>
+				<p>HandlerFinalizer sets finalizer which are called at the end of
+request. By default no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="HandlerRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/request_response_funcs.go?s=270:351#L1">HandlerRequestFunc</a>
+				<a class="permalink" href="index.html#HandlerRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HandlerRequestFunc may take information from the received
+payload and use it to place items in the request scoped context.
+HandlerRequestFuncs are executed prior to invoking the endpoint and
+decoding of the payload.
+
+			<pre>type HandlerRequestFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, payload []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HandlerResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/awslambda/request_response_funcs.go?s=586:674#L7">HandlerResponseFunc</a>
+				<a class="permalink" href="index.html#HandlerResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HandlerResponseFunc may take information from a request context
+and use it to manipulate the response before it&apos;s marshaled.
+HandlerResponseFunc are executed after invoking the endpoint
+but prior to returning a response.
+
+			<pre>type HandlerResponseFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, response interface{}) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

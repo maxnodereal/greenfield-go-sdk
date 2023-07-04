@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>network - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package network
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/testutil/network"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package network implements and exposes a fully operational in-process Tendermint
+test network that consists of at least one or potentially many validators. This
+test network can be used primarily for integration tests or unit test suites.
+<p>The test network utilizes SimApp as the ABCI application and uses all the modules
+defined in the Cosmos SDK. An in-process test network can be configured with any
+number of validators as well as account funds and even custom genesis state.
+<p>When creating a test network, a series of Validator objects are returned. Each
+Validator object has useful information such as their address and public key. A
+Validator will also provide its RPC, P2P, and API addresses that can be useful
+for integration testing. In addition, a Tendermint local RPC client is also provided
+which can be handy for making direct RPC calls to Tendermint.
+<p>Note, due to limitations in concurrency and the design of the RPC layer in
+Tendermint, only the first Validator object will have an RPC and API client
+exposed. Due to this exact same limitation, only a single test network can exist
+at a time. A caller must be certain it calls Cleanup after it no longer needs
+the network.
+<p>A typical testing flow might look like the following:
+<pre>type IntegrationTestSuite struct {
+	suite.Suite
+
+	cfg     network.Config
+	network *network.Network
+}
+
+func (s *IntegrationTestSuite) SetupSuite() {
+	s.T().Log(&quot;setting up integration test suite&quot;)
+
+	cfg := network.DefaultConfig()
+	cfg.NumValidators = 1
+	s.cfg = cfg
+
+	var err error
+	s.network, err = network.New(s.T(), s.T().TempDir(), cfg)
+	s.Require().NoError(err)
+
+	s.Require().NoError(s.network.WaitForNextBlock())
+}
+
+func (s *IntegrationTestSuite) TearDownSuite() {
+	s.T().Log(&quot;tearing down integration test suite&quot;)
+
+	// This is important and must be called to ensure other tests can create
+	// a network!
+	s.network.Cleanup()
+}
+
+func (s *IntegrationTestSuite) TestQueryBalancesRequestHandlerFn() {
+	val := s.network.Validators[0]
+	baseURL := val.APIAddress
+
+	// Use baseURL to make API HTTP requests or use val.RPCClient to make direct
+	// Tendermint RPC calls.
+	// ...
+}
+
+func TestIntegrationTestSuite(t *testing.T) {
+	suite.Run(t, new(IntegrationTestSuite))
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#MinimumAppConfig">func MinimumAppConfig() depinject.Config</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AppConstructor">type AppConstructor</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#CLILogger">type CLILogger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCLILogger">func NewCLILogger(cmd *cobra.Command) CLILogger</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CLILogger.Log">func (s CLILogger) Log(args ...interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CLILogger.Logf">func (s CLILogger) Logf(format string, args ...interface{})</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultConfig">func DefaultConfig(factory TestFixtureFactory) Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultConfigWithAppConfig">func DefaultConfigWithAppConfig(appConfig depinject.Config) (Config, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Logger">type Logger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Network">type Network</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(l Logger, baseDir string, cfg Config) (*Network, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.Cleanup">func (n *Network) Cleanup()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.LatestHeight">func (n *Network) LatestHeight() (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.RetryForBlocks">func (n *Network) RetryForBlocks(retryFunc func() error, blocks int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.WaitForHeight">func (n *Network) WaitForHeight(h int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.WaitForHeightWithTimeout">func (n *Network) WaitForHeightWithTimeout(h int64, t time.Duration) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Network.WaitForNextBlock">func (n *Network) WaitForNextBlock() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TestFixture">type TestFixture</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TestFixtureFactory">type TestFixtureFactory</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Validator">type Validator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Validator.GetAppConfig">func (v Validator) GetAppConfig() *srvconfig.Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Validator.GetCtx">func (v Validator) GetCtx() *server.Context</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ValidatorI">type ValidatorI</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go">network.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="MinimumAppConfig">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=6069:6109#L133">MinimumAppConfig</a>
+				<a class="permalink" href="index.html#MinimumAppConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinimumAppConfig() <a href="../../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../../cosmossdk.io/depinject/index.html#Config">Config</a></pre>
+			<p>MinimumAppConfig defines the minimum of modules required for a call to New to succeed
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AppConstructor">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=2323:2388#L62">AppConstructor</a>
+				<a class="permalink" href="index.html#AppConstructor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppConstructor defines a function which accepts a network configuration and
+creates an ABCI Application to provide to Tendermint.
+
+			<pre>type AppConstructor = func(val <a href="index.html#ValidatorI">ValidatorI</a>) <a href="../../server/types/index.html">servertypes</a>.<a href="../../server/types/index.html#Application">Application</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="CLILogger">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9910:9955#L271">CLILogger</a>
+				<a class="permalink" href="index.html#CLILogger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CLILogger wraps a cobra.Command and provides command logging methods.
+
+			<pre>type CLILogger struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCLILogger">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=10248:10295#L286">NewCLILogger</a>
+					<a class="permalink" href="index.html#NewCLILogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCLILogger(cmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>) <a href="index.html#CLILogger">CLILogger</a></pre>
+				<p>NewCLILogger creates a new CLILogger.
+
+				
+				
+			
+
+			
+				
+				<h3 id="CLILogger.Log">func (CLILogger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9981:10024#L276">Log</a>
+					<a class="permalink" href="index.html#CLILogger.Log">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#CLILogger">CLILogger</a>) Log(args ...interface{})</pre>
+				<p>Log logs given args.
+
+				
+				
+				
+			
+				
+				<h3 id="CLILogger.Logf">func (CLILogger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=10111:10170#L281">Logf</a>
+					<a class="permalink" href="index.html#CLILogger.Logf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#CLILogger">CLILogger</a>) Logf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+				<p>Logf logs given args according to a format specifier.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=2700:4720#L74">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config defines the necessary configuration used to bootstrap and start an
+in-process local testing network.
+
+			<pre>type Config struct {
+<span id="Config.Codec"></span>    Codec             <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#Codec">Codec</a>
+<span id="Config.LegacyAmino"></span>    LegacyAmino       *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a> <span class="comment">// TODO: Remove!</span>
+<span id="Config.InterfaceRegistry"></span>    InterfaceRegistry <a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>
+
+<span id="Config.TxConfig"></span>    TxConfig         <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxConfig">TxConfig</a>
+<span id="Config.AccountRetriever"></span>    AccountRetriever <a href="../../client/index.html">client</a>.<a href="../../client/index.html#AccountRetriever">AccountRetriever</a>
+<span id="Config.AppConstructor"></span>    AppConstructor   <a href="index.html#AppConstructor">AppConstructor</a>             <span class="comment">// the ABCI application constructor</span>
+<span id="Config.GenesisState"></span>    GenesisState     map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a> <span class="comment">// custom genesis state to provide</span>
+<span id="Config.TimeoutCommit"></span>    TimeoutCommit    <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>              <span class="comment">// the consensus commitment timeout</span>
+<span id="Config.ChainID"></span>    ChainID          <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// the network chain-id</span>
+<span id="Config.NumValidators"></span>    NumValidators    <a href="../../../../../builtin/index.html#int">int</a>                        <span class="comment">// the total number of validators to create and bond</span>
+<span id="Config.Mnemonics"></span>    Mnemonics        []<a href="../../../../../builtin/index.html#string">string</a>                   <span class="comment">// custom user-provided validator operator mnemonics</span>
+<span id="Config.BondDenom"></span>    BondDenom        <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// the staking bond denomination</span>
+<span id="Config.MinGasPrices"></span>    MinGasPrices     <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// the minimum gas prices each validator will accept</span>
+<span id="Config.AccountTokens"></span>    AccountTokens    <a href="../../../../../cosmossdk.io/math/index.html">math</a>.<a href="../../../../../cosmossdk.io/math/index.html#Int">Int</a>                   <span class="comment">// the amount of unique validator tokens (e.g. 1000node0)</span>
+<span id="Config.StakingTokens"></span>    StakingTokens    <a href="../../../../../cosmossdk.io/math/index.html">math</a>.<a href="../../../../../cosmossdk.io/math/index.html#Int">Int</a>                   <span class="comment">// the amount of tokens each validator has available to stake</span>
+<span id="Config.BondedTokens"></span>    BondedTokens     <a href="../../../../../cosmossdk.io/math/index.html">math</a>.<a href="../../../../../cosmossdk.io/math/index.html#Int">Int</a>                   <span class="comment">// the amount of tokens each validator stakes</span>
+<span id="Config.PruningStrategy"></span>    PruningStrategy  <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// the pruning strategy each validator will have</span>
+<span id="Config.EnableTMLogging"></span>    EnableTMLogging  <a href="../../../../../builtin/index.html#bool">bool</a>                       <span class="comment">// enable Tendermint logging to STDOUT</span>
+<span id="Config.CleanupDir"></span>    CleanupDir       <a href="../../../../../builtin/index.html#bool">bool</a>                       <span class="comment">// remove base temporary directory during cleanup</span>
+<span id="Config.SigningAlgo"></span>    SigningAlgo      <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// signing algorithm for keys</span>
+<span id="Config.KeyringOptions"></span>    KeyringOptions   []<a href="../../crypto/keyring/index.html">keyring</a>.<a href="../../crypto/keyring/index.html#Option">Option</a>           <span class="comment">// keyring configuration options</span>
+<span id="Config.RPCAddress"></span>    RPCAddress       <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// RPC listen address (including port)</span>
+<span id="Config.APIAddress"></span>    APIAddress       <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// REST API listen address (including port)</span>
+<span id="Config.GRPCAddress"></span>    GRPCAddress      <a href="../../../../../builtin/index.html#string">string</a>                     <span class="comment">// GRPC server listen address (including port)</span>
+<span id="Config.PrintMnemonic"></span>    PrintMnemonic    <a href="../../../../../builtin/index.html#bool">bool</a>                       <span class="comment">// print the mnemonic of first validator as log output for testing</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultConfig">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=4825:4878#L105">DefaultConfig</a>
+					<a class="permalink" href="index.html#DefaultConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultConfig(factory <a href="index.html#TestFixtureFactory">TestFixtureFactory</a>) <a href="index.html#Config">Config</a></pre>
+				<p>DefaultConfig returns a sane default configuration suitable for nearly all
+testing requirements.
+
+				
+				
+			
+				
+				<h3 id="DefaultConfigWithAppConfig">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=6394:6469#L145">DefaultConfigWithAppConfig</a>
+					<a class="permalink" href="index.html#DefaultConfigWithAppConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultConfigWithAppConfig(appConfig <a href="../../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../../cosmossdk.io/depinject/index.html#Config">Config</a>) (<a href="index.html#Config">Config</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Logger">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9497:9588#L250">Logger</a>
+				<a class="permalink" href="index.html#Logger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Logger is a network logger interface that exposes testnet-level Log() methods for an in-process testing network
+This is not to be confused with logging that may happen at an individual node or validator level
+
+			<pre>type Logger interface {
+    Log(args ...interface{})
+    Logf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Network">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=8407:8509#L210">Network</a>
+				<a class="permalink" href="index.html#Network">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Network defines a local in-process testing network using SimApp. It can be
+configured to start any number of validators, each with its own RPC and API
+clients. Typically, this test network would be used in client and integration
+testing where user input is expected.
+<p>Note, due to Tendermint constraints in regards to RPC functionality, there
+may only be one test network running at a time. Thus, any caller must be
+sure to Cleanup after testing is finished in order to allow other tests
+to create networks. In addition, only the first validator will have a valid
+RPC and API server/client.
+
+			<pre>type Network struct {
+<span id="Network.Logger"></span>    Logger     <a href="index.html#Logger">Logger</a>
+<span id="Network.BaseDir"></span>    BaseDir    <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Network.Validators"></span>    Validators []*<a href="index.html#Validator">Validator</a>
+
+<span id="Network.Config"></span>    Config <a href="index.html#Config">Config</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=10414:10478#L291">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(l <a href="index.html#Logger">Logger</a>, baseDir <a href="../../../../../builtin/index.html#string">string</a>, cfg <a href="index.html#Config">Config</a>) (*<a href="index.html#Network">Network</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New creates a new Network for integration tests or in-process testnets run via the CLI
+
+				
+				
+			
+
+			
+				
+				<h3 id="Network.Cleanup">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=21747:21774#L714">Cleanup</a>
+					<a class="permalink" href="index.html#Network.Cleanup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) Cleanup()</pre>
+				<p>Cleanup removes the root testing (temporary) directory and stops both the
+Tendermint and API services. It allows other callers to create and start
+test networks. This method must be called when a test is finished, typically
+in a defer.
+
+				
+				
+				
+			
+				
+				<h3 id="Network.LatestHeight">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=18773:18820#L607">LatestHeight</a>
+					<a class="permalink" href="index.html#Network.LatestHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) LatestHeight() (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LatestHeight returns the latest height of the network or an error if the
+query fails or no validators exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Network.RetryForBlocks">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=20891:20965#L679">RetryForBlocks</a>
+					<a class="permalink" href="index.html#Network.RetryForBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) RetryForBlocks(retryFunc func() <a href="../../../../../builtin/index.html#error">error</a>, blocks <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>RetryForBlocks will wait for the next block and execute the function provided.
+It will do this until the function returns a nil error or until the number of
+blocks has been reached.
+
+				
+				
+				
+			
+				
+				<h3 id="Network.WaitForHeight">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=19695:19750#L638">WaitForHeight</a>
+					<a class="permalink" href="index.html#Network.WaitForHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) WaitForHeight(h <a href="../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WaitForHeight performs a blocking check where it waits for a block to be
+committed after a given block. If that height is not reached within a timeout,
+an error is returned. Regardless, the latest height queried is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Network.WaitForHeightWithTimeout">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=19918:20001#L644">WaitForHeightWithTimeout</a>
+					<a class="permalink" href="index.html#Network.WaitForHeightWithTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) WaitForHeightWithTimeout(h <a href="../../../../../builtin/index.html#int64">int64</a>, t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WaitForHeightWithTimeout is the same as WaitForHeight except the caller can
+provide a custom timeout.
+
+				
+				
+				
+			
+				
+				<h3 id="Network.WaitForNextBlock">func (*Network) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=21294:21336#L696">WaitForNextBlock</a>
+					<a class="permalink" href="index.html#Network.WaitForNextBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Network">Network</a>) WaitForNextBlock() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>WaitForNextBlock waits for the next block to be committed, returning an error
+upon failure.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TestFixture">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=2433:2584#L66">TestFixture</a>
+				<a class="permalink" href="index.html#TestFixture">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type TestFixture struct {
+<span id="TestFixture.AppConstructor"></span>    AppConstructor <a href="index.html#AppConstructor">AppConstructor</a>
+<span id="TestFixture.GenesisState"></span>    GenesisState   map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>
+<span id="TestFixture.EncodingConfig"></span>    EncodingConfig <a href="../../types/module/testutil/index.html">moduletestutil</a>.<a href="../../types/module/testutil/index.html#TestEncodingConfig">TestEncodingConfig</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TestFixtureFactory">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=2390:2429#L63">TestFixtureFactory</a>
+				<a class="permalink" href="index.html#TestFixtureFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppConstructor defines a function which accepts a network configuration and
+creates an ABCI Application to provide to Tendermint.
+
+			<pre>type TestFixtureFactory = func() <a href="index.html#TestFixture">TestFixture</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Validator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=8689:9125#L221">Validator</a>
+				<a class="permalink" href="index.html#Validator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Validator defines an in-process Tendermint validator node. Through this object,
+a client can make RPC and API calls and interact with any client command
+or handler.
+
+			<pre>type Validator struct {
+<span id="Validator.AppConfig"></span>    AppConfig  *<a href="../../server/config/index.html">srvconfig</a>.<a href="../../server/config/index.html#Config">Config</a>
+<span id="Validator.ClientCtx"></span>    ClientCtx  <a href="../../client/index.html">client</a>.<a href="../../client/index.html#Context">Context</a>
+<span id="Validator.Ctx"></span>    Ctx        *<a href="../../server/index.html">server</a>.<a href="../../server/index.html#Context">Context</a>
+<span id="Validator.Dir"></span>    Dir        <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.NodeID"></span>    NodeID     <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.PubKey"></span>    PubKey     <a href="../../crypto/types/index.html">cryptotypes</a>.<a href="../../crypto/types/index.html#PubKey">PubKey</a>
+<span id="Validator.Moniker"></span>    Moniker    <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.APIAddress"></span>    APIAddress <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.RPCAddress"></span>    RPCAddress <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.P2PAddress"></span>    P2PAddress <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Validator.Address"></span>    Address    <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>
+<span id="Validator.ValAddress"></span>    ValAddress <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>
+<span id="Validator.RPCClient"></span>    RPCClient  <a href="../../../../cometbft/cometbft/rpc/client/index.html">tmclient</a>.<a href="../../../../cometbft/cometbft/rpc/client/index.html#Client">Client</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Validator.GetAppConfig">func (Validator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9760:9811#L266">GetAppConfig</a>
+					<a class="permalink" href="index.html#Validator.GetAppConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#Validator">Validator</a>) GetAppConfig() *<a href="../../server/config/index.html">srvconfig</a>.<a href="../../server/config/index.html#Config">Config</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Validator.GetCtx">func (Validator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9697:9740#L262">GetCtx</a>
+					<a class="permalink" href="index.html#Validator.GetCtx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#Validator">Validator</a>) GetCtx() *<a href="../../server/index.html">server</a>.<a href="../../server/index.html#Context">Context</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ValidatorI">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/testutil/network/network.go?s=9190:9277#L243">ValidatorI</a>
+				<a class="permalink" href="index.html#ValidatorI">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ValidatorI expose a validator&apos;s context and configuration
+
+			<pre>type ValidatorI interface {
+    GetCtx() *<a href="../../server/index.html">server</a>.<a href="../../server/index.html#Context">Context</a>
+    GetAppConfig() *<a href="../../server/config/index.html">srvconfig</a>.<a href="../../server/config/index.html#Config">Config</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

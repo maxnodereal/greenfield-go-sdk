@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>log - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package log
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/libs/log"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewSyncWriter">func NewSyncWriter(w io.Writer) io.Writer</a></dd>
+			
+				
+				<dd><a href="index.html#NewTMFmtLogger">func NewTMFmtLogger(w io.Writer) kitlog.Logger</a></dd>
+			
+			
+				
+				<dd><a href="index.html#LazyBlockHash">type LazyBlockHash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLazyBlockHash">func NewLazyBlockHash(block hashable) *LazyBlockHash</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyBlockHash.String">func (l *LazyBlockHash) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LazySprintf">type LazySprintf</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLazySprintf">func NewLazySprintf(format string, args ...interface{}) *LazySprintf</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazySprintf.String">func (l *LazySprintf) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Logger">type Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFilter">func NewFilter(next Logger, options ...Option) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNopLogger">func NewNopLogger() Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTMJSONLogger">func NewTMJSONLogger(w io.Writer) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTMJSONLoggerNoTS">func NewTMJSONLoggerNoTS(w io.Writer) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTMLogger">func NewTMLogger(w io.Writer) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTMLoggerWithColorFn">func NewTMLoggerWithColorFn(w io.Writer, colorFn func(keyvals ...interface{}) term.FgBgColor) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTracingLogger">func NewTracingLogger(next Logger) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestingLogger">func TestingLogger() Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestingLoggerWithColorFn">func TestingLoggerWithColorFn(colorFn func(keyvals ...interface{}) term.FgBgColor) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestingLoggerWithOutput">func TestingLoggerWithOutput(w io.Writer) Logger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowAll">func AllowAll() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowDebug">func AllowDebug() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowDebugWith">func AllowDebugWith(key interface{}, value interface{}) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowError">func AllowError() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowErrorWith">func AllowErrorWith(key interface{}, value interface{}) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowInfo">func AllowInfo() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowInfoWith">func AllowInfoWith(key interface{}, value interface{}) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowLevel">func AllowLevel(lvl string) (Option, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowNone">func AllowNone() Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowNoneWith">func AllowNoneWith(key interface{}, value interface{}) Option</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go">filter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go">lazy.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/logger.go">logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/nop_logger.go">nop_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/testing_logger.go">testing_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_json_logger.go">tm_json_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_logger.go">tm_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tmfmt_logger.go">tmfmt_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tracing_logger.go">tracing_logger.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewSyncWriter">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/logger.go?s=682:723#L18">NewSyncWriter</a>
+				<a class="permalink" href="index.html#NewSyncWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewSyncWriter(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a></pre>
+			<p>NewSyncWriter returns a new writer that is safe for concurrent use by
+multiple goroutines. Writes to the returned writer are passed on to w. If
+another write is already in progress, the calling goroutine blocks until
+the writer is available.
+<p>If w implements the following interface, so does the returned writer.
+<pre>interface {
+    Fd() uintptr
+}
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewTMFmtLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tmfmt_logger.go?s=879:925#L36">NewTMFmtLogger</a>
+				<a class="permalink" href="index.html#NewTMFmtLogger">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewTMFmtLogger(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../go-kit/log/index.html">kitlog</a>.<a href="../../../../go-kit/log/index.html#Logger">Logger</a></pre>
+			<p>NewTMFmtLogger returns a logger that encodes keyvals to the Writer in
+CometBFT custom format. Note complex types (structs, maps, slices)
+formatted as &quot;%+v&quot;.
+<p>Each log event produces no more than one call to w.Write.
+The passed Writer must be safe for concurrent use by multiple goroutines if
+the returned Logger will be used concurrently.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="LazyBlockHash">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=515:560#L15">LazyBlockHash</a>
+				<a class="permalink" href="index.html#LazyBlockHash">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type LazyBlockHash struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLazyBlockHash">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=789:841#L26">NewLazyBlockHash</a>
+					<a class="permalink" href="index.html#NewLazyBlockHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLazyBlockHash(block hashable) *<a href="index.html#LazyBlockHash">LazyBlockHash</a></pre>
+				<p>NewLazyBlockHash defers block Hash until the Stringer interface is invoked.
+This is particularly useful for avoiding calling Sprintf when debugging is not
+active.
+
+				
+				
+			
+
+			
+				
+				<h3 id="LazyBlockHash.String">func (*LazyBlockHash) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=877:916#L30">String</a>
+					<a class="permalink" href="index.html#LazyBlockHash.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#LazyBlockHash">LazyBlockHash</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LazySprintf">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=85:149#L1">LazySprintf</a>
+				<a class="permalink" href="index.html#LazySprintf">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type LazySprintf struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLazySprintf">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=322:390#L7">NewLazySprintf</a>
+					<a class="permalink" href="index.html#NewLazySprintf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLazySprintf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{}) *<a href="index.html#LazySprintf">LazySprintf</a></pre>
+				<p>NewLazySprintf defers fmt.Sprintf until the Stringer interface is invoked.
+This is particularly useful for avoiding calling Sprintf when debugging is not
+active.
+
+				
+				
+			
+
+			
+				
+				<h3 id="LazySprintf.String">func (*LazySprintf) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/lazy.go?s=431:468#L11">String</a>
+					<a class="permalink" href="index.html#LazySprintf.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#LazySprintf">LazySprintf</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Logger">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/logger.go?s=116:307#L1">Logger</a>
+				<a class="permalink" href="index.html#Logger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Logger is what any CometBFT library should take.
+
+			<pre>type Logger interface {
+    Debug(msg <a href="../../../../../builtin/index.html#string">string</a>, keyvals ...interface{})
+    Info(msg <a href="../../../../../builtin/index.html#string">string</a>, keyvals ...interface{})
+    Error(msg <a href="../../../../../builtin/index.html#string">string</a>, keyvals ...interface{})
+
+    With(keyvals ...interface{}) <a href="index.html#Logger">Logger</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFilter">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=702:755#L19">NewFilter</a>
+					<a class="permalink" href="index.html#NewFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFilter(next <a href="index.html#Logger">Logger</a>, options ...<a href="index.html#Option">Option</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewFilter wraps next and implements filtering. See the commentary on the
+Option functions for a detailed description of how to configure levels. If
+no options are provided, all leveled log events created with Debug, Info or
+Error helper methods are squelched.
+
+				
+				
+			
+				
+				<h3 id="NewNopLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/nop_logger.go?s=155:181#L1">NewNopLogger</a>
+					<a class="permalink" href="index.html#NewNopLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNopLogger() <a href="index.html#Logger">Logger</a></pre>
+				<p>NewNopLogger returns a logger that doesn&apos;t do anything.
+
+				
+				
+			
+				
+				<h3 id="NewTMJSONLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_json_logger.go?s=350:390#L3">NewTMJSONLogger</a>
+					<a class="permalink" href="index.html#NewTMJSONLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTMJSONLogger(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewTMJSONLogger returns a Logger that encodes keyvals to the Writer as a
+single JSON object. Each log event produces no more than one call to
+w.Write. The passed Writer must be safe for concurrent use by multiple
+goroutines if the returned Logger will be used concurrently.
+
+				
+				
+			
+				
+				<h3 id="NewTMJSONLoggerNoTS">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_json_logger.go?s=606:650#L11">NewTMJSONLoggerNoTS</a>
+					<a class="permalink" href="index.html#NewTMJSONLoggerNoTS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTMJSONLoggerNoTS(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewTMJSONLoggerNoTS is the same as NewTMJSONLogger, but without the
+timestamp.
+
+				
+				
+			
+				
+				<h3 id="NewTMLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_logger.go?s=554:590#L17">NewTMLogger</a>
+					<a class="permalink" href="index.html#NewTMLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTMLogger(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewTMLogger returns a logger that encodes msg and keyvals to the Writer
+using go-kit&apos;s log as an underlying logger and our custom formatter. Note
+that underlying logger could be swapped with something else.
+
+				
+				
+			
+				
+				<h3 id="NewTMLoggerWithColorFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tm_logger.go?s=1177:1277#L38">NewTMLoggerWithColorFn</a>
+					<a class="permalink" href="index.html#NewTMLoggerWithColorFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTMLoggerWithColorFn(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>, colorFn func(keyvals ...interface{}) <a href="../../../../go-kit/log/term/index.html">term</a>.<a href="../../../../go-kit/log/term/index.html#FgBgColor">FgBgColor</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewTMLoggerWithColorFn allows you to provide your own color function. See
+NewTMLogger for documentation.
+
+				
+				
+			
+				
+				<h3 id="NewTracingLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/tracing_logger.go?s=348:389#L6">NewTracingLogger</a>
+					<a class="permalink" href="index.html#NewTracingLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTracingLogger(next <a href="index.html#Logger">Logger</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewTracingLogger enables tracing by wrapping all errors (if they
+implement stackTracer interface) in tracedError.
+<p>All errors returned by <a href="https://github.com/pkg/errors">https://github.com/pkg/errors</a> implement stackTracer
+interface.
+<p>For debugging purposes only as it doubles the amount of allocations.
+
+				
+				
+			
+				
+				<h3 id="TestingLogger">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/testing_logger.go?s=440:467#L12">TestingLogger</a>
+					<a class="permalink" href="index.html#TestingLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TestingLogger() <a href="index.html#Logger">Logger</a></pre>
+				<p>TestingLogger returns a TMLogger which writes to STDOUT if testing being run
+with the verbose (-v) flag, NopLogger otherwise.
+<p>Note that the call to TestingLogger() must be made
+inside a test (not in the init func) because
+verbose flag only set at the time of testing.
+
+				
+				
+			
+				
+				<h3 id="TestingLoggerWithColorFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/testing_logger.go?s=1205:1294#L38">TestingLoggerWithColorFn</a>
+					<a class="permalink" href="index.html#TestingLoggerWithColorFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TestingLoggerWithColorFn(colorFn func(keyvals ...interface{}) <a href="../../../../go-kit/log/term/index.html">term</a>.<a href="../../../../go-kit/log/term/index.html#FgBgColor">FgBgColor</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>TestingLoggerWithColorFn allow you to provide your own color function. See
+TestingLogger for documentation.
+
+				
+				
+			
+				
+				<h3 id="TestingLoggerWithOutput">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/testing_logger.go?s=837:885#L22">TestingLoggerWithOutput</a>
+					<a class="permalink" href="index.html#TestingLoggerWithOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TestingLoggerWithOutput(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>TestingLoggerWOutput returns a TMLogger which writes to (w io.Writer) if testing being run
+with the verbose (-v) flag, NopLogger otherwise.
+<p>Note that the call to TestingLoggerWithOutput(w io.Writer) must be made
+inside a test (not in the init func) because
+verbose flag only set at the time of testing.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=3763:3788#L120">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option sets a parameter for the filter.
+
+			<pre>type Option func(*filter)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="AllowAll">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=4277:4299#L140">AllowAll</a>
+					<a class="permalink" href="index.html#AllowAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowAll() <a href="index.html#Option">Option</a></pre>
+				<p>AllowAll is an alias for AllowDebug.
+
+				
+				
+			
+				
+				<h3 id="AllowDebug">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=4395:4419#L145">AllowDebug</a>
+					<a class="permalink" href="index.html#AllowDebug">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowDebug() <a href="index.html#Option">Option</a></pre>
+				<p>AllowDebug allows error, info and debug level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowDebugWith">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=5014:5076#L169">AllowDebugWith</a>
+					<a class="permalink" href="index.html#AllowDebugWith">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowDebugWith(key interface{}, value interface{}) <a href="index.html#Option">Option</a></pre>
+				<p>AllowDebugWith allows error, info and debug level log events to pass for a specific key value pair.
+
+				
+				
+			
+				
+				<h3 id="AllowError">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=4666:4690#L155">AllowError</a>
+					<a class="permalink" href="index.html#AllowError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowError() <a href="index.html#Option">Option</a></pre>
+				<p>AllowError allows only error level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowErrorWith">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=5529:5591#L179">AllowErrorWith</a>
+					<a class="permalink" href="index.html#AllowErrorWith">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowErrorWith(key interface{}, value interface{}) <a href="index.html#Option">Option</a></pre>
+				<p>AllowErrorWith allows only error level log events to pass for a specific key value pair.
+
+				
+				
+			
+				
+				<h3 id="AllowInfo">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=4539:4562#L150">AllowInfo</a>
+					<a class="permalink" href="index.html#AllowInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowInfo() <a href="index.html#Option">Option</a></pre>
+				<p>AllowInfo allows error and info level log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowInfoWith">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=5280:5341#L174">AllowInfoWith</a>
+					<a class="permalink" href="index.html#AllowInfoWith">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowInfoWith(key interface{}, value interface{}) <a href="index.html#Option">Option</a></pre>
+				<p>AllowInfoWith allows error and info level log events to pass for a specific key value pair.
+
+				
+				
+			
+				
+				<h3 id="AllowLevel">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=3889:3932#L124">AllowLevel</a>
+					<a class="permalink" href="index.html#AllowLevel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowLevel(lvl <a href="../../../../../builtin/index.html#string">string</a>) (<a href="index.html#Option">Option</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AllowLevel returns an option for the given level or error if no option exist
+for such level.
+
+				
+				
+			
+				
+				<h3 id="AllowNone">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=4775:4798#L160">AllowNone</a>
+					<a class="permalink" href="index.html#AllowNone">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowNone() <a href="index.html#Option">Option</a></pre>
+				<p>AllowNone allows no leveled log events to pass.
+
+				
+				
+			
+				
+				<h3 id="AllowNoneWith">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/log/filter.go?s=5760:5821#L184">AllowNoneWith</a>
+					<a class="permalink" href="index.html#AllowNoneWith">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowNoneWith(key interface{}, value interface{}) <a href="index.html#Option">Option</a></pre>
+				<p>AllowNoneWith allows no leveled log events to pass for a specific key value pair.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

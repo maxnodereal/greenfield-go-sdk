@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>balancer - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package balancer
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/balancer"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package balancer defines APIs for load balancing in gRPC.
+All APIs in this package are experimental.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Register">func Register(b Builder)</a></dd>
+			
+				
+				<dd><a href="index.html#TransientFailureError">func TransientFailureError(e error) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Balancer">type Balancer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BuildOptions">type BuildOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Builder">type Builder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Get">func Get(name string) Builder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientConn">type ClientConn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientConnState">type ClientConnState</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ConfigParser">type ConfigParser</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ConnectivityStateEvaluator">type ConnectivityStateEvaluator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectivityStateEvaluator.CurrentState">func (cse *ConnectivityStateEvaluator) CurrentState() connectivity.State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectivityStateEvaluator.RecordTransition">func (cse *ConnectivityStateEvaluator) RecordTransition(oldState, newState connectivity.State) connectivity.State</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DoneInfo">type DoneInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ExitIdler">type ExitIdler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#NewSubConnOptions">type NewSubConnOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PickInfo">type PickInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PickResult">type PickResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Picker">type Picker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Producer">type Producer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ProducerBuilder">type ProducerBuilder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#State">type State</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubConn">type SubConn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubConnState">type SubConnState</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go">balancer.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/balancer/conn_state_evaluator.go">conn_state_evaluator.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNoSubConnAvailable indicates no SubConn is available for pick().</span>
+    <span class="comment">// gRPC will block the RPC until a new picker is available via UpdateState().</span>
+    <span id="ErrNoSubConnAvailable">ErrNoSubConnAvailable</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;no SubConn is available&#34;)
+    <span class="comment">// ErrTransientFailure indicates all SubConns are in TransientFailure.</span>
+    <span class="comment">// WaitForReady RPCs will block, non-WaitForReady RPCs will fail.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Deprecated: return an appropriate error based on the last resolution or</span>
+    <span class="comment">// connection attempt instead.  The behavior is the same for any non-gRPC</span>
+    <span class="comment">// status error.</span>
+    <span id="ErrTransientFailure">ErrTransientFailure</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;all SubConns are in TransientFailure&#34;)
+)</pre>
+			
+				<p>ErrBadResolverState may be returned by UpdateClientConnState to indicate a
+problem with the provided name resolver data.
+
+				<pre>var <span id="ErrBadResolverState">ErrBadResolverState</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;bad resolver state&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Register">func <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=1720:1744#L43">Register</a>
+				<a class="permalink" href="index.html#Register">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Register(b <a href="index.html#Builder">Builder</a>)</pre>
+			<p>Register registers the balancer builder to the balancer map. b.Name
+(lowercased) will be used as the name registered with this builder.  If the
+Builder implements ConfigParser, ParseConfig will be called when new service
+configs are received by the resolver, and the result will be provided to the
+Balancer in UpdateClientConnState.
+<p>NOTE: this function must only be called during initialization time (i.e. in
+an init() function), and is not thread-safe. If multiple Balancers are
+registered with the same name, the one registered last will take effect.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TransientFailureError">func <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=11985:12026#L287">TransientFailureError</a>
+				<a class="permalink" href="index.html#TransientFailureError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TransientFailureError(e <a href="../../../builtin/index.html#error">error</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+			<p>TransientFailureError returns e.  It exists for backward compatibility and
+will be deleted soon.
+<p>Deprecated: no longer necessary, picker errors are treated this way by
+default.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Balancer">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=13646:14434#L325">Balancer</a>
+				<a class="permalink" href="index.html#Balancer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Balancer takes input from gRPC, manages SubConns, and collects and aggregates
+the connectivity states.
+<p>It also generates and updates the Picker used by gRPC to pick SubConns for RPCs.
+<p>UpdateClientConnState, ResolverError, UpdateSubConnState, and Close are
+guaranteed to be called synchronously from the same goroutine.  There&apos;s no
+guarantee on picker.Pick, it may be called anytime.
+
+			<pre>type Balancer interface {
+    <span class="comment">// UpdateClientConnState is called by gRPC when the state of the ClientConn</span>
+    <span class="comment">// changes.  If the error returned is ErrBadResolverState, the ClientConn</span>
+    <span class="comment">// will begin calling ResolveNow on the active name resolver with</span>
+    <span class="comment">// exponential backoff until a subsequent call to UpdateClientConnState</span>
+    <span class="comment">// returns a nil error.  Any other errors are currently ignored.</span>
+    UpdateClientConnState(<a href="index.html#ClientConnState">ClientConnState</a>) <a href="../../../builtin/index.html#error">error</a>
+    <span class="comment">// ResolverError is called by gRPC when the name resolver reports an error.</span>
+    ResolverError(<a href="../../../builtin/index.html#error">error</a>)
+    <span class="comment">// UpdateSubConnState is called by gRPC when the state of a SubConn</span>
+    <span class="comment">// changes.</span>
+    UpdateSubConnState(<a href="index.html#SubConn">SubConn</a>, <a href="index.html#SubConnState">SubConnState</a>)
+    <span class="comment">// Close closes the balancer. The balancer is not required to call</span>
+    <span class="comment">// ClientConn.RemoveSubConn for its existing SubConns.</span>
+    Close()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BuildOptions">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=6821:8432#L172">BuildOptions</a>
+				<a class="permalink" href="index.html#BuildOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BuildOptions contains additional information for Build.
+
+			<pre>type BuildOptions struct {
+<span id="BuildOptions.DialCreds"></span>    <span class="comment">// DialCreds is the transport credentials to use when communicating with a</span>
+    <span class="comment">// remote load balancer server. Balancer implementations which do not</span>
+    <span class="comment">// communicate with a remote load balancer server can ignore this field.</span>
+    DialCreds <a href="../credentials/index.html">credentials</a>.<a href="../credentials/index.html#TransportCredentials">TransportCredentials</a>
+<span id="BuildOptions.CredsBundle"></span>    <span class="comment">// CredsBundle is the credentials bundle to use when communicating with a</span>
+    <span class="comment">// remote load balancer server. Balancer implementations which do not</span>
+    <span class="comment">// communicate with a remote load balancer server can ignore this field.</span>
+    CredsBundle <a href="../credentials/index.html">credentials</a>.<a href="../credentials/index.html#Bundle">Bundle</a>
+<span id="BuildOptions.Dialer"></span>    <span class="comment">// Dialer is the custom dialer to use when communicating with a remote load</span>
+    <span class="comment">// balancer server. Balancer implementations which do not communicate with a</span>
+    <span class="comment">// remote load balancer server can ignore this field.</span>
+    Dialer func(<a href="../../../context/index.html">context</a>.<a href="../../../context/index.html#Context">Context</a>, <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../net/index.html">net</a>.<a href="../../../net/index.html#Conn">Conn</a>, <a href="../../../builtin/index.html#error">error</a>)
+<span id="BuildOptions.Authority"></span>    <span class="comment">// Authority is the server name to use as part of the authentication</span>
+    <span class="comment">// handshake when communicating with a remote load balancer server. Balancer</span>
+    <span class="comment">// implementations which do not communicate with a remote load balancer</span>
+    <span class="comment">// server can ignore this field.</span>
+    Authority <a href="../../../builtin/index.html#string">string</a>
+<span id="BuildOptions.ChannelzParentID"></span>    <span class="comment">// ChannelzParentID is the parent ClientConn&#39;s channelz ID.</span>
+    ChannelzParentID *<a href="../channelz/index.html">channelz</a>.<a href="../channelz/index.html#Identifier">Identifier</a>
+<span id="BuildOptions.CustomUserAgent"></span>    <span class="comment">// CustomUserAgent is the custom user agent set on the parent ClientConn.</span>
+    <span class="comment">// The balancer should set the same custom user agent if it creates a</span>
+    <span class="comment">// ClientConn.</span>
+    CustomUserAgent <a href="../../../builtin/index.html#string">string</a>
+<span id="BuildOptions.Target"></span>    <span class="comment">// Target contains the parsed address info of the dial target. It is the</span>
+    <span class="comment">// same resolver.Target as passed to the resolver. See the documentation for</span>
+    <span class="comment">// the resolver.Target type for details about what it contains.</span>
+    Target <a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#Target">Target</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Builder">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=8465:8743#L203">Builder</a>
+				<a class="permalink" href="index.html#Builder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Builder creates a balancer.
+
+			<pre>type Builder interface {
+    <span class="comment">// Build creates a new balancer with the ClientConn.</span>
+    Build(cc <a href="index.html#ClientConn">ClientConn</a>, opts <a href="index.html#BuildOptions">BuildOptions</a>) <a href="index.html#Balancer">Balancer</a>
+    <span class="comment">// Name returns the name of balancers built by this builder.</span>
+    <span class="comment">// It will be used to pick balancers (for example in service config).</span>
+    Name() <a href="../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Get">func <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=2243:2272#L62">Get</a>
+					<a class="permalink" href="index.html#Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Get(name <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#Builder">Builder</a></pre>
+				<p>Get returns the resolver builder registered with the given name.
+Note that the compare is done in a case-insensitive fashion.
+If no builder is register with the name, nil will be returned.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientConn">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=5478:6760#L139">ClientConn</a>
+				<a class="permalink" href="index.html#ClientConn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientConn represents a gRPC ClientConn.
+<p>This interface is to be implemented by gRPC. Users should not need a
+brand new implementation of this interface. For the situations like
+testing, the new implementation should embed this interface. This allows
+gRPC to add new methods to this interface.
+
+			<pre>type ClientConn interface {
+    <span class="comment">// NewSubConn is called by balancer to create a new SubConn.</span>
+    <span class="comment">// It doesn&#39;t block and wait for the connections to be established.</span>
+    <span class="comment">// Behaviors of the SubConn can be controlled by options.</span>
+    NewSubConn([]<a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#Address">Address</a>, <a href="index.html#NewSubConnOptions">NewSubConnOptions</a>) (<a href="index.html#SubConn">SubConn</a>, <a href="../../../builtin/index.html#error">error</a>)
+    <span class="comment">// RemoveSubConn removes the SubConn from ClientConn.</span>
+    <span class="comment">// The SubConn will be shutdown.</span>
+    RemoveSubConn(<a href="index.html#SubConn">SubConn</a>)
+    <span class="comment">// UpdateAddresses updates the addresses used in the passed in SubConn.</span>
+    <span class="comment">// gRPC checks if the currently connected address is still in the new list.</span>
+    <span class="comment">// If so, the connection will be kept. Else, the connection will be</span>
+    <span class="comment">// gracefully closed, and a new connection will be created.</span>
+    <span class="comment">//</span>
+    <span class="comment">// This will trigger a state transition for the SubConn.</span>
+    UpdateAddresses(<a href="index.html#SubConn">SubConn</a>, []<a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#Address">Address</a>)
+
+    <span class="comment">// UpdateState notifies gRPC that the balancer&#39;s internal state has</span>
+    <span class="comment">// changed.</span>
+    <span class="comment">//</span>
+    <span class="comment">// gRPC will update the connectivity state of the ClientConn, and will call</span>
+    <span class="comment">// Pick on the new Picker to pick new SubConns.</span>
+    UpdateState(<a href="index.html#State">State</a>)
+
+    <span class="comment">// ResolveNow is called by balancer to notify gRPC to do a name resolving.</span>
+    ResolveNow(<a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#ResolveNowOptions">ResolveNowOptions</a>)
+
+    <span class="comment">// Target returns the dial target for this ClientConn.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Deprecated: Use the Target field in the BuildOptions instead.</span>
+    Target() <a href="../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ClientConnState">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=15475:15696#L367">ClientConnState</a>
+				<a class="permalink" href="index.html#ClientConnState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientConnState describes the state of a ClientConn relevant to the
+balancer.
+
+			<pre>type ClientConnState struct {
+<span id="ClientConnState.ResolverState"></span>    ResolverState <a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#State">State</a>
+    <span class="comment">// The parsed load balancing configuration returned by the builder&#39;s</span>
+    <span class="comment">// ParseConfig method, if implemented.</span>
+<span id="ClientConnState.BalancerConfig"></span>    BalancerConfig <a href="../serviceconfig/index.html">serviceconfig</a>.<a href="../serviceconfig/index.html#LoadBalancingConfig">LoadBalancingConfig</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConfigParser">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=8791:9140#L212">ConfigParser</a>
+				<a class="permalink" href="index.html#ConfigParser">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ConfigParser parses load balancer configs.
+
+			<pre>type ConfigParser interface {
+    <span class="comment">// ParseConfig parses the JSON load balancer config provided into an</span>
+    <span class="comment">// internal form or returns an error if the config is invalid.  For future</span>
+    <span class="comment">// compatibility reasons, unknown fields in the config should be ignored.</span>
+    ParseConfig(LoadBalancingConfigJSON <a href="../../../encoding/json/index.html">json</a>.<a href="../../../encoding/json/index.html#RawMessage">RawMessage</a>) (<a href="../serviceconfig/index.html">serviceconfig</a>.<a href="../serviceconfig/index.html#LoadBalancingConfig">LoadBalancingConfig</a>, <a href="../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConnectivityStateEvaluator">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/conn_state_evaluator.go?s=827:1153#L17">ConnectivityStateEvaluator</a>
+				<a class="permalink" href="index.html#ConnectivityStateEvaluator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ConnectivityStateEvaluator takes the connectivity states of multiple SubConns
+and returns one aggregated connectivity state.
+<p>It&apos;s not thread safe.
+
+			<pre>type ConnectivityStateEvaluator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ConnectivityStateEvaluator.CurrentState">func (*ConnectivityStateEvaluator) <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/conn_state_evaluator.go?s=2347:2419#L52">CurrentState</a>
+					<a class="permalink" href="index.html#ConnectivityStateEvaluator.CurrentState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cse *<a href="index.html#ConnectivityStateEvaluator">ConnectivityStateEvaluator</a>) CurrentState() <a href="../connectivity/index.html">connectivity</a>.<a href="../connectivity/index.html#State">State</a></pre>
+				<p>CurrentState returns the current aggregate conn state by evaluating the counters
+
+				
+				
+				
+			
+				
+				<h3 id="ConnectivityStateEvaluator.RecordTransition">func (*ConnectivityStateEvaluator) <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/conn_state_evaluator.go?s=1682:1795#L33">RecordTransition</a>
+					<a class="permalink" href="index.html#ConnectivityStateEvaluator.RecordTransition">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cse *<a href="index.html#ConnectivityStateEvaluator">ConnectivityStateEvaluator</a>) RecordTransition(oldState, newState <a href="../connectivity/index.html">connectivity</a>.<a href="../connectivity/index.html#State">State</a>) <a href="../connectivity/index.html">connectivity</a>.<a href="../connectivity/index.html#State">State</a></pre>
+				<p>RecordTransition records state change happening in subConn and based on that
+it evaluates what aggregated state should be.
+<ul>
+<li>If at least one SubConn in Ready, the aggregated state is Ready;
+<li>Else if at least one SubConn in Connecting, the aggregated state is Connecting;
+<li>Else if at least one SubConn is Idle, the aggregated state is Idle;
+<li>Else if at least one SubConn is TransientFailure (or there are no SubConns), the aggregated state is Transient Failure.
+</ul>
+<p>Shutdown is not considered.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DoneInfo">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=9572:10126#L230">DoneInfo</a>
+				<a class="permalink" href="index.html#DoneInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DoneInfo contains additional information for done.
+
+			<pre>type DoneInfo struct {
+<span id="DoneInfo.Err"></span>    <span class="comment">// Err is the rpc error the RPC finished with. It could be nil.</span>
+    Err <a href="../../../builtin/index.html#error">error</a>
+<span id="DoneInfo.Trailer"></span>    <span class="comment">// Trailer contains the metadata from the RPC&#39;s trailer, if present.</span>
+    Trailer <a href="../metadata/index.html">metadata</a>.<a href="../metadata/index.html#MD">MD</a>
+<span id="DoneInfo.BytesSent"></span>    <span class="comment">// BytesSent indicates if any bytes have been sent to the server.</span>
+    BytesSent <a href="../../../builtin/index.html#bool">bool</a>
+<span id="DoneInfo.BytesReceived"></span>    <span class="comment">// BytesReceived indicates if any byte has been received from the server.</span>
+    BytesReceived <a href="../../../builtin/index.html#bool">bool</a>
+<span id="DoneInfo.ServerLoad"></span>    <span class="comment">// ServerLoad is the load received from server. It&#39;s usually sent as part of</span>
+    <span class="comment">// trailing metadata.</span>
+    <span class="comment">//</span>
+    <span class="comment">// The only supported type now is *orca_v3.LoadReport.</span>
+    ServerLoad interface{}
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ExitIdler">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=14782:15042#L349">ExitIdler</a>
+				<a class="permalink" href="index.html#ExitIdler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ExitIdler is an optional interface for balancers to implement.  If
+implemented, ExitIdle will be called when ClientConn.Connect is called, if
+the ClientConn is idle.  If unimplemented, ClientConn.Connect will cause
+all SubConns to connect.
+<p>Notice: it will be required for all balancers to implement this in a future
+release.
+
+			<pre>type ExitIdler interface {
+    <span class="comment">// ExitIdle instructs the LB policy to reconnect to backends / exit the</span>
+    <span class="comment">// IDLE state, if appropriate and possible.  Note that SubConns that enter</span>
+    <span class="comment">// the IDLE state will not reconnect until SubConn.Connect is called.</span>
+    ExitIdle()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="NewSubConnOptions">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=4363:4835#L111">NewSubConnOptions</a>
+				<a class="permalink" href="index.html#NewSubConnOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NewSubConnOptions contains options to create new SubConn.
+
+			<pre>type NewSubConnOptions struct {
+<span id="NewSubConnOptions.CredsBundle"></span>    <span class="comment">// CredsBundle is the credentials bundle that will be used in the created</span>
+    <span class="comment">// SubConn. If it&#39;s nil, the original creds from grpc DialOptions will be</span>
+    <span class="comment">// used.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Deprecated: Use the Attributes field in resolver.Address to pass</span>
+    <span class="comment">// arbitrary data to the credential handshaker.</span>
+    CredsBundle <a href="../credentials/index.html">credentials</a>.<a href="../credentials/index.html#Bundle">Bundle</a>
+<span id="NewSubConnOptions.HealthCheckEnabled"></span>    <span class="comment">// HealthCheckEnabled indicates whether health check service should be</span>
+    <span class="comment">// enabled on this SubConn</span>
+    HealthCheckEnabled <a href="../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PickInfo">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=9210:9516#L220">PickInfo</a>
+				<a class="permalink" href="index.html#PickInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PickInfo contains additional information for the Pick operation.
+
+			<pre>type PickInfo struct {
+<span id="PickInfo.FullMethodName"></span>    <span class="comment">// FullMethodName is the method name that NewClientStream() is called</span>
+    <span class="comment">// with. The canonical format is /service/Method.</span>
+    FullMethodName <a href="../../../builtin/index.html#string">string</a>
+<span id="PickInfo.Ctx"></span>    <span class="comment">// Ctx is the RPC&#39;s context, and may contain relevant RPC-level information</span>
+    <span class="comment">// like the outgoing header metadata.</span>
+    Ctx <a href="../../../context/index.html">context</a>.<a href="../../../context/index.html#Context">Context</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PickResult">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=10815:11791#L260">PickResult</a>
+				<a class="permalink" href="index.html#PickResult">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PickResult contains information related to a connection chosen for an RPC.
+
+			<pre>type PickResult struct {
+<span id="PickResult.SubConn"></span>    <span class="comment">// SubConn is the connection to use for this pick, if its state is Ready.</span>
+    <span class="comment">// If the state is not Ready, gRPC will block the RPC until a new Picker is</span>
+    <span class="comment">// provided by the balancer (using ClientConn.UpdateState).  The SubConn</span>
+    <span class="comment">// must be one returned by ClientConn.NewSubConn.</span>
+    SubConn <a href="index.html#SubConn">SubConn</a>
+
+<span id="PickResult.Done"></span>    <span class="comment">// Done is called when the RPC is completed.  If the SubConn is not ready,</span>
+    <span class="comment">// this will be called with a nil parameter.  If the SubConn is not a valid</span>
+    <span class="comment">// type, Done may not be called.  May be nil if the balancer does not wish</span>
+    <span class="comment">// to be notified when the RPC completes.</span>
+    Done func(<a href="index.html#DoneInfo">DoneInfo</a>)
+
+    <span class="comment">// Metadata provides a way for LB policies to inject arbitrary per-call</span>
+    <span class="comment">// metadata. Any metadata returned here will be merged with existing</span>
+    <span class="comment">// metadata added by the client application.</span>
+    <span class="comment">//</span>
+    <span class="comment">// LB policies with child policies are responsible for propagating metadata</span>
+    <span class="comment">// injected by their children to the ClientConn, as part of Pick().</span>
+<span id="PickResult.Metatada"></span>    Metatada <a href="../metadata/index.html">metadata</a>.<a href="../metadata/index.html#MD">MD</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Picker">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=12289:13237#L294">Picker</a>
+				<a class="permalink" href="index.html#Picker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Picker is used by gRPC to pick a SubConn to send an RPC.
+Balancer is expected to generate a new picker from its snapshot every time its
+internal state has changed.
+<p>The pickers used by gRPC can be updated by ClientConn.UpdateState().
+
+			<pre>type Picker interface {
+    <span class="comment">// Pick returns the connection to use for this RPC and related information.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Pick should not block.  If the balancer needs to do I/O or any blocking</span>
+    <span class="comment">// or time-consuming work to service this call, it should return</span>
+    <span class="comment">// ErrNoSubConnAvailable, and the Pick call will be repeated by gRPC when</span>
+    <span class="comment">// the Picker is updated (using ClientConn.UpdateState).</span>
+    <span class="comment">//</span>
+    <span class="comment">// If an error is returned:</span>
+    <span class="comment">//</span>
+    <span class="comment">// - If the error is ErrNoSubConnAvailable, gRPC will block until a new</span>
+    <span class="comment">//   Picker is provided by the balancer (using ClientConn.UpdateState).</span>
+    <span class="comment">//</span>
+    <span class="comment">// - If the error is a status error (implemented by the grpc/status</span>
+    <span class="comment">//   package), gRPC will terminate the RPC with the code and message</span>
+    <span class="comment">//   provided.</span>
+    <span class="comment">//</span>
+    <span class="comment">// - For all other errors, wait for ready RPCs will wait, but non-wait for</span>
+    <span class="comment">//   ready RPCs will be terminated with this error&#39;s Error() string and</span>
+    <span class="comment">//   status code Unavailable.</span>
+    Pick(info <a href="index.html#PickInfo">PickInfo</a>) (<a href="index.html#PickResult">PickResult</a>, <a href="../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Producer">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=16713:16740#L393">Producer</a>
+				<a class="permalink" href="index.html#Producer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Producer is a type shared among potentially many consumers.  It is
+associated with a SubConn, and an implementation will typically contain
+other methods to provide additional functionality, e.g. configuration or
+subscription registration.
+
+			<pre>type Producer interface {
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ProducerBuilder">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=16009:16458#L380">ProducerBuilder</a>
+				<a class="permalink" href="index.html#ProducerBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A ProducerBuilder is a simple constructor for a Producer.  It is used by the
+SubConn to create producers when needed.
+
+			<pre>type ProducerBuilder interface {
+    <span class="comment">// Build creates a Producer.  The first parameter is always a</span>
+    <span class="comment">// grpc.ClientConnInterface (a type to allow creating RPCs/streams on the</span>
+    <span class="comment">// associated SubConn), but is declared as interface{} to avoid a</span>
+    <span class="comment">// dependency cycle.  Should also return a close function that will be</span>
+    <span class="comment">// called when all references to the Producer have been given up.</span>
+    Build(grpcClientConnInterface interface{}) (p <a href="index.html#Producer">Producer</a>, close func())
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="State">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=4909:5164#L125">State</a>
+				<a class="permalink" href="index.html#State">&#xb6;</a>
+				
+				
+			</h2>
+			<p>State contains the balancer&apos;s state relevant to the gRPC ClientConn.
+
+			<pre>type State struct {
+    <span class="comment">// State contains the connectivity state of the balancer, which is used to</span>
+    <span class="comment">// determine the state of the ClientConn.</span>
+<span id="State.ConnectivityState"></span>    ConnectivityState <a href="../connectivity/index.html">connectivity</a>.<a href="../connectivity/index.html#State">State</a>
+<span id="State.Picker"></span>    <span class="comment">// Picker is used to choose connections (SubConns) for RPCs.</span>
+    Picker <a href="index.html#Picker">Picker</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SubConn">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=3350:4300#L89">SubConn</a>
+				<a class="permalink" href="index.html#SubConn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A SubConn represents a single connection to a gRPC backend service.
+<p>Each SubConn contains a list of addresses.
+<p>All SubConns start in IDLE, and will not try to connect. To trigger the
+connecting, Balancers must call Connect.  If a connection re-enters IDLE,
+Balancers must call Connect again to trigger a new connection attempt.
+<p>gRPC will try to connect to the addresses in sequence, and stop trying the
+remainder once the first connection is successful. If an attempt to connect
+to all addresses encounters an error, the SubConn will enter
+TRANSIENT_FAILURE for a backoff period, and then transition to IDLE.
+<p>Once established, if a connection is lost, the SubConn will transition
+directly to IDLE.
+<p>This interface is to be implemented by gRPC. Users should not need their own
+implementation of this interface. For situations like testing, any
+implementations should embed this interface. This allows gRPC to add new
+methods to this interface.
+
+			<pre>type SubConn interface {
+    <span class="comment">// UpdateAddresses updates the addresses used in this SubConn.</span>
+    <span class="comment">// gRPC checks if currently-connected address is still in the new list.</span>
+    <span class="comment">// If it&#39;s in the list, the connection will be kept.</span>
+    <span class="comment">// If it&#39;s not in the list, the connection will gracefully closed, and</span>
+    <span class="comment">// a new connection will be created.</span>
+    <span class="comment">//</span>
+    <span class="comment">// This will trigger a state transition for the SubConn.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Deprecated: This method is now part of the ClientConn interface and will</span>
+    <span class="comment">// eventually be removed from here.</span>
+    UpdateAddresses([]<a href="../resolver/index.html">resolver</a>.<a href="../resolver/index.html#Address">Address</a>)
+    <span class="comment">// Connect starts the connecting for this SubConn.</span>
+    Connect()
+    <span class="comment">// GetOrBuildProducer returns a reference to the existing Producer for this</span>
+    <span class="comment">// ProducerBuilder in this SubConn, or, if one does not currently exist,</span>
+    <span class="comment">// creates a new one and returns it.  Returns a close function which must</span>
+    <span class="comment">// be called when the Producer is no longer needed.</span>
+    GetOrBuildProducer(<a href="index.html#ProducerBuilder">ProducerBuilder</a>) (p <a href="index.html#Producer">Producer</a>, close func())
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SubConnState">type <a href="http://localhost:6060/src/google.golang.org/grpc/balancer/balancer.go?s=15094:15389#L357">SubConnState</a>
+				<a class="permalink" href="index.html#SubConnState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubConnState describes the state of a SubConn.
+
+			<pre>type SubConnState struct {
+<span id="SubConnState.ConnectivityState"></span>    <span class="comment">// ConnectivityState is the connectivity state of the SubConn.</span>
+    ConnectivityState <a href="../connectivity/index.html">connectivity</a>.<a href="../connectivity/index.html#State">State</a>
+<span id="SubConnState.ConnectionError"></span>    <span class="comment">// ConnectionError is set if the ConnectivityState is TransientFailure,</span>
+    <span class="comment">// describing the reason the SubConn failed.  Otherwise, it is nil.</span>
+    ConnectionError <a href="../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="base/index.html">base</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package base defines a balancer base that can be used to build balancers with different picking algorithms.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="grpclb/index.html">grpclb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package grpclb defines a grpclb balancer.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="grpclb/grpc_lb_v1/index.html">grpc_lb_v1</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="grpclb/state/index.html">state</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package state declares grpclb types to be set by resolvers wishing to pass information to grpclb via resolver.State Attributes.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="rls/index.html">rls</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package rls implements the RLS LB policy.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="roundrobin/index.html">roundrobin</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package roundrobin defines a roundrobin balancer.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="weightedroundrobin/index.html">weightedroundrobin</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package weightedroundrobin defines a weighted roundrobin balancer.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="weightedtarget/index.html">weightedtarget</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package weightedtarget implements the weighted_target balancer.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="weightedtarget/weightedaggregator/index.html">weightedaggregator</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package weightedaggregator implements state aggregator for weighted_target balancer.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

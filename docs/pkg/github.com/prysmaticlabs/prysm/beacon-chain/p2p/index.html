@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>p2p - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package p2p
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/p2p"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package p2p implements the Ethereum consensus networking specification.
+<p>Canonical spec reference: <a href="https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md">https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md</a>
+<p>Prysm specific implementation design docs
+<ul>
+<li>Networking Design Doc: <a href="https://docs.google.com/document/d/1VyhobQRkEjEkEPxmmdWvaHfKWn0j6dEae_wLZlrFtfU/view">https://docs.google.com/document/d/1VyhobQRkEjEkEPxmmdWvaHfKWn0j6dEae_wLZlrFtfU/view</a>
+</ul>
+<p>This package is heavily utilizes the libp2p go implementation by Protocol Labs.
+<p>Package p2p defines the network protocol implementation for Ethereum consensus
+used by beacon nodes, including peer discovery using discv5, gossip-sub
+using libp2p, and handing peer lifecycles + handshakes.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AllTopics">func AllTopics() []string</a></dd>
+			
+				
+				<dd><a href="index.html#ExtractGossipDigest">func ExtractGossipDigest(topic string) ([4]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GossipTopicMappings">func GossipTopicMappings(topic string, epoch types.Epoch) proto.Message</a></dd>
+			
+				
+				<dd><a href="index.html#MakePeer">func MakePeer(addr string) (*peer.AddrInfo, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MsgID">func MsgID(genesisValidatorsRoot []byte, pmsg *pubsub_pb.Message) string</a></dd>
+			
+				
+				<dd><a href="index.html#SerializeENR">func SerializeENR(record *enr.Record) (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#TopicDeconstructor">func TopicDeconstructor(topic string) (string, string, string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#TopicFromMessage">func TopicFromMessage(msg string, epoch types.Epoch) (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyTopicMapping">func VerifyTopicMapping(topic string, msg interface{}) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Broadcaster">type Broadcaster</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ConnectionHandler">type ConnectionHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodingProvider">type EncodingProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Listener">type Listener</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MetadataProvider">type MetadataProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#P2P">type P2P</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PeerManager">type PeerManager</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PeersProvider">type PeersProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PubSubProvider">type PubSubProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PubSubTopicUser">type PubSubTopicUser</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RPCTopic">type RPCTopic</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RPCTopic.MessageType">func (r RPCTopic) MessageType() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RPCTopic.ProtocolPrefix">func (r RPCTopic) ProtocolPrefix() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RPCTopic.Version">func (r RPCTopic) Version() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Sender">type Sender</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewService">func NewService(ctx context.Context, cfg *Config) (*Service, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.AddConnectionHandler">func (s *Service) AddConnectionHandler(reqFunc, goodByeFunc func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.AddDisconnectionHandler">func (s *Service) AddDisconnectionHandler(handler func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.AddPingMethod">func (s *Service) AddPingMethod(reqFunc func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Broadcast">func (s *Service) Broadcast(ctx context.Context, msg proto.Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BroadcastAttestation">func (s *Service) BroadcastAttestation(ctx context.Context, subnet uint64, att *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BroadcastSyncCommitteeMessage">func (s *Service) BroadcastSyncCommitteeMessage(ctx context.Context, subnet uint64, sMsg *ethpb.SyncCommitteeMessage) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.CanSubscribe">func (s *Service) CanSubscribe(topic string) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Connect">func (s *Service) Connect(pi peer.AddrInfo) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Disconnect">func (s *Service) Disconnect(pid peer.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.DiscoveryAddresses">func (s *Service) DiscoveryAddresses() ([]multiaddr.Multiaddr, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ENR">func (s *Service) ENR() *enr.Record</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Encoding">func (_ *Service) Encoding() encoder.NetworkEncoding</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.FilterIncomingSubscriptions">func (s *Service) FilterIncomingSubscriptions(_ peer.ID, subs []*pubsubpb.RPC_SubOpts) ([]*pubsubpb.RPC_SubOpts, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.FindPeersWithSubnet">func (s *Service) FindPeersWithSubnet(ctx context.Context, topic string, subIndex, threshold uint64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Host">func (s *Service) Host() host.Host</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InfoHandler">func (s *Service) InfoHandler(w http.ResponseWriter, _ *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InterceptAccept">func (s *Service) InterceptAccept(n network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InterceptAddrDial">func (s *Service) InterceptAddrDial(pid peer.ID, m multiaddr.Multiaddr) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InterceptPeerDial">func (_ *Service) InterceptPeerDial(_ peer.ID) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InterceptSecured">func (_ *Service) InterceptSecured(_ network.Direction, _ peer.ID, _ network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.InterceptUpgraded">func (_ *Service) InterceptUpgraded(_ network.Conn) (allow bool, reason control.DisconnectReason)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.JoinTopic">func (s *Service) JoinTopic(topic string, opts ...pubsub.TopicOpt) (*pubsub.Topic, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.LeaveTopic">func (s *Service) LeaveTopic(topic string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Metadata">func (s *Service) Metadata() metadata.Metadata</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.MetadataSeq">func (s *Service) MetadataSeq() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.PeerID">func (s *Service) PeerID() peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Peers">func (s *Service) Peers() *peers.Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.PubSub">func (s *Service) PubSub() *pubsub.PubSub</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.PublishToTopic">func (s *Service) PublishToTopic(ctx context.Context, topic string, data []byte, opts ...pubsub.PubOpt) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.RefreshENR">func (s *Service) RefreshENR()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Send">func (s *Service) Send(ctx context.Context, message interface{}, baseTopic string, pid peer.ID) (network.Stream, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SetStreamHandler">func (s *Service) SetStreamHandler(topic string, handler network.StreamHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Start">func (s *Service) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Started">func (s *Service) Started() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Status">func (s *Service) Status() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Stop">func (s *Service) Stop() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SubscribeToTopic">func (s *Service) SubscribeToTopic(topic string, opts ...pubsub.SubOpt) (*pubsub.Subscription, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SetStreamHandler">type SetStreamHandler</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/addr_factory.go">addr_factory.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/broadcaster.go">broadcaster.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/config.go">config.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go">connection_gater.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/dial_relay_node.go">dial_relay_node.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/discovery.go">discovery.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/fork.go">fork.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/fork_watcher.go">fork_watcher.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/gossip_scoring_params.go">gossip_scoring_params.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/gossip_topic_mappings.go">gossip_topic_mappings.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/handshake.go">handshake.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/info.go">info.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go">interfaces.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/message_id.go">message_id.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/monitoring.go">monitoring.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/options.go">options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go">pubsub.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub_filter.go">pubsub_filter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go">rpc_topic_mappings.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/sender.go">sender.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go">service.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/subnets.go">subnets.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/topics.go">topics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/utils.go">utils.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/watch_peers.go">watch_peers.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// V1 RPC Topics</span>
+    <span class="comment">// RPCStatusTopicV1 defines the v1 topic for the status rpc method.</span>
+    <span id="RPCStatusTopicV1">RPCStatusTopicV1</span> = protocolPrefix + <a href="index.html#StatusMessageName">StatusMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+    <span class="comment">// RPCGoodByeTopicV1 defines the v1 topic for the goodbye rpc method.</span>
+    <span id="RPCGoodByeTopicV1">RPCGoodByeTopicV1</span> = protocolPrefix + <a href="index.html#GoodbyeMessageName">GoodbyeMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+    <span class="comment">// RPCBlocksByRangeTopicV1 defines v1 the topic for the blocks by range rpc method.</span>
+    <span id="RPCBlocksByRangeTopicV1">RPCBlocksByRangeTopicV1</span> = protocolPrefix + <a href="index.html#BeaconBlocksByRangeMessageName">BeaconBlocksByRangeMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+    <span class="comment">// RPCBlocksByRootTopicV1 defines the v1 topic for the blocks by root rpc method.</span>
+    <span id="RPCBlocksByRootTopicV1">RPCBlocksByRootTopicV1</span> = protocolPrefix + <a href="index.html#BeaconBlocksByRootsMessageName">BeaconBlocksByRootsMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+    <span class="comment">// RPCPingTopicV1 defines the v1 topic for the ping rpc method.</span>
+    <span id="RPCPingTopicV1">RPCPingTopicV1</span> = protocolPrefix + <a href="index.html#PingMessageName">PingMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+    <span class="comment">// RPCMetaDataTopicV1 defines the v1 topic for the metadata rpc method.</span>
+    <span id="RPCMetaDataTopicV1">RPCMetaDataTopicV1</span> = protocolPrefix + <a href="index.html#MetadataMessageName">MetadataMessageName</a> + <a href="index.html#SchemaVersionV1">SchemaVersionV1</a>
+
+    <span class="comment">// V2 RPC Topics</span>
+    <span class="comment">// RPCBlocksByRangeTopicV2 defines v2 the topic for the blocks by range rpc method.</span>
+    <span id="RPCBlocksByRangeTopicV2">RPCBlocksByRangeTopicV2</span> = protocolPrefix + <a href="index.html#BeaconBlocksByRangeMessageName">BeaconBlocksByRangeMessageName</a> + <a href="index.html#SchemaVersionV2">SchemaVersionV2</a>
+    <span class="comment">// RPCBlocksByRootTopicV2 defines the v2 topic for the blocks by root rpc method.</span>
+    <span id="RPCBlocksByRootTopicV2">RPCBlocksByRootTopicV2</span> = protocolPrefix + <a href="index.html#BeaconBlocksByRootsMessageName">BeaconBlocksByRootsMessageName</a> + <a href="index.html#SchemaVersionV2">SchemaVersionV2</a>
+    <span class="comment">// RPCMetaDataTopicV2 defines the v2 topic for the metadata rpc method.</span>
+    <span id="RPCMetaDataTopicV2">RPCMetaDataTopicV2</span> = protocolPrefix + <a href="index.html#MetadataMessageName">MetadataMessageName</a> + <a href="index.html#SchemaVersionV2">SchemaVersionV2</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// GossipProtocolAndDigest represents the protocol and fork digest prefix in a gossip topic.</span>
+    <span id="GossipProtocolAndDigest">GossipProtocolAndDigest</span> = &#34;/eth2/%x/&#34;
+
+    <span class="comment">// Message Types</span>
+    <span class="comment">//</span>
+    <span class="comment">// GossipAttestationMessage is the name for the attestation message type. It is</span>
+    <span class="comment">// specially extracted so as to determine the correct message type from an attestation</span>
+    <span class="comment">// subnet.</span>
+    <span id="GossipAttestationMessage">GossipAttestationMessage</span> = &#34;beacon_attestation&#34;
+    <span class="comment">// GossipSyncCommitteeMessage is the name for the sync committee message type. It is</span>
+    <span class="comment">// specially extracted so as to determine the correct message type from a sync committee</span>
+    <span class="comment">// subnet.</span>
+    <span id="GossipSyncCommitteeMessage">GossipSyncCommitteeMessage</span> = &#34;sync_committee&#34;
+    <span class="comment">// GossipBlockMessage is the name for the block message type.</span>
+    <span id="GossipBlockMessage">GossipBlockMessage</span> = &#34;beacon_block&#34;
+    <span class="comment">// GossipExitMessage is the name for the voluntary exit message type.</span>
+    <span id="GossipExitMessage">GossipExitMessage</span> = &#34;voluntary_exit&#34;
+    <span class="comment">// GossipProposerSlashingMessage is the name for the proposer slashing message type.</span>
+    <span id="GossipProposerSlashingMessage">GossipProposerSlashingMessage</span> = &#34;proposer_slashing&#34;
+    <span class="comment">// GossipAttesterSlashingMessage is the name for the attester slashing message type.</span>
+    <span id="GossipAttesterSlashingMessage">GossipAttesterSlashingMessage</span> = &#34;attester_slashing&#34;
+    <span class="comment">// GossipAggregateAndProofMessage is the name for the attestation aggregate and proof message type.</span>
+    <span id="GossipAggregateAndProofMessage">GossipAggregateAndProofMessage</span> = &#34;beacon_aggregate_and_proof&#34;
+    <span class="comment">// GossipContributionAndProofMessage is the name for the sync contribution and proof message type.</span>
+    <span id="GossipContributionAndProofMessage">GossipContributionAndProofMessage</span> = &#34;sync_committee_contribution_and_proof&#34;
+
+    <span class="comment">// Topic Formats</span>
+    <span class="comment">//</span>
+    <span class="comment">// AttestationSubnetTopicFormat is the topic format for the attestation subnet.</span>
+    <span id="AttestationSubnetTopicFormat">AttestationSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipAttestationMessage">GossipAttestationMessage</a> + &#34;_%d&#34;
+    <span class="comment">// SyncCommitteeSubnetTopicFormat is the topic format for the sync committee subnet.</span>
+    <span id="SyncCommitteeSubnetTopicFormat">SyncCommitteeSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipSyncCommitteeMessage">GossipSyncCommitteeMessage</a> + &#34;_%d&#34;
+    <span class="comment">// BlockSubnetTopicFormat is the topic format for the block subnet.</span>
+    <span id="BlockSubnetTopicFormat">BlockSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipBlockMessage">GossipBlockMessage</a>
+    <span class="comment">// ExitSubnetTopicFormat is the topic format for the voluntary exit subnet.</span>
+    <span id="ExitSubnetTopicFormat">ExitSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipExitMessage">GossipExitMessage</a>
+    <span class="comment">// ProposerSlashingSubnetTopicFormat is the topic format for the proposer slashing subnet.</span>
+    <span id="ProposerSlashingSubnetTopicFormat">ProposerSlashingSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipProposerSlashingMessage">GossipProposerSlashingMessage</a>
+    <span class="comment">// AttesterSlashingSubnetTopicFormat is the topic format for the attester slashing subnet.</span>
+    <span id="AttesterSlashingSubnetTopicFormat">AttesterSlashingSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipAttesterSlashingMessage">GossipAttesterSlashingMessage</a>
+    <span class="comment">// AggregateAndProofSubnetTopicFormat is the topic format for the aggregate and proof subnet.</span>
+    <span id="AggregateAndProofSubnetTopicFormat">AggregateAndProofSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipAggregateAndProofMessage">GossipAggregateAndProofMessage</a>
+    <span class="comment">// SyncContributionAndProofSubnetTopicFormat is the topic format for the sync aggregate and proof subnet.</span>
+    <span id="SyncContributionAndProofSubnetTopicFormat">SyncContributionAndProofSubnetTopicFormat</span> = <a href="index.html#GossipProtocolAndDigest">GossipProtocolAndDigest</a> + <a href="index.html#GossipContributionAndProofMessage">GossipContributionAndProofMessage</a>
+)</pre>
+			
+				<p>BeaconBlocksByRangeMessageName specifies the name for the beacon blocks by range message topic.
+
+				<pre>const <span id="BeaconBlocksByRangeMessageName">BeaconBlocksByRangeMessageName</span> = &#34;/beacon_blocks_by_range&#34;</pre>
+			
+				<p>BeaconBlocksByRootsMessageName specifies the name for the beacon blocks by root message topic.
+
+				<pre>const <span id="BeaconBlocksByRootsMessageName">BeaconBlocksByRootsMessageName</span> = &#34;/beacon_blocks_by_root&#34;</pre>
+			
+				<p>GoodbyeMessageName specifies the name for the goodbye message topic.
+
+				<pre>const <span id="GoodbyeMessageName">GoodbyeMessageName</span> = &#34;/goodbye&#34;</pre>
+			
+				<p>MetadataMessageName specifies the name for the metadata message topic.
+
+				<pre>const <span id="MetadataMessageName">MetadataMessageName</span> = &#34;/metadata&#34;</pre>
+			
+				<p>PingMessageName Specifies the name for the ping message topic.
+
+				<pre>const <span id="PingMessageName">PingMessageName</span> = &#34;/ping&#34;</pre>
+			
+				<p>SchemaVersionV1 specifies the schema version for our rpc protocol ID.
+
+				<pre>const <span id="SchemaVersionV1">SchemaVersionV1</span> = &#34;/1&#34;</pre>
+			
+				<p>SchemaVersionV2 specifies the next schema version for our rpc protocol ID.
+
+				<pre>const <span id="SchemaVersionV2">SchemaVersionV2</span> = &#34;/2&#34;</pre>
+			
+				<p>StatusMessageName specifies the name for the status message topic.
+
+				<pre>const <span id="StatusMessageName">StatusMessageName</span> = &#34;/status&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrMessageNotMapped occurs on a Broadcast attempt when a message has not been defined in the
+GossipTypeMapping.
+
+				<pre>var <span id="ErrMessageNotMapped">ErrMessageNotMapped</span> = <a href="../../../../pkg/errors/index.html">errors</a>.<a href="../../../../pkg/errors/index.html#New">New</a>(&#34;message type is not mapped to a PubSub topic&#34;)</pre>
+			
+				<p>GossipTypeMapping is the inverse of GossipTopicMappings so that an arbitrary protobuf message
+can be mapped to a protocol ID string.
+
+				<pre>var <span id="GossipTypeMapping">GossipTypeMapping</span> = <a href="../../../../../builtin/index.html#make">make</a>(map[<a href="../../../../../reflect/index.html">reflect</a>.<a href="../../../../../reflect/index.html#Type">Type</a>]<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#len">len</a>(gossipTopicMappings))</pre>
+			
+				<p>RPCTopicMappings map the base message type to the rpc request.
+
+				<pre>var <span id="RPCTopicMappings">RPCTopicMappings</span> = map[<a href="../../../../../builtin/index.html#string">string</a>]interface{}{
+
+    <a href="index.html#RPCStatusTopicV1">RPCStatusTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="../../proto/prysm/v1alpha1/index.html">pb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Status">Status</a>),
+
+    <a href="index.html#RPCGoodByeTopicV1">RPCGoodByeTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#SSZUint64">SSZUint64</a>),
+
+    <a href="index.html#RPCBlocksByRangeTopicV1">RPCBlocksByRangeTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="../../proto/prysm/v1alpha1/index.html">pb</a>.<a href="../../proto/prysm/v1alpha1/index.html#BeaconBlocksByRangeRequest">BeaconBlocksByRangeRequest</a>),
+    <a href="index.html#RPCBlocksByRangeTopicV2">RPCBlocksByRangeTopicV2</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="../../proto/prysm/v1alpha1/index.html">pb</a>.<a href="../../proto/prysm/v1alpha1/index.html#BeaconBlocksByRangeRequest">BeaconBlocksByRangeRequest</a>),
+
+    <a href="index.html#RPCBlocksByRootTopicV1">RPCBlocksByRootTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="types/index.html">p2ptypes</a>.<a href="types/index.html#BeaconBlockByRootsReq">BeaconBlockByRootsReq</a>),
+    <a href="index.html#RPCBlocksByRootTopicV2">RPCBlocksByRootTopicV2</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="types/index.html">p2ptypes</a>.<a href="types/index.html#BeaconBlockByRootsReq">BeaconBlockByRootsReq</a>),
+
+    <a href="index.html#RPCPingTopicV1">RPCPingTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#SSZUint64">SSZUint64</a>),
+
+    <a href="index.html#RPCMetaDataTopicV1">RPCMetaDataTopicV1</a>: <a href="../../../../../builtin/index.html#new">new</a>(interface{}),
+    <a href="index.html#RPCMetaDataTopicV2">RPCMetaDataTopicV2</a>: <a href="../../../../../builtin/index.html#new">new</a>(interface{}),
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="AllTopics">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/gossip_topic_mappings.go?s=1494:1519#L31">AllTopics</a>
+				<a class="permalink" href="index.html#AllTopics">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AllTopics() []<a href="../../../../../builtin/index.html#string">string</a></pre>
+			<p>AllTopics returns all topics stored in our
+gossip mapping.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExtractGossipDigest">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go?s=5692:5747#L166">ExtractGossipDigest</a>
+				<a class="permalink" href="index.html#ExtractGossipDigest">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExtractGossipDigest(topic <a href="../../../../../builtin/index.html#string">string</a>) ([4]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ExtractGossipDigest extracts the relevant fork digest from the gossip topic.
+Topics are in the form of /eth2/{fork-digest}/{topic} and this method extracts the
+fork digest from the topic string to a 4 byte array.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GossipTopicMappings">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/gossip_topic_mappings.go?s=1072:1143#L17">GossipTopicMappings</a>
+				<a class="permalink" href="index.html#GossipTopicMappings">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GossipTopicMappings(topic <a href="../../../../../builtin/index.html#string">string</a>, epoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) <a href="../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a></pre>
+			<p>GossipTopicMappings is a function to return the assigned data type
+versioned by epoch.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakePeer">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/dial_relay_node.go?s=183:233#L2">MakePeer</a>
+				<a class="permalink" href="index.html#MakePeer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakePeer(addr <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#AddrInfo">AddrInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MakePeer from multiaddress string.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MsgID">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/message_id.go?s=1147:1219#L14">MsgID</a>
+				<a class="permalink" href="index.html#MsgID">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MsgID(genesisValidatorsRoot []<a href="../../../../../builtin/index.html#byte">byte</a>, pmsg *<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/">pubsub_pb</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/#Message">Message</a>) <a href="../../../../../builtin/index.html#string">string</a></pre>
+			<p>MsgID is a content addressable ID function.
+<p>Ethereum Beacon Chain spec defines the message ID as:
+<pre>The `message-id` of a gossipsub message MUST be the following 20 byte value computed from the message data:
+If `message.data` has a valid snappy decompression, set `message-id` to the first 20 bytes of the `SHA256` hash of
+the concatenation of `MESSAGE_DOMAIN_VALID_SNAPPY` with the snappy decompressed message data,
+i.e. `SHA256(MESSAGE_DOMAIN_VALID_SNAPPY + snappy_decompress(message.data))[:20]`.
+
+Otherwise, set `message-id` to the first 20 bytes of the `SHA256` hash of
+the concatenation of `MESSAGE_DOMAIN_INVALID_SNAPPY` with the raw message data,
+i.e. `SHA256(MESSAGE_DOMAIN_INVALID_SNAPPY + message.data)[:20]`.
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SerializeENR">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/utils.go?s=865:918#L26">SerializeENR</a>
+				<a class="permalink" href="index.html#SerializeENR">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SerializeENR(record *<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SerializeENR takes the enr record in its key-value form and serializes it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TopicDeconstructor">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=5314:5383#L129">TopicDeconstructor</a>
+				<a class="permalink" href="index.html#TopicDeconstructor">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TopicDeconstructor(topic <a href="../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>TopicDeconstructor splits the provided topic to its logical sub-sections.
+It is assumed all input topics will follow the specific schema:
+/protocol-prefix/message-name/schema-version/...
+For the purposes of deconstruction, only the first 3 components are
+relevant.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TopicFromMessage">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=7276:7344#L217">TopicFromMessage</a>
+				<a class="permalink" href="index.html#TopicFromMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TopicFromMessage(msg <a href="../../../../../builtin/index.html#string">string</a>, epoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>TopicFromMessage constructs the rpc topic from the provided message
+type and epoch.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyTopicMapping">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=4532:4592#L108">VerifyTopicMapping</a>
+				<a class="permalink" href="index.html#VerifyTopicMapping">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyTopicMapping(topic <a href="../../../../../builtin/index.html#string">string</a>, msg interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>VerifyTopicMapping verifies that the topic and its accompanying
+message type is correct.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Broadcaster">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=945:1219#L25">Broadcaster</a>
+				<a class="permalink" href="index.html#Broadcaster">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Broadcaster broadcasts messages to peers over the p2p pubsub protocol.
+
+			<pre>type Broadcaster interface {
+    Broadcast(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    BroadcastAttestation(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subnet <a href="../../../../../builtin/index.html#uint64">uint64</a>, att *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    BroadcastSyncCommitteeMessage(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subnet <a href="../../../../../builtin/index.html#uint64">uint64</a>, sMsg *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SyncCommitteeMessage">SyncCommitteeMessage</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/config.go?s=267:872#L1">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config for the p2p service. These parameters are set from application level flags
+to initialize the p2p service.
+
+			<pre>type Config struct {
+<span id="Config.NoDiscovery"></span>    NoDiscovery         <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Config.EnableUPnP"></span>    EnableUPnP          <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Config.DisableDiscv5"></span>    DisableDiscv5       <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Config.StaticPeers"></span>    StaticPeers         []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.BootstrapNodeAddr"></span>    BootstrapNodeAddr   []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.Discv5BootStrapAddr"></span>    Discv5BootStrapAddr []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.RelayNodeAddr"></span>    RelayNodeAddr       <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.LocalIP"></span>    LocalIP             <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.HostAddress"></span>    HostAddress         <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.HostDNS"></span>    HostDNS             <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.PrivateKey"></span>    PrivateKey          <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.DataDir"></span>    DataDir             <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.MetaDataDir"></span>    MetaDataDir         <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.TCPPort"></span>    TCPPort             <a href="../../../../../builtin/index.html#uint">uint</a>
+<span id="Config.UDPPort"></span>    UDPPort             <a href="../../../../../builtin/index.html#uint">uint</a>
+<span id="Config.MaxPeers"></span>    MaxPeers            <a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Config.AllowListCIDR"></span>    AllowListCIDR       <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.DenyListCIDR"></span>    DenyListCIDR        []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.StateNotifier"></span>    StateNotifier       <a href="../core/feed/state/index.html">statefeed</a>.<a href="../core/feed/state/index.html#Notifier">Notifier</a>
+<span id="Config.DB"></span>    DB                  <a href="../db/index.html">db</a>.<a href="../db/index.html#ReadOnlyDatabase">ReadOnlyDatabase</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConnectionHandler">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=1857:2108#L45">ConnectionHandler</a>
+				<a class="permalink" href="index.html#ConnectionHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ConnectionHandler configures p2p to handle connections with a peer.
+
+			<pre>type ConnectionHandler interface {
+    AddConnectionHandler(f func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>,
+        j func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)
+    AddDisconnectionHandler(f func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)
+    <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/connmgr/">connmgr</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/connmgr/#ConnectionGater">ConnectionGater</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodingProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=2161:2232#L53">EncodingProvider</a>
+				<a class="permalink" href="index.html#EncodingProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodingProvider provides p2p network encoding.
+
+			<pre>type EncodingProvider interface {
+    Encoding() <a href="encoder/index.html">encoder</a>.<a href="encoder/index.html#NetworkEncoding">NetworkEncoding</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Listener">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/discovery.go?s=695:948#L15">Listener</a>
+				<a class="permalink" href="index.html#Listener">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Listener defines the discovery V5 network interface that is used
+to communicate with other peers.
+
+			<pre>type Listener interface {
+    Self() *<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>
+    Close()
+    Lookup(<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#ID">ID</a>) []*<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>
+    Resolve(*<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>) *<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>
+    RandomNodes() <a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Iterator">Iterator</a>
+    Ping(*<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    RequestENR(*<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>) (*<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#Node">Node</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    LocalNode() *<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html">enode</a>.<a href="../../../../ethereum/go-ethereum/p2p/enode/index.html#LocalNode">LocalNode</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MetadataProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=3145:3232#L85">MetadataProvider</a>
+				<a class="permalink" href="index.html#MetadataProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MetadataProvider returns the metadata related information for the local peer.
+
+			<pre>type MetadataProvider interface {
+    Metadata() <a href="../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a>
+    MetadataSeq() <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="P2P">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=692:869#L11">P2P</a>
+				<a class="permalink" href="index.html#P2P">&#xb6;</a>
+				
+				
+			</h2>
+			<p>P2P represents the full p2p interface composed of all of the sub-interfaces.
+
+			<pre>type P2P interface {
+    <a href="index.html#Broadcaster">Broadcaster</a>
+    <a href="index.html#SetStreamHandler">SetStreamHandler</a>
+    <a href="index.html#EncodingProvider">EncodingProvider</a>
+    <a href="index.html#PubSubProvider">PubSubProvider</a>
+    <a href="index.html#PubSubTopicUser">PubSubTopicUser</a>
+    <a href="index.html#PeerManager">PeerManager</a>
+    <a href="index.html#Sender">Sender</a>
+    <a href="index.html#ConnectionHandler">ConnectionHandler</a>
+    <a href="index.html#PeersProvider">PeersProvider</a>
+    <a href="index.html#MetadataProvider">MetadataProvider</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PeerManager">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=2413:2765#L63">PeerManager</a>
+				<a class="permalink" href="index.html#PeerManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PeerManager abstracts some peer management methods from libp2p.
+
+			<pre>type PeerManager interface {
+    Disconnect(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    PeerID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>
+    Host() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a>
+    ENR() *<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a>
+    DiscoveryAddresses() ([]multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    RefreshENR()
+    FindPeersWithSubnet(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, topic <a href="../../../../../builtin/index.html#string">string</a>, subIndex <a href="../../../../../builtin/index.html#uint64">uint64</a>, threshold <a href="../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    AddPingMethod(reqFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PeersProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=3007:3062#L80">PeersProvider</a>
+				<a class="permalink" href="index.html#PeersProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PeersProvider abstracts obtaining our current list of known peers status.
+
+			<pre>type PeersProvider interface {
+    Peers() *<a href="peers/index.html">peers</a>.<a href="peers/index.html#Status">Status</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PubSubProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=2286:2344#L58">PubSubProvider</a>
+				<a class="permalink" href="index.html#PubSubProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PubSubProvider provides the p2p pubsub protocol.
+
+			<pre>type PubSubProvider interface {
+    PubSub() *<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubSub">PubSub</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PubSubTopicUser">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=1467:1784#L37">PubSubTopicUser</a>
+				<a class="permalink" href="index.html#PubSubTopicUser">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PubSubTopicUser provides way to join, use and leave PubSub topics.
+
+			<pre>type PubSubTopicUser interface {
+    JoinTopic(topic <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#TopicOpt">TopicOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Topic">Topic</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    LeaveTopic(topic <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    PublishToTopic(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, topic <a href="../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../builtin/index.html#byte">byte</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubOpt">PubOpt</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    SubscribeToTopic(topic <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#SubOpt">SubOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RPCTopic">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=6554:6574#L186">RPCTopic</a>
+				<a class="permalink" href="index.html#RPCTopic">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RPCTopic is a type used to denote and represent a req/resp topic.
+
+			<pre>type RPCTopic <a href="../../../../../builtin/index.html#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RPCTopic.MessageType">func (RPCTopic) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=6844:6882#L198">MessageType</a>
+					<a class="permalink" href="index.html#RPCTopic.MessageType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#RPCTopic">RPCTopic</a>) MessageType() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>MessageType returns the message type of the rpc topic.
+
+				
+				
+				
+			
+				
+				<h3 id="RPCTopic.ProtocolPrefix">func (RPCTopic) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=6640:6681#L189">ProtocolPrefix</a>
+					<a class="permalink" href="index.html#RPCTopic.ProtocolPrefix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#RPCTopic">RPCTopic</a>) ProtocolPrefix() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>ProtocolPrefix returns the protocol prefix of the rpc topic.
+
+				
+				
+				
+			
+				
+				<h3 id="RPCTopic.Version">func (RPCTopic) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/rpc_topic_mappings.go?s=7045:7079#L207">Version</a>
+					<a class="permalink" href="index.html#RPCTopic.Version">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#RPCTopic">RPCTopic</a>) Version() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>Version returns the schema version of the rpc topic.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Sender">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=2826:2928#L75">Sender</a>
+				<a class="permalink" href="index.html#Sender">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Sender abstracts the sending functionality from libp2p.
+
+			<pre>type Sender interface {
+    Send(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}, <a href="../../../../../builtin/index.html#string">string</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Stream">Stream</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=2271:3231#L52">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service for managing peer to peer (p2p) networking.
+
+			<pre>type Service struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewService">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=3418:3485#L81">NewService</a>
+					<a class="permalink" href="index.html#NewService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewService(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, cfg *<a href="index.html#Config">Config</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewService initializes a new p2p service compatible with shared.Service interface. No
+connections are made until the Start function is called during the service registry startup.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Service.AddConnectionHandler">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/handshake.go?s=819:923#L21">AddConnectionHandler</a>
+					<a class="permalink" href="index.html#Service.AddConnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) AddConnectionHandler(reqFunc, goodByeFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddConnectionHandler adds a callback function which handles the connection with a
+newly added peer. It performs a handshake with that peer by sending a hello request
+and validating the response from the peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.AddDisconnectionHandler">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/handshake.go?s=5092:5186#L144">AddDisconnectionHandler</a>
+					<a class="permalink" href="index.html#Service.AddDisconnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) AddDisconnectionHandler(handler func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddDisconnectionHandler disconnects from peers.  It handles updating the peer status.
+This also calls the handler responsible for maintaining other parts of the sync or p2p system.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.AddPingMethod">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=11510:11594#L369">AddPingMethod</a>
+					<a class="permalink" href="index.html#Service.AddPingMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) AddPingMethod(reqFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddPingMethod adds the metadata ping rpc method to the p2p service, so that it can
+be used to refresh ENR.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Broadcast">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/broadcaster.go?s=818:891#L18">Broadcast</a>
+					<a class="permalink" href="index.html#Service.Broadcast">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Broadcast(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, msg <a href="../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Broadcast a message to the p2p network, the message is assumed to be
+broadcasted to the current fork.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BroadcastAttestation">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/broadcaster.go?s=1773:1877#L47">BroadcastAttestation</a>
+					<a class="permalink" href="index.html#Service.BroadcastAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BroadcastAttestation(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subnet <a href="../../../../../builtin/index.html#uint64">uint64</a>, att *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastAttestation broadcasts an attestation to the p2p network, the message is assumed to be
+broadcasted to the current fork.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BroadcastSyncCommitteeMessage">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/broadcaster.go?s=2446:2569#L65">BroadcastSyncCommitteeMessage</a>
+					<a class="permalink" href="index.html#Service.BroadcastSyncCommitteeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BroadcastSyncCommitteeMessage(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, subnet <a href="../../../../../builtin/index.html#uint64">uint64</a>, sMsg *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SyncCommitteeMessage">SyncCommitteeMessage</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastSyncCommitteeMessage broadcasts a sync committee message to the p2p network, the message is assumed to be
+broadcasted to the current fork.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.CanSubscribe">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub_filter.go?s=777:826#L15">CanSubscribe</a>
+					<a class="permalink" href="index.html#Service.CanSubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) CanSubscribe(topic <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>CanSubscribe returns true if the topic is of interest and we could subscribe to it.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Connect">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10529:10578#L332">Connect</a>
+					<a class="permalink" href="index.html#Service.Connect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Connect(pi <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#AddrInfo">AddrInfo</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Connect to a specific peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Disconnect">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10405:10452#L327">Disconnect</a>
+					<a class="permalink" href="index.html#Service.Disconnect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Disconnect(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Disconnect from a peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.DiscoveryAddresses">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10960:11029#L350">DiscoveryAddresses</a>
+					<a class="permalink" href="index.html#Service.DiscoveryAddresses">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) DiscoveryAddresses() ([]multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DiscoveryAddresses represents our enr addresses as multiaddresses.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ENR">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10768:10803#L342">ENR</a>
+					<a class="permalink" href="index.html#Service.ENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ENR() *<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a></pre>
+				<p>ENR returns the local node&apos;s current ENR.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Encoding">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=9658:9710#L300">Encoding</a>
+					<a class="permalink" href="index.html#Service.Encoding">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#Service">Service</a>) Encoding() <a href="encoder/index.html">encoder</a>.<a href="encoder/index.html#NetworkEncoding">NetworkEncoding</a></pre>
+				<p>Encoding returns the configured networking encoding.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.FilterIncomingSubscriptions">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub_filter.go?s=2422:2541#L71">FilterIncomingSubscriptions</a>
+					<a class="permalink" href="index.html#Service.FilterIncomingSubscriptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) FilterIncomingSubscriptions(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, subs []*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/">pubsubpb</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/#RPC_SubOpts">RPC_SubOpts</a>) ([]*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/">pubsubpb</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/pb/#RPC_SubOpts">RPC_SubOpts</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FilterIncomingSubscriptions is invoked for all RPCs containing subscription notifications.
+This method returns only the topics of interest and may return an error if the subscription
+request contains too many topics.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.FindPeersWithSubnet">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/subnets.go?s=1253:1367#L26">FindPeersWithSubnet</a>
+					<a class="permalink" href="index.html#Service.FindPeersWithSubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) FindPeersWithSubnet(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, topic <a href="../../../../../builtin/index.html#string">string</a>, subIndex, threshold <a href="../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FindPeersWithSubnet performs a network search for peers
+subscribed to a particular subnet. Then we try to connect
+with those peers. This method will block until the required amount of
+peers are found, the method only exits in the event of context timeouts.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Host">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=9930:9964#L311">Host</a>
+					<a class="permalink" href="index.html#Service.Host">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Host() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a></pre>
+				<p>Host returns the currently running libp2p
+host of the service.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InfoHandler">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/info.go?s=249:318#L5">InfoHandler</a>
+					<a class="permalink" href="index.html#Service.InfoHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) InfoHandler(w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, _ *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>InfoHandler is a handler to serve /p2p page in metrics.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InterceptAccept">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go?s=1109:1181#L33">InterceptAccept</a>
+					<a class="permalink" href="index.html#Service.InterceptAccept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) InterceptAccept(n <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAccept checks whether the incidental inbound connection is allowed.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InterceptAddrDial">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go?s=813:897#L24">InterceptAddrDial</a>
+					<a class="permalink" href="index.html#Service.InterceptAddrDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) InterceptAddrDial(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, m multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>) (allow <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAddrDial tests whether we&apos;re permitted to dial the specified
+multiaddr for the given peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InterceptPeerDial">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go?s=629:688#L18">InterceptPeerDial</a>
+					<a class="permalink" href="index.html#Service.InterceptPeerDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#Service">Service</a>) InterceptPeerDial(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (allow <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptPeerDial tests whether we&apos;re permitted to Dial the specified peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InterceptSecured">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go?s=1854:1959#L52">InterceptSecured</a>
+					<a class="permalink" href="index.html#Service.InterceptSecured">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#Service">Service</a>) InterceptSecured(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Direction">Direction</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptSecured tests whether a given connection, now authenticated,
+is allowed.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.InterceptUpgraded">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/connection_gater.go?s=2052:2149#L57">InterceptUpgraded</a>
+					<a class="permalink" href="index.html#Service.InterceptUpgraded">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#Service">Service</a>) InterceptUpgraded(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Conn">Conn</a>) (allow <a href="../../../../../builtin/index.html#bool">bool</a>, reason <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/">control</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/#DisconnectReason">DisconnectReason</a>)</pre>
+				<p>InterceptUpgraded tests whether a fully capable connection is allowed.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.JoinTopic">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go?s=1461:1550#L38">JoinTopic</a>
+					<a class="permalink" href="index.html#Service.JoinTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) JoinTopic(topic <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#TopicOpt">TopicOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Topic">Topic</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>JoinTopic will join PubSub topic, if not already joined.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.LeaveTopic">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go?s=2011:2059#L55">LeaveTopic</a>
+					<a class="permalink" href="index.html#Service.LeaveTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) LeaveTopic(topic <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>LeaveTopic closes topic and removes corresponding handler from list of joined topics.
+This method will return error if there are outstanding event handlers or subscriptions.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Metadata">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=11186:11232#L358">Metadata</a>
+					<a class="permalink" href="index.html#Service.Metadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Metadata() <a href="../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a></pre>
+				<p>Metadata returns a copy of the peer&apos;s metadata.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.MetadataSeq">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=11317:11355#L363">MetadataSeq</a>
+					<a class="permalink" href="index.html#Service.MetadataSeq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) MetadataSeq() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>MetadataSeq returns the metadata sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.PeerID">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10318:10352#L322">PeerID</a>
+					<a class="permalink" href="index.html#Service.PeerID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) PeerID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>PeerID returns the Peer ID of the local peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Peers">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10662:10701#L337">Peers</a>
+					<a class="permalink" href="index.html#Service.Peers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Peers() *<a href="peers/index.html">peers</a>.<a href="peers/index.html#Status">Status</a></pre>
+				<p>Peers returns the peer status interface.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.PubSub">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=9797:9838#L305">PubSub</a>
+					<a class="permalink" href="index.html#Service.PubSub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) PubSub() *<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubSub">PubSub</a></pre>
+				<p>PubSub returns the p2p pubsub framework.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.PublishToTopic">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go?s=2352:2461#L69">PublishToTopic</a>
+					<a class="permalink" href="index.html#Service.PublishToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) PublishToTopic(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, topic <a href="../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../builtin/index.html#byte">byte</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubOpt">PubOpt</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>PublishToTopic joins (if necessary) and publishes a message to a PubSub topic.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.RefreshENR">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/discovery.go?s=1160:1190#L29">RefreshENR</a>
+					<a class="permalink" href="index.html#Service.RefreshENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) RefreshENR()</pre>
+				<p>RefreshENR uses an epoch to refresh the enr entry for our node
+with the tracked committee ids for the epoch, allowing our node
+to be dynamically discoverable by others given our tracked committee ids.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Send">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/sender.go?s=542:661#L11">Send</a>
+					<a class="permalink" href="index.html#Service.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Send(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, message interface{}, baseTopic <a href="../../../../../builtin/index.html#string">string</a>, pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Stream">Stream</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Send a message to a specific peer. The returned stream may be used for reading, but has been
+closed for writing.
+<p>When done, the caller must Close or Reset on the stream.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.SetStreamHandler">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=10130:10209#L317">SetStreamHandler</a>
+					<a class="permalink" href="index.html#Service.SetStreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SetStreamHandler(topic <a href="../../../../../builtin/index.html#string">string</a>, handler <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)</pre>
+				<p>SetStreamHandler sets the protocol handler on the p2p host multiplexer.
+This method is a pass through to libp2pcore.Host.SetStreamHandler.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Start">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=6303:6328#L174">Start</a>
+					<a class="permalink" href="index.html#Service.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Start()</pre>
+				<p>Start the p2p service.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Started">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=9546:9578#L295">Started</a>
+					<a class="permalink" href="index.html#Service.Started">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Started() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Started returns true if the p2p service has successfully started.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Status">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=9209:9241#L278">Status</a>
+					<a class="permalink" href="index.html#Service.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Status() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Status of the p2p service. Will return an error if the service is considered unhealthy to
+indicate that this node should not serve traffic until the issue has been resolved.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Stop">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/service.go?s=8890:8920#L267">Stop</a>
+					<a class="permalink" href="index.html#Service.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Stop() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop the p2p service and terminate all peer connections.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.SubscribeToTopic">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/pubsub.go?s=2939:3040#L90">SubscribeToTopic</a>
+					<a class="permalink" href="index.html#Service.SubscribeToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SubscribeToTopic(topic <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#SubOpt">SubOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeToTopic joins (if necessary) and subscribes to PubSub topic.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SetStreamHandler">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/interfaces.go?s=1297:1395#L32">SetStreamHandler</a>
+				<a class="permalink" href="index.html#SetStreamHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SetStreamHandler configures p2p to handle streams of a certain topic ID.
+
+			<pre>type SetStreamHandler interface {
+    SetStreamHandler(topic <a href="../../../../../builtin/index.html#string">string</a>, handler <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="encoder/index.html">encoder</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package encoder allows for registering custom data encoders for information sent as raw bytes over the wire via p2p to other nodes.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="peers/index.html">peers</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package peers provides information about peers at the Ethereum consensus protocol level.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="peers/peerdata/index.html">peerdata</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="peers/scorers/index.html">scorers</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testing/index.html">testing</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package testing includes useful utilities for mocking a beacon node&#39;s p2p service for unit tests.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package types contains all the respective p2p types that are required for sync but cannot be represented as a protobuf schema.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

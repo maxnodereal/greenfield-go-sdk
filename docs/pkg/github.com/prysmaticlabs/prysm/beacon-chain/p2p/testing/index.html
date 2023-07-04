@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>testing - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package testing
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package testing includes useful utilities for mocking
+a beacon node&apos;s p2p service for unit tests.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#FakeP2P">type FakeP2P</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFuzzTestP2P">func NewFuzzTestP2P() *FakeP2P</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.AddConnectionHandler">func (_ *FakeP2P) AddConnectionHandler(_, _ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.AddDisconnectionHandler">func (_ *FakeP2P) AddDisconnectionHandler(_ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.AddPingMethod">func (_ *FakeP2P) AddPingMethod(_ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Broadcast">func (_ *FakeP2P) Broadcast(_ context.Context, _ proto.Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.BroadcastAttestation">func (_ *FakeP2P) BroadcastAttestation(_ context.Context, _ uint64, _ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.BroadcastSyncCommitteeMessage">func (_ *FakeP2P) BroadcastSyncCommitteeMessage(_ context.Context, _ uint64, _ *ethpb.SyncCommitteeMessage) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Disconnect">func (_ *FakeP2P) Disconnect(_ peer.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.DiscoveryAddresses">func (_ *FakeP2P) DiscoveryAddresses() ([]multiaddr.Multiaddr, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.ENR">func (_ *FakeP2P) ENR() *enr.Record</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Encoding">func (_ *FakeP2P) Encoding() encoder.NetworkEncoding</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.FindPeersWithSubnet">func (_ *FakeP2P) FindPeersWithSubnet(_ context.Context, _ string, _, _ uint64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Host">func (_ *FakeP2P) Host() host.Host</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.InterceptAccept">func (_ *FakeP2P) InterceptAccept(_ network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.InterceptAddrDial">func (_ *FakeP2P) InterceptAddrDial(peer.ID, multiaddr.Multiaddr) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.InterceptPeerDial">func (_ *FakeP2P) InterceptPeerDial(peer.ID) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.InterceptSecured">func (_ *FakeP2P) InterceptSecured(network.Direction, peer.ID, network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.InterceptUpgraded">func (_ *FakeP2P) InterceptUpgraded(network.Conn) (allow bool, reason control.DisconnectReason)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.JoinTopic">func (_ *FakeP2P) JoinTopic(_ string, _ ...pubsub.TopicOpt) (*pubsub.Topic, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.LeaveTopic">func (_ *FakeP2P) LeaveTopic(_ string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Metadata">func (_ *FakeP2P) Metadata() metadata.Metadata</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.MetadataSeq">func (_ *FakeP2P) MetadataSeq() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.PeerID">func (_ *FakeP2P) PeerID() peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Peers">func (_ *FakeP2P) Peers() *peers.Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.PubSub">func (_ *FakeP2P) PubSub() *pubsub.PubSub</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.PublishToTopic">func (_ *FakeP2P) PublishToTopic(_ context.Context, _ string, _ []byte, _ ...pubsub.PubOpt) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.RefreshENR">func (_ *FakeP2P) RefreshENR()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.Send">func (_ *FakeP2P) Send(_ context.Context, _ interface{}, _ string, _ peer.ID) (network.Stream, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.SetStreamHandler">func (_ *FakeP2P) SetStreamHandler(_ string, _ network.StreamHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FakeP2P.SubscribeToTopic">func (_ *FakeP2P) SubscribeToTopic(_ string, _ ...pubsub.SubOpt) (*pubsub.Subscription, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockBroadcaster">type MockBroadcaster</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockBroadcaster.Broadcast">func (m *MockBroadcaster) Broadcast(_ context.Context, msg proto.Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockBroadcaster.BroadcastAttestation">func (m *MockBroadcaster) BroadcastAttestation(_ context.Context, _ uint64, a *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockBroadcaster.BroadcastSyncCommitteeMessage">func (m *MockBroadcaster) BroadcastSyncCommitteeMessage(_ context.Context, _ uint64, _ *ethpb.SyncCommitteeMessage) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockHost">type MockHost</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Addrs">func (m *MockHost) Addrs() []ma.Multiaddr</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Close">func (_ *MockHost) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.ConnManager">func (_ *MockHost) ConnManager() connmgr.ConnManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Connect">func (_ *MockHost) Connect(_ context.Context, _ peer.AddrInfo) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.EventBus">func (_ *MockHost) EventBus() event.Bus</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.ID">func (_ *MockHost) ID() peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Mux">func (_ *MockHost) Mux() protocol.Switch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Network">func (_ *MockHost) Network() network.Network</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.NewStream">func (_ *MockHost) NewStream(_ context.Context, _ peer.ID, _ ...protocol.ID) (network.Stream, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.Peerstore">func (_ *MockHost) Peerstore() peerstore.Peerstore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.RemoveStreamHandler">func (_ *MockHost) RemoveStreamHandler(_ protocol.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.SetStreamHandler">func (_ *MockHost) SetStreamHandler(_ protocol.ID, _ network.StreamHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockHost.SetStreamHandlerMatch">func (_ *MockHost) SetStreamHandlerMatch(protocol.ID, func(string) bool, network.StreamHandler)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockMetadataProvider">type MockMetadataProvider</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockMetadataProvider.Metadata">func (m *MockMetadataProvider) Metadata() metadata.Metadata</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockMetadataProvider.MetadataSeq">func (m *MockMetadataProvider) MetadataSeq() uint64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockPeerManager">type MockPeerManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.AddPingMethod">func (_ MockPeerManager) AddPingMethod(_ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.Disconnect">func (_ *MockPeerManager) Disconnect(peer.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.DiscoveryAddresses">func (m MockPeerManager) DiscoveryAddresses() ([]multiaddr.Multiaddr, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.ENR">func (m MockPeerManager) ENR() *enr.Record</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.FindPeersWithSubnet">func (_ MockPeerManager) FindPeersWithSubnet(_ context.Context, _ string, _, _ uint64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.Host">func (m *MockPeerManager) Host() host.Host</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.PeerID">func (m *MockPeerManager) PeerID() peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeerManager.RefreshENR">func (_ MockPeerManager) RefreshENR()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockPeersProvider">type MockPeersProvider</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeersProvider.ClearPeers">func (m *MockPeersProvider) ClearPeers()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockPeersProvider.Peers">func (m *MockPeersProvider) Peers() *peers.Status</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TestP2P">type TestP2P</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTestP2P">func NewTestP2P(t *testing.T) *TestP2P</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.AddConnectionHandler">func (p *TestP2P) AddConnectionHandler(f, _ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.AddDisconnectionHandler">func (p *TestP2P) AddDisconnectionHandler(f func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.AddPingMethod">func (_ *TestP2P) AddPingMethod(_ func(ctx context.Context, id peer.ID) error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Broadcast">func (p *TestP2P) Broadcast(_ context.Context, _ proto.Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.BroadcastAttestation">func (p *TestP2P) BroadcastAttestation(_ context.Context, _ uint64, _ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.BroadcastSyncCommitteeMessage">func (p *TestP2P) BroadcastSyncCommitteeMessage(_ context.Context, _ uint64, _ *ethpb.SyncCommitteeMessage) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Connect">func (p *TestP2P) Connect(b *TestP2P)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Disconnect">func (p *TestP2P) Disconnect(pid peer.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.DiscoveryAddresses">func (_ *TestP2P) DiscoveryAddresses() ([]multiaddr.Multiaddr, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.ENR">func (_ *TestP2P) ENR() *enr.Record</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Encoding">func (_ *TestP2P) Encoding() encoder.NetworkEncoding</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.FindPeersWithSubnet">func (_ *TestP2P) FindPeersWithSubnet(_ context.Context, _ string, _, _ uint64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.ForkDigest">func (p *TestP2P) ForkDigest() ([4]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Host">func (p *TestP2P) Host() host.Host</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.InterceptAccept">func (_ *TestP2P) InterceptAccept(_ network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.InterceptAddrDial">func (_ *TestP2P) InterceptAddrDial(peer.ID, multiaddr.Multiaddr) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.InterceptPeerDial">func (_ *TestP2P) InterceptPeerDial(peer.ID) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.InterceptSecured">func (_ *TestP2P) InterceptSecured(network.Direction, peer.ID, network.ConnMultiaddrs) (allow bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.InterceptUpgraded">func (_ *TestP2P) InterceptUpgraded(network.Conn) (allow bool, reason control.DisconnectReason)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.JoinTopic">func (p *TestP2P) JoinTopic(topic string, opts ...pubsub.TopicOpt) (*pubsub.Topic, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.LeaveTopic">func (p *TestP2P) LeaveTopic(topic string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Metadata">func (p *TestP2P) Metadata() metadata.Metadata</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.MetadataSeq">func (p *TestP2P) MetadataSeq() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.PeerID">func (p *TestP2P) PeerID() peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Peers">func (p *TestP2P) Peers() *peers.Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.PubSub">func (p *TestP2P) PubSub() *pubsub.PubSub</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.PublishToTopic">func (p *TestP2P) PublishToTopic(ctx context.Context, topic string, data []byte, opts ...pubsub.PubOpt) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.ReceivePubSub">func (p *TestP2P) ReceivePubSub(topic string, msg proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.ReceiveRPC">func (p *TestP2P) ReceiveRPC(topic string, msg proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.RefreshENR">func (_ *TestP2P) RefreshENR()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Send">func (p *TestP2P) Send(ctx context.Context, msg interface{}, topic string, pid peer.ID) (network.Stream, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.SetStreamHandler">func (p *TestP2P) SetStreamHandler(topic string, handler network.StreamHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.Started">func (_ *TestP2P) Started() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TestP2P.SubscribeToTopic">func (p *TestP2P) SubscribeToTopic(topic string, opts ...pubsub.SubOpt) (*pubsub.Subscription, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go">fuzz_p2p.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_broadcaster.go">mock_broadcaster.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go">mock_host.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_metadataprovider.go">mock_metadataprovider.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go">mock_peermanager.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peersprovider.go">mock_peersprovider.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go">p2p.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="FakeP2P">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=633:656#L11">FakeP2P</a>
+				<a class="permalink" href="index.html#FakeP2P">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FakeP2P stack
+
+			<pre>type FakeP2P struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFuzzTestP2P">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=707:737#L15">NewFuzzTestP2P</a>
+					<a class="permalink" href="index.html#NewFuzzTestP2P">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFuzzTestP2P() *<a href="index.html#FakeP2P">FakeP2P</a></pre>
+				<p>NewFuzzTestP2P - Create a new fake p2p stack.
+
+				
+				
+			
+
+			
+				
+				<h3 id="FakeP2P.AddConnectionHandler">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=911:999#L25">AddConnectionHandler</a>
+					<a class="permalink" href="index.html#FakeP2P.AddConnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) AddConnectionHandler(_, _ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddConnectionHandler -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.AddDisconnectionHandler">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1042:1130#L30">AddDisconnectionHandler</a>
+					<a class="permalink" href="index.html#FakeP2P.AddDisconnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) AddDisconnectionHandler(_ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddDisconnectionHandler -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.AddPingMethod">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1162:1240#L34">AddPingMethod</a>
+					<a class="permalink" href="index.html#FakeP2P.AddPingMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) AddPingMethod(_ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddPingMethod -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Broadcast">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3019:3088#L122">Broadcast</a>
+					<a class="permalink" href="index.html#FakeP2P.Broadcast">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Broadcast(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Broadcast -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.BroadcastAttestation">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3139:3234#L127">BroadcastAttestation</a>
+					<a class="permalink" href="index.html#FakeP2P.BroadcastAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) BroadcastAttestation(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, _ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastAttestation -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.BroadcastSyncCommitteeMessage">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3294:3407#L132">BroadcastSyncCommitteeMessage</a>
+					<a class="permalink" href="index.html#FakeP2P.BroadcastSyncCommitteeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) BroadcastSyncCommitteeMessage(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, _ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#SyncCommitteeMessage">SyncCommitteeMessage</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastSyncCommitteeMessage -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Disconnect">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2934:2979#L117">Disconnect</a>
+					<a class="permalink" href="index.html#FakeP2P.Disconnect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Disconnect(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Disconnect -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.DiscoveryAddresses">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1458:1527#L49">DiscoveryAddresses</a>
+					<a class="permalink" href="index.html#FakeP2P.DiscoveryAddresses">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) DiscoveryAddresses() ([]multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DiscoveryAddresses -- fake
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.ENR">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1363:1398#L44">ENR</a>
+					<a class="permalink" href="index.html#FakeP2P.ENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) ENR() *<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a></pre>
+				<p>ENR returns the enr of the local peer.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Encoding">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=783:835#L20">Encoding</a>
+					<a class="permalink" href="index.html#FakeP2P.Encoding">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Encoding() <a href="../encoder/index.html">encoder</a>.<a href="../encoder/index.html#NetworkEncoding">NetworkEncoding</a></pre>
+				<p>Encoding -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.FindPeersWithSubnet">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1593:1686#L54">FindPeersWithSubnet</a>
+					<a class="permalink" href="index.html#FakeP2P.FindPeersWithSubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) FindPeersWithSubnet(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#string">string</a>, _, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FindPeersWithSubnet mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Host">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2859:2893#L112">Host</a>
+					<a class="permalink" href="index.html#FakeP2P.Host">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Host() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a></pre>
+				<p>Host -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.InterceptAccept">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3686:3758#L147">InterceptAccept</a>
+					<a class="permalink" href="index.html#FakeP2P.InterceptAccept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) InterceptAccept(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAccept -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.InterceptAddrDial">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3561:3639#L142">InterceptAddrDial</a>
+					<a class="permalink" href="index.html#FakeP2P.InterceptAddrDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) InterceptAddrDial(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAddrDial -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.InterceptPeerDial">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3455:3512#L137">InterceptPeerDial</a>
+					<a class="permalink" href="index.html#FakeP2P.InterceptPeerDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) InterceptPeerDial(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptPeerDial -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.InterceptSecured">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3806:3905#L152">InterceptSecured</a>
+					<a class="permalink" href="index.html#FakeP2P.InterceptSecured">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) InterceptSecured(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Direction">Direction</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptSecured -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.InterceptUpgraded">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=3954:4049#L157">InterceptUpgraded</a>
+					<a class="permalink" href="index.html#FakeP2P.InterceptUpgraded">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) InterceptUpgraded(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Conn">Conn</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>, reason <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/">control</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/#DisconnectReason">DisconnectReason</a>)</pre>
+				<p>InterceptUpgraded -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.JoinTopic">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2737:2819#L107">JoinTopic</a>
+					<a class="permalink" href="index.html#FakeP2P.JoinTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) JoinTopic(_ <a href="../../../../../../builtin/index.html#string">string</a>, _ ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#TopicOpt">TopicOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Topic">Topic</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>JoinTopic -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.LeaveTopic">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1803:1847#L62">LeaveTopic</a>
+					<a class="permalink" href="index.html#FakeP2P.LeaveTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) LeaveTopic(_ <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>LeaveTopic -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Metadata">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1886:1932#L67">Metadata</a>
+					<a class="permalink" href="index.html#FakeP2P.Metadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Metadata() <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a></pre>
+				<p>Metadata -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.MetadataSeq">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2410:2448#L92">MetadataSeq</a>
+					<a class="permalink" href="index.html#FakeP2P.MetadataSeq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) MetadataSeq() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>MetadataSeq -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.PeerID">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1266:1300#L39">PeerID</a>
+					<a class="permalink" href="index.html#FakeP2P.PeerID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) PeerID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>PeerID -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Peers">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1968:2007#L72">Peers</a>
+					<a class="permalink" href="index.html#FakeP2P.Peers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Peers() *<a href="../peers/index.html">peers</a>.<a href="../peers/index.html#Status">Status</a></pre>
+				<p>Peers -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.PubSub">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2327:2368#L87">PubSub</a>
+					<a class="permalink" href="index.html#FakeP2P.PubSub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) PubSub() *<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubSub">PubSub</a></pre>
+				<p>PubSub -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.PublishToTopic">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2052:2149#L77">PublishToTopic</a>
+					<a class="permalink" href="index.html#FakeP2P.PublishToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) PublishToTopic(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#string">string</a>, _ []<a href="../../../../../../builtin/index.html#byte">byte</a>, _ ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubOpt">PubOpt</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>PublishToTopic -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.RefreshENR">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=1745:1775#L59">RefreshENR</a>
+					<a class="permalink" href="index.html#FakeP2P.RefreshENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) RefreshENR()</pre>
+				<p>RefreshENR mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.Send">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2184:2285#L82">Send</a>
+					<a class="permalink" href="index.html#FakeP2P.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) Send(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ interface{}, _ <a href="../../../../../../builtin/index.html#string">string</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Stream">Stream</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Send -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.SetStreamHandler">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2493:2562#L97">SetStreamHandler</a>
+					<a class="permalink" href="index.html#FakeP2P.SetStreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) SetStreamHandler(_ <a href="../../../../../../builtin/index.html#string">string</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)</pre>
+				<p>SetStreamHandler -- fake.
+
+				
+				
+				
+			
+				
+				<h3 id="FakeP2P.SubscribeToTopic">func (*FakeP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/fuzz_p2p.go?s=2598:2692#L102">SubscribeToTopic</a>
+					<a class="permalink" href="index.html#FakeP2P.SubscribeToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#FakeP2P">FakeP2P</a>) SubscribeToTopic(_ <a href="../../../../../../builtin/index.html#string">string</a>, _ ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#SubOpt">SubOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Subscription">Subscription</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeToTopic -- fake.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockBroadcaster">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_broadcaster.go?s=197:339#L1">MockBroadcaster</a>
+				<a class="permalink" href="index.html#MockBroadcaster">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockBroadcaster implements p2p.Broadcaster for testing.
+
+			<pre>type MockBroadcaster struct {
+<span id="MockBroadcaster.BroadcastCalled"></span>    BroadcastCalled       <a href="../../../../../../builtin/index.html#bool">bool</a>
+<span id="MockBroadcaster.BroadcastMessages"></span>    BroadcastMessages     []<a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>
+<span id="MockBroadcaster.BroadcastAttestations"></span>    BroadcastAttestations []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockBroadcaster.Broadcast">func (*MockBroadcaster) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_broadcaster.go?s=384:463#L8">Broadcast</a>
+					<a class="permalink" href="index.html#MockBroadcaster.Broadcast">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockBroadcaster">MockBroadcaster</a>) Broadcast(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, msg <a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Broadcast records a broadcast occurred.
+
+				
+				
+				
+			
+				
+				<h3 id="MockBroadcaster.BroadcastAttestation">func (*MockBroadcaster) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_broadcaster.go?s=617:720#L15">BroadcastAttestation</a>
+					<a class="permalink" href="index.html#MockBroadcaster.BroadcastAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockBroadcaster">MockBroadcaster</a>) BroadcastAttestation(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, a *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastAttestation records a broadcast occurred.
+
+				
+				
+				
+			
+				
+				<h3 id="MockBroadcaster.BroadcastSyncCommitteeMessage">func (*MockBroadcaster) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_broadcaster.go?s=889:1010#L22">BroadcastSyncCommitteeMessage</a>
+					<a class="permalink" href="index.html#MockBroadcaster.BroadcastSyncCommitteeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockBroadcaster">MockBroadcaster</a>) BroadcastSyncCommitteeMessage(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, _ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#SyncCommitteeMessage">SyncCommitteeMessage</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastSyncCommitteeMessage records a broadcast occurred.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockHost">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=412:462#L6">MockHost</a>
+				<a class="permalink" href="index.html#MockHost">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockHost is a fake implementation of libp2p2&apos;s Host interface.
+
+			<pre>type MockHost struct {
+<span id="MockHost.Addresses"></span>    Addresses []<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/">ma</a>.<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/#Multiaddr">Multiaddr</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockHost.Addrs">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=617:658#L21">Addrs</a>
+					<a class="permalink" href="index.html#MockHost.Addrs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockHost">MockHost</a>) Addrs() []<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/">ma</a>.<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/#Multiaddr">Multiaddr</a></pre>
+				<p>Addrs --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.Close">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1394:1426#L55">Close</a>
+					<a class="permalink" href="index.html#MockHost.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) Close() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.ConnManager">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1462:1514#L60">ConnManager</a>
+					<a class="permalink" href="index.html#MockHost.ConnManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) ConnManager() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/connmgr/">connmgr</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/connmgr/#ConnManager">ConnManager</a></pre>
+				<p>ConnManager --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.Connect">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=842:910#L36">Connect</a>
+					<a class="permalink" href="index.html#MockHost.Connect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) Connect(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#AddrInfo">AddrInfo</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Connect --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.EventBus">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1547:1586#L65">EventBus</a>
+					<a class="permalink" href="index.html#MockHost.EventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) EventBus() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/event/">event</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/event/#Bus">Bus</a></pre>
+				<p>EventBus --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.ID">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=473:504#L11">ID</a>
+					<a class="permalink" href="index.html#MockHost.ID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) ID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>ID --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.Mux">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=770:810#L31">Mux</a>
+					<a class="permalink" href="index.html#MockHost.Mux">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) Mux() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/">protocol</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/#Switch">Switch</a></pre>
+				<p>Mux --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.Network">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=698:742#L26">Network</a>
+					<a class="permalink" href="index.html#MockHost.Network">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) Network() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Network">Network</a></pre>
+				<p>Network --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.NewStream">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1259:1359#L50">NewStream</a>
+					<a class="permalink" href="index.html#MockHost.NewStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) NewStream(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, _ ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/">protocol</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Stream">Stream</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewStream --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.Peerstore">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=537:587#L16">Peerstore</a>
+					<a class="permalink" href="index.html#MockHost.Peerstore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) Peerstore() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peerstore/">peerstore</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peerstore/#Peerstore">Peerstore</a></pre>
+				<p>Peerstore --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.RemoveStreamHandler">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1185:1238#L47">RemoveStreamHandler</a>
+					<a class="permalink" href="index.html#MockHost.RemoveStreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) RemoveStreamHandler(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/">protocol</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/#ID">ID</a>)</pre>
+				<p>RemoveStreamHandler --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.SetStreamHandler">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=951:1026#L41">SetStreamHandler</a>
+					<a class="permalink" href="index.html#MockHost.SetStreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) SetStreamHandler(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/">protocol</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/#ID">ID</a>, _ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)</pre>
+				<p>SetStreamHandler --
+
+				
+				
+				
+			
+				
+				<h3 id="MockHost.SetStreamHandlerMatch">func (*MockHost) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_host.go?s=1059:1154#L44">SetStreamHandlerMatch</a>
+					<a class="permalink" href="index.html#MockHost.SetStreamHandlerMatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockHost">MockHost</a>) SetStreamHandlerMatch(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/">protocol</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/protocol/#ID">ID</a>, func(<a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)</pre>
+				<p>SetStreamHandlerMatch --
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockMetadataProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_metadataprovider.go?s=177:237#L1">MockMetadataProvider</a>
+				<a class="permalink" href="index.html#MockMetadataProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockMetadataProvider is a fake implementation of the MetadataProvider interface.
+
+			<pre>type MockMetadataProvider struct {
+<span id="MockMetadataProvider.Data"></span>    Data <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockMetadataProvider.Metadata">func (*MockMetadataProvider) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_metadataprovider.go?s=254:313#L3">Metadata</a>
+					<a class="permalink" href="index.html#MockMetadataProvider.Metadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockMetadataProvider">MockMetadataProvider</a>) Metadata() <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a></pre>
+				<p>Metadata --
+
+				
+				
+				
+			
+				
+				<h3 id="MockMetadataProvider.MetadataSeq">func (*MockMetadataProvider) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_metadataprovider.go?s=352:403#L8">MetadataSeq</a>
+					<a class="permalink" href="index.html#MockMetadataProvider.MetadataSeq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockMetadataProvider">MockMetadataProvider</a>) MetadataSeq() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>MetadataSeq --
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockPeerManager">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=273:456#L4">MockPeerManager</a>
+				<a class="permalink" href="index.html#MockPeerManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockPeerManager is mock of the PeerManager interface.
+
+			<pre>type MockPeerManager struct {
+<span id="MockPeerManager.Enr"></span>    Enr               *<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a>
+<span id="MockPeerManager.PID"></span>    PID               <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>
+<span id="MockPeerManager.BHost"></span>    BHost             <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a>
+<span id="MockPeerManager.DiscoveryAddr"></span>    DiscoveryAddr     []multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>
+<span id="MockPeerManager.FailDiscoveryAddr"></span>    FailDiscoveryAddr <a href="../../../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockPeerManager.AddPingMethod">func (MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=1185:1270#L49">AddPingMethod</a>
+					<a class="permalink" href="index.html#MockPeerManager.AddPingMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#MockPeerManager">MockPeerManager</a>) AddPingMethod(_ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddPingMethod .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.Disconnect">func (*MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=474:525#L13">Disconnect</a>
+					<a class="permalink" href="index.html#MockPeerManager.Disconnect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockPeerManager">MockPeerManager</a>) Disconnect(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Disconnect .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.DiscoveryAddresses">func (MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=786:862#L33">DiscoveryAddresses</a>
+					<a class="permalink" href="index.html#MockPeerManager.DiscoveryAddresses">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#MockPeerManager">MockPeerManager</a>) DiscoveryAddresses() ([]multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DiscoveryAddresses .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.ENR">func (MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=700:742#L28">ENR</a>
+					<a class="permalink" href="index.html#MockPeerManager.ENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#MockPeerManager">MockPeerManager</a>) ENR() *<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a></pre>
+				<p>ENR .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.FindPeersWithSubnet">func (MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=1042:1142#L44">FindPeersWithSubnet</a>
+					<a class="permalink" href="index.html#MockPeerManager.FindPeersWithSubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#MockPeerManager">MockPeerManager</a>) FindPeersWithSubnet(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#string">string</a>, _, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FindPeersWithSubnet .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.Host">func (*MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=627:669#L23">Host</a>
+					<a class="permalink" href="index.html#MockPeerManager.Host">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockPeerManager">MockPeerManager</a>) Host() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a></pre>
+				<p>Host .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.PeerID">func (*MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=555:597#L18">PeerID</a>
+					<a class="permalink" href="index.html#MockPeerManager.PeerID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockPeerManager">MockPeerManager</a>) PeerID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>PeerID .
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeerManager.RefreshENR">func (MockPeerManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peermanager.go?s=975:1012#L41">RefreshENR</a>
+					<a class="permalink" href="index.html#MockPeerManager.RefreshENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#MockPeerManager">MockPeerManager</a>) RefreshENR()</pre>
+				<p>RefreshENR .
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockPeersProvider">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peersprovider.go?s=580:652#L10">MockPeersProvider</a>
+				<a class="permalink" href="index.html#MockPeersProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockPeersProvider implements PeersProvider for testing.
+
+			<pre>type MockPeersProvider struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockPeersProvider.ClearPeers">func (*MockPeersProvider) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peersprovider.go?s=693:733#L16">ClearPeers</a>
+					<a class="permalink" href="index.html#MockPeersProvider.ClearPeers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockPeersProvider">MockPeersProvider</a>) ClearPeers()</pre>
+				<p>ClearPeers removes all known peers.
+
+				
+				
+				
+			
+				
+				<h3 id="MockPeersProvider.Peers">func (*MockPeersProvider) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/mock_peersprovider.go?s=1036:1085#L30">Peers</a>
+					<a class="permalink" href="index.html#MockPeersProvider.Peers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockPeersProvider">MockPeersProvider</a>) Peers() *<a href="../peers/index.html">peers</a>.<a href="../peers/index.html#Status">Status</a></pre>
+				<p>Peers provides access the peer status.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TestP2P">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=1369:1656#L29">TestP2P</a>
+				<a class="permalink" href="index.html#TestP2P">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TestP2P represents a p2p implementation that can be used for testing.
+
+			<pre>type TestP2P struct {
+<span id="TestP2P.BHost"></span>    BHost <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a>
+
+<span id="TestP2P.BroadcastCalled"></span>    BroadcastCalled <a href="../../../../../../builtin/index.html#bool">bool</a>
+<span id="TestP2P.DelaySend"></span>    DelaySend       <a href="../../../../../../builtin/index.html#bool">bool</a>
+<span id="TestP2P.Digest"></span>    Digest          [4]<a href="../../../../../../builtin/index.html#byte">byte</a>
+
+<span id="TestP2P.LocalMetadata"></span>    LocalMetadata <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTestP2P">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=1708:1746#L42">NewTestP2P</a>
+					<a class="permalink" href="index.html#NewTestP2P">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTestP2P(t *<a href="../../../../../../testing/index.html">testing</a>.<a href="../../../../../../testing/index.html#T">T</a>) *<a href="index.html#TestP2P">TestP2P</a></pre>
+				<p>NewTestP2P initializes a new p2p test service.
+
+				
+				
+			
+
+			
+				
+				<h3 id="TestP2P.AddConnectionHandler">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7745:7833#L255">AddConnectionHandler</a>
+					<a class="permalink" href="index.html#TestP2P.AddConnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) AddConnectionHandler(f, _ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddConnectionHandler handles the connection with a newly connected peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.AddDisconnectionHandler">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=8734:8822#L279">AddDisconnectionHandler</a>
+					<a class="permalink" href="index.html#TestP2P.AddDisconnectionHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) AddDisconnectionHandler(f func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddDisconnectionHandler --
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.AddPingMethod">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11109:11187#L365">AddPingMethod</a>
+					<a class="permalink" href="index.html#TestP2P.AddPingMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) AddPingMethod(_ func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, id <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddPingMethod mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Broadcast">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=4737:4806#L152">Broadcast</a>
+					<a class="permalink" href="index.html#TestP2P.Broadcast">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Broadcast(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Broadcast a message.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.BroadcastAttestation">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=4901:4996#L158">BroadcastAttestation</a>
+					<a class="permalink" href="index.html#TestP2P.BroadcastAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) BroadcastAttestation(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, _ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastAttestation broadcasts an attestation.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.BroadcastSyncCommitteeMessage">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=5110:5223#L164">BroadcastSyncCommitteeMessage</a>
+					<a class="permalink" href="index.html#TestP2P.BroadcastSyncCommitteeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) BroadcastSyncCommitteeMessage(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>, _ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#SyncCommitteeMessage">SyncCommitteeMessage</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>BroadcastSyncCommitteeMessage broadcasts a sync committee message.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Connect">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=2401:2438#L71">Connect</a>
+					<a class="permalink" href="index.html#TestP2P.Connect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Connect(b *<a href="index.html#TestP2P">TestP2P</a>)</pre>
+				<p>Connect two test peers together.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Disconnect">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7131:7178#L229">Disconnect</a>
+					<a class="permalink" href="index.html#TestP2P.Disconnect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Disconnect(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Disconnect from a peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.DiscoveryAddresses">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7577:7646#L250">DiscoveryAddresses</a>
+					<a class="permalink" href="index.html#TestP2P.DiscoveryAddresses">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) DiscoveryAddresses() ([]multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DiscoveryAddresses --
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.ENR">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7487:7522#L245">ENR</a>
+					<a class="permalink" href="index.html#TestP2P.ENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) ENR() *<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a></pre>
+				<p>ENR returns the enr of the local peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Encoding">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=6810:6862#L218">Encoding</a>
+					<a class="permalink" href="index.html#TestP2P.Encoding">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) Encoding() <a href="../encoder/index.html">encoder</a>.<a href="../encoder/index.html#NetworkEncoding">NetworkEncoding</a></pre>
+				<p>Encoding returns ssz encoding.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.FindPeersWithSubnet">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10522:10615#L342">FindPeersWithSubnet</a>
+					<a class="permalink" href="index.html#TestP2P.FindPeersWithSubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) FindPeersWithSubnet(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../../../builtin/index.html#string">string</a>, _, _ <a href="../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FindPeersWithSubnet mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.ForkDigest">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10743:10790#L350">ForkDigest</a>
+					<a class="permalink" href="index.html#TestP2P.ForkDigest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) ForkDigest() ([4]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ForkDigest mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Host">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7389:7423#L240">Host</a>
+					<a class="permalink" href="index.html#TestP2P.Host">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Host() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/">host</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/host/#Host">Host</a></pre>
+				<p>Host returns the libp2p host of the
+local peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.InterceptAccept">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11443:11515#L380">InterceptAccept</a>
+					<a class="permalink" href="index.html#TestP2P.InterceptAccept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) InterceptAccept(_ <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAccept .
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.InterceptAddrDial">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11325:11403#L375">InterceptAddrDial</a>
+					<a class="permalink" href="index.html#TestP2P.InterceptAddrDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) InterceptAddrDial(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, multiaddr.<a href="index.html#Multiaddr">Multiaddr</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptAddrDial .
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.InterceptPeerDial">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11226:11283#L370">InterceptPeerDial</a>
+					<a class="permalink" href="index.html#TestP2P.InterceptPeerDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) InterceptPeerDial(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptPeerDial .
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.InterceptSecured">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11556:11655#L385">InterceptSecured</a>
+					<a class="permalink" href="index.html#TestP2P.InterceptSecured">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) InterceptSecured(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Direction">Direction</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#ConnMultiaddrs">ConnMultiaddrs</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>InterceptSecured .
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.InterceptUpgraded">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=11697:11792#L390">InterceptUpgraded</a>
+					<a class="permalink" href="index.html#TestP2P.InterceptUpgraded">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) InterceptUpgraded(<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Conn">Conn</a>) (allow <a href="../../../../../../builtin/index.html#bool">bool</a>, reason <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/">control</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/control/#DisconnectReason">DisconnectReason</a>)</pre>
+				<p>InterceptUpgraded .
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.JoinTopic">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=5496:5585#L175">JoinTopic</a>
+					<a class="permalink" href="index.html#TestP2P.JoinTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) JoinTopic(topic <a href="../../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#TopicOpt">TopicOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Topic">Topic</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>JoinTopic will join PubSub topic, if not already joined.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.LeaveTopic">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=6580:6628#L207">LeaveTopic</a>
+					<a class="permalink" href="index.html#TestP2P.LeaveTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) LeaveTopic(topic <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>LeaveTopic closes topic and removes corresponding handler from list of joined topics.
+This method will return error if there are outstanding event handlers or subscriptions.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Metadata">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10857:10903#L355">Metadata</a>
+					<a class="permalink" href="index.html#TestP2P.Metadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Metadata() <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a></pre>
+				<p>Metadata mocks the peer&apos;s metadata.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.MetadataSeq">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10987:11025#L360">MetadataSeq</a>
+					<a class="permalink" href="index.html#TestP2P.MetadataSeq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) MetadataSeq() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>MetadataSeq mocks metadata sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.PeerID">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7274:7308#L234">PeerID</a>
+					<a class="permalink" href="index.html#TestP2P.PeerID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) PeerID() <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>PeerID returns the Peer ID of the local peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Peers">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10418:10457#L337">Peers</a>
+					<a class="permalink" href="index.html#TestP2P.Peers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Peers() *<a href="../peers/index.html">peers</a>.<a href="../peers/index.html#Status">Status</a></pre>
+				<p>Peers returns the peer status.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.PubSub">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=7040:7081#L224">PubSub</a>
+					<a class="permalink" href="index.html#TestP2P.PubSub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) PubSub() *<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubSub">PubSub</a></pre>
+				<p>PubSub returns reference underlying floodsub. This test library uses floodsub
+to ensure all connected peers receive the message.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.PublishToTopic">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=5867:5976#L188">PublishToTopic</a>
+					<a class="permalink" href="index.html#TestP2P.PublishToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) PublishToTopic(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, topic <a href="../../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../../builtin/index.html#byte">byte</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#PubOpt">PubOpt</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>PublishToTopic publishes message to previously joined topic.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.ReceivePubSub">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=3532:3596#L113">ReceivePubSub</a>
+					<a class="permalink" href="index.html#TestP2P.ReceivePubSub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) ReceivePubSub(topic <a href="../../../../../../builtin/index.html#string">string</a>, msg <a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>)</pre>
+				<p>ReceivePubSub simulates an incoming message over pubsub on a given topic.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.ReceiveRPC">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=2684:2745#L83">ReceiveRPC</a>
+					<a class="permalink" href="index.html#TestP2P.ReceiveRPC">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) ReceiveRPC(topic <a href="../../../../../../builtin/index.html#string">string</a>, msg <a href="../../../../../../google.golang.org/protobuf/proto/index.html">proto</a>.<a href="../../../../../../google.golang.org/protobuf/proto/index.html#Message">Message</a>)</pre>
+				<p>ReceiveRPC simulates an incoming RPC.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.RefreshENR">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10674:10704#L347">RefreshENR</a>
+					<a class="permalink" href="index.html#TestP2P.RefreshENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) RefreshENR()</pre>
+				<p>RefreshENR mocks the p2p func.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Send">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=9372:9483#L295">Send</a>
+					<a class="permalink" href="index.html#TestP2P.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) Send(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, msg interface{}, topic <a href="../../../../../../builtin/index.html#string">string</a>, pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Stream">Stream</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Send a message to a specific peer.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.SetStreamHandler">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=5296:5375#L170">SetStreamHandler</a>
+					<a class="permalink" href="index.html#TestP2P.SetStreamHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) SetStreamHandler(topic <a href="../../../../../../builtin/index.html#string">string</a>, handler <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#StreamHandler">StreamHandler</a>)</pre>
+				<p>SetStreamHandler for RPC.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.Started">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=10333:10365#L332">Started</a>
+					<a class="permalink" href="index.html#TestP2P.Started">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#TestP2P">TestP2P</a>) Started() <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Started always returns true.
+
+				
+				
+				
+			
+				
+				<h3 id="TestP2P.SubscribeToTopic">func (*TestP2P) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/testing/p2p.go?s=6176:6277#L197">SubscribeToTopic</a>
+					<a class="permalink" href="index.html#TestP2P.SubscribeToTopic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#TestP2P">TestP2P</a>) SubscribeToTopic(topic <a href="../../../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#SubOpt">SubOpt</a>) (*<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/">pubsub</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-pubsub/#Subscription">Subscription</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeToTopic joins (if necessary) and subscribes to PubSub topic.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

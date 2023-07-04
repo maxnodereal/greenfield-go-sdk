@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>prometheus - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package prometheus
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/metrics/prometheus"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package prometheus provides Prometheus implementations for metrics.
+Individual metrics are mapped to their Prometheus counterparts, and
+(depending on the constructor used) may be automatically registered in the
+global Prometheus metrics registry.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Counter">type Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCounter">func NewCounter(cv *prometheus.CounterVec) *Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCounterFrom">func NewCounterFrom(opts prometheus.CounterOpts, labelNames []string) *Counter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.Add">func (c *Counter) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.With">func (c *Counter) With(labelValues ...string) metrics.Counter</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Gauge">type Gauge</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGauge">func NewGauge(gv *prometheus.GaugeVec) *Gauge</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGaugeFrom">func NewGaugeFrom(opts prometheus.GaugeOpts, labelNames []string) *Gauge</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Add">func (g *Gauge) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Set">func (g *Gauge) Set(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.With">func (g *Gauge) With(labelValues ...string) metrics.Gauge</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Histogram">type Histogram</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHistogram">func NewHistogram(hv *prometheus.HistogramVec) *Histogram</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHistogramFrom">func NewHistogramFrom(opts prometheus.HistogramOpts, labelNames []string) *Histogram</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.Observe">func (h *Histogram) Observe(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.With">func (h *Histogram) With(labelValues ...string) metrics.Histogram</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Summary">type Summary</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSummary">func NewSummary(sv *prometheus.SummaryVec) *Summary</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSummaryFrom">func NewSummaryFrom(opts prometheus.SummaryOpts, labelNames []string) *Summary</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Summary.Observe">func (s *Summary) Observe(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Summary.With">func (s *Summary) With(labelValues ...string) metrics.Histogram</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go">prometheus.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Counter">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=480:551#L5">Counter</a>
+				<a class="permalink" href="index.html#Counter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Counter implements Counter, via a Prometheus CounterVec.
+
+			<pre>type Counter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCounter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=919:970#L19">NewCounter</a>
+					<a class="permalink" href="index.html#NewCounter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCounter(cv *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterVec">CounterVec</a>) *<a href="index.html#Counter">Counter</a></pre>
+				<p>NewCounter wraps the CounterVec and returns a usable Counter object.
+
+				
+				
+			
+				
+				<h3 id="NewCounterFrom">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=661:739#L12">NewCounterFrom</a>
+					<a class="permalink" href="index.html#NewCounterFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCounterFrom(opts <a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#CounterOpts">CounterOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Counter">Counter</a></pre>
+				<p>NewCounterFrom constructs and registers a Prometheus CounterVec,
+and returns a usable Counter object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Counter.Add">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1198:1234#L34">Add</a>
+					<a class="permalink" href="index.html#Counter.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add implements Counter.
+
+				
+				
+				
+			
+				
+				<h3 id="Counter.With">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1035:1096#L26">With</a>
+					<a class="permalink" href="index.html#Counter.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Counter">Counter</a></pre>
+				<p>With implements Counter.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Gauge">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1338:1405#L39">Gauge</a>
+				<a class="permalink" href="index.html#Gauge">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Gauge implements Gauge, via a Prometheus GaugeVec.
+
+			<pre>type Gauge struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGauge">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1751:1796#L53">NewGauge</a>
+					<a class="permalink" href="index.html#NewGauge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGauge(gv *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#GaugeVec">GaugeVec</a>) *<a href="index.html#Gauge">Gauge</a></pre>
+				<p>NewGauge wraps the GaugeVec and returns a usable Gauge object.
+
+				
+				
+			
+				
+				<h3 id="NewGaugeFrom">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1509:1581#L46">NewGaugeFrom</a>
+					<a class="permalink" href="index.html#NewGaugeFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGaugeFrom(opts <a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#GaugeOpts">GaugeOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Gauge">Gauge</a></pre>
+				<p>NewGaugeFrom constructs and registers a Prometheus GaugeVec,
+and returns a usable Gauge object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Gauge.Add">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=2141:2175#L73">Add</a>
+					<a class="permalink" href="index.html#Gauge.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add is supported by Prometheus GaugeVecs.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.Set">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=2012:2046#L68">Set</a>
+					<a class="permalink" href="index.html#Gauge.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Set(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Set implements Gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.With">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=1857:1914#L60">With</a>
+					<a class="permalink" href="index.html#Gauge.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+				<p>With implements Gauge.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Histogram">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=3478:3553#L116">Histogram</a>
+				<a class="permalink" href="index.html#Histogram">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Histogram implements Histogram via a Prometheus HistogramVec. The difference
+between a Histogram and a Summary is that Histograms require predefined
+quantile buckets, and can be statistically aggregated.
+
+			<pre>type Histogram struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewHistogram">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=3943:4000#L130">NewHistogram</a>
+					<a class="permalink" href="index.html#NewHistogram">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHistogram(hv *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#HistogramVec">HistogramVec</a>) *<a href="index.html#Histogram">Histogram</a></pre>
+				<p>NewHistogram wraps the HistogramVec and returns a usable Histogram object.
+
+				
+				
+			
+				
+				<h3 id="NewHistogramFrom">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=3669:3753#L123">NewHistogramFrom</a>
+					<a class="permalink" href="index.html#NewHistogramFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHistogramFrom(opts <a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#HistogramOpts">HistogramOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Histogram">Histogram</a></pre>
+				<p>NewHistogramFrom constructs and registers a Prometheus HistogramVec,
+and returns a usable Histogram object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Histogram.Observe">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=4244:4286#L145">Observe</a>
+					<a class="permalink" href="index.html#Histogram.Observe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) Observe(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Observe implements Histogram.
+
+				
+				
+				
+			
+				
+				<h3 id="Histogram.With">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=4069:4134#L137">With</a>
+					<a class="permalink" href="index.html#Histogram.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>With implements Histogram.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Summary">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=2443:2514#L80">Summary</a>
+				<a class="permalink" href="index.html#Summary">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Summary implements Histogram, via a Prometheus SummaryVec. The difference
+between a Summary and a Histogram is that Summaries don&apos;t require predefined
+quantile buckets, but cannot be statistically aggregated.
+
+			<pre>type Summary struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSummary">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=2882:2933#L94">NewSummary</a>
+					<a class="permalink" href="index.html#NewSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSummary(sv *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#SummaryVec">SummaryVec</a>) *<a href="index.html#Summary">Summary</a></pre>
+				<p>NewSummary wraps the SummaryVec and returns a usable Summary object.
+
+				
+				
+			
+				
+				<h3 id="NewSummaryFrom">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=2624:2702#L87">NewSummaryFrom</a>
+					<a class="permalink" href="index.html#NewSummaryFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSummaryFrom(opts <a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#SummaryOpts">SummaryOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Summary">Summary</a></pre>
+				<p>NewSummaryFrom constructs and registers a Prometheus SummaryVec,
+and returns a usable Summary object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Summary.Observe">func (*Summary) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=3171:3211#L109">Observe</a>
+					<a class="permalink" href="index.html#Summary.Observe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Summary">Summary</a>) Observe(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Observe implements Histogram.
+
+				
+				
+				
+			
+				
+				<h3 id="Summary.With">func (*Summary) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/prometheus/prometheus.go?s=3000:3063#L101">With</a>
+					<a class="permalink" href="index.html#Summary.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Summary">Summary</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>With implements Histogram.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>node - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package node
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/node"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package node sets up multi-protocol Ethereum nodes.
+<p>In the model exposed by this package, a node is a collection of services which use shared
+resources to provide RPC APIs. Services can also offer devp2p protocols, which are wired
+up to the devp2p network when the node instance is started.
+<h3 id="hdr-Node_Lifecycle">Node Lifecycle</h3>
+<p>The Node object has a lifecycle consisting of three basic states, INITIALIZING, RUNNING
+and CLOSED.
+<pre>●───────┐
+     New()
+        │
+        ▼
+  INITIALIZING ────Start()─┐
+        │                  │
+        │                  ▼
+    Close()             RUNNING
+        │                  │
+        ▼                  │
+     CLOSED ◀──────Close()─┘
+</pre>
+<p>Creating a Node allocates basic resources such as the data directory and returns the node
+in its INITIALIZING state. Lifecycle objects, RPC APIs and peer-to-peer networking
+protocols can be registered in this state. Basic operations such as opening a key-value
+database are permitted while initializing.
+<p>Once everything is registered, the node can be started, which moves it into the RUNNING
+state. Starting the node starts all registered Lifecycle objects and enables RPC and
+peer-to-peer networking. Note that no additional Lifecycles, APIs or p2p protocols can be
+registered while the node is running.
+<p>Closing the node releases all held resources. The actions performed by Close depend on the
+state it was in. When closing a node in INITIALIZING state, resources related to the data
+directory are released. If the node was RUNNING, closing it also stops all Lifecycle
+objects and shuts down RPC and peer-to-peer networking.
+<p>You must always call Close on Node, even if the node was not started.
+<h3 id="hdr-Resources_Managed_By_Node">Resources Managed By Node</h3>
+<p>All file-system resources used by a node instance are located in a directory called the
+data directory. The location of each resource can be overridden through additional node
+configuration. The data directory is optional. If it is not set and the location of a
+resource is otherwise unspecified, package node will create the resource in memory.
+<p>To access to the devp2p network, Node configures and starts p2p.Server. Each host on the
+devp2p network has a unique identifier, the node key. The Node instance persists this key
+across restarts. Node also loads static and trusted node lists and ensures that knowledge
+about other hosts is persisted.
+<p>JSON-RPC servers which run HTTP, WebSocket or IPC can be started on a Node. RPC modules
+offered by registered services will be offered on those endpoints. Users can restrict any
+endpoint to a subset of RPC modules. Node itself offers the &quot;debug&quot;, &quot;admin&quot; and &quot;web3&quot;
+modules.
+<p>Service implementations can open LevelDB databases through the service context. Package
+node chooses the file system location of each database. If the node is configured to run
+without a data directory, databases are opened in memory instead.
+<p>Node also creates the shared store of encrypted Ethereum account keys. Services can access
+the account manager through the service context.
+<h3 id="hdr-Sharing_Data_Directory_Among_Instances">Sharing Data Directory Among Instances</h3>
+<p>Multiple node instances can share a single data directory if they have distinct instance
+names (set through the Name config option). Sharing behaviour depends on the type of
+resource.
+<p>devp2p-related resources (node key, static/trusted node lists, known hosts database) are
+stored in a directory with the same name as the instance. Thus, multiple node instances
+using the same data directory will store this information in different subdirectories of
+the data directory.
+<p>LevelDB databases are also stored within the instance subdirectory. If multiple node
+instances use the same data directory, opening the databases with identical names will
+create one database for each instance.
+<p>The account key store is shared among all node instances using the same data directory
+unless its location is changed through the KeyStoreDir configuration option.
+<h3 id="hdr-Data_Directory_Sharing_Example">Data Directory Sharing Example</h3>
+<p>In this example, two node instances named A and B are started with the same data
+directory. Node instance A opens the database &quot;db&quot;, node instance B opens the databases
+&quot;db&quot; and &quot;db-2&quot;. The following files will be created in the data directory:
+<pre>data-directory/
+     A/
+         nodekey            -- devp2p node key of instance A
+         nodes/             -- devp2p discovery knowledge database of instance A
+         db/                -- LevelDB content for &quot;db&quot;
+     A.ipc                  -- JSON-RPC UNIX domain socket endpoint of instance A
+     B/
+         nodekey            -- devp2p node key of node B
+         nodes/             -- devp2p discovery knowledge database of instance B
+         static-nodes.json  -- devp2p static node list of instance B
+         db/                -- LevelDB content for &quot;db&quot;
+         db-2/              -- LevelDB content for &quot;db-2&quot;
+     B.ipc                  -- JSON-RPC UNIX domain socket endpoint of instance B
+     keystore/              -- account key store, used by both instances
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CheckTimeouts">func CheckTimeouts(timeouts *rpc.HTTPTimeouts)</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultDataDir">func DefaultDataDir() string</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultHTTPEndpoint">func DefaultHTTPEndpoint() string</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultIPCEndpoint">func DefaultIPCEndpoint(clientIdentifier string) string</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultWSEndpoint">func DefaultWSEndpoint() string</a></dd>
+			
+				
+				<dd><a href="index.html#NewHTTPHandlerStack">func NewHTTPHandlerStack(srv http.Handler, cors []string, vhosts []string, jwtSecret []byte) http.Handler</a></dd>
+			
+				
+				<dd><a href="index.html#NewWSHandlerStack">func NewWSHandlerStack(srv http.Handler, jwtSecret []byte) http.Handler</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterApis">func RegisterApis(apis []rpc.API, modules []string, srv *rpc.Server) error</a></dd>
+			
+				
+				<dd><a href="index.html#StartHTTPEndpoint">func StartHTTPEndpoint(endpoint string, timeouts rpc.HTTPTimeouts, handler http.Handler) (*http.Server, net.Addr, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.ExtRPCEnabled">func (c *Config) ExtRPCEnabled() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.HTTPEndpoint">func (c *Config) HTTPEndpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.IPCEndpoint">func (c *Config) IPCEndpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.KeyDirConfig">func (c *Config) KeyDirConfig() (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.NodeDB">func (c *Config) NodeDB() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.NodeKey">func (c *Config) NodeKey() *ecdsa.PrivateKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.NodeName">func (c *Config) NodeName() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.ResolvePath">func (c *Config) ResolvePath(path string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.StaticNodes">func (c *Config) StaticNodes() []*enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.TrustedNodes">func (c *Config) TrustedNodes() []*enode.Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Config.WSEndpoint">func (c *Config) WSEndpoint() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Lifecycle">type Lifecycle</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Node">type Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(conf *Config) (*Node, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.AccountManager">func (n *Node) AccountManager() *accounts.Manager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Attach">func (n *Node) Attach() (*rpc.Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Close">func (n *Node) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Config">func (n *Node) Config() *Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.DataDir">func (n *Node) DataDir() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.EventMux">func (n *Node) EventMux() *event.TypeMux</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.GetAPIs">func (n *Node) GetAPIs() (unauthenticated, all []rpc.API)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.HTTPEndpoint">func (n *Node) HTTPEndpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.IPCEndpoint">func (n *Node) IPCEndpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.InstanceDir">func (n *Node) InstanceDir() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.KeyStoreDir">func (n *Node) KeyStoreDir() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.OpenDatabase">func (n *Node) OpenDatabase(name string, cache, handles int, namespace string, readonly bool) (ethdb.Database, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.OpenDatabaseWithFreezer">func (n *Node) OpenDatabaseWithFreezer(name string, cache, handles int, ancient string, namespace string, readonly bool) (ethdb.Database, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.RPCHandler">func (n *Node) RPCHandler() (*rpc.Server, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.RegisterAPIs">func (n *Node) RegisterAPIs(apis []rpc.API)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.RegisterHandler">func (n *Node) RegisterHandler(name, path string, handler http.Handler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.RegisterLifecycle">func (n *Node) RegisterLifecycle(lifecycle Lifecycle)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.RegisterProtocols">func (n *Node) RegisterProtocols(protocols []p2p.Protocol)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ResolveAncient">func (n *Node) ResolveAncient(name string, ancient string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ResolvePath">func (n *Node) ResolvePath(x string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Server">func (n *Node) Server() *p2p.Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Start">func (n *Node) Start() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.WSEndpoint">func (n *Node) WSEndpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Wait">func (n *Node) Wait()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StopError">type StopError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StopError.Error">func (e *StopError) Error() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Lifecycle">Lifecycle</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/api.go">api.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go">config.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/defaults.go">defaults.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/endpoints.go">endpoints.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/jwt_handler.go">jwt_handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/lifecycle.go">lifecycle.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go">node.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/rpcstack.go">rpcstack.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="DefaultHTTPHost">DefaultHTTPHost</span>    = &#34;localhost&#34; <span class="comment">// Default host interface for the HTTP RPC server</span>
+    <span id="DefaultHTTPPort">DefaultHTTPPort</span>    = 8545        <span class="comment">// Default TCP port for the HTTP RPC server</span>
+    <span id="DefaultWSHost">DefaultWSHost</span>      = &#34;localhost&#34; <span class="comment">// Default host interface for the websocket RPC server</span>
+    <span id="DefaultWSPort">DefaultWSPort</span>      = 8546        <span class="comment">// Default TCP port for the websocket RPC server</span>
+    <span id="DefaultGraphQLHost">DefaultGraphQLHost</span> = &#34;localhost&#34; <span class="comment">// Default host interface for the GraphQL server</span>
+    <span id="DefaultGraphQLPort">DefaultGraphQLPort</span> = 8547        <span class="comment">// Default TCP port for the GraphQL server</span>
+    <span id="DefaultAuthHost">DefaultAuthHost</span>    = &#34;localhost&#34; <span class="comment">// Default host interface for the authenticated apis</span>
+    <span id="DefaultAuthPort">DefaultAuthPort</span>    = 8551        <span class="comment">// Default port for the authenticated apis</span>
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="DefaultAuthCors">DefaultAuthCors</span>    = []<a href="../../../../builtin/index.html#string">string</a>{&#34;localhost&#34;} <span class="comment">// Default cors domain for the authenticated apis</span>
+    <span id="DefaultAuthVhosts">DefaultAuthVhosts</span>  = []<a href="../../../../builtin/index.html#string">string</a>{&#34;localhost&#34;} <span class="comment">// Default virtual hosts for the authenticated apis</span>
+    <span id="DefaultAuthOrigins">DefaultAuthOrigins</span> = []<a href="../../../../builtin/index.html#string">string</a>{&#34;localhost&#34;} <span class="comment">// Default origins for the authenticated apis</span>
+    <span id="DefaultAuthPrefix">DefaultAuthPrefix</span>  = &#34;&#34;                    <span class="comment">// Default prefix for the authenticated apis</span>
+    <span id="DefaultAuthModules">DefaultAuthModules</span> = []<a href="../../../../builtin/index.html#string">string</a>{&#34;eth&#34;, &#34;engine&#34;}
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrDatadirUsed">ErrDatadirUsed</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;datadir already used by another process&#34;)
+    <span id="ErrNodeStopped">ErrNodeStopped</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;node not started&#34;)
+    <span id="ErrNodeRunning">ErrNodeRunning</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;node already running&#34;)
+    <span id="ErrServiceUnknown">ErrServiceUnknown</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;unknown service&#34;)
+)</pre>
+			
+				<p>DefaultConfig contains reasonable default settings.
+
+				<pre>var <span id="DefaultConfig">DefaultConfig</span> = <a href="index.html#Config">Config</a>{
+    <a href="index.html#Config.DataDir">DataDir</a>:             <a href="index.html#DefaultDataDir">DefaultDataDir</a>(),
+    <a href="index.html#Config.HTTPPort">HTTPPort</a>:            <a href="index.html#DefaultHTTPPort">DefaultHTTPPort</a>,
+    <a href="index.html#Config.AuthAddr">AuthAddr</a>:            <a href="index.html#DefaultAuthHost">DefaultAuthHost</a>,
+    <a href="index.html#Config.AuthPort">AuthPort</a>:            <a href="index.html#DefaultAuthPort">DefaultAuthPort</a>,
+    <a href="index.html#Config.AuthVirtualHosts">AuthVirtualHosts</a>:    <a href="index.html#DefaultAuthVhosts">DefaultAuthVhosts</a>,
+    <a href="index.html#Config.HTTPModules">HTTPModules</a>:         []<a href="../../../../builtin/index.html#string">string</a>{&#34;net&#34;, &#34;web3&#34;},
+    <a href="index.html#Config.HTTPVirtualHosts">HTTPVirtualHosts</a>:    []<a href="../../../../builtin/index.html#string">string</a>{&#34;localhost&#34;},
+    <a href="index.html#Config.HTTPTimeouts">HTTPTimeouts</a>:        <a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#DefaultHTTPTimeouts">DefaultHTTPTimeouts</a>,
+    <a href="index.html#Config.WSPort">WSPort</a>:              <a href="index.html#DefaultWSPort">DefaultWSPort</a>,
+    <a href="index.html#Config.WSModules">WSModules</a>:           []<a href="../../../../builtin/index.html#string">string</a>{&#34;net&#34;, &#34;web3&#34;},
+    <a href="index.html#Config.GraphQLVirtualHosts">GraphQLVirtualHosts</a>: []<a href="../../../../builtin/index.html#string">string</a>{&#34;localhost&#34;},
+    <a href="index.html#Config.P2P">P2P</a>: <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Config">Config</a>{
+        <a href="../p2p/index.html#Config.ListenAddr">ListenAddr</a>: &#34;:30303&#34;,
+        <a href="../p2p/index.html#Config.MaxPeers">MaxPeers</a>:   50,
+        <a href="../p2p/index.html#Config.NAT">NAT</a>:        <a href="../p2p/nat/index.html">nat</a>.<a href="../p2p/nat/index.html#Any">Any</a>(),
+    },
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="CheckTimeouts">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/endpoints.go?s=2520:2566#L64">CheckTimeouts</a>
+				<a class="permalink" href="index.html#CheckTimeouts">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CheckTimeouts(timeouts *<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#HTTPTimeouts">HTTPTimeouts</a>)</pre>
+			<p>CheckTimeouts ensures that timeout values are meaningful
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultDataDir">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/defaults.go?s=2834:2862#L61">DefaultDataDir</a>
+				<a class="permalink" href="index.html#DefaultDataDir">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultDataDir() <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>DefaultDataDir is the default data directory to use for the databases and other
+persistence requirements.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultHTTPEndpoint">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=10710:10743#L253">DefaultHTTPEndpoint</a>
+				<a class="permalink" href="index.html#DefaultHTTPEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultHTTPEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>DefaultHTTPEndpoint returns the HTTP endpoint used by default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultIPCEndpoint">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=10057:10112#L232">DefaultIPCEndpoint</a>
+				<a class="permalink" href="index.html#DefaultIPCEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultIPCEndpoint(clientIdentifier <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>DefaultIPCEndpoint returns the IPC path used by default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultWSEndpoint">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=11182:11213#L268">DefaultWSEndpoint</a>
+				<a class="permalink" href="index.html#DefaultWSEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultWSEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>DefaultWSEndpoint returns the websocket endpoint used by default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewHTTPHandlerStack">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/rpcstack.go?s=10342:10447#L367">NewHTTPHandlerStack</a>
+				<a class="permalink" href="index.html#NewHTTPHandlerStack">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewHTTPHandlerStack(srv <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a>, cors []<a href="../../../../builtin/index.html#string">string</a>, vhosts []<a href="../../../../builtin/index.html#string">string</a>, jwtSecret []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a></pre>
+			<p>NewHTTPHandlerStack returns wrapped http-related handlers
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewWSHandlerStack">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/rpcstack.go?s=10749:10820#L378">NewWSHandlerStack</a>
+				<a class="permalink" href="index.html#NewWSHandlerStack">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewWSHandlerStack(srv <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a>, jwtSecret []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a></pre>
+			<p>NewWSHandlerStack returns a wrapped ws-related handler.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterApis">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/rpcstack.go?s=14866:14940#L532">RegisterApis</a>
+				<a class="permalink" href="index.html#RegisterApis">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterApis(apis []<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#API">API</a>, modules []<a href="../../../../builtin/index.html#string">string</a>, srv *<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#Server">Server</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>RegisterApis checks the given modules&apos; availability, generates an allowlist based on the allowed modules,
+and then registers all of the APIs exposed by the services.
+
+			
+			
+
+		
+			
+			
+			<h2 id="StartHTTPEndpoint">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/endpoints.go?s=976:1096#L19">StartHTTPEndpoint</a>
+				<a class="permalink" href="index.html#StartHTTPEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StartHTTPEndpoint(endpoint <a href="../../../../builtin/index.html#string">string</a>, timeouts <a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#HTTPTimeouts">HTTPTimeouts</a>, handler <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a>) (*<a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Server">Server</a>, <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Addr">Addr</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>StartHTTPEndpoint starts the HTTP RPC endpoint.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=1928:9057#L38">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config represents a small collection of configuration values to fine tune the
+P2P network layer of a protocol stack. These values can be further extended by
+all registered services.
+
+			<pre>type Config struct {
+<span id="Config.Name"></span>    <span class="comment">// Name sets the instance name of the node. It must not contain the / character and is</span>
+    <span class="comment">// used in the devp2p node identifier. The instance name of geth is &#34;geth&#34;. If no</span>
+    <span class="comment">// value is specified, the basename of the current executable is used.</span>
+    Name <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;-&#34;`
+
+<span id="Config.UserIdent"></span>    <span class="comment">// UserIdent, if set, is used as an additional component in the devp2p node identifier.</span>
+    UserIdent <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.Version"></span>    <span class="comment">// Version should be set to the version number of the program. It is used</span>
+    <span class="comment">// in the devp2p node identifier.</span>
+    Version <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;-&#34;`
+
+<span id="Config.DataDir"></span>    <span class="comment">// DataDir is the file system folder the node should use for any data storage</span>
+    <span class="comment">// requirements. The configured data directory will not be directly shared with</span>
+    <span class="comment">// registered services, instead those can use utility methods to create/access</span>
+    <span class="comment">// databases or flat files. This enables ephemeral nodes which can fully reside</span>
+    <span class="comment">// in memory.</span>
+    DataDir <a href="../../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// Configuration of peer-to-peer networking.</span>
+<span id="Config.P2P"></span>    P2P <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Config">Config</a>
+
+<span id="Config.KeyStoreDir"></span>    <span class="comment">// KeyStoreDir is the file system folder that contains private keys. The directory can</span>
+    <span class="comment">// be specified as a relative path, in which case it is resolved relative to the</span>
+    <span class="comment">// current directory.</span>
+    <span class="comment">//</span>
+    <span class="comment">// If KeyStoreDir is empty, the default location is the &#34;keystore&#34; subdirectory of</span>
+    <span class="comment">// DataDir. If DataDir is unspecified and KeyStoreDir is empty, an ephemeral directory</span>
+    <span class="comment">// is created by New and destroyed when the node is stopped.</span>
+    KeyStoreDir <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.ExternalSigner"></span>    <span class="comment">// ExternalSigner specifies an external URI for a clef-type signer</span>
+    ExternalSigner <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.UseLightweightKDF"></span>    <span class="comment">// UseLightweightKDF lowers the memory and CPU requirements of the key store</span>
+    <span class="comment">// scrypt KDF at the expense of security.</span>
+    UseLightweightKDF <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.InsecureUnlockAllowed"></span>    <span class="comment">// InsecureUnlockAllowed allows user to unlock accounts in unsafe http environment.</span>
+    InsecureUnlockAllowed <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.NoUSB"></span>    <span class="comment">// NoUSB disables hardware wallet monitoring and connectivity.</span>
+    <span class="comment">// Deprecated: USB monitoring is disabled by default and must be enabled explicitly.</span>
+    NoUSB <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.USB"></span>    <span class="comment">// USB enables hardware wallet monitoring and connectivity.</span>
+    USB <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.SmartCardDaemonPath"></span>    <span class="comment">// SmartCardDaemonPath is the path to the smartcard daemon&#39;s socket</span>
+    SmartCardDaemonPath <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.IPCPath"></span>    <span class="comment">// IPCPath is the requested location to place the IPC endpoint. If the path is</span>
+    <span class="comment">// a simple file name, it is placed inside the data directory (or on the root</span>
+    <span class="comment">// pipe path on Windows), whereas if it&#39;s a resolvable path name (absolute or</span>
+    <span class="comment">// relative), then that specific path is enforced. An empty path disables IPC.</span>
+    IPCPath <a href="../../../../builtin/index.html#string">string</a>
+
+<span id="Config.HTTPHost"></span>    <span class="comment">// HTTPHost is the host interface on which to start the HTTP RPC server. If this</span>
+    <span class="comment">// field is empty, no HTTP API endpoint will be started.</span>
+    HTTPHost <a href="../../../../builtin/index.html#string">string</a>
+
+<span id="Config.HTTPPort"></span>    <span class="comment">// HTTPPort is the TCP port number on which to start the HTTP RPC server. The</span>
+    <span class="comment">// default zero value is/ valid and will pick a port number randomly (useful</span>
+    <span class="comment">// for ephemeral nodes).</span>
+    HTTPPort <a href="../../../../builtin/index.html#int">int</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.HTTPCors"></span>    <span class="comment">// HTTPCors is the Cross-Origin Resource Sharing header to send to requesting</span>
+    <span class="comment">// clients. Please be aware that CORS is a browser enforced security, it&#39;s fully</span>
+    <span class="comment">// useless for custom HTTP clients.</span>
+    HTTPCors []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.HTTPVirtualHosts"></span>    <span class="comment">// HTTPVirtualHosts is the list of virtual hostnames which are allowed on incoming requests.</span>
+    <span class="comment">// This is by default {&#39;localhost&#39;}. Using this prevents attacks like</span>
+    <span class="comment">// DNS rebinding, which bypasses SOP by simply masquerading as being within the same</span>
+    <span class="comment">// origin. These attacks do not utilize CORS, since they are not cross-domain.</span>
+    <span class="comment">// By explicitly checking the Host-header, the server will not allow requests</span>
+    <span class="comment">// made against the server with a malicious host domain.</span>
+    <span class="comment">// Requests using ip address directly are not affected</span>
+    HTTPVirtualHosts []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.HTTPModules"></span>    <span class="comment">// HTTPModules is a list of API modules to expose via the HTTP RPC interface.</span>
+    <span class="comment">// If the module list is empty, all RPC API endpoints designated public will be</span>
+    <span class="comment">// exposed.</span>
+    HTTPModules []<a href="../../../../builtin/index.html#string">string</a>
+
+<span id="Config.HTTPTimeouts"></span>    <span class="comment">// HTTPTimeouts allows for customization of the timeout values used by the HTTP RPC</span>
+    <span class="comment">// interface.</span>
+    HTTPTimeouts <a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#HTTPTimeouts">HTTPTimeouts</a>
+
+<span id="Config.HTTPPathPrefix"></span>    <span class="comment">// HTTPPathPrefix specifies a path prefix on which http-rpc is to be served.</span>
+    HTTPPathPrefix <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.AuthAddr"></span>    <span class="comment">// AuthAddr is the listening address on which authenticated APIs are provided.</span>
+    AuthAddr <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.AuthPort"></span>    <span class="comment">// AuthPort is the port number on which authenticated APIs are provided.</span>
+    AuthPort <a href="../../../../builtin/index.html#int">int</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.AuthVirtualHosts"></span>    <span class="comment">// AuthVirtualHosts is the list of virtual hostnames which are allowed on incoming requests</span>
+    <span class="comment">// for the authenticated api. This is by default {&#39;localhost&#39;}.</span>
+    AuthVirtualHosts []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.WSHost"></span>    <span class="comment">// WSHost is the host interface on which to start the websocket RPC server. If</span>
+    <span class="comment">// this field is empty, no websocket API endpoint will be started.</span>
+    WSHost <a href="../../../../builtin/index.html#string">string</a>
+
+<span id="Config.WSPort"></span>    <span class="comment">// WSPort is the TCP port number on which to start the websocket RPC server. The</span>
+    <span class="comment">// default zero value is/ valid and will pick a port number randomly (useful for</span>
+    <span class="comment">// ephemeral nodes).</span>
+    WSPort <a href="../../../../builtin/index.html#int">int</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.WSPathPrefix"></span>    <span class="comment">// WSPathPrefix specifies a path prefix on which ws-rpc is to be served.</span>
+    WSPathPrefix <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.WSOrigins"></span>    <span class="comment">// WSOrigins is the list of domain to accept websocket requests from. Please be</span>
+    <span class="comment">// aware that the server can only act upon the HTTP request the client sends and</span>
+    <span class="comment">// cannot verify the validity of the request header.</span>
+    WSOrigins []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.WSModules"></span>    <span class="comment">// WSModules is a list of API modules to expose via the websocket RPC interface.</span>
+    <span class="comment">// If the module list is empty, all RPC API endpoints designated public will be</span>
+    <span class="comment">// exposed.</span>
+    WSModules []<a href="../../../../builtin/index.html#string">string</a>
+
+<span id="Config.WSExposeAll"></span>    <span class="comment">// WSExposeAll exposes all API modules via the WebSocket RPC interface rather</span>
+    <span class="comment">// than just the public ones.</span>
+    <span class="comment">//</span>
+    <span class="comment">// *WARNING* Only set this if the node is running in a trusted network, exposing</span>
+    <span class="comment">// private APIs to untrusted users is a major security risk.</span>
+    WSExposeAll <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.GraphQLCors"></span>    <span class="comment">// GraphQLCors is the Cross-Origin Resource Sharing header to send to requesting</span>
+    <span class="comment">// clients. Please be aware that CORS is a browser enforced security, it&#39;s fully</span>
+    <span class="comment">// useless for custom HTTP clients.</span>
+    GraphQLCors []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.GraphQLVirtualHosts"></span>    <span class="comment">// GraphQLVirtualHosts is the list of virtual hostnames which are allowed on incoming requests.</span>
+    <span class="comment">// This is by default {&#39;localhost&#39;}. Using this prevents attacks like</span>
+    <span class="comment">// DNS rebinding, which bypasses SOP by simply masquerading as being within the same</span>
+    <span class="comment">// origin. These attacks do not utilize CORS, since they are not cross-domain.</span>
+    <span class="comment">// By explicitly checking the Host-header, the server will not allow requests</span>
+    <span class="comment">// made against the server with a malicious host domain.</span>
+    <span class="comment">// Requests using ip address directly are not affected</span>
+    GraphQLVirtualHosts []<a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.Logger"></span>    <span class="comment">// Logger is a custom logger to use with the p2p.Server.</span>
+    Logger <a href="../log/index.html">log</a>.<a href="../log/index.html#Logger">Logger</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.AllowUnprotectedTxs"></span>    <span class="comment">// AllowUnprotectedTxs allows non EIP-155 protected transactions to be send over RPC.</span>
+    AllowUnprotectedTxs <a href="../../../../builtin/index.html#bool">bool</a> `toml:&#34;,omitempty&#34;`
+
+<span id="Config.JWTSecret"></span>    <span class="comment">// JWTSecret is the hex-encoded jwt secret.</span>
+    JWTSecret <a href="../../../../builtin/index.html#string">string</a> `toml:&#34;,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Config.ExtRPCEnabled">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=11414:11451#L275">ExtRPCEnabled</a>
+					<a class="permalink" href="index.html#Config.ExtRPCEnabled">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) ExtRPCEnabled() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>ExtRPCEnabled returns the indicator whether node enables the external
+RPC(http, ws or graphql).
+
+				
+				
+				
+			
+				
+				<h3 id="Config.HTTPEndpoint">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=10509:10547#L245">HTTPEndpoint</a>
+					<a class="permalink" href="index.html#Config.HTTPEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) HTTPEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>HTTPEndpoint resolves an HTTP endpoint based on the configured host interface
+and port parameters.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.IPCEndpoint">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=9238:9275#L201">IPCEndpoint</a>
+					<a class="permalink" href="index.html#Config.IPCEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) IPCEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>IPCEndpoint resolves an IPC endpoint based on a configured value, taking into
+account the set data folders as well as the designated platform we&apos;re currently
+running on.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.KeyDirConfig">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=16121:16168#L432">KeyDirConfig</a>
+					<a class="permalink" href="index.html#Config.KeyDirConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) KeyDirConfig() (<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>KeyDirConfig determines the settings for keydirectory
+
+				
+				
+				
+			
+				
+				<h3 id="Config.NodeDB">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=9866:9898#L224">NodeDB</a>
+					<a class="permalink" href="index.html#Config.NodeDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) NodeDB() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>NodeDB returns the path to the discovery node database.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.NodeKey">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=13602:13646#L352">NodeKey</a>
+					<a class="permalink" href="index.html#Config.NodeKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) NodeKey() *<a href="../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a></pre>
+				<p>NodeKey retrieves the currently configured private key of the node, checking
+first any manually set key, falling back to the one found in the configured
+data folder. If no key can be found, a new one is generated.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.NodeName">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=11548:11582#L280">NodeName</a>
+					<a class="permalink" href="index.html#Config.NodeName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) NodeName() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>NodeName returns the devp2p node identifier.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.ResolvePath">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=12581:12629#L318">ResolvePath</a>
+					<a class="permalink" href="index.html#Config.ResolvePath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) ResolvePath(path <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>ResolvePath resolves path in the instance directory.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.StaticNodes">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=14729:14773#L388">StaticNodes</a>
+					<a class="permalink" href="index.html#Config.StaticNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) StaticNodes() []*<a href="../p2p/enode/index.html">enode</a>.<a href="../p2p/enode/index.html#Node">Node</a></pre>
+				<p>StaticNodes returns a list of node enode URLs configured as static nodes.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.TrustedNodes">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=14947:14992#L393">TrustedNodes</a>
+					<a class="permalink" href="index.html#Config.TrustedNodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) TrustedNodes() []*<a href="../p2p/enode/index.html">enode</a>.<a href="../p2p/enode/index.html#Node">Node</a></pre>
+				<p>TrustedNodes returns a list of node enode URLs configured as trusted nodes.
+
+				
+				
+				
+			
+				
+				<h3 id="Config.WSEndpoint">func (*Config) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/config.go?s=10986:11022#L260">WSEndpoint</a>
+					<a class="permalink" href="index.html#Config.WSEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Config">Config</a>) WSEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>WSEndpoint resolves a websocket endpoint based on the configured host interface
+and port parameters.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Lifecycle">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/lifecycle.go?s=1107:1430#L13">Lifecycle</a>
+				<a class="permalink" href="index.html#Lifecycle">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Lifecycle encompasses the behavior of services that can be started and stopped
+on the node. Lifecycle management is delegated to the node, but it is the
+responsibility of the service-specific package to configure and register the
+service on the node using the `RegisterLifecycle` method.
+
+			<pre>type Lifecycle interface {
+    <span class="comment">// Start is called after all services have been constructed and the networking</span>
+    <span class="comment">// layer was also initialized to spawn any goroutines required by the service.</span>
+    Start() <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Stop terminates all goroutines belonging to the service, blocking until they</span>
+    <span class="comment">// are all terminated.</span>
+    Stop() <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			<div id="example_Lifecycle" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package node_test
+
+import (
+    &#34;fmt&#34;
+    &#34;log&#34;
+
+    &#34;github.com/ethereum/go-ethereum/node&#34;
+)
+
+<span class="comment">// SampleLifecycle is a trivial network service that can be attached to a node for</span>
+<span class="comment">// life cycle management.</span>
+<span class="comment">//</span>
+<span class="comment">// The following methods are needed to implement a node.Lifecycle:</span>
+<span class="comment">//   - Start() error              - method invoked when the node is ready to start the service</span>
+<span class="comment">//   - Stop() error               - method invoked when the node terminates the service</span>
+type SampleLifecycle struct{}
+
+func (s *SampleLifecycle) Start() error { fmt.Println(&#34;Service starting...&#34;); return nil }
+func (s *SampleLifecycle) Stop() error  { fmt.Println(&#34;Service stopping...&#34;); return nil }
+
+func ExampleLifecycle() {
+    <span class="comment">// Create a network node to run protocols with the default values.</span>
+    stack, err := node.New(&amp;node.Config{})
+    if err != nil {
+        log.Fatalf(&#34;Failed to create network node: %v&#34;, err)
+    }
+    defer stack.Close()
+
+    <span class="comment">// Create and register a simple network Lifecycle.</span>
+    service := new(SampleLifecycle)
+    stack.RegisterLifecycle(service)
+
+    <span class="comment">// Boot up the entire protocol stack, do a restart and terminate</span>
+    if err := stack.Start(); err != nil {
+        log.Fatalf(&#34;Failed to start the protocol stack: %v&#34;, err)
+    }
+    if err := stack.Close(); err != nil {
+        log.Fatalf(&#34;Failed to stop the protocol stack: %v&#34;, err)
+    }
+    <span class="comment">// Output:</span>
+    <span class="comment">// Service starting...</span>
+    <span class="comment">// Service stopping...</span>
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Node">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=1417:2636#L34">Node</a>
+				<a class="permalink" href="index.html#Node">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Node is a container on which services can be registered.
+
+			<pre>type Node struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=2766:2803#L67">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(conf *<a href="index.html#Config">Config</a>) (*<a href="index.html#Node">Node</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New creates a new P2P node, ready for protocol registration.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Node.AccountManager">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18250:18299#L638">AccountManager</a>
+					<a class="permalink" href="index.html#Node.AccountManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) AccountManager() *<a href="../accounts/index.html">accounts</a>.<a href="../accounts/index.html#Manager">Manager</a></pre>
+				<p>AccountManager retrieves the account manager used by the protocol stack.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Attach">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=16979:17023#L591">Attach</a>
+					<a class="permalink" href="index.html#Node.Attach">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Attach() (*<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Attach creates an RPC client attached to an in-process API handler.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Close">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=6610:6638#L199">Close</a>
+					<a class="permalink" href="index.html#Node.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close stops the Node and releases resources acquired in
+Node constructor New.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Config">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=17360:17391#L607">Config</a>
+					<a class="permalink" href="index.html#Node.Config">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Config() *<a href="index.html#Config">Config</a></pre>
+				<p>Config returns the configuration of node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.DataDir">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=17863:17894#L623">DataDir</a>
+					<a class="permalink" href="index.html#Node.DataDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) DataDir() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>DataDir retrieves the current datadir used by the protocol stack.
+Deprecated: No files should be stored in this directory, use InstanceDir instead.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.EventMux">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=19055:19095#L663">EventMux</a>
+					<a class="permalink" href="index.html#Node.EventMux">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) EventMux() *<a href="../event/index.html">event</a>.<a href="../event/index.html#TypeMux">TypeMux</a></pre>
+				<p>EventMux retrieves the event multiplexer used by all the network services in
+the current protocol stack.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.GetAPIs">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=16163:16220#L565">GetAPIs</a>
+					<a class="permalink" href="index.html#Node.GetAPIs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) GetAPIs() (unauthenticated, all []<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#API">API</a>)</pre>
+				<p>GetAPIs return two sets of APIs, both the ones that do not require
+authentication, and the complete set
+
+				
+				
+				
+			
+				
+				<h3 id="Node.HTTPEndpoint">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18603:18639#L649">HTTPEndpoint</a>
+					<a class="permalink" href="index.html#Node.HTTPEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) HTTPEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>HTTPEndpoint returns the URL of the HTTP server. Note that this URL does not
+contain the JSON-RPC path prefix set by HTTPPathPrefix.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.IPCEndpoint">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18400:18435#L643">IPCEndpoint</a>
+					<a class="permalink" href="index.html#Node.IPCEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) IPCEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>IPCEndpoint retrieves the current IPC endpoint used by the protocol stack.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.InstanceDir">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18001:18036#L628">InstanceDir</a>
+					<a class="permalink" href="index.html#Node.InstanceDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) InstanceDir() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>InstanceDir retrieves the instance directory used by the protocol stack.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.KeyStoreDir">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18116:18151#L633">KeyStoreDir</a>
+					<a class="permalink" href="index.html#Node.KeyStoreDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) KeyStoreDir() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>KeyStoreDir retrieves the key directory
+
+				
+				
+				
+			
+				
+				<h3 id="Node.OpenDatabase">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=19334:19451#L670">OpenDatabase</a>
+					<a class="permalink" href="index.html#Node.OpenDatabase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) OpenDatabase(name <a href="../../../../builtin/index.html#string">string</a>, cache, handles <a href="../../../../builtin/index.html#int">int</a>, namespace <a href="../../../../builtin/index.html#string">string</a>, readonly <a href="../../../../builtin/index.html#bool">bool</a>) (<a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenDatabase opens an existing database with the given name (or creates one if no
+previous can be found) from within the node&apos;s instance directory. If the node is
+ephemeral, a memory database is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.OpenDatabaseWithFreezer">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=20179:20323#L696">OpenDatabaseWithFreezer</a>
+					<a class="permalink" href="index.html#Node.OpenDatabaseWithFreezer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) OpenDatabaseWithFreezer(name <a href="../../../../builtin/index.html#string">string</a>, cache, handles <a href="../../../../builtin/index.html#int">int</a>, ancient <a href="../../../../builtin/index.html#string">string</a>, namespace <a href="../../../../builtin/index.html#string">string</a>, readonly <a href="../../../../builtin/index.html#bool">bool</a>) (<a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenDatabaseWithFreezer opens an existing database with the given name (or
+creates one if no previous can be found) from within the node&apos;s data directory,
+also attaching a chain freezer to it that moves ancient chain data from the
+database to immutable append-only files. If the node is an ephemeral one, a
+memory database is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.RPCHandler">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=17132:17180#L596">RPCHandler</a>
+					<a class="permalink" href="index.html#Node.RPCHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) RPCHandler() (*<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#Server">Server</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RPCHandler returns the in-process RPC request handler.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.RegisterAPIs">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=15832:15875#L553">RegisterAPIs</a>
+					<a class="permalink" href="index.html#Node.RegisterAPIs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) RegisterAPIs(apis []<a href="../rpc/index.html">rpc</a>.<a href="../rpc/index.html#API">API</a>)</pre>
+				<p>RegisterAPIs registers the APIs a service provides on the node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.RegisterHandler">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=16622:16693#L578">RegisterHandler</a>
+					<a class="permalink" href="index.html#Node.RegisterHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) RegisterHandler(name, path <a href="../../../../builtin/index.html#string">string</a>, handler <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a>)</pre>
+				<p>RegisterHandler mounts a handler on the given path on the canonical HTTP server.
+<p>The name of the handler is shown in a log message when the HTTP server starts
+and should be a descriptive term for the service provided by the handler.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.RegisterLifecycle">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=15050:15103#L528">RegisterLifecycle</a>
+					<a class="permalink" href="index.html#Node.RegisterLifecycle">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) RegisterLifecycle(lifecycle <a href="index.html#Lifecycle">Lifecycle</a>)</pre>
+				<p>RegisterLifecycle registers the given Lifecycle on the node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.RegisterProtocols">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=15501:15559#L542">RegisterProtocols</a>
+					<a class="permalink" href="index.html#Node.RegisterProtocols">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) RegisterProtocols(protocols []<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Protocol">Protocol</a>)</pre>
+				<p>RegisterProtocols adds backend&apos;s protocols to the node&apos;s p2p server.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ResolveAncient">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=20982:21047#L723">ResolveAncient</a>
+					<a class="permalink" href="index.html#Node.ResolveAncient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ResolveAncient(name <a href="../../../../builtin/index.html#string">string</a>, ancient <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>ResolveAncient returns the absolute path of the root ancient directory.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ResolvePath">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=20826:20869#L718">ResolvePath</a>
+					<a class="permalink" href="index.html#Node.ResolvePath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ResolvePath(x <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>ResolvePath returns the absolute path of a resource in the instance directory.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Server">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=17612:17647#L614">Server</a>
+					<a class="permalink" href="index.html#Node.Server">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Server() *<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Server">Server</a></pre>
+				<p>Server retrieves the currently running P2P network layer. This method is meant
+only to inspect fields of the currently running server. Callers should not
+start or stop the returned server.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Start">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=5679:5707#L156">Start</a>
+					<a class="permalink" href="index.html#Node.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Start() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Start starts all registered lifecycles, RPC services and p2p networking.
+Node can only be started once.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.WSEndpoint">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=18753:18787#L654">WSEndpoint</a>
+					<a class="permalink" href="index.html#Node.WSEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) WSEndpoint() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>WSEndpoint returns the current JSON-RPC over WebSocket endpoint.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Wait">func (*Node) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/node.go?s=14949:14970#L523">Wait</a>
+					<a class="permalink" href="index.html#Node.Wait">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Wait()</pre>
+				<p>Wait blocks until the node is closed.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StopError">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/errors.go?s=1434:1508#L34">StopError</a>
+				<a class="permalink" href="index.html#StopError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StopError is returned if a Node fails to stop either any of its registered
+services or itself.
+
+			<pre>type StopError struct {
+<span id="StopError.Server"></span>    Server   <a href="../../../../builtin/index.html#error">error</a>
+<span id="StopError.Services"></span>    Services map[<a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#Type">Type</a>]<a href="../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StopError.Error">func (*StopError) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/node/errors.go?s=1573:1607#L40">Error</a>
+					<a class="permalink" href="index.html#StopError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#StopError">StopError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Error generates a textual representation of the stop error.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

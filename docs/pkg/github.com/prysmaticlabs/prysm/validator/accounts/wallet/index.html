@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>wallet - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package wallet
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/validator/accounts/wallet"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Exists">func Exists(walletDir string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#InputPassword">func InputPassword(cliCtx *cli.Context, passwordFileFlag *cli.StringFlag, promptText string, confirmPassword bool, passwordValidator func(input string) error) (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#IsValid">func IsValid(walletDir string) (bool, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Wallet">type Wallet</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(cfg *Config) *Wallet</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OpenWallet">func OpenWallet(_ context.Context, cfg *Config) (*Wallet, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OpenWalletOrElseCli">func OpenWalletOrElseCli(cliCtx *cli.Context, otherwise func(cliCtx *cli.Context) (*Wallet, error)) (*Wallet, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.AccountsDir">func (w *Wallet) AccountsDir() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.FileNameAtPath">func (w *Wallet) FileNameAtPath(_ context.Context, filePath, fileName string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.InitializeKeymanager">func (w *Wallet) InitializeKeymanager(ctx context.Context, cfg iface.InitKeymanagerConfig) (keymanager.IKeymanager, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.KeymanagerKind">func (w *Wallet) KeymanagerKind() keymanager.Kind</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.Password">func (w *Wallet) Password() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.ReadFileAtPath">func (w *Wallet) ReadFileAtPath(_ context.Context, filePath, fileName string) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.ReadKeymanagerConfigFromDisk">func (w *Wallet) ReadKeymanagerConfigFromDisk(_ context.Context) (io.ReadCloser, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.SaveWallet">func (w *Wallet) SaveWallet() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.WriteFileAtPath">func (w *Wallet) WriteFileAtPath(_ context.Context, filePath, fileName string, data []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Wallet.WriteKeymanagerConfigToDisk">func (w *Wallet) WriteKeymanagerConfigToDisk(_ context.Context, encoded []byte) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go">wallet.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// KeymanagerConfigFileName for the keymanager used by the wallet: imported, derived, or remote.</span>
+    <span id="KeymanagerConfigFileName">KeymanagerConfigFileName</span> = &#34;keymanageropts.json&#34;
+    <span class="comment">// NewWalletPasswordPromptText for wallet creation.</span>
+    <span id="NewWalletPasswordPromptText">NewWalletPasswordPromptText</span> = &#34;New wallet password&#34;
+    <span class="comment">// PasswordPromptText for wallet unlocking.</span>
+    <span id="PasswordPromptText">PasswordPromptText</span> = &#34;Wallet password&#34;
+    <span class="comment">// ConfirmPasswordPromptText for confirming a wallet password.</span>
+    <span id="ConfirmPasswordPromptText">ConfirmPasswordPromptText</span> = &#34;Confirm password&#34;
+    <span class="comment">// DefaultWalletPasswordFile used to store a wallet password with appropriate permissions</span>
+    <span class="comment">// if a user signs up via the Prysm web UI via RPC.</span>
+    <span id="DefaultWalletPasswordFile">DefaultWalletPasswordFile</span> = &#34;walletpassword.txt&#34;
+    <span class="comment">// CheckExistsErrMsg for when there is an error while checking for a wallet</span>
+    <span id="CheckExistsErrMsg">CheckExistsErrMsg</span> = &#34;could not check if wallet exists&#34;
+    <span class="comment">// CheckValidityErrMsg for when there is an error while checking wallet validity</span>
+    <span id="CheckValidityErrMsg">CheckValidityErrMsg</span> = &#34;could not check if wallet is valid&#34;
+    <span class="comment">// InvalidWalletErrMsg for when a directory does not contain a valid wallet</span>
+    <span id="InvalidWalletErrMsg">InvalidWalletErrMsg</span> = &#34;directory does not contain valid wallet&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNoWalletFound signifies there was no wallet directory found on-disk.</span>
+    <span id="ErrNoWalletFound">ErrNoWalletFound</span> = <a href="../../../../../pkg/errors/index.html">errors</a>.<a href="../../../../../pkg/errors/index.html#New">New</a>(
+        &#34;no wallet found. You can create a new wallet with `validator wallet create`. &#34; +
+            &#34;If you already did, perhaps you created a wallet in a custom directory, which you can specify using &#34; +
+            &#34;`--wallet-dir=/path/to/my/wallet`&#34;,
+    )
+    <span class="comment">// KeymanagerKindSelections as friendly text.</span>
+    <span id="KeymanagerKindSelections">KeymanagerKindSelections</span> = map[<a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Kind">Kind</a>]<a href="../../../../../../builtin/index.html#string">string</a>{
+        <a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Imported">Imported</a>: &#34;Imported Wallet (Recommended)&#34;,
+        <a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Derived">Derived</a>:  &#34;HD Wallet&#34;,
+        <a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Remote">Remote</a>:   &#34;Remote Signing Wallet (Advanced)&#34;,
+    }
+    <span class="comment">// ValidateExistingPass checks that an input cannot be empty.</span>
+    <span id="ValidateExistingPass">ValidateExistingPass</span> = func(input <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a> {
+        if input == &#34;&#34; {
+            return <a href="../../../../../pkg/errors/index.html">errors</a>.<a href="../../../../../pkg/errors/index.html#New">New</a>(&#34;password input cannot be empty&#34;)
+        }
+        return <a href="../../../../../../builtin/index.html#nil">nil</a>
+    }
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Exists">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=3553:3596#L89">Exists</a>
+				<a class="permalink" href="index.html#Exists">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Exists(walletDir <a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Exists checks if directory at walletDir exists
+
+			
+			
+
+		
+			
+			
+			<h2 id="InputPassword">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=13857:14039#L409">InputPassword</a>
+				<a class="permalink" href="index.html#InputPassword">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InputPassword(
+    cliCtx *cli.<a href="index.html#Context">Context</a>,
+    passwordFileFlag *cli.<a href="index.html#StringFlag">StringFlag</a>,
+    promptText <a href="../../../../../../builtin/index.html#string">string</a>,
+    confirmPassword <a href="../../../../../../builtin/index.html#bool">bool</a>,
+    passwordValidator func(input <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a>,
+) (<a href="../../../../../../builtin/index.html#string">string</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>InputPassword prompts for a password and optionally for password confirmation.
+The password is validated according to custom rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsValid">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=4133:4177#L105">IsValid</a>
+				<a class="permalink" href="index.html#IsValid">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsValid(walletDir <a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>IsValid checks if a folder contains a single key directory such as `derived`, `remote` or `imported`.
+Returns true if one of those subdirectories exist, false otherwise.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=2640:2740#L59">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config to open a wallet programmatically.
+
+			<pre>type Config struct {
+<span id="Config.WalletDir"></span>    WalletDir      <a href="../../../../../../builtin/index.html#string">string</a>
+<span id="Config.KeymanagerKind"></span>    KeymanagerKind <a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Kind">Kind</a>
+<span id="Config.WalletPassword"></span>    WalletPassword <a href="../../../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Wallet">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=3040:3186#L69">Wallet</a>
+				<a class="permalink" href="index.html#Wallet">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Wallet is a primitive in Prysm&apos;s account management which
+has the capability of creating new accounts, reading existing accounts,
+and providing secure access to Ethereum proof of stake secrets depending on an
+associated keymanager (either imported, derived, or remote signing enabled).
+
+			<pre>type Wallet struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=3232:3261#L78">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(cfg *<a href="index.html#Config">Config</a>) *<a href="index.html#Wallet">Wallet</a></pre>
+				<p>New creates a struct from config values.
+
+				
+				
+			
+				
+				<h3 id="OpenWallet">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=6491:6555#L189">OpenWallet</a>
+					<a class="permalink" href="index.html#OpenWallet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func OpenWallet(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, cfg *<a href="index.html#Config">Config</a>) (*<a href="index.html#Wallet">Wallet</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenWallet instantiates a wallet from a specified path. It checks the
+type of keymanager associated with the wallet by reading files in the wallet
+path, if applicable. If a wallet does not exist, returns an appropriate error.
+
+				
+				
+			
+				
+				<h3 id="OpenWalletOrElseCli">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=5214:5330#L147">OpenWalletOrElseCli</a>
+					<a class="permalink" href="index.html#OpenWalletOrElseCli">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func OpenWalletOrElseCli(cliCtx *cli.<a href="index.html#Context">Context</a>, otherwise func(cliCtx *cli.<a href="index.html#Context">Context</a>) (*<a href="index.html#Wallet">Wallet</a>, <a href="../../../../../../builtin/index.html#error">error</a>)) (*<a href="index.html#Wallet">Wallet</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenWalletOrElseCli tries to open the wallet and if it fails or no wallet
+is found, invokes a callback function.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Wallet.AccountsDir">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=7843:7880#L236">AccountsDir</a>
+					<a class="permalink" href="index.html#Wallet.AccountsDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) AccountsDir() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>AccountsDir for the wallet.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.FileNameAtPath">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=11310:11403#L341">FileNameAtPath</a>
+					<a class="permalink" href="index.html#Wallet.FileNameAtPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) FileNameAtPath(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, filePath, fileName <a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../../builtin/index.html#string">string</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FileNameAtPath return the full file name for the requested file. It allows for finding the file
+with a regex pattern.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.InitializeKeymanager">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=8161:8283#L247">InitializeKeymanager</a>
+					<a class="permalink" href="index.html#Wallet.InitializeKeymanager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) InitializeKeymanager(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, cfg <a href="../iface/index.html">iface</a>.<a href="../iface/index.html#InitKeymanagerConfig">InitKeymanagerConfig</a>) (<a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#IKeymanager">IKeymanager</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>InitializeKeymanager reads a keymanager config from disk at the wallet path,
+unmarshals it based on the wallet&apos;s keymanager kind, and returns its value.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.KeymanagerKind">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=7732:7781#L231">KeymanagerKind</a>
+					<a class="permalink" href="index.html#Wallet.KeymanagerKind">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) KeymanagerKind() <a href="../../keymanager/index.html">keymanager</a>.<a href="../../keymanager/index.html#Kind">Kind</a></pre>
+				<p>KeymanagerKind used by the wallet.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.Password">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=7937:7971#L241">Password</a>
+					<a class="permalink" href="index.html#Wallet.Password">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) Password() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>Password for the wallet.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.ReadFileAtPath">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=10381:10474#L313">ReadFileAtPath</a>
+					<a class="permalink" href="index.html#Wallet.ReadFileAtPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) ReadFileAtPath(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, filePath, fileName <a href="../../../../../../builtin/index.html#string">string</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadFileAtPath within the wallet directory given the desired path and filename.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.ReadKeymanagerConfigFromDisk">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=12028:12115#L360">ReadKeymanagerConfigFromDisk</a>
+					<a class="permalink" href="index.html#Wallet.ReadKeymanagerConfigFromDisk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) ReadKeymanagerConfigFromDisk(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (<a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#ReadCloser">ReadCloser</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadKeymanagerConfigFromDisk opens a keymanager config file
+for reading if it exists at the wallet path.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.SaveWallet">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=7520:7555#L223">SaveWallet</a>
+					<a class="permalink" href="index.html#Wallet.SaveWallet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) SaveWallet() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveWallet persists the wallet&apos;s directories to disk.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.WriteFileAtPath">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=9626:9723#L290">WriteFileAtPath</a>
+					<a class="permalink" href="index.html#Wallet.WriteFileAtPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) WriteFileAtPath(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, filePath, fileName <a href="../../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>WriteFileAtPath within the wallet directory given the desired path, filename, and raw data.
+
+				
+				
+				
+			
+				
+				<h3 id="Wallet.WriteKeymanagerConfigToDisk">func (*Wallet) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/validator/accounts/wallet/wallet.go?s=12517:12602#L372">WriteKeymanagerConfigToDisk</a>
+					<a class="permalink" href="index.html#Wallet.WriteKeymanagerConfigToDisk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Wallet">Wallet</a>) WriteKeymanagerConfigToDisk(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, encoded []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>WriteKeymanagerConfigToDisk takes an encoded keymanager config file
+and writes it to the wallet path.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

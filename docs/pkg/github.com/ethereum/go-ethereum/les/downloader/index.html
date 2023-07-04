@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>downloader - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package downloader
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/les/downloader"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>This is a temporary package whilst working on the eth/66 blocking refactors.
+After that work is done, les needs to be refactored to use the new package,
+or alternatively use a stripped down version of it. Either way, we need to
+keep the changes scoped so duplicating temporarily seems the sanest.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#BlockChain">type BlockChain</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DoneEvent">type DoneEvent</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Downloader">type Downloader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(checkpoint uint64, stateDb ethdb.Database, mux *event.TypeMux, chain BlockChain, lightchain LightChain, dropPeer peerDropFn) *Downloader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.Cancel">func (d *Downloader) Cancel()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.DeliverBodies">func (d *Downloader) DeliverBodies(id string, transactions [][]*types.Transaction, uncles [][]*types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.DeliverHeaders">func (d *Downloader) DeliverHeaders(id string, headers []*types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.DeliverNodeData">func (d *Downloader) DeliverNodeData(id string, data [][]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.DeliverReceipts">func (d *Downloader) DeliverReceipts(id string, receipts [][]*types.Receipt) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.DeliverSnapPacket">func (d *Downloader) DeliverSnapPacket(peer *snap.Peer, packet snap.Packet) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.Progress">func (d *Downloader) Progress() ethereum.SyncProgress</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.RegisterLightPeer">func (d *Downloader) RegisterLightPeer(id string, version uint, peer LightPeer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.RegisterPeer">func (d *Downloader) RegisterPeer(id string, version uint, peer Peer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.Synchronise">func (d *Downloader) Synchronise(id string, head common.Hash, td *big.Int, mode SyncMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.Synchronising">func (d *Downloader) Synchronising() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.Terminate">func (d *Downloader) Terminate()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Downloader.UnregisterPeer">func (d *Downloader) UnregisterPeer(id string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DownloaderAPI">type DownloaderAPI</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDownloaderAPI">func NewDownloaderAPI(d *Downloader, m *event.TypeMux) *DownloaderAPI</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DownloaderAPI.SubscribeSyncStatus">func (api *DownloaderAPI) SubscribeSyncStatus(status chan interface{}) *SyncStatusSubscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DownloaderAPI.Syncing">func (api *DownloaderAPI) Syncing(ctx context.Context) (*rpc.Subscription, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FailedEvent">type FailedEvent</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LightChain">type LightChain</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LightPeer">type LightPeer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Peer">type Peer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StartEvent">type StartEvent</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SyncMode">type SyncMode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncMode.IsValid">func (mode SyncMode) IsValid() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncMode.MarshalText">func (mode SyncMode) MarshalText() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncMode.String">func (mode SyncMode) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncMode.UnmarshalText">func (mode *SyncMode) UnmarshalText(text []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SyncStatusSubscription">type SyncStatusSubscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SyncStatusSubscription.Unsubscribe">func (s *SyncStatusSubscription) Unsubscribe()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SyncingResult">type SyncingResult</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go">api.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go">downloader.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/events.go">events.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go">modes.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/peer.go">peer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/queue.go">queue.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/resultstore.go">resultstore.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/statesync.go">statesync.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="MaxBlockFetch">MaxBlockFetch</span>   = 128 <span class="comment">// Amount of blocks to be fetched per retrieval request</span>
+    <span id="MaxHeaderFetch">MaxHeaderFetch</span>  = 192 <span class="comment">// Amount of block headers to be fetched per retrieval request</span>
+    <span id="MaxSkeletonSize">MaxSkeletonSize</span> = 128 <span class="comment">// Number of header fetches to need for a skeleton assembly</span>
+    <span id="MaxReceiptFetch">MaxReceiptFetch</span> = 256 <span class="comment">// Amount of transaction receipts to allow fetching per request</span>
+    <span id="MaxStateFetch">MaxStateFetch</span>   = 384 <span class="comment">// Amount of node state values to allow fetching per request</span>
+
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="BlockChain">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=8937:9964#L166">BlockChain</a>
+				<a class="permalink" href="index.html#BlockChain">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockChain encapsulates functions required to sync a (full or fast) blockchain.
+
+			<pre>type BlockChain interface {
+    <a href="index.html#LightChain">LightChain</a>
+
+    <span class="comment">// HasBlock verifies a block&#39;s presence in the local chain.</span>
+    HasBlock(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// HasFastBlock verifies a fast block&#39;s presence in the local chain.</span>
+    HasFastBlock(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// GetBlockByHash retrieves a block from the local chain.</span>
+    GetBlockByHash(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>
+
+    <span class="comment">// CurrentBlock retrieves the head block from the local chain.</span>
+    CurrentBlock() *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>
+
+    <span class="comment">// CurrentFastBlock retrieves the head fast block from the local chain.</span>
+    CurrentFastBlock() *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>
+
+    <span class="comment">// FastSyncCommitHead directly commits the head block to a certain entity.</span>
+    FastSyncCommitHead(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// InsertChain inserts a batch of blocks into the local chain.</span>
+    InsertChain(<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Blocks">Blocks</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// InsertReceiptChain inserts a batch of receipts into the local chain.</span>
+    InsertReceiptChain(<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Blocks">Blocks</a>, []<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Receipts">Receipts</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Snapshots returns the blockchain snapshot tree to paused it during sync.</span>
+    Snapshots() *<a href="../../core/state/snapshot/index.html">snapshot</a>.<a href="../../core/state/snapshot/index.html#Tree">Tree</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DoneEvent">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/events.go?s=866:913#L11">DoneEvent</a>
+				<a class="permalink" href="index.html#DoneEvent">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DoneEvent struct {
+<span id="DoneEvent.Latest"></span>    Latest *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Downloader">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=4946:8145#L80">Downloader</a>
+				<a class="permalink" href="index.html#Downloader">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Downloader struct {
+<span id="Downloader.SnapSyncer"></span>    SnapSyncer *<a href="../../eth/protocols/snap/index.html">snap</a>.<a href="../../eth/protocols/snap/index.html#Syncer">Syncer</a> <span class="comment">// TODO(karalabe): make private! hack for now</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=10044:10189#L198">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(checkpoint <a href="../../../../../builtin/index.html#uint64">uint64</a>, stateDb <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#Database">Database</a>, mux *<a href="../../event/index.html">event</a>.<a href="../../event/index.html#TypeMux">TypeMux</a>, chain <a href="index.html#BlockChain">BlockChain</a>, lightchain <a href="index.html#LightChain">LightChain</a>, dropPeer peerDropFn) *<a href="index.html#Downloader">Downloader</a></pre>
+				<p>New creates a new downloader to fetch hashes and blocks from remote peers.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Downloader.Cancel">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=24011:24040#L597">Cancel</a>
+					<a class="permalink" href="index.html#Downloader.Cancel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) Cancel()</pre>
+				<p>Cancel aborts all of the operations and waits for all download goroutines to
+finish before returning.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.DeliverBodies">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=72871:72985#L1920">DeliverBodies</a>
+					<a class="permalink" href="index.html#Downloader.DeliverBodies">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) DeliverBodies(id <a href="../../../../../builtin/index.html#string">string</a>, transactions [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, uncles [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeliverBodies injects a new batch of block bodies received from a remote node.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.DeliverHeaders">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=72618:72695#L1915">DeliverHeaders</a>
+					<a class="permalink" href="index.html#Downloader.DeliverHeaders">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) DeliverHeaders(id <a href="../../../../../builtin/index.html#string">string</a>, headers []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeliverHeaders injects a new batch of block headers received from a remote
+node into the download schedule.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.DeliverNodeData">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=73432:73500#L1930">DeliverNodeData</a>
+					<a class="permalink" href="index.html#Downloader.DeliverNodeData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) DeliverNodeData(id <a href="../../../../../builtin/index.html#string">string</a>, data [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeliverNodeData injects a new batch of node state data received from a remote node.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.DeliverReceipts">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=73164:73246#L1925">DeliverReceipts</a>
+					<a class="permalink" href="index.html#Downloader.DeliverReceipts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) DeliverReceipts(id <a href="../../../../../builtin/index.html#string">string</a>, receipts [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Receipt">Receipt</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeliverReceipts injects a new batch of receipts received from a remote node.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.DeliverSnapPacket">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=73715:73796#L1936">DeliverSnapPacket</a>
+					<a class="permalink" href="index.html#Downloader.DeliverSnapPacket">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) DeliverSnapPacket(peer *<a href="../../eth/protocols/snap/index.html">snap</a>.<a href="../../eth/protocols/snap/index.html#Peer">Peer</a>, packet <a href="../../eth/protocols/snap/index.html">snap</a>.<a href="../../eth/protocols/snap/index.html#Packet">Packet</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeliverSnapPacket is invoked from a peer&apos;s message handler when it transmits a
+data packet for the local node to consume.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.Progress">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=11546:11599#L237">Progress</a>
+					<a class="permalink" href="index.html#Downloader.Progress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) Progress() ethereum.<a href="index.html#SyncProgress">SyncProgress</a></pre>
+				<p>Progress retrieves the synchronisation boundaries, specifically the origin
+block where synchronisation started at (may have failed/suspended); the block
+or header sync is currently at; and the latest known block which the sync targets.
+<p>In addition, during the state download phase of fast synchronisation the number
+of processed and the total number of known states are also returned. Otherwise
+these are zero.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.RegisterLightPeer">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=13309:13394#L287">RegisterLightPeer</a>
+					<a class="permalink" href="index.html#Downloader.RegisterLightPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) RegisterLightPeer(id <a href="../../../../../builtin/index.html#string">string</a>, version <a href="../../../../../builtin/index.html#uint">uint</a>, peer <a href="index.html#LightPeer">LightPeer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterLightPeer injects a light client peer, wrapping it so it appears as a regular peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.RegisterPeer">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=12752:12827#L270">RegisterPeer</a>
+					<a class="permalink" href="index.html#Downloader.RegisterPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) RegisterPeer(id <a href="../../../../../builtin/index.html#string">string</a>, version <a href="../../../../../builtin/index.html#uint">uint</a>, peer <a href="index.html#Peer">Peer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterPeer injects a new download peer into the set of block source to be
+used for fetching hashes and blocks from.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.Synchronise">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=14296:14391#L315">Synchronise</a>
+					<a class="permalink" href="index.html#Downloader.Synchronise">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) Synchronise(id <a href="../../../../../builtin/index.html#string">string</a>, head <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, td *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, mode <a href="index.html#SyncMode">SyncMode</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Synchronise tries to sync up our local block chain with a remote peer, both
+adding various sanity checks as well as wrapping it with various log entries.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.Synchronising">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=12534:12575#L264">Synchronising</a>
+					<a class="permalink" href="index.html#Downloader.Synchronising">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) Synchronising() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Synchronising returns whether the downloader is currently retrieving blocks.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.Terminate">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=24211:24243#L604">Terminate</a>
+					<a class="permalink" href="index.html#Downloader.Terminate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) Terminate()</pre>
+				<p>Terminate interrupts the downloader, canceling all pending operations.
+The downloader cannot be reused after calling Terminate.
+
+				
+				
+				
+			
+				
+				<h3 id="Downloader.UnregisterPeer">func (*Downloader) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=13636:13688#L294">UnregisterPeer</a>
+					<a class="permalink" href="index.html#Downloader.UnregisterPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Downloader">Downloader</a>) UnregisterPeer(id <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnregisterPeer remove a peer from the known list, preventing any action from
+the specified peer. An effort is also made to return any pending fetches into
+the queue.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DownloaderAPI">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=1163:1388#L20">DownloaderAPI</a>
+				<a class="permalink" href="index.html#DownloaderAPI">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DownloaderAPI provides an API which gives information about the current synchronisation status.
+It offers only methods that operates on data that can be available to anyone without security risks.
+
+			<pre>type DownloaderAPI struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDownloaderAPI">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=1712:1781#L31">NewDownloaderAPI</a>
+					<a class="permalink" href="index.html#NewDownloaderAPI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDownloaderAPI(d *<a href="index.html#Downloader">Downloader</a>, m *<a href="../../event/index.html">event</a>.<a href="../../event/index.html#TypeMux">TypeMux</a>) *<a href="index.html#DownloaderAPI">DownloaderAPI</a></pre>
+				<p>NewDownloaderAPI create a new PublicDownloaderAPI. The API has an internal event loop that
+listens for events from the downloader through the global event mux. In case it receives one of
+these events it broadcasts it to all syncing subscriptions that are installed through the
+installSyncSubscription channel.
+
+				
+				
+			
+
+			
+				
+				<h3 id="DownloaderAPI.SubscribeSyncStatus">func (*DownloaderAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=5198:5292#L153">SubscribeSyncStatus</a>
+					<a class="permalink" href="index.html#DownloaderAPI.SubscribeSyncStatus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#DownloaderAPI">DownloaderAPI</a>) SubscribeSyncStatus(status chan interface{}) *<a href="index.html#SyncStatusSubscription">SyncStatusSubscription</a></pre>
+				<p>SubscribeSyncStatus creates a subscription that will broadcast new synchronisation updates.
+The given channel must receive interface values, the result can either
+
+				
+				
+				
+			
+				
+				<h3 id="DownloaderAPI.Syncing">func (*DownloaderAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=3133:3214#L83">Syncing</a>
+					<a class="permalink" href="index.html#DownloaderAPI.Syncing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#DownloaderAPI">DownloaderAPI</a>) Syncing(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Syncing provides information when this nodes starts synchronising with the Ethereum network and when it&apos;s finished.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FailedEvent">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/events.go?s=939:975#L15">FailedEvent</a>
+				<a class="permalink" href="index.html#FailedEvent">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FailedEvent struct{ Err <a href="../../../../../builtin/index.html#error">error</a> }
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LightChain">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/downloader.go?s=8223:8852#L145">LightChain</a>
+				<a class="permalink" href="index.html#LightChain">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LightChain encapsulates functions required to synchronise a light chain.
+
+			<pre>type LightChain interface {
+    <span class="comment">// HasHeader verifies a header&#39;s presence in the local chain.</span>
+    HasHeader(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// GetHeaderByHash retrieves a header from the local chain.</span>
+    GetHeaderByHash(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>
+
+    <span class="comment">// CurrentHeader retrieves the head header from the local chain.</span>
+    CurrentHeader() *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>
+
+    <span class="comment">// GetTd returns the total difficulty of a local block.</span>
+    GetTd(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>
+
+    <span class="comment">// InsertHeaderChain inserts a batch of headers into the local chain.</span>
+    InsertHeaderChain([]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#int">int</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SetHead rewinds the local chain to a new head.</span>
+    SetHead(<a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LightPeer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/peer.go?s=2882:3053#L62">LightPeer</a>
+				<a class="permalink" href="index.html#LightPeer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LightPeer encapsulates the methods required to synchronise with a remote light peer.
+
+			<pre>type LightPeer interface {
+    Head() (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)
+    RequestHeadersByHash(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    RequestHeadersByNumber(<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Peer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/peer.go?s=3137:3283#L69">Peer</a>
+				<a class="permalink" href="index.html#Peer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Peer encapsulates the methods required to synchronise with a remote full peer.
+
+			<pre>type Peer interface {
+    <a href="index.html#LightPeer">LightPeer</a>
+    RequestBodies([]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    RequestReceipts([]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    RequestNodeData([]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StartEvent">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/events.go?s=914:938#L14">StartEvent</a>
+				<a class="permalink" href="index.html#StartEvent">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type StartEvent struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SyncMode">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go?s=950:970#L13">SyncMode</a>
+				<a class="permalink" href="index.html#SyncMode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SyncMode represents the synchronisation mode of the downloader.
+It is a uint32 as it is used with atomic operations.
+
+			<pre>type SyncMode <a href="../../../../../builtin/index.html#uint32">uint32</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="FullSync">FullSync</span>  <a href="index.html#SyncMode">SyncMode</a> = <a href="../../../../../builtin/index.html#iota">iota</a> <span class="comment">// Synchronise the entire blockchain history from full blocks</span>
+    <span id="FastSync">FastSync</span>                  <span class="comment">// Quickly download the headers, full sync only at the chain</span>
+    <span id="SnapSync">SnapSync</span>                  <span class="comment">// Download the chain and the state via compact snapshots</span>
+    <span id="LightSync">LightSync</span>                 <span class="comment">// Download only the headers and terminate afterwards</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SyncMode.IsValid">func (SyncMode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go?s=1326:1361#L22">IsValid</a>
+					<a class="permalink" href="index.html#SyncMode.IsValid">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mode <a href="index.html#SyncMode">SyncMode</a>) IsValid() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SyncMode.MarshalText">func (SyncMode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go?s=1677:1727#L42">MarshalText</a>
+					<a class="permalink" href="index.html#SyncMode.MarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mode <a href="index.html#SyncMode">SyncMode</a>) MarshalText() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SyncMode.String">func (SyncMode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go?s=1458:1494#L27">String</a>
+					<a class="permalink" href="index.html#SyncMode.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mode <a href="index.html#SyncMode">SyncMode</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>String implements the stringer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="SyncMode.UnmarshalText">func (*SyncMode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/modes.go?s=1998:2052#L57">UnmarshalText</a>
+					<a class="permalink" href="index.html#SyncMode.UnmarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mode *<a href="index.html#SyncMode">SyncMode</a>) UnmarshalText(text []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SyncStatusSubscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=4219:4492#L125">SyncStatusSubscription</a>
+				<a class="permalink" href="index.html#SyncStatusSubscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SyncStatusSubscription represents a syncing subscription.
+
+			<pre>type SyncStatusSubscription struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SyncStatusSubscription.Unsubscribe">func (*SyncStatusSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=4680:4726#L134">Unsubscribe</a>
+					<a class="permalink" href="index.html#SyncStatusSubscription.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SyncStatusSubscription">SyncStatusSubscription</a>) Unsubscribe()</pre>
+				<p>Unsubscribe uninstalls the subscription from the DownloadAPI event loop.
+The status channel that was passed to subscribeSyncStatus isn&apos;t used anymore
+after this method returns.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SyncingResult">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/downloader/api.go?s=3829:3953#L113">SyncingResult</a>
+				<a class="permalink" href="index.html#SyncingResult">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SyncingResult provides information about the current synchronisation status for this node.
+
+			<pre>type SyncingResult struct {
+<span id="SyncingResult.Syncing"></span>    Syncing <a href="../../../../../builtin/index.html#bool">bool</a>                  `json:&#34;syncing&#34;`
+<span id="SyncingResult.Status"></span>    Status  ethereum.<a href="index.html#SyncProgress">SyncProgress</a> `json:&#34;status&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

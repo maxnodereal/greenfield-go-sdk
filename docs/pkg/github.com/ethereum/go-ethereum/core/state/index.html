@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>state - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package state
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/core/state"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package state provides a caching layer atop the Ethereum state trie.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewStateSync">func NewStateSync(root common.Hash, database ethdb.KeyValueReader, onLeaf func(keys [][]byte, leaf []byte) error) *trie.Sync</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Code">type Code</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Code.String">func (c Code) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Database">type Database</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDatabase">func NewDatabase(db ethdb.Database) Database</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDatabaseWithConfig">func NewDatabaseWithConfig(db ethdb.Database, config *trie.Config) Database</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Dump">type Dump</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dump.OnAccount">func (d *Dump) OnAccount(addr common.Address, account DumpAccount)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dump.OnRoot">func (d *Dump) OnRoot(root common.Hash)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DumpAccount">type DumpAccount</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DumpCollector">type DumpCollector</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DumpConfig">type DumpConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IteratorDump">type IteratorDump</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IteratorDump.OnAccount">func (d *IteratorDump) OnAccount(addr common.Address, account DumpAccount)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IteratorDump.OnRoot">func (d *IteratorDump) OnRoot(root common.Hash)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NodeIterator">type NodeIterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNodeIterator">func NewNodeIterator(state *StateDB) *NodeIterator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeIterator.Next">func (it *NodeIterator) Next() bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateDB">type StateDB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(root common.Hash, db Database, snaps *snapshot.Tree) (*StateDB, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddAddressToAccessList">func (s *StateDB) AddAddressToAccessList(addr common.Address)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddBalance">func (s *StateDB) AddBalance(addr common.Address, amount *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddLog">func (s *StateDB) AddLog(log *types.Log)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddPreimage">func (s *StateDB) AddPreimage(hash common.Hash, preimage []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddRefund">func (s *StateDB) AddRefund(gas uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddSlotToAccessList">func (s *StateDB) AddSlotToAccessList(addr common.Address, slot common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.AddressInAccessList">func (s *StateDB) AddressInAccessList(addr common.Address) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Commit">func (s *StateDB) Commit(deleteEmptyObjects bool) (common.Hash, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Copy">func (s *StateDB) Copy() *StateDB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.CreateAccount">func (s *StateDB) CreateAccount(addr common.Address)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Database">func (s *StateDB) Database() Database</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Dump">func (s *StateDB) Dump(opts *DumpConfig) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.DumpToCollector">func (s *StateDB) DumpToCollector(c DumpCollector, conf *DumpConfig) (nextKey []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Empty">func (s *StateDB) Empty(addr common.Address) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Error">func (s *StateDB) Error() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Exist">func (s *StateDB) Exist(addr common.Address) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Finalise">func (s *StateDB) Finalise(deleteEmptyObjects bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.ForEachStorage">func (db *StateDB) ForEachStorage(addr common.Address, cb func(key, value common.Hash) bool) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetBalance">func (s *StateDB) GetBalance(addr common.Address) *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetCode">func (s *StateDB) GetCode(addr common.Address) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetCodeHash">func (s *StateDB) GetCodeHash(addr common.Address) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetCodeSize">func (s *StateDB) GetCodeSize(addr common.Address) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetCommittedState">func (s *StateDB) GetCommittedState(addr common.Address, hash common.Hash) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetLogs">func (s *StateDB) GetLogs(hash common.Hash, blockHash common.Hash) []*types.Log</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetNonce">func (s *StateDB) GetNonce(addr common.Address) uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetOrNewStateObject">func (s *StateDB) GetOrNewStateObject(addr common.Address) *stateObject</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetProof">func (s *StateDB) GetProof(addr common.Address) ([][]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetProofByHash">func (s *StateDB) GetProofByHash(addrHash common.Hash) ([][]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetRefund">func (s *StateDB) GetRefund() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetState">func (s *StateDB) GetState(addr common.Address, hash common.Hash) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.GetStorageProof">func (s *StateDB) GetStorageProof(a common.Address, key common.Hash) ([][]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.HasSuicided">func (s *StateDB) HasSuicided(addr common.Address) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.IntermediateRoot">func (s *StateDB) IntermediateRoot(deleteEmptyObjects bool) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.IterativeDump">func (s *StateDB) IterativeDump(opts *DumpConfig, output *json.Encoder)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.IteratorDump">func (s *StateDB) IteratorDump(opts *DumpConfig) IteratorDump</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Logs">func (s *StateDB) Logs() []*types.Log</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Preimages">func (s *StateDB) Preimages() map[common.Hash][]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Prepare">func (s *StateDB) Prepare(thash common.Hash, ti int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.PrepareAccessList">func (s *StateDB) PrepareAccessList(sender common.Address, dst *common.Address, precompiles []common.Address, list types.AccessList)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.RawDump">func (s *StateDB) RawDump(opts *DumpConfig) Dump</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.RevertToSnapshot">func (s *StateDB) RevertToSnapshot(revid int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SetBalance">func (s *StateDB) SetBalance(addr common.Address, amount *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SetCode">func (s *StateDB) SetCode(addr common.Address, code []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SetNonce">func (s *StateDB) SetNonce(addr common.Address, nonce uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SetState">func (s *StateDB) SetState(addr common.Address, key, value common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SetStorage">func (s *StateDB) SetStorage(addr common.Address, storage map[common.Hash]common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SlotInAccessList">func (s *StateDB) SlotInAccessList(addr common.Address, slot common.Hash) (addressPresent bool, slotPresent bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Snapshot">func (s *StateDB) Snapshot() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.StartPrefetcher">func (s *StateDB) StartPrefetcher(namespace string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.StopPrefetcher">func (s *StateDB) StopPrefetcher()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.StorageTrie">func (s *StateDB) StorageTrie(addr common.Address) Trie</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SubBalance">func (s *StateDB) SubBalance(addr common.Address, amount *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.SubRefund">func (s *StateDB) SubRefund(gas uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.Suicide">func (s *StateDB) Suicide(addr common.Address) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateDB.TxIndex">func (s *StateDB) TxIndex() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Storage">type Storage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Storage.Copy">func (s Storage) Copy() Storage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Storage.String">func (s Storage) String() (str string)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Trie">type Trie</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/access_list.go">access_list.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/database.go">database.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go">dump.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/journal.go">journal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go">state_object.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go">statedb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/sync.go">sync.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/trie_prefetcher.go">trie_prefetcher.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewStateSync">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/sync.go?s=1098:1222#L20">NewStateSync</a>
+				<a class="permalink" href="index.html#NewStateSync">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewStateSync(root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, database <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#KeyValueReader">KeyValueReader</a>, onLeaf func(keys [][]<a href="../../../../../builtin/index.html#byte">byte</a>, leaf []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>) *<a href="../../trie/index.html">trie</a>.<a href="../../trie/index.html#Sync">Sync</a></pre>
+			<p>NewStateSync create a new state trie download scheduler.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Code">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go?s=1158:1174#L26">Code</a>
+				<a class="permalink" href="index.html#Code">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Code []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Code.String">func (Code) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go?s=1176:1205#L28">String</a>
+					<a class="permalink" href="index.html#Code.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="index.html#Code">Code</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Database">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/database.go?s=1357:2017#L31">Database</a>
+				<a class="permalink" href="index.html#Database">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Database wraps access to tries and contract code.
+
+			<pre>type Database interface {
+    <span class="comment">// OpenTrie opens the main account trie.</span>
+    OpenTrie(root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (<a href="index.html#Trie">Trie</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// OpenStorageTrie opens the storage trie of an account.</span>
+    OpenStorageTrie(addrHash, root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (<a href="index.html#Trie">Trie</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// CopyTrie returns an independent copy of the given trie.</span>
+    CopyTrie(<a href="index.html#Trie">Trie</a>) <a href="index.html#Trie">Trie</a>
+
+    <span class="comment">// ContractCode retrieves a particular contract&#39;s code.</span>
+    ContractCode(addrHash, codeHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// ContractCodeSize retrieves a particular contracts code&#39;s size.</span>
+    ContractCodeSize(addrHash, codeHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// TrieDB retrieves the low level trie database used for data storage.</span>
+    TrieDB() *<a href="../../trie/index.html">trie</a>.<a href="../../trie/index.html#Database">Database</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDatabase">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/database.go?s=4954:4998#L112">NewDatabase</a>
+					<a class="permalink" href="index.html#NewDatabase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDatabase(db <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#Database">Database</a>) <a href="index.html#Database">Database</a></pre>
+				<p>NewDatabase creates a backing store for state. The returned database is safe for
+concurrent use, but does not retain any recent trie nodes in memory. To keep some
+historical state in memory, use the NewDatabaseWithConfig constructor.
+
+				
+				
+			
+				
+				<h3 id="NewDatabaseWithConfig">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/database.go?s=5229:5304#L119">NewDatabaseWithConfig</a>
+					<a class="permalink" href="index.html#NewDatabaseWithConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDatabaseWithConfig(db <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#Database">Database</a>, config *<a href="../../trie/index.html">trie</a>.<a href="../../trie/index.html#Config">Config</a>) <a href="index.html#Database">Database</a></pre>
+				<p>NewDatabaseWithConfig creates a backing store for state. The returned database
+is safe for concurrent use and retains a lot of collapsed RLP trie nodes in a
+large memory cache.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Dump">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=2336:2470#L54">Dump</a>
+				<a class="permalink" href="index.html#Dump">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Dump represents the full dump in a collected format, as one large map.
+
+			<pre>type Dump struct {
+<span id="Dump.Root"></span>    Root     <a href="../../../../../builtin/index.html#string">string</a>                         `json:&#34;root&#34;`
+<span id="Dump.Accounts"></span>    Accounts map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>]<a href="index.html#DumpAccount">DumpAccount</a> `json:&#34;accounts&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Dump.OnAccount">func (*Dump) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=2644:2710#L65">OnAccount</a>
+					<a class="permalink" href="index.html#Dump.OnAccount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dump">Dump</a>) OnAccount(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, account <a href="index.html#DumpAccount">DumpAccount</a>)</pre>
+				<p>OnAccount implements DumpCollector interface
+
+				
+				
+				
+			
+				
+				<h3 id="Dump.OnRoot">func (*Dump) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=2517:2556#L60">OnRoot</a>
+					<a class="permalink" href="index.html#Dump.OnRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dump">Dump</a>) OnRoot(root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				<p>OnRoot implements DumpCollector interface
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DumpAccount">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=1683:2260#L41">DumpAccount</a>
+				<a class="permalink" href="index.html#DumpAccount">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DumpAccount represents an account in the state.
+
+			<pre>type DumpAccount struct {
+<span id="DumpAccount.Balance"></span>    Balance   <a href="../../../../../builtin/index.html#string">string</a>                 `json:&#34;balance&#34;`
+<span id="DumpAccount.Nonce"></span>    Nonce     <a href="../../../../../builtin/index.html#uint64">uint64</a>                 `json:&#34;nonce&#34;`
+<span id="DumpAccount.Root"></span>    Root      <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Bytes">Bytes</a>          `json:&#34;root&#34;`
+<span id="DumpAccount.CodeHash"></span>    CodeHash  <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Bytes">Bytes</a>          `json:&#34;codeHash&#34;`
+<span id="DumpAccount.Code"></span>    Code      <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Bytes">Bytes</a>          `json:&#34;code,omitempty&#34;`
+<span id="DumpAccount.Storage"></span>    Storage   map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>]<a href="../../../../../builtin/index.html#string">string</a> `json:&#34;storage,omitempty&#34;`
+<span id="DumpAccount.Address"></span>    Address   *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>        `json:&#34;address,omitempty&#34;` <span class="comment">// Address only present in iterative (line-by-line) mode</span>
+<span id="DumpAccount.SecureKey"></span>    SecureKey <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Bytes">Bytes</a>          `json:&#34;key,omitempty&#34;`     <span class="comment">// If we don&#39;t have address, we can output the key</span>
+
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DumpCollector">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=1438:1630#L33">DumpCollector</a>
+				<a class="permalink" href="index.html#DumpCollector">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DumpCollector interface which the state trie calls during iteration
+
+			<pre>type DumpCollector interface {
+    <span class="comment">// OnRoot is called with the state root</span>
+    OnRoot(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)
+    <span class="comment">// OnAccount is called once for each account in the trie</span>
+    OnAccount(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="index.html#DumpAccount">DumpAccount</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DumpConfig">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=1215:1365#L24">DumpConfig</a>
+				<a class="permalink" href="index.html#DumpConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DumpConfig is a set of options to control what portions of the statewill be
+iterated and collected.
+
+			<pre>type DumpConfig struct {
+<span id="DumpConfig.SkipCode"></span>    SkipCode          <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="DumpConfig.SkipStorage"></span>    SkipStorage       <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="DumpConfig.OnlyWithAddresses"></span>    OnlyWithAddresses <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="DumpConfig.Start"></span>    Start             []<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="DumpConfig.Max"></span>    Max               <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IteratorDump">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=2806:3040#L70">IteratorDump</a>
+				<a class="permalink" href="index.html#IteratorDump">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IteratorDump is an implementation for iterating over data.
+
+			<pre>type IteratorDump struct {
+<span id="IteratorDump.Root"></span>    Root     <a href="../../../../../builtin/index.html#string">string</a>                         `json:&#34;root&#34;`
+<span id="IteratorDump.Accounts"></span>    Accounts map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>]<a href="index.html#DumpAccount">DumpAccount</a> `json:&#34;accounts&#34;`
+<span id="IteratorDump.Next"></span>    Next     []<a href="../../../../../builtin/index.html#byte">byte</a>                         `json:&#34;next,omitempty&#34;` <span class="comment">// nil if no more accounts</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IteratorDump.OnAccount">func (*IteratorDump) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=3222:3296#L82">OnAccount</a>
+					<a class="permalink" href="index.html#IteratorDump.OnAccount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#IteratorDump">IteratorDump</a>) OnAccount(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, account <a href="index.html#DumpAccount">DumpAccount</a>)</pre>
+				<p>OnAccount implements DumpCollector interface
+
+				
+				
+				
+			
+				
+				<h3 id="IteratorDump.OnRoot">func (*IteratorDump) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=3087:3134#L77">OnRoot</a>
+					<a class="permalink" href="index.html#IteratorDump.OnRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#IteratorDump">IteratorDump</a>) OnRoot(root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				<p>OnRoot implements DumpCollector interface
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NodeIterator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/iterator.go?s=1145:1817#L21">NodeIterator</a>
+				<a class="permalink" href="index.html#NodeIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NodeIterator is an iterator to traverse the entire state trie post-order,
+including all of the contract code and contract state tries.
+
+			<pre>type NodeIterator struct {
+<span id="NodeIterator.Hash"></span>    Hash   <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> <span class="comment">// Hash of the current entry being iterated (nil if not standalone)</span>
+<span id="NodeIterator.Parent"></span>    Parent <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> <span class="comment">// Hash of the first full ancestor node (nil if current is the root)</span>
+
+<span id="NodeIterator.Error"></span>    Error <a href="../../../../../builtin/index.html#error">error</a> <span class="comment">// Failure set in case of an internal error in the iterator</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNodeIterator">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/iterator.go?s=1881:1931#L38">NewNodeIterator</a>
+					<a class="permalink" href="index.html#NewNodeIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNodeIterator(state *<a href="index.html#StateDB">StateDB</a>) *<a href="index.html#NodeIterator">NodeIterator</a></pre>
+				<p>NewNodeIterator creates an post-order state node iterator.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NodeIterator.Next">func (*NodeIterator) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/iterator.go?s=2185:2220#L47">Next</a>
+					<a class="permalink" href="index.html#NodeIterator.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (it *<a href="index.html#NodeIterator">NodeIterator</a>) Next() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Next moves the iterator to the next node, returning whether there are any
+further nodes. In case of an internal error this method returns false and
+sets the Error field to the encountered failure.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateDB">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=1987:4035#L54">StateDB</a>
+				<a class="permalink" href="index.html#StateDB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StateDB structs within the ethereum protocol are used to store anything
+within the merkle trie. StateDBs take care of caching and storing
+nested states. It&apos;s the general query interface to retrieve:
+* Contracts
+* Accounts
+
+			<pre>type StateDB struct {
+
+    <span class="comment">// Measurements gathered during execution for debugging purposes</span>
+<span id="StateDB.AccountReads"></span>    AccountReads         <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.AccountHashes"></span>    AccountHashes        <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.AccountUpdates"></span>    AccountUpdates       <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.AccountCommits"></span>    AccountCommits       <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.StorageReads"></span>    StorageReads         <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.StorageHashes"></span>    StorageHashes        <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.StorageUpdates"></span>    StorageUpdates       <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.StorageCommits"></span>    StorageCommits       <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.SnapshotAccountReads"></span>    SnapshotAccountReads <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.SnapshotStorageReads"></span>    SnapshotStorageReads <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="StateDB.SnapshotCommits"></span>    SnapshotCommits      <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+
+<span id="StateDB.AccountUpdated"></span>    AccountUpdated <a href="../../../../../builtin/index.html#int">int</a>
+<span id="StateDB.StorageUpdated"></span>    StorageUpdated <a href="../../../../../builtin/index.html#int">int</a>
+<span id="StateDB.AccountDeleted"></span>    AccountDeleted <a href="../../../../../builtin/index.html#int">int</a>
+<span id="StateDB.StorageDeleted"></span>    StorageDeleted <a href="../../../../../builtin/index.html#int">int</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=4083:4162#L121">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(root <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, db <a href="index.html#Database">Database</a>, snaps *<a href="snapshot/index.html">snapshot</a>.<a href="snapshot/index.html#Tree">Tree</a>) (*<a href="index.html#StateDB">StateDB</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New creates a new state from a given trie.
+
+				
+				
+			
+
+			
+				
+				<h3 id="StateDB.AddAddressToAccessList">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=34570:34631#L1016">AddAddressToAccessList</a>
+					<a class="permalink" href="index.html#StateDB.AddAddressToAccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddAddressToAccessList(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>)</pre>
+				<p>AddAddressToAccessList adds the given address to the access list
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddBalance">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=11145:11211#L371">AddBalance</a>
+					<a class="permalink" href="index.html#StateDB.AddBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddBalance(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>AddBalance adds amount to the account associated with addr.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddLog">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=5925:5965#L183">AddLog</a>
+					<a class="permalink" href="index.html#StateDB.AddLog">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddLog(log *<a href="../types/index.html">types</a>.<a href="../types/index.html#Log">Log</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddPreimage">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=6530:6594#L210">AddPreimage</a>
+					<a class="permalink" href="index.html#StateDB.AddPreimage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddPreimage(hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, preimage []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>AddPreimage records a SHA3 preimage seen by the VM.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddRefund">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=6967:7006#L225">AddRefund</a>
+					<a class="permalink" href="index.html#StateDB.AddRefund">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddRefund(gas <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>AddRefund adds gas to the refund counter
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddSlotToAccessList">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=34809:34885#L1023">AddSlotToAccessList</a>
+					<a class="permalink" href="index.html#StateDB.AddSlotToAccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddSlotToAccessList(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, slot <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				<p>AddSlotToAccessList adds the given (address, slot)-tuple to the access list
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.AddressInAccessList">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=35444:35507#L1041">AddressInAccessList</a>
+					<a class="permalink" href="index.html#StateDB.AddressInAccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) AddressInAccessList(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>AddressInAccessList returns true if the given address is in the access list.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Commit">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=30024:30094#L888">Commit</a>
+					<a class="permalink" href="index.html#StateDB.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Commit(deleteEmptyObjects <a href="../../../../../builtin/index.html#bool">bool</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Commit writes the state to the underlying in-memory trie database.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Copy">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=19474:19507#L635">Copy</a>
+					<a class="permalink" href="index.html#StateDB.Copy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Copy() *<a href="index.html#StateDB">StateDB</a></pre>
+				<p>Copy creates a deep, independent copy of the state.
+Snapshots of the copied state cannot be applied to the copy.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.CreateAccount">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=18595:18647#L597">CreateAccount</a>
+					<a class="permalink" href="index.html#StateDB.CreateAccount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) CreateAccount(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>)</pre>
+				<p>CreateAccount explicitly creates a state object. If a state object with the address
+already exists the balance is carried over to the new account.
+<p>CreateAccount is called during the EVM CREATE operation. The situation might arise that
+a contract does the following:
+<ol>
+<li>sends funds to sha(account ++ (nonce + 1))
+<li>tx_create(sha(account ++ nonce)) (note that this gets the address of 1)
+</ol>
+<p>Carrying over the balance ensures that Ether doesn&apos;t disappear.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Database">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=10491:10528#L342">Database</a>
+					<a class="permalink" href="index.html#StateDB.Database">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Database() <a href="index.html#Database">Database</a></pre>
+				<p>Database retrieves the low level database supporting the lower level trie ops.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Dump">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=6670:6717#L204">Dump</a>
+					<a class="permalink" href="index.html#StateDB.Dump">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Dump(opts *<a href="index.html#DumpConfig">DumpConfig</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Dump returns a JSON string representing the entire state as a single json-object
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.DumpToCollector">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=4250:4335#L118">DumpToCollector</a>
+					<a class="permalink" href="index.html#StateDB.DumpToCollector">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) DumpToCollector(c <a href="index.html#DumpCollector">DumpCollector</a>, conf *<a href="index.html#DumpConfig">DumpConfig</a>) (nextKey []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>DumpToCollector iterates the state according to the given options and inserts
+the items into a collector for aggregation or serialization.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Empty">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=7779:7828#L248">Empty</a>
+					<a class="permalink" href="index.html#StateDB.Empty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Empty(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Empty returns whether the state object is either non-existent
+or empty according to the EIP161 specification (balance = nonce = code = 0)
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Error">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=5872:5903#L179">Error</a>
+					<a class="permalink" href="index.html#StateDB.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Error() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Exist">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=7542:7591#L242">Exist</a>
+					<a class="permalink" href="index.html#StateDB.Exist">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Exist(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Exist reports whether the given account address exists in the state.
+Notably this also returns true for suicided accounts.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Finalise">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=24883:24934#L766">Finalise</a>
+					<a class="permalink" href="index.html#StateDB.Finalise">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Finalise(deleteEmptyObjects <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Finalise finalises the state by removing the destructed objects and clears
+the journal as well as the refunds. Finalise, however, will not push any updates
+into the tries just yet. Only IntermediateRoot or Commit will do that.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.ForEachStorage">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=18751:18849#L604">ForEachStorage</a>
+					<a class="permalink" href="index.html#StateDB.ForEachStorage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#StateDB">StateDB</a>) ForEachStorage(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, cb func(key, value <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetBalance">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=7980:8038#L254">GetBalance</a>
+					<a class="permalink" href="index.html#StateDB.GetBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetBalance(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GetBalance retrieves the balance from the given address or 0 if object not found
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetCode">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=8449:8502#L276">GetCode</a>
+					<a class="permalink" href="index.html#StateDB.GetCode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetCode(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetCodeHash">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=8792:8854#L292">GetCodeHash</a>
+					<a class="permalink" href="index.html#StateDB.GetCodeHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetCodeHash(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetCodeSize">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=8619:8673#L284">GetCodeSize</a>
+					<a class="permalink" href="index.html#StateDB.GetCodeSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetCodeSize(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetCommittedState">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=10177:10263#L333">GetCommittedState</a>
+					<a class="permalink" href="index.html#StateDB.GetCommittedState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetCommittedState(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>GetCommittedState retrieves a value from the given account&apos;s committed storage trie.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetLogs">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=6158:6237#L193">GetLogs</a>
+					<a class="permalink" href="index.html#StateDB.GetLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetLogs(hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, blockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) []*<a href="../types/index.html">types</a>.<a href="../types/index.html#Log">Log</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetNonce">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=8162:8216#L262">GetNonce</a>
+					<a class="permalink" href="index.html#StateDB.GetNonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetNonce(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetOrNewStateObject">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=17062:17133#L554">GetOrNewStateObject</a>
+					<a class="permalink" href="index.html#StateDB.GetOrNewStateObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetOrNewStateObject(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) *stateObject</pre>
+				<p>GetOrNewStateObject retrieves a state object or create a new state object if nil.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetProof">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=9342:9407#L310">GetProof</a>
+					<a class="permalink" href="index.html#StateDB.GetProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetProof(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) ([][]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetProof returns the Merkle proof for a given account.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetProofByHash">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=9538:9610#L315">GetProofByHash</a>
+					<a class="permalink" href="index.html#StateDB.GetProofByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetProofByHash(addrHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) ([][]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetProofByHash returns the Merkle proof for a given account.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetRefund">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=24588:24624#L759">GetRefund</a>
+					<a class="permalink" href="index.html#StateDB.GetRefund">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetRefund() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>GetRefund returns the current value of the refund counter.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetState">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=9070:9147#L301">GetState</a>
+					<a class="permalink" href="index.html#StateDB.GetState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetState(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>GetState retrieves a value from the given account&apos;s storage trie.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.GetStorageProof">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=9769:9855#L322">GetStorageProof</a>
+					<a class="permalink" href="index.html#StateDB.GetStorageProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) GetStorageProof(a <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, key <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) ([][]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetStorageProof returns the Merkle proof for given storage slot.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.HasSuicided">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=10891:10946#L358">HasSuicided</a>
+					<a class="permalink" href="index.html#StateDB.HasSuicided">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) HasSuicided(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.IntermediateRoot">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=27294:27365#L812">IntermediateRoot</a>
+					<a class="permalink" href="index.html#StateDB.IntermediateRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) IntermediateRoot(deleteEmptyObjects <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>IntermediateRoot computes the current root hash of the state trie.
+It is called in between transactions to get the root hash that
+goes into transaction receipts.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.IterativeDump">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=6950:7021#L214">IterativeDump</a>
+					<a class="permalink" href="index.html#StateDB.IterativeDump">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) IterativeDump(opts *<a href="index.html#DumpConfig">DumpConfig</a>, output *<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#Encoder">Encoder</a>)</pre>
+				<p>IterativeDump dumps out accounts as json-objects, delimited by linebreaks on stdout
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.IteratorDump">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=7153:7214#L219">IteratorDump</a>
+					<a class="permalink" href="index.html#StateDB.IteratorDump">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) IteratorDump(opts *<a href="index.html#DumpConfig">DumpConfig</a>) <a href="index.html#IteratorDump">IteratorDump</a></pre>
+				<p>IteratorDump dumps out a batch of accounts starts with the given start key
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Logs">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=6333:6370#L201">Logs</a>
+					<a class="permalink" href="index.html#StateDB.Logs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Logs() []*<a href="../types/index.html">types</a>.<a href="../types/index.html#Log">Log</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Preimages">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=6845:6897#L220">Preimages</a>
+					<a class="permalink" href="index.html#StateDB.Preimages">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Preimages() map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>][]<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Preimages returns a list of SHA3 preimages that have been submitted.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Prepare">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=29645:29697#L874">Prepare</a>
+					<a class="permalink" href="index.html#StateDB.Prepare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Prepare(thash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, ti <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Prepare sets the current transaction hash and index which are
+used when the EVM emits new state logs.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.PrepareAccessList">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=33892:34024#L995">PrepareAccessList</a>
+					<a class="permalink" href="index.html#StateDB.PrepareAccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) PrepareAccessList(sender <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, dst *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, precompiles []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, list <a href="../types/index.html">types</a>.<a href="../types/index.html#AccessList">AccessList</a>)</pre>
+				<p>PrepareAccessList handles the preparatory steps for executing a state transition with
+regards to both EIP-2929 and EIP-2930:
+<p>- Add sender to access list (2929)
+- Add destination to access list (2929)
+- Add precompiles to access list (2929)
+- Add the contents of the optional tx access list (2930)
+<p>This method should only be called if Berlin/2929+2930 is applicable at the current number.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.RawDump">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/dump.go?s=6418:6466#L195">RawDump</a>
+					<a class="permalink" href="index.html#StateDB.RawDump">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) RawDump(opts *<a href="index.html#DumpConfig">DumpConfig</a>) <a href="index.html#Dump">Dump</a></pre>
+				<p>RawDump returns the entire state an a single large object
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.RevertToSnapshot">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=23979:24024#L743">RevertToSnapshot</a>
+					<a class="permalink" href="index.html#StateDB.RevertToSnapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) RevertToSnapshot(revid <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>RevertToSnapshot reverts all state changes made since the given revision.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SetBalance">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=11569:11635#L386">SetBalance</a>
+					<a class="permalink" href="index.html#StateDB.SetBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SetBalance(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SetCode">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=11915:11974#L400">SetCode</a>
+					<a class="permalink" href="index.html#StateDB.SetCode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SetCode(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, code []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SetNonce">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=11746:11807#L393">SetNonce</a>
+					<a class="permalink" href="index.html#StateDB.SetNonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SetNonce(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, nonce <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SetState">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=12108:12179#L407">SetState</a>
+					<a class="permalink" href="index.html#StateDB.SetState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SetState(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, key, value <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SetStorage">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=12438:12524#L416">SetStorage</a>
+					<a class="permalink" href="index.html#StateDB.SetStorage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SetStorage(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, storage map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				<p>SetStorage replaces the entire storage for the specified account with given
+storage. This function should only be used for debugging.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SlotInAccessList">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=35647:35760#L1046">SlotInAccessList</a>
+					<a class="permalink" href="index.html#StateDB.SlotInAccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SlotInAccessList(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, slot <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (addressPresent <a href="../../../../../builtin/index.html#bool">bool</a>, slotPresent <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SlotInAccessList returns true if the given (address, slot)-tuple is in the access list.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Snapshot">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=23730:23762#L735">Snapshot</a>
+					<a class="permalink" href="index.html#StateDB.Snapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Snapshot() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Snapshot returns an identifier for the current revision of the state.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.StartPrefetcher">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=5279:5330#L153">StartPrefetcher</a>
+					<a class="permalink" href="index.html#StateDB.StartPrefetcher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) StartPrefetcher(namespace <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>StartPrefetcher initializes a new trie prefetcher to pull in nodes from the
+state trie concurrently while the state is mutated so that when we reach the
+commit phase, most of the needed data is already hot.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.StopPrefetcher">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=5611:5645#L165">StopPrefetcher</a>
+					<a class="permalink" href="index.html#StateDB.StopPrefetcher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) StopPrefetcher()</pre>
+				<p>StopPrefetcher terminates a running prefetcher and reports any leftover stats
+from the gathered metrics.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.StorageTrie">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=10670:10725#L348">StorageTrie</a>
+					<a class="permalink" href="index.html#StateDB.StorageTrie">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) StorageTrie(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="index.html#Trie">Trie</a></pre>
+				<p>StorageTrie returns the storage trie of an account.
+The return value is a copy and is nil for non-existent accounts.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SubBalance">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=11392:11458#L379">SubBalance</a>
+					<a class="permalink" href="index.html#StateDB.SubBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SubBalance(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>SubBalance subtracts amount from the account associated with addr.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.SubRefund">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=7191:7230#L232">SubRefund</a>
+					<a class="permalink" href="index.html#StateDB.SubRefund">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) SubRefund(gas <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SubRefund removes gas from the refund counter.
+This method will panic if the refund counter goes below zero
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.Suicide">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=12865:12916#L428">Suicide</a>
+					<a class="permalink" href="index.html#StateDB.Suicide">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) Suicide(addr <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Suicide marks the given account as suicided.
+This clears the account balance.
+<p>The account&apos;s state object is still available until the state is committed,
+getStateObject will return a non-nil account after Suicide.
+
+				
+				
+				
+			
+				
+				<h3 id="StateDB.TxIndex">func (*StateDB) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/statedb.go?s=8394:8425#L272">TxIndex</a>
+					<a class="permalink" href="index.html#StateDB.TxIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StateDB">StateDB</a>) TxIndex() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>TxIndex returns the current transaction index set by Prepare.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Storage">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go?s=1265:1305#L32">Storage</a>
+				<a class="permalink" href="index.html#Storage">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Storage map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Storage.Copy">func (Storage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go?s=1438:1469#L42">Copy</a>
+					<a class="permalink" href="index.html#Storage.Copy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Storage">Storage</a>) Copy() <a href="index.html#Storage">Storage</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Storage.String">func (Storage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/state_object.go?s=1307:1345#L34">String</a>
+					<a class="permalink" href="index.html#Storage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Storage">Storage</a>) String() (str <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Trie">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/database.go?s=2063:4709#L52">Trie</a>
+				<a class="permalink" href="index.html#Trie">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Trie is a Ethereum Merkle Patricia trie.
+
+			<pre>type Trie interface {
+    <span class="comment">// GetKey returns the sha3 preimage of a hashed key that was previously used</span>
+    <span class="comment">// to store a value.</span>
+    <span class="comment">//</span>
+    <span class="comment">// TODO(fjl): remove this when StateTrie is removed</span>
+    GetKey([]<a href="../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../builtin/index.html#byte">byte</a>
+
+    <span class="comment">// TryGet returns the value for key stored in the trie. The value bytes must</span>
+    <span class="comment">// not be modified by the caller. If a node was not found in the database, a</span>
+    <span class="comment">// trie.MissingNodeError is returned.</span>
+    TryGet(key []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// TryGetAccount abstract an account read from the trie.</span>
+    TryGetAccount(key []<a href="../../../../../builtin/index.html#byte">byte</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#StateAccount">StateAccount</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// TryUpdate associates key with value in the trie. If value has length zero, any</span>
+    <span class="comment">// existing value is deleted from the trie. The value bytes must not be modified</span>
+    <span class="comment">// by the caller while they are stored in the trie. If a node was not found in the</span>
+    <span class="comment">// database, a trie.MissingNodeError is returned.</span>
+    TryUpdate(key, value []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// TryUpdateAccount abstract an account write to the trie.</span>
+    TryUpdateAccount(key []<a href="../../../../../builtin/index.html#byte">byte</a>, account *<a href="../types/index.html">types</a>.<a href="../types/index.html#StateAccount">StateAccount</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// TryDelete removes any existing value for key from the trie. If a node was not</span>
+    <span class="comment">// found in the database, a trie.MissingNodeError is returned.</span>
+    TryDelete(key []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// TryDeleteAccount abstracts an account deletion from the trie.</span>
+    TryDeleteAccount(key []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Hash returns the root hash of the trie. It does not write to the database and</span>
+    <span class="comment">// can be used even if the trie doesn&#39;t have one.</span>
+    Hash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>
+
+    <span class="comment">// Commit collects all dirty nodes in the trie and replace them with the</span>
+    <span class="comment">// corresponding node hash. All collected nodes(including dirty leaves if</span>
+    <span class="comment">// collectLeaf is true) will be encapsulated into a nodeset for return.</span>
+    <span class="comment">// The returned nodeset can be nil if the trie is clean(nothing to commit).</span>
+    <span class="comment">// Once the trie is committed, it&#39;s not usable anymore. A new trie must</span>
+    <span class="comment">// be created with new root and updated trie database for following usage</span>
+    Commit(collectLeaf <a href="../../../../../builtin/index.html#bool">bool</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, *<a href="../../trie/index.html">trie</a>.<a href="../../trie/index.html#NodeSet">NodeSet</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// NodeIterator returns an iterator that returns nodes of the trie. Iteration</span>
+    <span class="comment">// starts at the key after the given start key.</span>
+    NodeIterator(startKey []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../trie/index.html">trie</a>.<a href="../../trie/index.html#NodeIterator">NodeIterator</a>
+
+    <span class="comment">// Prove constructs a Merkle proof for key. The result contains all encoded nodes</span>
+    <span class="comment">// on the path to the value at key. The value itself is also included in the last</span>
+    <span class="comment">// node and can be retrieved by verifying the proof.</span>
+    <span class="comment">//</span>
+    <span class="comment">// If the trie does not contain a value for key, the returned proof contains all</span>
+    <span class="comment">// nodes of the longest existing prefix of the key (at least the root), ending</span>
+    <span class="comment">// with the node that proves the absence of the key.</span>
+    Prove(key []<a href="../../../../../builtin/index.html#byte">byte</a>, fromLevel <a href="../../../../../builtin/index.html#uint">uint</a>, proofDb <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#KeyValueWriter">KeyValueWriter</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="pruner/index.html">pruner</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="snapshot/index.html">snapshot</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package snapshot implements a journalled, dynamic state dump.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

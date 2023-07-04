@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>tx - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package tx
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/client/tx"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#BroadcastTx">func BroadcastTx(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error</a></dd>
+			
+				
+				<dd><a href="index.html#CalculateGas">func CalculateGas(clientCtx gogogrpc.ClientConn, txf Factory, msgs ...sdk.Msg) (*tx.SimulateResponse, uint64, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ConvertTxToStdTx">func ConvertTxToStdTx(codec *codec.LegacyAmino, tx signing.Tx) (legacytx.StdTx, error)</a></dd>
+			
+				
+				<dd><a href="index.html#CopyTx">func CopyTx(tx signing.Tx, builder client.TxBuilder, ignoreSignatureError bool) error</a></dd>
+			
+				
+				<dd><a href="index.html#GenerateOrBroadcastTxCLI">func GenerateOrBroadcastTxCLI(clientCtx client.Context, flagSet *pflag.FlagSet, msgs ...sdk.Msg) error</a></dd>
+			
+				
+				<dd><a href="index.html#GenerateOrBroadcastTxWithFactory">func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error</a></dd>
+			
+				
+				<dd><a href="index.html#Sign">func Sign(txf Factory, name string, txBuilder client.TxBuilder, overwriteSig bool) error</a></dd>
+			
+				
+				<dd><a href="index.html#SignWithPrivKey">func SignWithPrivKey(signMode signing.SignMode, signerData authsigning.SignerData, txBuilder client.TxBuilder, priv cryptotypes.PrivKey, txConfig client.TxConfig, accSeq uint64) (signing.SignatureV2, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AuxTxBuilder">type AuxTxBuilder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAuxTxBuilder">func NewAuxTxBuilder() AuxTxBuilder</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.GetAuxSignerData">func (b *AuxTxBuilder) GetAuxSignerData() (tx.AuxSignerData, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.GetSignBytes">func (b *AuxTxBuilder) GetSignBytes() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetAccountNumber">func (b *AuxTxBuilder) SetAccountNumber(accNum uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetAddress">func (b *AuxTxBuilder) SetAddress(addr string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetChainID">func (b *AuxTxBuilder) SetChainID(chainID string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetExtensionOptions">func (b *AuxTxBuilder) SetExtensionOptions(extOpts ...*codectypes.Any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetMemo">func (b *AuxTxBuilder) SetMemo(memo string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetMsgs">func (b *AuxTxBuilder) SetMsgs(msgs ...sdk.Msg) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetNonCriticalExtensionOptions">func (b *AuxTxBuilder) SetNonCriticalExtensionOptions(extOpts ...*codectypes.Any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetPubKey">func (b *AuxTxBuilder) SetPubKey(pk cryptotypes.PubKey) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetSequence">func (b *AuxTxBuilder) SetSequence(accSeq uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetSignMode">func (b *AuxTxBuilder) SetSignMode(mode signing.SignMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetSignature">func (b *AuxTxBuilder) SetSignature(sig []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetTimeoutHeight">func (b *AuxTxBuilder) SetTimeoutHeight(height uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AuxTxBuilder.SetTip">func (b *AuxTxBuilder) SetTip(tip *tx.Tip)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Factory">type Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFactoryCLI">func NewFactoryCLI(clientCtx client.Context, flagSet *pflag.FlagSet) (Factory, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.AccountNumber">func (f Factory) AccountNumber() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.AccountRetriever">func (f Factory) AccountRetriever() client.AccountRetriever</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.BuildSimTx">func (f Factory) BuildSimTx(msgs ...sdk.Msg) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.BuildUnsignedTx">func (f Factory) BuildUnsignedTx(msgs ...sdk.Msg) (client.TxBuilder, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.ChainID">func (f Factory) ChainID() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Fees">func (f Factory) Fees() sdk.Coins</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Gas">func (f Factory) Gas() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.GasAdjustment">func (f Factory) GasAdjustment() float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.GasPrices">func (f Factory) GasPrices() sdk.DecCoins</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Keybase">func (f Factory) Keybase() keyring.Keyring</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Memo">func (f Factory) Memo() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Prepare">func (f Factory) Prepare(clientCtx client.Context) (Factory, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.PreprocessTx">func (f Factory) PreprocessTx(keyname string, builder client.TxBuilder) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.PrintUnsignedTx">func (f Factory) PrintUnsignedTx(clientCtx client.Context, msgs ...sdk.Msg) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Sequence">func (f Factory) Sequence() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.SignMode">func (f Factory) SignMode() signing.SignMode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.SimulateAndExecute">func (f Factory) SimulateAndExecute() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.TimeoutHeight">func (f Factory) TimeoutHeight() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithAccountNumber">func (f Factory) WithAccountNumber(accnum uint64) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithAccountRetriever">func (f Factory) WithAccountRetriever(ar client.AccountRetriever) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithChainID">func (f Factory) WithChainID(chainID string) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithExtensionOptions">func (f Factory) WithExtensionOptions(extOpts ...*codectypes.Any) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithFeeGranter">func (f Factory) WithFeeGranter(fg sdk.AccAddress) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithFeePayer">func (f Factory) WithFeePayer(fp sdk.AccAddress) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithFees">func (f Factory) WithFees(fees string) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithGas">func (f Factory) WithGas(gas uint64) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithGasAdjustment">func (f Factory) WithGasAdjustment(gasAdj float64) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithGasPrices">func (f Factory) WithGasPrices(gasPrices string) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithKeybase">func (f Factory) WithKeybase(keybase keyring.Keyring) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithMemo">func (f Factory) WithMemo(memo string) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithPreprocessTxHook">func (f Factory) WithPreprocessTxHook(preprocessFn client.PreprocessTxFn) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithSequence">func (f Factory) WithSequence(sequence uint64) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithSignMode">func (f Factory) WithSignMode(mode signing.SignMode) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithSimulateAndExecute">func (f Factory) WithSimulateAndExecute(sim bool) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithTimeoutHeight">func (f Factory) WithTimeoutHeight(height uint64) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithTips">func (f Factory) WithTips(tip string, tipper string) Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.WithTxConfig">func (f Factory) WithTxConfig(g client.TxConfig) Factory</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GasEstimateResponse">type GasEstimateResponse</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasEstimateResponse.String">func (gr GasEstimateResponse) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go">aux_builder.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go">factory.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/legacy.go">legacy.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go">tx.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="BroadcastTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=2164:2242#L58">BroadcastTx</a>
+				<a class="permalink" href="index.html#BroadcastTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastTx(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>, txf <a href="index.html#Factory">Factory</a>, msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>BroadcastTx attempts to generate, sign and broadcast a transaction with the
+given set of messages. It will also simulate gas requirements if necessary.
+It will return an error upon failure.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculateGas">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=4132:4252#L139">CalculateGas</a>
+				<a class="permalink" href="index.html#CalculateGas">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateGas(
+    clientCtx <a href="../../../gogoproto/grpc/index.html">gogogrpc</a>.<a href="../../../gogoproto/grpc/index.html#ClientConn">ClientConn</a>, txf <a href="index.html#Factory">Factory</a>, msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>,
+) (*<a href="../../types/tx/index.html">tx</a>.<a href="../../types/tx/index.html#SimulateResponse">SimulateResponse</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CalculateGas simulates the execution of a transaction and returns the
+simulation response obtained by the query and the adjusted gas amount.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertTxToStdTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/legacy.go?s=285:371#L3">ConvertTxToStdTx</a>
+				<a class="permalink" href="index.html#ConvertTxToStdTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConvertTxToStdTx(codec *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a>, tx <a href="../../x/auth/signing/index.html">signing</a>.<a href="../../x/auth/signing/index.html#Tx">Tx</a>) (<a href="../../x/auth/migrations/legacytx/index.html">legacytx</a>.<a href="../../x/auth/migrations/legacytx/index.html#StdTx">StdTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ConvertTxToStdTx converts a transaction to the legacy StdTx format
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/legacy.go?s=1052:1137#L27">CopyTx</a>
+				<a class="permalink" href="index.html#CopyTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CopyTx(tx <a href="../../x/auth/signing/index.html">signing</a>.<a href="../../x/auth/signing/index.html#Tx">Tx</a>, builder <a href="../index.html">client</a>.<a href="../index.html#TxBuilder">TxBuilder</a>, ignoreSignatureError <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>CopyTx copies a Tx to a new TxBuilder, allowing conversion between
+different transaction formats. If ignoreSignatureError is true, copying will continue
+tx even if the signature cannot be set in the target builder resulting in an unsigned tx.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateOrBroadcastTxCLI">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=692:794#L16">GenerateOrBroadcastTxCLI</a>
+				<a class="permalink" href="index.html#GenerateOrBroadcastTxCLI">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateOrBroadcastTxCLI(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>, flagSet *<a href="../../../../spf13/pflag/index.html">pflag</a>.<a href="../../../../spf13/pflag/index.html#FlagSet">FlagSet</a>, msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>GenerateOrBroadcastTxCLI will either generate and print and unsigned transaction
+or sign it and broadcast it returning an error upon failure.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateOrBroadcastTxWithFactory">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=1103:1202#L27">GenerateOrBroadcastTxWithFactory</a>
+				<a class="permalink" href="index.html#GenerateOrBroadcastTxWithFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateOrBroadcastTxWithFactory(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>, txf <a href="index.html#Factory">Factory</a>, msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>GenerateOrBroadcastTxWithFactory will either generate and print and unsigned transaction
+or sign it and broadcast it returning an error upon failure.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Sign">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=6882:6970#L239">Sign</a>
+				<a class="permalink" href="index.html#Sign">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Sign(txf <a href="index.html#Factory">Factory</a>, name <a href="../../../../../builtin/index.html#string">string</a>, txBuilder <a href="../index.html">client</a>.<a href="../index.html#TxBuilder">TxBuilder</a>, overwriteSig <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>Sign signs a given tx with a named key. The bytes signed over are canconical.
+The resulting signature will be added to the transaction builder overwriting the previous
+ones if overwrite=true (otherwise, the signature will be appended).
+Signing a transaction with mutltiple signers in the DIRECT mode is not supprted and will
+return an error.
+An error is returned upon failure.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SignWithPrivKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=4756:4968#L160">SignWithPrivKey</a>
+				<a class="permalink" href="index.html#SignWithPrivKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SignWithPrivKey(
+    signMode <a href="../../types/tx/signing/index.html">signing</a>.<a href="../../types/tx/signing/index.html#SignMode">SignMode</a>, signerData <a href="../../x/auth/signing/index.html">authsigning</a>.<a href="../../x/auth/signing/index.html#SignerData">SignerData</a>,
+    txBuilder <a href="../index.html">client</a>.<a href="../index.html#TxBuilder">TxBuilder</a>, priv <a href="../../crypto/types/index.html">cryptotypes</a>.<a href="../../crypto/types/index.html#PrivKey">PrivKey</a>, txConfig <a href="../index.html">client</a>.<a href="../index.html#TxConfig">TxConfig</a>,
+    accSeq <a href="../../../../../builtin/index.html#uint64">uint64</a>,
+) (<a href="../../types/tx/signing/index.html">signing</a>.<a href="../../types/tx/signing/index.html#SignatureV2">SignatureV2</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SignWithPrivKey signs a given tx with the given private key, and returns the
+corresponding SignatureV2 if the signing is successful.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AuxTxBuilder">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=492:846#L6">AuxTxBuilder</a>
+				<a class="permalink" href="index.html#AuxTxBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AuxTxBuilder is a client-side builder for creating an AuxSignerData.
+
+			<pre>type AuxTxBuilder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAuxTxBuilder">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=939:974#L18">NewAuxTxBuilder</a>
+					<a class="permalink" href="index.html#NewAuxTxBuilder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAuxTxBuilder() <a href="index.html#AuxTxBuilder">AuxTxBuilder</a></pre>
+				<p>NewAuxTxBuilder creates a new client-side builder for constructing an
+AuxSignerData.
+
+				
+				
+			
+
+			
+				
+				<h3 id="AuxTxBuilder.GetAuxSignerData">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=5709:5776#L202">GetAuxSignerData</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.GetAuxSignerData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) GetAuxSignerData() (<a href="../../types/tx/index.html">tx</a>.<a href="../../types/tx/index.html#AuxSignerData">AuxSignerData</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetAuxSignerData returns the builder&apos;s AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.GetSignBytes">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=4171:4224#L145">GetSignBytes</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.GetSignBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) GetSignBytes() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetSignBytes returns the builder&apos;s sign bytes.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetAccountNumber">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=2012:2066#L66">SetAccountNumber</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetAccountNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetAccountNumber(accNum <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetAccountNumber sets the aux signer&apos;s account number in the AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetAddress">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=1055:1101#L23">SetAddress</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetAddress(addr <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetAddress sets the aux signer&apos;s bech32 address.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetChainID">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=2197:2246#L73">SetChainID</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetChainID(chainID <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetChainID sets the chain id in the AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetExtensionOptions">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=3700:3770#L129">SetExtensionOptions</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetExtensionOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetExtensionOptions(extOpts ...*<a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#Any">Any</a>)</pre>
+				<p>SetExtensionOptions sets the aux signer&apos;s extension options.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetMemo">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=1196:1239#L30">SetMemo</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetMemo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetMemo(memo <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetMemo sets a memo in the tx.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetMsgs">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=1581:1634#L46">SetMsgs</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetMsgs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetMsgs(msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SetMsgs sets an array of Msgs in the tx.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetNonCriticalExtensionOptions">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=3924:4005#L137">SetNonCriticalExtensionOptions</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetNonCriticalExtensionOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetNonCriticalExtensionOptions(extOpts ...*<a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#Any">Any</a>)</pre>
+				<p>SetSignature sets the aux signer&apos;s signature.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetPubKey">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=2571:2632#L87">SetPubKey</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetPubKey(pk <a href="../../crypto/types/index.html">cryptotypes</a>.<a href="../../crypto/types/index.html#PubKey">PubKey</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SetPubKey sets the aux signer&apos;s pubkey in the AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetSequence">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=2386:2435#L80">SetSequence</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetSequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetSequence(accSeq <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetSequence sets the aux signer&apos;s sequence in the AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetSignMode">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=2901:2964#L102">SetSignMode</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetSignMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetSignMode(mode <a href="../../types/tx/signing/index.html">signing</a>.<a href="../../types/tx/signing/index.html#SignMode">SignMode</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SetSignMode sets the aux signer&apos;s sign mode. Allowed sign modes are
+DIRECT_AUX and LEGACY_AMINO_JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetSignature">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=3533:3580#L122">SetSignature</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetSignature">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetSignature(sig []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>SetSignature sets the aux signer&apos;s signature in the AuxSignerData.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetTimeoutHeight">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=1382:1436#L38">SetTimeoutHeight</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetTimeoutHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetTimeoutHeight(height <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetTimeoutHeight sets a timeout height in the tx.
+
+				
+				
+				
+			
+				
+				<h3 id="AuxTxBuilder.SetTip">func (*AuxTxBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/aux_builder.go?s=3357:3399#L115">SetTip</a>
+					<a class="permalink" href="index.html#AuxTxBuilder.SetTip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#AuxTxBuilder">AuxTxBuilder</a>) SetTip(tip *<a href="../../types/tx/index.html">tx</a>.<a href="../../types/tx/index.html#Tip">Tip</a>)</pre>
+				<p>SetTip sets an optional tip in the AuxSignerData.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Factory">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=695:1377#L17">Factory</a>
+				<a class="permalink" href="index.html#Factory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Factory defines a client transaction factory that facilitates generating and
+signing an application-specific transaction.
+
+			<pre>type Factory struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFactoryCLI">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=1419:1504#L42">NewFactoryCLI</a>
+					<a class="permalink" href="index.html#NewFactoryCLI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFactoryCLI(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>, flagSet *<a href="../../../../spf13/pflag/index.html">pflag</a>.<a href="../../../../spf13/pflag/index.html#FlagSet">FlagSet</a>) (<a href="index.html#Factory">Factory</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewFactoryCLI creates a new Factory.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Factory.AccountNumber">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=3727:3766#L111">AccountNumber</a>
+					<a class="permalink" href="index.html#Factory.AccountNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) AccountNumber() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.AccountRetriever">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4461:4520#L120">AccountRetriever</a>
+					<a class="permalink" href="index.html#Factory.AccountRetriever">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) AccountRetriever() <a href="../index.html">client</a>.<a href="../index.html#AccountRetriever">AccountRetriever</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.BuildSimTx">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=12275:12335#L395">BuildSimTx</a>
+					<a class="permalink" href="index.html#Factory.BuildSimTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) BuildSimTx(msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BuildSimTx creates an unsigned tx with an empty single signature and returns
+the encoded transaction or an error if the unsigned transaction cannot be
+built.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.BuildUnsignedTx">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=9602:9677#L300">BuildUnsignedTx</a>
+					<a class="permalink" href="index.html#Factory.BuildUnsignedTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) BuildUnsignedTx(msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) (<a href="../index.html">client</a>.<a href="../index.html#TxBuilder">TxBuilder</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BuildUnsignedTx builds a transaction to be signed given a set of messages.
+Once created, the fee, memo, and messages are set.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.ChainID">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4141:4174#L116">ChainID</a>
+					<a class="permalink" href="index.html#Factory.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) ChainID() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.Fees">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4300:4333#L118">Fees</a>
+					<a class="permalink" href="index.html#Factory.Fees">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Fees() <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Coins">Coins</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.Gas">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=3896:3925#L113">Gas</a>
+					<a class="permalink" href="index.html#Factory.Gas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Gas() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.GasAdjustment">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=3973:4013#L114">GasAdjustment</a>
+					<a class="permalink" href="index.html#Factory.GasAdjustment">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) GasAdjustment() <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.GasPrices">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4378:4419#L119">GasPrices</a>
+					<a class="permalink" href="index.html#Factory.GasPrices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) GasPrices() <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#DecCoins">DecCoins</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.Keybase">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4060:4102#L115">Keybase</a>
+					<a class="permalink" href="index.html#Factory.Keybase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Keybase() <a href="../../crypto/keyring/index.html">keyring</a>.<a href="../../crypto/keyring/index.html#Keyring">Keyring</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.Memo">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4222:4252#L117">Memo</a>
+					<a class="permalink" href="index.html#Factory.Memo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Memo() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.Prepare">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=14299:14366#L456">Prepare</a>
+					<a class="permalink" href="index.html#Factory.Prepare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Prepare(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>) (<a href="index.html#Factory">Factory</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Prepare ensures the account defined by ctx.GetFromAddress() exists and
+if the account number and/or the account sequence number are zero (not set),
+they will be queried for and set on the provided Factory.
+A new Factory with the updated fields will be returned.
+Note: When in offline mode, the Prepare does nothing and returns the original factory.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.PreprocessTx">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=8541:8618#L262">PreprocessTx</a>
+					<a class="permalink" href="index.html#Factory.PreprocessTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) PreprocessTx(keyname <a href="../../../../../builtin/index.html#string">string</a>, builder <a href="../index.html">client</a>.<a href="../index.html#TxBuilder">TxBuilder</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>PreprocessTx calls the preprocessing hook with the factory parameters and
+returns the result.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.PrintUnsignedTx">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=11248:11329#L357">PrintUnsignedTx</a>
+					<a class="permalink" href="index.html#Factory.PrintUnsignedTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) PrintUnsignedTx(clientCtx <a href="../index.html">client</a>.<a href="../index.html#Context">Context</a>, msgs ...<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Msg">Msg</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>PrintUnsignedTx will generate an unsigned transaction and print it to the writer
+specified by ctx.Output. If simulation was requested, the gas will be
+simulated and also printed to the same writer before the transaction is
+printed.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.Sequence">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=3814:3848#L112">Sequence</a>
+					<a class="permalink" href="index.html#Factory.Sequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) Sequence() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.SignMode">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7387:7431#L225">SignMode</a>
+					<a class="permalink" href="index.html#Factory.SignMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) SignMode() <a href="../../types/tx/signing/index.html">signing</a>.<a href="../../types/tx/signing/index.html#SignMode">SignMode</a></pre>
+				<p>SignMode returns the sign mode configured in the Factory
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.SimulateAndExecute">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4770:4812#L125">SimulateAndExecute</a>
+					<a class="permalink" href="index.html#Factory.SimulateAndExecute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) SimulateAndExecute() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>SimulateAndExecute returns the option to simulate and then execute the transaction
+using the gas from the simulation results
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.TimeoutHeight">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4551:4590#L121">TimeoutHeight</a>
+					<a class="permalink" href="index.html#Factory.TimeoutHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) TimeoutHeight() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithAccountNumber">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=6847:6904#L206">WithAccountNumber</a>
+					<a class="permalink" href="index.html#Factory.WithAccountNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithAccountNumber(accnum <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithAccountNumber returns a copy of the Factory with an updated account number.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithAccountRetriever">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=5094:5167#L134">WithAccountRetriever</a>
+					<a class="permalink" href="index.html#Factory.WithAccountRetriever">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithAccountRetriever(ar <a href="../index.html">client</a>.<a href="../index.html#AccountRetriever">AccountRetriever</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithAccountRetriever returns a copy of the Factory with an updated AccountRetriever.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithChainID">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=5278:5330#L140">WithChainID</a>
+					<a class="permalink" href="index.html#Factory.WithChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithChainID(chainID <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithChainID returns a copy of the Factory with an updated chainID.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithExtensionOptions">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=9357:9430#L293">WithExtensionOptions</a>
+					<a class="permalink" href="index.html#Factory.WithExtensionOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithExtensionOptions(extOpts ...*<a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#Any">Any</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithExtensionOptions returns a Factory with given extension options added to the existing options,
+Example to add dynamic fee extension options:
+<pre>extOpt := ethermint.ExtensionOptionDynamicFeeTx{
+	MaxPriorityPrice: sdk.NewInt(1000000),
+}
+
+extBytes, _ := extOpt.Marshal()
+
+extOpts := []*types.Any{
+	{
+		TypeUrl: &quot;/ethermint.types.v1.ExtensionOptionDynamicFeeTx&quot;,
+		Value:   extBytes,
+	},
+}
+</pre>
+<p>txf.WithExtensionOptions(extOpts...)
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithFeeGranter">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7889:7947#L242">WithFeeGranter</a>
+					<a class="permalink" href="index.html#Factory.WithFeeGranter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithFeeGranter(fg <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithFeeGranter returns a copy of the Factory with an updated fee granter.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithFeePayer">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=8057:8113#L248">WithFeePayer</a>
+					<a class="permalink" href="index.html#Factory.WithFeePayer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithFeePayer(fp <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithFeePayer returns a copy of the Factory with an updated fee granter.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithFees">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=5571:5617#L152">WithFees</a>
+					<a class="permalink" href="index.html#Factory.WithFees">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithFees(fees <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithFees returns a copy of the Factory with an updated fee.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithGas">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=5435:5479#L146">WithGas</a>
+					<a class="permalink" href="index.html#Factory.WithGas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithGas(gas <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithGas returns a copy of the Factory with an updated gas value.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithGasAdjustment">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7029:7087#L212">WithGasAdjustment</a>
+					<a class="permalink" href="index.html#Factory.WithGasAdjustment">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithGasAdjustment(gasAdj <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithGasAdjustment returns a copy of the Factory with an updated gas adjustment.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithGasPrices">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=6095:6151#L177">WithGasPrices</a>
+					<a class="permalink" href="index.html#Factory.WithGasPrices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithGasPrices(gasPrices <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithGasPrices returns a copy of the Factory with updated gas prices.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithKeybase">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=6353:6414#L188">WithKeybase</a>
+					<a class="permalink" href="index.html#Factory.WithKeybase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithKeybase(keybase <a href="../../crypto/keyring/index.html">keyring</a>.<a href="../../crypto/keyring/index.html#Keyring">Keyring</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithKeybase returns a copy of the Factory with updated Keybase.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithMemo">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=6687:6733#L200">WithMemo</a>
+					<a class="permalink" href="index.html#Factory.WithMemo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithMemo(memo <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithMemo returns a copy of the Factory with an updated memo.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithPreprocessTxHook">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=8309:8390#L255">WithPreprocessTxHook</a>
+					<a class="permalink" href="index.html#Factory.WithPreprocessTxHook">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithPreprocessTxHook(preprocessFn <a href="../index.html">client</a>.<a href="../index.html#PreprocessTxFn">PreprocessTxFn</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithPreprocessTxHook returns a copy of the Factory with an updated preprocess tx function,
+allows for preprocessing of transaction data using the TxBuilder.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithSequence">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=6530:6584#L194">WithSequence</a>
+					<a class="permalink" href="index.html#Factory.WithSequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithSequence(sequence <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithSequence returns a copy of the Factory with an updated sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithSignMode">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7535:7595#L230">WithSignMode</a>
+					<a class="permalink" href="index.html#Factory.WithSignMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithSignMode(mode <a href="../../types/tx/signing/index.html">signing</a>.<a href="../../types/tx/signing/index.html#SignMode">SignMode</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithSignMode returns a copy of the Factory with an updated sign mode value.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithSimulateAndExecute">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7226:7283#L219">WithSimulateAndExecute</a>
+					<a class="permalink" href="index.html#Factory.WithSimulateAndExecute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithSimulateAndExecute(sim <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithSimulateAndExecute returns a copy of the Factory with an updated gas
+simulation value.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithTimeoutHeight">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=7713:7770#L236">WithTimeoutHeight</a>
+					<a class="permalink" href="index.html#Factory.WithTimeoutHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithTimeoutHeight(height <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithTimeoutHeight returns a copy of the Factory with an updated timeout height.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithTips">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=5802:5862#L163">WithTips</a>
+					<a class="permalink" href="index.html#Factory.WithTips">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithTips(tip <a href="../../../../../builtin/index.html#string">string</a>, tipper <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithTips returns a copy of the Factory with an updated tip.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.WithTxConfig">func (Factory) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/factory.go?s=4918:4974#L128">WithTxConfig</a>
+					<a class="permalink" href="index.html#Factory.WithTxConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) WithTxConfig(g <a href="../index.html">client</a>.<a href="../index.html#TxConfig">TxConfig</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>WithTxConfig returns a copy of the Factory with an updated TxConfig.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GasEstimateResponse">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=9759:9856#L349">GasEstimateResponse</a>
+				<a class="permalink" href="index.html#GasEstimateResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GasEstimateResponse defines a response definition for tx gas estimation.
+
+			<pre>type GasEstimateResponse struct {
+<span id="GasEstimateResponse.GasEstimate"></span>    GasEstimate <a href="../../../../../builtin/index.html#uint64">uint64</a> `json:&#34;gas_estimate&#34; yaml:&#34;gas_estimate&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="GasEstimateResponse.String">func (GasEstimateResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/tx/tx.go?s=9858:9903#L353">String</a>
+					<a class="permalink" href="index.html#GasEstimateResponse.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gr <a href="index.html#GasEstimateResponse">GasEstimateResponse</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

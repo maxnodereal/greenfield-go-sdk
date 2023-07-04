@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>privval - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package privval
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/privval"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package privval provides different implementations of the types.PrivValidator.
+<h3 id="hdr-FilePV">FilePV</h3>
+<p>FilePV is the simplest implementation and developer default.
+It uses one file for the private key and another to store state.
+<h3 id="hdr-SignerListenerEndpoint">SignerListenerEndpoint</h3>
+<p>SignerListenerEndpoint establishes a connection to an external process,
+like a Key Management Server (KMS), using a socket.
+SignerListenerEndpoint listens for the external KMS process to dial in.
+SignerListenerEndpoint takes a listener, which determines the type of connection
+(ie. encrypted over tcp, or unencrypted over unix).
+<h3 id="hdr-SignerDialerEndpoint">SignerDialerEndpoint</h3>
+<p>SignerDialerEndpoint is a simple wrapper around a net.Conn. It&apos;s used by both IPCVal and TCPVal.
+<h3 id="hdr-SignerClient">SignerClient</h3>
+<p>SignerClient handles remote validator connections that provide signing services.
+In production, it&apos;s recommended to wrap it with RetrySignerClient to avoid
+termination in case of temporary errors.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DefaultValidationRequestHandler">func DefaultValidationRequestHandler(privVal types.PrivValidator, req privvalproto.Message, chainID string) (privvalproto.Message, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetFreeLocalhostAddrPort">func GetFreeLocalhostAddrPort() string</a></dd>
+			
+				
+				<dd><a href="index.html#IsConnTimeout">func IsConnTimeout(err error) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#EndpointTimeoutError">type EndpointTimeoutError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EndpointTimeoutError.Error">func (e EndpointTimeoutError) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EndpointTimeoutError.Temporary">func (e EndpointTimeoutError) Temporary() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EndpointTimeoutError.Timeout">func (e EndpointTimeoutError) Timeout() bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilePV">type FilePV</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenFilePV">func GenFilePV(keyFilePath, stateFilePath string) *FilePV</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LoadFilePV">func LoadFilePV(keyFilePath, stateFilePath string) *FilePV</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LoadFilePVEmptyState">func LoadFilePVEmptyState(keyFilePath, stateFilePath string) *FilePV</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LoadOrGenFilePV">func LoadOrGenFilePV(keyFilePath, stateFilePath string) *FilePV</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFilePV">func NewFilePV(privKey crypto.PrivKey, keyFilePath, stateFilePath string) *FilePV</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.GetAddress">func (pv *FilePV) GetAddress() types.Address</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.GetPubKey">func (pv *FilePV) GetPubKey() (crypto.PubKey, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.Reset">func (pv *FilePV) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.Save">func (pv *FilePV) Save()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.SignProposal">func (pv *FilePV) SignProposal(chainID string, proposal *cmtproto.Proposal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.SignReveal">func (pv *FilePV) SignReveal(chainID string, reveal *cmtproto.Reveal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.SignVote">func (pv *FilePV) SignVote(chainID string, vote *cmtproto.Vote) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePV.String">func (pv *FilePV) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilePVKey">type FilePVKey</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePVKey.Save">func (pvKey FilePVKey) Save()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilePVLastSignState">type FilePVLastSignState</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePVLastSignState.CheckHRS">func (lss *FilePVLastSignState) CheckHRS(height int64, round int32, step int8) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilePVLastSignState.Save">func (lss *FilePVLastSignState) Save()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RemoteSignerError">type RemoteSignerError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RemoteSignerError.Error">func (e *RemoteSignerError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RetrySignerClient">type RetrySignerClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRetrySignerClient">func NewRetrySignerClient(sc *SignerClient, retries int, timeout time.Duration) *RetrySignerClient</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.Close">func (sc *RetrySignerClient) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.GetPubKey">func (sc *RetrySignerClient) GetPubKey() (crypto.PubKey, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.IsConnected">func (sc *RetrySignerClient) IsConnected() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.Ping">func (sc *RetrySignerClient) Ping() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.SignProposal">func (sc *RetrySignerClient) SignProposal(chainID string, proposal *cmtproto.Proposal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.SignReveal">func (sc *RetrySignerClient) SignReveal(chainID string, reveal *cmtproto.Reveal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.SignVote">func (sc *RetrySignerClient) SignVote(chainID string, vote *cmtproto.Vote) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RetrySignerClient.WaitForConnection">func (sc *RetrySignerClient) WaitForConnection(maxWait time.Duration) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignerClient">type SignerClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSignerClient">func NewSignerClient(endpoint *SignerListenerEndpoint, chainID string) (*SignerClient, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.Close">func (sc *SignerClient) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.GetPubKey">func (sc *SignerClient) GetPubKey() (crypto.PubKey, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.IsConnected">func (sc *SignerClient) IsConnected() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.Ping">func (sc *SignerClient) Ping() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.SignProposal">func (sc *SignerClient) SignProposal(chainID string, proposal *cmtproto.Proposal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.SignReveal">func (sc *SignerClient) SignReveal(chainID string, reveal *cmtproto.Reveal) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.SignVote">func (sc *SignerClient) SignVote(chainID string, vote *cmtproto.Vote) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerClient.WaitForConnection">func (sc *SignerClient) WaitForConnection(maxWait time.Duration) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignerDialerEndpoint">type SignerDialerEndpoint</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSignerDialerEndpoint">func NewSignerDialerEndpoint(logger log.Logger, dialer SocketDialer, options ...SignerServiceEndpointOption) *SignerDialerEndpoint</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.Close">func (se *SignerDialerEndpoint) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.DropConnection">func (se *SignerDialerEndpoint) DropConnection()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.GetAvailableConnection">func (se *SignerDialerEndpoint) GetAvailableConnection(connectionAvailableCh chan net.Conn) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.IsConnected">func (se *SignerDialerEndpoint) IsConnected() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.ReadMessage">func (se *SignerDialerEndpoint) ReadMessage() (msg privvalproto.Message, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.SetConnection">func (se *SignerDialerEndpoint) SetConnection(newConnection net.Conn)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.WaitConnection">func (se *SignerDialerEndpoint) WaitConnection(connectionAvailableCh chan net.Conn, maxWait time.Duration) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpoint.WriteMessage">func (se *SignerDialerEndpoint) WriteMessage(msg privvalproto.Message) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignerListenerEndpoint">type SignerListenerEndpoint</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSignerListener">func NewSignerListener(listenAddr string, logger log.Logger) (*SignerListenerEndpoint, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSignerListenerEndpoint">func NewSignerListenerEndpoint(logger log.Logger, listener net.Listener, options ...SignerListenerEndpointOption) *SignerListenerEndpoint</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.Close">func (se *SignerListenerEndpoint) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.DropConnection">func (se *SignerListenerEndpoint) DropConnection()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.GetAvailableConnection">func (se *SignerListenerEndpoint) GetAvailableConnection(connectionAvailableCh chan net.Conn) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.IsConnected">func (se *SignerListenerEndpoint) IsConnected() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.OnStart">func (sl *SignerListenerEndpoint) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.OnStop">func (sl *SignerListenerEndpoint) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.ReadMessage">func (se *SignerListenerEndpoint) ReadMessage() (msg privvalproto.Message, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.SendRequest">func (sl *SignerListenerEndpoint) SendRequest(request privvalproto.Message) (*privvalproto.Message, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.SetConnection">func (se *SignerListenerEndpoint) SetConnection(newConnection net.Conn)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.WaitConnection">func (se *SignerListenerEndpoint) WaitConnection(connectionAvailableCh chan net.Conn, maxWait time.Duration) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.WaitForConnection">func (sl *SignerListenerEndpoint) WaitForConnection(maxWait time.Duration) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpoint.WriteMessage">func (se *SignerListenerEndpoint) WriteMessage(msg privvalproto.Message) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignerListenerEndpointOption">type SignerListenerEndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerListenerEndpointTimeoutReadWrite">func SignerListenerEndpointTimeoutReadWrite(timeout time.Duration) SignerListenerEndpointOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignerServer">type SignerServer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSignerServer">func NewSignerServer(endpoint *SignerDialerEndpoint, chainID string, privVal types.PrivValidator) *SignerServer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerServer.OnStart">func (ss *SignerServer) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerServer.OnStop">func (ss *SignerServer) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerServer.SetRequestHandler">func (ss *SignerServer) SetRequestHandler(validationRequestHandler ValidationRequestHandlerFunc)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignerServiceEndpointOption">type SignerServiceEndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpointConnRetries">func SignerDialerEndpointConnRetries(retries int) SignerServiceEndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpointRetryWaitInterval">func SignerDialerEndpointRetryWaitInterval(interval time.Duration) SignerServiceEndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignerDialerEndpointTimeoutReadWrite">func SignerDialerEndpointTimeoutReadWrite(timeout time.Duration) SignerServiceEndpointOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SocketDialer">type SocketDialer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialTCPFn">func DialTCPFn(addr string, timeoutReadWrite time.Duration, privKey crypto.PrivKey) SocketDialer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialUnixFn">func DialUnixFn(addr string) SocketDialer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TCPListener">type TCPListener</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTCPListener">func NewTCPListener(ln net.Listener, secretConnKey ed25519.PrivKey) *TCPListener</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TCPListener.Accept">func (ln *TCPListener) Accept() (net.Conn, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TCPListenerOption">type TCPListenerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TCPListenerTimeoutAccept">func TCPListenerTimeoutAccept(timeout time.Duration) TCPListenerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TCPListenerTimeoutReadWrite">func TCPListenerTimeoutReadWrite(timeout time.Duration) TCPListenerOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UnixListener">type UnixListener</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewUnixListener">func NewUnixListener(ln net.Listener) *UnixListener</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnixListener.Accept">func (ln *UnixListener) Accept() (net.Conn, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UnixListenerOption">type UnixListenerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnixListenerTimeoutAccept">func UnixListenerTimeoutAccept(timeout time.Duration) UnixListenerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnixListenerTimeoutReadWrite">func UnixListenerTimeoutReadWrite(timeout time.Duration) UnixListenerOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ValidationRequestHandlerFunc">type ValidationRequestHandlerFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go">file.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/msgs.go">msgs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go">retry_signer_client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go">signer_client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go">signer_dialer_endpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go">signer_endpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go">signer_listener_endpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_requestHandler.go">signer_requestHandler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go">signer_server.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_dialers.go">socket_dialers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go">socket_listeners.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/utils.go">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>Socket errors.
+
+				<pre>var (
+    <span id="ErrConnectionTimeout">ErrConnectionTimeout</span>  = <a href="index.html#EndpointTimeoutError">EndpointTimeoutError</a>{}
+    <span id="ErrNoConnection">ErrNoConnection</span>       = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;endpoint is not connected&#34;)
+    <span id="ErrReadTimeout">ErrReadTimeout</span>        = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;endpoint read timed out&#34;)
+    <span id="ErrUnexpectedResponse">ErrUnexpectedResponse</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;empty response&#34;)
+    <span id="ErrWriteTimeout">ErrWriteTimeout</span>       = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;endpoint write timed out&#34;)
+)</pre>
+			
+				<p>Socket errors.
+
+				<pre>var (
+    <span id="ErrDialRetryMax">ErrDialRetryMax</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;dialed maximum retries&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DefaultValidationRequestHandler">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_requestHandler.go?s=374:517#L4">DefaultValidationRequestHandler</a>
+				<a class="permalink" href="index.html#DefaultValidationRequestHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultValidationRequestHandler(
+    privVal <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a>,
+    req <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>,
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+) (<a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetFreeLocalhostAddrPort">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/utils.go?s=1474:1512#L46">GetFreeLocalhostAddrPort</a>
+				<a class="permalink" href="index.html#GetFreeLocalhostAddrPort">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetFreeLocalhostAddrPort() <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>GetFreeLocalhostAddrPort returns a free localhost:port address
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsConnTimeout">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/utils.go?s=397:431#L6">IsConnTimeout</a>
+				<a class="permalink" href="index.html#IsConnTimeout">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsConnTimeout(err <a href="../../../../builtin/index.html#error">error</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsConnTimeout returns a boolean indicating whether the error is known to
+report that a connection timeout occurred. This detects both fundamental
+network timeouts, as well as ErrConnTimeout errors.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="EndpointTimeoutError">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=102:136#L1">EndpointTimeoutError</a>
+				<a class="permalink" href="index.html#EndpointTimeoutError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointTimeoutError occurs when endpoint times out.
+
+			<pre>type EndpointTimeoutError struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="EndpointTimeoutError.Error">func (EndpointTimeoutError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=176:220#L2">Error</a>
+					<a class="permalink" href="index.html#EndpointTimeoutError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#EndpointTimeoutError">EndpointTimeoutError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Implement the net.Error interface.
+
+				
+				
+				
+			
+				
+				<h3 id="EndpointTimeoutError.Temporary">func (EndpointTimeoutError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=329:375#L4">Temporary</a>
+					<a class="permalink" href="index.html#EndpointTimeoutError.Temporary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#EndpointTimeoutError">EndpointTimeoutError</a>) Temporary() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EndpointTimeoutError.Timeout">func (EndpointTimeoutError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=266:310#L3">Timeout</a>
+					<a class="permalink" href="index.html#EndpointTimeoutError.Timeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#EndpointTimeoutError">EndpointTimeoutError</a>) Timeout() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilePV">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=4503:4585#L142">FilePV</a>
+				<a class="permalink" href="index.html#FilePV">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilePV implements PrivValidator using data persisted to disk
+to prevent double signing.
+NOTE: the directories containing pv.Key.filePath and pv.LastSignState.filePath must already exist.
+It includes the LastSignature and LastSignBytes so we don&apos;t lose the signature
+if the process crashes after signing but before the resulting consensus message is processed.
+
+			<pre>type FilePV struct {
+<span id="FilePV.Key"></span>    Key           <a href="index.html#FilePVKey">FilePVKey</a>
+<span id="FilePV.LastSignState"></span>    LastSignState <a href="index.html#FilePVLastSignState">FilePVLastSignState</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GenFilePV">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=5128:5185#L165">GenFilePV</a>
+					<a class="permalink" href="index.html#GenFilePV">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GenFilePV(keyFilePath, stateFilePath <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#FilePV">FilePV</a></pre>
+				<p>GenFilePV generates a new validator with randomly generated private key
+and sets the filePaths, but does not call Save().
+
+				
+				
+			
+				
+				<h3 id="LoadFilePV">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=5461:5519#L172">LoadFilePV</a>
+					<a class="permalink" href="index.html#LoadFilePV">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LoadFilePV(keyFilePath, stateFilePath <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#FilePV">FilePV</a></pre>
+				<p>LoadFilePV loads a FilePV from the filePaths.  The FilePV handles double
+signing prevention by persisting data to the stateFilePath.  If either file path
+does not exist, the program will exit.
+
+				
+				
+			
+				
+				<h3 id="LoadFilePVEmptyState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=5735:5803#L178">LoadFilePVEmptyState</a>
+					<a class="permalink" href="index.html#LoadFilePVEmptyState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LoadFilePVEmptyState(keyFilePath, stateFilePath <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#FilePV">FilePV</a></pre>
+				<p>LoadFilePVEmptyState loads a FilePV from the given keyFilePath, with an empty LastSignState.
+If the keyFilePath does not exist, the program will exit.
+
+				
+				
+			
+				
+				<h3 id="LoadOrGenFilePV">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=7031:7094#L222">LoadOrGenFilePV</a>
+					<a class="permalink" href="index.html#LoadOrGenFilePV">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LoadOrGenFilePV(keyFilePath, stateFilePath <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#FilePV">FilePV</a></pre>
+				<p>LoadOrGenFilePV loads a FilePV from the given filePaths
+or else generates a new one and saves it to the filePaths.
+
+				
+				
+			
+				
+				<h3 id="NewFilePV">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=4656:4737#L148">NewFilePV</a>
+					<a class="permalink" href="index.html#NewFilePV">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFilePV(privKey <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PrivKey">PrivKey</a>, keyFilePath, stateFilePath <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#FilePV">FilePV</a></pre>
+				<p>NewFilePV generates a new validator from the given key and paths.
+
+				
+				
+			
+
+			
+				
+				<h3 id="FilePV.GetAddress">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=7360:7404#L235">GetAddress</a>
+					<a class="permalink" href="index.html#FilePV.GetAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) GetAddress() <a href="../types/index.html">types</a>.<a href="../types/index.html#Address">Address</a></pre>
+				<p>GetAddress returns the address of the validator.
+Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.GetPubKey">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=7516:7568#L241">GetPubKey</a>
+					<a class="permalink" href="index.html#FilePV.GetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) GetPubKey() (<a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PubKey">PubKey</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetPubKey returns the public key of the validator.
+Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.Reset">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=8902:8927#L284">Reset</a>
+					<a class="permalink" href="index.html#FilePV.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) Reset()</pre>
+				<p>Reset resets all fields in the FilePV.
+NOTE: Unsafe!
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.Save">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=8773:8797#L277">Save</a>
+					<a class="permalink" href="index.html#FilePV.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) Save()</pre>
+				<p>Save persists the FilePV to disk.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.SignProposal">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=8024:8105#L256">SignProposal</a>
+					<a class="permalink" href="index.html#FilePV.SignProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) SignProposal(chainID <a href="../../../../builtin/index.html#string">string</a>, proposal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Proposal">Proposal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignProposal signs a canonical representation of the proposal, along with
+the chainID. Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.SignReveal">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=8328:8403#L264">SignReveal</a>
+					<a class="permalink" href="index.html#FilePV.SignReveal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) SignReveal(chainID <a href="../../../../builtin/index.html#string">string</a>, reveal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Reveal">Reveal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignReveal signs a randao reveal, along with the chainID. Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.SignVote">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=7712:7781#L247">SignVote</a>
+					<a class="permalink" href="index.html#FilePV.SignVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) SignVote(chainID <a href="../../../../builtin/index.html#string">string</a>, vote *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignVote signs a canonical representation of the vote, along with the
+chainID. Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePV.String">func (*FilePV) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=9169:9202#L295">String</a>
+					<a class="permalink" href="index.html#FilePV.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pv *<a href="index.html#FilePV">FilePV</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of the FilePV.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilePVKey">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=1245:1412#L40">FilePVKey</a>
+				<a class="permalink" href="index.html#FilePVKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilePVKey stores the immutable part of PrivValidator.
+
+			<pre>type FilePVKey struct {
+<span id="FilePVKey.Address"></span>    Address <a href="../types/index.html">types</a>.<a href="../types/index.html#Address">Address</a>  `json:&#34;address&#34;`
+<span id="FilePVKey.PubKey"></span>    PubKey  <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PubKey">PubKey</a>  `json:&#34;pub_key&#34;`
+<span id="FilePVKey.PrivKey"></span>    PrivKey <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PrivKey">PrivKey</a> `json:&#34;priv_key&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FilePVKey.Save">func (FilePVKey) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=1462:1491#L49">Save</a>
+					<a class="permalink" href="index.html#FilePVKey.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pvKey <a href="index.html#FilePVKey">FilePVKey</a>) Save()</pre>
+				<p>Save persists the FilePVKey to its filePath.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilePVLastSignState">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=1939:2240#L68">FilePVLastSignState</a>
+				<a class="permalink" href="index.html#FilePVLastSignState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilePVLastSignState stores the mutable part of PrivValidator.
+
+			<pre>type FilePVLastSignState struct {
+<span id="FilePVLastSignState.Height"></span>    Height    <a href="../../../../builtin/index.html#int64">int64</a>             `json:&#34;height&#34;`
+<span id="FilePVLastSignState.Round"></span>    Round     <a href="../../../../builtin/index.html#int32">int32</a>             `json:&#34;round&#34;`
+<span id="FilePVLastSignState.Step"></span>    Step      <a href="../../../../builtin/index.html#int8">int8</a>              `json:&#34;step&#34;`
+<span id="FilePVLastSignState.Signature"></span>    Signature []<a href="../../../../builtin/index.html#byte">byte</a>            `json:&#34;signature,omitempty&#34;`
+<span id="FilePVLastSignState.SignBytes"></span>    SignBytes <a href="../libs/bytes/index.html">cmtbytes</a>.<a href="../libs/bytes/index.html#HexBytes">HexBytes</a> `json:&#34;signbytes,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FilePVLastSignState.CheckHRS">func (*FilePVLastSignState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=2793:2885#L85">CheckHRS</a>
+					<a class="permalink" href="index.html#FilePVLastSignState.CheckHRS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lss *<a href="index.html#FilePVLastSignState">FilePVLastSignState</a>) CheckHRS(height <a href="../../../../builtin/index.html#int64">int64</a>, round <a href="../../../../builtin/index.html#int32">int32</a>, step <a href="../../../../builtin/index.html#int8">int8</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CheckHRS checks the given height, round, step (HRS) against that of the
+FilePVLastSignState. It returns an error if the arguments constitute a regression,
+or if they match but the SignBytes are empty.
+The returned boolean indicates whether the last Signature should be reused -
+it returns true if the HRS matches the arguments and the SignBytes are not empty (indicating
+we have already signed for this HRS, and can reuse the existing signature).
+It panics if the HRS matches the arguments, there&apos;s a SignBytes, but no Signature.
+
+				
+				
+				
+			
+				
+				<h3 id="FilePVLastSignState.Save">func (*FilePVLastSignState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/file.go?s=3712:3750#L120">Save</a>
+					<a class="permalink" href="index.html#FilePVLastSignState.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lss *<a href="index.html#FilePVLastSignState">FilePVLastSignState</a>) Save()</pre>
+				<p>Save persists the FilePvLastSignState to its filePath.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RemoteSignerError">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=822:941#L17">RemoteSignerError</a>
+				<a class="permalink" href="index.html#RemoteSignerError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RemoteSignerError allows (remote) validators to include meaningful error
+descriptions in their reply.
+
+			<pre>type RemoteSignerError struct {
+    <span class="comment">// TODO(ismail): create an enum of known errors</span>
+<span id="RemoteSignerError.Code"></span>    Code        <a href="../../../../builtin/index.html#int">int</a>
+<span id="RemoteSignerError.Description"></span>    Description <a href="../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RemoteSignerError.Error">func (*RemoteSignerError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/errors.go?s=943:985#L23">Error</a>
+					<a class="permalink" href="index.html#RemoteSignerError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#RemoteSignerError">RemoteSignerError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RetrySignerClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=289:381#L4">RetrySignerClient</a>
+				<a class="permalink" href="index.html#RetrySignerClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RetrySignerClient wraps SignerClient adding retry for each operation (except
+Ping) w/ a timeout.
+
+			<pre>type RetrySignerClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRetrySignerClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=513:611#L12">NewRetrySignerClient</a>
+					<a class="permalink" href="index.html#NewRetrySignerClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRetrySignerClient(sc *<a href="index.html#SignerClient">SignerClient</a>, retries <a href="../../../../builtin/index.html#int">int</a>, timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#RetrySignerClient">RetrySignerClient</a></pre>
+				<p>NewRetrySignerClient returns RetrySignerClient. If +retries+ is 0, the
+client will be retrying each operation indefinitely.
+
+				
+				
+			
+
+			
+				
+				<h3 id="RetrySignerClient.Close">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=721:763#L18">Close</a>
+					<a class="permalink" href="index.html#RetrySignerClient.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.GetPubKey">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=1157:1220#L37">GetPubKey</a>
+					<a class="permalink" href="index.html#RetrySignerClient.GetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) GetPubKey() (<a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PubKey">PubKey</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.IsConnected">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=793:840#L22">IsConnected</a>
+					<a class="permalink" href="index.html#RetrySignerClient.IsConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) IsConnected() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.Ping">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=1087:1128#L33">Ping</a>
+					<a class="permalink" href="index.html#RetrySignerClient.Ping">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) Ping() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.SignProposal">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=2044:2136#L72">SignProposal</a>
+					<a class="permalink" href="index.html#RetrySignerClient.SignProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) SignProposal(chainID <a href="../../../../builtin/index.html#string">string</a>, proposal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Proposal">Proposal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.SignReveal">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=2590:2676#L89">SignReveal</a>
+					<a class="permalink" href="index.html#RetrySignerClient.SignReveal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) SignReveal(chainID <a href="../../../../builtin/index.html#string">string</a>, reveal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Reveal">Reveal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignReveal signs a randao reveal, along with the chainID. Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.SignVote">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=1609:1689#L56">SignVote</a>
+					<a class="permalink" href="index.html#RetrySignerClient.SignVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) SignVote(chainID <a href="../../../../builtin/index.html#string">string</a>, vote *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RetrySignerClient.WaitForConnection">func (*RetrySignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/retry_signer_client.go?s=876:951#L26">WaitForConnection</a>
+					<a class="permalink" href="index.html#RetrySignerClient.WaitForConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#RetrySignerClient">RetrySignerClient</a>) WaitForConnection(maxWait <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignerClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=426:505#L6">SignerClient</a>
+				<a class="permalink" href="index.html#SignerClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerClient implements PrivValidator.
+Handles remote validator connections that provide signing services
+
+			<pre>type SignerClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSignerClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=668:761#L15">NewSignerClient</a>
+					<a class="permalink" href="index.html#NewSignerClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSignerClient(endpoint *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>, chainID <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#SignerClient">SignerClient</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewSignerClient returns an instance of SignerClient.
+it will start the endpoint (if not already started)
+
+				
+				
+			
+
+			
+				
+				<h3 id="SignerClient.Close">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=1025:1062#L26">Close</a>
+					<a class="permalink" href="index.html#SignerClient.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying connection
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.GetPubKey">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=2017:2075#L61">GetPubKey</a>
+					<a class="permalink" href="index.html#SignerClient.GetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) GetPubKey() (<a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PubKey">PubKey</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetPubKey retrieves a public key from a remote signer
+returns an error if client is not able to provide the key
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.IsConnected">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=1178:1220#L31">IsConnected</a>
+					<a class="permalink" href="index.html#SignerClient.IsConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) IsConnected() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsConnected indicates with the signer is connected to a remote signing service
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.Ping">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=1599:1635#L44">Ping</a>
+					<a class="permalink" href="index.html#SignerClient.Ping">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) Ping() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Ping sends a ping request to the remote signer
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.SignProposal">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=3166:3253#L104">SignProposal</a>
+					<a class="permalink" href="index.html#SignerClient.SignProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) SignProposal(chainID <a href="../../../../builtin/index.html#string">string</a>, proposal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Proposal">Proposal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignProposal requests a remote signer to sign a proposal
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.SignReveal">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=3773:3854#L126">SignReveal</a>
+					<a class="permalink" href="index.html#SignerClient.SignReveal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) SignReveal(chainID <a href="../../../../builtin/index.html#string">string</a>, reveal *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Reveal">Reveal</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignReveal signs a randao reveal, along with the chainID. Implements PrivValidator.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.SignVote">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=2628:2703#L84">SignVote</a>
+					<a class="permalink" href="index.html#SignerClient.SignVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) SignVote(chainID <a href="../../../../builtin/index.html#string">string</a>, vote *<a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SignVote requests a remote signer to sign a vote
+
+				
+				
+				
+			
+				
+				<h3 id="SignerClient.WaitForConnection">func (*SignerClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_client.go?s=1339:1409#L36">WaitForConnection</a>
+					<a class="permalink" href="index.html#SignerClient.WaitForConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SignerClient">SignerClient</a>) WaitForConnection(maxWait <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>WaitForConnection waits maxWait for a connection or returns a timeout error
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignerDialerEndpoint">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=1260:1385#L28">SignerDialerEndpoint</a>
+				<a class="permalink" href="index.html#SignerDialerEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerDialerEndpoint dials using its dialer and responds to any signature
+requests using its privVal.
+
+			<pre>type SignerDialerEndpoint struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSignerDialerEndpoint">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=1572:1708#L40">NewSignerDialerEndpoint</a>
+					<a class="permalink" href="index.html#NewSignerDialerEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSignerDialerEndpoint(
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+    dialer <a href="index.html#SocketDialer">SocketDialer</a>,
+    options ...<a href="index.html#SignerServiceEndpointOption">SignerServiceEndpointOption</a>,
+) *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a></pre>
+				<p>NewSignerDialerEndpoint returns a SignerDialerEndpoint that will dial using the given
+dialer and respond to any signature requests over the connection
+using the given privVal.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SignerDialerEndpoint.Close">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=478:517#L18">Close</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying net.Conn.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.DropConnection">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1682:1724#L66">DropConnection</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.DropConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) DropConnection()</pre>
+				<p>IsConnected indicates if there is an active connection
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.GetAvailableConnection">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=805:895#L31">GetAvailableConnection</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.GetAvailableConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) GetAvailableConnection(connectionAvailableCh chan <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>TryGetConnection retrieves a connection if it is already available
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.IsConnected">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=614:658#L24">IsConnected</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.IsConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) IsConnected() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsConnected indicates if there is an active connection
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.ReadMessage">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1846:1923#L73">ReadMessage</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.ReadMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) ReadMessage() (msg <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadMessage reads a message from the endpoint
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.SetConnection">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1484:1547#L59">SetConnection</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.SetConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) SetConnection(newConnection <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>)</pre>
+				<p>SetConnection replaces the current connection object
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.WaitConnection">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1143:1249#L45">WaitConnection</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.WaitConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) WaitConnection(connectionAvailableCh chan <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>, maxWait <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>TryGetConnection retrieves a connection if it is already available
+
+				
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpoint.WriteMessage">func (*SignerDialerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=2687:2763#L105">WriteMessage</a>
+					<a class="permalink" href="index.html#SignerDialerEndpoint.WriteMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>) WriteMessage(msg <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>) (err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WriteMessage writes a message from the endpoint
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignerListenerEndpoint">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=985:1325#L20">SignerListenerEndpoint</a>
+				<a class="permalink" href="index.html#SignerListenerEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerListenerEndpoint listens for an external process to dial in and keeps
+the connection alive by dropping and reconnecting.
+<p>The process will send pings every ~3s (read/write timeout * 2/3) to keep the
+connection alive.
+
+			<pre>type SignerListenerEndpoint struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSignerListener">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/utils.go?s=701:794#L19">NewSignerListener</a>
+					<a class="permalink" href="index.html#NewSignerListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSignerListener(listenAddr <a href="../../../../builtin/index.html#string">string</a>, logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>) (*<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewSignerListener creates a new SignerListenerEndpoint using the corresponding listen address
+
+				
+				
+			
+				
+				<h3 id="NewSignerListenerEndpoint">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=1403:1546#L35">NewSignerListenerEndpoint</a>
+					<a class="permalink" href="index.html#NewSignerListenerEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSignerListenerEndpoint(
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+    listener <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Listener">Listener</a>,
+    options ...<a href="index.html#SignerListenerEndpointOption">SignerListenerEndpointOption</a>,
+) *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a></pre>
+				<p>NewSignerListenerEndpoint returns an instance of SignerListenerEndpoint.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SignerListenerEndpoint.Close">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=478:517#L18">Close</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying net.Conn.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.DropConnection">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1682:1724#L66">DropConnection</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.DropConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) DropConnection()</pre>
+				<p>IsConnected indicates if there is an active connection
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.GetAvailableConnection">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=805:895#L31">GetAvailableConnection</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.GetAvailableConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) GetAvailableConnection(connectionAvailableCh chan <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>TryGetConnection retrieves a connection if it is already available
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.IsConnected">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=614:658#L24">IsConnected</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.IsConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) IsConnected() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsConnected indicates if there is an active connection
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.OnStart">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=1948:1997#L56">OnStart</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sl *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.OnStop">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=2436:2478#L73">OnStop</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sl *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) OnStop()</pre>
+				<p>OnStop implements service.Service
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.ReadMessage">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1846:1923#L73">ReadMessage</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.ReadMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) ReadMessage() (msg <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadMessage reads a message from the endpoint
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.SendRequest">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=3089:3195#L97">SendRequest</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.SendRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sl *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) SendRequest(request <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>) (*<a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SendRequest ensures there is a connection, sends a request and waits for a response
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.SetConnection">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1484:1547#L59">SetConnection</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.SetConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) SetConnection(newConnection <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>)</pre>
+				<p>SetConnection replaces the current connection object
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.WaitConnection">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=1143:1249#L45">WaitConnection</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.WaitConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) WaitConnection(connectionAvailableCh chan <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>, maxWait <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>TryGetConnection retrieves a connection if it is already available
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.WaitForConnection">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=2825:2905#L90">WaitForConnection</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.WaitForConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sl *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) WaitForConnection(maxWait <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>WaitForConnection waits maxWait for a connection or returns a timeout error
+
+				
+				
+				
+			
+				
+				<h3 id="SignerListenerEndpoint.WriteMessage">func (*SignerListenerEndpoint) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_endpoint.go?s=2687:2763#L105">WriteMessage</a>
+					<a class="permalink" href="index.html#SignerListenerEndpoint.WriteMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (se *<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>) WriteMessage(msg <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>) (err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WriteMessage writes a message from the endpoint
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignerListenerEndpointOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=348:411#L5">SignerListenerEndpointOption</a>
+				<a class="permalink" href="index.html#SignerListenerEndpointOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerListenerEndpointOption sets an optional parameter on the SignerListenerEndpoint.
+
+			<pre>type SignerListenerEndpointOption func(*<a href="index.html#SignerListenerEndpoint">SignerListenerEndpoint</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SignerListenerEndpointTimeoutReadWrite">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_listener_endpoint.go?s=557:652#L11">SignerListenerEndpointTimeoutReadWrite</a>
+					<a class="permalink" href="index.html#SignerListenerEndpointTimeoutReadWrite">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignerListenerEndpointTimeoutReadWrite(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#SignerListenerEndpointOption">SignerListenerEndpointOption</a></pre>
+				<p>SignerListenerEndpointTimeoutReadWrite sets the read and write timeout for
+connections from external signing processes.
+<p>Default: 5s
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SignerServer">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=467:692#L8">SignerServer</a>
+				<a class="permalink" href="index.html#SignerServer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SignerServer struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSignerServer">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=694:805#L19">NewSignerServer</a>
+					<a class="permalink" href="index.html#NewSignerServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSignerServer(endpoint *<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>, chainID <a href="../../../../builtin/index.html#string">string</a>, privVal <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a>) *<a href="index.html#SignerServer">SignerServer</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="SignerServer.OnStart">func (*SignerServer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=1140:1179#L33">OnStart</a>
+					<a class="permalink" href="index.html#SignerServer.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ss *<a href="index.html#SignerServer">SignerServer</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerServer.OnStop">func (*SignerServer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=1256:1288#L39">OnStop</a>
+					<a class="permalink" href="index.html#SignerServer.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ss *<a href="index.html#SignerServer">SignerServer</a>) OnStop()</pre>
+				<p>OnStop implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="SignerServer.SetRequestHandler">func (*SignerServer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=1467:1563#L45">SetRequestHandler</a>
+					<a class="permalink" href="index.html#SignerServer.SetRequestHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ss *<a href="index.html#SignerServer">SignerServer</a>) SetRequestHandler(validationRequestHandler <a href="index.html#ValidationRequestHandlerFunc">ValidationRequestHandlerFunc</a>)</pre>
+				<p>SetRequestHandler override the default function that is used to service requests
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignerServiceEndpointOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=293:353#L6">SignerServiceEndpointOption</a>
+				<a class="permalink" href="index.html#SignerServiceEndpointOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerServiceEndpointOption sets an optional parameter on the SignerDialerEndpoint.
+
+			<pre>type SignerServiceEndpointOption func(*<a href="index.html#SignerDialerEndpoint">SignerDialerEndpoint</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SignerDialerEndpointConnRetries">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=739:816#L16">SignerDialerEndpointConnRetries</a>
+					<a class="permalink" href="index.html#SignerDialerEndpointConnRetries">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignerDialerEndpointConnRetries(retries <a href="../../../../builtin/index.html#int">int</a>) <a href="index.html#SignerServiceEndpointOption">SignerServiceEndpointOption</a></pre>
+				<p>SignerDialerEndpointConnRetries sets the amount of attempted retries to
+acceptNewConnection.
+
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpointRetryWaitInterval">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=985:1079#L22">SignerDialerEndpointRetryWaitInterval</a>
+					<a class="permalink" href="index.html#SignerDialerEndpointRetryWaitInterval">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignerDialerEndpointRetryWaitInterval(interval <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#SignerServiceEndpointOption">SignerServiceEndpointOption</a></pre>
+				<p>SignerDialerEndpointRetryWaitInterval sets the retry wait interval to a
+custom value.
+
+				
+				
+			
+				
+				<h3 id="SignerDialerEndpointTimeoutReadWrite">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_dialer_endpoint.go?s=469:561#L10">SignerDialerEndpointTimeoutReadWrite</a>
+					<a class="permalink" href="index.html#SignerDialerEndpointTimeoutReadWrite">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignerDialerEndpointTimeoutReadWrite(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#SignerServiceEndpointOption">SignerServiceEndpointOption</a></pre>
+				<p>SignerDialerEndpointTimeoutReadWrite sets the read and write timeout for
+connections from client processes.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SocketDialer">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_dialers.go?s=349:391#L9">SocketDialer</a>
+				<a class="permalink" href="index.html#SocketDialer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SocketDialer dials a remote address and returns a net.Conn or an error.
+
+			<pre>type SocketDialer func() (<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DialTCPFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_dialers.go?s=524:620#L13">DialTCPFn</a>
+					<a class="permalink" href="index.html#DialTCPFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialTCPFn(addr <a href="../../../../builtin/index.html#string">string</a>, timeoutReadWrite <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>, privKey <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PrivKey">PrivKey</a>) <a href="index.html#SocketDialer">SocketDialer</a></pre>
+				<p>DialTCPFn dials the given tcp addr, using the given timeoutReadWrite and
+privKey for the authenticated encryption handshake.
+
+				
+				
+			
+				
+				<h3 id="DialUnixFn">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_dialers.go?s=949:990#L28">DialUnixFn</a>
+					<a class="permalink" href="index.html#DialUnixFn">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialUnixFn(addr <a href="../../../../builtin/index.html#string">string</a>) <a href="index.html#SocketDialer">SocketDialer</a></pre>
+				<p>DialUnixFn dials the given unix socket.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TCPListener">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=1275:1417#L34">TCPListener</a>
+				<a class="permalink" href="index.html#TCPListener">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TCPListener wraps a *net.TCPListener to standardize protocol timeouts
+and potentially other tuning parameters. It also returns encrypted connections.
+
+			<pre>type TCPListener struct {
+    *<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#TCPListener">TCPListener</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTCPListener">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=1570:1650#L45">NewTCPListener</a>
+					<a class="permalink" href="index.html#NewTCPListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTCPListener(ln <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Listener">Listener</a>, secretConnKey <a href="../crypto/ed25519/index.html">ed25519</a>.<a href="../crypto/ed25519/index.html#PrivKey">PrivKey</a>) *<a href="index.html#TCPListener">TCPListener</a></pre>
+				<p>NewTCPListener returns a listener that accepts authenticated encrypted connections
+using the given secretConnKey and the default timeout values.
+
+				
+				
+			
+
+			
+				
+				<h3 id="TCPListener.Accept">func (*TCPListener) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=1923:1972#L55">Accept</a>
+					<a class="permalink" href="index.html#TCPListener.Accept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ln *<a href="index.html#TCPListener">TCPListener</a>) Accept() (<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Accept implements net.Listener.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TCPListenerOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=493:534#L15">TCPListenerOption</a>
+				<a class="permalink" href="index.html#TCPListenerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TCPListenerOption sets an optional parameter on the tcpListener.
+
+			<pre>type TCPListenerOption func(*<a href="index.html#TCPListener">TCPListener</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="TCPListenerTimeoutAccept">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=642:712#L19">TCPListenerTimeoutAccept</a>
+					<a class="permalink" href="index.html#TCPListenerTimeoutAccept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TCPListenerTimeoutAccept(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#TCPListenerOption">TCPListenerOption</a></pre>
+				<p>TCPListenerTimeoutAccept sets the timeout for the listener.
+A zero time value disables the timeout.
+
+				
+				
+			
+				
+				<h3 id="TCPListenerTimeoutReadWrite">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=894:967#L25">TCPListenerTimeoutReadWrite</a>
+					<a class="permalink" href="index.html#TCPListenerTimeoutReadWrite">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TCPListenerTimeoutReadWrite(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#TCPListenerOption">TCPListenerOption</a></pre>
+				<p>TCPListenerTimeoutReadWrite sets the read and write timeout for connections
+from external signing processes.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="UnixListener">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=3298:3410#L99">UnixListener</a>
+				<a class="permalink" href="index.html#UnixListener">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UnixListener wraps a *net.UnixListener to standardize protocol timeouts
+and potentially other tuning parameters. It returns unencrypted connections.
+
+			<pre>type UnixListener struct {
+    *<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#UnixListener">UnixListener</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUnixListener">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=3524:3575#L108">NewUnixListener</a>
+					<a class="permalink" href="index.html#NewUnixListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewUnixListener(ln <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Listener">Listener</a>) *<a href="index.html#UnixListener">UnixListener</a></pre>
+				<p>NewUnixListener returns a listener that accepts unencrypted connections
+using the default timeout values.
+
+				
+				
+			
+
+			
+				
+				<h3 id="UnixListener.Accept">func (*UnixListener) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=3815:3865#L117">Accept</a>
+					<a class="permalink" href="index.html#UnixListener.Accept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ln *<a href="index.html#UnixListener">UnixListener</a>) Accept() (<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Conn">Conn</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Accept implements net.Listener.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnixListenerOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=2589:2632#L83">UnixListenerOption</a>
+				<a class="permalink" href="index.html#UnixListenerOption">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type UnixListenerOption func(*<a href="index.html#UnixListener">UnixListener</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="UnixListenerTimeoutAccept">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=2741:2813#L87">UnixListenerTimeoutAccept</a>
+					<a class="permalink" href="index.html#UnixListenerTimeoutAccept">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UnixListenerTimeoutAccept(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#UnixListenerOption">UnixListenerOption</a></pre>
+				<p>UnixListenerTimeoutAccept sets the timeout for the listener.
+A zero time value disables the timeout.
+
+				
+				
+			
+				
+				<h3 id="UnixListenerTimeoutReadWrite">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/socket_listeners.go?s=2997:3072#L93">UnixListenerTimeoutReadWrite</a>
+					<a class="permalink" href="index.html#UnixListenerTimeoutReadWrite">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UnixListenerTimeoutReadWrite(timeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) <a href="index.html#UnixListenerOption">UnixListenerOption</a></pre>
+				<p>UnixListenerTimeoutReadWrite sets the read and write timeout for connections
+from external signing processes.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ValidationRequestHandlerFunc">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/privval/signer_server.go?s=311:465#L3">ValidationRequestHandlerFunc</a>
+				<a class="permalink" href="index.html#ValidationRequestHandlerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ValidationRequestHandlerFunc handles different remoteSigner requests
+
+			<pre>type ValidationRequestHandlerFunc func(
+    privVal <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a>,
+    requestMessage <a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>,
+    chainID <a href="../../../../builtin/index.html#string">string</a>) (<a href="../proto/tendermint/privval/index.html">privvalproto</a>.<a href="../proto/tendermint/privval/index.html#Message">Message</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>assertions - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package assertions
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/testing/assertions"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#DeepEqual">func DeepEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#DeepNotEqual">func DeepNotEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#DeepNotSSZEqual">func DeepNotSSZEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#DeepSSZEqual">func DeepSSZEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Equal">func Equal(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#ErrorContains">func ErrorContains(loggerFn assertionLoggerFn, want string, err error, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#ErrorIs">func ErrorIs(loggerFn assertionLoggerFn, err, target error, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#LogsContain">func LogsContain(loggerFn assertionLoggerFn, hook *test.Hook, want string, flag bool, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#NoError">func NoError(loggerFn assertionLoggerFn, err error, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#NotEmpty">func NotEmpty(loggerFn assertionLoggerFn, obj interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#NotEqual">func NotEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#NotNil">func NotNil(loggerFn assertionLoggerFn, obj interface{}, msg ...interface{})</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AssertionTestingTB">type AssertionTestingTB</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TBMock">type TBMock</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TBMock.Errorf">func (tb *TBMock) Errorf(format string, args ...interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TBMock.Fatalf">func (tb *TBMock) Fatalf(format string, args ...interface{})</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go">assertions.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="DeepEqual">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=1313:1405#L34">DeepEqual</a>
+				<a class="permalink" href="index.html#DeepEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeepEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>DeepEqual compares values using DeepEqual.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeepNotEqual">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=1760:1855#L44">DeepNotEqual</a>
+				<a class="permalink" href="index.html#DeepNotEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeepNotEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>DeepNotEqual compares values using DeepEqual.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeepNotSSZEqual">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=2598:2696#L63">DeepNotSSZEqual</a>
+				<a class="permalink" href="index.html#DeepNotSSZEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeepNotSSZEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>DeepNotSSZEqual compares values using ssz.DeepEqual.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeepSSZEqual">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=2139:2234#L53">DeepSSZEqual</a>
+				<a class="permalink" href="index.html#DeepSSZEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeepSSZEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>DeepSSZEqual compares values using ssz.DeepEqual.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Equal">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=560:648#L16">Equal</a>
+				<a class="permalink" href="index.html#Equal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Equal(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>Equal compares values using comparison operator.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ErrorContains">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=3743:3833#L91">ErrorContains</a>
+				<a class="permalink" href="index.html#ErrorContains">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ErrorContains(loggerFn assertionLoggerFn, want <a href="../../../../../builtin/index.html#string">string</a>, err <a href="../../../../../builtin/index.html#error">error</a>, msg ...interface{})</pre>
+			<p>ErrorContains asserts that actual error contains wanted message.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ErrorIs">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=3375:3454#L82">ErrorIs</a>
+				<a class="permalink" href="index.html#ErrorIs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ErrorIs(loggerFn assertionLoggerFn, err, target <a href="../../../../../builtin/index.html#error">error</a>, msg ...interface{})</pre>
+			<p>ErrorIs uses Errors.Is to recursively unwrap err looking for target in the chain.
+If any error in the chain matches target, the assertion will pass.
+
+			
+			
+
+		
+			
+			
+			<h2 id="LogsContain">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=4826:4931#L122">LogsContain</a>
+				<a class="permalink" href="index.html#LogsContain">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func LogsContain(loggerFn assertionLoggerFn, hook *<a href="../../../../sirupsen/logrus/hooks/test/index.html">test</a>.<a href="../../../../sirupsen/logrus/hooks/test/index.html#Hook">Hook</a>, want <a href="../../../../../builtin/index.html#string">string</a>, flag <a href="../../../../../builtin/index.html#bool">bool</a>, msg ...interface{})</pre>
+			<p>LogsContain checks whether a given substring is a part of logs. If flag=false, inverse is checked.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NoError">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=2967:3038#L72">NoError</a>
+				<a class="permalink" href="index.html#NoError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NoError(loggerFn assertionLoggerFn, err <a href="../../../../../builtin/index.html#error">error</a>, msg ...interface{})</pre>
+			<p>NoError asserts that error is nil.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NotEmpty">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=6338:6416#L179">NotEmpty</a>
+				<a class="permalink" href="index.html#NotEmpty">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NotEmpty(loggerFn assertionLoggerFn, obj interface{}, msg ...interface{})</pre>
+			<p>NotEmpty asserts that an object&apos;s fields are not empty. This function recursively checks each
+pointer / struct field.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NotEqual">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=947:1038#L25">NotEqual</a>
+				<a class="permalink" href="index.html#NotEqual">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NotEqual(loggerFn assertionLoggerFn, expected, actual interface{}, msg ...interface{})</pre>
+			<p>NotEqual compares values using comparison operator.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NotNil">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=4135:4211#L100">NotNil</a>
+				<a class="permalink" href="index.html#NotNil">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NotNil(loggerFn assertionLoggerFn, obj interface{}, msg ...interface{})</pre>
+			<p>NotNil asserts that passed value is not nil.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AssertionTestingTB">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=328:453#L8">AssertionTestingTB</a>
+				<a class="permalink" href="index.html#AssertionTestingTB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AssertionTestingTB exposes enough testing.TB methods for assertions.
+
+			<pre>type AssertionTestingTB interface {
+    Errorf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})
+    Fatalf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TBMock">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=8250:8308#L244">TBMock</a>
+				<a class="permalink" href="index.html#TBMock">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TBMock exposes enough testing.TB methods for assertions.
+
+			<pre>type TBMock struct {
+<span id="TBMock.ErrorfMsg"></span>    ErrorfMsg <a href="../../../../../builtin/index.html#string">string</a>
+<span id="TBMock.FatalfMsg"></span>    FatalfMsg <a href="../../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TBMock.Errorf">func (*TBMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=8354:8414#L250">Errorf</a>
+					<a class="permalink" href="index.html#TBMock.Errorf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tb *<a href="index.html#TBMock">TBMock</a>) Errorf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+				<p>Errorf writes testing logs to ErrorfMsg.
+
+				
+				
+				
+			
+				
+				<h3 id="TBMock.Fatalf">func (*TBMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/assertions/assertions.go?s=8509:8569#L255">Fatalf</a>
+					<a class="permalink" href="index.html#TBMock.Fatalf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tb *<a href="index.html#TBMock">TBMock</a>) Fatalf(format <a href="../../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+				<p>Fatalf writes testing logs to FatalfMsg.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

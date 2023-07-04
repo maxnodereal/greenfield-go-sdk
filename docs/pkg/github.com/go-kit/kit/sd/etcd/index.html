@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>etcd - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package etcd
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/sd/etcd"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package etcd provides an Instancer and Registrar implementation for etcd. If
+you use etcd as your service discovery system, this package will help you
+implement the registration and client-side load balancing patterns.
+
+				<div id="example_" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package etcd
+
+import (
+    &#34;context&#34;
+    &#34;io&#34;
+    &#34;time&#34;
+
+    &#34;github.com/go-kit/kit/endpoint&#34;
+    &#34;github.com/go-kit/kit/sd&#34;
+    &#34;github.com/go-kit/kit/sd/lb&#34;
+    &#34;github.com/go-kit/log&#34;
+)
+
+func Example() {
+    <span class="comment">// Let&#39;s say this is a service that means to register itself.</span>
+    <span class="comment">// First, we will set up some context.</span>
+    var (
+        etcdServer = &#34;http://10.0.0.1:2379&#34; <span class="comment">// don&#39;t forget schema and port!</span>
+        prefix     = &#34;/services/foosvc/&#34;    <span class="comment">// known at compile time</span>
+        instance   = &#34;1.2.3.4:8080&#34;         <span class="comment">// taken from runtime or platform, somehow</span>
+        key        = prefix + instance      <span class="comment">// should be globally unique</span>
+        value      = &#34;http://&#34; + instance   <span class="comment">// based on our transport</span>
+        ctx        = context.Background()
+    )
+
+    <span class="comment">// Build the client.</span>
+    client, err := NewClient(ctx, []string{etcdServer}, ClientOptions{})
+    if err != nil {
+        panic(err)
+    }
+
+    <span class="comment">// Build the registrar.</span>
+    registrar := NewRegistrar(client, Service{
+        Key:   key,
+        Value: value,
+    }, log.NewNopLogger())
+
+    <span class="comment">// Register our instance.</span>
+    registrar.Register()
+
+    <span class="comment">// At the end of our service lifecycle, for example at the end of func main,</span>
+    <span class="comment">// we should make sure to deregister ourselves. This is important! Don&#39;t</span>
+    <span class="comment">// accidentally skip this step by invoking a log.Fatal or os.Exit in the</span>
+    <span class="comment">// interim, which bypasses the defer stack.</span>
+    defer registrar.Deregister()
+
+    <span class="comment">// It&#39;s likely that we&#39;ll also want to connect to other services and call</span>
+    <span class="comment">// their methods. We can build an Instancer to listen for changes from etcd,</span>
+    <span class="comment">// create Endpointer, wrap it with a load-balancer to pick a single</span>
+    <span class="comment">// endpoint, and finally wrap it with a retry strategy to get something that</span>
+    <span class="comment">// can be used as an endpoint directly.</span>
+    barPrefix := &#34;/services/barsvc&#34;
+    logger := log.NewNopLogger()
+    instancer, err := NewInstancer(client, barPrefix, logger)
+    if err != nil {
+        panic(err)
+    }
+    endpointer := sd.NewEndpointer(instancer, barFactory, logger)
+    balancer := lb.NewRoundRobin(endpointer)
+    retry := lb.Retry(3, 3*time.Second, balancer)
+
+    <span class="comment">// And now retry can be used like any other endpoint.</span>
+    req := struct{}{}
+    if _, err = retry(ctx, req); err != nil {
+        panic(err)
+    }
+}
+
+func barFactory(string) (endpoint.Endpoint, io.Closer, error) { return endpoint.Nop, nil, nil }
+</pre>
+			
+		
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(ctx context.Context, machines []string, options ClientOptions) (Client, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientOptions">type ClientOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Instancer">type Instancer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInstancer">func NewInstancer(c Client, prefix string, logger log.Logger) (*Instancer, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Deregister">func (s *Instancer) Deregister(ch chan&lt;- sd.Event)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Register">func (s *Instancer) Register(ch chan&lt;- sd.Event)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Stop">func (s *Instancer) Stop()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Registrar">type Registrar</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRegistrar">func NewRegistrar(client Client, service Service, logger log.Logger) *Registrar</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Registrar.Deregister">func (r *Registrar) Deregister()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Registrar.Register">func (r *Registrar) Register()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TTLOption">type TTLOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTTLOption">func NewTTLOption(heartbeat, ttl time.Duration) *TTLOption</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_">Package</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go">instancer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go">registrar.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNoKey indicates a client method needs a key but receives none.</span>
+    <span id="ErrNoKey">ErrNoKey</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;no key provided&#34;)
+
+    <span class="comment">// ErrNoValue indicates a client method needs a value but receives none.</span>
+    <span id="ErrNoValue">ErrNoValue</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;no value provided&#34;)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/client.go?s=440:1347#L15">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client is a wrapper around the etcd client.
+
+			<pre>type Client interface {
+    <span class="comment">// GetEntries queries the given prefix in etcd and returns a slice</span>
+    <span class="comment">// containing the values of all keys found, recursively, underneath that</span>
+    <span class="comment">// prefix.</span>
+    GetEntries(prefix <a href="../../../../../builtin/index.html#string">string</a>) ([]<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// WatchPrefix watches the given prefix in etcd for changes. When a change</span>
+    <span class="comment">// is detected, it will signal on the passed channel. Clients are expected</span>
+    <span class="comment">// to call GetEntries to update themselves with the latest set of complete</span>
+    <span class="comment">// values. WatchPrefix will always send an initial sentinel value on the</span>
+    <span class="comment">// channel after establishing the watch, to ensure that clients always</span>
+    <span class="comment">// receive the latest set of values. WatchPrefix will block until the</span>
+    <span class="comment">// context passed to the NewClient constructor is terminated.</span>
+    WatchPrefix(prefix <a href="../../../../../builtin/index.html#string">string</a>, ch chan struct{})
+
+    <span class="comment">// Register a service with etcd.</span>
+    Register(s <a href="index.html#Service">Service</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Deregister a service with etcd.</span>
+    Deregister(s <a href="index.html#Service">Service</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/client.go?s=2097:2190#L57">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, machines []<a href="../../../../../builtin/index.html#string">string</a>, options <a href="index.html#ClientOptions">ClientOptions</a>) (<a href="index.html#Client">Client</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewClient returns Client with a connection to the named machines. It will
+return an error if a connection to the cluster cannot be made. The parameter
+machines needs to be a full URL with schemas. e.g. &quot;<a href="http://localhost:2379">http://localhost:2379</a>&quot;
+will work, but &quot;localhost:2379&quot; will not.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOptions">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/client.go?s=1573:1815#L44">ClientOptions</a>
+				<a class="permalink" href="index.html#ClientOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientOptions defines options for the etcd client. All values are optional.
+If any duration is not specified, a default of 3 seconds will be used.
+
+			<pre>type ClientOptions struct {
+<span id="ClientOptions.Cert"></span>    Cert                    <a href="../../../../../builtin/index.html#string">string</a>
+<span id="ClientOptions.Key"></span>    Key                     <a href="../../../../../builtin/index.html#string">string</a>
+<span id="ClientOptions.CACert"></span>    CACert                  <a href="../../../../../builtin/index.html#string">string</a>
+<span id="ClientOptions.DialTimeout"></span>    DialTimeout             <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="ClientOptions.DialKeepAlive"></span>    DialKeepAlive           <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="ClientOptions.HeaderTimeoutPerRequest"></span>    HeaderTimeoutPerRequest <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Instancer">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go?s=284:404#L1">Instancer</a>
+				<a class="permalink" href="index.html#Instancer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Instancer yields instances stored in a certain etcd keyspace. Any kind of
+change in that keyspace is watched and will update the Instancer&apos;s Instancers.
+
+			<pre>type Instancer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewInstancer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go?s=533:614#L11">NewInstancer</a>
+					<a class="permalink" href="index.html#NewInstancer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInstancer(c <a href="index.html#Client">Client</a>, prefix <a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) (*<a href="index.html#Instancer">Instancer</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewInstancer returns an etcd instancer. It will start watching the given
+prefix for changes, and update the subscribers.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Instancer.Deregister">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go?s=1662:1712#L63">Deregister</a>
+					<a class="permalink" href="index.html#Instancer.Deregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Deregister(ch chan&lt;- <a href="../index.html">sd</a>.<a href="../index.html#Event">Event</a>)</pre>
+				<p>Deregister implements Instancer.
+
+				
+				
+				
+			
+				
+				<h3 id="Instancer.Register">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go?s=1550:1598#L58">Register</a>
+					<a class="permalink" href="index.html#Instancer.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Register(ch chan&lt;- <a href="../index.html">sd</a>.<a href="../index.html#Event">Event</a>)</pre>
+				<p>Register implements Instancer.
+
+				
+				
+				
+			
+				
+				<h3 id="Instancer.Stop">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/instancer.go?s=1468:1494#L53">Stop</a>
+					<a class="permalink" href="index.html#Instancer.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Stop()</pre>
+				<p>Stop terminates the Instancer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Registrar">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=222:344#L5">Registrar</a>
+				<a class="permalink" href="index.html#Registrar">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Registrar registers service instance liveness information to etcd.
+
+			<pre>type Registrar struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRegistrar">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=1745:1824#L52">NewRegistrar</a>
+					<a class="permalink" href="index.html#NewRegistrar">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRegistrar(client <a href="index.html#Client">Client</a>, service <a href="index.html#Service">Service</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) *<a href="index.html#Registrar">Registrar</a></pre>
+				<p>NewRegistrar returns a etcd Registrar acting on the provided catalog
+registration (service).
+
+				
+				
+			
+
+			
+				
+				<h3 id="Registrar.Deregister">func (*Registrar) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=2847:2879#L97">Deregister</a>
+					<a class="permalink" href="index.html#Registrar.Deregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Registrar">Registrar</a>) Deregister()</pre>
+				<p>Deregister implements the sd.Registrar interface. Call it when you want your
+service to be deregistered from etcd, typically just prior to shutdown.
+
+				
+				
+				
+			
+				
+				<h3 id="Registrar.Register">func (*Registrar) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=2102:2132#L62">Register</a>
+					<a class="permalink" href="index.html#Registrar.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Registrar">Registrar</a>) Register()</pre>
+				<p>Register implements the sd.Registrar interface. Call it when you want your
+service to be registered in etcd, typically at startup.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=566:800#L17">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service holds the instance identifying data you want to publish to etcd. Key
+must be unique, and value is the string returned to subscribers, typically
+called the &quot;instance&quot; string in other parts of package sd.
+
+			<pre>type Service struct {
+<span id="Service.Key"></span>    Key           <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// unique key, e.g. &#34;/service/foobar/1.2.3.4:8080&#34;</span>
+<span id="Service.Value"></span>    Value         <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// returned to subscribers, e.g. &#34;http://1.2.3.4:8080&#34;</span>
+<span id="Service.TTL"></span>    TTL           *<a href="index.html#TTLOption">TTLOption</a>
+<span id="Service.DeleteOptions"></span>    DeleteOptions *<a href="http://localhost:6060/pkg/go.etcd.io/etcd/client/v2/">etcd</a>.<a href="http://localhost:6060/pkg/go.etcd.io/etcd/client/v2/#DeleteOptions">DeleteOptions</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TTLOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=943:1067#L26">TTLOption</a>
+				<a class="permalink" href="index.html#TTLOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TTLOption allow setting a key with a TTL. This option will be used by a loop
+goroutine which regularly refreshes the lease of the key.
+
+			<pre>type TTLOption struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTTLOption">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/etcd/registrar.go?s=1399:1457#L37">NewTTLOption</a>
+					<a class="permalink" href="index.html#NewTTLOption">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTTLOption(heartbeat, ttl <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#TTLOption">TTLOption</a></pre>
+				<p>NewTTLOption returns a TTLOption that contains proper TTL settings. Heartbeat
+is used to refresh the lease of the key periodically; its value should be at
+least 500ms. TTL defines the lease of the key; its value should be
+significantly greater than heartbeat.
+<p>Good default values might be 3s heartbeat, 10s TTL.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>genutil - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package genutil
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/x/genutil"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package genutil contains a variety of genesis utility functionality
+for usage within a blockchain application. Namely:
+<ul>
+<li>Genesis transactions related (gentx)
+<li>commands for collection and creation of gentxs
+<li>initchain processing of gentxs
+<li>Genesis file validation
+<li>Tendermint related initialization
+</ul>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#CollectTxs">func CollectTxs(cdc codec.JSONCodec, txJSONDecoder sdk.TxDecoder, moniker, genTxsDir string, genDoc tmtypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator, validator types.MessageValidator) (appGenTxs []sdk.Tx, persistentPeers string, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DeliverGenTxs">func DeliverGenTxs(ctx sdk.Context, genTxs []json.RawMessage, stakingKeeper types.StakingKeeper, deliverTx deliverTxfn, txEncodingConfig client.TxEncodingConfig) ([]abci.ValidatorUpdate, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ExportGenesisFile">func ExportGenesisFile(genDoc *tmtypes.GenesisDoc, genFile string) error</a></dd>
+			
+				
+				<dd><a href="index.html#ExportGenesisFileWithTime">func ExportGenesisFileWithTime(genFile, chainID string, validators []tmtypes.GenesisValidator, appState json.RawMessage, genTime time.Time) error</a></dd>
+			
+				
+				<dd><a href="index.html#GenAppStateFromConfig">func GenAppStateFromConfig(cdc codec.JSONCodec, txEncodingConfig client.TxEncodingConfig, config *cfg.Config, initCfg types.InitConfig, genDoc tmtypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator, validator types.MessageValidator) (appState json.RawMessage, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#InitGenesis">func InitGenesis(ctx sdk.Context, stakingKeeper types.StakingKeeper, deliverTx deliverTxfn, genesisState types.GenesisState, txEncodingConfig client.TxEncodingConfig) (validators []abci.ValidatorUpdate, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#InitializeNodeValidatorFiles">func InitializeNodeValidatorFiles(config *cfg.Config) (nodeID string, valPubKey cryptotypes.PubKey, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#InitializeNodeValidatorFilesFromMnemonic">func InitializeNodeValidatorFilesFromMnemonic(config *cfg.Config, mnemonic string) (nodeID string, valPubKey cryptotypes.PubKey, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#NewAppModule">func NewAppModule(accountKeeper types.AccountKeeper, stakingKeeper types.StakingKeeper, deliverTx deliverTxfn, txEncodingConfig client.TxEncodingConfig) module.GenesisOnlyAppModule</a></dd>
+			
+				
+				<dd><a href="index.html#ProvideModule">func ProvideModule(in GenutilInputs) appmodule.AppModule</a></dd>
+			
+				
+				<dd><a href="index.html#SetGenTxsInAppGenesisState">func SetGenTxsInAppGenesisState(cdc codec.JSONCodec, txJSONEncoder sdk.TxEncoder, appGenesisState map[string]json.RawMessage, genTxs []sdk.Tx) (map[string]json.RawMessage, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateAccountInGenesis">func ValidateAccountInGenesis(appGenesisState map[string]json.RawMessage, genBalIterator types.GenesisBalancesIterator, addr sdk.Address, coins sdk.Coins, cdc codec.JSONCodec) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AppModule">type AppModule</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModule.ConsensusVersion">func (AppModule) ConsensusVersion() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModule.ExportGenesis">func (am AppModule) ExportGenesis(_ sdk.Context, cdc codec.JSONCodec) json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModule.InitGenesis">func (am AppModule) InitGenesis(ctx sdk.Context, cdc codec.JSONCodec, data json.RawMessage) []abci.ValidatorUpdate</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModule.IsAppModule">func (AppModule) IsAppModule()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModule.IsOnePerModuleType">func (AppModule) IsOnePerModuleType()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#AppModuleBasic">type AppModuleBasic</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAppModuleBasic">func NewAppModuleBasic(validator types.MessageValidator) AppModuleBasic</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.DefaultGenesis">func (AppModuleBasic) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.GetQueryCmd">func (AppModuleBasic) GetQueryCmd() *cobra.Command</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.GetTxCmd">func (AppModuleBasic) GetTxCmd() *cobra.Command</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.Name">func (AppModuleBasic) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.RegisterGRPCGatewayRoutes">func (AppModuleBasic) RegisterGRPCGatewayRoutes(_ client.Context, _ *gwruntime.ServeMux)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.RegisterInterfaces">func (b AppModuleBasic) RegisterInterfaces(_ cdctypes.InterfaceRegistry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.RegisterLegacyAminoCodec">func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppModuleBasic.ValidateGenesis">func (b AppModuleBasic) ValidateGenesis(cdc codec.JSONCodec, txEncodingConfig client.TxEncodingConfig, bz json.RawMessage) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GenutilInputs">type GenutilInputs</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/collect.go">collect.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/genesis.go">genesis.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/gentx.go">gentx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go">module.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/utils.go">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="CollectTxs">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/collect.go?s=2112:2371#L60">CollectTxs</a>
+				<a class="permalink" href="index.html#CollectTxs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CollectTxs(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, txJSONDecoder <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#TxDecoder">TxDecoder</a>, moniker, genTxsDir <a href="../../../../../builtin/index.html#string">string</a>,
+    genDoc <a href="../../../../cometbft/cometbft/types/index.html">tmtypes</a>.<a href="../../../../cometbft/cometbft/types/index.html#GenesisDoc">GenesisDoc</a>, genBalIterator <a href="types/index.html">types</a>.<a href="types/index.html#GenesisBalancesIterator">GenesisBalancesIterator</a>,
+    validator <a href="types/index.html">types</a>.<a href="types/index.html#MessageValidator">MessageValidator</a>,
+) (appGenTxs []<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Tx">Tx</a>, persistentPeers <a href="../../../../../builtin/index.html#string">string</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CollectTxs processes and validates application&apos;s genesis Txs and returns
+the list of appGenTxs, and persistent peers required to generate genesis.json.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeliverGenTxs">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/gentx.go?s=2745:2944#L82">DeliverGenTxs</a>
+				<a class="permalink" href="index.html#DeliverGenTxs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeliverGenTxs(
+    ctx <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, genTxs []<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>,
+    stakingKeeper <a href="types/index.html">types</a>.<a href="types/index.html#StakingKeeper">StakingKeeper</a>, deliverTx deliverTxfn,
+    txEncodingConfig <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>,
+) ([]<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DeliverGenTxs iterates over all genesis txs, decodes each into a Tx and
+invokes the provided deliverTxfn with the decoded Tx. It returns the result
+of the staking module&apos;s ApplyAndReturnValidatorSetUpdates.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExportGenesisFile">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/utils.go?s=607:679#L13">ExportGenesisFile</a>
+				<a class="permalink" href="index.html#ExportGenesisFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExportGenesisFile(genDoc *<a href="../../../../cometbft/cometbft/types/index.html">tmtypes</a>.<a href="../../../../cometbft/cometbft/types/index.html#GenesisDoc">GenesisDoc</a>, genFile <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>ExportGenesisFile creates and writes the genesis configuration to disk. An
+error is returned if building or writing the configuration to file fails.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExportGenesisFileWithTime">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/utils.go?s=950:1100#L23">ExportGenesisFileWithTime</a>
+				<a class="permalink" href="index.html#ExportGenesisFileWithTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExportGenesisFileWithTime(
+    genFile, chainID <a href="../../../../../builtin/index.html#string">string</a>, validators []<a href="../../../../cometbft/cometbft/types/index.html">tmtypes</a>.<a href="../../../../cometbft/cometbft/types/index.html#GenesisValidator">GenesisValidator</a>,
+    appState <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, genTime <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>,
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>ExportGenesisFileWithTime creates and writes the genesis configuration to disk.
+An error is returned if building or writing the configuration to file fails.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenAppStateFromConfig">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/collect.go?s=578:862#L17">GenAppStateFromConfig</a>
+				<a class="permalink" href="index.html#GenAppStateFromConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenAppStateFromConfig(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, txEncodingConfig <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>,
+    config *<a href="../../../../cometbft/cometbft/config/index.html">cfg</a>.<a href="../../../../cometbft/cometbft/config/index.html#Config">Config</a>, initCfg <a href="types/index.html">types</a>.<a href="types/index.html#InitConfig">InitConfig</a>, genDoc <a href="../../../../cometbft/cometbft/types/index.html">tmtypes</a>.<a href="../../../../cometbft/cometbft/types/index.html#GenesisDoc">GenesisDoc</a>, genBalIterator <a href="types/index.html">types</a>.<a href="types/index.html#GenesisBalancesIterator">GenesisBalancesIterator</a>,
+    validator <a href="types/index.html">types</a>.<a href="types/index.html#MessageValidator">MessageValidator</a>,
+) (appState <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenAppStateFromConfig gets the genesis app state from the config
+
+			
+			
+
+		
+			
+			
+			<h2 id="InitGenesis">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/genesis.go?s=277:496#L2">InitGenesis</a>
+				<a class="permalink" href="index.html#InitGenesis">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InitGenesis(
+    ctx <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, stakingKeeper <a href="types/index.html">types</a>.<a href="types/index.html#StakingKeeper">StakingKeeper</a>,
+    deliverTx deliverTxfn, genesisState <a href="types/index.html">types</a>.<a href="types/index.html#GenesisState">GenesisState</a>,
+    txEncodingConfig <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>,
+) (validators []<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>InitGenesis - initialize accounts and deliver genesis transactions
+
+			
+			
+
+		
+			
+			
+			<h2 id="InitializeNodeValidatorFiles">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/utils.go?s=1430:1540#L42">InitializeNodeValidatorFiles</a>
+				<a class="permalink" href="index.html#InitializeNodeValidatorFiles">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InitializeNodeValidatorFiles(config *<a href="../../../../cometbft/cometbft/config/index.html">cfg</a>.<a href="../../../../cometbft/cometbft/config/index.html#Config">Config</a>) (nodeID <a href="../../../../../builtin/index.html#string">string</a>, valPubKey <a href="../../crypto/types/index.html">cryptotypes</a>.<a href="../../crypto/types/index.html#PubKey">PubKey</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>InitializeNodeValidatorFiles creates private validator and p2p configuration files.
+
+			
+			
+
+		
+			
+			
+			<h2 id="InitializeNodeValidatorFilesFromMnemonic">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/utils.go?s=1800:1939#L48">InitializeNodeValidatorFilesFromMnemonic</a>
+				<a class="permalink" href="index.html#InitializeNodeValidatorFilesFromMnemonic">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InitializeNodeValidatorFilesFromMnemonic(config *<a href="../../../../cometbft/cometbft/config/index.html">cfg</a>.<a href="../../../../cometbft/cometbft/config/index.html#Config">Config</a>, mnemonic <a href="../../../../../builtin/index.html#string">string</a>) (nodeID <a href="../../../../../builtin/index.html#string">string</a>, valPubKey <a href="../../crypto/types/index.html">cryptotypes</a>.<a href="../../crypto/types/index.html#PubKey">PubKey</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>InitializeNodeValidatorFilesFromMnemonic creates private validator and p2p configuration files using the given mnemonic.
+If no valid mnemonic is given, a random one will be used instead.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewAppModule">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=2909:3093#L78">NewAppModule</a>
+				<a class="permalink" href="index.html#NewAppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewAppModule(accountKeeper <a href="types/index.html">types</a>.<a href="types/index.html#AccountKeeper">AccountKeeper</a>,
+    stakingKeeper <a href="types/index.html">types</a>.<a href="types/index.html#StakingKeeper">StakingKeeper</a>, deliverTx deliverTxfn,
+    txEncodingConfig <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>,
+) <a href="../../types/module/index.html">module</a>.<a href="../../types/module/index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a></pre>
+			<p>NewAppModule creates a new AppModule object
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProvideModule">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=4651:4707#L134">ProvideModule</a>
+				<a class="permalink" href="index.html#ProvideModule">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProvideModule(in <a href="index.html#GenutilInputs">GenutilInputs</a>) <a href="../../../../../cosmossdk.io/core/appmodule/index.html">appmodule</a>.<a href="../../../../../cosmossdk.io/core/appmodule/index.html#AppModule">AppModule</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetGenTxsInAppGenesisState">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/gentx.go?s=479:661#L8">SetGenTxsInAppGenesisState</a>
+				<a class="permalink" href="index.html#SetGenTxsInAppGenesisState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetGenTxsInAppGenesisState(
+    cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, txJSONEncoder <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#TxEncoder">TxEncoder</a>, appGenesisState map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, genTxs []<a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Tx">Tx</a>,
+) (map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SetGenTxsInAppGenesisState - sets the genesis transactions in the app genesis state
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateAccountInGenesis">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/gentx.go?s=1190:1376#L29">ValidateAccountInGenesis</a>
+				<a class="permalink" href="index.html#ValidateAccountInGenesis">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateAccountInGenesis(
+    appGenesisState map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, genBalIterator <a href="types/index.html">types</a>.<a href="types/index.html#GenesisBalancesIterator">GenesisBalancesIterator</a>,
+    addr <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>, coins <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Coins">Coins</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>,
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>ValidateAccountInGenesis checks that the provided account has a sufficient
+balance in the set of genesis accounts.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AppModule">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=2670:2860#L68">AppModule</a>
+				<a class="permalink" href="index.html#AppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModule implements an application module for the genutil module.
+
+			<pre>type AppModule struct {
+    <a href="index.html#AppModuleBasic">AppModuleBasic</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AppModule.ConsensusVersion">func (AppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=4285:4327#L117">ConsensusVersion</a>
+					<a class="permalink" href="index.html#AppModule.ConsensusVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModule">AppModule</a>) ConsensusVersion() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>ConsensusVersion implements AppModule/ConsensusVersion.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModule.ExportGenesis">func (AppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=4104:4189#L112">ExportGenesis</a>
+					<a class="permalink" href="index.html#AppModule.ExportGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (am <a href="index.html#AppModule">AppModule</a>) ExportGenesis(_ <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>ExportGenesis returns the exported genesis state as raw bytes for the genutil
+module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModule.InitGenesis">func (AppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=3655:3769#L100">InitGenesis</a>
+					<a class="permalink" href="index.html#AppModule.InitGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (am <a href="index.html#AppModule">AppModule</a>) InitGenesis(ctx <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Context">Context</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, data <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) []<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a></pre>
+				<p>InitGenesis performs genesis initialization for the genutil module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModule.IsAppModule">func (AppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=3549:3579#L97">IsAppModule</a>
+					<a class="permalink" href="index.html#AppModule.IsAppModule">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModule">AppModule</a>) IsAppModule()</pre>
+				<p>IsAppModule implements the appmodule.AppModule interface.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModule.IsOnePerModuleType">func (AppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=3446:3483#L94">IsOnePerModuleType</a>
+					<a class="permalink" href="index.html#AppModule.IsOnePerModuleType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModule">AppModule</a>) IsOnePerModuleType()</pre>
+				<p>IsOnePerModuleType implements the depinject.OnePerModuleType interface.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="AppModuleBasic">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=746:815#L20">AppModuleBasic</a>
+				<a class="permalink" href="index.html#AppModuleBasic">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModuleBasic defines the basic application module used by the genutil module.
+
+			<pre>type AppModuleBasic struct {
+<span id="AppModuleBasic.GenTxValidator"></span>    GenTxValidator <a href="types/index.html">types</a>.<a href="types/index.html#MessageValidator">MessageValidator</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAppModuleBasic">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=928:999#L26">NewAppModuleBasic</a>
+					<a class="permalink" href="index.html#NewAppModuleBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAppModuleBasic(validator <a href="types/index.html">types</a>.<a href="types/index.html#MessageValidator">MessageValidator</a>) <a href="index.html#AppModuleBasic">AppModuleBasic</a></pre>
+				<p>NewAppModuleBasic creates AppModuleBasic, validator is a function used to validate genesis
+transactions.
+
+				
+				
+			
+
+			
+				
+				<h3 id="AppModuleBasic.DefaultGenesis">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=1546:1619#L43">DefaultGenesis</a>
+					<a class="permalink" href="index.html#AppModuleBasic.DefaultGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) DefaultGenesis(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>DefaultGenesis returns default genesis state as raw bytes for the genutil
+module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.GetQueryCmd">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=2533:2583#L65">GetQueryCmd</a>
+					<a class="permalink" href="index.html#AppModuleBasic.GetQueryCmd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) GetQueryCmd() *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a></pre>
+				<p>GetQueryCmd returns no root query command for the genutil module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.GetTxCmd">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=2400:2447#L62">GetTxCmd</a>
+					<a class="permalink" href="index.html#AppModuleBasic.GetTxCmd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) GetTxCmd() *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a></pre>
+				<p>GetTxCmd returns no root tx command for the genutil module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.Name">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=1082:1117#L31">Name</a>
+					<a class="permalink" href="index.html#AppModuleBasic.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) Name() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>Name returns the genutil module&apos;s name.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.RegisterGRPCGatewayRoutes">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=2243:2331#L58">RegisterGRPCGatewayRoutes</a>
+					<a class="permalink" href="index.html#AppModuleBasic.RegisterGRPCGatewayRoutes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) RegisterGRPCGatewayRoutes(_ <a href="../../client/index.html">client</a>.<a href="../../client/index.html#Context">Context</a>, _ *<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">gwruntime</a>.<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>)</pre>
+				<p>RegisterGRPCGatewayRoutes registers the gRPC Gateway routes for the genutil module.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.RegisterInterfaces">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=1381:1453#L39">RegisterInterfaces</a>
+					<a class="permalink" href="index.html#AppModuleBasic.RegisterInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#AppModuleBasic">AppModuleBasic</a>) RegisterInterfaces(_ <a href="../../codec/types/index.html">cdctypes</a>.<a href="../../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+				<p>RegisterInterfaces registers the module&apos;s interface types
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.RegisterLegacyAminoCodec">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=1245:1315#L36">RegisterLegacyAminoCodec</a>
+					<a class="permalink" href="index.html#AppModuleBasic.RegisterLegacyAminoCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#AppModuleBasic">AppModuleBasic</a>) RegisterLegacyAminoCodec(cdc *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a>)</pre>
+				<p>RegisterLegacyAminoCodec registers the genutil module&apos;s types on the given LegacyAmino codec.
+
+				
+				
+				
+			
+				
+				<h3 id="AppModuleBasic.ValidateGenesis">func (AppModuleBasic) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=1759:1887#L48">ValidateGenesis</a>
+					<a class="permalink" href="index.html#AppModuleBasic.ValidateGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#AppModuleBasic">AppModuleBasic</a>) ValidateGenesis(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, txEncodingConfig <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>, bz <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateGenesis performs genesis state validation for the genutil module.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GenutilInputs">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/genutil/module.go?s=4438:4649#L125">GenutilInputs</a>
+				<a class="permalink" href="index.html#GenutilInputs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type GenutilInputs struct {
+    <a href="../../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../../cosmossdk.io/depinject/index.html#In">In</a>
+
+<span id="GenutilInputs.AccountKeeper"></span>    AccountKeeper <a href="types/index.html">types</a>.<a href="types/index.html#AccountKeeper">AccountKeeper</a>
+<span id="GenutilInputs.StakingKeeper"></span>    StakingKeeper <a href="types/index.html">types</a>.<a href="types/index.html#StakingKeeper">StakingKeeper</a>
+<span id="GenutilInputs.DeliverTx"></span>    DeliverTx     func(<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestDeliverTx">RequestDeliverTx</a>) <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a>
+<span id="GenutilInputs.Config"></span>    Config        <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxConfig">TxConfig</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="client/index.html">client</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="client/cli/index.html">cli</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="client/testutil/index.html">testutil</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="migrations/index.html">migrations</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="migrations/v043/index.html">v043</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="migrations/v046/index.html">v046</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="migrations/v047/index.html">v047</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testutil/index.html">testutil</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package testutil is a generated GoMock package.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

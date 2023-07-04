@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>peers - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package peers
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package peers provides information about peers at the Ethereum consensus protocol level.
+<p>&quot;Protocol level&quot; is the level above the network level, so this layer never sees or interacts with
+(for example) hosts that are uncontactable due to being down, firewalled, etc. Instead, this works
+with peers that are contactable but may or may not be of the correct fork version, not currently
+required due to the number of current connections, etc.
+<p>A peer can have one of a number of states:
+<p>- connected if we are able to talk to the remote peer
+- connecting if we are attempting to be able to talk to the remote peer
+- disconnecting if we are attempting to stop being able to talk to the remote peer
+- disconnected if we are not able to talk to the remote peer
+<p>For convenience, there are two aggregate states expressed in functions:
+<p>- active if we are connecting or connected
+- inactive if we are disconnecting or disconnected
+<p>Peer information is persistent for the run of the service. This allows for collection of useful
+long-term statistics such as number of bad responses obtained from the peer, giving the basis for
+decisions to not talk to known-bad peers (by de-scoring them).
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Status">type Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStatus">func NewStatus(ctx context.Context, config *StatusConfig) *Status</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Active">func (p *Status) Active() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Add">func (p *Status) Add(record *enr.Record, pid peer.ID, address ma.Multiaddr, direction network.Direction)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Address">func (p *Status) Address(pid peer.ID) (ma.Multiaddr, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.All">func (p *Status) All() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Bad">func (p *Status) Bad() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.BestFinalized">func (p *Status) BestFinalized(maxPeers int, ourFinalizedEpoch types.Epoch) (types.Epoch, []peer.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.BestNonFinalized">func (p *Status) BestNonFinalized(minPeers uint64, ourHeadEpoch types.Epoch) (types.Epoch, []peer.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.ChainState">func (p *Status) ChainState(pid peer.ID) (*pb.Status, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.ChainStateLastUpdated">func (p *Status) ChainStateLastUpdated(pid peer.ID) (time.Time, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.CommitteeIndices">func (p *Status) CommitteeIndices(pid peer.ID) ([]uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Connected">func (p *Status) Connected() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.ConnectedPeerLimit">func (p *Status) ConnectedPeerLimit() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Connecting">func (p *Status) Connecting() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.ConnectionState">func (p *Status) ConnectionState(pid peer.ID) (peerdata.PeerConnectionState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Direction">func (p *Status) Direction(pid peer.ID) (network.Direction, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Disconnected">func (p *Status) Disconnected() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Disconnecting">func (p *Status) Disconnecting() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.ENR">func (p *Status) ENR(pid peer.ID) (*enr.Record, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.HighestEpoch">func (p *Status) HighestEpoch() types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Inactive">func (p *Status) Inactive() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Inbound">func (p *Status) Inbound() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.InboundConnected">func (p *Status) InboundConnected() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.InboundLimit">func (p *Status) InboundLimit() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.IsAboveInboundLimit">func (p *Status) IsAboveInboundLimit() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.IsActive">func (p *Status) IsActive(pid peer.ID) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.IsBad">func (p *Status) IsBad(pid peer.ID) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.IsReadyToDial">func (p *Status) IsReadyToDial(pid peer.ID) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.MaxPeerLimit">func (p *Status) MaxPeerLimit() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Metadata">func (p *Status) Metadata(pid peer.ID) (metadata.Metadata, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.NextValidTime">func (p *Status) NextValidTime(pid peer.ID) (time.Time, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Outbound">func (p *Status) Outbound() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.OutboundConnected">func (p *Status) OutboundConnected() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.PeersToPrune">func (p *Status) PeersToPrune() []peer.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Prune">func (p *Status) Prune()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.RandomizeBackOff">func (p *Status) RandomizeBackOff(pid peer.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Scorers">func (p *Status) Scorers() *scorers.Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.SetChainState">func (p *Status) SetChainState(pid peer.ID, chainState *pb.Status)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.SetConnectionState">func (p *Status) SetConnectionState(pid peer.ID, state peerdata.PeerConnectionState)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.SetMetadata">func (p *Status) SetMetadata(pid peer.ID, metaData metadata.Metadata)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.SetNextValidTime">func (p *Status) SetNextValidTime(pid peer.ID, nextTime time.Time)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.SubscribedToSubnet">func (p *Status) SubscribedToSubnet(index uint64) []peer.ID</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StatusConfig">type StatusConfig</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go">status.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// PeerDisconnected means there is no connection to the peer.</span>
+    <span id="PeerDisconnected">PeerDisconnected</span> <a href="peerdata/index.html">peerdata</a>.<a href="peerdata/index.html#PeerConnectionState">PeerConnectionState</a> = <a href="../../../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// PeerDisconnecting means there is an on-going attempt to disconnect from the peer.</span>
+    <span id="PeerDisconnecting">PeerDisconnecting</span>
+    <span class="comment">// PeerConnected means the peer has an active connection.</span>
+    <span id="PeerConnected">PeerConnected</span>
+    <span class="comment">// PeerConnecting means there is an on-going attempt to connect to the peer.</span>
+    <span id="PeerConnecting">PeerConnecting</span>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// ColocationLimit restricts how many peer identities we can see from a single ip or ipv6 subnet.</span>
+    <span id="ColocationLimit">ColocationLimit</span> = 5
+
+    <span class="comment">// InboundRatio is the proportion of our connected peer limit at which we will allow inbound peers.</span>
+    <span id="InboundRatio">InboundRatio</span> = <a href="../../../../../../builtin/index.html#float64">float64</a>(0.8)
+
+    <span class="comment">// MinBackOffDuration minimum amount (in milliseconds) to wait before peer is re-dialed.</span>
+    <span class="comment">// When node and peer are dialing each other simultaneously connection may fail. In order, to break</span>
+    <span class="comment">// of constant dialing, peer is assigned some backoff period, and only dialed again once that backoff is up.</span>
+    <span id="MinBackOffDuration">MinBackOffDuration</span> = 100
+    <span class="comment">// MaxBackOffDuration maximum amount (in milliseconds) to wait before peer is re-dialed.</span>
+    <span id="MaxBackOffDuration">MaxBackOffDuration</span> = 5000
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="Status">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=3397:3552#L69">Status</a>
+				<a class="permalink" href="index.html#Status">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Status is the structure holding the peer status information.
+
+			<pre>type Status struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStatus">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=3887:3952#L86">NewStatus</a>
+					<a class="permalink" href="index.html#NewStatus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStatus(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, config *<a href="index.html#StatusConfig">StatusConfig</a>) *<a href="index.html#Status">Status</a></pre>
+				<p>NewStatus creates a new status entity.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Status.Active">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=15174:15209#L464">Active</a>
+					<a class="permalink" href="index.html#Status.Active">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Active() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Active returns the peers that are connecting or connected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Add">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=4792:4896#L113">Add</a>
+					<a class="permalink" href="index.html#Status.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Add(record *<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a>, pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, address <a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/">ma</a>.<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/#Multiaddr">Multiaddr</a>, direction <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Direction">Direction</a>)</pre>
+				<p>Add adds a peer.
+If a peer already exists with this ID its address and direction are updated with the supplied data.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Address">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=5687:5746#L145">Address</a>
+					<a class="permalink" href="index.html#Status.Address">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Address(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/">ma</a>.<a href="http://localhost:6060/pkg/github.com/multiformats/go-multiaddr/#Multiaddr">Multiaddr</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Address returns the multiaddress of the given remote peer.
+This will error if the peer does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.All">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=16653:16685#L521">All</a>
+					<a class="permalink" href="index.html#Status.All">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) All() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>All returns all the peers regardless of state.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Bad">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=16515:16547#L516">Bad</a>
+					<a class="permalink" href="index.html#Status.Bad">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Bad() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Bad returns the peers that are bad.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.BestFinalized">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=20234:20334#L637">BestFinalized</a>
+					<a class="permalink" href="index.html#Status.BestFinalized">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) BestFinalized(maxPeers <a href="../../../../../../builtin/index.html#int">int</a>, ourFinalizedEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) (<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>, []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>)</pre>
+				<p>BestFinalized returns the highest finalized epoch equal to or higher than ours that is agreed
+upon by the majority of peers. This method may not return the absolute highest finalized, but
+the finalized epoch in which most peers can serve blocks (plurality voting).
+Ideally, all peers would be reporting the same finalized epoch but some may be behind due to their
+own latency, or because of their finalized epoch at the time we queried them.
+Returns epoch number and list of peers that are at or beyond that epoch.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.BestNonFinalized">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=22025:22126#L689">BestNonFinalized</a>
+					<a class="permalink" href="index.html#Status.BestNonFinalized">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) BestNonFinalized(minPeers <a href="../../../../../../builtin/index.html#uint64">uint64</a>, ourHeadEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) (<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>, []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>)</pre>
+				<p>BestNonFinalized returns the highest known epoch, higher than ours,
+and is shared by at least minPeers.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.ChainState">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=6921:6981#L186">ChainState</a>
+					<a class="permalink" href="index.html#Status.ChainState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) ChainState(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">pb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Status">Status</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ChainState gets the chain state of the given remote peer.
+This will error if the peer does not exist.
+This will error if there is no known chain state for the peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.ChainStateLastUpdated">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=10663:10733#L307">ChainStateLastUpdated</a>
+					<a class="permalink" href="index.html#Status.ChainStateLastUpdated">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) ChainStateLastUpdated(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ChainStateLastUpdated gets the last time the chain state of the given remote peer was updated.
+This will error if the peer does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.CommitteeIndices">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=8748:8812#L248">CommitteeIndices</a>
+					<a class="permalink" href="index.html#Status.CommitteeIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) CommitteeIndices(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) ([]<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CommitteeIndices retrieves the committee subnets the peer is subscribed to.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Connected">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=13445:13483#L399">Connected</a>
+					<a class="permalink" href="index.html#Status.Connected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Connected() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Connected returns the peers that are connected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.ConnectedPeerLimit">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=27603:27647#L874">ConnectedPeerLimit</a>
+					<a class="permalink" href="index.html#Status.ConnectedPeerLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) ConnectedPeerLimit() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>ConnectedPeerLimit returns the peer limit of
+concurrent peers connected to the beacon-node.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Connecting">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=13137:13176#L386">Connecting</a>
+					<a class="permalink" href="index.html#Status.Connecting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Connecting() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Connecting returns the peers that are connecting.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.ConnectionState">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=10252:10335#L295">ConnectionState</a>
+					<a class="permalink" href="index.html#Status.ConnectionState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) ConnectionState(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="peerdata/index.html">peerdata</a>.<a href="peerdata/index.html#PeerConnectionState">PeerConnectionState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ConnectionState gets the connection state of the given remote peer.
+This will error if the peer does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Direction">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=6022:6088#L157">Direction</a>
+					<a class="permalink" href="index.html#Status.Direction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Direction(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/">network</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/network/#Direction">Direction</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Direction returns the direction of the given remote peer.
+This will error if the peer does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Disconnected">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=15845:15886#L490">Disconnected</a>
+					<a class="permalink" href="index.html#Status.Disconnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Disconnected() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Disconnected returns the peers that are disconnected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Disconnecting">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=15525:15567#L477">Disconnecting</a>
+					<a class="permalink" href="index.html#Status.Disconnecting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Disconnecting() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Disconnecting returns the peers that are disconnecting.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.ENR">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=6327:6381#L168">ENR</a>
+					<a class="permalink" href="index.html#Status.ENR">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) ENR(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (*<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html">enr</a>.<a href="../../../../../ethereum/go-ethereum/p2p/enr/index.html#Record">Record</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ENR returns the enr for the corresponding peer id.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.HighestEpoch">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=27155:27198#L860">HighestEpoch</a>
+					<a class="permalink" href="index.html#Status.HighestEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) HighestEpoch() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>HighestEpoch returns the highest epoch reported epoch amongst peers.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Inactive">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=16176:16213#L503">Inactive</a>
+					<a class="permalink" href="index.html#Status.Inactive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Inactive() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Inactive returns the peers that are disconnecting or disconnected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Inbound">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=13755:13791#L412">Inbound</a>
+					<a class="permalink" href="index.html#Status.Inbound">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Inbound() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Inbound returns the current batch of inbound peers.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.InboundConnected">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=14096:14141#L425">InboundConnected</a>
+					<a class="permalink" href="index.html#Status.InboundConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) InboundConnected() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>InboundConnected returns the current batch of inbound peers that are connected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.InboundLimit">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=7858:7893#L217">InboundLimit</a>
+					<a class="permalink" href="index.html#Status.InboundLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) InboundLimit() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>InboundLimit returns the current inbound
+peer limit.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.IsAboveInboundLimit">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=7422:7465#L201">IsAboveInboundLimit</a>
+					<a class="permalink" href="index.html#Status.IsAboveInboundLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) IsAboveInboundLimit() <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsAboveInboundLimit checks if we are above our current inbound
+peer limit.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.IsActive">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=7118:7161#L191">IsActive</a>
+					<a class="permalink" href="index.html#Status.IsActive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) IsActive(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsActive checks if a peers is active and returns the result appropriately.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.IsBad">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=11133:11173#L319">IsBad</a>
+					<a class="permalink" href="index.html#Status.IsBad">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) IsBad(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsBad states if the peer is to be considered bad (by *any* of the registered scorers).
+If the peer is unknown this will return `false`, which makes using this function easier than returning an error.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.IsReadyToDial">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=12711:12759#L371">IsReadyToDial</a>
+					<a class="permalink" href="index.html#Status.IsReadyToDial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) IsReadyToDial(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsReadyToDial checks where the given peer is ready to be
+dialed again.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.MaxPeerLimit">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=4594:4629#L107">MaxPeerLimit</a>
+					<a class="permalink" href="index.html#Status.MaxPeerLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) MaxPeerLimit() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>MaxPeerLimit returns the max peer limit stored in the current peer store.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Metadata">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=8344:8409#L234">Metadata</a>
+					<a class="permalink" href="index.html#Status.Metadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Metadata(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Metadata returns a copy of the metadata corresponding to the provided
+peer id.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.NextValidTime">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=11568:11630#L333">NextValidTime</a>
+					<a class="permalink" href="index.html#Status.NextValidTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) NextValidTime(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>) (<a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NextValidTime gets the earliest possible time it is to contact/dial
+a peer again. This is used to back-off from peers in the event
+they are &apos;full&apos; or have banned us.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Outbound">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=14459:14496#L438">Outbound</a>
+					<a class="permalink" href="index.html#Status.Outbound">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Outbound() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>Outbound returns the current batch of outbound peers.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.OutboundConnected">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=14804:14850#L451">OutboundConnected</a>
+					<a class="permalink" href="index.html#Status.OutboundConnected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) OutboundConnected() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>OutboundConnected returns the current batch of outbound peers that are connected.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.PeersToPrune">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=23697:23738#L737">PeersToPrune</a>
+					<a class="permalink" href="index.html#Status.PeersToPrune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) PeersToPrune() []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>PeersToPrune selects the most sutiable inbound peers
+to disconnect the host peer from. As of this moment
+the pruning relies on simple heuristics such as
+bad response count. In the future scoring will be used
+to determine the most suitable peers to take out.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Prune">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=16927:16951#L532">Prune</a>
+					<a class="permalink" href="index.html#Status.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Prune()</pre>
+				<p>Prune clears out and removes outdated and disconnected peers.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.RandomizeBackOff">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=12189:12235#L354">RandomizeBackOff</a>
+					<a class="permalink" href="index.html#Status.RandomizeBackOff">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) RandomizeBackOff(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>)</pre>
+				<p>RandomizeBackOff adds extra backoff period during which peer will not be dialed.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Scorers">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=4450:4493#L102">Scorers</a>
+					<a class="permalink" href="index.html#Status.Scorers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) Scorers() *<a href="scorers/index.html">scorers</a>.<a href="scorers/index.html#Service">Service</a></pre>
+				<p>Scorers exposes peer scoring management service.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.SetChainState">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=6609:6675#L179">SetChainState</a>
+					<a class="permalink" href="index.html#Status.SetChainState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) SetChainState(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, chainState *<a href="../../../proto/prysm/v1alpha1/index.html">pb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Status">Status</a>)</pre>
+				<p>SetChainState sets the chain state of the given remote peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.SetConnectionState">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=9929:10013#L285">SetConnectionState</a>
+					<a class="permalink" href="index.html#Status.SetConnectionState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) SetConnectionState(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, state <a href="peerdata/index.html">peerdata</a>.<a href="peerdata/index.html#PeerConnectionState">PeerConnectionState</a>)</pre>
+				<p>SetConnectionState sets the connection state of the given remote peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.SetMetadata">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=8060:8129#L224">SetMetadata</a>
+					<a class="permalink" href="index.html#Status.SetMetadata">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) SetMetadata(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, metaData <a href="../../../proto/prysm/v1alpha1/metadata/index.html">metadata</a>.<a href="../../../proto/prysm/v1alpha1/metadata/index.html#Metadata">Metadata</a>)</pre>
+				<p>SetMetadata sets the metadata of the given remote peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.SetNextValidTime">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=11911:11977#L345">SetNextValidTime</a>
+					<a class="permalink" href="index.html#Status.SetNextValidTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) SetNextValidTime(pid <a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a>, nextTime <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>)</pre>
+				<p>SetNextValidTime sets the earliest possible time we are
+able to contact this peer again.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.SubscribedToSubnet">func (*Status) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=9221:9280#L263">SubscribedToSubnet</a>
+					<a class="permalink" href="index.html#Status.SubscribedToSubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Status">Status</a>) SubscribedToSubnet(index <a href="../../../../../../builtin/index.html#uint64">uint64</a>) []<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/">peer</a>.<a href="http://localhost:6060/pkg/github.com/libp2p/go-libp2p-core/peer/#ID">ID</a></pre>
+				<p>SubscribedToSubnet retrieves the peers subscribed to the given
+committee subnet.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StatusConfig">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/peers/status.go?s=3609:3843#L78">StatusConfig</a>
+				<a class="permalink" href="index.html#StatusConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StatusConfig represents peer status service params.
+
+			<pre>type StatusConfig struct {
+<span id="StatusConfig.PeerLimit"></span>    <span class="comment">// PeerLimit specifies maximum amount of concurrent peers that are expected to be connect to the node.</span>
+    PeerLimit <a href="../../../../../../builtin/index.html#int">int</a>
+<span id="StatusConfig.ScorerParams"></span>    <span class="comment">// ScorerParams holds peer scorer configuration params.</span>
+    ScorerParams *<a href="scorers/index.html">scorers</a>.<a href="scorers/index.html#Config">Config</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="peerdata/index.html">peerdata</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="scorers/index.html">scorers</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

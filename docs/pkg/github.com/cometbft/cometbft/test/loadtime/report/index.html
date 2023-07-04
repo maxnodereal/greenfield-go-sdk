@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>report - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package report
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/test/loadtime/report"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#BlockStore">type BlockStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DataPoint">type DataPoint</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Report">type Report</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Reports">type Reports</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenerateFromBlockStore">func GenerateFromBlockStore(s BlockStore) (*Reports, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reports.ErrorCount">func (rs *Reports) ErrorCount() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reports.List">func (rs *Reports) List() []Report</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go">report.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="BlockStore">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=449:539#L9">BlockStore</a>
+				<a class="permalink" href="index.html#BlockStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockStore defines the set of methods needed by the report generator from
+CometBFT&apos;s store.Blockstore type. Using an interface allows for tests to
+more easily simulate the required behavior without having to use the more
+complex real API.
+
+			<pre>type BlockStore interface {
+    Height() <a href="../../../../../../builtin/index.html#int64">int64</a>
+    Base() <a href="../../../../../../builtin/index.html#int64">int64</a>
+    LoadBlock(<a href="../../../../../../builtin/index.html#int64">int64</a>) *<a href="../../../types/index.html">types</a>.<a href="../../../types/index.html#Block">Block</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DataPoint">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=611:700#L16">DataPoint</a>
+				<a class="permalink" href="index.html#DataPoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DataPoint contains the set of data collected for each transaction.
+
+			<pre>type DataPoint struct {
+<span id="DataPoint.Duration"></span>    Duration  <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>
+<span id="DataPoint.BlockTime"></span>    BlockTime <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>
+<span id="DataPoint.Hash"></span>    Hash      []<a href="../../../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Report">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=825:1537#L24">Report</a>
+				<a class="permalink" href="index.html#Report">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Report contains the data calculated from reading the timestamped transactions
+of each block found in the blockstore.
+
+			<pre>type Report struct {
+<span id="Report.ID"></span>    ID                      <a href="http://localhost:6060/pkg/github.com/gofrs/uuid/">uuid</a>.<a href="http://localhost:6060/pkg/github.com/gofrs/uuid/#UUID">UUID</a>
+<span id="Report.Rate"></span>    Rate, Connections, Size <a href="../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Report.Max"></span>    Max, Min, Avg, StdDev   <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>
+
+<span id="Report.NegativeCount"></span>    <span class="comment">// NegativeCount is the number of negative durations encountered while</span>
+    <span class="comment">// reading the transaction data. A negative duration means that</span>
+    <span class="comment">// a transaction timestamp was greater than the timestamp of the block it</span>
+    <span class="comment">// was included in and likely indicates an issue with the experimental</span>
+    <span class="comment">// setup.</span>
+    NegativeCount <a href="../../../../../../builtin/index.html#int">int</a>
+
+<span id="Report.All"></span>    <span class="comment">// All contains all data points gathered from all valid transactions.</span>
+    <span class="comment">// The order of the contents of All is not guaranteed to be match the order of transactions</span>
+    <span class="comment">// in the chain.</span>
+    All []<a href="index.html#DataPoint">DataPoint</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Reports">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=1539:1824#L45">Reports</a>
+				<a class="permalink" href="index.html#Reports">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Reports struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GenerateFromBlockStore">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=3216:3275#L113">GenerateFromBlockStore</a>
+					<a class="permalink" href="index.html#GenerateFromBlockStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GenerateFromBlockStore(s <a href="index.html#BlockStore">BlockStore</a>) (*<a href="index.html#Reports">Reports</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GenerateFromBlockStore creates a Report using the data in the provided
+BlockStore.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reports.ErrorCount">func (*Reports) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=1879:1914#L59">ErrorCount</a>
+					<a class="permalink" href="index.html#Reports.ErrorCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rs *<a href="index.html#Reports">Reports</a>) ErrorCount() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Reports.List">func (*Reports) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/test/loadtime/report/report.go?s=1826:1860#L55">List</a>
+					<a class="permalink" href="index.html#Reports.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rs *<a href="index.html#Reports">Reports</a>) List() []<a href="index.html#Report">Report</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

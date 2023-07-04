@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>mempool - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package mempool
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/mempool"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#IsPreCheckError">func IsPreCheckError(err error) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ErrMempoolIsFull">type ErrMempoolIsFull</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrMempoolIsFull.Error">func (e ErrMempoolIsFull) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrPreCheck">type ErrPreCheck</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrPreCheck.Error">func (e ErrPreCheck) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrTxTooLarge">type ErrTxTooLarge</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrTxTooLarge.Error">func (e ErrTxTooLarge) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LRUTxCache">type LRUTxCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLRUTxCache">func NewLRUTxCache(cacheSize int) *LRUTxCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LRUTxCache.GetList">func (c *LRUTxCache) GetList() *list.List</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LRUTxCache.Has">func (c *LRUTxCache) Has(tx types.Tx) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LRUTxCache.Push">func (c *LRUTxCache) Push(tx types.Tx) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LRUTxCache.Remove">func (c *LRUTxCache) Remove(tx types.Tx)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LRUTxCache.Reset">func (c *LRUTxCache) Reset()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Mempool">type Mempool</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Metrics">type Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopMetrics">func NopMetrics() *Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrometheusMetrics">func PrometheusMetrics(namespace string, labelsAndValues ...string) *Metrics</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#NopTxCache">type NopTxCache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopTxCache.Has">func (NopTxCache) Has(types.Tx) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopTxCache.Push">func (NopTxCache) Push(types.Tx) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopTxCache.Remove">func (NopTxCache) Remove(types.Tx)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopTxCache.Reset">func (NopTxCache) Reset()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PostCheckFunc">type PostCheckFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PostCheckMaxGas">func PostCheckMaxGas(maxGas int64) PostCheckFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PreCheckFunc">type PreCheckFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PreCheckMaxBytes">func PreCheckMaxBytes(maxBytes int64) PreCheckFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxCache">type TxCache</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxInfo">type TxInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxKey">type TxKey</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go">cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/ids.go">ids.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go">mempool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/metrics.gen.go">metrics.gen.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/tx.go">tx.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="MempoolChannel">MempoolChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x30)
+
+    <span class="comment">// PeerCatchupSleepIntervalMS defines how much time to sleep if a peer is behind</span>
+    <span id="PeerCatchupSleepIntervalMS">PeerCatchupSleepIntervalMS</span> = 100
+
+    <span class="comment">// UnknownPeerID is the peer ID to use when running CheckTx when there is</span>
+    <span class="comment">// no peer (e.g. RPC)</span>
+    <span id="UnknownPeerID">UnknownPeerID</span> <a href="../../../../builtin/index.html#uint16">uint16</a> = 0
+
+    <span id="MaxActiveIDs">MaxActiveIDs</span> = <a href="../../../../math/index.html">math</a>.<a href="../../../../math/index.html#MaxUint16">MaxUint16</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// MetricsSubsystem is a subsystem shared by all metrics exposed by this</span>
+    <span class="comment">// package.</span>
+    <span id="MetricsSubsystem">MetricsSubsystem</span> = &#34;mempool&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrTxInCache is returned to the client if we saw tx earlier
+
+				<pre>var <span id="ErrTxInCache">ErrTxInCache</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;tx already exists in cache&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="IsPreCheckError">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=5573:5609#L183">IsPreCheckError</a>
+				<a class="permalink" href="index.html#IsPreCheckError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsPreCheckError(err <a href="../../../../builtin/index.html#error">error</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsPreCheckError returns true if err is due to pre check failure.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ErrMempoolIsFull">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=5015:5119#L156">ErrMempoolIsFull</a>
+				<a class="permalink" href="index.html#ErrMempoolIsFull">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrMempoolIsFull defines an error where CometBFT and the application cannot
+handle that much load.
+
+			<pre>type ErrMempoolIsFull struct {
+<span id="ErrMempoolIsFull.NumTxs"></span>    NumTxs      <a href="../../../../builtin/index.html#int">int</a>
+<span id="ErrMempoolIsFull.MaxTxs"></span>    MaxTxs      <a href="../../../../builtin/index.html#int">int</a>
+<span id="ErrMempoolIsFull.TxsBytes"></span>    TxsBytes    <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrMempoolIsFull.MaxTxsBytes"></span>    MaxTxsBytes <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrMempoolIsFull.Error">func (ErrMempoolIsFull) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=5121:5161#L163">Error</a>
+					<a class="permalink" href="index.html#ErrMempoolIsFull.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrMempoolIsFull">ErrMempoolIsFull</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrPreCheck">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=5396:5437#L174">ErrPreCheck</a>
+				<a class="permalink" href="index.html#ErrPreCheck">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrPreCheck defines an error where a transaction fails a pre-check.
+
+			<pre>type ErrPreCheck struct {
+<span id="ErrPreCheck.Reason"></span>    Reason <a href="../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrPreCheck.Error">func (ErrPreCheck) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=5439:5474#L178">Error</a>
+					<a class="permalink" href="index.html#ErrPreCheck.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrPreCheck">ErrPreCheck</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrTxTooLarge">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=4731:4784#L145">ErrTxTooLarge</a>
+				<a class="permalink" href="index.html#ErrTxTooLarge">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrTxTooLarge defines an error when a transaction is too big to be sent in a
+message to other peers.
+
+			<pre>type ErrTxTooLarge struct {
+<span id="ErrTxTooLarge.Max"></span>    Max    <a href="../../../../builtin/index.html#int">int</a>
+<span id="ErrTxTooLarge.Actual"></span>    Actual <a href="../../../../builtin/index.html#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrTxTooLarge.Error">func (ErrTxTooLarge) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=4786:4823#L150">Error</a>
+					<a class="permalink" href="index.html#ErrTxTooLarge.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrTxTooLarge">ErrTxTooLarge</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LRUTxCache">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=1116:1241#L25">LRUTxCache</a>
+				<a class="permalink" href="index.html#LRUTxCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LRUTxCache maintains a thread-safe LRU cache of raw transactions. The cache
+only stores the hash of the raw transaction.
+
+			<pre>type LRUTxCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLRUTxCache">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=1243:1288#L32">NewLRUTxCache</a>
+					<a class="permalink" href="index.html#NewLRUTxCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLRUTxCache(cacheSize <a href="../../../../builtin/index.html#int">int</a>) *<a href="index.html#LRUTxCache">LRUTxCache</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="LRUTxCache.GetList">func (*LRUTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=1553:1594#L42">GetList</a>
+					<a class="permalink" href="index.html#LRUTxCache.GetList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LRUTxCache">LRUTxCache</a>) GetList() *<a href="../../../../container/list/index.html">list</a>.<a href="../../../../container/list/index.html#List">List</a></pre>
+				<p>GetList returns the underlying linked-list that backs the LRU cache. Note,
+this should be used for testing purposes only!
+
+				
+				
+				
+			
+				
+				<h3 id="LRUTxCache.Has">func (*LRUTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2375:2417#L94">Has</a>
+					<a class="permalink" href="index.html#LRUTxCache.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LRUTxCache">LRUTxCache</a>) Has(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LRUTxCache.Push">func (*LRUTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=1759:1802#L54">Push</a>
+					<a class="permalink" href="index.html#LRUTxCache.Push">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LRUTxCache">LRUTxCache</a>) Push(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LRUTxCache.Remove">func (*LRUTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2190:2230#L81">Remove</a>
+					<a class="permalink" href="index.html#LRUTxCache.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LRUTxCache">LRUTxCache</a>) Remove(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LRUTxCache.Reset">func (*LRUTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=1615:1643#L46">Reset</a>
+					<a class="permalink" href="index.html#LRUTxCache.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LRUTxCache">LRUTxCache</a>) Reset()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Mempool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=707:3007#L22">Mempool</a>
+				<a class="permalink" href="index.html#Mempool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Mempool defines the mempool interface.
+<p>Updates to the mempool need to be synchronized with committing a block so
+applications can reset their transient state on Commit.
+
+			<pre>type Mempool interface {
+    <span class="comment">// CheckTx executes a new transaction against the application to determine</span>
+    <span class="comment">// its validity and whether it should be added to the mempool.</span>
+    CheckTx(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>, callback func(*<a href="../abci/types/index.html">abci</a>.<a href="../abci/types/index.html#Response">Response</a>), txInfo <a href="index.html#TxInfo">TxInfo</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// RemoveTxByKey removes a transaction, identified by its key,</span>
+    <span class="comment">// from the mempool.</span>
+    RemoveTxByKey(txKey <a href="../types/index.html">types</a>.<a href="../types/index.html#TxKey">TxKey</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// ReapMaxBytesMaxGas reaps transactions from the mempool up to maxBytes</span>
+    <span class="comment">// bytes total with the condition that the total gasWanted must be less than</span>
+    <span class="comment">// maxGas.</span>
+    <span class="comment">//</span>
+    <span class="comment">// If both maxes are negative, there is no cap on the size of all returned</span>
+    <span class="comment">// transactions (~ all available transactions).</span>
+    ReapMaxBytesMaxGas(maxBytes, maxGas <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#Txs">Txs</a>
+
+    <span class="comment">// ReapMaxTxs reaps up to max transactions from the mempool. If max is</span>
+    <span class="comment">// negative, there is no cap on the size of all returned transactions</span>
+    <span class="comment">// (~ all available transactions).</span>
+    ReapMaxTxs(max <a href="../../../../builtin/index.html#int">int</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#Txs">Txs</a>
+
+    <span class="comment">// Lock locks the mempool. The consensus must be able to hold lock to safely</span>
+    <span class="comment">// update.</span>
+    Lock()
+
+    <span class="comment">// Unlock unlocks the mempool.</span>
+    Unlock()
+
+    <span class="comment">// Update informs the mempool that the given txs were committed and can be</span>
+    <span class="comment">// discarded.</span>
+    <span class="comment">//</span>
+    <span class="comment">// NOTE:</span>
+    <span class="comment">// 1. This should be called *after* block is committed by consensus.</span>
+    <span class="comment">// 2. Lock/Unlock must be managed by the caller.</span>
+    Update(
+        blockHeight <a href="../../../../builtin/index.html#int64">int64</a>,
+        blockTxs <a href="../types/index.html">types</a>.<a href="../types/index.html#Txs">Txs</a>,
+        deliverTxResponses []*<a href="../abci/types/index.html">abci</a>.<a href="../abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a>,
+        newPreFn <a href="index.html#PreCheckFunc">PreCheckFunc</a>,
+        newPostFn <a href="index.html#PostCheckFunc">PostCheckFunc</a>,
+    ) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// FlushAppConn flushes the mempool connection to ensure async callback calls</span>
+    <span class="comment">// are done, e.g. from CheckTx.</span>
+    <span class="comment">//</span>
+    <span class="comment">// NOTE:</span>
+    <span class="comment">// 1. Lock/Unlock must be managed by caller.</span>
+    FlushAppConn() <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Flush removes all transactions from the mempool and caches.</span>
+    Flush()
+
+    <span class="comment">// TxsAvailable returns a channel which fires once for every height, and only</span>
+    <span class="comment">// when transactions are available in the mempool.</span>
+    <span class="comment">//</span>
+    <span class="comment">// NOTE:</span>
+    <span class="comment">// 1. The returned channel may be nil if EnableTxsAvailable was not called.</span>
+    TxsAvailable() &lt;-chan struct{}
+
+    <span class="comment">// EnableTxsAvailable initializes the TxsAvailable channel, ensuring it will</span>
+    <span class="comment">// trigger once every height when transactions are available.</span>
+    EnableTxsAvailable()
+
+    <span class="comment">// Size returns the number of transactions in the mempool.</span>
+    Size() <a href="../../../../builtin/index.html#int">int</a>
+
+    <span class="comment">// SizeBytes returns the total size of all txs in the mempool.</span>
+    SizeBytes() <a href="../../../../builtin/index.html#int64">int64</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Metrics">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/metrics.go?s=344:1377#L7">Metrics</a>
+				<a class="permalink" href="index.html#Metrics">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Metrics contains metrics exposed by this package.
+see MetricsProvider for descriptions.
+
+			<pre>type Metrics struct {
+    <span class="comment">// Number of uncommitted transactions in the mempool.</span>
+<span id="Metrics.Size"></span>    Size <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+
+    <span class="comment">// Histogram of transaction sizes in bytes.</span>
+<span id="Metrics.TxSizeBytes"></span>    TxSizeBytes <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Histogram">Histogram</a> `metrics_buckettype:&#34;exp&#34; metrics_bucketsizes:&#34;1,3,7&#34;`
+
+    <span class="comment">// Number of failed transactions.</span>
+<span id="Metrics.FailedTxs"></span>    FailedTxs <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+
+<span id="Metrics.RejectedTxs"></span>    <span class="comment">// RejectedTxs defines the number of rejected transactions. These are</span>
+    <span class="comment">// transactions that passed CheckTx but failed to make it into the mempool</span>
+    <span class="comment">// due to resource limits, e.g. mempool is full and no lower priority</span>
+    <span class="comment">// transactions exist in the mempool.</span>
+    <span class="comment">//metrics:Number of rejected transactions.</span>
+    RejectedTxs <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+
+<span id="Metrics.EvictedTxs"></span>    <span class="comment">// EvictedTxs defines the number of evicted transactions. These are valid</span>
+    <span class="comment">// transactions that passed CheckTx and existed in the mempool but were later</span>
+    <span class="comment">// evicted to make room for higher priority valid transactions that passed</span>
+    <span class="comment">// CheckTx.</span>
+    <span class="comment">//metrics:Number of evicted transactions.</span>
+    EvictedTxs <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+
+    <span class="comment">// Number of times transactions are rechecked in the mempool.</span>
+<span id="Metrics.RecheckTimes"></span>    RecheckTimes <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NopMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/metrics.gen.go?s=2009:2035#L48">NopMetrics</a>
+					<a class="permalink" href="index.html#NopMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NopMetrics() *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="PrometheusMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/metrics.gen.go?s=236:312#L1">PrometheusMetrics</a>
+					<a class="permalink" href="index.html#PrometheusMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PrometheusMetrics(namespace <a href="../../../../builtin/index.html#string">string</a>, labelsAndValues ...<a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="NopTxCache">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2555:2579#L103">NopTxCache</a>
+				<a class="permalink" href="index.html#NopTxCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NopTxCache defines a no-op raw transaction cache.
+
+			<pre>type NopTxCache struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NopTxCache.Has">func (NopTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2753:2789#L110">Has</a>
+					<a class="permalink" href="index.html#NopTxCache.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NopTxCache">NopTxCache</a>) Has(<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NopTxCache.Push">func (NopTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2658:2695#L108">Push</a>
+					<a class="permalink" href="index.html#NopTxCache.Push">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NopTxCache">NopTxCache</a>) Push(<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NopTxCache.Remove">func (NopTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2712:2746#L109">Remove</a>
+					<a class="permalink" href="index.html#NopTxCache.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NopTxCache">NopTxCache</a>) Remove(<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NopTxCache.Reset">func (NopTxCache) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=2617:2642#L107">Reset</a>
+					<a class="permalink" href="index.html#NopTxCache.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NopTxCache">NopTxCache</a>) Reset()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PostCheckFunc">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=3458:3520#L101">PostCheckFunc</a>
+				<a class="permalink" href="index.html#PostCheckFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PostCheckFunc is an optional filter executed after CheckTx and rejects
+transaction if false is returned. An example would be to ensure a
+transaction doesn&apos;t require more gas than available for the block.
+
+			<pre>type PostCheckFunc func(<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>, *<a href="../abci/types/index.html">abci</a>.<a href="../abci/types/index.html#ResponseCheckTx">ResponseCheckTx</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PostCheckMaxGas">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=4019:4067#L119">PostCheckMaxGas</a>
+					<a class="permalink" href="index.html#PostCheckMaxGas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PostCheckMaxGas(maxGas <a href="../../../../builtin/index.html#int64">int64</a>) <a href="index.html#PostCheckFunc">PostCheckFunc</a></pre>
+				<p>PostCheckMaxGas checks that the wanted gas is smaller or equal to the passed
+maxGas. Returns nil if maxGas is -1.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PreCheckFunc">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=3205:3243#L96">PreCheckFunc</a>
+				<a class="permalink" href="index.html#PreCheckFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PreCheckFunc is an optional filter executed before CheckTx and rejects
+transaction if false is returned. An example would be to ensure that a
+transaction doesn&apos;t exceeded the block size.
+
+			<pre>type PreCheckFunc func(<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PreCheckMaxBytes">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=3631:3681#L105">PreCheckMaxBytes</a>
+					<a class="permalink" href="index.html#PreCheckMaxBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PreCheckMaxBytes(maxBytes <a href="../../../../builtin/index.html#int64">int64</a>) <a href="index.html#PreCheckFunc">PreCheckFunc</a></pre>
+				<p>PreCheckMaxBytes checks that the size of the transaction is smaller or equal
+to the expected maxBytes.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TxCache">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/cache.go?s=492:951#L5">TxCache</a>
+				<a class="permalink" href="index.html#TxCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxCache defines an interface for raw transaction caching in a mempool.
+Currently, a TxCache does not allow direct reading or getting of transaction
+values. A TxCache is used primarily to push transactions and removing
+transactions. Pushing via Push returns a boolean telling the caller if the
+transaction already exists in the cache or not.
+
+			<pre>type TxCache interface {
+    <span class="comment">// Reset resets the cache to an empty state.</span>
+    Reset()
+
+    <span class="comment">// Push adds the given raw transaction to the cache and returns true if it was</span>
+    <span class="comment">// newly added. Otherwise, it returns false.</span>
+    Push(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// Remove removes the given raw transaction from the cache.</span>
+    Remove(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>)
+
+    <span class="comment">// Has reports whether tx is present in the cache. Checking for presence is</span>
+    <span class="comment">// not treated as an access of the value.</span>
+    Has(tx <a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>) <a href="../../../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxInfo">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/tx.go?s=153:459#L1">TxInfo</a>
+				<a class="permalink" href="index.html#TxInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxInfo are parameters that get passed when attempting to add a tx to the
+mempool.
+
+			<pre>type TxInfo struct {
+<span id="TxInfo.SenderID"></span>    <span class="comment">// SenderID is the internal peer ID used in the mempool to identify the</span>
+    <span class="comment">// sender, storing two bytes with each transaction instead of 20 bytes for</span>
+    <span class="comment">// the types.NodeID.</span>
+    SenderID <a href="../../../../builtin/index.html#uint16">uint16</a>
+
+<span id="TxInfo.SenderP2PID"></span>    <span class="comment">// SenderP2PID is the actual p2p.ID of the sender, used e.g. for logging.</span>
+    SenderP2PID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxKey">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/mempool/mempool.go?s=4594:4622#L141">TxKey</a>
+				<a class="permalink" href="index.html#TxKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxKey is the fixed length array key used as an index.
+
+			<pre>type TxKey [<a href="../../../../crypto/sha256/index.html">sha256</a>.<a href="../../../../crypto/sha256/index.html#Size">Size</a>]<a href="../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="v0/index.html">v0</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						TODO: Better handle abci client errors.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="v1/index.html">v1</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Deprecated: Priority mempool will be removed in the next major release.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

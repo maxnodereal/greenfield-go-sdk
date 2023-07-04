@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>server - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package server
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/rpc/jsonrpc/server"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Commons for HTTP handling
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#Listen">func Listen(addr string, config *Config) (listener net.Listener, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#OnDisconnect">func OnDisconnect(onDisconnect func(remoteAddr string)) func(*wsConnection)</a></dd>
+			
+				
+				<dd><a href="index.html#PingPeriod">func PingPeriod(pingPeriod time.Duration) func(*wsConnection)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadLimit">func ReadLimit(readLimit int64) func(*wsConnection)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadWait">func ReadWait(readWait time.Duration) func(*wsConnection)</a></dd>
+			
+				
+				<dd><a href="index.html#RecoverAndLogHandler">func RecoverAndLogHandler(handler http.Handler, logger log.Logger) http.Handler</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterRPCFuncs">func RegisterRPCFuncs(mux *http.ServeMux, funcMap map[string]*RPCFunc, logger log.Logger)</a></dd>
+			
+				
+				<dd><a href="index.html#Serve">func Serve(listener net.Listener, handler http.Handler, logger log.Logger, config *Config) error</a></dd>
+			
+				
+				<dd><a href="index.html#ServeTLS">func ServeTLS(listener net.Listener, handler http.Handler, certFile, keyFile string, logger log.Logger, config *Config) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteCacheableRPCResponseHTTP">func WriteCacheableRPCResponseHTTP(w http.ResponseWriter, res ...types.RPCResponse) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteChanCapacity">func WriteChanCapacity(cap int) func(*wsConnection)</a></dd>
+			
+				
+				<dd><a href="index.html#WriteRPCResponseHTTP">func WriteRPCResponseHTTP(w http.ResponseWriter, res ...types.RPCResponse) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteRPCResponseHTTPError">func WriteRPCResponseHTTPError(w http.ResponseWriter, httpCode int, res types.RPCResponse) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteWait">func WriteWait(writeWait time.Duration) func(*wsConnection)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultConfig">func DefaultConfig() *Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cacheable">func Cacheable(noCacheDefArgs ...string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ws">func Ws() Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RPCFunc">type RPCFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRPCFunc">func NewRPCFunc(f interface{}, args string, options ...Option) *RPCFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWSRPCFunc">func NewWSRPCFunc(f interface{}, args string, options ...Option) *RPCFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WebsocketManager">type WebsocketManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWebsocketManager">func NewWebsocketManager(funcMap map[string]*RPCFunc, wsConnOptions ...func(*wsConnection)) *WebsocketManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WebsocketManager.SetLogger">func (wm *WebsocketManager) SetLogger(l log.Logger)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WebsocketManager.WebsocketHandler">func (wm *WebsocketManager) WebsocketHandler(w http.ResponseWriter, r *http.Request)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_json_handler.go">http_json_handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go">http_server.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_uri_handler.go">http_uri_handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go">rpc_func.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go">ws_handler.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="Listen">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=8083:8158#L251">Listen</a>
+				<a class="permalink" href="index.html#Listen">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Listen(addr <a href="../../../../../../builtin/index.html#string">string</a>, config *<a href="index.html#Config">Config</a>) (listener <a href="../../../../../../net/index.html">net</a>.<a href="../../../../../../net/index.html#Listener">Listener</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Listen starts a new net.Listener on the given address.
+It returns an error if the address is invalid or the call to Listen() fails.
+
+			
+			
+
+		
+			
+			
+			<h2 id="OnDisconnect">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=5033:5108#L164">OnDisconnect</a>
+				<a class="permalink" href="index.html#OnDisconnect">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func OnDisconnect(onDisconnect func(remoteAddr <a href="../../../../../../builtin/index.html#string">string</a>)) func(*wsConnection)</pre>
+			<p>OnDisconnect sets a callback which is used upon disconnect - not
+Goroutine-safe. Nop by default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PingPeriod">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=6125:6186#L196">PingPeriod</a>
+				<a class="permalink" href="index.html#PingPeriod">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PingPeriod(pingPeriod <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*wsConnection)</pre>
+			<p>PingPeriod sets the duration for sending websocket pings.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadLimit">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=6382:6433#L204">ReadLimit</a>
+				<a class="permalink" href="index.html#ReadLimit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadLimit(readLimit <a href="../../../../../../builtin/index.html#int64">int64</a>) func(*wsConnection)</pre>
+			<p>ReadLimit sets the maximum size for reading message.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadWait">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=5871:5928#L188">ReadWait</a>
+				<a class="permalink" href="index.html#ReadWait">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadWait(readWait <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*wsConnection)</pre>
+			<p>ReadWait sets the amount of time to wait before a websocket read times out.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RecoverAndLogHandler">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=4848:4927#L151">RecoverAndLogHandler</a>
+				<a class="permalink" href="index.html#RecoverAndLogHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RecoverAndLogHandler(handler <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Handler">Handler</a>, logger <a href="../../../libs/log/index.html">log</a>.<a href="../../../libs/log/index.html#Logger">Logger</a>) <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Handler">Handler</a></pre>
+			<p>RecoverAndLogHandler wraps an HTTP handler, adding error logging.
+If the inner function panics, the outer function recovers, logs, sends an
+HTTP 500 error response.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterRPCFuncs">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=366:455#L6">RegisterRPCFuncs</a>
+				<a class="permalink" href="index.html#RegisterRPCFuncs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterRPCFuncs(mux *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ServeMux">ServeMux</a>, funcMap map[<a href="../../../../../../builtin/index.html#string">string</a>]*<a href="index.html#RPCFunc">RPCFunc</a>, logger <a href="../../../libs/log/index.html">log</a>.<a href="../../../libs/log/index.html#Logger">Logger</a>)</pre>
+			<p>RegisterRPCFuncs adds a route for each function in the funcMap, as well as
+general jsonrpc and websocket handlers for all functions. &quot;result&quot; is the
+interface on which the result objects are registered, and is populated with
+every RPCResponse
+
+			
+			
+
+		
+			
+			
+			<h2 id="Serve">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=1323:1419#L43">Serve</a>
+				<a class="permalink" href="index.html#Serve">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Serve(listener <a href="../../../../../../net/index.html">net</a>.<a href="../../../../../../net/index.html#Listener">Listener</a>, handler <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Handler">Handler</a>, logger <a href="../../../libs/log/index.html">log</a>.<a href="../../../libs/log/index.html#Logger">Logger</a>, config *<a href="index.html#Config">Config</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>Serve creates a http.Server and calls Serve with the given listener. It
+wraps handler with RecoverAndLogHandler and a handler, which limits the max
+body size to config.MaxBodyBytes.
+<p>NOTE: This function blocks - you may want to call it in a go-routine.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ServeTLS">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=2202:2335#L62">ServeTLS</a>
+				<a class="permalink" href="index.html#ServeTLS">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ServeTLS(
+    listener <a href="../../../../../../net/index.html">net</a>.<a href="../../../../../../net/index.html#Listener">Listener</a>,
+    handler <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Handler">Handler</a>,
+    certFile, keyFile <a href="../../../../../../builtin/index.html#string">string</a>,
+    logger <a href="../../../libs/log/index.html">log</a>.<a href="../../../libs/log/index.html#Logger">Logger</a>,
+    config *<a href="index.html#Config">Config</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>Serve creates a http.Server and calls ServeTLS with the given listener,
+certFile and keyFile. It wraps handler with RecoverAndLogHandler and a
+handler, which limits the max body size to config.MaxBodyBytes.
+<p>NOTE: This function blocks - you may want to call it in a go-routine.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteCacheableRPCResponseHTTP">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=3866:3955#L116">WriteCacheableRPCResponseHTTP</a>
+				<a class="permalink" href="index.html#WriteCacheableRPCResponseHTTP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteCacheableRPCResponseHTTP(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, res ...<a href="../types/index.html">types</a>.<a href="../types/index.html#RPCResponse">RPCResponse</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>WriteCacheableRPCResponseHTTP marshals res as JSON (with indent) and writes
+it to w. Adds cache-control to the response header and sets the expiry to
+one day.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteChanCapacity">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=5601:5652#L180">WriteChanCapacity</a>
+				<a class="permalink" href="index.html#WriteChanCapacity">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteChanCapacity(cap <a href="../../../../../../builtin/index.html#int">int</a>) func(*wsConnection)</pre>
+			<p>WriteChanCapacity sets the capacity of the websocket write channel.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteRPCResponseHTTP">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=3556:3636#L109">WriteRPCResponseHTTP</a>
+				<a class="permalink" href="index.html#WriteRPCResponseHTTP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteRPCResponseHTTP(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, res ...<a href="../types/index.html">types</a>.<a href="../types/index.html#RPCResponse">RPCResponse</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>WriteRPCResponseHTTP marshals res as JSON (with indent) and writes it to w.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteRPCResponseHTTPError">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=3057:3159#L88">WriteRPCResponseHTTPError</a>
+				<a class="permalink" href="index.html#WriteRPCResponseHTTPError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteRPCResponseHTTPError(
+    w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>,
+    httpCode <a href="../../../../../../builtin/index.html#int">int</a>,
+    res <a href="../types/index.html">types</a>.<a href="../types/index.html#RPCResponse">RPCResponse</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>WriteRPCResponseHTTPError marshals res as JSON (with indent) and writes it
+to w.
+<p>source: <a href="https://www.jsonrpc.org/historical/json-rpc-over-http.html">https://www.jsonrpc.org/historical/json-rpc-over-http.html</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteWait">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=5333:5392#L172">WriteWait</a>
+				<a class="permalink" href="index.html#WriteWait">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteWait(writeWait <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*wsConnection)</pre>
+			<p>WriteWait sets the amount of time to wait before a websocket write times out.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=329:717#L13">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config is a RPC server configuration.
+
+			<pre>type Config struct {
+    <span class="comment">// see netutil.LimitListener</span>
+<span id="Config.MaxOpenConnections"></span>    MaxOpenConnections <a href="../../../../../../builtin/index.html#int">int</a>
+    <span class="comment">// mirrors http.Server#ReadTimeout</span>
+<span id="Config.ReadTimeout"></span>    ReadTimeout <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>
+    <span class="comment">// mirrors http.Server#WriteTimeout</span>
+<span id="Config.WriteTimeout"></span>    WriteTimeout <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>
+<span id="Config.MaxBodyBytes"></span>    <span class="comment">// MaxBodyBytes controls the maximum number of bytes the</span>
+    <span class="comment">// server will read parsing the request body.</span>
+    MaxBodyBytes <a href="../../../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// mirrors http.Server#MaxHeaderBytes</span>
+<span id="Config.MaxHeaderBytes"></span>    MaxHeaderBytes <a href="../../../../../../builtin/index.html#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultConfig">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/http_server.go?s=769:797#L28">DefaultConfig</a>
+					<a class="permalink" href="index.html#DefaultConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultConfig() *<a href="index.html#Config">Config</a></pre>
+				<p>DefaultConfig returns a default configuration.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=698:724#L16">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Option func(*<a href="index.html#RPCFunc">RPCFunc</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Cacheable">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=988:1035#L24">Cacheable</a>
+					<a class="permalink" href="index.html#Cacheable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Cacheable(noCacheDefArgs ...<a href="../../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				<p>Cacheable enables returning a cache control header from RPC functions to
+which it is applied.
+<p>`noCacheDefArgs` is a list of argument names that, if omitted or set to
+their defaults when calling the RPC function, will skip the response
+caching.
+
+				
+				
+			
+				
+				<h3 id="Ws">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=1255:1271#L35">Ws</a>
+					<a class="permalink" href="index.html#Ws">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Ws() <a href="index.html#Option">Option</a></pre>
+				<p>Ws enables WebSocket communication.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="RPCFunc">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=1390:1952#L42">RPCFunc</a>
+				<a class="permalink" href="index.html#RPCFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RPCFunc contains the introspected type information for a function
+
+			<pre>type RPCFunc struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRPCFunc">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=2066:2137#L54">NewRPCFunc</a>
+					<a class="permalink" href="index.html#NewRPCFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRPCFunc(f interface{}, args <a href="../../../../../../builtin/index.html#string">string</a>, options ...<a href="index.html#Option">Option</a>) *<a href="index.html#RPCFunc">RPCFunc</a></pre>
+				<p>NewRPCFunc wraps a function for introspection.
+f is the function, args are comma separated argument names
+
+				
+				
+			
+				
+				<h3 id="NewWSRPCFunc">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/rpc_func.go?s=2261:2334#L59">NewWSRPCFunc</a>
+					<a class="permalink" href="index.html#NewWSRPCFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWSRPCFunc(f interface{}, args <a href="../../../../../../builtin/index.html#string">string</a>, options ...<a href="index.html#Option">Option</a>) *<a href="index.html#RPCFunc">RPCFunc</a></pre>
+				<p>NewWSRPCFunc wraps a function for introspection and use in the websockets.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WebsocketManager">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=742:893#L22">WebsocketManager</a>
+				<a class="permalink" href="index.html#WebsocketManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WebsocketManager provides a WS handler for incoming connections and passes a
+map of functions along with any additional params to new connections.
+NOTE: The websocket path is defined externally, e.g. in node/node.go
+
+			<pre>type WebsocketManager struct {
+    <a href="../../../../../gorilla/websocket/index.html">websocket</a>.<a href="../../../../../gorilla/websocket/index.html#Upgrader">Upgrader</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWebsocketManager">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=1037:1151#L32">NewWebsocketManager</a>
+					<a class="permalink" href="index.html#NewWebsocketManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWebsocketManager(
+    funcMap map[<a href="../../../../../../builtin/index.html#string">string</a>]*<a href="index.html#RPCFunc">RPCFunc</a>,
+    wsConnOptions ...func(*wsConnection),
+) *<a href="index.html#WebsocketManager">WebsocketManager</a></pre>
+				<p>NewWebsocketManager returns a new WebsocketManager that passes a map of
+functions, connection options and logger to new WS connections.
+
+				
+				
+			
+
+			
+				
+				<h3 id="WebsocketManager.SetLogger">func (*WebsocketManager) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=1848:1899#L58">SetLogger</a>
+					<a class="permalink" href="index.html#WebsocketManager.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wm *<a href="index.html#WebsocketManager">WebsocketManager</a>) SetLogger(l <a href="../../../libs/log/index.html">log</a>.<a href="../../../libs/log/index.html#Logger">Logger</a>)</pre>
+				<p>SetLogger sets the logger.
+
+				
+				
+				
+			
+				
+				<h3 id="WebsocketManager.WebsocketHandler">func (*WebsocketManager) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/server/ws_handler.go?s=2020:2104#L64">WebsocketHandler</a>
+					<a class="permalink" href="index.html#WebsocketManager.WebsocketHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wm *<a href="index.html#WebsocketManager">WebsocketManager</a>) WebsocketHandler(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, r *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>WebsocketHandler upgrades the request/response (via http.Hijack) and starts
+the wsConnection.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>benchmark - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package benchmark
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/testing/benchmark"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package benchmark contains useful helpers
+for pregenerating filled data structures such as blocks/states for benchmarks.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#PreGenFullBlock">func PreGenFullBlock() (*ethpb.SignedBeaconBlock, error)</a></dd>
+			
+				
+				<dd><a href="index.html#PreGenState1Epoch">func PreGenState1Epoch() (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#PreGenstateFullEpochs">func PreGenstateFullEpochs() (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SetBenchmarkConfig">func SetBenchmarkConfig()</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/benchmark/pregen.go">pregen.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>AttestationsPerEpoch represents the requested amount attestations in an epoch.
+This affects the amount of attestations in a fully attested for block and the amount
+of attestations in the state per epoch, so a full 2 epochs should result in twice
+this amount of attestations in the state. Default is 128.
+
+				<pre>var <span id="AttestationsPerEpoch">AttestationsPerEpoch</span> = <a href="../../../../../builtin/index.html#uint64">uint64</a>(128)</pre>
+			
+				<p>BState1EpochFileName is the generated beacon state after 1 skipped epoch file name.
+
+				<pre>var <span id="BState1EpochFileName">BState1EpochFileName</span> = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Sprintf">Sprintf</a>(&#34;bState1Epoch-%dAtts-%dVals.ssz&#34;, <a href="index.html#AttestationsPerEpoch">AttestationsPerEpoch</a>, <a href="index.html#ValidatorCount">ValidatorCount</a>)</pre>
+			
+				<p>BstateEpochFileName is the generated beacon state after 2 full epochs file name.
+
+				<pre>var <span id="BstateEpochFileName">BstateEpochFileName</span> = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Sprintf">Sprintf</a>(&#34;bstateEpochs-%dAtts-%dVals.ssz&#34;, <a href="index.html#AttestationsPerEpoch">AttestationsPerEpoch</a>, <a href="index.html#ValidatorCount">ValidatorCount</a>)</pre>
+			
+				<p>FullBlockFileName is the generated full block file name.
+
+				<pre>var <span id="FullBlockFileName">FullBlockFileName</span> = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Sprintf">Sprintf</a>(&#34;fullBlock-%dAtts-%dVals.ssz&#34;, <a href="index.html#AttestationsPerEpoch">AttestationsPerEpoch</a>, <a href="index.html#ValidatorCount">ValidatorCount</a>)</pre>
+			
+				<p>GenesisFileName is the generated genesis beacon state file name.
+
+				<pre>var <span id="GenesisFileName">GenesisFileName</span> = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Sprintf">Sprintf</a>(&#34;bStateGenesis-%dAtts-%dVals.ssz&#34;, <a href="index.html#AttestationsPerEpoch">AttestationsPerEpoch</a>, <a href="index.html#ValidatorCount">ValidatorCount</a>)</pre>
+			
+				<p>ValidatorCount is for declaring how many validators the benchmarks will be
+performed with. Default is 16384 or 524K ETH staked.
+
+				<pre>var <span id="ValidatorCount">ValidatorCount</span> = <a href="../../../../../builtin/index.html#uint64">uint64</a>(16384)</pre>
+			
+		
+		
+			
+			
+			<h2 id="PreGenFullBlock">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/benchmark/pregen.go?s=3013:3069#L67">PreGenFullBlock</a>
+				<a class="permalink" href="index.html#PreGenFullBlock">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PreGenFullBlock() (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>PreGenFullBlock unmarshals the pre-generated signed beacon block containing an epochs worth of attestations and returns it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PreGenState1Epoch">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/benchmark/pregen.go?s=1929:1980#L33">PreGenState1Epoch</a>
+				<a class="permalink" href="index.html#PreGenState1Epoch">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PreGenState1Epoch() (<a href="../../beacon-chain/state/index.html">state</a>.<a href="../../beacon-chain/state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>PreGenState1Epoch unmarshals the pre-generated beacon state after 1 epoch of block processing and returns it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PreGenstateFullEpochs">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/benchmark/pregen.go?s=2467:2522#L50">PreGenstateFullEpochs</a>
+				<a class="permalink" href="index.html#PreGenstateFullEpochs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PreGenstateFullEpochs() (<a href="../../beacon-chain/state/index.html">state</a>.<a href="../../beacon-chain/state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>PreGenstateFullEpochs unmarshals the pre-generated beacon state after 2 epoch of full block processing and returns it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetBenchmarkConfig">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/testing/benchmark/pregen.go?s=3542:3567#L85">SetBenchmarkConfig</a>
+				<a class="permalink" href="index.html#SetBenchmarkConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetBenchmarkConfig()</pre>
+			<p>SetBenchmarkConfig changes the beacon config to match the requested amount of
+attestations set to AttestationsPerEpoch.
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

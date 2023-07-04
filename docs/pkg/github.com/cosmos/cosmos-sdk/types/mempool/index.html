@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>mempool - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package mempool
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/types/mempool"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#IsEmpty">func IsEmpty(mempool Mempool) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Mempool">type Mempool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultPriorityMempool">func DefaultPriorityMempool() Mempool</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#NoOpMempool">type NoOpMempool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NoOpMempool.CountTx">func (NoOpMempool) CountTx() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NoOpMempool.Insert">func (NoOpMempool) Insert(context.Context, sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NoOpMempool.Remove">func (NoOpMempool) Remove(sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NoOpMempool.Select">func (NoOpMempool) Select(context.Context, [][]byte) Iterator</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PriorityNonceIterator">type PriorityNonceIterator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceIterator.Next">func (i *PriorityNonceIterator) Next() Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceIterator.Tx">func (i *PriorityNonceIterator) Tx() sdk.Tx</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PriorityNonceMempool">type PriorityNonceMempool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPriorityMempool">func NewPriorityMempool(opts ...PriorityNonceMempoolOption) *PriorityNonceMempool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceMempool.CountTx">func (mp *PriorityNonceMempool) CountTx() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceMempool.Insert">func (mp *PriorityNonceMempool) Insert(ctx context.Context, tx sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceMempool.NextSenderTx">func (mp *PriorityNonceMempool) NextSenderTx(sender string) sdk.Tx</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceMempool.Remove">func (mp *PriorityNonceMempool) Remove(tx sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceMempool.Select">func (mp *PriorityNonceMempool) Select(_ context.Context, _ [][]byte) Iterator</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PriorityNonceMempoolOption">type PriorityNonceMempoolOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceWithMaxTx">func PriorityNonceWithMaxTx(maxTx int) PriorityNonceMempoolOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceWithOnRead">func PriorityNonceWithOnRead(onRead func(tx sdk.Tx)) PriorityNonceMempoolOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PriorityNonceWithTxReplacement">func PriorityNonceWithTxReplacement(txReplacementRule func(op, np int64, oTx, nTx sdk.Tx) bool) PriorityNonceMempoolOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SenderNonceMempool">type SenderNonceMempool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSenderNonceMempool">func NewSenderNonceMempool(opts ...SenderNonceOptions) *SenderNonceMempool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMempool.CountTx">func (snm *SenderNonceMempool) CountTx() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMempool.Insert">func (snm *SenderNonceMempool) Insert(_ context.Context, tx sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMempool.NextSenderTx">func (mp *SenderNonceMempool) NextSenderTx(sender string) sdk.Tx</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMempool.Remove">func (snm *SenderNonceMempool) Remove(tx sdk.Tx) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMempool.Select">func (snm *SenderNonceMempool) Select(_ context.Context, _ [][]byte) Iterator</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SenderNonceOptions">type SenderNonceOptions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceMaxTxOpt">func SenderNonceMaxTxOpt(maxTx int) SenderNonceOptions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SenderNonceSeedOpt">func SenderNonceSeedOpt(seed int64) SenderNonceOptions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/mempool.go">mempool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go">noop.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go">priority_nonce.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go">sender_nonce.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrTxNotFound">ErrTxNotFound</span>           = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;tx not found in mempool&#34;)
+    <span id="ErrMempoolTxMaxCapacity">ErrMempoolTxMaxCapacity</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;pool reached max tx capacity&#34;)
+)</pre>
+			
+				
+				<pre>var <span id="DefaultMaxTx">DefaultMaxTx</span> = 0</pre>
+			
+		
+		
+			
+			
+			<h2 id="IsEmpty">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=12338:12373#L409">IsEmpty</a>
+				<a class="permalink" href="index.html#IsEmpty">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEmpty(mempool <a href="index.html#Mempool">Mempool</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/mempool.go?s=865:1102#L20">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator defines an app-side mempool iterator interface that is as minimal as possible.  The order of iteration
+is determined by the app-side mempool implementation.
+
+			<pre>type Iterator interface {
+    <span class="comment">// Next returns the next transaction from the mempool. If there are no more transactions, it returns nil.</span>
+    Next() <a href="index.html#Iterator">Iterator</a>
+
+    <span class="comment">// Tx returns the transaction at the current position of the iterator.</span>
+    Tx() <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Mempool">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/mempool.go?s=93:691#L1">Mempool</a>
+				<a class="permalink" href="index.html#Mempool">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Mempool interface {
+    <span class="comment">// Insert attempts to insert a Tx into the app-side mempool returning</span>
+    <span class="comment">// an error upon failure.</span>
+    Insert(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Select returns an Iterator over the app-side mempool. If txs are specified,</span>
+    <span class="comment">// then they shall be incorporated into the Iterator. The Iterator must</span>
+    <span class="comment">// closed by the caller.</span>
+    Select(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a>
+
+    <span class="comment">// CountTx returns the number of transactions currently in the mempool.</span>
+    CountTx() <a href="../../../../../builtin/index.html#int">int</a>
+
+    <span class="comment">// Remove attempts to remove a transaction from the mempool, returning an error</span>
+    <span class="comment">// upon failure.</span>
+    Remove(<a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultPriorityMempool">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=3915:3952#L111">DefaultPriorityMempool</a>
+					<a class="permalink" href="index.html#DefaultPriorityMempool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultPriorityMempool() <a href="index.html#Mempool">Mempool</a></pre>
+				<p>DefaultPriorityMempool returns a priorityNonceMempool with no options.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="NoOpMempool">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go?s=448:473#L7">NoOpMempool</a>
+				<a class="permalink" href="index.html#NoOpMempool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NoOpMempool defines a no-op mempool. Transactions are completely discarded and
+ignored when BaseApp interacts with the mempool.
+<p>Note: When this mempool is used, it assumed that an application will rely
+on Tendermint&apos;s transaction ordering defined in `RequestPrepareProposal`, which
+is FIFO-ordered by default.
+
+			<pre>type NoOpMempool struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NoOpMempool.CountTx">func (NoOpMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go?s=629:661#L11">CountTx</a>
+					<a class="permalink" href="index.html#NoOpMempool.CountTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NoOpMempool">NoOpMempool</a>) CountTx() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NoOpMempool.Insert">func (NoOpMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go?s=475:531#L9">Insert</a>
+					<a class="permalink" href="index.html#NoOpMempool.Insert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NoOpMempool">NoOpMempool</a>) Insert(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NoOpMempool.Remove">func (NoOpMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go?s=704:743#L12">Remove</a>
+					<a class="permalink" href="index.html#NoOpMempool.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NoOpMempool">NoOpMempool</a>) Remove(<a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NoOpMempool.Select">func (NoOpMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/noop.go?s=552:613#L10">Select</a>
+					<a class="permalink" href="index.html#NoOpMempool.Select">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#NoOpMempool">NoOpMempool</a>) Select(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PriorityNonceIterator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=1040:1234#L26">PriorityNonceIterator</a>
+				<a class="permalink" href="index.html#PriorityNonceIterator">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PriorityNonceIterator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PriorityNonceIterator.Next">func (*PriorityNonceIterator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=8045:8092#L251">Next</a>
+					<a class="permalink" href="index.html#PriorityNonceIterator.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#PriorityNonceIterator">PriorityNonceIterator</a>) Next() <a href="index.html#Iterator">Iterator</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="PriorityNonceIterator.Tx">func (*PriorityNonceIterator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=9033:9076#L289">Tx</a>
+					<a class="permalink" href="index.html#PriorityNonceIterator.Tx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#PriorityNonceIterator">PriorityNonceIterator</a>) Tx() <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PriorityNonceMempool">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=748:1038#L16">PriorityNonceMempool</a>
+				<a class="permalink" href="index.html#PriorityNonceMempool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PriorityNonceMempool is a mempool implementation that stores txs
+in a partially ordered set by 2 dimensions: priority, and sender-nonce
+(sequence number). Internally it uses one priority ordered skip list and one
+skip list per sender ordered by sender-nonce (sequence number). When there
+are multiple txs from the same sender, they are not always comparable by
+priority to other sender txs and must be partially ordered by both sender-nonce
+and priority.
+
+			<pre>type PriorityNonceMempool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPriorityMempool">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=4143:4224#L117">NewPriorityMempool</a>
+					<a class="permalink" href="index.html#NewPriorityMempool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPriorityMempool(opts ...<a href="index.html#PriorityNonceMempoolOption">PriorityNonceMempoolOption</a>) *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a></pre>
+				<p>NewPriorityMempool returns the SDK&apos;s default mempool implementation which
+returns txs in a partial order by 2 dimensions; priority, and sender-nonce.
+
+				
+				
+			
+
+			
+				
+				<h3 id="PriorityNonceMempool.CountTx">func (*PriorityNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=11355:11400#L370">CountTx</a>
+					<a class="permalink" href="index.html#PriorityNonceMempool.CountTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>) CountTx() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>CountTx returns the number of transactions in the mempool.
+
+				
+				
+				
+			
+				
+				<h3 id="PriorityNonceMempool.Insert">func (*PriorityNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=5332:5408#L154">Insert</a>
+					<a class="permalink" href="index.html#PriorityNonceMempool.Insert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>) Insert(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Insert attempts to insert a Tx into the app-side mempool in O(log n) time,
+returning an error if unsuccessful. Sender and nonce are derived from the
+transaction&apos;s first signature.
+<p>Transactions are unique by sender and nonce. Inserting a duplicate tx is an
+O(log n) no-op.
+<p>Inserting a duplicate tx with a different priority overwrites the existing tx,
+changing the total order of the mempool.
+
+				
+				
+				
+			
+				
+				<h3 id="PriorityNonceMempool.NextSenderTx">func (*PriorityNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=4708:4774#L135">NextSenderTx</a>
+					<a class="permalink" href="index.html#PriorityNonceMempool.NextSenderTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>) NextSenderTx(sender <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a></pre>
+				<p>NextSenderTx returns the next transaction for a given sender by nonce order,
+i.e. the next valid transaction for the sender. If no such transaction exists,
+nil will be returned.
+
+				
+				
+				
+			
+				
+				<h3 id="PriorityNonceMempool.Remove">func (*PriorityNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=11543:11598#L376">Remove</a>
+					<a class="permalink" href="index.html#PriorityNonceMempool.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>) Remove(tx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Remove removes a transaction from the mempool in O(log n) time, returning an
+error if unsuccessful.
+
+				
+				
+				
+			
+				
+				<h3 id="PriorityNonceMempool.Select">func (*PriorityNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=9556:9634#L302">Select</a>
+					<a class="permalink" href="index.html#PriorityNonceMempool.Select">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>) Select(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, _ [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a></pre>
+				<p>Select returns a set of transactions from the mempool, ordered by priority
+and sender-nonce in O(n) time. The passed in list of transactions are ignored.
+This is a readonly operation, the mempool is not modified.
+<p>The maxBytes parameter defines the maximum number of bytes of transactions to
+return.
+<p>NOTE: It is not safe to use this iterator while removing transactions from
+the underlying mempool.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PriorityNonceMempoolOption">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=2732:2791#L79">PriorityNonceMempoolOption</a>
+				<a class="permalink" href="index.html#PriorityNonceMempoolOption">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PriorityNonceMempoolOption func(*<a href="index.html#PriorityNonceMempool">PriorityNonceMempool</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PriorityNonceWithMaxTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=3707:3772#L104">PriorityNonceWithMaxTx</a>
+					<a class="permalink" href="index.html#PriorityNonceWithMaxTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PriorityNonceWithMaxTx(maxTx <a href="../../../../../builtin/index.html#int">int</a>) <a href="index.html#PriorityNonceMempoolOption">PriorityNonceMempoolOption</a></pre>
+				<p>PriorityNonceWithMaxTx sets the maximum number of transactions allowed in the
+mempool with the semantics:
+<p>&lt;0: disabled, `Insert` is a no-op
+0: unlimited
+&gt;0: maximum number of transactions allowed
+
+				
+				
+			
+				
+				<h3 id="PriorityNonceWithOnRead">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=2888:2967#L83">PriorityNonceWithOnRead</a>
+					<a class="permalink" href="index.html#PriorityNonceWithOnRead">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PriorityNonceWithOnRead(onRead func(tx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>)) <a href="index.html#PriorityNonceMempoolOption">PriorityNonceMempoolOption</a></pre>
+				<p>PriorityNonceWithOnRead sets a callback to be called when a tx is read from
+the mempool.
+
+				
+				
+			
+				
+				<h3 id="PriorityNonceWithTxReplacement">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/priority_nonce.go?s=3282:3404#L92">PriorityNonceWithTxReplacement</a>
+					<a class="permalink" href="index.html#PriorityNonceWithTxReplacement">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PriorityNonceWithTxReplacement(txReplacementRule func(op, np <a href="../../../../../builtin/index.html#int64">int64</a>, oTx, nTx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#PriorityNonceMempoolOption">PriorityNonceMempoolOption</a></pre>
+				<p>PriorityNonceWithTxReplacement sets a callback to be called when duplicated
+transaction nonce detected during mempool insert. An application can define a
+transaction replacement rule based on tx priority or certain transaction fields.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SenderNonceMempool">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=1005:1147#L23">SenderNonceMempool</a>
+				<a class="permalink" href="index.html#SenderNonceMempool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SenderNonceMempool is a mempool that prioritizes transactions within a sender
+by nonce, the lowest first, but selects a random sender on each iteration.
+The mempool is iterated by:
+<p>1) Maintaining a separate list of nonce ordered txs per sender
+2) For each select iteration, randomly choose a sender and pick the next nonce ordered tx from their list
+3) Repeat 1,2 until the mempool is exhausted
+<p>Note that PrepareProposal could choose to stop iteration before reaching the
+end if maxBytes is reached.
+
+			<pre>type SenderNonceMempool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSenderNonceMempool">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=1409:1483#L39">NewSenderNonceMempool</a>
+					<a class="permalink" href="index.html#NewSenderNonceMempool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSenderNonceMempool(opts ...<a href="index.html#SenderNonceOptions">SenderNonceOptions</a>) *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a></pre>
+				<p>NewSenderNonceMempool creates a new mempool that prioritizes transactions by
+nonce, the lowest first, picking a random sender on each iteration.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SenderNonceMempool.CountTx">func (*SenderNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=4822:4866#L176">CountTx</a>
+					<a class="permalink" href="index.html#SenderNonceMempool.CountTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (snm *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>) CountTx() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>CountTx returns the total count of txs in the mempool.
+
+				
+				
+				
+			
+				
+				<h3 id="SenderNonceMempool.Insert">func (*SenderNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=3199:3272#L108">Insert</a>
+					<a class="permalink" href="index.html#SenderNonceMempool.Insert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (snm *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>) Insert(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, tx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Insert adds a tx to the mempool. It returns an error if the tx does not have
+at least one signer. Note, priority is ignored.
+
+				
+				
+				
+			
+				
+				<h3 id="SenderNonceMempool.NextSenderTx">func (*SenderNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=2871:2935#L96">NextSenderTx</a>
+					<a class="permalink" href="index.html#SenderNonceMempool.NextSenderTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (mp *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>) NextSenderTx(sender <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a></pre>
+				<p>NextSenderTx returns the next transaction for a given sender by nonce order,
+i.e. the next valid transaction for the sender. If no such transaction exists,
+nil will be returned.
+
+				
+				
+				
+			
+				
+				<h3 id="SenderNonceMempool.Remove">func (*SenderNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=5045:5099#L182">Remove</a>
+					<a class="permalink" href="index.html#SenderNonceMempool.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (snm *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>) Remove(tx <a href="../index.html">sdk</a>.<a href="../index.html#Tx">Tx</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Remove removes a tx from the mempool. It returns an error if the tx does not
+have at least one signer or the tx was not found in the pool.
+
+				
+				
+				
+			
+				
+				<h3 id="SenderNonceMempool.Select">func (*SenderNonceMempool) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=4154:4231#L147">Select</a>
+					<a class="permalink" href="index.html#SenderNonceMempool.Select">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (snm *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>) Select(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, _ [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a></pre>
+				<p>Select returns an iterator ordering transactions the mempool with the lowest
+nonce of a random selected sender first.
+<p>NOTE: It is not safe to use this iterator while removing transactions from
+the underlying mempool.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SenderNonceOptions">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=1149:1201#L30">SenderNonceOptions</a>
+				<a class="permalink" href="index.html#SenderNonceOptions">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SenderNonceOptions func(mp *<a href="index.html#SenderNonceMempool">SenderNonceMempool</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SenderNonceMaxTxOpt">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=2393:2447#L82">SenderNonceMaxTxOpt</a>
+					<a class="permalink" href="index.html#SenderNonceMaxTxOpt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SenderNonceMaxTxOpt(maxTx <a href="../../../../../builtin/index.html#int">int</a>) <a href="index.html#SenderNonceOptions">SenderNonceOptions</a></pre>
+				<p>SenderNonceMaxTxOpt Option To set limit of max tx when calling the constructor
+NewSenderNonceMempool.
+<p>Example:
+<pre>NewSenderNonceMempool(SenderNonceMaxTxOpt(100))
+</pre>
+
+				
+				
+			
+				
+				<h3 id="SenderNonceSeedOpt">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/mempool/sender_nonce.go?s=2093:2147#L70">SenderNonceSeedOpt</a>
+					<a class="permalink" href="index.html#SenderNonceSeedOpt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SenderNonceSeedOpt(seed <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="index.html#SenderNonceOptions">SenderNonceOptions</a></pre>
+				<p>SenderNonceSeedOpt Option To add a Seed for random type when calling the
+constructor NewSenderNonceMempool.
+<p>Example:
+<pre>random_seed := int64(1000)
+NewSenderNonceMempool(SenderNonceSeedTxOpt(random_seed))
+</pre>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

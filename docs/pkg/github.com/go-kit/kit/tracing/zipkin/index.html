@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>zipkin - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package zipkin
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/tracing/zipkin"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package zipkin provides Go kit integration to the OpenZipkin project through
+the use of zipkin-go, the official OpenZipkin tracer implementation for Go.
+OpenZipkin is the most used open source distributed tracing ecosystem with
+many different libraries and interoperability options.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#GRPCClientTrace">func GRPCClientTrace(tracer *zipkin.Tracer, options ...TracerOption) kitgrpc.ClientOption</a></dd>
+			
+				
+				<dd><a href="index.html#GRPCServerTrace">func GRPCServerTrace(tracer *zipkin.Tracer, options ...TracerOption) kitgrpc.ServerOption</a></dd>
+			
+				
+				<dd><a href="index.html#HTTPClientTrace">func HTTPClientTrace(tracer *zipkin.Tracer, options ...TracerOption) kithttp.ClientOption</a></dd>
+			
+				
+				<dd><a href="index.html#HTTPServerTrace">func HTTPServerTrace(tracer *zipkin.Tracer, options ...TracerOption) kithttp.ServerOption</a></dd>
+			
+				
+				<dd><a href="index.html#TraceEndpoint">func TraceEndpoint(tracer *zipkin.Tracer, name string) endpoint.Middleware</a></dd>
+			
+			
+				
+				<dd><a href="index.html#TracerOption">type TracerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AllowPropagation">func AllowPropagation(propagate bool) TracerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger">func Logger(logger log.Logger) TracerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Name">func Name(name string) TracerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestSampler">func RequestSampler(sampleFunc func(r *http.Request) bool) TracerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tags">func Tags(tags map[string]string) TracerOption</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/endpoint.go">endpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/grpc.go">grpc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/http.go">http.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go">options.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GRPCClientTrace">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/grpc.go?s=1048:1137#L19">GRPCClientTrace</a>
+				<a class="permalink" href="index.html#GRPCClientTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GRPCClientTrace(tracer *<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/">zipkin</a>.<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/#Tracer">Tracer</a>, options ...<a href="index.html#TracerOption">TracerOption</a>) <a href="../../transport/grpc/index.html">kitgrpc</a>.<a href="../../transport/grpc/index.html#ClientOption">ClientOption</a></pre>
+			<p>GRPCClientTrace enables native Zipkin tracing of a Go kit gRPC transport
+Client.
+<p>Go kit creates gRPC transport clients per remote endpoint. This middleware
+can be set-up individually by adding the endpoint name for each of the Go kit
+transport clients using the Name() TracerOption.
+If wanting to use the gRPC FullMethod (/service/method) as Span name you can
+create a global client tracer omitting the Name() TracerOption, which you can
+then feed to each Go kit gRPC transport client.
+If instrumenting a client to an external (not on your platform) service, you
+will probably want to disallow propagation of SpanContext using the
+AllowPropagation TracerOption and setting it to false.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GRPCServerTrace">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/grpc.go?s=3648:3737#L113">GRPCServerTrace</a>
+				<a class="permalink" href="index.html#GRPCServerTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GRPCServerTrace(tracer *<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/">zipkin</a>.<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/#Tracer">Tracer</a>, options ...<a href="index.html#TracerOption">TracerOption</a>) <a href="../../transport/grpc/index.html">kitgrpc</a>.<a href="../../transport/grpc/index.html#ServerOption">ServerOption</a></pre>
+			<p>GRPCServerTrace enables native Zipkin tracing of a Go kit gRPC transport
+Server.
+<p>Go kit creates gRPC transport servers per gRPC method. This middleware can be
+set-up individually by adding the method name for each of the Go kit method
+servers using the Name() TracerOption.
+If wanting to use the gRPC FullMethod (/service/method) as Span name you can
+create a global server tracer omitting the Name() TracerOption, which you can
+then feed to each Go kit method server. For this to work you will need to
+wire the Go kit gRPC Interceptor too.
+If instrumenting a service to external (not on your platform) clients, you
+will probably want to disallow propagation of a client SpanContext using
+the AllowPropagation TracerOption and setting it to false.
+
+			
+			
+
+		
+			
+			
+			<h2 id="HTTPClientTrace">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/http.go?s=988:1077#L18">HTTPClientTrace</a>
+				<a class="permalink" href="index.html#HTTPClientTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HTTPClientTrace(tracer *<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/">zipkin</a>.<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/#Tracer">Tracer</a>, options ...<a href="index.html#TracerOption">TracerOption</a>) <a href="../../transport/http/index.html">kithttp</a>.<a href="../../transport/http/index.html#ClientOption">ClientOption</a></pre>
+			<p>HTTPClientTrace enables native Zipkin tracing of a Go kit HTTP transport
+Client.
+<p>Go kit creates HTTP transport clients per remote endpoint. This middleware
+can be set-up individually by adding the endpoint name for each of the Go kit
+transport clients using the Name() TracerOption.
+If wanting to use the HTTP Method (Get, Post, Put, etc.) as Span name you can
+create a global client tracer omitting the Name() TracerOption, which you can
+then feed to each Go kit transport client.
+If instrumenting a client to an external (not on your platform) service, you
+will probably want to disallow propagation of SpanContext using the
+AllowPropagation TracerOption and setting it to false.
+
+			
+			
+
+		
+			
+			
+			<h2 id="HTTPServerTrace">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/http.go?s=3876:3965#L122">HTTPServerTrace</a>
+				<a class="permalink" href="index.html#HTTPServerTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HTTPServerTrace(tracer *<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/">zipkin</a>.<a href="http://localhost:6060/pkg/github.com/openzipkin/zipkin-go/#Tracer">Tracer</a>, options ...<a href="index.html#TracerOption">TracerOption</a>) <a href="../../transport/http/index.html">kithttp</a>.<a href="../../transport/http/index.html#ServerOption">ServerOption</a></pre>
+			<p>HTTPServerTrace enables native Zipkin tracing of a Go kit HTTP transport
+Server.
+<p>Go kit creates HTTP transport servers per HTTP endpoint. This middleware can
+be set-up individually by adding the method name for each of the Go kit
+method servers using the Name() TracerOption.
+If wanting to use the HTTP method (Get, Post, Put, etc.) as Span name you can
+create a global server tracer omitting the Name() TracerOption, which you can
+then feed to each Go kit method server.
+<p>If instrumenting a service to external (not on your platform) clients, you
+will probably want to disallow propagation of a client SpanContext using
+the AllowPropagation TracerOption and setting it to false.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TraceEndpoint">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/endpoint.go?s=443:517#L6">TraceEndpoint</a>
+				<a class="permalink" href="index.html#TraceEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TraceEndpoint(tracer *zipkin.<a href="index.html#Tracer">Tracer</a>, name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Middleware">Middleware</a></pre>
+			<p>TraceEndpoint returns an Endpoint middleware, tracing a Go kit endpoint.
+This endpoint tracer should be used in combination with a Go kit Transport
+tracing middleware or custom before and after transport functions as
+propagation of SpanContext is not provided in this middleware.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="TracerOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=146:186#L1">TracerOption</a>
+				<a class="permalink" href="index.html#TracerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TracerOption allows for functional options to our Zipkin tracing middleware.
+
+			<pre>type TracerOption func(o *tracerOptions)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="AllowPropagation">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=1427:1477#L37">AllowPropagation</a>
+					<a class="permalink" href="index.html#AllowPropagation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AllowPropagation(propagate <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#TracerOption">TracerOption</a></pre>
+				<p>AllowPropagation instructs the tracer to allow or deny propagation of the
+span context between this instrumented client or service and its peers. If
+the instrumented client connects to services outside its own platform or if
+the instrumented service receives requests from untrusted clients it is
+strongly advised to disallow propagation. Propagation between services inside
+your own platform benefit from propagation. Default for both TraceClient and
+TraceServer is to allow propagation.
+
+				
+				
+			
+				
+				<h3 id="Logger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=786:829#L22">Logger</a>
+					<a class="permalink" href="index.html#Logger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Logger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#TracerOption">TracerOption</a></pre>
+				<p>Logger adds a Go kit logger to our Zipkin Middleware to log SpanContext
+extract / inject errors if they occur. Default is Noop.
+
+				
+				
+			
+				
+				<h3 id="Name">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=366:401#L5">Name</a>
+					<a class="permalink" href="index.html#Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Name(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#TracerOption">TracerOption</a></pre>
+				<p>Name sets the name for an instrumented transport endpoint. If name is omitted
+at tracing middleware creation, the method of the transport or transport rpc
+name is used.
+
+				
+				
+			
+				
+				<h3 id="RequestSampler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=1654:1725#L45">RequestSampler</a>
+					<a class="permalink" href="index.html#RequestSampler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RequestSampler(sampleFunc func(r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#TracerOption">TracerOption</a></pre>
+				<p>RequestSampler allows one to set the sampling decision based on the details
+found in the http.Request.
+
+				
+				
+			
+				
+				<h3 id="Tags">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/zipkin/options.go?s=516:562#L12">Tags</a>
+					<a class="permalink" href="index.html#Tags">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Tags(tags map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#TracerOption">TracerOption</a></pre>
+				<p>Tags adds default tags to our Zipkin transport spans.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

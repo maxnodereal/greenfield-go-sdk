@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>slasher - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package slasher
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/slasher"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package slasher defines an optimized implementation of Ethereum proof-of-stake slashing
+detection, namely focused on catching &quot;surround vote&quot; slashable
+offenses as explained here: <a href="https://blog.ethereum.org/2020/01/13/validated-staking-on-eth2-1-incentives/">https://blog.ethereum.org/2020/01/13/validated-staking-on-eth2-1-incentives/</a>.
+<p>Surround vote detection is a difficult problem if done naively, as slasher
+needs to keep track of every single attestation by every single validator
+in the network and be ready to efficiently detect whether incoming attestations
+are slashable with respect to older ones. To do this, the Sigma Prime team
+created an elaborate design document: <a href="https://hackmd.io/@sproul/min-max-slasher">https://hackmd.io/@sproul/min-max-slasher</a>
+offering an optimal solution.
+<p>Attesting histories are kept for each validator in two separate arrays known
+as min and max spans, which are explained in our design document:
+<a href="https://hackmd.io/@prysmaticlabs/slasher">https://hackmd.io/@prysmaticlabs/slasher</a>.
+<p>A regular pair of min and max spans for a validator look as follows
+with length = H where H is the amount of epochs worth of history
+we want to persist for slashing detection.
+<pre>validator_1_min_span = [2, 2, 2, ..., 2]
+validator_1_max_span = [0, 0, 0, ..., 0]
+</pre>
+<p>Instead of always dealing with length H arrays, which can be prohibitively
+expensive to handle in memory, we split these arrays into chunks of length C.
+For C = 3, for example, the 0th chunk of validator 1&apos;s min and max spans would look
+as follows:
+<pre>validator_1_min_span_chunk_0 = [2, 2, 2]
+validator_1_max_span_chunk_0 = [2, 2, 2]
+</pre>
+<p>Next, on disk, we take chunks for K validators, and store them as flat slices.
+For example, if H = 3, C = 3, and K = 3, then we can store 3 validators&apos; chunks as a flat
+slice as follows:
+<pre>   val0     val1     val2
+    |        |        |
+ {     }  {     }  {     }
+[2, 2, 2, 2, 2, 2, 2, 2, 2]
+</pre>
+<p>This is known as 2D chunking, pioneered by the Sigma Prime team here:
+<a href="https://hackmd.io/@sproul/min-max-slasher">https://hackmd.io/@sproul/min-max-slasher</a>. The parameters H, C, and K will be
+used extensively throughout this package.
+<p>Package slasher implements slashing detection for eth2, able to catch slashable attestations
+and proposals that it receives via two event feeds, respectively. Any found slashings
+are then submitted to the beacon node&apos;s slashing operations pool. See the design document
+here <a href="https://hackmd.io/@prysmaticlabs/slasher">https://hackmd.io/@prysmaticlabs/slasher</a>.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Chunker">type Chunker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MaxSpanChunksSlice">type MaxSpanChunksSlice</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyMaxSpanChunksSlice">func EmptyMaxSpanChunksSlice(params *Parameters) *MaxSpanChunksSlice</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxChunkSpansSliceFrom">func MaxChunkSpansSliceFrom(params *Parameters, chunk []uint16) (*MaxSpanChunksSlice, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.CheckSlashable">func (m *MaxSpanChunksSlice) CheckSlashable(ctx context.Context, slasherDB db.SlasherDatabase, validatorIdx types.ValidatorIndex, attestation *slashertypes.IndexedAttestationWrapper) (*ethpb.AttesterSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.Chunk">func (m *MaxSpanChunksSlice) Chunk() []uint16</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.NeutralElement">func (_ *MaxSpanChunksSlice) NeutralElement() uint16</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.NextChunkStartEpoch">func (m *MaxSpanChunksSlice) NextChunkStartEpoch(startEpoch types.Epoch) types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.StartEpoch">func (_ *MaxSpanChunksSlice) StartEpoch(sourceEpoch, currentEpoch types.Epoch) (epoch types.Epoch, exists bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MaxSpanChunksSlice.Update">func (m *MaxSpanChunksSlice) Update(args *chunkUpdateArgs, validatorIndex types.ValidatorIndex, startEpoch, newTargetEpoch types.Epoch) (keepGoing bool, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MinSpanChunksSlice">type MinSpanChunksSlice</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyMinSpanChunksSlice">func EmptyMinSpanChunksSlice(params *Parameters) *MinSpanChunksSlice</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinChunkSpansSliceFrom">func MinChunkSpansSliceFrom(params *Parameters, chunk []uint16) (*MinSpanChunksSlice, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.CheckSlashable">func (m *MinSpanChunksSlice) CheckSlashable(ctx context.Context, slasherDB db.SlasherDatabase, validatorIdx types.ValidatorIndex, attestation *slashertypes.IndexedAttestationWrapper) (*ethpb.AttesterSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.Chunk">func (m *MinSpanChunksSlice) Chunk() []uint16</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.NeutralElement">func (_ *MinSpanChunksSlice) NeutralElement() uint16</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.NextChunkStartEpoch">func (m *MinSpanChunksSlice) NextChunkStartEpoch(startEpoch types.Epoch) types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.StartEpoch">func (m *MinSpanChunksSlice) StartEpoch(sourceEpoch, currentEpoch types.Epoch) (epoch types.Epoch, exists bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MinSpanChunksSlice.Update">func (m *MinSpanChunksSlice) Update(args *chunkUpdateArgs, validatorIndex types.ValidatorIndex, startEpoch, newTargetEpoch types.Epoch) (keepGoing bool, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MockSlashingChecker">type MockSlashingChecker</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockSlashingChecker.HighestAttestations">func (s *MockSlashingChecker) HighestAttestations(_ context.Context, indices []types.ValidatorIndex) ([]*ethpb.HighestAttestation, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockSlashingChecker.IsSlashableAttestation">func (s *MockSlashingChecker) IsSlashableAttestation(_ context.Context, _ *ethpb.IndexedAttestation) ([]*ethpb.AttesterSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockSlashingChecker.IsSlashableBlock">func (s *MockSlashingChecker) IsSlashableBlock(_ context.Context, _ *ethpb.SignedBeaconBlockHeader) (*ethpb.ProposerSlashing, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Parameters">type Parameters</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultParams">func DefaultParams() *Parameters</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(ctx context.Context, srvCfg *ServiceConfig) (*Service, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.HighestAttestations">func (s *Service) HighestAttestations(ctx context.Context, validatorIndices []types.ValidatorIndex) ([]*ethpb.HighestAttestation, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.IsSlashableAttestation">func (s *Service) IsSlashableAttestation(ctx context.Context, attestation *ethpb.IndexedAttestation) ([]*ethpb.AttesterSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.IsSlashableBlock">func (s *Service) IsSlashableBlock(ctx context.Context, block *ethpb.SignedBeaconBlockHeader) (*ethpb.ProposerSlashing, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Start">func (s *Service) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Status">func (_ *Service) Status() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Stop">func (s *Service) Stop() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServiceConfig">type ServiceConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SlashingChecker">type SlashingChecker</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go">chunks.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/detect_attestations.go">detect_attestations.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/detect_blocks.go">detect_blocks.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/helpers.go">helpers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/mock_slashing_checker.go">mock_slashing_checker.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/params.go">params.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/process_slashings.go">process_slashings.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/queue.go">queue.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/receive.go">receive.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/rpc.go">rpc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go">service.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Chunker">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=1008:1566#L19">Chunker</a>
+				<a class="permalink" href="index.html#Chunker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Chunker defines a struct which represents a slice containing a chunk for K different validator&apos;s
+min spans used for surround vote detection in slasher. The interface defines methods used to check
+if an attestation is slashable for a validator index based on the contents of
+the chunk as well as the ability to update the data in the chunk with incoming information.
+
+			<pre>type Chunker interface {
+    NeutralElement() <a href="../../../../../builtin/index.html#uint16">uint16</a>
+    Chunk() []<a href="../../../../../builtin/index.html#uint16">uint16</a>
+    CheckSlashable(
+        ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+        slasherDB <a href="../db/index.html">db</a>.<a href="../db/index.html#SlasherDatabase">SlasherDatabase</a>,
+        validatorIdx <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+        attestation *<a href="types/index.html">slashertypes</a>.<a href="types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>,
+    ) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    Update(
+        args *chunkUpdateArgs,
+        validatorIndex <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+        startEpoch,
+        newTargetEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>,
+    ) (keepGoing <a href="../../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+    StartEpoch(sourceEpoch, currentEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) (epoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>, exists <a href="../../../../../builtin/index.html#bool">bool</a>)
+    NextChunkStartEpoch(startEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MaxSpanChunksSlice">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=3469:3540#L81">MaxSpanChunksSlice</a>
+				<a class="permalink" href="index.html#MaxSpanChunksSlice">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MaxSpanChunksSlice represents the same data structure as MinSpanChunksSlice however
+keeps track of validator max spans for slashing detection instead.
+
+			<pre>type MaxSpanChunksSlice struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="EmptyMaxSpanChunksSlice">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=4245:4313#L104">EmptyMaxSpanChunksSlice</a>
+					<a class="permalink" href="index.html#EmptyMaxSpanChunksSlice">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EmptyMaxSpanChunksSlice(params *<a href="index.html#Parameters">Parameters</a>) *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a></pre>
+				<p>EmptyMaxSpanChunksSlice initializes a max span chunk of length C*K for
+C = chunkSize and K = validatorChunkSize filled with neutral elements.
+For max spans, the neutral element is 0.
+
+				
+				
+			
+				
+				<h3 id="MaxChunkSpansSliceFrom">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=5281:5373#L131">MaxChunkSpansSliceFrom</a>
+					<a class="permalink" href="index.html#MaxChunkSpansSliceFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MaxChunkSpansSliceFrom(params *<a href="index.html#Parameters">Parameters</a>, chunk []<a href="../../../../../builtin/index.html#uint16">uint16</a>) (*<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MaxChunkSpansSliceFrom initializes a max span chunks slice from a slice of uint16 values.
+Returns an error if the slice is not of length C*K for C = chunkSize and K = validatorChunkSize.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MaxSpanChunksSlice.CheckSlashable">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=8655:8877#L221">CheckSlashable</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.CheckSlashable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) CheckSlashable(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    slasherDB <a href="../db/index.html">db</a>.<a href="../db/index.html#SlasherDatabase">SlasherDatabase</a>,
+    validatorIdx <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+    attestation *<a href="types/index.html">slashertypes</a>.<a href="types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>,
+) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CheckSlashable takes in a validator index and an incoming attestation
+and checks if the validator is slashable depending on the data
+within the max span chunks slice. Recall that for an incoming attestation, B, and an
+existing attestation, A:
+<pre>B surrounds A if and only if B.target &lt; max_spans[B.source]
+</pre>
+<p>That is, this condition is sufficient to check if an incoming attestation
+is surrounded by a previous one. We also check if we indeed have an existing
+attestation record in the database if the condition holds true in order
+to be confident of a slashable offense.
+
+				
+				
+				
+			
+				
+				<h3 id="MaxSpanChunksSlice.Chunk">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=6211:6256#L159">Chunk</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.Chunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) Chunk() []<a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+				<p>Chunk returns the underlying slice of uint16&apos;s for the max chunks slice.
+
+				
+				
+				
+			
+				
+				<h3 id="MaxSpanChunksSlice.NeutralElement">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=5925:5977#L149">NeutralElement</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.NeutralElement">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) NeutralElement() <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+				<p>NeutralElement for a max span chunks slice is 0.
+
+				
+				
+				
+			
+				
+				<h3 id="MaxSpanChunksSlice.NextChunkStartEpoch">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=19962:20046#L480">NextChunkStartEpoch</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.NextChunkStartEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) NextChunkStartEpoch(startEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>NextChunkStartEpoch given an epoch, determines the start epoch of the next chunk. For max
+span chunks, this will be the start epoch of chunk index = (current chunk + 1). For example:
+<pre>                     chunk0     chunk1     chunk2
+                       |          |          |
+max_spans_val_i = [[-, -, -], [-, -, -], [-, -, -]]
+</pre>
+<p>If C = chunkSize is 3 epochs per chunk, and we input start epoch of chunk 1 which is 3. The next start
+epoch is the start epoch of chunk 2, which is epoch 4. This is computed as:
+<pre>first_epoch(chunkIndex(startEpoch)+1)
+first_epoch(chunkIndex(3)+1)
+first_epoch(1 + 1)
+first_epoch(2)
+4
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MaxSpanChunksSlice.StartEpoch">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=17963:18078#L428">StartEpoch</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.StartEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) StartEpoch(
+    sourceEpoch, currentEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (epoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>, exists <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>StartEpoch given a source epoch and current epoch, determines the start epoch of
+a max span chunk for use in chunk updates. The source epoch cannot be &gt;= the current epoch.
+
+				
+				
+				
+			
+				
+				<h3 id="MaxSpanChunksSlice.Update">func (*MaxSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=14991:15161#L360">Update</a>
+					<a class="permalink" href="index.html#MaxSpanChunksSlice.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MaxSpanChunksSlice">MaxSpanChunksSlice</a>) Update(
+    args *chunkUpdateArgs,
+    validatorIndex <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+    startEpoch,
+    newTargetEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (keepGoing <a href="../../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Update a max span chunk for a validator index starting at a given start epoch, e_c, then updating
+up to the current epoch according to the definition of max spans. If we need to continue updating
+a next chunk, this function returns a boolean letting the caller know it should keep going. To understand
+more about how update exactly works, refer to the detailed documentation for the Update function for
+MinSpanChunksSlice.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MinSpanChunksSlice">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=3239:3310#L74">MinSpanChunksSlice</a>
+				<a class="permalink" href="index.html#MinSpanChunksSlice">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MinSpanChunksSlice represents a slice containing a chunk for K different validator&apos;s min spans.
+<p>For a given epoch, e, and attestations a validator index has produced, atts,
+min_spans[e] is defined as min((att.target.epoch - e) for att in attestations)
+where att.source.epoch &gt; e. That is, it is the minimum distance between the
+specified epoch and all attestation target epochs a validator has created
+where att.source.epoch &gt; e.
+<p>Under ideal network conditions, where every target epoch immediately follows its source,
+min spans for a validator will look as follows:
+<pre>min_spans = [2, 2, 2, ..., 2]
+</pre>
+<p>Next, we can chunk this list of min spans into chunks of length C. For C = 2, for example:
+<pre>                     chunk0  chunk1       chunkN
+                      {  }   {   }         {  }
+chunked_min_spans = [[2, 2], [2, 2], ..., [2, 2]]
+</pre>
+<p>Finally, we can store each chunk index for K validators into a single flat slice. For K = 3:
+<pre>                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_0_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+
+                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_1_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+
+                         ...
+
+                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_N_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+</pre>
+<p>MinSpanChunksSlice represents the data structure above for a single chunk index.
+
+			<pre>type MinSpanChunksSlice struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="EmptyMinSpanChunksSlice">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=3770:3838#L89">EmptyMinSpanChunksSlice</a>
+					<a class="permalink" href="index.html#EmptyMinSpanChunksSlice">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EmptyMinSpanChunksSlice(params *<a href="index.html#Parameters">Parameters</a>) *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a></pre>
+				<p>EmptyMinSpanChunksSlice initializes a min span chunk of length C*K for
+C = chunkSize and K = validatorChunkSize filled with neutral elements.
+For min spans, the neutral element is `undefined`, represented by MaxUint16.
+
+				
+				
+			
+				
+				<h3 id="MinChunkSpansSliceFrom">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=4721:4813#L118">MinChunkSpansSliceFrom</a>
+					<a class="permalink" href="index.html#MinChunkSpansSliceFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinChunkSpansSliceFrom(params *<a href="index.html#Parameters">Parameters</a>, chunk []<a href="../../../../../builtin/index.html#uint16">uint16</a>) (*<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MinChunkSpansSliceFrom initializes a min span chunks slice from a slice of uint16 values.
+Returns an error if the slice is not of length C*K for C = chunkSize and K = validatorChunkSize.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MinSpanChunksSlice.CheckSlashable">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=6875:7097#L174">CheckSlashable</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.CheckSlashable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) CheckSlashable(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    slasherDB <a href="../db/index.html">db</a>.<a href="../db/index.html#SlasherDatabase">SlasherDatabase</a>,
+    validatorIdx <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+    attestation *<a href="types/index.html">slashertypes</a>.<a href="types/index.html#IndexedAttestationWrapper">IndexedAttestationWrapper</a>,
+) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CheckSlashable takes in a validator index and an incoming attestation
+and checks if the validator is slashable depending on the data
+within the min span chunks slice. Recall that for an incoming attestation, B, and an
+existing attestation, A:
+<pre>B surrounds A if and only if B.target &gt; min_spans[B.source]
+</pre>
+<p>That is, this condition is sufficient to check if an incoming attestation
+is surrounding a previous one. We also check if we indeed have an existing
+attestation record in the database if the condition holds true in order
+to be confident of a slashable offense.
+
+				
+				
+				
+			
+				
+				<h3 id="MinSpanChunksSlice.Chunk">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=6069:6114#L154">Chunk</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.Chunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) Chunk() []<a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+				<p>Chunk returns the underlying slice of uint16&apos;s for the min chunks slice.
+
+				
+				
+				
+			
+				
+				<h3 id="MinSpanChunksSlice.NeutralElement">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=5792:5844#L144">NeutralElement</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.NeutralElement">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) NeutralElement() <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+				<p>NeutralElement for a min span chunks slice is undefined, in this case
+using MaxUint16 as a sane value given it is impossible we reach it.
+
+				
+				
+				
+			
+				
+				<h3 id="MinSpanChunksSlice.NextChunkStartEpoch">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=19072:19156#L457">NextChunkStartEpoch</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.NextChunkStartEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) NextChunkStartEpoch(startEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>) <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>NextChunkStartEpoch given an epoch, determines the start epoch of the next chunk. For min
+span chunks, this will be the last epoch of chunk index = (current chunk - 1). For example:
+<pre>                     chunk0     chunk1     chunk2
+                       |          |          |
+max_spans_val_i = [[-, -, -], [-, -, -], [-, -, -]]
+</pre>
+<p>If C = chunkSize is 3 epochs per chunk, and we input start epoch of chunk 1 which is 3 then the next start
+epoch is the last epoch of chunk 0, which is epoch 2. This is computed as:
+<pre>last_epoch(chunkIndex(startEpoch)-1)
+last_epoch(chunkIndex(3) - 1)
+last_epoch(1 - 1)
+last_epoch(0)
+2
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MinSpanChunksSlice.StartEpoch">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=16947:17062#L402">StartEpoch</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.StartEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) StartEpoch(
+    sourceEpoch, currentEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (epoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>, exists <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>StartEpoch given a source epoch and current epoch, determines the start epoch of
+a min span chunk for use in chunk updates. To compute this value, we look at the difference between
+H = historyLength and the current epoch. Then, we check if the source epoch &gt; difference. If so,
+then the start epoch is source epoch - 1. Otherwise, we return to the caller a boolean signifying
+the input argumets are invalid for the chunk and the start epoch does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="MinSpanChunksSlice.Update">func (*MinSpanChunksSlice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/chunks.go?s=12860:13030#L311">Update</a>
+					<a class="permalink" href="index.html#MinSpanChunksSlice.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MinSpanChunksSlice">MinSpanChunksSlice</a>) Update(
+    args *chunkUpdateArgs,
+    validatorIndex <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+    startEpoch,
+    newTargetEpoch <a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#Epoch">Epoch</a>,
+) (keepGoing <a href="../../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Update a min span chunk for a validator index starting at the current epoch, e_c, then updating
+down to e_c - H where H is the historyLength we keep for each span. This historyLength
+corresponds to the weak subjectivity period of Ethereum consensus.
+This means our updates are done in a sliding window manner. For example, if the current epoch
+is 20 and the historyLength is 12, then we will update every value for the validator&apos;s min span
+from epoch 20 down to epoch 9.
+<p>Recall that for an epoch, e, min((att.target - e) for att in attestations where att.source &gt; e)
+That is, it is the minimum distance between the specified epoch and all attestation
+target epochs a validator has created where att.source.epoch &gt; e.
+<p>Recall that a MinSpanChunksSlice struct represents a single slice for a chunk index
+from the collection below:
+<pre>                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_0_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+
+                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_1_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+
+                         ...
+
+                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_N_for_validators_0_to_2 = [[2, 2], [2, 2], [2, 2]]
+</pre>
+<p>Let&apos;s take a look at how this update will look for a real set of min span chunk:
+For the purposes of a simple example, let&apos;s set H = 2, meaning a min span
+will hold 2 epochs worth of attesting history. Then we set C = 2 meaning we will
+chunk the min span into arrays each of length 2.
+<p>So assume we get an epoch 4 and validator 0, then, we need to update every epoch in the span from
+4 down to 3. First, we find out which chunk epoch 4 falls into, which is calculated as:
+chunk_idx = (epoch % H) / C = (4 % 2) / 2 = 0
+<pre>                                  val0    val1    val2
+                                  {  }    {  }    {  }
+chunk_0_for_validators_0_to_3 = [[2, 2], [2, 2], [2, 2]]
+                                  |
+                                  |-&gt; epoch 4 for validator 0
+</pre>
+<p>Next up, we proceed with the update process for validator index 0, starting at epoch 4
+all the way down to epoch 2. We will need to go down the array as far as we can get. If the
+lowest epoch we need to update is &lt; the lowest epoch of a chunk, we need to proceed to
+a different chunk index.
+<p>Once we finish updating a chunk, we need to move on to the next chunk. This function
+returns a boolean named keepGoing which allows the caller to determine if we should
+continue and update another chunk index. We stop whenever we reach the min epoch we need
+to update. In our example, we stop at 2, which is still part of chunk 0, so no need
+to jump to another min span chunks slice to perform updates.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockSlashingChecker">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/mock_slashing_checker.go?s=195:360#L1">MockSlashingChecker</a>
+				<a class="permalink" href="index.html#MockSlashingChecker">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type MockSlashingChecker struct {
+<span id="MockSlashingChecker.AttesterSlashingFound"></span>    AttesterSlashingFound <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="MockSlashingChecker.ProposerSlashingFound"></span>    ProposerSlashingFound <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="MockSlashingChecker.HighestAtts"></span>    HighestAtts           map[<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#HighestAttestation">HighestAttestation</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockSlashingChecker.HighestAttestations">func (*MockSlashingChecker) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/mock_slashing_checker.go?s=362:503#L7">HighestAttestations</a>
+					<a class="permalink" href="index.html#MockSlashingChecker.HighestAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#MockSlashingChecker">MockSlashingChecker</a>) HighestAttestations(
+    _ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, indices []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#HighestAttestation">HighestAttestation</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MockSlashingChecker.IsSlashableAttestation">func (*MockSlashingChecker) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/mock_slashing_checker.go?s=1670:1805#L49">IsSlashableAttestation</a>
+					<a class="permalink" href="index.html#MockSlashingChecker.IsSlashableAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#MockSlashingChecker">MockSlashingChecker</a>) IsSlashableAttestation(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, _ *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#IndexedAttestation">IndexedAttestation</a>) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MockSlashingChecker.IsSlashableBlock">func (*MockSlashingChecker) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/mock_slashing_checker.go?s=713:845#L21">IsSlashableBlock</a>
+					<a class="permalink" href="index.html#MockSlashingChecker.IsSlashableBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#MockSlashingChecker">MockSlashingChecker</a>) IsSlashableBlock(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, _ *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SignedBeaconBlockHeader">SignedBeaconBlockHeader</a>) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Parameters">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/params.go?s=682:794#L9">Parameters</a>
+				<a class="permalink" href="index.html#Parameters">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Parameters for slashing detection.
+<p>To properly access the element at epoch `e` for a validator index `i`, we leverage helper
+functions from these parameter values as nice abstractions. the following parameters are
+required for the helper functions defined in this file.
+<p>(C) chunkSize defines how many elements are in a chunk for a validator
+min or max span slice.
+(K) validatorChunkSize defines how many validators&apos; chunks we store in a single
+flat byte slice on disk.
+(H) historyLength defines how many epochs we keep of min or max spans.
+
+			<pre>type Parameters struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultParams">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/params.go?s=1285:1317#L23">DefaultParams</a>
+					<a class="permalink" href="index.html#DefaultParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultParams() *<a href="index.html#Parameters">Parameters</a></pre>
+				<p>DefaultParams defines default values for slasher&apos;s important parameters, defined
+based on optimization analysis for best and worst case scenarios for
+slasher&apos;s performance.
+<p>The default values for chunkSize and validatorChunkSize were
+decided after an optimization analysis performed by the Sigma Prime team.
+See: <a href="https://hackmd.io/@sproul/min-max-slasher#1D-vs-2D">https://hackmd.io/@sproul/min-max-slasher#1D-vs-2D</a> for more information.
+We decide to keep 4096 epochs worth of data in each validator&apos;s min max spans.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=2317:3018#L45">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service defining a slasher implementation as part of
+the beacon node, able to detect eth2 slashable offenses.
+
+			<pre>type Service struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=3081:3151#L62">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, srvCfg *<a href="index.html#ServiceConfig">ServiceConfig</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New instantiates a new slasher from configuration values.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Service.HighestAttestations">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/rpc.go?s=429:569#L6">HighestAttestations</a>
+					<a class="permalink" href="index.html#Service.HighestAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) HighestAttestations(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, validatorIndices []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#HighestAttestation">HighestAttestation</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HighestAttestations committed for an input list of validator indices.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.IsSlashableAttestation">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/rpc.go?s=1780:1919#L41">IsSlashableAttestation</a>
+					<a class="permalink" href="index.html#Service.IsSlashableAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) IsSlashableAttestation(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, attestation *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#IndexedAttestation">IndexedAttestation</a>,
+) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>IsSlashableAttestation checks if an input indexed attestation is slashable
+with respect to historical attestation data.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.IsSlashableBlock">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/rpc.go?s=891:1021#L18">IsSlashableBlock</a>
+					<a class="permalink" href="index.html#Service.IsSlashableBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) IsSlashableBlock(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, block *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SignedBeaconBlockHeader">SignedBeaconBlockHeader</a>,
+) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>IsSlashableBlock checks if an input block header is slashable
+with respect to historical block proposal data.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Start">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=3847:3872#L79">Start</a>
+					<a class="permalink" href="index.html#Service.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Start()</pre>
+				<p>Start listening for received indexed attestations and blocks
+and perform slashing detection on them.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Status">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=6523:6555#L160">Status</a>
+					<a class="permalink" href="index.html#Service.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#Service">Service</a>) Status() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Status of the slasher service.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Stop">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=5669:5699#L131">Stop</a>
+					<a class="permalink" href="index.html#Service.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Stop() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop the slasher service.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServiceConfig">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=1260:1692#L22">ServiceConfig</a>
+				<a class="permalink" href="index.html#ServiceConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServiceConfig for the slasher service in the beacon node.
+This struct allows us to specify required dependencies and
+parameters for slasher to function as needed.
+
+			<pre>type ServiceConfig struct {
+<span id="ServiceConfig.IndexedAttestationsFeed"></span>    IndexedAttestationsFeed *<a href="../../async/event/index.html">event</a>.<a href="../../async/event/index.html#Feed">Feed</a>
+<span id="ServiceConfig.BeaconBlockHeadersFeed"></span>    BeaconBlockHeadersFeed  *<a href="../../async/event/index.html">event</a>.<a href="../../async/event/index.html#Feed">Feed</a>
+<span id="ServiceConfig.Database"></span>    Database                <a href="../db/index.html">db</a>.<a href="../db/index.html#SlasherDatabase">SlasherDatabase</a>
+<span id="ServiceConfig.StateNotifier"></span>    StateNotifier           <a href="../core/feed/state/index.html">statefeed</a>.<a href="../core/feed/state/index.html#Notifier">Notifier</a>
+<span id="ServiceConfig.AttestationStateFetcher"></span>    AttestationStateFetcher <a href="../blockchain/index.html">blockchain</a>.<a href="../blockchain/index.html#AttestationStateFetcher">AttestationStateFetcher</a>
+<span id="ServiceConfig.StateGen"></span>    StateGen                <a href="../state/stategen/index.html">stategen</a>.<a href="../state/stategen/index.html#StateManager">StateManager</a>
+<span id="ServiceConfig.SlashingPoolInserter"></span>    SlashingPoolInserter    <a href="../operations/slashings/index.html">slashings</a>.<a href="../operations/slashings/index.html#PoolInserter">PoolInserter</a>
+<span id="ServiceConfig.HeadStateFetcher"></span>    HeadStateFetcher        <a href="../blockchain/index.html">blockchain</a>.<a href="../blockchain/index.html#HeadFetcher">HeadFetcher</a>
+<span id="ServiceConfig.SyncChecker"></span>    SyncChecker             <a href="../sync/index.html">sync</a>.<a href="../sync/index.html#Checker">Checker</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SlashingChecker">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/slasher/service.go?s=1816:2199#L35">SlashingChecker</a>
+				<a class="permalink" href="index.html#SlashingChecker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SlashingChecker is an interface for defining services that the beacon node may interact with to provide slashing data.
+
+			<pre>type SlashingChecker interface {
+    IsSlashableBlock(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, proposal *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#SignedBeaconBlockHeader">SignedBeaconBlockHeader</a>) (*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    IsSlashableAttestation(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, attestation *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#IndexedAttestation">IndexedAttestation</a>) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    HighestAttestations(
+        ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, indices []<a href="../../../eth2-types/index.html">types</a>.<a href="../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>,
+    ) ([]*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#HighestAttestation">HighestAttestation</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

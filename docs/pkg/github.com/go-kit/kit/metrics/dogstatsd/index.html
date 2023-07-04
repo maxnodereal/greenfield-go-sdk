@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>dogstatsd - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package dogstatsd
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/metrics/dogstatsd"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package dogstatsd provides a DogStatsD backend for package metrics. It&apos;s very
+similar to StatsD, but supports arbitrary tags per-metric, which map to Go
+kit&apos;s label values. So, while label values are no-ops in StatsD, they are
+supported here. For more details, see the documentation at
+<a href="http://docs.datadoghq.com/guides/dogstatsd/">http://docs.datadoghq.com/guides/dogstatsd/</a>.
+<p>This package batches observations and emits them on some schedule to the
+remote server. This is useful even if you connect to your DogStatsD server
+over UDP. Emitting one network packet per observation can quickly overwhelm
+even the fastest internal network.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Counter">type Counter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.Add">func (c *Counter) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.With">func (c *Counter) With(labelValues ...string) metrics.Counter</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Dogstatsd">type Dogstatsd</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(prefix string, logger log.Logger, lvs ...string) *Dogstatsd</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.NewCounter">func (d *Dogstatsd) NewCounter(name string, sampleRate float64) *Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.NewGauge">func (d *Dogstatsd) NewGauge(name string) *Gauge</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.NewHistogram">func (d *Dogstatsd) NewHistogram(name string, sampleRate float64) *Histogram</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.NewTiming">func (d *Dogstatsd) NewTiming(name string, sampleRate float64) *Timing</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.SendLoop">func (d *Dogstatsd) SendLoop(ctx context.Context, c &lt;-chan time.Time, network, address string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.WriteLoop">func (d *Dogstatsd) WriteLoop(ctx context.Context, c &lt;-chan time.Time, w io.Writer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dogstatsd.WriteTo">func (d *Dogstatsd) WriteTo(w io.Writer) (count int64, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Gauge">type Gauge</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Add">func (g *Gauge) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Set">func (g *Gauge) Set(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.With">func (g *Gauge) With(labelValues ...string) metrics.Gauge</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Histogram">type Histogram</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.Observe">func (h *Histogram) Observe(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.With">func (h *Histogram) With(labelValues ...string) metrics.Histogram</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Timing">type Timing</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Timing.Observe">func (t *Timing) Observe(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Timing.With">func (t *Timing) With(labelValues ...string) metrics.Histogram</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go">dogstatsd.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Counter">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=7881:7956#L248">Counter</a>
+				<a class="permalink" href="index.html#Counter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Counter is a DogStatsD counter. Observations are forwarded to a Dogstatsd
+object, and aggregated (summed) per timeseries.
+
+			<pre>type Counter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Counter.Add">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=8184:8220#L264">Add</a>
+					<a class="permalink" href="index.html#Counter.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add implements metrics.Counter.
+
+				
+				
+				
+			
+				
+				<h3 id="Counter.With">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=7994:8055#L255">With</a>
+					<a class="permalink" href="index.html#Counter.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Counter">Counter</a></pre>
+				<p>With implements metrics.Counter.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Dogstatsd">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=1535:1783#L31">Dogstatsd</a>
+				<a class="permalink" href="index.html#Dogstatsd">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Dogstatsd receives metrics observations and forwards them to a DogStatsD
+server. Create a Dogstatsd object, use it to create metrics, and pass those
+metrics as dependencies to the components that will use them.
+<p>All metrics are buffered until WriteTo is called. Counters and gauges are
+aggregated into a single observation per timeseries per write. Timings and
+histograms are buffered but not aggregated.
+<p>To regularly report metrics to an io.Writer, use the WriteLoop helper method.
+To send to a DogStatsD server, use the SendLoop helper method.
+
+			<pre>type Dogstatsd struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=2019:2087#L46">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(prefix <a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>, lvs ...<a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Dogstatsd">Dogstatsd</a></pre>
+				<p>New returns a Dogstatsd object that may be used to create metrics. Prefix is
+applied to all created metrics. Callers must ensure that regular calls to
+WriteTo are performed, either manually or with one of the helper methods.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Dogstatsd.NewCounter">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=2495:2567#L63">NewCounter</a>
+					<a class="permalink" href="index.html#Dogstatsd.NewCounter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) NewCounter(name <a href="../../../../../builtin/index.html#string">string</a>, sampleRate <a href="../../../../../builtin/index.html#float64">float64</a>) *<a href="index.html#Counter">Counter</a></pre>
+				<p>NewCounter returns a counter, sending observations to this Dogstatsd object.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.NewGauge">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=2775:2823#L72">NewGauge</a>
+					<a class="permalink" href="index.html#Dogstatsd.NewGauge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) NewGauge(name <a href="../../../../../builtin/index.html#string">string</a>) *<a href="index.html#Gauge">Gauge</a></pre>
+				<p>NewGauge returns a gauge, sending observations to this Dogstatsd object.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.NewHistogram">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=3473:3549#L95">NewHistogram</a>
+					<a class="permalink" href="index.html#Dogstatsd.NewHistogram">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) NewHistogram(name <a href="../../../../../builtin/index.html#string">string</a>, sampleRate <a href="../../../../../builtin/index.html#float64">float64</a>) *<a href="index.html#Histogram">Histogram</a></pre>
+				<p>NewHistogram returns a histogram whose observations are of an unspecified
+unit, and are forwarded to this Dogstatsd object.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.NewTiming">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=3143:3213#L85">NewTiming</a>
+					<a class="permalink" href="index.html#Dogstatsd.NewTiming">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) NewTiming(name <a href="../../../../../builtin/index.html#string">string</a>, sampleRate <a href="../../../../../builtin/index.html#float64">float64</a>) *<a href="index.html#Timing">Timing</a></pre>
+				<p>NewTiming returns a histogram whose observations are interpreted as
+millisecond durations, and are forwarded to this Dogstatsd object.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.SendLoop">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=4556:4650#L125">SendLoop</a>
+					<a class="permalink" href="index.html#Dogstatsd.SendLoop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) SendLoop(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, c &lt;-chan <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>, network, address <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SendLoop is a helper method that wraps WriteLoop, passing a managed
+connection to the network and address. Like WriteLoop, this method blocks
+until ctx is canceled, so clients probably want to start it in its own
+goroutine. For typical usage, create a time.Ticker and pass its C channel to
+this method.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.WriteLoop">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=3983:4066#L107">WriteLoop</a>
+					<a class="permalink" href="index.html#Dogstatsd.WriteLoop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) WriteLoop(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, c &lt;-chan <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>, w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>)</pre>
+				<p>WriteLoop is a helper method that invokes WriteTo to the passed writer every
+time the passed channel fires. This method blocks until ctx is canceled,
+so clients probably want to run it in its own goroutine. For typical
+usage, create a time.Ticker and pass its C channel to this method.
+
+				
+				
+				
+			
+				
+				<h3 id="Dogstatsd.WriteTo">func (*Dogstatsd) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=5038:5103#L133">WriteTo</a>
+					<a class="permalink" href="index.html#Dogstatsd.WriteTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (d *<a href="index.html#Dogstatsd">Dogstatsd</a>) WriteTo(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) (count <a href="../../../../../builtin/index.html#int64">int64</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WriteTo flushes the buffered content of the metrics to the writer, in
+DogStatsD format. WriteTo abides best-effort semantics, so observations are
+lost if there is a problem with the write. Clients should be sure to call
+WriteTo regularly, ideally through the WriteLoop or SendLoop helper methods.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Gauge">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=8402:8473#L270">Gauge</a>
+				<a class="permalink" href="index.html#Gauge">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Gauge is a DogStatsD gauge. Observations are forwarded to a Dogstatsd
+object, and aggregated (the last observation selected) per timeseries.
+
+			<pre>type Gauge struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Gauge.Add">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=8901:8935#L293">Add</a>
+					<a class="permalink" href="index.html#Gauge.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add implements metrics.Gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.Set">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=8801:8835#L287">Set</a>
+					<a class="permalink" href="index.html#Gauge.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Set(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Set implements metrics.Gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.With">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=8509:8566#L277">With</a>
+					<a class="permalink" href="index.html#Gauge.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+				<p>With implements metrics.Gauge.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Histogram">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=9693:9770#L323">Histogram</a>
+				<a class="permalink" href="index.html#Histogram">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Histogram is a DogStatsD histrogram. Observations are forwarded to a
+Dogstatsd object, and collected (but not aggregated) per timeseries.
+
+			<pre>type Histogram struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Histogram.Observe">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=10012:10054#L339">Observe</a>
+					<a class="permalink" href="index.html#Histogram.Observe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) Observe(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Observe implements metrics.Histogram.
+
+				
+				
+				
+			
+				
+				<h3 id="Histogram.With">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=9810:9875#L330">With</a>
+					<a class="permalink" href="index.html#Histogram.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>With implements metrics.Histogram.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Timing">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=9130:9204#L301">Timing</a>
+				<a class="permalink" href="index.html#Timing">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Timing is a DogStatsD timing, or metrics.Histogram. Observations are
+forwarded to a Dogstatsd object, and collected (but not aggregated) per
+timeseries.
+
+			<pre>type Timing struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Timing.Observe">func (*Timing) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=9475:9514#L317">Observe</a>
+					<a class="permalink" href="index.html#Timing.Observe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Timing">Timing</a>) Observe(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Observe implements metrics.Histogram. Value is interpreted as milliseconds.
+
+				
+				
+				
+			
+				
+				<h3 id="Timing.With">func (*Timing) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/dogstatsd/dogstatsd.go?s=9241:9303#L308">With</a>
+					<a class="permalink" href="index.html#Timing.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Timing">Timing</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>With implements metrics.Timing.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

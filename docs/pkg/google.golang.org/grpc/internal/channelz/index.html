@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>channelz - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package channelz
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/internal/channelz"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package channelz defines APIs for enabling channelz service, entry
+registration/deletion, and accessing channelz data. It also defines channelz
+metric struct formats.
+<p>All APIs in this package are experimental.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AddTraceEvent">func AddTraceEvent(l grpclog.DepthLoggerV2, id *Identifier, depth int, desc *TraceEventDesc)</a></dd>
+			
+				
+				<dd><a href="index.html#Error">func Error(l grpclog.DepthLoggerV2, id *Identifier, args ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Errorf">func Errorf(l grpclog.DepthLoggerV2, id *Identifier, format string, args ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Info">func Info(l grpclog.DepthLoggerV2, id *Identifier, args ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Infof">func Infof(l grpclog.DepthLoggerV2, id *Identifier, format string, args ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#IsOn">func IsOn() bool</a></dd>
+			
+				
+				<dd><a href="index.html#NewChannelzStorageForTesting">func NewChannelzStorageForTesting() (cleanup func() error)</a></dd>
+			
+				
+				<dd><a href="index.html#RemoveEntry">func RemoveEntry(id *Identifier)</a></dd>
+			
+				
+				<dd><a href="index.html#ResetMaxTraceEntryToDefault">func ResetMaxTraceEntryToDefault()</a></dd>
+			
+				
+				<dd><a href="index.html#SetMaxTraceEntry">func SetMaxTraceEntry(i int32)</a></dd>
+			
+				
+				<dd><a href="index.html#TurnOn">func TurnOn()</a></dd>
+			
+				
+				<dd><a href="index.html#Warning">func Warning(l grpclog.DepthLoggerV2, id *Identifier, args ...interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#Warningf">func Warningf(l grpclog.DepthLoggerV2, id *Identifier, format string, args ...interface{})</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Channel">type Channel</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChannelInternalMetric">type ChannelInternalMetric</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChannelMetric">type ChannelMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetChannel">func GetChannel(id int64) *ChannelMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetTopChannels">func GetTopChannels(id int64, maxResults int64) ([]*ChannelMetric, bool)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChannelTrace">type ChannelTrace</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Identifier">type Identifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewIdentifierForTesting">func NewIdentifierForTesting(typ RefChannelType, id int64, pid *Identifier) *Identifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegisterChannel">func RegisterChannel(c Channel, pid *Identifier, ref string) *Identifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegisterListenSocket">func RegisterListenSocket(s Socket, pid *Identifier, ref string) (*Identifier, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegisterNormalSocket">func RegisterNormalSocket(s Socket, pid *Identifier, ref string) (*Identifier, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegisterServer">func RegisterServer(s Server, ref string) *Identifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegisterSubChannel">func RegisterSubChannel(c Channel, pid *Identifier, ref string) (*Identifier, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Identifier.Equal">func (id *Identifier) Equal(other *Identifier) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Identifier.Int">func (id *Identifier) Int() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Identifier.String">func (id *Identifier) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Identifier.Type">func (id *Identifier) Type() RefChannelType</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RefChannelType">type RefChannelType</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RefChannelType.String">func (r RefChannelType) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerInternalMetric">type ServerInternalMetric</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerMetric">type ServerMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetServer">func GetServer(id int64) *ServerMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetServers">func GetServers(id int64, maxResults int64) ([]*ServerMetric, bool)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Severity">type Severity</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Socket">type Socket</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SocketInternalMetric">type SocketInternalMetric</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SocketMetric">type SocketMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetServerSockets">func GetServerSockets(id int64, startID int64, maxResults int64) ([]*SocketMetric, bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetSocket">func GetSocket(id int64) *SocketMetric</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SocketOptionData">type SocketOptionData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetSocketOption">func GetSocketOption(c interface{}) *SocketOptionData</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SocketOptionData.Getsockopt">func (s *SocketOptionData) Getsockopt(fd uintptr)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SubChannelMetric">type SubChannelMetric</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetSubChannel">func GetSubChannel(id int64) *SubChannelMetric</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TraceEvent">type TraceEvent</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TraceEventDesc">type TraceEventDesc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go">funcs.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go">id.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go">logging.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go">types.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types_nonlinux.go">types_nonlinux.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/util_nonlinux.go">util_nonlinux.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+
+    <span class="comment">// EntryPerPage defines the number of channelz entries to be shown on a web page.</span>
+    <span id="EntryPerPage">EntryPerPage</span> = <a href="../../../../builtin/index.html#int64">int64</a>(50)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="AddTraceEvent">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=10876:10968#L326">AddTraceEvent</a>
+				<a class="permalink" href="index.html#AddTraceEvent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddTraceEvent(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, depth <a href="../../../../builtin/index.html#int">int</a>, desc *<a href="index.html#TraceEventDesc">TraceEventDesc</a>)</pre>
+			<p>AddTraceEvent adds trace related to the entity with specified id, using the
+provided TraceEventDesc.
+<p>If channelz is not turned ON, this will simply log the event descriptions.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Error">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=1847:1919#L56">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Error(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, args ...interface{})</pre>
+			<p>Error logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Errorf">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=2082:2170#L64">Errorf</a>
+				<a class="permalink" href="index.html#Errorf">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Errorf(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, format <a href="../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+			<p>Errorf logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Info">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=852:923#L24">Info</a>
+				<a class="permalink" href="index.html#Info">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Info(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, args ...interface{})</pre>
+			<p>Info logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Infof">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=1084:1171#L32">Infof</a>
+				<a class="permalink" href="index.html#Infof">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Infof(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, format <a href="../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+			<p>Infof logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsOn">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=1432:1448#L51">IsOn</a>
+				<a class="permalink" href="index.html#IsOn">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsOn() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsOn returns whether channelz data collection is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewChannelzStorageForTesting">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=2754:2812#L97">NewChannelzStorageForTesting</a>
+				<a class="permalink" href="index.html#NewChannelzStorageForTesting">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewChannelzStorageForTesting() (cleanup func() <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewChannelzStorageForTesting initializes channelz data storage and id
+generator for testing purposes.
+<p>Returns a cleanup function to be invoked by the test, which waits for up to
+10s for all channelz state to be reset by the grpc goroutines when those
+entities get closed. This cleanup function helps with ensuring that tests
+don&apos;t mess up each other.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RemoveEntry">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=10255:10287#L304">RemoveEntry</a>
+				<a class="permalink" href="index.html#RemoveEntry">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RemoveEntry(id *<a href="index.html#Identifier">Identifier</a>)</pre>
+			<p>RemoveEntry removes an entry with unique channelz tracking id to be id from
+channelz database.
+<p>If channelz is not turned ON, this function is a no-op.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ResetMaxTraceEntryToDefault">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=1817:1851#L62">ResetMaxTraceEntryToDefault</a>
+				<a class="permalink" href="index.html#ResetMaxTraceEntryToDefault">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ResetMaxTraceEntryToDefault()</pre>
+			<p>ResetMaxTraceEntryToDefault resets the maximum number of trace entry per entity to default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMaxTraceEntry">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=1648:1678#L57">SetMaxTraceEntry</a>
+				<a class="permalink" href="index.html#SetMaxTraceEntry">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMaxTraceEntry(i <a href="../../../../builtin/index.html#int32">int32</a>)</pre>
+			<p>SetMaxTraceEntry sets maximum number of trace entry per entity (i.e. channel/subchannel).
+Setting it to 0 will disable channel tracing.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TurnOn">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=1264:1277#L42">TurnOn</a>
+				<a class="permalink" href="index.html#TurnOn">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TurnOn()</pre>
+			<p>TurnOn turns on channelz data collection.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Warning">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=1343:1417#L40">Warning</a>
+				<a class="permalink" href="index.html#Warning">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Warning(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, args ...interface{})</pre>
+			<p>Warning logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Warningf">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/logging.go?s=1584:1674#L48">Warningf</a>
+				<a class="permalink" href="index.html#Warningf">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Warningf(l <a href="../../grpclog/index.html">grpclog</a>.<a href="../../grpclog/index.html#DepthLoggerV2">DepthLoggerV2</a>, id *<a href="index.html#Identifier">Identifier</a>, format <a href="../../../../builtin/index.html#string">string</a>, args ...interface{})</pre>
+			<p>Warningf logs and adds a trace event if channelz is on.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Channel">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=7650:7717#L175">Channel</a>
+				<a class="permalink" href="index.html#Channel">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Channel is the interface that should be satisfied in order to be tracked by
+channelz as Channel or SubChannel.
+
+			<pre>type Channel interface {
+    ChannelzMetric() *<a href="index.html#ChannelInternalMetric">ChannelInternalMetric</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ChannelInternalMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=5869:6398#L129">ChannelInternalMetric</a>
+				<a class="permalink" href="index.html#ChannelInternalMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChannelInternalMetric defines the struct that the implementor of Channel interface
+should return from ChannelzMetric().
+
+			<pre>type ChannelInternalMetric struct {
+    <span class="comment">// current connectivity state of the channel.</span>
+<span id="ChannelInternalMetric.State"></span>    State <a href="../../connectivity/index.html">connectivity</a>.<a href="../../connectivity/index.html#State">State</a>
+    <span class="comment">// The target this channel originally tried to connect to.  May be absent</span>
+<span id="ChannelInternalMetric.Target"></span>    Target <a href="../../../../builtin/index.html#string">string</a>
+    <span class="comment">// The number of calls started on the channel.</span>
+<span id="ChannelInternalMetric.CallsStarted"></span>    CallsStarted <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of calls that have completed with an OK status.</span>
+<span id="ChannelInternalMetric.CallsSucceeded"></span>    CallsSucceeded <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of calls that have a completed with a non-OK status.</span>
+<span id="ChannelInternalMetric.CallsFailed"></span>    CallsFailed <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The last time a call was started on the channel.</span>
+<span id="ChannelInternalMetric.LastCallStartedTimestamp"></span>    LastCallStartedTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ChannelMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=3280:4330#L76">ChannelMetric</a>
+				<a class="permalink" href="index.html#ChannelMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChannelMetric defines the info channelz provides for a specific Channel, which
+includes ChannelInternalMetric and channelz-specific data, such as channelz id,
+child list, etc.
+
+			<pre>type ChannelMetric struct {
+<span id="ChannelMetric.ID"></span>    <span class="comment">// ID is the channelz id of this channel.</span>
+    ID <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ChannelMetric.RefName"></span>    <span class="comment">// RefName is the human readable reference string of this channel.</span>
+    RefName <a href="../../../../builtin/index.html#string">string</a>
+<span id="ChannelMetric.ChannelData"></span>    <span class="comment">// ChannelData contains channel internal metric reported by the channel through</span>
+    <span class="comment">// ChannelzMetric().</span>
+    ChannelData *<a href="index.html#ChannelInternalMetric">ChannelInternalMetric</a>
+<span id="ChannelMetric.NestedChans"></span>    <span class="comment">// NestedChans tracks the nested channel type children of this channel in the format of</span>
+    <span class="comment">// a map from nested channel channelz id to corresponding reference string.</span>
+    NestedChans map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="ChannelMetric.SubChans"></span>    <span class="comment">// SubChans tracks the subchannel type children of this channel in the format of a</span>
+    <span class="comment">// map from subchannel channelz id to corresponding reference string.</span>
+    SubChans map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="ChannelMetric.Sockets"></span>    <span class="comment">// Sockets tracks the socket type children of this channel in the format of a map</span>
+    <span class="comment">// from socket channelz id to corresponding reference string.</span>
+    <span class="comment">// Note current grpc implementation doesn&#39;t allow channel having sockets directly,</span>
+    <span class="comment">// therefore, this is field is unused.</span>
+    Sockets map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="ChannelMetric.Trace"></span>    <span class="comment">// Trace contains the most recent traced events.</span>
+    Trace *<a href="index.html#ChannelTrace">ChannelTrace</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetChannel">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=5506:5546#L159">GetChannel</a>
+					<a class="permalink" href="index.html#GetChannel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetChannel(id <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#ChannelMetric">ChannelMetric</a></pre>
+				<p>GetChannel returns the ChannelMetric for the channel (identified by id).
+
+				
+				
+			
+				
+				<h3 id="GetTopChannels">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=4226:4298#L133">GetTopChannels</a>
+					<a class="permalink" href="index.html#GetTopChannels">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetTopChannels(id <a href="../../../../builtin/index.html#int64">int64</a>, maxResults <a href="../../../../builtin/index.html#int64">int64</a>) ([]*<a href="index.html#ChannelMetric">ChannelMetric</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>GetTopChannels returns a slice of top channel&apos;s ChannelMetric, along with a
+boolean indicating whether there&apos;s more top channels to be queried for.
+<p>The arg id specifies that only top channel with id at or above it will be included
+in the result. The returned slice is up to a length of the arg maxResults or
+EntryPerPage if maxResults is zero, and is sorted in ascending id order.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ChannelTrace">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=6479:6842#L145">ChannelTrace</a>
+				<a class="permalink" href="index.html#ChannelTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChannelTrace stores traced events on a channel/subchannel and related info.
+
+			<pre>type ChannelTrace struct {
+<span id="ChannelTrace.EventNum"></span>    <span class="comment">// EventNum is the number of events that ever got traced (i.e. including those that have been deleted)</span>
+    EventNum <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ChannelTrace.CreationTime"></span>    <span class="comment">// CreationTime is the creation time of the trace.</span>
+    CreationTime <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="ChannelTrace.Events"></span>    <span class="comment">// Events stores the most recent trace events (up to $maxTraceEntry, newer event will overwrite the</span>
+    <span class="comment">// oldest one)</span>
+    Events []*<a href="index.html#TraceEvent">TraceEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Identifier">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=739:825#L15">Identifier</a>
+				<a class="permalink" href="index.html#Identifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Identifier is an opaque identifier which uniquely identifies an entity in the
+channelz database.
+
+			<pre>type Identifier struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewIdentifierForTesting">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=1851:1938#L55">NewIdentifierForTesting</a>
+					<a class="permalink" href="index.html#NewIdentifierForTesting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewIdentifierForTesting(typ <a href="index.html#RefChannelType">RefChannelType</a>, id <a href="../../../../builtin/index.html#int64">int64</a>, pid *<a href="index.html#Identifier">Identifier</a>) *<a href="index.html#Identifier">Identifier</a></pre>
+				<p>NewIdentifierForTesting returns a new opaque identifier to be used only for
+testing purposes.
+
+				
+				
+			
+				
+				<h3 id="RegisterChannel">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=6408:6480#L185">RegisterChannel</a>
+					<a class="permalink" href="index.html#RegisterChannel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RegisterChannel(c <a href="index.html#Channel">Channel</a>, pid *<a href="index.html#Identifier">Identifier</a>, ref <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Identifier">Identifier</a></pre>
+				<p>RegisterChannel registers the given channel c in the channelz database with
+ref as its reference name, and adds it to the child list of its parent
+(identified by pid). pid == nil means no parent.
+<p>Returns a unique channelz identifier assigned to this channel.
+<p>If channelz is not turned ON, the channelz database is not mutated.
+
+				
+				
+			
+				
+				<h3 id="RegisterListenSocket">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=8892:8977#L266">RegisterListenSocket</a>
+					<a class="permalink" href="index.html#RegisterListenSocket">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RegisterListenSocket(s <a href="index.html#Socket">Socket</a>, pid *<a href="index.html#Identifier">Identifier</a>, ref <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Identifier">Identifier</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RegisterListenSocket registers the given listen socket s in channelz database
+with ref as its reference name, and add it to the child list of its parent
+(identified by pid). It returns the unique channelz tracking id assigned to
+this listen socket.
+<p>If channelz is not turned ON, the channelz database is not mutated.
+
+				
+				
+			
+				
+				<h3 id="RegisterNormalSocket">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=9660:9745#L286">RegisterNormalSocket</a>
+					<a class="permalink" href="index.html#RegisterNormalSocket">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RegisterNormalSocket(s <a href="index.html#Socket">Socket</a>, pid *<a href="index.html#Identifier">Identifier</a>, ref <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Identifier">Identifier</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RegisterNormalSocket registers the given normal socket s in channelz database
+with ref as its reference name, and adds it to the child list of its parent
+(identified by pid). It returns the unique channelz tracking id assigned to
+this normal socket.
+<p>If channelz is not turned ON, the channelz database is not mutated.
+
+				
+				
+			
+				
+				<h3 id="RegisterServer">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=8182:8235#L243">RegisterServer</a>
+					<a class="permalink" href="index.html#RegisterServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RegisterServer(s <a href="index.html#Server">Server</a>, ref <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Identifier">Identifier</a></pre>
+				<p>RegisterServer registers the given server s in channelz database. It returns
+the unique channelz tracking id assigned to this server.
+<p>If channelz is not turned ON, the channelz database is not mutated.
+
+				
+				
+			
+				
+				<h3 id="RegisterSubChannel">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=7380:7464#L218">RegisterSubChannel</a>
+					<a class="permalink" href="index.html#RegisterSubChannel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RegisterSubChannel(c <a href="index.html#Channel">Channel</a>, pid *<a href="index.html#Identifier">Identifier</a>, ref <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Identifier">Identifier</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RegisterSubChannel registers the given subChannel c in the channelz database
+with ref as its reference name, and adds it to the child list of its parent
+(identified by pid).
+<p>Returns a unique channelz identifier assigned to this subChannel.
+<p>If channelz is not turned ON, the channelz database is not mutated.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Identifier.Equal">func (*Identifier) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=1519:1570#L43">Equal</a>
+					<a class="permalink" href="index.html#Identifier.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#Identifier">Identifier</a>) Equal(other *<a href="index.html#Identifier">Identifier</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Equal returns true if other is the same as id.
+
+				
+				
+				
+			
+				
+				<h3 id="Identifier.Int">func (*Identifier) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=1003:1036#L28">Int</a>
+					<a class="permalink" href="index.html#Identifier.Int">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#Identifier">Identifier</a>) Int() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>Int returns the integer identifier corresponding to id.
+
+				
+				
+				
+			
+				
+				<h3 id="Identifier.String">func (*Identifier) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=1411:1448#L38">String</a>
+					<a class="permalink" href="index.html#Identifier.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#Identifier">Identifier</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of the entity corresponding to id.
+<p>This includes some information about the parent as well. Examples:
+Top-level channel: [Channel #channel-number]
+Nested channel:    [Channel #parent-channel-number Channel #channel-number]
+Sub channel:       [Channel #parent-channel SubChannel #subchannel-number]
+
+				
+				
+				
+			
+				
+				<h3 id="Identifier.Type">func (*Identifier) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/id.go?s=880:923#L23">Type</a>
+					<a class="permalink" href="index.html#Identifier.Type">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#Identifier">Identifier</a>) Type() <a href="index.html#RefChannelType">RefChannelType</a></pre>
+				<p>Type returns the entity type corresponding to id.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RefChannelType">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=22782:22805#L676">RefChannelType</a>
+				<a class="permalink" href="index.html#RefChannelType">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RefChannelType is the type of the entity being referenced in a trace event.
+
+			<pre>type RefChannelType <a href="../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// RefUnknown indicates an unknown entity type, the zero value for this type.</span>
+    <span id="RefUnknown">RefUnknown</span> <a href="index.html#RefChannelType">RefChannelType</a> = <a href="../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// RefChannel indicates the referenced entity is a Channel.</span>
+    <span id="RefChannel">RefChannel</span>
+    <span class="comment">// RefSubChannel indicates the referenced entity is a SubChannel.</span>
+    <span id="RefSubChannel">RefSubChannel</span>
+    <span class="comment">// RefServer indicates the referenced entity is a Server.</span>
+    <span id="RefServer">RefServer</span>
+    <span class="comment">// RefListenSocket indicates the referenced entity is a ListenSocket.</span>
+    <span id="RefListenSocket">RefListenSocket</span>
+    <span class="comment">// RefNormalSocket indicates the referenced entity is a NormalSocket.</span>
+    <span id="RefNormalSocket">RefNormalSocket</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RefChannelType.String">func (RefChannelType) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=23577:23616#L702">String</a>
+					<a class="permalink" href="index.html#RefChannelType.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#RefChannelType">RefChannelType</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=20182:20247#L565">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server is the interface to be satisfied in order to be tracked by channelz as
+Server.
+
+			<pre>type Server interface {
+    ChannelzMetric() *<a href="index.html#ServerInternalMetric">ServerInternalMetric</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerInternalMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=19698:20088#L552">ServerInternalMetric</a>
+				<a class="permalink" href="index.html#ServerInternalMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerInternalMetric defines the struct that the implementor of Server interface
+should return from ChannelzMetric().
+
+			<pre>type ServerInternalMetric struct {
+    <span class="comment">// The number of incoming calls started on the server.</span>
+<span id="ServerInternalMetric.CallsStarted"></span>    CallsStarted <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of incoming calls that have completed with an OK status.</span>
+<span id="ServerInternalMetric.CallsSucceeded"></span>    CallsSucceeded <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of incoming calls that have a completed with a non-OK status.</span>
+<span id="ServerInternalMetric.CallsFailed"></span>    CallsFailed <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The last time a call was started on the server.</span>
+<span id="ServerInternalMetric.LastCallStartedTimestamp"></span>    LastCallStartedTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=19083:19572#L537">ServerMetric</a>
+				<a class="permalink" href="index.html#ServerMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerMetric defines the info channelz provides for a specific Server, which
+includes ServerInternalMetric and channelz-specific data, such as channelz id,
+child list, etc.
+
+			<pre>type ServerMetric struct {
+<span id="ServerMetric.ID"></span>    <span class="comment">// ID is the channelz id of this server.</span>
+    ID <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ServerMetric.RefName"></span>    <span class="comment">// RefName is the human readable reference string of this server.</span>
+    RefName <a href="../../../../builtin/index.html#string">string</a>
+<span id="ServerMetric.ServerData"></span>    <span class="comment">// ServerData contains server internal metric reported by the server through</span>
+    <span class="comment">// ChannelzMetric().</span>
+    ServerData *<a href="index.html#ServerInternalMetric">ServerInternalMetric</a>
+<span id="ServerMetric.ListenSockets"></span>    <span class="comment">// ListenSockets tracks the listener socket type children of this server in the</span>
+    <span class="comment">// format of a map from socket channelz id to corresponding reference string.</span>
+    ListenSockets map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetServer">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=5985:6023#L174">GetServer</a>
+					<a class="permalink" href="index.html#GetServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetServer(id <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#ServerMetric">ServerMetric</a></pre>
+				<p>GetServer returns the ServerMetric for the server (identified by id).
+
+				
+				
+			
+				
+				<h3 id="GetServers">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=4731:4798#L143">GetServers</a>
+					<a class="permalink" href="index.html#GetServers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetServers(id <a href="../../../../builtin/index.html#int64">int64</a>, maxResults <a href="../../../../builtin/index.html#int64">int64</a>) ([]*<a href="index.html#ServerMetric">ServerMetric</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>GetServers returns a slice of server&apos;s ServerMetric, along with a
+boolean indicating whether there&apos;s more servers to be queried for.
+<p>The arg id specifies that only server with id at or above it will be included
+in the result. The returned slice is up to a length of the arg maxResults or
+EntryPerPage if maxResults is zero, and is sorted in ascending id order.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Severity">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=22374:22391#L662">Severity</a>
+				<a class="permalink" href="index.html#Severity">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Severity is the severity level of a trace event.
+The canonical enumeration of all valid values is here:
+<a href="https://github.com/grpc/grpc-proto/blob/9b13d199cc0d4703c7ea26c9c330ba695866eb23/grpc/channelz/v1/channelz.proto#L126">https://github.com/grpc/grpc-proto/blob/9b13d199cc0d4703c7ea26c9c330ba695866eb23/grpc/channelz/v1/channelz.proto#L126</a>.
+
+			<pre>type Severity <a href="../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// CtUnknown indicates unknown severity of a trace event.</span>
+    <span id="CtUnknown">CtUnknown</span> <a href="index.html#Severity">Severity</a> = <a href="../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// CtInfo indicates info level severity of a trace event.</span>
+    <span id="CtInfo">CtInfo</span>
+    <span class="comment">// CtWarning indicates warning level severity of a trace event.</span>
+    <span id="CtWarning">CtWarning</span>
+    <span class="comment">// CtError indicates error level severity of a trace event.</span>
+    <span id="CtError">CtError</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Socket">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=17484:17549#L472">Socket</a>
+				<a class="permalink" href="index.html#Socket">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Socket is the interface that should be satisfied in order to be tracked by
+channelz as Socket.
+
+			<pre>type Socket interface {
+    ChannelzMetric() *<a href="index.html#SocketInternalMetric">SocketInternalMetric</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SocketInternalMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=15357:17381#L424">SocketInternalMetric</a>
+				<a class="permalink" href="index.html#SocketInternalMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SocketInternalMetric defines the struct that the implementor of Socket interface
+should return from ChannelzMetric().
+
+			<pre>type SocketInternalMetric struct {
+    <span class="comment">// The number of streams that have been started.</span>
+<span id="SocketInternalMetric.StreamsStarted"></span>    StreamsStarted <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of streams that have ended successfully:</span>
+    <span class="comment">// On client side, receiving frame with eos bit set.</span>
+    <span class="comment">// On server side, sending frame with eos bit set.</span>
+<span id="SocketInternalMetric.StreamsSucceeded"></span>    StreamsSucceeded <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of streams that have ended unsuccessfully:</span>
+    <span class="comment">// On client side, termination without receiving frame with eos bit set.</span>
+    <span class="comment">// On server side, termination without sending frame with eos bit set.</span>
+<span id="SocketInternalMetric.StreamsFailed"></span>    StreamsFailed <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of messages successfully sent on this socket.</span>
+<span id="SocketInternalMetric.MessagesSent"></span>    MessagesSent     <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="SocketInternalMetric.MessagesReceived"></span>    MessagesReceived <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The number of keep alives sent.  This is typically implemented with HTTP/2</span>
+    <span class="comment">// ping messages.</span>
+<span id="SocketInternalMetric.KeepAlivesSent"></span>    KeepAlivesSent <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The last time a stream was created by this endpoint.  Usually unset for</span>
+    <span class="comment">// servers.</span>
+<span id="SocketInternalMetric.LastLocalStreamCreatedTimestamp"></span>    LastLocalStreamCreatedTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+    <span class="comment">// The last time a stream was created by the remote endpoint.  Usually unset</span>
+    <span class="comment">// for clients.</span>
+<span id="SocketInternalMetric.LastRemoteStreamCreatedTimestamp"></span>    LastRemoteStreamCreatedTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+    <span class="comment">// The last time a message was sent by this endpoint.</span>
+<span id="SocketInternalMetric.LastMessageSentTimestamp"></span>    LastMessageSentTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+    <span class="comment">// The last time a message was received by this endpoint.</span>
+<span id="SocketInternalMetric.LastMessageReceivedTimestamp"></span>    LastMessageReceivedTimestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+    <span class="comment">// The amount of window, granted to the local endpoint by the remote endpoint.</span>
+    <span class="comment">// This may be slightly out of date due to network latency.  This does NOT</span>
+    <span class="comment">// include stream level or TCP level flow control info.</span>
+<span id="SocketInternalMetric.LocalFlowControlWindow"></span>    LocalFlowControlWindow <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The amount of window, granted to the remote endpoint by the local endpoint.</span>
+    <span class="comment">// This may be slightly out of date due to network latency.  This does NOT</span>
+    <span class="comment">// include stream level or TCP level flow control info.</span>
+<span id="SocketInternalMetric.RemoteFlowControlWindow"></span>    RemoteFlowControlWindow <a href="../../../../builtin/index.html#int64">int64</a>
+    <span class="comment">// The locally bound address.</span>
+<span id="SocketInternalMetric.LocalAddr"></span>    LocalAddr <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Addr">Addr</a>
+    <span class="comment">// The remote bound address.  May be absent.</span>
+<span id="SocketInternalMetric.RemoteAddr"></span>    RemoteAddr <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Addr">Addr</a>
+    <span class="comment">// Optional, represents the name of the remote endpoint, if different than</span>
+    <span class="comment">// the original target name.</span>
+<span id="SocketInternalMetric.RemoteName"></span>    RemoteName    <a href="../../../../builtin/index.html#string">string</a>
+<span id="SocketInternalMetric.SocketOptions"></span>    SocketOptions *<a href="index.html#SocketOptionData">SocketOptionData</a>
+<span id="SocketInternalMetric.Security"></span>    Security      <a href="../../credentials/index.html">credentials</a>.<a href="../../credentials/index.html#ChannelzSecurityValue">ChannelzSecurityValue</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SocketMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=14934:15231#L412">SocketMetric</a>
+				<a class="permalink" href="index.html#SocketMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SocketMetric defines the info channelz provides for a specific Socket, which
+includes SocketInternalMetric and channelz-specific data, such as channelz id, etc.
+
+			<pre>type SocketMetric struct {
+<span id="SocketMetric.ID"></span>    <span class="comment">// ID is the channelz id of this socket.</span>
+    ID <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="SocketMetric.RefName"></span>    <span class="comment">// RefName is the human readable reference string of this socket.</span>
+    RefName <a href="../../../../builtin/index.html#string">string</a>
+<span id="SocketMetric.SocketData"></span>    <span class="comment">// SocketData contains socket internal metric reported by the socket through</span>
+    <span class="comment">// ChannelzMetric().</span>
+    SocketData *<a href="index.html#SocketInternalMetric">SocketInternalMetric</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetServerSockets">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=5277:5365#L154">GetServerSockets</a>
+					<a class="permalink" href="index.html#GetServerSockets">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetServerSockets(id <a href="../../../../builtin/index.html#int64">int64</a>, startID <a href="../../../../builtin/index.html#int64">int64</a>, maxResults <a href="../../../../builtin/index.html#int64">int64</a>) ([]*<a href="index.html#SocketMetric">SocketMetric</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>GetServerSockets returns a slice of server&apos;s (identified by id) normal socket&apos;s
+SocketMetric, along with a boolean indicating whether there&apos;s more sockets to
+be queried for.
+<p>The arg startID specifies that only sockets with id at or above it will be
+included in the result. The returned slice is up to a length of the arg maxResults
+or EntryPerPage if maxResults is zero, and is sorted in ascending id order.
+
+				
+				
+			
+				
+				<h3 id="GetSocket">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=5837:5875#L169">GetSocket</a>
+					<a class="permalink" href="index.html#GetSocket">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetSocket(id <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#SocketMetric">SocketMetric</a></pre>
+				<p>GetSocket returns the SocketInternalMetric for the socket (identified by id).
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SocketOptionData">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types_nonlinux.go?s=864:896#L23">SocketOptionData</a>
+				<a class="permalink" href="index.html#SocketOptionData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SocketOptionData defines the struct to hold socket option data, and related
+getter function to obtain info from fd.
+Windows OS doesn&apos;t support Socket Option
+
+			<pre>type SocketOptionData struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetSocketOption">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/util_nonlinux.go?s=718:771#L15">GetSocketOption</a>
+					<a class="permalink" href="index.html#GetSocketOption">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetSocketOption(c interface{}) *<a href="index.html#SocketOptionData">SocketOptionData</a></pre>
+				<p>GetSocketOption gets the socket option info of the conn.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SocketOptionData.Getsockopt">func (*SocketOptionData) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types_nonlinux.go?s=1074:1123#L29">Getsockopt</a>
+					<a class="permalink" href="index.html#SocketOptionData.Getsockopt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SocketOptionData">SocketOptionData</a>) Getsockopt(fd <a href="../../../../builtin/index.html#uintptr">uintptr</a>)</pre>
+				<p>Getsockopt defines the function to get socket options requested by channelz.
+It is to be passed to syscall.RawConn.Control().
+Windows OS doesn&apos;t support Socket Option
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SubChannelMetric">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=4523:5741#L102">SubChannelMetric</a>
+				<a class="permalink" href="index.html#SubChannelMetric">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubChannelMetric defines the info channelz provides for a specific SubChannel,
+which includes ChannelInternalMetric and channelz-specific data, such as
+channelz id, child list, etc.
+
+			<pre>type SubChannelMetric struct {
+<span id="SubChannelMetric.ID"></span>    <span class="comment">// ID is the channelz id of this subchannel.</span>
+    ID <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="SubChannelMetric.RefName"></span>    <span class="comment">// RefName is the human readable reference string of this subchannel.</span>
+    RefName <a href="../../../../builtin/index.html#string">string</a>
+<span id="SubChannelMetric.ChannelData"></span>    <span class="comment">// ChannelData contains subchannel internal metric reported by the subchannel</span>
+    <span class="comment">// through ChannelzMetric().</span>
+    ChannelData *<a href="index.html#ChannelInternalMetric">ChannelInternalMetric</a>
+<span id="SubChannelMetric.NestedChans"></span>    <span class="comment">// NestedChans tracks the nested channel type children of this subchannel in the format of</span>
+    <span class="comment">// a map from nested channel channelz id to corresponding reference string.</span>
+    <span class="comment">// Note current grpc implementation doesn&#39;t allow subchannel to have nested channels</span>
+    <span class="comment">// as children, therefore, this field is unused.</span>
+    NestedChans map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="SubChannelMetric.SubChans"></span>    <span class="comment">// SubChans tracks the subchannel type children of this subchannel in the format of a</span>
+    <span class="comment">// map from subchannel channelz id to corresponding reference string.</span>
+    <span class="comment">// Note current grpc implementation doesn&#39;t allow subchannel to have subchannels</span>
+    <span class="comment">// as children, therefore, this field is unused.</span>
+    SubChans map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="SubChannelMetric.Sockets"></span>    <span class="comment">// Sockets tracks the socket type children of this subchannel in the format of a map</span>
+    <span class="comment">// from socket channelz id to corresponding reference string.</span>
+    Sockets map[<a href="../../../../builtin/index.html#int64">int64</a>]<a href="../../../../builtin/index.html#string">string</a>
+<span id="SubChannelMetric.Trace"></span>    <span class="comment">// Trace contains the most recent traced events.</span>
+    Trace *<a href="index.html#ChannelTrace">ChannelTrace</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetSubChannel">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=5669:5715#L164">GetSubChannel</a>
+					<a class="permalink" href="index.html#GetSubChannel">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetSubChannel(id <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#SubChannelMetric">SubChannelMetric</a></pre>
+				<p>GetSubChannel returns the SubChannelMetric for the subchannel (identified by id).
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TraceEvent">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/types.go?s=6889:7531#L156">TraceEvent</a>
+				<a class="permalink" href="index.html#TraceEvent">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TraceEvent represent a single trace event
+
+			<pre>type TraceEvent struct {
+<span id="TraceEvent.Desc"></span>    <span class="comment">// Desc is a simple description of the trace event.</span>
+    Desc <a href="../../../../builtin/index.html#string">string</a>
+<span id="TraceEvent.Severity"></span>    <span class="comment">// Severity states the severity of this trace event.</span>
+    Severity <a href="index.html#Severity">Severity</a>
+<span id="TraceEvent.Timestamp"></span>    <span class="comment">// Timestamp is the event time.</span>
+    Timestamp <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="TraceEvent.RefID"></span>    <span class="comment">// RefID is the id of the entity that gets referenced in the event. RefID is 0 if no other entity is</span>
+    <span class="comment">// involved in this event.</span>
+    <span class="comment">// e.g. SubChannel (id: 4[]) Created. --&gt; RefID = 4, RefName = &#34;&#34; (inside [])</span>
+    RefID <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="TraceEvent.RefName"></span>    <span class="comment">// RefName is the reference name for the entity that gets referenced in the event.</span>
+    RefName <a href="../../../../builtin/index.html#string">string</a>
+<span id="TraceEvent.RefType"></span>    <span class="comment">// RefType indicates the referenced entity type, i.e Channel or SubChannel.</span>
+    RefType <a href="index.html#RefChannelType">RefChannelType</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TraceEventDesc">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/channelz/funcs.go?s=10594:10686#L316">TraceEventDesc</a>
+				<a class="permalink" href="index.html#TraceEventDesc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TraceEventDesc is what the caller of AddTraceEvent should provide to describe
+the event to be added to the channel trace.
+<p>The Parent field is optional. It is used for an event that will be recorded
+in the entity&apos;s parent trace.
+
+			<pre>type TraceEventDesc struct {
+<span id="TraceEventDesc.Desc"></span>    Desc     <a href="../../../../builtin/index.html#string">string</a>
+<span id="TraceEventDesc.Severity"></span>    Severity <a href="index.html#Severity">Severity</a>
+<span id="TraceEventDesc.Parent"></span>    Parent   *<a href="index.html#TraceEventDesc">TraceEventDesc</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

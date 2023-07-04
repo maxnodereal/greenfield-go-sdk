@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>flowcontrol - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package flowcontrol
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/les/flowcontrol"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package flowcontrol implements a client side flow control mechanism
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#ClientManager">type ClientManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClientManager">func NewClientManager(curve PieceWiseLinear, clock mclock.Clock) *ClientManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientManager.SetCapacityLimits">func (cm *ClientManager) SetCapacityLimits(min, max, raiseThreshold uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientManager.SetRechargeCurve">func (cm *ClientManager) SetRechargeCurve(curve PieceWiseLinear)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientManager.Stop">func (cm *ClientManager) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientManager.SubscribeTotalCapacity">func (cm *ClientManager) SubscribeTotalCapacity(ch chan uint64) uint64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ClientNode">type ClientNode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClientNode">func NewClientNode(cm *ClientManager, params ServerParams) *ClientNode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.AcceptRequest">func (node *ClientNode) AcceptRequest(reqID, index, maxCost uint64) (accepted bool, bufShort uint64, priority int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.BufferStatus">func (node *ClientNode) BufferStatus() (uint64, uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.Disconnect">func (node *ClientNode) Disconnect()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.Freeze">func (node *ClientNode) Freeze()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.OneTimeCost">func (node *ClientNode) OneTimeCost(cost uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.RequestProcessed">func (node *ClientNode) RequestProcessed(reqID, index, maxCost, realCost uint64) uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientNode.UpdateParams">func (node *ClientNode) UpdateParams(params ServerParams)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PieceWiseLinear">type PieceWiseLinear</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PieceWiseLinear.Valid">func (pwl PieceWiseLinear) Valid() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PieceWiseLinear.ValueAt">func (pwl PieceWiseLinear) ValueAt(x uint64) float64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerNode">type ServerNode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServerNode">func NewServerNode(params ServerParams, clock mclock.Clock) *ServerNode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.CanSend">func (node *ServerNode) CanSend(maxCost uint64) (time.Duration, float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.DumpLogs">func (node *ServerNode) DumpLogs()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.QueuedRequest">func (node *ServerNode) QueuedRequest(reqID, maxCost uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.ReceivedReply">func (node *ServerNode) ReceivedReply(reqID, bv uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.ResumeFreeze">func (node *ServerNode) ResumeFreeze(bv uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerNode.UpdateParams">func (node *ServerNode) UpdateParams(params ServerParams)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerParams">type ServerParams</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go">control.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/logger.go">logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go">manager.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+
+    <span class="comment">// DecParamDelay is applied at server side when decreasing capacity in order to</span>
+    <span class="comment">// avoid a buffer underrun error due to requests sent by the client before</span>
+    <span class="comment">// receiving the capacity update announcement</span>
+    <span id="DecParamDelay">DecParamDelay</span> = <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Second">Second</a> * 2
+)</pre>
+			
+				<p>FixedPointMultiplier is applied to the recharge integrator and the recharge curve.
+<p>Note: fixed point arithmetic is required for the integrator because it is a
+constantly increasing value that can wrap around int64 limits (which behavior is
+also supported by the priority queue). A floating point value would gradually lose
+precision in this application.
+The recharge curve and all recharge values are encoded as fixed point because
+sumRecharge is frequently updated by adding or subtracting individual recharge
+values and perfect precision is required.
+
+				<pre>const <span id="FixedPointMultiplier">FixedPointMultiplier</span> = 1000000</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="ClientManager">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=2699:3766#L50">ClientManager</a>
+				<a class="permalink" href="index.html#ClientManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientManager controls the capacity assigned to the clients of a server.
+Since ServerParams guarantee a safe lower estimate for processable requests
+even in case of all clients being active, ClientManager calculates a
+corrugated buffer value and usually allows a higher remaining buffer value
+to be returned with each reply.
+
+			<pre>type ClientManager struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClientManager">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=5055:5134#L97">NewClientManager</a>
+					<a class="permalink" href="index.html#NewClientManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClientManager(curve <a href="index.html#PieceWiseLinear">PieceWiseLinear</a>, clock <a href="../../common/mclock/index.html">mclock</a>.<a href="../../common/mclock/index.html#Clock">Clock</a>) *<a href="index.html#ClientManager">ClientManager</a></pre>
+				<p>NewClientManager returns a new client manager.
+Client manager enhances flow control performance by allowing client buffers
+to recharge quicker than the minimum guaranteed recharge rate if possible.
+The sum of all minimum recharge rates (sumRecharge) is updated each time
+a clients starts or finishes buffer recharging. Then an adjusted total
+recharge rate is calculated using a piecewise linear recharge curve:
+<p>totalRecharge = curve(sumRecharge)
+(totalRecharge &gt;= sumRecharge is enforced)
+<p>Then the &quot;bonus&quot; buffer recharge is distributed between currently recharging
+clients proportionally to their minimum recharge rates.
+<p>Note: total recharge is proportional to the average number of parallel running
+serving threads. A recharge value of 1000000 corresponds to one thread in average.
+The maximum number of allowed serving threads should always be considerably
+higher than the targeted average number.
+<p>Note 2: although it is possible to specify a curve allowing the total target
+recharge starting from zero sumRecharge, it makes sense to add a linear ramp
+starting from zero in order to not let a single low-priority client use up
+the entire server capacity and thus ensure quick availability for others at
+any moment.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ClientManager.SetCapacityLimits">func (*ClientManager) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=6440:6515#L150">SetCapacityLimits</a>
+					<a class="permalink" href="index.html#ClientManager.SetCapacityLimits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cm *<a href="index.html#ClientManager">ClientManager</a>) SetCapacityLimits(min, max, raiseThreshold <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetCapacityRaiseThreshold sets a threshold value used for raising capFactor.
+Either if the difference between total allowed and connected capacity is less
+than this threshold or if their ratio is less than capacityRaiseThresholdRatio
+then capFactor is allowed to slowly raise.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientManager.SetRechargeCurve">func (*ClientManager) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=5875:5939#L132">SetRechargeCurve</a>
+					<a class="permalink" href="index.html#ClientManager.SetRechargeCurve">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cm *<a href="index.html#ClientManager">ClientManager</a>) SetRechargeCurve(curve <a href="index.html#PieceWiseLinear">PieceWiseLinear</a>)</pre>
+				<p>SetRechargeCurve updates the recharge curve
+
+				
+				
+				
+			
+				
+				<h3 id="ClientManager.Stop">func (*ClientManager) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=5737:5768#L125">Stop</a>
+					<a class="permalink" href="index.html#ClientManager.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cm *<a href="index.html#ClientManager">ClientManager</a>) Stop()</pre>
+				<p>Stop stops the client manager
+
+				
+				
+				
+			
+				
+				<h3 id="ClientManager.SubscribeTotalCapacity">func (*ClientManager) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=15121:15191#L401">SubscribeTotalCapacity</a>
+					<a class="permalink" href="index.html#ClientManager.SubscribeTotalCapacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cm *<a href="index.html#ClientManager">ClientManager</a>) SubscribeTotalCapacity(ch chan <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>SubscribeTotalCapacity returns all future updates to the total capacity value
+through a channel and also returns the current value
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ClientNode">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=1997:2419#L48">ClientNode</a>
+				<a class="permalink" href="index.html#ClientNode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientNode is the flow control system&apos;s representation of a client
+(used in server mode only)
+
+			<pre>type ClientNode struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClientNode">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=2463:2533#L63">NewClientNode</a>
+					<a class="permalink" href="index.html#NewClientNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClientNode(cm *<a href="index.html#ClientManager">ClientManager</a>, params <a href="index.html#ServerParams">ServerParams</a>) *<a href="index.html#ClientNode">ClientNode</a></pre>
+				<p>NewClientNode returns a new ClientNode
+
+				
+				
+			
+
+			
+				
+				<h3 id="ClientNode.AcceptRequest">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=6358:6474#L193">AcceptRequest</a>
+					<a class="permalink" href="index.html#ClientNode.AcceptRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) AcceptRequest(reqID, index, maxCost <a href="../../../../../builtin/index.html#uint64">uint64</a>) (accepted <a href="../../../../../builtin/index.html#bool">bool</a>, bufShort <a href="../../../../../builtin/index.html#uint64">uint64</a>, priority <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>AcceptRequest returns whether a new request can be accepted and the missing
+buffer amount if it was rejected due to a buffer underrun. If accepted, maxCost
+is deducted from the flow control buffer.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.BufferStatus">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=3068:3123#L89">BufferStatus</a>
+					<a class="permalink" href="index.html#ClientNode.BufferStatus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) BufferStatus() (<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>BufferStatus returns the current buffer value and limit
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.Disconnect">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=2872:2908#L80">Disconnect</a>
+					<a class="permalink" href="index.html#ClientNode.Disconnect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) Disconnect()</pre>
+				<p>Disconnect should be called when a client is disconnected
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.Freeze">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=3979:4011#L123">Freeze</a>
+					<a class="permalink" href="index.html#ClientNode.Freeze">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) Freeze()</pre>
+				<p>Freeze notifies the client manager about a client freeze event in which case
+the total capacity allowance is slightly reduced.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.OneTimeCost">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=3624:3672#L111">OneTimeCost</a>
+					<a class="permalink" href="index.html#ClientNode.OneTimeCost">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) OneTimeCost(cost <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>OneTimeCost subtracts the given amount from the node&apos;s buffer.
+<p>Note: this call can take the buffer into the negative region internally.
+In this case zero buffer value is returned by exported calls and no requests
+are accepted.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.RequestProcessed">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=7195:7282#L216">RequestProcessed</a>
+					<a class="permalink" href="index.html#ClientNode.RequestProcessed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) RequestProcessed(reqID, index, maxCost, realCost <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>RequestProcessed should be called when the request has been processed
+
+				
+				
+				
+			
+				
+				<h3 id="ClientNode.UpdateParams">func (*ClientNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=5191:5248#L158">UpdateParams</a>
+					<a class="permalink" href="index.html#ClientNode.UpdateParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ClientNode">ClientNode</a>) UpdateParams(params <a href="index.html#ServerParams">ServerParams</a>)</pre>
+				<p>UpdateParams updates the flow control parameters of a client node
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PieceWiseLinear">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=15351:15395#L410">PieceWiseLinear</a>
+				<a class="permalink" href="index.html#PieceWiseLinear">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PieceWiseLinear is used to describe recharge curves
+
+			<pre>type PieceWiseLinear []struct{ X, Y <a href="../../../../../builtin/index.html#uint64">uint64</a> }</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PieceWiseLinear.Valid">func (PieceWiseLinear) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=15997:16036#L442">Valid</a>
+					<a class="permalink" href="index.html#PieceWiseLinear.Valid">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pwl <a href="index.html#PieceWiseLinear">PieceWiseLinear</a>) Valid() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Valid returns true if the X coordinates of the curve points are non-strictly monotonic
+
+				
+				
+				
+			
+				
+				<h3 id="PieceWiseLinear.ValueAt">func (PieceWiseLinear) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/manager.go?s=15451:15503#L413">ValueAt</a>
+					<a class="permalink" href="index.html#PieceWiseLinear.ValueAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pwl <a href="index.html#PieceWiseLinear">PieceWiseLinear</a>) ValueAt(x <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				<p>ValueAt returns the curve&apos;s value at a given point
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerNode">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=7904:8244#L236">ServerNode</a>
+				<a class="permalink" href="index.html#ServerNode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerNode is the flow control system&apos;s representation of a server
+(used in client mode only)
+
+			<pre>type ServerNode struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServerNode">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=8288:8359#L249">NewServerNode</a>
+					<a class="permalink" href="index.html#NewServerNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServerNode(params <a href="index.html#ServerParams">ServerParams</a>, clock <a href="../../common/mclock/index.html">mclock</a>.<a href="../../common/mclock/index.html#Clock">Clock</a>) *<a href="index.html#ServerNode">ServerNode</a></pre>
+				<p>NewServerNode returns a new ServerNode
+
+				
+				
+			
+
+			
+				
+				<h3 id="ServerNode.CanSend">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=10078:10150#L306">CanSend</a>
+					<a class="permalink" href="index.html#ServerNode.CanSend">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) CanSend(maxCost <a href="../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>, <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>CanSend returns the minimum waiting time required before sending a request
+with the given maximum estimated cost. Second return value is the relative
+estimated buffer level after sending the request (divided by BufLimit).
+
+				
+				
+				
+			
+				
+				<h3 id="ServerNode.DumpLogs">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=13775:13809#L416">DumpLogs</a>
+					<a class="permalink" href="index.html#ServerNode.DumpLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) DumpLogs()</pre>
+				<p>DumpLogs dumps the event log if logging is used
+
+				
+				
+				
+			
+				
+				<h3 id="ServerNode.QueuedRequest">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=11266:11326#L336">QueuedRequest</a>
+					<a class="permalink" href="index.html#ServerNode.QueuedRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) QueuedRequest(reqID, maxCost <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>QueuedRequest should be called when the request has been assigned to the given
+server node, before putting it in the send queue. It is mandatory that requests
+are sent in the same order as the QueuedRequest calls are made.
+
+				
+				
+				
+			
+				
+				<h3 id="ServerNode.ReceivedReply">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=12135:12190#L360">ReceivedReply</a>
+					<a class="permalink" href="index.html#ServerNode.ReceivedReply">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) ReceivedReply(reqID, bv <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>ReceivedReply adjusts estimated buffer value according to the value included in
+the latest request reply.
+
+				
+				
+				
+			
+				
+				<h3 id="ServerNode.ResumeFreeze">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=13238:13285#L395">ResumeFreeze</a>
+					<a class="permalink" href="index.html#ServerNode.ResumeFreeze">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) ResumeFreeze(bv <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>ResumeFreeze cleans all pending requests and sets the buffer estimate to the
+reported value after resuming from a frozen state
+
+				
+				
+				
+			
+				
+				<h3 id="ServerNode.UpdateParams">func (*ServerNode) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=8689:8746#L265">UpdateParams</a>
+					<a class="permalink" href="index.html#ServerNode.UpdateParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#ServerNode">ServerNode</a>) UpdateParams(params <a href="index.html#ServerParams">ServerParams</a>)</pre>
+				<p>UpdateParams updates the flow control parameters of the node
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerParams">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/flowcontrol/control.go?s=1690:1748#L36">ServerParams</a>
+				<a class="permalink" href="index.html#ServerParams">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerParams are the flow control parameters specified by a server for a client
+<p>Note: a server can assign different amounts of capacity to each client by giving
+different parameters to them.
+
+			<pre>type ServerParams struct {
+<span id="ServerParams.BufLimit"></span>    BufLimit, MinRecharge <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

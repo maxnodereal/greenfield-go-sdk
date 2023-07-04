@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>attestations - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package attestations
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package attestations defines an attestation pool
+service implementation which is used to manage the lifecycle
+of aggregated, unaggregated, and fork-choice attestations.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewPool">func NewPool() *kv.AttCaches</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Pool">type Pool</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PoolMock">type PoolMock</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.AggregateUnaggregatedAttestations">func (*PoolMock) AggregateUnaggregatedAttestations(_ context.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.AggregateUnaggregatedAttestationsBySlotIndex">func (*PoolMock) AggregateUnaggregatedAttestationsBySlotIndex(_ context.Context, _ types.Slot, _ types.CommitteeIndex) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.AggregatedAttestationCount">func (*PoolMock) AggregatedAttestationCount() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.AggregatedAttestations">func (m *PoolMock) AggregatedAttestations() []*ethpb.Attestation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.AggregatedAttestationsBySlotIndex">func (*PoolMock) AggregatedAttestationsBySlotIndex(_ context.Context, _ types.Slot, _ types.CommitteeIndex) []*ethpb.Attestation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.BlockAttestations">func (*PoolMock) BlockAttestations() []*ethpb.Attestation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.DeleteAggregatedAttestation">func (*PoolMock) DeleteAggregatedAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.DeleteBlockAttestation">func (*PoolMock) DeleteBlockAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.DeleteForkchoiceAttestation">func (*PoolMock) DeleteForkchoiceAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.DeleteSeenUnaggregatedAttestations">func (*PoolMock) DeleteSeenUnaggregatedAttestations() (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.DeleteUnaggregatedAttestation">func (*PoolMock) DeleteUnaggregatedAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.ForkchoiceAttestationCount">func (*PoolMock) ForkchoiceAttestationCount() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.ForkchoiceAttestations">func (*PoolMock) ForkchoiceAttestations() []*ethpb.Attestation</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.HasAggregatedAttestation">func (*PoolMock) HasAggregatedAttestation(_ *ethpb.Attestation) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveAggregatedAttestation">func (*PoolMock) SaveAggregatedAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveAggregatedAttestations">func (m *PoolMock) SaveAggregatedAttestations(atts []*ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveBlockAttestation">func (*PoolMock) SaveBlockAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveBlockAttestations">func (*PoolMock) SaveBlockAttestations(_ []*ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveForkchoiceAttestation">func (*PoolMock) SaveForkchoiceAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveForkchoiceAttestations">func (*PoolMock) SaveForkchoiceAttestations(_ []*ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveUnaggregatedAttestation">func (*PoolMock) SaveUnaggregatedAttestation(_ *ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.SaveUnaggregatedAttestations">func (*PoolMock) SaveUnaggregatedAttestations(_ []*ethpb.Attestation) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.UnaggregatedAttestationCount">func (*PoolMock) UnaggregatedAttestationCount() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.UnaggregatedAttestations">func (*PoolMock) UnaggregatedAttestations() ([]*ethpb.Attestation, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.UnaggregatedAttestationsBySlotIndex">func (*PoolMock) UnaggregatedAttestationsBySlotIndex(_ context.Context, _ types.Slot, _ types.CommitteeIndex) []*ethpb.Attestation</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewService">func NewService(ctx context.Context, cfg *Config) (*Service, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SetGenesisTime">func (s *Service) SetGenesisTime(t uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Start">func (s *Service) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Status">func (s *Service) Status() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Stop">func (s *Service) Stop() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go">mock.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/pool.go">pool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/prepare_forkchoice.go">prepare_forkchoice.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/prune_expired.go">prune_expired.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go">service.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewPool">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/pool.go?s=2277:2305#L38">NewPool</a>
+				<a class="permalink" href="index.html#NewPool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewPool() *<a href="kv/index.html">kv</a>.<a href="kv/index.html#AttCaches">AttCaches</a></pre>
+			<p>NewPool initializes a new attestation pool.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=741:812#L18">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config options for the service.
+
+			<pre>type Config struct {
+<span id="Config.Pool"></span>    Pool <a href="index.html#Pool">Pool</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Pool">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/pool.go?s=469:2228#L5">Pool</a>
+				<a class="permalink" href="index.html#Pool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Pool defines the necessary methods for Prysm attestations pool to serve
+fork choice and validators. In the current design, aggregated attestations
+are used by proposer actor. Unaggregated attestations are used by
+aggregator actor.
+
+			<pre>type Pool interface {
+    <span class="comment">// For Aggregated attestations</span>
+    AggregateUnaggregatedAttestations(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    AggregateUnaggregatedAttestationsBySlotIndex(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, committeeIndex <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    SaveAggregatedAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    SaveAggregatedAttestations(atts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    AggregatedAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+    AggregatedAttestationsBySlotIndex(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, committeeIndex <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+    DeleteAggregatedAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    HasAggregatedAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    AggregatedAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a>
+    <span class="comment">// For unaggregated attestations.</span>
+    SaveUnaggregatedAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    SaveUnaggregatedAttestations(atts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    UnaggregatedAttestations() ([]*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    UnaggregatedAttestationsBySlotIndex(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, committeeIndex <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+    DeleteUnaggregatedAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    DeleteSeenUnaggregatedAttestations() (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    UnaggregatedAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a>
+    <span class="comment">// For attestations that were included in the block.</span>
+    SaveBlockAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    SaveBlockAttestations(atts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    BlockAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+    DeleteBlockAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// For attestations to be passed to fork choice.</span>
+    SaveForkchoiceAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    SaveForkchoiceAttestations(atts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    ForkchoiceAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+    DeleteForkchoiceAttestation(att *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    ForkchoiceAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PoolMock">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=167:228#L1">PoolMock</a>
+				<a class="permalink" href="index.html#PoolMock">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PoolMock --
+
+			<pre>type PoolMock struct {
+<span id="PoolMock.AggregatedAtts"></span>    AggregatedAtts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PoolMock.AggregateUnaggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=270:345#L6">AggregateUnaggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.AggregateUnaggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) AggregateUnaggregatedAttestations(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>AggregateUnaggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.AggregateUnaggregatedAttestationsBySlotIndex">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=425:549#L11">AggregateUnaggregatedAttestationsBySlotIndex</a>
+					<a class="permalink" href="index.html#PoolMock.AggregateUnaggregatedAttestationsBySlotIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) AggregateUnaggregatedAttestationsBySlotIndex(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>AggregateUnaggregatedAttestationsBySlotIndex --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.AggregatedAttestationCount">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1518:1567#L47">AggregatedAttestationCount</a>
+					<a class="permalink" href="index.html#PoolMock.AggregatedAttestationCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) AggregatedAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>AggregatedAttestationCount --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.AggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=921:985#L27">AggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.AggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) AggregatedAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a></pre>
+				<p>AggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.AggregatedAttestationsBySlotIndex">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1056:1184#L32">AggregatedAttestationsBySlotIndex</a>
+					<a class="permalink" href="index.html#PoolMock.AggregatedAttestationsBySlotIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) AggregatedAttestationsBySlotIndex(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a></pre>
+				<p>AggregatedAttestationsBySlotIndex --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.BlockAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2864:2921#L97">BlockAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.BlockAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) BlockAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a></pre>
+				<p>BlockAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.DeleteAggregatedAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1247:1319#L37">DeleteAggregatedAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.DeleteAggregatedAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) DeleteAggregatedAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteAggregatedAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.DeleteBlockAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2979:3046#L102">DeleteBlockAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.DeleteBlockAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) DeleteBlockAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteBlockAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.DeleteForkchoiceAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=3495:3567#L122">DeleteForkchoiceAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.DeleteForkchoiceAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) DeleteForkchoiceAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteForkchoiceAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.DeleteSeenUnaggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2384:2450#L77">DeleteSeenUnaggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.DeleteSeenUnaggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) DeleteSeenUnaggregatedAttestations() (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DeleteSeenUnaggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.DeleteUnaggregatedAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2240:2314#L72">DeleteUnaggregatedAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.DeleteUnaggregatedAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) DeleteUnaggregatedAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteUnaggregatedAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.ForkchoiceAttestationCount">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=3629:3678#L127">ForkchoiceAttestationCount</a>
+					<a class="permalink" href="index.html#PoolMock.ForkchoiceAttestationCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) ForkchoiceAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>ForkchoiceAttestationCount --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.ForkchoiceAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=3370:3432#L117">ForkchoiceAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.ForkchoiceAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) ForkchoiceAttestations() []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a></pre>
+				<p>ForkchoiceAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.HasAggregatedAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1379:1456#L42">HasAggregatedAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.HasAggregatedAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) HasAggregatedAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasAggregatedAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveAggregatedAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=610:680#L16">SaveAggregatedAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.SaveAggregatedAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveAggregatedAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveAggregatedAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveAggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=742:820#L21">SaveAggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.SaveAggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) SaveAggregatedAttestations(atts []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveAggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveBlockAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2621:2686#L87">SaveBlockAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.SaveBlockAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveBlockAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveBlockAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveBlockAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2743:2811#L92">SaveBlockAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.SaveBlockAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveBlockAttestations(_ []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveBlockAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveForkchoiceAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=3107:3177#L107">SaveForkchoiceAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.SaveForkchoiceAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveForkchoiceAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveForkchoiceAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveForkchoiceAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=3239:3312#L112">SaveForkchoiceAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.SaveForkchoiceAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveForkchoiceAttestations(_ []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveForkchoiceAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveUnaggregatedAttestation">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1630:1702#L52">SaveUnaggregatedAttestation</a>
+					<a class="permalink" href="index.html#PoolMock.SaveUnaggregatedAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveUnaggregatedAttestation(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveUnaggregatedAttestation --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.SaveUnaggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1766:1841#L57">SaveUnaggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.SaveUnaggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) SaveUnaggregatedAttestations(_ []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveUnaggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.UnaggregatedAttestationCount">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2514:2565#L82">UnaggregatedAttestationCount</a>
+					<a class="permalink" href="index.html#PoolMock.UnaggregatedAttestationCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) UnaggregatedAttestationCount() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>UnaggregatedAttestationCount --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.UnaggregatedAttestations">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=1901:1974#L62">UnaggregatedAttestations</a>
+					<a class="permalink" href="index.html#PoolMock.UnaggregatedAttestations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) UnaggregatedAttestations() ([]*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>UnaggregatedAttestations --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.UnaggregatedAttestationsBySlotIndex">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/mock.go?s=2045:2175#L67">UnaggregatedAttestationsBySlotIndex</a>
+					<a class="permalink" href="index.html#PoolMock.UnaggregatedAttestationsBySlotIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) UnaggregatedAttestationsBySlotIndex(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#CommitteeIndex">CommitteeIndex</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Attestation">Attestation</a></pre>
+				<p>UnaggregatedAttestationsBySlotIndex --
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=458:704#L8">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service of attestation pool operations.
+
+			<pre>type Service struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewService">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=936:1003#L25">NewService</a>
+					<a class="permalink" href="index.html#NewService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewService(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, cfg *<a href="index.html#Config">Config</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewService instantiates a new attestation pool service instance that will
+be registered into a running beacon node.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Service.SetGenesisTime">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=1967:2009#L64">SetGenesisTime</a>
+					<a class="permalink" href="index.html#Service.SetGenesisTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SetGenesisTime(t <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetGenesisTime sets genesis time for operation service to use.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Start">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=1509:1534#L43">Start</a>
+					<a class="permalink" href="index.html#Service.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Start()</pre>
+				<p>Start an attestation pool service&apos;s main event loop.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Status">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=1814:1846#L56">Status</a>
+					<a class="permalink" href="index.html#Service.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Status() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Status returns the current service err if there&apos;s any.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Stop">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/attestations/service.go?s=1690:1720#L50">Stop</a>
+					<a class="permalink" href="index.html#Service.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Stop() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop the beacon block attestation pool service&apos;s main event loop
+and associated goroutines.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="kv/index.html">kv</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package kv includes a key-value store implementation of an attestation cache used to satisfy important use-cases such as aggregation in a beacon node runtime.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

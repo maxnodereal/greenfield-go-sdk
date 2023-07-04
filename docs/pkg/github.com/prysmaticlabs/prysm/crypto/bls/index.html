@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>bls - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package bls
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/crypto/bls"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package bls implements a go-wrapper around a library implementing the
+the BLS12-381 curve and signature scheme. This package exposes a public API for
+verifying and aggregating BLS signatures used by Ethereum.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#AggregateSignatures">func AggregateSignatures(sigs []common.Signature) common.Signature</a></dd>
+			
+				
+				<dd><a href="index.html#NewAggregateSignature">func NewAggregateSignature() common.Signature</a></dd>
+			
+				
+				<dd><a href="index.html#RandKey">func RandKey() (common.SecretKey, error)</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyMultipleSignatures">func VerifyMultipleSignatures(sigs [][]byte, msgs [][32]byte, pubKeys []common.PublicKey) (bool, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#PublicKey">type PublicKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AggregatePublicKeys">func AggregatePublicKeys(pubs [][]byte) (PublicKey, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublicKeyFromBytes">func PublicKeyFromBytes(pubKey []byte) (PublicKey, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SecretKey">type SecretKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretKeyFromBytes">func SecretKeyFromBytes(privKey []byte) (SecretKey, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Signature">type Signature</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MultipleSignaturesFromBytes">func MultipleSignaturesFromBytes(sigs [][]byte) ([]Signature, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureFromBytes">func SignatureFromBytes(sig []byte) (Signature, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignatureBatch">type SignatureBatch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSet">func NewSet() *SignatureBatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureBatch.Copy">func (s *SignatureBatch) Copy() *SignatureBatch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureBatch.Join">func (s *SignatureBatch) Join(set *SignatureBatch) *SignatureBatch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureBatch.Verify">func (s *SignatureBatch) Verify() (bool, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go">bls.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/constants.go">constants.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/error.go">error.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/interface.go">interface.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go">signature_batch.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>CurveOrder for the BLS12-381 curve.
+
+				<pre>const <span id="CurveOrder">CurveOrder</span> = &#34;52435875175126190479447740508185965837690552500527637822603658699938581184513&#34;</pre>
+			
+				<p>DomainByteLength length of domain byte array.
+
+				<pre>const <span id="DomainByteLength">DomainByteLength</span> = 4</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AggregateSignatures">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=1534:1600#L33">AggregateSignatures</a>
+				<a class="permalink" href="index.html#AggregateSignatures">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AggregateSignatures(sigs []<a href="common/index.html">common</a>.<a href="common/index.html#Signature">Signature</a>) <a href="common/index.html">common</a>.<a href="common/index.html#Signature">Signature</a></pre>
+			<p>AggregateSignatures converts a list of signatures into a single, aggregated sig.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewAggregateSignature">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=1964:2009#L43">NewAggregateSignature</a>
+				<a class="permalink" href="index.html#NewAggregateSignature">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewAggregateSignature() <a href="common/index.html">common</a>.<a href="common/index.html#Signature">Signature</a></pre>
+			<p>NewAggregateSignature creates a blank aggregate signature.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RandKey">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=2111:2151#L48">RandKey</a>
+				<a class="permalink" href="index.html#RandKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RandKey() (<a href="common/index.html">common</a>.<a href="common/index.html#SecretKey">SecretKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>RandKey creates a new private key using a random input.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyMultipleSignatures">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=1734:1837#L38">VerifyMultipleSignatures</a>
+				<a class="permalink" href="index.html#VerifyMultipleSignatures">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyMultipleSignatures(sigs [][]<a href="../../../../../builtin/index.html#byte">byte</a>, msgs [][32]<a href="../../../../../builtin/index.html#byte">byte</a>, pubKeys []<a href="common/index.html">common</a>.<a href="common/index.html#PublicKey">PublicKey</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>VerifyMultipleSignatures verifies multiple signatures for distinct messages securely.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="PublicKey">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/interface.go?s=119:152#L1">PublicKey</a>
+				<a class="permalink" href="index.html#PublicKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublicKey represents a BLS public key.
+
+			<pre>type PublicKey = <a href="common/index.html">common</a>.<a href="common/index.html#PublicKey">PublicKey</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="AggregatePublicKeys">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=1347:1405#L28">AggregatePublicKeys</a>
+					<a class="permalink" href="index.html#AggregatePublicKeys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func AggregatePublicKeys(pubs [][]<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#PublicKey">PublicKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AggregatePublicKeys aggregates the provided raw public keys into a single key.
+
+				
+				
+			
+				
+				<h3 id="PublicKeyFromBytes">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=766:823#L13">PublicKeyFromBytes</a>
+					<a class="permalink" href="index.html#PublicKeyFromBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublicKeyFromBytes(pubKey []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#PublicKey">PublicKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PublicKeyFromBytes creates a BLS public key from a  BigEndian byte slice.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SecretKey">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/interface.go?s=207:240#L1">SecretKey</a>
+				<a class="permalink" href="index.html#SecretKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SecretKey represents a BLS secret or private key.
+
+			<pre>type SecretKey = <a href="common/index.html">common</a>.<a href="common/index.html#SecretKey">SecretKey</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SecretKeyFromBytes">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=584:642#L8">SecretKeyFromBytes</a>
+					<a class="permalink" href="index.html#SecretKeyFromBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SecretKeyFromBytes(privKey []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#SecretKey">SecretKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SecretKeyFromBytes creates a BLS private key from a BigEndian byte slice.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Signature">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/interface.go?s=283:316#L4">Signature</a>
+				<a class="permalink" href="index.html#Signature">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Signature represents a BLS signature.
+
+			<pre>type Signature = <a href="common/index.html">common</a>.<a href="common/index.html#Signature">Signature</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MultipleSignaturesFromBytes">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=1144:1212#L23">MultipleSignaturesFromBytes</a>
+					<a class="permalink" href="index.html#MultipleSignaturesFromBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MultipleSignaturesFromBytes(sigs [][]<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="index.html#Signature">Signature</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MultipleSignaturesFromBytes creates a slice of BLS signatures from a LittleEndian 2d-byte slice.
+
+				
+				
+			
+				
+				<h3 id="SignatureFromBytes">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/bls.go?s=947:1001#L18">SignatureFromBytes</a>
+					<a class="permalink" href="index.html#SignatureFromBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignatureFromBytes(sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Signature">Signature</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignatureFromBytes creates a BLS signature from a LittleEndian byte slice.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SignatureBatch">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go?s=144:242#L1">SignatureBatch</a>
+				<a class="permalink" href="index.html#SignatureBatch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureBatch refers to the defined set of
+signatures and its respective public keys and
+messages required to verify it.
+
+			<pre>type SignatureBatch struct {
+<span id="SignatureBatch.Signatures"></span>    Signatures [][]<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="SignatureBatch.PublicKeys"></span>    PublicKeys []<a href="index.html#PublicKey">PublicKey</a>
+<span id="SignatureBatch.Messages"></span>    Messages   [][32]<a href="../../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSet">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go?s=298:327#L3">NewSet</a>
+					<a class="permalink" href="index.html#NewSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSet() *<a href="index.html#SignatureBatch">SignatureBatch</a></pre>
+				<p>NewSet constructs an empty signature batch object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SignatureBatch.Copy">func (*SignatureBatch) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go?s=1019:1066#L26">Copy</a>
+					<a class="permalink" href="index.html#SignatureBatch.Copy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SignatureBatch">SignatureBatch</a>) Copy() *<a href="index.html#SignatureBatch">SignatureBatch</a></pre>
+				<p>Copy the attached signature batch and return it
+to the caller.
+
+				
+				
+				
+			
+				
+				<h3 id="SignatureBatch.Join">func (*SignatureBatch) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go?s=508:574#L12">Join</a>
+					<a class="permalink" href="index.html#SignatureBatch.Join">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SignatureBatch">SignatureBatch</a>) Join(set *<a href="index.html#SignatureBatch">SignatureBatch</a>) *<a href="index.html#SignatureBatch">SignatureBatch</a></pre>
+				<p>Join merges the provided signature batch to out current one.
+
+				
+				
+				
+			
+				
+				<h3 id="SignatureBatch.Verify">func (*SignatureBatch) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/crypto/bls/signature_batch.go?s=824:871#L20">Verify</a>
+					<a class="permalink" href="index.html#SignatureBatch.Verify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#SignatureBatch">SignatureBatch</a>) Verify() (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Verify the current signature batch using the batch verify algorithm.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="blst/index.html">blst</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package blst implements a go-wrapper around a library implementing the the BLS12-381 curve and signature scheme.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="common/index.html">common</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package common provides the BLS interfaces that are implemented by the various BLS wrappers.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="herumi/index.html">herumi</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

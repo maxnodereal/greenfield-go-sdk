@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>core - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package core
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/rpc/core"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package core defines the CometBFT RPC endpoints.
+<p>CometBFT ships with its own JSONRPC library -
+<a href="https://github.com/cometbft/cometbft/tree/v0.37.x/rpc/jsonrpc">https://github.com/cometbft/cometbft/tree/v0.37.x/rpc/jsonrpc</a>.
+<p>## Get the list
+<p>An HTTP Get request to the root RPC endpoint shows a list of available endpoints.
+<p>```bash
+curl &apos;localhost:26657&apos;
+```
+<p>&gt; Response:
+<p>```plain
+Available endpoints:
+/abci_info
+/dump_consensus_state
+/genesis
+/net_info
+/num_unconfirmed_txs
+/status
+/health
+/unconfirmed_txs
+/unsafe_flush_mempool
+/validators
+<p>Endpoints that require arguments:
+/abci_query?path=_&amp;data=_&amp;prove=_
+/block?height=_
+/blockchain?minHeight=_&amp;maxHeight=_
+/broadcast_tx_async?tx=_
+/broadcast_tx_commit?tx=_
+/broadcast_tx_sync?tx=_
+/commit?height=_
+/dial_seeds?seeds=_
+/dial_persistent_peers?persistent_peers=_
+/subscribe?event=_
+/tx?hash=_&amp;prove=_
+/unsubscribe?event=_
+```
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ABCIInfo">func ABCIInfo(ctx *rpctypes.Context) (*ctypes.ResultABCIInfo, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ABCIQuery">func ABCIQuery(ctx *rpctypes.Context, path string, data bytes.HexBytes, height int64, prove bool) (*ctypes.ResultABCIQuery, error)</a></dd>
+			
+				
+				<dd><a href="index.html#AddUnsafeRoutes">func AddUnsafeRoutes()</a></dd>
+			
+				
+				<dd><a href="index.html#Block">func Block(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultBlock, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BlockByHash">func BlockByHash(ctx *rpctypes.Context, hash []byte) (*ctypes.ResultBlock, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BlockResults">func BlockResults(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultBlockResults, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BlockSearch">func BlockSearch(ctx *rpctypes.Context, query string, pagePtr, perPagePtr *int, orderBy string) (*ctypes.ResultBlockSearch, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BlockchainInfo">func BlockchainInfo(ctx *rpctypes.Context, minHeight, maxHeight int64) (*ctypes.ResultBlockchainInfo, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BroadcastEvidence">func BroadcastEvidence(ctx *rpctypes.Context, ev types.Evidence) (*ctypes.ResultBroadcastEvidence, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BroadcastTxAsync">func BroadcastTxAsync(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BroadcastTxCommit">func BroadcastTxCommit(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultBroadcastTxCommit, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BroadcastTxSync">func BroadcastTxSync(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error)</a></dd>
+			
+				
+				<dd><a href="index.html#BroadcastVote">func BroadcastVote(ctx *rpctypes.Context, vote votepool.Vote) (*ctypes.ResultBroadcastVote, error)</a></dd>
+			
+				
+				<dd><a href="index.html#CheckTx">func CheckTx(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultCheckTx, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Commit">func Commit(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultCommit, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ConsensusParams">func ConsensusParams(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultConsensusParams, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ConsensusState">func ConsensusState(ctx *rpctypes.Context) (*ctypes.ResultConsensusState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#DumpConsensusState">func DumpConsensusState(ctx *rpctypes.Context) (*ctypes.ResultDumpConsensusState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#EthQuery">func EthQuery(ctx *rpctypes.Context, request []byte) (*ctypes.ResultEthQuery, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Genesis">func Genesis(ctx *rpctypes.Context) (*ctypes.ResultGenesis, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenesisChunked">func GenesisChunked(ctx *rpctypes.Context, chunk uint) (*ctypes.ResultGenesisChunk, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Header">func Header(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultHeader, error)</a></dd>
+			
+				
+				<dd><a href="index.html#HeaderByHash">func HeaderByHash(ctx *rpctypes.Context, hash bytes.HexBytes) (*ctypes.ResultHeader, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Health">func Health(ctx *rpctypes.Context) (*ctypes.ResultHealth, error)</a></dd>
+			
+				
+				<dd><a href="index.html#InitGenesisChunks">func InitGenesisChunks() error</a></dd>
+			
+				
+				<dd><a href="index.html#NetInfo">func NetInfo(ctx *rpctypes.Context) (*ctypes.ResultNetInfo, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NumUnconfirmedTxs">func NumUnconfirmedTxs(ctx *rpctypes.Context) (*ctypes.ResultUnconfirmedTxs, error)</a></dd>
+			
+				
+				<dd><a href="index.html#QueryVote">func QueryVote(ctx *rpctypes.Context, eventType int, eventHash []byte) (*ctypes.ResultQueryVote, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SetEnvironment">func SetEnvironment(e *Environment)</a></dd>
+			
+				
+				<dd><a href="index.html#Status">func Status(ctx *rpctypes.Context) (*ctypes.ResultStatus, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Subscribe">func Subscribe(ctx *rpctypes.Context, query string) (*ctypes.ResultSubscribe, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Tx">func Tx(ctx *rpctypes.Context, hash []byte, prove bool) (*ctypes.ResultTx, error)</a></dd>
+			
+				
+				<dd><a href="index.html#TxSearch">func TxSearch(ctx *rpctypes.Context, query string, prove bool, pagePtr, perPagePtr *int, orderBy string) (*ctypes.ResultTxSearch, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnconfirmedTxs">func UnconfirmedTxs(ctx *rpctypes.Context, limitPtr *int) (*ctypes.ResultUnconfirmedTxs, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnsafeDialPeers">func UnsafeDialPeers(ctx *rpctypes.Context, peers []string, persistent, unconditional, private bool) (*ctypes.ResultDialPeers, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnsafeDialSeeds">func UnsafeDialSeeds(ctx *rpctypes.Context, seeds []string) (*ctypes.ResultDialSeeds, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnsafeFlushMempool">func UnsafeFlushMempool(ctx *rpctypes.Context) (*ctypes.ResultUnsafeFlushMempool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnsafeFlushVotePool">func UnsafeFlushVotePool(ctx *rpctypes.Context) (*ctypes.ResultFlushVote, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Unsubscribe">func Unsubscribe(ctx *rpctypes.Context, query string) (*ctypes.ResultUnsubscribe, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnsubscribeAll">func UnsubscribeAll(ctx *rpctypes.Context) (*ctypes.ResultUnsubscribe, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Validators">func Validators(ctx *rpctypes.Context, heightPtr *int64, pagePtr, perPagePtr *int) (*ctypes.ResultValidators, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Consensus">type Consensus</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Environment">type Environment</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/abci.go">abci.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go">blocks.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/consensus.go">consensus.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/dev.go">dev.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/env.go">env.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/eth_json_rpc.go">eth_json_rpc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/events.go">events.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/evidence.go">evidence.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/health.go">health.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go">mempool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go">net.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/routes.go">routes.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/status.go">status.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/tx.go">tx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/vote_pool.go">vote_pool.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+
+    <span class="comment">// SubscribeTimeout is the maximum time we wait to subscribe for an event.</span>
+    <span class="comment">// must be less than the server&#39;s write timeout (see rpcserver.DefaultConfig)</span>
+    <span id="SubscribeTimeout">SubscribeTimeout</span> = 5 * <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Second">Second</a>
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>Routes is a map of available routes.
+
+				<pre>var <span id="Routes">Routes</span> = map[<a href="../../../../../builtin/index.html#string">string</a>]*<a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#RPCFunc">RPCFunc</a>{
+
+    &#34;subscribe&#34;:       <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewWSRPCFunc">NewWSRPCFunc</a>(<a href="index.html#Subscribe">Subscribe</a>, &#34;query&#34;),
+    &#34;unsubscribe&#34;:     <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewWSRPCFunc">NewWSRPCFunc</a>(<a href="index.html#Unsubscribe">Unsubscribe</a>, &#34;query&#34;),
+    &#34;unsubscribe_all&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewWSRPCFunc">NewWSRPCFunc</a>(<a href="index.html#UnsubscribeAll">UnsubscribeAll</a>, &#34;&#34;),
+
+    &#34;health&#34;:               <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Health">Health</a>, &#34;&#34;),
+    &#34;status&#34;:               <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Status">Status</a>, &#34;&#34;),
+    &#34;net_info&#34;:             <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#NetInfo">NetInfo</a>, &#34;&#34;),
+    &#34;blockchain&#34;:           <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BlockchainInfo">BlockchainInfo</a>, &#34;minHeight,maxHeight&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;genesis&#34;:              <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Genesis">Genesis</a>, &#34;&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;genesis_chunked&#34;:      <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#GenesisChunked">GenesisChunked</a>, &#34;chunk&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;block&#34;:                <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Block">Block</a>, &#34;height&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;block_by_hash&#34;:        <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BlockByHash">BlockByHash</a>, &#34;hash&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;block_results&#34;:        <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BlockResults">BlockResults</a>, &#34;height&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;commit&#34;:               <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Commit">Commit</a>, &#34;height&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;header&#34;:               <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Header">Header</a>, &#34;height&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;header_by_hash&#34;:       <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#HeaderByHash">HeaderByHash</a>, &#34;hash&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;check_tx&#34;:             <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#CheckTx">CheckTx</a>, &#34;tx&#34;),
+    &#34;tx&#34;:                   <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Tx">Tx</a>, &#34;hash,prove&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+    &#34;tx_search&#34;:            <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#TxSearch">TxSearch</a>, &#34;query,prove,page,per_page,order_by&#34;),
+    &#34;block_search&#34;:         <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BlockSearch">BlockSearch</a>, &#34;query,page,per_page,order_by&#34;),
+    &#34;validators&#34;:           <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#Validators">Validators</a>, &#34;height,page,per_page&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;dump_consensus_state&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#DumpConsensusState">DumpConsensusState</a>, &#34;&#34;),
+    &#34;consensus_state&#34;:      <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#ConsensusState">ConsensusState</a>, &#34;&#34;),
+    &#34;consensus_params&#34;:     <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#ConsensusParams">ConsensusParams</a>, &#34;height&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>(&#34;height&#34;)),
+    &#34;unconfirmed_txs&#34;:      <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#UnconfirmedTxs">UnconfirmedTxs</a>, &#34;limit&#34;),
+    &#34;num_unconfirmed_txs&#34;:  <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#NumUnconfirmedTxs">NumUnconfirmedTxs</a>, &#34;&#34;),
+
+    &#34;broadcast_tx_commit&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BroadcastTxCommit">BroadcastTxCommit</a>, &#34;tx&#34;),
+    &#34;broadcast_tx_sync&#34;:   <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BroadcastTxSync">BroadcastTxSync</a>, &#34;tx&#34;),
+    &#34;broadcast_tx_async&#34;:  <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BroadcastTxAsync">BroadcastTxAsync</a>, &#34;tx&#34;),
+
+    &#34;abci_query&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#ABCIQuery">ABCIQuery</a>, &#34;path,data,height,prove&#34;),
+    &#34;abci_info&#34;:  <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#ABCIInfo">ABCIInfo</a>, &#34;&#34;, <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#Cacheable">Cacheable</a>()),
+
+    &#34;broadcast_evidence&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BroadcastEvidence">BroadcastEvidence</a>, &#34;evidence&#34;),
+
+    &#34;broadcast_vote&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#BroadcastVote">BroadcastVote</a>, &#34;vote&#34;),
+    &#34;query_vote&#34;:     <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#QueryVote">QueryVote</a>, &#34;event_type,event_hash&#34;),
+
+    &#34;eth_query&#34;: <a href="../jsonrpc/server/index.html">rpc</a>.<a href="../jsonrpc/server/index.html#NewRPCFunc">NewRPCFunc</a>(<a href="index.html#EthQuery">EthQuery</a>, &#34;request&#34;),
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="ABCIInfo">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/abci.go?s=879:947#L25">ABCIInfo</a>
+				<a class="permalink" href="index.html#ABCIInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ABCIInfo(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultABCIInfo">ResultABCIInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ABCIInfo gets some info about the application.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/ABCI/abci_info">https://docs.cometbft.com/v0.37/rpc/#/ABCI/abci_info</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ABCIQuery">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/abci.go?s=390:528#L3">ABCIQuery</a>
+				<a class="permalink" href="index.html#ABCIQuery">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ABCIQuery(
+    ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>,
+    path <a href="../../../../../builtin/index.html#string">string</a>,
+    data <a href="../../libs/bytes/index.html">bytes</a>.<a href="../../libs/bytes/index.html#HexBytes">HexBytes</a>,
+    height <a href="../../../../../builtin/index.html#int64">int64</a>,
+    prove <a href="../../../../../builtin/index.html#bool">bool</a>,
+) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultABCIQuery">ResultABCIQuery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ABCIQuery queries the application for some information.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/ABCI/abci_query">https://docs.cometbft.com/v0.37/rpc/#/ABCI/abci_query</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddUnsafeRoutes">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/routes.go?s=2833:2855#L51">AddUnsafeRoutes</a>
+				<a class="permalink" href="index.html#AddUnsafeRoutes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddUnsafeRoutes()</pre>
+			<p>AddUnsafeRoutes adds unsafe routes.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Block">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=3500:3580#L105">Block</a>
+				<a class="permalink" href="index.html#Block">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Block(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBlock">ResultBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Block gets block at a given height.
+If no height is provided, it will fetch the latest block.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/block">https://docs.cometbft.com/v0.37/rpc/#/Info/block</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BlockByHash">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=4057:4138#L121">BlockByHash</a>
+				<a class="permalink" href="index.html#BlockByHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BlockByHash(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, hash []<a href="../../../../../builtin/index.html#byte">byte</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBlock">ResultBlock</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BlockByHash gets block by hash.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/block_by_hash">https://docs.cometbft.com/v0.37/rpc/#/Info/block_by_hash</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BlockResults">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=5723:5817#L165">BlockResults</a>
+				<a class="permalink" href="index.html#BlockResults">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BlockResults(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBlockResults">ResultBlockResults</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BlockResults gets ABCIResults at a given height.
+If no height is provided, it will fetch results for the latest block.
+<p>Results are for the height of the block containing the txs.
+Thus response.results.deliver_tx[5] is the results of executing
+getBlock(h).Txs[5]
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/block_results">https://docs.cometbft.com/v0.37/rpc/#/Info/block_results</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BlockSearch">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=6483:6620#L188">BlockSearch</a>
+				<a class="permalink" href="index.html#BlockSearch">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BlockSearch(
+    ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>,
+    query <a href="../../../../../builtin/index.html#string">string</a>,
+    pagePtr, perPagePtr *<a href="../../../../../builtin/index.html#int">int</a>,
+    orderBy <a href="../../../../../builtin/index.html#string">string</a>,
+) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBlockSearch">ResultBlockSearch</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BlockSearch searches for a paginated set of blocks matching BeginBlock and
+EndBlock event search criteria.
+
+			
+			
+
+		
+			
+			
+			<h2 id="BlockchainInfo">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=630:738#L10">BlockchainInfo</a>
+				<a class="permalink" href="index.html#BlockchainInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BlockchainInfo(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, minHeight, maxHeight <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBlockchainInfo">ResultBlockchainInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BlockchainInfo gets block headers for minHeight &lt;= height &lt;= maxHeight.
+Block headers are returned in descending order (highest first).
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/blockchain">https://docs.cometbft.com/v0.37/rpc/#/Info/blockchain</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BroadcastEvidence">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/evidence.go?s=331:436#L4">BroadcastEvidence</a>
+				<a class="permalink" href="index.html#BroadcastEvidence">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastEvidence(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, ev <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Evidence">Evidence</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBroadcastEvidence">ResultBroadcastEvidence</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BroadcastEvidence broadcasts evidence of the misbehavior.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Evidence/broadcast_evidence">https://docs.cometbft.com/v0.37/rpc/#/Evidence/broadcast_evidence</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BroadcastTxAsync">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=659:751#L12">BroadcastTxAsync</a>
+				<a class="permalink" href="index.html#BroadcastTxAsync">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastTxAsync(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBroadcastTx">ResultBroadcastTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BroadcastTxAsync returns right away, with no response. Does not wait for
+CheckTx nor DeliverTx results.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_async">https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_async</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BroadcastTxCommit">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=1877:1976#L52">BroadcastTxCommit</a>
+				<a class="permalink" href="index.html#BroadcastTxCommit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastTxCommit(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBroadcastTxCommit">ResultBroadcastTxCommit</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BroadcastTxCommit returns with the responses from CheckTx and DeliverTx.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_commit">https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_commit</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BroadcastTxSync">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=1070:1161#L23">BroadcastTxSync</a>
+				<a class="permalink" href="index.html#BroadcastTxSync">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastTxSync(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBroadcastTx">ResultBroadcastTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>BroadcastTxSync returns with the response from CheckTx. Does not wait for
+DeliverTx result.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_sync">https://docs.cometbft.com/v0.37/rpc/#/Tx/broadcast_tx_sync</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BroadcastVote">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/vote_pool.go?s=180:278#L1">BroadcastVote</a>
+				<a class="permalink" href="index.html#BroadcastVote">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BroadcastVote(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, vote <a href="../../votepool/index.html">votepool</a>.<a href="../../votepool/index.html#Vote">Vote</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultBroadcastVote">ResultBroadcastVote</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="CheckTx">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=6023:6102#L167">CheckTx</a>
+				<a class="permalink" href="index.html#CheckTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CheckTx(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, tx <a href="../../types/index.html">types</a>.<a href="../../types/index.html#Tx">Tx</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultCheckTx">ResultCheckTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CheckTx checks the transaction without executing it. The transaction won&apos;t
+be added to the mempool either.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Tx/check_tx">https://docs.cometbft.com/v0.37/rpc/#/Tx/check_tx</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Commit">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=4652:4734#L134">Commit</a>
+				<a class="permalink" href="index.html#Commit">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Commit(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultCommit">ResultCommit</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Commit gets block commit at a given height.
+If no height is provided, it will fetch the commit for the latest block.
+More: <a href="https://docs.cometbft.com/main/rpc/#/Info/commit">https://docs.cometbft.com/main/rpc/#/Info/commit</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConsensusParams">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/consensus.go?s=3071:3171#L85">ConsensusParams</a>
+				<a class="permalink" href="index.html#ConsensusParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConsensusParams(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultConsensusParams">ResultConsensusParams</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ConsensusParams gets the consensus parameters at the given block height.
+If no height is provided, it will fetch the latest consensus params.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/consensus_params">https://docs.cometbft.com/v0.37/rpc/#/Info/consensus_params</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConsensusState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/consensus.go?s=2627:2707#L76">ConsensusState</a>
+				<a class="permalink" href="index.html#ConsensusState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConsensusState(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultConsensusState">ResultConsensusState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ConsensusState returns a concise summary of the consensus state.
+UNSTABLE
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/consensus_state">https://docs.cometbft.com/v0.37/rpc/#/Info/consensus_state</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DumpConsensusState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/consensus.go?s=1620:1708#L42">DumpConsensusState</a>
+				<a class="permalink" href="index.html#DumpConsensusState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DumpConsensusState(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultDumpConsensusState">ResultDumpConsensusState</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DumpConsensusState dumps consensus state.
+UNSTABLE
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/dump_consensus_state">https://docs.cometbft.com/v0.37/rpc/#/Info/dump_consensus_state</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="EthQuery">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/eth_json_rpc.go?s=389:478#L2">EthQuery</a>
+				<a class="permalink" href="index.html#EthQuery">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EthQuery(
+    ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>,
+    request []<a href="../../../../../builtin/index.html#byte">byte</a>,
+) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultEthQuery">ResultEthQuery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>EthQuery handle EVM json-rpc request.
+This is exclusively designed for wallet connections to sign EIP712 typed messages.
+It does not offer any other unnecessary EVM RPC APIs, such as eth_call.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Genesis">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go?s=2864:2930#L87">Genesis</a>
+				<a class="permalink" href="index.html#Genesis">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Genesis(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultGenesis">ResultGenesis</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Genesis returns genesis file.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/genesis">https://docs.cometbft.com/v0.37/rpc/#/Info/genesis</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenesisChunked">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go?s=3123:3213#L95">GenesisChunked</a>
+				<a class="permalink" href="index.html#GenesisChunked">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenesisChunked(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, chunk <a href="../../../../../builtin/index.html#uint">uint</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultGenesisChunk">ResultGenesisChunk</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Header">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=2373:2455#L73">Header</a>
+				<a class="permalink" href="index.html#Header">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Header(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultHeader">ResultHeader</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Header gets block header at a given height.
+If no height is provided, it will fetch the latest header.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/header">https://docs.cometbft.com/v0.37/rpc/#/Info/header</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HeaderByHash">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/blocks.go?s=2842:2933#L89">HeaderByHash</a>
+				<a class="permalink" href="index.html#HeaderByHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HeaderByHash(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, hash <a href="../../libs/bytes/index.html">bytes</a>.<a href="../../libs/bytes/index.html#HexBytes">HexBytes</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultHeader">ResultHeader</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>HeaderByHash gets header by hash.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/header_by_hash">https://docs.cometbft.com/v0.37/rpc/#/Info/header_by_hash</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Health">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/health.go?s=306:370#L1">Health</a>
+				<a class="permalink" href="index.html#Health">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Health(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultHealth">ResultHealth</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Health gets node health. Returns empty result (200 OK) on success, no
+response - in case of an error.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/health">https://docs.cometbft.com/v0.37/rpc/#/Info/health</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="InitGenesisChunks">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/env.go?s=3731:3761#L139">InitGenesisChunks</a>
+				<a class="permalink" href="index.html#InitGenesisChunks">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InitGenesisChunks() <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>InitGenesisChunks configures the environment and should be called on service
+startup.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NetInfo">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go?s=298:364#L5">NetInfo</a>
+				<a class="permalink" href="index.html#NetInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NetInfo(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultNetInfo">ResultNetInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NetInfo returns network info.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/net_info">https://docs.cometbft.com/v0.37/rpc/#/Info/net_info</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NumUnconfirmedTxs">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=5609:5692#L156">NumUnconfirmedTxs</a>
+				<a class="permalink" href="index.html#NumUnconfirmedTxs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NumUnconfirmedTxs(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultUnconfirmedTxs">ResultUnconfirmedTxs</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NumUnconfirmedTxs gets number of unconfirmed transactions.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/num_unconfirmed_txs">https://docs.cometbft.com/v0.37/rpc/#/Info/num_unconfirmed_txs</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="QueryVote">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/vote_pool.go?s=363:466#L4">QueryVote</a>
+				<a class="permalink" href="index.html#QueryVote">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func QueryVote(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, eventType <a href="../../../../../builtin/index.html#int">int</a>, eventHash []<a href="../../../../../builtin/index.html#byte">byte</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultQueryVote">ResultQueryVote</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetEnvironment">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/env.go?s=1174:1209#L34">SetEnvironment</a>
+				<a class="permalink" href="index.html#SetEnvironment">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetEnvironment(e *<a href="index.html#Environment">Environment</a>)</pre>
+			<p>SetEnvironment sets up the given Environment.
+It will race if multiple Node call SetEnvironment.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Status">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/status.go?s=451:515#L6">Status</a>
+				<a class="permalink" href="index.html#Status">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Status(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultStatus">ResultStatus</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Status returns CometBFT status including node info, pubkey, latest block
+hash, app hash, block height and time.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/status">https://docs.cometbft.com/v0.37/rpc/#/Info/status</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Subscribe">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/events.go?s=571:655#L13">Subscribe</a>
+				<a class="permalink" href="index.html#Subscribe">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Subscribe(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, query <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultSubscribe">ResultSubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Subscribe for events via WebSocket.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Websocket/subscribe">https://docs.cometbft.com/v0.37/rpc/#/Websocket/subscribe</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Tx">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/tx.go?s=576:657#L10">Tx</a>
+				<a class="permalink" href="index.html#Tx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Tx(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, hash []<a href="../../../../../builtin/index.html#byte">byte</a>, prove <a href="../../../../../builtin/index.html#bool">bool</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultTx">ResultTx</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Tx allows you to query the transaction results. `nil` could mean the
+transaction is in the mempool, invalidated, or was not sent in the first
+place.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/tx">https://docs.cometbft.com/v0.37/rpc/#/Info/tx</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TxSearch">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/tx.go?s=1462:1606#L44">TxSearch</a>
+				<a class="permalink" href="index.html#TxSearch">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TxSearch(
+    ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>,
+    query <a href="../../../../../builtin/index.html#string">string</a>,
+    prove <a href="../../../../../builtin/index.html#bool">bool</a>,
+    pagePtr, perPagePtr *<a href="../../../../../builtin/index.html#int">int</a>,
+    orderBy <a href="../../../../../builtin/index.html#string">string</a>,
+) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultTxSearch">ResultTxSearch</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>TxSearch allows you to query for multiple transactions results. It returns a
+list of transactions (maximum ?per_page entries) and the total count.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/tx_search">https://docs.cometbft.com/v0.37/rpc/#/Info/tx_search</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnconfirmedTxs">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/mempool.go?s=5108:5203#L141">UnconfirmedTxs</a>
+				<a class="permalink" href="index.html#UnconfirmedTxs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnconfirmedTxs(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, limitPtr *<a href="../../../../../builtin/index.html#int">int</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultUnconfirmedTxs">ResultUnconfirmedTxs</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>UnconfirmedTxs gets unconfirmed transactions (maximum ?limit entries)
+including their number.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/unconfirmed_txs">https://docs.cometbft.com/v0.37/rpc/#/Info/unconfirmed_txs</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnsafeDialPeers">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go?s=1724:1861#L45">UnsafeDialPeers</a>
+				<a class="permalink" href="index.html#UnsafeDialPeers">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnsafeDialPeers(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, peers []<a href="../../../../../builtin/index.html#string">string</a>, persistent, unconditional, private <a href="../../../../../builtin/index.html#bool">bool</a>) (
+    *<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultDialPeers">ResultDialPeers</a>, <a href="../../../../../builtin/index.html#error">error</a>,
+)</pre>
+			<p>UnsafeDialPeers dials the given peers (comma-separated id@IP:PORT),
+optionally making them persistent.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnsafeDialSeeds">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/net.go?s=1177:1269#L32">UnsafeDialSeeds</a>
+				<a class="permalink" href="index.html#UnsafeDialSeeds">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnsafeDialSeeds(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, seeds []<a href="../../../../../builtin/index.html#string">string</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultDialSeeds">ResultDialSeeds</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>UnsafeDialSeeds dials the given seeds (comma-separated id@IP:PORT).
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnsafeFlushMempool">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/dev.go?s=204:292#L1">UnsafeFlushMempool</a>
+				<a class="permalink" href="index.html#UnsafeFlushMempool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnsafeFlushMempool(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultUnsafeFlushMempool">ResultUnsafeFlushMempool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>UnsafeFlushMempool removes all transactions from the mempool.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnsafeFlushVotePool">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/vote_pool.go?s=782:862#L16">UnsafeFlushVotePool</a>
+				<a class="permalink" href="index.html#UnsafeFlushVotePool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnsafeFlushVotePool(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultFlushVote">ResultFlushVote</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Unsubscribe">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/events.go?s=3359:3447#L96">Unsubscribe</a>
+				<a class="permalink" href="index.html#Unsubscribe">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Unsubscribe(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, query <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultUnsubscribe">ResultUnsubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Unsubscribe from events via WebSocket.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Websocket/unsubscribe">https://docs.cometbft.com/v0.37/rpc/#/Websocket/unsubscribe</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnsubscribeAll">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/events.go?s=3928:4005#L112">UnsubscribeAll</a>
+				<a class="permalink" href="index.html#UnsubscribeAll">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnsubscribeAll(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultUnsubscribe">ResultUnsubscribe</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>UnsubscribeAll from all events via WebSocket.
+More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Websocket/unsubscribe_all">https://docs.cometbft.com/v0.37/rpc/#/Websocket/unsubscribe_all</a>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Validators">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/consensus.go?s=633:749#L8">Validators</a>
+				<a class="permalink" href="index.html#Validators">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Validators(ctx *<a href="../jsonrpc/types/index.html">rpctypes</a>.<a href="../jsonrpc/types/index.html#Context">Context</a>, heightPtr *<a href="../../../../../builtin/index.html#int64">int64</a>, pagePtr, perPagePtr *<a href="../../../../../builtin/index.html#int">int</a>) (*<a href="types/index.html">ctypes</a>.<a href="types/index.html#ResultValidators">ResultValidators</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Validators gets the validator set at the given block height.
+<p>If no height is provided, it will fetch the latest validator set. Note the
+validators are sorted by their voting power - this is the canonical order
+for the validators in the set as used in computing their Merkle root.
+<p>More: <a href="https://docs.cometbft.com/v0.37/rpc/#/Info/validators">https://docs.cometbft.com/v0.37/rpc/#/Info/validators</a>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Consensus">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/env.go?s=1335:1532#L41">Consensus</a>
+				<a class="permalink" href="index.html#Consensus">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Consensus interface {
+    GetState() <a href="../../state/index.html">sm</a>.<a href="../../state/index.html#State">State</a>
+    GetValidators() (<a href="../../../../../builtin/index.html#int64">int64</a>, []*<a href="../../types/index.html">types</a>.<a href="../../types/index.html#Validator">Validator</a>)
+    GetLastHeight() <a href="../../../../../builtin/index.html#int64">int64</a>
+    GetRoundStateJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    GetRoundStateSimpleJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Environment">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/core/env.go?s=1988:2837#L66">Environment</a>
+				<a class="permalink" href="index.html#Environment">&#xb6;</a>
+				
+				
+			</h2>
+			<p>----------------------------------------------
+Environment contains objects and interfaces used by the RPC. It is expected
+to be setup once during startup.
+
+			<pre>type Environment struct {
+    <span class="comment">// external, thread safe interfaces</span>
+<span id="Environment.ProxyAppQuery"></span>    ProxyAppQuery   <a href="../../proxy/index.html">proxy</a>.<a href="../../proxy/index.html#AppConnQuery">AppConnQuery</a>
+<span id="Environment.ProxyAppMempool"></span>    ProxyAppMempool <a href="../../proxy/index.html">proxy</a>.<a href="../../proxy/index.html#AppConnMempool">AppConnMempool</a>
+
+    <span class="comment">// for EVM json-rpc call</span>
+<span id="Environment.ProxyAppEthQuery"></span>    ProxyAppEthQuery <a href="../../proxy/index.html">proxy</a>.<a href="../../proxy/index.html#AppConnEthQuery">AppConnEthQuery</a>
+
+    <span class="comment">// interfaces defined in types and above</span>
+<span id="Environment.StateStore"></span>    StateStore     <a href="../../state/index.html">sm</a>.<a href="../../state/index.html#Store">Store</a>
+<span id="Environment.BlockStore"></span>    BlockStore     <a href="../../state/index.html">sm</a>.<a href="../../state/index.html#BlockStore">BlockStore</a>
+<span id="Environment.EvidencePool"></span>    EvidencePool   <a href="../../state/index.html">sm</a>.<a href="../../state/index.html#EvidencePool">EvidencePool</a>
+<span id="Environment.ConsensusState"></span>    ConsensusState <a href="index.html#Consensus">Consensus</a>
+<span id="Environment.P2PPeers"></span>    P2PPeers       peers
+<span id="Environment.P2PTransport"></span>    P2PTransport   transport
+
+    <span class="comment">// objects</span>
+<span id="Environment.PubKey"></span>    PubKey           <a href="../../crypto/index.html">crypto</a>.<a href="../../crypto/index.html#PubKey">PubKey</a>
+<span id="Environment.GenDoc"></span>    GenDoc           *<a href="../../types/index.html">types</a>.<a href="../../types/index.html#GenesisDoc">GenesisDoc</a> <span class="comment">// cache the genesis structure</span>
+<span id="Environment.TxIndexer"></span>    TxIndexer        <a href="../../state/txindex/index.html">txindex</a>.<a href="../../state/txindex/index.html#TxIndexer">TxIndexer</a>
+<span id="Environment.BlockIndexer"></span>    BlockIndexer     <a href="../../state/indexer/index.html">indexer</a>.<a href="../../state/indexer/index.html#BlockIndexer">BlockIndexer</a>
+<span id="Environment.ConsensusReactor"></span>    ConsensusReactor *<a href="../../consensus/index.html">consensus</a>.<a href="../../consensus/index.html#Reactor">Reactor</a>
+<span id="Environment.EventBus"></span>    EventBus         *<a href="../../types/index.html">types</a>.<a href="../../types/index.html#EventBus">EventBus</a> <span class="comment">// thread safe</span>
+<span id="Environment.Mempool"></span>    Mempool          <a href="../../mempool/index.html">mempl</a>.<a href="../../mempool/index.html#Mempool">Mempool</a>
+<span id="Environment.VotePool"></span>    VotePool         <a href="../../votepool/index.html">votepool</a>.<a href="../../votepool/index.html#VotePool">VotePool</a>
+
+<span id="Environment.Logger"></span>    Logger <a href="../../libs/log/index.html">log</a>.<a href="../../libs/log/index.html#Logger">Logger</a>
+
+<span id="Environment.Config"></span>    Config <a href="../../config/index.html">cfg</a>.<a href="../../config/index.html#RPCConfig">RPCConfig</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

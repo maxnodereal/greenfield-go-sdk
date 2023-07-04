@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>client - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package client
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/rpc/jsonrpc/client"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultHTTPClient">func DefaultHTTPClient(remoteAddr string) (*http.Client, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MaxReconnectAttempts">func MaxReconnectAttempts(max int) func(*WSClient)</a></dd>
+			
+				
+				<dd><a href="index.html#OnReconnect">func OnReconnect(cb func()) func(*WSClient)</a></dd>
+			
+				
+				<dd><a href="index.html#PingPeriod">func PingPeriod(pingPeriod time.Duration) func(*WSClient)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadWait">func ReadWait(readWait time.Duration) func(*WSClient)</a></dd>
+			
+				
+				<dd><a href="index.html#WriteWait">func WriteWait(writeWait time.Duration) func(*WSClient)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Caller">type Caller</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(remote string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWithHTTPClient">func NewWithHTTPClient(remote string, client *http.Client) (*Client, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Call">func (c *Client) Call(ctx context.Context, method string, params map[string]interface{}, result interface{}) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.NewRequestBatch">func (c *Client) NewRequestBatch() *RequestBatch</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HTTPClient">type HTTPClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestBatch">type RequestBatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestBatch.Call">func (b *RequestBatch) Call(_ context.Context, method string, params map[string]interface{}, result interface{}) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestBatch.Clear">func (b *RequestBatch) Clear() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestBatch.Count">func (b *RequestBatch) Count() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestBatch.Send">func (b *RequestBatch) Send(ctx context.Context) ([]interface{}, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#URIClient">type URIClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewURI">func NewURI(remote string) (*URIClient, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#URIClient.Call">func (c *URIClient) Call(ctx context.Context, method string, params map[string]interface{}, result interface{}) (interface{}, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WSClient">type WSClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWS">func NewWS(remoteAddr, endpoint string, options ...func(*WSClient)) (*WSClient, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.Call">func (c *WSClient) Call(ctx context.Context, method string, params map[string]interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.CallWithArrayParams">func (c *WSClient) CallWithArrayParams(ctx context.Context, method string, params []interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.IsActive">func (c *WSClient) IsActive() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.IsReconnecting">func (c *WSClient) IsReconnecting() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.OnStart">func (c *WSClient) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.Send">func (c *WSClient) Send(ctx context.Context, request types.RPCRequest) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.Stop">func (c *WSClient) Stop() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.String">func (c *WSClient) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.Subscribe">func (c *WSClient) Subscribe(ctx context.Context, query string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.Unsubscribe">func (c *WSClient) Unsubscribe(ctx context.Context, query string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WSClient.UnsubscribeAll">func (c *WSClient) UnsubscribeAll(ctx context.Context) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/decode.go">decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/encode.go">encode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go">http_json_client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_uri_client.go">http_uri_client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go">ws_client.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// URIClientRequestID in a request ID used by URIClient</span>
+    <span id="URIClientRequestID">URIClientRequestID</span> = <a href="../types/index.html">types</a>.<a href="../types/index.html#JSONRPCIntID">JSONRPCIntID</a>(-1)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="DefaultHTTPClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=10824:10887#L388">DefaultHTTPClient</a>
+				<a class="permalink" href="index.html#DefaultHTTPClient">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultHTTPClient(remoteAddr <a href="../../../../../../builtin/index.html#string">string</a>) (*<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Client">Client</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultHTTPClient is used to create an http client with some default parameters.
+We overwrite the http.Client.Dial so we can do http over tcp or unix.
+remoteAddr should be fully featured (eg. with tcp:// or unix://).
+An error will be returned in case of invalid remoteAddr.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MaxReconnectAttempts">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=3910:3960#L117">MaxReconnectAttempts</a>
+				<a class="permalink" href="index.html#MaxReconnectAttempts">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MaxReconnectAttempts(max <a href="../../../../../../builtin/index.html#int">int</a>) func(*<a href="index.html#WSClient">WSClient</a>)</pre>
+			<p>MaxReconnectAttempts sets the maximum number of reconnect attempts before returning an error.
+It should only be used in the constructor and is not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="OnReconnect">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=4911:4954#L149">OnReconnect</a>
+				<a class="permalink" href="index.html#OnReconnect">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func OnReconnect(cb func()) func(*<a href="index.html#WSClient">WSClient</a>)</pre>
+			<p>OnReconnect sets the callback, which will be called every time after
+successful reconnect.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PingPeriod">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=4692:4749#L141">PingPeriod</a>
+				<a class="permalink" href="index.html#PingPeriod">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PingPeriod(pingPeriod <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*<a href="index.html#WSClient">WSClient</a>)</pre>
+			<p>PingPeriod sets the duration for sending websocket pings.
+It should only be used in the constructor - not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadWait">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=4179:4232#L125">ReadWait</a>
+				<a class="permalink" href="index.html#ReadWait">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadWait(readWait <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*<a href="index.html#WSClient">WSClient</a>)</pre>
+			<p>ReadWait sets the amount of time to wait before a websocket read times out.
+It should only be used in the constructor and is not Goroutine-safe.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteWait">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=4446:4501#L133">WriteWait</a>
+				<a class="permalink" href="index.html#WriteWait">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteWait(writeWait <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) func(*<a href="index.html#WSClient">WSClient</a>)</pre>
+			<p>WriteWait sets the amount of time to wait before a websocket write times out.
+It should only be used in the constructor and is not Goroutine-safe.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Caller">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=2873:3012#L104">Caller</a>
+				<a class="permalink" href="index.html#Caller">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Caller implementers can facilitate calling the JSON-RPC endpoint.
+
+			<pre>type Caller interface {
+    Call(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, method <a href="../../../../../../builtin/index.html#string">string</a>, params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{}, result interface{}) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=3231:3367#L114">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client is a JSON-RPC client, which sends POST HTTP requests to the
+remote server.
+<p>Client is safe for concurrent use by multiple goroutines.
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=3690:3730#L134">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(remote <a href="../../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New returns a Client pointed at the given address.
+An error is returned on invalid remote. The function panics when remote is nil.
+
+				
+				
+			
+				
+				<h3 id="NewWithHTTPClient">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=4047:4122#L145">NewWithHTTPClient</a>
+					<a class="permalink" href="index.html#NewWithHTTPClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWithHTTPClient(remote <a href="../../../../../../builtin/index.html#string">string</a>, client *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Client">Client</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewWithHTTPClient returns a Client pointed at the given
+address using a custom http client. An error is returned on invalid remote.
+The function panics when remote is nil.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.Call">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=4700:4836#L173">Call</a>
+					<a class="permalink" href="index.html#Client.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Call(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    method <a href="../../../../../../builtin/index.html#string">string</a>,
+    params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{},
+    result interface{},
+) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Call issues a POST HTTP request. Requests are JSON encoded. Content-Type:
+application/json.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.NewRequestBatch">func (*Client) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=6261:6309#L226">NewRequestBatch</a>
+					<a class="permalink" href="index.html#Client.NewRequestBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) NewRequestBatch() *<a href="index.html#RequestBatch">RequestBatch</a></pre>
+				<p>NewRequestBatch starts a batch of requests for this client.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HTTPClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=2589:2802#L98">HTTPClient</a>
+				<a class="permalink" href="index.html#HTTPClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HTTPClient is a common interface for JSON-RPC HTTP clients.
+
+			<pre>type HTTPClient interface {
+    <span class="comment">// Call calls the given method with the params and returns a result.</span>
+    Call(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, method <a href="../../../../../../builtin/index.html#string">string</a>, params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{}, result interface{}) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestBatch">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=8455:8560#L299">RequestBatch</a>
+				<a class="permalink" href="index.html#RequestBatch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestBatch allows us to buffer multiple request/response structures
+into a single batch request. Note that this batch acts like a FIFO queue, and
+is thread-safe.
+
+			<pre>type RequestBatch struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RequestBatch.Call">func (*RequestBatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=9680:9820#L346">Call</a>
+					<a class="permalink" href="index.html#RequestBatch.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#RequestBatch">RequestBatch</a>) Call(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    method <a href="../../../../../../builtin/index.html#string">string</a>,
+    params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{},
+    result interface{},
+) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Call enqueues a request to call the given RPC method with the specified
+parameters, in the same way that the `Client.Call` function would.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestBatch.Clear">func (*RequestBatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=8910:8944#L320">Clear</a>
+					<a class="permalink" href="index.html#RequestBatch.Clear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#RequestBatch">RequestBatch</a>) Clear() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>Clear empties out the request batch.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestBatch.Count">func (*RequestBatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=8631:8665#L307">Count</a>
+					<a class="permalink" href="index.html#RequestBatch.Count">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#RequestBatch">RequestBatch</a>) Count() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>Count returns the number of enqueued requests waiting to be sent.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestBatch.Send">func (*RequestBatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_json_client.go?s=9350:9421#L335">Send</a>
+					<a class="permalink" href="index.html#RequestBatch.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#RequestBatch">RequestBatch</a>) Send(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) ([]interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Send will attempt to send the current batch of enqueued requests, and then
+will clear out the requests once done. On success, this returns the
+deserialized list of results from each of the enqueued requests.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="URIClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_uri_client.go?s=408:471#L12">URIClient</a>
+				<a class="permalink" href="index.html#URIClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>URIClient is a JSON-RPC client, which sends POST form HTTP requests to the
+remote server.
+<p>URIClient is safe for concurrent use by multiple goroutines.
+
+			<pre>type URIClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewURI">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_uri_client.go?s=629:675#L22">NewURI</a>
+					<a class="permalink" href="index.html#NewURI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewURI(remote <a href="../../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#URIClient">URIClient</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewURI returns a new client.
+An error is returned on invalid remote.
+The function panics when remote is nil.
+
+				
+				
+			
+
+			
+				
+				<h3 id="URIClient.Call">func (*URIClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/http_uri_client.go?s=1035:1168#L44">Call</a>
+					<a class="permalink" href="index.html#URIClient.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#URIClient">URIClient</a>) Call(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, method <a href="../../../../../../builtin/index.html#string">string</a>,
+    params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{}, result interface{}) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Call issues a POST form HTTP request.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WSClient">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=726:2397#L23">WSClient</a>
+				<a class="permalink" href="index.html#WSClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WSClient is a JSON-RPC client, which uses WebSocket for communication with
+the remote server.
+<p>WSClient is safe for concurrent use by multiple goroutines.
+
+			<pre>type WSClient struct {
+<span id="WSClient.Address"></span>    Address  <a href="../../../../../../builtin/index.html#string">string</a> <span class="comment">// IP:PORT or /path/to/socket</span>
+<span id="WSClient.Endpoint"></span>    Endpoint <a href="../../../../../../builtin/index.html#string">string</a> <span class="comment">// /websocket/url/endpoint</span>
+<span id="WSClient.Dialer"></span>    Dialer   func(<a href="../../../../../../builtin/index.html#string">string</a>, <a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../../net/index.html">net</a>.<a href="../../../../../../net/index.html#Conn">Conn</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Single user facing channel to read RPCResponses from, closed only when the</span>
+    <span class="comment">// client is being stopped.</span>
+<span id="WSClient.ResponsesCh"></span>    ResponsesCh chan <a href="../types/index.html">types</a>.<a href="../types/index.html#RPCResponse">RPCResponse</a>
+
+    <a href="../../../libs/service/index.html">service</a>.<a href="../../../libs/service/index.html#BaseService">BaseService</a>
+
+    <span class="comment">// Time between sending a ping and receiving a pong. See</span>
+    <span class="comment">// https://godoc.org/github.com/rcrowley/go-metrics#Timer.</span>
+<span id="WSClient.PingPongLatencyTimer"></span>    PingPongLatencyTimer <a href="../../../../../rcrowley/go-metrics/index.html">metrics</a>.<a href="../../../../../rcrowley/go-metrics/index.html#Timer">Timer</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWS">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=2695:2781#L77">NewWS</a>
+					<a class="permalink" href="index.html#NewWS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWS(remoteAddr, endpoint <a href="../../../../../../builtin/index.html#string">string</a>, options ...func(*<a href="index.html#WSClient">WSClient</a>)) (*<a href="index.html#WSClient">WSClient</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewWS returns a new client. See the commentary on the func(*WSClient)
+functions for a detailed description of how to configure ping period and
+pong wait time. The endpoint argument must begin with a `/`.
+An error is returned on invalid remote. The function panics when remote is nil.
+
+				
+				
+			
+
+			
+				
+				<h3 id="WSClient.Call">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=7010:7106#L226">Call</a>
+					<a class="permalink" href="index.html#WSClient.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) Call(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, method <a href="../../../../../../builtin/index.html#string">string</a>, params map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{}) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Call enqueues a call request onto the Send queue. Requests are JSON encoded.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.CallWithArrayParams">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=7403:7505#L236">CallWithArrayParams</a>
+					<a class="permalink" href="index.html#WSClient.CallWithArrayParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) CallWithArrayParams(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, method <a href="../../../../../../builtin/index.html#string">string</a>, params []interface{}) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>CallWithArrayParams enqueues a call request onto the Send queue. Params are
+in a form of array (e.g. []interface{}{&quot;abcd&quot;}). Requests are JSON encoded.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.IsActive">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=6354:6388#L205">IsActive</a>
+					<a class="permalink" href="index.html#WSClient.IsActive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) IsActive() <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsActive returns true if the client is running and not reconnecting.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.IsReconnecting">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=6175:6215#L198">IsReconnecting</a>
+					<a class="permalink" href="index.html#WSClient.IsReconnecting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) IsReconnecting() <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsReconnecting returns true if the client is reconnecting right now.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.OnStart">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=5257:5291#L162">OnStart</a>
+					<a class="permalink" href="index.html#WSClient.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) OnStart() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service by dialing a server and creating read and
+write routines.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.Send">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=6615:6691#L212">Send</a>
+					<a class="permalink" href="index.html#WSClient.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) Send(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, request <a href="../types/index.html">types</a>.<a href="../types/index.html#RPCRequest">RPCRequest</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Send the given RPC request to the server. Results will be available on
+ResponsesCh, errors, if any, on ErrorsCh. Will block until send succeeds or
+ctx.Done is closed.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.Stop">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=5892:5923#L186">Stop</a>
+					<a class="permalink" href="index.html#WSClient.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) Stop() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop overrides service.Service#Stop. There is no other way to wait until Quit
+channel is closed.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.String">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=5054:5088#L156">String</a>
+					<a class="permalink" href="index.html#WSClient.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns WS client full address.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.Subscribe">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=14704:14773#L520">Subscribe</a>
+					<a class="permalink" href="index.html#WSClient.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) Subscribe(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, query <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Subscribe to a query. Note the server must have a &quot;subscribe&quot; route
+defined.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.Unsubscribe">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=14959:15030#L527">Unsubscribe</a>
+					<a class="permalink" href="index.html#WSClient.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) Unsubscribe(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, query <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Unsubscribe from a query. Note the server must have a &quot;unsubscribe&quot; route
+defined.
+
+				
+				
+				
+			
+				
+				<h3 id="WSClient.UnsubscribeAll">func (*WSClient) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/rpc/jsonrpc/client/ws_client.go?s=15221:15281#L534">UnsubscribeAll</a>
+					<a class="permalink" href="index.html#WSClient.UnsubscribeAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#WSClient">WSClient</a>) UnsubscribeAll(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnsubscribeAll from all. Note the server must have a &quot;unsubscribe_all&quot; route
+defined.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

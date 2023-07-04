@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>fetcher - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package fetcher
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/les/fetcher"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>This is a temporary package whilst working on the eth/66 blocking refactors.
+After that work is done, les needs to be refactored to use the new package,
+or alternatively use a stripped down version of it. Either way, we need to
+keep the changes scoped so duplicating temporarily seems the sanest.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#BlockFetcher">type BlockFetcher</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBlockFetcher">func NewBlockFetcher(light bool, getHeader HeaderRetrievalFn, getBlock blockRetrievalFn, verifyHeader headerVerifierFn, broadcastBlock blockBroadcasterFn, chainHeight chainHeightFn, insertHeaders headersInsertFn, insertChain chainInsertFn, dropPeer peerDropFn) *BlockFetcher</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.Enqueue">func (f *BlockFetcher) Enqueue(peer string, block *types.Block) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.FilterBodies">func (f *BlockFetcher) FilterBodies(peer string, transactions [][]*types.Transaction, uncles [][]*types.Header, time time.Time) ([][]*types.Transaction, [][]*types.Header)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.FilterHeaders">func (f *BlockFetcher) FilterHeaders(peer string, headers []*types.Header, time time.Time) []*types.Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.Notify">func (f *BlockFetcher) Notify(peer string, hash common.Hash, number uint64, time time.Time, headerFetcher headerRequesterFn, bodyFetcher bodyRequesterFn) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.Start">func (f *BlockFetcher) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockFetcher.Stop">func (f *BlockFetcher) Stop()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HeaderRetrievalFn">type HeaderRetrievalFn</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go">block_fetcher.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="BlockFetcher">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=7197:9633#L149">BlockFetcher</a>
+				<a class="permalink" href="index.html#BlockFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockFetcher is responsible for accumulating block announcements from various peers
+and scheduling them for retrieval.
+
+			<pre>type BlockFetcher struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBlockFetcher">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=9726:10000#L193">NewBlockFetcher</a>
+					<a class="permalink" href="index.html#NewBlockFetcher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBlockFetcher(light <a href="../../../../../builtin/index.html#bool">bool</a>, getHeader <a href="index.html#HeaderRetrievalFn">HeaderRetrievalFn</a>, getBlock blockRetrievalFn, verifyHeader headerVerifierFn, broadcastBlock blockBroadcasterFn, chainHeight chainHeightFn, insertHeaders headersInsertFn, insertChain chainInsertFn, dropPeer peerDropFn) *<a href="index.html#BlockFetcher">BlockFetcher</a></pre>
+				<p>NewBlockFetcher creates a block fetcher to retrieve blocks based on hash announcements.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BlockFetcher.Enqueue">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=11919:11988#L254">Enqueue</a>
+					<a class="permalink" href="index.html#BlockFetcher.Enqueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) Enqueue(peer <a href="../../../../../builtin/index.html#string">string</a>, block *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Enqueue tries to fill gaps the fetcher&apos;s future import queue.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockFetcher.FilterBodies">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=13083:13254#L297">FilterBodies</a>
+					<a class="permalink" href="index.html#BlockFetcher.FilterBodies">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) FilterBodies(peer <a href="../../../../../builtin/index.html#string">string</a>, transactions [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, uncles [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, time <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) ([][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, [][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>)</pre>
+				<p>FilterBodies extracts all the block bodies that were explicitly requested by
+the fetcher, returning those that should be handled differently.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockFetcher.FilterHeaders">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=12290:12396#L269">FilterHeaders</a>
+					<a class="permalink" href="index.html#BlockFetcher.FilterHeaders">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) FilterHeaders(peer <a href="../../../../../builtin/index.html#string">string</a>, headers []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, time <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a></pre>
+				<p>FilterHeaders extracts all the headers that were explicitly requested by the fetcher,
+returning those that should be handled differently.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockFetcher.Notify">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=11425:11585#L235">Notify</a>
+					<a class="permalink" href="index.html#BlockFetcher.Notify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) Notify(peer <a href="../../../../../builtin/index.html#string">string</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, number <a href="../../../../../builtin/index.html#uint64">uint64</a>, time <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>,
+    headerFetcher headerRequesterFn, bodyFetcher bodyRequesterFn) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Notify announces the fetcher of the potential availability of a new block in
+the network.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockFetcher.Start">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=11137:11167#L223">Start</a>
+					<a class="permalink" href="index.html#BlockFetcher.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) Start()</pre>
+				<p>Start boots up the announcement based synchroniser, accepting and processing
+hash notifications and block fetches until termination requested.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockFetcher.Stop">func (*BlockFetcher) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=11279:11308#L229">Stop</a>
+					<a class="permalink" href="index.html#BlockFetcher.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BlockFetcher">BlockFetcher</a>) Stop()</pre>
+				<p>Stop terminates the announcement based synchroniser, canceling all pending
+operations.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HeaderRetrievalFn">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/fetcher/block_fetcher.go?s=3704:3758#L64">HeaderRetrievalFn</a>
+				<a class="permalink" href="index.html#HeaderRetrievalFn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HeaderRetrievalFn is a callback type for retrieving a header from the local chain.
+
+			<pre>type HeaderRetrievalFn func(<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

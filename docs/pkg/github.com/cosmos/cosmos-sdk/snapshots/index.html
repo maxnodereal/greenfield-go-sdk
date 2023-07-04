@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>snapshots - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package snapshots
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/snapshots"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DrainChunks">func DrainChunks(chunks &lt;-chan io.ReadCloser)</a></dd>
+			
+				
+				<dd><a href="index.html#IsFormatSupported">func IsFormatSupported(snapshotter types.ExtensionSnapshotter, format uint32) bool</a></dd>
+			
+				
+				<dd><a href="index.html#ValidRestoreHeight">func ValidRestoreHeight(format uint32, height uint64) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ChunkReader">type ChunkReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewChunkReader">func NewChunkReader(ch &lt;-chan io.ReadCloser) *ChunkReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChunkReader.Close">func (r *ChunkReader) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChunkReader.Read">func (r *ChunkReader) Read(p []byte) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ChunkWriter">type ChunkWriter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewChunkWriter">func NewChunkWriter(ch chan&lt;- io.ReadCloser, chunkSize uint64) *ChunkWriter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChunkWriter.Close">func (w *ChunkWriter) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChunkWriter.CloseWithError">func (w *ChunkWriter) CloseWithError(err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChunkWriter.Write">func (w *ChunkWriter) Write(data []byte) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Manager">type Manager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewManager">func NewManager(store *Store, opts types.SnapshotOptions, multistore types.Snapshotter, extensions map[string]types.ExtensionSnapshotter, logger log.Logger) *Manager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.Create">func (m *Manager) Create(height uint64) (*types.Snapshot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.GetInterval">func (m *Manager) GetInterval() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.GetKeepRecent">func (m *Manager) GetKeepRecent() uint32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.GetSnapshotBlockRetentionHeights">func (m *Manager) GetSnapshotBlockRetentionHeights() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.List">func (m *Manager) List() ([]*types.Snapshot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.LoadChunk">func (m *Manager) LoadChunk(height uint64, format uint32, chunk uint32) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.Prune">func (m *Manager) Prune(retain uint32) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RegisterExtensions">func (m *Manager) RegisterExtensions(extensions ...types.ExtensionSnapshotter) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.Restore">func (m *Manager) Restore(snapshot types.Snapshot) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RestoreChunk">func (m *Manager) RestoreChunk(chunk []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RestoreLocalSnapshot">func (m *Manager) RestoreLocalSnapshot(height uint64, format uint32) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SnapshotIfApplicable">func (m *Manager) SnapshotIfApplicable(height int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStore">func NewStore(db db.DB, dir string) (*Store, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Delete">func (s *Store) Delete(height uint64, format uint32) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Get">func (s *Store) Get(height uint64, format uint32) (*types.Snapshot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GetLatest">func (s *Store) GetLatest() (*types.Snapshot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.List">func (s *Store) List() ([]*types.Snapshot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Load">func (s *Store) Load(height uint64, format uint32) (*types.Snapshot, &lt;-chan io.ReadCloser, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LoadChunk">func (s *Store) LoadChunk(height uint64, format, chunk uint32) (io.ReadCloser, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.PathChunk">func (s *Store) PathChunk(height uint64, format, chunk uint32) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Prune">func (s *Store) Prune(retain uint32) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Save">func (s *Store) Save(height uint64, format uint32, chunks &lt;-chan io.ReadCloser) (*types.Snapshot, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StreamReader">type StreamReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStreamReader">func NewStreamReader(chunks &lt;-chan io.ReadCloser) (*StreamReader, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamReader.Close">func (sr *StreamReader) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamReader.ReadMsg">func (sr *StreamReader) ReadMsg(msg proto.Message) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StreamWriter">type StreamWriter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStreamWriter">func NewStreamWriter(ch chan&lt;- io.ReadCloser) *StreamWriter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamWriter.Close">func (sw *StreamWriter) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamWriter.CloseWithError">func (sw *StreamWriter) CloseWithError(err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StreamWriter.WriteMsg">func (sw *StreamWriter) WriteMsg(msg proto.Message) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go">chunk.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go">manager.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go">store.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go">stream.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="ErrOptsZeroSnapshotInterval">ErrOptsZeroSnapshotInterval</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;snaphot-interval must not be 0&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DrainChunks">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=3345:3390#L151">DrainChunks</a>
+				<a class="permalink" href="index.html#DrainChunks">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DrainChunks(chunks &lt;-chan <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>)</pre>
+			<p>DrainChunks drains and closes all remaining chunks from a chunk channel.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsFormatSupported">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=15173:15255#L488">IsFormatSupported</a>
+				<a class="permalink" href="index.html#IsFormatSupported">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsFormatSupported(snapshotter <a href="types/index.html">types</a>.<a href="types/index.html#ExtensionSnapshotter">ExtensionSnapshotter</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsFormatSupported returns if the snapshotter supports restoration from given format.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidRestoreHeight">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=3525:3584#L158">ValidRestoreHeight</a>
+				<a class="permalink" href="index.html#ValidRestoreHeight">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidRestoreHeight(format <a href="../../../../builtin/index.html#uint32">uint32</a>, height <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>ValidRestoreHeight will check height is valid for snapshot restore or not
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ChunkReader">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=2234:2312#L95">ChunkReader</a>
+				<a class="permalink" href="index.html#ChunkReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChunkReader reads chunks from a channel of io.ReadClosers and outputs them as an io.Reader
+
+			<pre>type ChunkReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewChunkReader">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=2359:2416#L101">NewChunkReader</a>
+					<a class="permalink" href="index.html#NewChunkReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewChunkReader(ch &lt;-chan <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>) *<a href="index.html#ChunkReader">ChunkReader</a></pre>
+				<p>NewChunkReader creates a new ChunkReader.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ChunkReader.Close">func (*ChunkReader) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=2704:2739#L116">Close</a>
+					<a class="permalink" href="index.html#ChunkReader.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ChunkReader">ChunkReader</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements io.ReadCloser.
+
+				
+				
+				
+			
+				
+				<h3 id="ChunkReader.Read">func (*ChunkReader) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=2966:3015#L131">Read</a>
+					<a class="permalink" href="index.html#ChunkReader.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ChunkReader">ChunkReader</a>) Read(p []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#int">int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Read implements io.Reader.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChunkWriter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=301:438#L3">ChunkWriter</a>
+				<a class="permalink" href="index.html#ChunkWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChunkWriter reads an input stream, splits it into fixed-size chunks, and writes them to a
+sequence of io.ReadClosers via a channel.
+
+			<pre>type ChunkWriter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewChunkWriter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=530:605#L12">NewChunkWriter</a>
+					<a class="permalink" href="index.html#NewChunkWriter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewChunkWriter(ch chan&lt;- <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>, chunkSize <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#ChunkWriter">ChunkWriter</a></pre>
+				<p>NewChunkWriter creates a new ChunkWriter. If chunkSize is 0, no chunking will be done.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ChunkWriter.Close">func (*ChunkWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=935:970#L35">Close</a>
+					<a class="permalink" href="index.html#ChunkWriter.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#ChunkWriter">ChunkWriter</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements io.Closer.
+
+				
+				
+				
+			
+				
+				<h3 id="ChunkWriter.CloseWithError">func (*ChunkWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=1187:1234#L49">CloseWithError</a>
+					<a class="permalink" href="index.html#ChunkWriter.CloseWithError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#ChunkWriter">ChunkWriter</a>) CloseWithError(err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CloseWithError closes the writer and sends an error to the reader.
+
+				
+				
+				
+			
+				
+				<h3 id="ChunkWriter.Write">func (*ChunkWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/chunk.go?s=1418:1471#L60">Write</a>
+					<a class="permalink" href="index.html#ChunkWriter.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#ChunkWriter">ChunkWriter</a>) Write(data []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#int">int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write implements io.Writer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Manager">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=1029:1527#L23">Manager</a>
+				<a class="permalink" href="index.html#Manager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Manager manages snapshot and restore operations for an app, making sure only a single
+long-running operation is in progress at any given time, and provides convenience methods
+mirroring the ABCI interface.
+<p>Although the ABCI interface (and this manager) passes chunks as byte slices, the internal
+snapshot/restore APIs use IO streams (i.e. chan io.ReadCloser), for two reasons:
+<ol>
+<li><p>In the future, ABCI should support streaming. Consider e.g. InitChain during chain
+upgrades, which currently passes the entire chain state as an in-memory byte slice.
+<a href="https://github.com/tendermint/tendermint/issues/5184">https://github.com/tendermint/tendermint/issues/5184</a>
+<li><p>io.ReadCloser streams automatically propagate IO errors, and can pass arbitrary
+errors via io.Pipe.CloseWithError().
+</ol>
+
+			<pre>type Manager struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewManager">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=2265:2430#L64">NewManager</a>
+					<a class="permalink" href="index.html#NewManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewManager(store *<a href="index.html#Store">Store</a>, opts <a href="types/index.html">types</a>.<a href="types/index.html#SnapshotOptions">SnapshotOptions</a>, multistore <a href="types/index.html">types</a>.<a href="types/index.html#Snapshotter">Snapshotter</a>, extensions map[<a href="../../../../builtin/index.html#string">string</a>]<a href="types/index.html">types</a>.<a href="types/index.html#ExtensionSnapshotter">ExtensionSnapshotter</a>, logger <a href="../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>) *<a href="index.html#Manager">Manager</a></pre>
+				<p>NewManager creates a new manager.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Manager.Create">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=5034:5098#L152">Create</a>
+					<a class="permalink" href="index.html#Manager.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) Create(height <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Create creates a snapshot and returns its metadata.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.GetInterval">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=4360:4398#L134">GetInterval</a>
+					<a class="permalink" href="index.html#Manager.GetInterval">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) GetInterval() <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>GetInterval returns snapshot interval represented in heights.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.GetKeepRecent">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=4498:4538#L139">GetKeepRecent</a>
+					<a class="permalink" href="index.html#Manager.GetKeepRecent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) GetKeepRecent() <a href="../../../../builtin/index.html#uint32">uint32</a></pre>
+				<p>GetKeepRecent returns snapshot keep-recent represented in heights.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.GetSnapshotBlockRetentionHeights">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=4856:4914#L147">GetSnapshotBlockRetentionHeights</a>
+					<a class="permalink" href="index.html#Manager.GetSnapshotBlockRetentionHeights">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) GetSnapshotBlockRetentionHeights() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>GetSnapshotBlockRetentionHeights returns the number of heights needed
+for block retention. Blocks since the oldest available snapshot must be
+available for state sync nodes to catch up (oldest because a node may be
+restoring an old snapshot while a new snapshot was taken).
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.List">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=7122:7173#L224">List</a>
+					<a class="permalink" href="index.html#Manager.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) List() ([]*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>List lists snapshots, mirroring ABCI ListSnapshots. It can be concurrent with other operations.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.LoadChunk">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=7376:7463#L230">LoadChunk</a>
+					<a class="permalink" href="index.html#Manager.LoadChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) LoadChunk(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>, chunk <a href="../../../../builtin/index.html#uint32">uint32</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadChunk loads a chunk into a byte slice, mirroring ABCI LoadChunk. It can be called
+concurrently with other operations. If the chunk does not exist, nil is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.Prune">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=7722:7776#L244">Prune</a>
+					<a class="permalink" href="index.html#Manager.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) Prune(retain <a href="../../../../builtin/index.html#uint32">uint32</a>) (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Prune prunes snapshots, if no other operations are in progress.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RegisterExtensions">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=2719:2803#L78">RegisterExtensions</a>
+					<a class="permalink" href="index.html#Manager.RegisterExtensions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) RegisterExtensions(extensions ...<a href="types/index.html">types</a>.<a href="types/index.html#ExtensionSnapshotter">ExtensionSnapshotter</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterExtensions register extension snapshotters to manager
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.Restore">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=8056:8112#L255">Restore</a>
+					<a class="permalink" href="index.html#Manager.Restore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) Restore(snapshot <a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Restore begins an async snapshot restoration, mirroring ABCI OfferSnapshot. Chunks must be fed
+via RestoreChunk() until the restore is complete or a chunk fails.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RestoreChunk">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=12427:12485#L391">RestoreChunk</a>
+					<a class="permalink" href="index.html#Manager.RestoreChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) RestoreChunk(chunk []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RestoreChunk adds a chunk to an active snapshot restoration, mirroring ABCI ApplySnapshotChunk.
+Chunks must be given until the restore is complete, returning true, or a chunk errors.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RestoreLocalSnapshot">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=14362:14436#L454">RestoreLocalSnapshot</a>
+					<a class="permalink" href="index.html#Manager.RestoreLocalSnapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) RestoreLocalSnapshot(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>RestoreLocalSnapshot restores app state from a local snapshot.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SnapshotIfApplicable">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/manager.go?s=15499:15551#L499">SnapshotIfApplicable</a>
+					<a class="permalink" href="index.html#Manager.SnapshotIfApplicable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SnapshotIfApplicable(height <a href="../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SnapshotIfApplicable takes a snapshot of the current state if we are on a snapshot height.
+It also prunes any old snapshots.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=494:615#L17">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store is a snapshot store, containing snapshot metadata and binary chunks.
+
+			<pre>type Store struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStore">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=659:710#L26">NewStore</a>
+					<a class="permalink" href="index.html#NewStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStore(db <a href="../../../cometbft/cometbft-db/index.html">db</a>.<a href="../../../cometbft/cometbft-db/index.html#DB">DB</a>, dir <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Store">Store</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewStore creates a new snapshot store.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Store.Delete">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=1067:1125#L43">Delete</a>
+					<a class="permalink" href="index.html#Store.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Delete(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete deletes a snapshot.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Get">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=1713:1787#L62">Get</a>
+					<a class="permalink" href="index.html#Store.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Get(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>) (*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get fetches snapshot info from the database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GetLatest">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=2401:2453#L84">GetLatest</a>
+					<a class="permalink" href="index.html#Store.GetLatest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) GetLatest() (*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get fetches the latest snapshot from the database, if any.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.List">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=3046:3095#L104">List</a>
+					<a class="permalink" href="index.html#Store.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) List() ([]*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>List lists snapshots, in reverse order (newest first).
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Load">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=3779:3876#L125">Load</a>
+					<a class="permalink" href="index.html#Store.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Load(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>) (*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, &lt;-chan <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Load loads a snapshot (both metadata and binary chunks). The chunks must be consumed and closed.
+Returns nil if the snapshot does not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LoadChunk">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=4561:4646#L158">LoadChunk</a>
+					<a class="permalink" href="index.html#Store.LoadChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LoadChunk(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format, chunk <a href="../../../../builtin/index.html#uint32">uint32</a>) (<a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadChunk loads a chunk from disk, or returns nil if it does not exist. The caller must call
+Close() on it when done.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.PathChunk">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=10023:10092#L327">PathChunk</a>
+					<a class="permalink" href="index.html#Store.PathChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) PathChunk(height <a href="../../../../builtin/index.html#uint64">uint64</a>, format, chunk <a href="../../../../builtin/index.html#uint32">uint32</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>PathChunk generates a snapshot chunk path.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Prune">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=5133:5185#L174">Prune</a>
+					<a class="permalink" href="index.html#Store.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Prune(retain <a href="../../../../builtin/index.html#uint32">uint32</a>) (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Prune removes old snapshots. The given number of most recent heights (regardless of format) are retained.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Save">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/store.go?s=6325:6433#L214">Save</a>
+					<a class="permalink" href="index.html#Store.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Save(
+    height <a href="../../../../builtin/index.html#uint64">uint64</a>, format <a href="../../../../builtin/index.html#uint32">uint32</a>, chunks &lt;-chan <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>,
+) (*<a href="types/index.html">types</a>.<a href="types/index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Save saves a snapshot to disk, returning it.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StreamReader">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=2157:2270#L64">StreamReader</a>
+				<a class="permalink" href="index.html#StreamReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StreamReader set up a restore stream pipeline
+chan io.ReadCloser -&gt; chunkReader -&gt; zlib -&gt; delimited Protobuf -&gt; ExportNode
+
+			<pre>type StreamReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStreamReader">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=2325:2397#L71">NewStreamReader</a>
+					<a class="permalink" href="index.html#NewStreamReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStreamReader(chunks &lt;-chan <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>) (*<a href="index.html#StreamReader">StreamReader</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewStreamReader set up a restore stream pipeline.
+
+				
+				
+			
+
+			
+				
+				<h3 id="StreamReader.Close">func (*StreamReader) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=2926:2963#L91">Close</a>
+					<a class="permalink" href="index.html#StreamReader.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sr *<a href="index.html#StreamReader">StreamReader</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements io.Closer interface
+
+				
+				
+				
+			
+				
+				<h3 id="StreamReader.ReadMsg">func (*StreamReader) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=2788:2844#L86">ReadMsg</a>
+					<a class="permalink" href="index.html#StreamReader.ReadMsg">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sr *<a href="index.html#StreamReader">StreamReader</a>) ReadMsg(msg <a href="../../gogoproto/proto/index.html">proto</a>.<a href="../../gogoproto/proto/index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ReadMsg implements protoio.Reader interface
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StreamWriter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=668:808#L14">StreamWriter</a>
+				<a class="permalink" href="index.html#StreamWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StreamWriter set up a stream pipeline to serialize snapshot nodes:
+Exported Items -&gt; delimited Protobuf -&gt; zlib -&gt; buffer -&gt; chunkWriter -&gt; chan io.ReadCloser
+
+			<pre>type StreamWriter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStreamWriter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=888:947#L22">NewStreamWriter</a>
+					<a class="permalink" href="index.html#NewStreamWriter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStreamWriter(ch chan&lt;- <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>) *<a href="index.html#StreamWriter">StreamWriter</a></pre>
+				<p>NewStreamWriter set up a stream pipeline to serialize snapshot DB records.
+
+				
+				
+			
+
+			
+				
+				<h3 id="StreamWriter.Close">func (*StreamWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=1618:1655#L45">Close</a>
+					<a class="permalink" href="index.html#StreamWriter.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sw *<a href="index.html#StreamWriter">StreamWriter</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements io.Closer interface
+
+				
+				
+				
+			
+				
+				<h3 id="StreamWriter.CloseWithError">func (*StreamWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=1936:1985#L58">CloseWithError</a>
+					<a class="permalink" href="index.html#StreamWriter.CloseWithError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sw *<a href="index.html#StreamWriter">StreamWriter</a>) CloseWithError(err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CloseWithError pass error to chunkWriter
+
+				
+				
+				
+			
+				
+				<h3 id="StreamWriter.WriteMsg">func (*StreamWriter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/snapshots/stream.go?s=1478:1535#L40">WriteMsg</a>
+					<a class="permalink" href="index.html#StreamWriter.WriteMsg">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sw *<a href="index.html#StreamWriter">StreamWriter</a>) WriteMsg(msg <a href="../../gogoproto/proto/index.html">proto</a>.<a href="../../gogoproto/proto/index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>WriteMsg implements protoio.Write interface
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>rpc - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package rpc
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/rpc"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package rpc implements bi-directional JSON-RPC 2.0 on multiple transports.
+<p>It provides access to the exported methods of an object across a network or other I/O
+connection. After creating a server or client instance, objects can be registered to make
+them visible as &apos;services&apos;. Exported methods that follow specific conventions can be
+called remotely. It also has support for the publish/subscribe pattern.
+<h3 id="hdr-RPC_Methods">RPC Methods</h3>
+<p>Methods that satisfy the following criteria are made available for remote access:
+<ul>
+<li>method must be exported
+<li>method returns 0, 1 (response or error) or 2 (response and error) values
+</ul>
+<p>An example method:
+<pre>func (s *CalcService) Add(a, b int) (int, error)
+</pre>
+<p>When the returned error isn&apos;t nil the returned integer is ignored and the error is sent
+back to the client. Otherwise the returned integer is sent back to the client.
+<p>Optional arguments are supported by accepting pointer values as arguments. E.g. if we want
+to do the addition in an optional finite field we can accept a mod argument as pointer
+value.
+<pre>func (s *CalcService) Add(a, b int, mod *int) (int, error)
+</pre>
+<p>This RPC method can be called with 2 integers and a null value as third argument. In that
+case the mod argument will be nil. Or it can be called with 3 integers, in that case mod
+will be pointing to the given third argument. Since the optional argument is the last
+argument the RPC package will also accept 2 integers as arguments. It will pass the mod
+argument as nil to the RPC method.
+<p>The server offers the ServeCodec method which accepts a ServerCodec instance. It will read
+requests from the codec, process the request and sends the response back to the client
+using the codec. The server can execute requests concurrently. Responses can be sent back
+to the client out of order.
+<p>An example server which uses the JSON codec:
+<pre> type CalculatorService struct {}
+
+ func (s *CalculatorService) Add(a, b int) int {
+	return a + b
+ }
+
+ func (s *CalculatorService) Div(a, b int) (int, error) {
+	if b == 0 {
+		return 0, errors.New(&quot;divide by zero&quot;)
+	}
+	return a/b, nil
+ }
+
+ calculator := new(CalculatorService)
+ server := NewServer()
+ server.RegisterName(&quot;calculator&quot;, calculator)
+ l, _ := net.ListenUnix(&quot;unix&quot;, &amp;net.UnixAddr{Net: &quot;unix&quot;, Name: &quot;/tmp/calculator.sock&quot;})
+ server.ServeListener(l)
+</pre>
+<h3 id="hdr-Subscriptions">Subscriptions</h3>
+<p>The package also supports the publish subscribe pattern through the use of subscriptions.
+A method that is considered eligible for notifications must satisfy the following
+criteria:
+<ul>
+<li>method must be exported
+<li>first method argument type must be context.Context
+<li>method must have return types (rpc.Subscription, error)
+</ul>
+<p>An example method:
+<pre>func (s *BlockChainService) NewBlocks(ctx context.Context) (rpc.Subscription, error) {
+	...
+}
+</pre>
+<p>When the service containing the subscription method is registered to the server, for
+example under the &quot;blockchain&quot; namespace, a subscription is created by calling the
+&quot;blockchain_subscribe&quot; method.
+<p>Subscriptions are deleted when the user sends an unsubscribe request or when the
+connection which was used to create the subscription is closed. This can be initiated by
+the client and server. The server will close the connection for any write error.
+<p>For more information about subscriptions, see <a href="https://github.com/ethereum/go-ethereum/wiki/RPC-PUB-SUB">https://github.com/ethereum/go-ethereum/wiki/RPC-PUB-SUB</a>.
+<h3 id="hdr-Reverse_Calls">Reverse Calls</h3>
+<p>In any method handler, an instance of rpc.Client can be accessed through the
+ClientFromContext method. Using this client instance, server-to-client method calls can be
+performed on the RPC connection.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#API">type API</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BatchElem">type BatchElem</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BlockNumber">type BlockNumber</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumber.Int64">func (bn BlockNumber) Int64() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumber.MarshalText">func (bn BlockNumber) MarshalText() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumber.UnmarshalJSON">func (bn *BlockNumber) UnmarshalJSON(data []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BlockNumberOrHash">type BlockNumberOrHash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHashWithHash">func BlockNumberOrHashWithHash(hash common.Hash, canonical bool) BlockNumberOrHash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHashWithNumber">func BlockNumberOrHashWithNumber(blockNr BlockNumber) BlockNumberOrHash</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHash.Hash">func (bnh *BlockNumberOrHash) Hash() (common.Hash, bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHash.Number">func (bnh *BlockNumberOrHash) Number() (BlockNumber, bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHash.String">func (bnh *BlockNumberOrHash) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNumberOrHash.UnmarshalJSON">func (bnh *BlockNumberOrHash) UnmarshalJSON(data []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientFromContext">func ClientFromContext(ctx context.Context) (*Client, bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Dial">func Dial(rawurl string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialContext">func DialContext(ctx context.Context, rawurl string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialHTTP">func DialHTTP(endpoint string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialHTTPWithClient">func DialHTTPWithClient(endpoint string, client *http.Client) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialIO">func DialIO(ctx context.Context, in io.Reader, out io.Writer) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialIPC">func DialIPC(ctx context.Context, endpoint string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialInProc">func DialInProc(handler *Server) *Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialStdIO">func DialStdIO(ctx context.Context) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialWebsocket">func DialWebsocket(ctx context.Context, endpoint, origin string) (*Client, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DialWebsocketWithDialer">func DialWebsocketWithDialer(ctx context.Context, endpoint, origin string, dialer websocket.Dialer) (*Client, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BatchCall">func (c *Client) BatchCall(b []BatchElem) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.BatchCallContext">func (c *Client) BatchCallContext(ctx context.Context, b []BatchElem) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Call">func (c *Client) Call(result interface{}, method string, args ...interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.CallContext">func (c *Client) CallContext(ctx context.Context, result interface{}, method string, args ...interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Close">func (c *Client) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.EthSubscribe">func (c *Client) EthSubscribe(ctx context.Context, channel interface{}, args ...interface{}) (*ClientSubscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Notify">func (c *Client) Notify(ctx context.Context, method string, args ...interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.RegisterName">func (c *Client) RegisterName(name string, receiver interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.SetHeader">func (c *Client) SetHeader(key, value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.ShhSubscribe">func (c *Client) ShhSubscribe(ctx context.Context, channel interface{}, args ...interface{}) (*ClientSubscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Subscribe">func (c *Client) Subscribe(ctx context.Context, namespace string, channel interface{}, args ...interface{}) (*ClientSubscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.SupportedModules">func (c *Client) SupportedModules() (map[string]string, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ClientSubscription">type ClientSubscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientSubscription.Err">func (sub *ClientSubscription) Err() &lt;-chan error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientSubscription.Unsubscribe">func (sub *ClientSubscription) Unsubscribe()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CodecOption">type CodecOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Conn">type Conn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ConnRemoteAddr">type ConnRemoteAddr</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DataError">type DataError</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecimalOrHex">type DecimalOrHex</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DecimalOrHex.UnmarshalJSON">func (dh *DecimalOrHex) UnmarshalJSON(data []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Error">type Error</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HTTPError">type HTTPError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HTTPError.Error">func (err HTTPError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HTTPTimeouts">type HTTPTimeouts</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ID">type ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewID">func NewID() ID</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Notifier">type Notifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NotifierFromContext">func NotifierFromContext(ctx context.Context) (*Notifier, bool)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Notifier.Closed">func (n *Notifier) Closed() &lt;-chan interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Notifier.CreateSubscription">func (n *Notifier) CreateSubscription() *Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Notifier.Notify">func (n *Notifier) Notify(id ID, data interface{}) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PeerInfo">type PeerInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerInfoFromContext">func PeerInfoFromContext(ctx context.Context) PeerInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RPCService">type RPCService</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RPCService.Modules">func (s *RPCService) Modules() map[string]string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer() *Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StartIPCEndpoint">func StartIPCEndpoint(ipcEndpoint string, apis []API) (net.Listener, *Server, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.RegisterName">func (s *Server) RegisterName(name string, receiver interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeCodec">func (s *Server) ServeCodec(codec ServerCodec, options CodecOption)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeHTTP">func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeListener">func (s *Server) ServeListener(l net.Listener) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Stop">func (s *Server) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.WebsocketHandler">func (s *Server) WebsocketHandler(allowedOrigins []string) http.Handler</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerCodec">type ServerCodec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCodec">func NewCodec(conn Conn) ServerCodec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFuncCodec">func NewFuncCodec(conn deadlineCloser, encode, decode func(v interface{}) error) ServerCodec</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Subscription">type Subscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Err">func (s *Subscription) Err() &lt;-chan error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.MarshalJSON">func (s *Subscription) MarshalJSON() ([]byte, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_ClientSubscription">ClientSubscription</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/constants_unix.go">constants_unix.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/endpoints.go">endpoints.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/handler.go">handler.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/http.go">http.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/inproc.go">inproc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/ipc.go">ipc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/ipc_unix.go">ipc_unix.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/json.go">json.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go">server.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/service.go">service.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/stdio.go">stdio.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go">subscription.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go">types.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/websocket.go">websocket.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="SafeBlockNumber">SafeBlockNumber</span>      = <a href="index.html#BlockNumber">BlockNumber</a>(-4)
+    <span id="FinalizedBlockNumber">FinalizedBlockNumber</span> = <a href="index.html#BlockNumber">BlockNumber</a>(-3)
+    <span id="PendingBlockNumber">PendingBlockNumber</span>   = <a href="index.html#BlockNumber">BlockNumber</a>(-2)
+    <span id="LatestBlockNumber">LatestBlockNumber</span>    = <a href="index.html#BlockNumber">BlockNumber</a>(-1)
+    <span id="EarliestBlockNumber">EarliestBlockNumber</span>  = <a href="index.html#BlockNumber">BlockNumber</a>(0)
+)</pre>
+			
+				
+				<pre>const <span id="EngineApi">EngineApi</span> = &#34;engine&#34;</pre>
+			
+				
+				<pre>const <span id="MetadataApi">MetadataApi</span> = &#34;rpc&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrClientQuit">ErrClientQuit</span>                = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;client is closed&#34;)
+    <span id="ErrNoResult">ErrNoResult</span>                  = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;no result in JSON-RPC response&#34;)
+    <span id="ErrSubscriptionQueueOverflow">ErrSubscriptionQueueOverflow</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;subscription queue overflow&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNotificationsUnsupported is returned when the connection doesn&#39;t support notifications</span>
+    <span id="ErrNotificationsUnsupported">ErrNotificationsUnsupported</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;notifications not supported&#34;)
+    <span class="comment">// ErrSubscriptionNotFound is returned when the notification for the given id is not found</span>
+    <span id="ErrSubscriptionNotFound">ErrSubscriptionNotFound</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;subscription not found&#34;)
+)</pre>
+			
+				<p>DefaultHTTPTimeouts represents the default timeout values used if further
+configuration is not provided.
+
+				<pre>var <span id="DefaultHTTPTimeouts">DefaultHTTPTimeouts</span> = <a href="index.html#HTTPTimeouts">HTTPTimeouts</a>{
+    <a href="index.html#HTTPTimeouts.ReadTimeout">ReadTimeout</a>:       30 * <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Second">Second</a>,
+    <a href="index.html#HTTPTimeouts.ReadHeaderTimeout">ReadHeaderTimeout</a>: 30 * <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Second">Second</a>,
+    <a href="index.html#HTTPTimeouts.WriteTimeout">WriteTimeout</a>:      30 * <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Second">Second</a>,
+    <a href="index.html#HTTPTimeouts.IdleTimeout">IdleTimeout</a>:       120 * <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Second">Second</a>,
+}</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="API">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=1043:1527#L22">API</a>
+				<a class="permalink" href="index.html#API">&#xb6;</a>
+				
+				
+			</h2>
+			<p>API describes the set of methods offered over the RPC interface
+
+			<pre>type API struct {
+<span id="API.Namespace"></span>    Namespace     <a href="../../../../builtin/index.html#string">string</a>      <span class="comment">// namespace under which the rpc methods of Service are exposed</span>
+<span id="API.Version"></span>    Version       <a href="../../../../builtin/index.html#string">string</a>      <span class="comment">// deprecated - this field is no longer used, but retained for compatibility</span>
+<span id="API.Service"></span>    Service       interface{} <span class="comment">// receiver instance which holds the methods</span>
+<span id="API.Public"></span>    Public        <a href="../../../../builtin/index.html#bool">bool</a>        <span class="comment">// deprecated - this field is no longer used, but retained for compatibility</span>
+<span id="API.Authenticated"></span>    Authenticated <a href="../../../../builtin/index.html#bool">bool</a>        <span class="comment">// whether the api should only be available behind authentication.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BatchElem">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=2120:2517#L52">BatchElem</a>
+				<a class="permalink" href="index.html#BatchElem">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BatchElem is an element in a batch request.
+
+			<pre>type BatchElem struct {
+<span id="BatchElem.Method"></span>    Method <a href="../../../../builtin/index.html#string">string</a>
+<span id="BatchElem.Args"></span>    Args   []interface{}
+    <span class="comment">// The result is unmarshaled into this field. Result must be set to a</span>
+    <span class="comment">// non-nil pointer value of the desired type, otherwise the response will be</span>
+    <span class="comment">// discarded.</span>
+<span id="BatchElem.Result"></span>    Result interface{}
+<span id="BatchElem.Error"></span>    <span class="comment">// Error is set if the server returns an error for this request, or if</span>
+    <span class="comment">// unmarshaling into Result fails. It is not set for I/O errors.</span>
+    Error <a href="../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BlockNumber">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=2270:2292#L51">BlockNumber</a>
+				<a class="permalink" href="index.html#BlockNumber">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BlockNumber <a href="../../../../builtin/index.html#int64">int64</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BlockNumber.Int64">func (BlockNumber) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=4128:4163#L122">Int64</a>
+					<a class="permalink" href="index.html#BlockNumber.Int64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bn <a href="index.html#BlockNumber">BlockNumber</a>) Int64() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockNumber.MarshalText">func (BlockNumber) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=3715:3766#L105">MarshalText</a>
+					<a class="permalink" href="index.html#BlockNumber.MarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bn <a href="index.html#BlockNumber">BlockNumber</a>) MarshalText() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalText implements encoding.TextMarshaler. It marshals:
+- &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot; as strings
+- other numbers as hex
+
+				
+				
+				
+			
+				
+				<h3 id="BlockNumber.UnmarshalJSON">func (*BlockNumber) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=2856:2911#L67">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#BlockNumber.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bn *<a href="index.html#BlockNumber">BlockNumber</a>) UnmarshalJSON(data []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON parses the given JSON fragment into a BlockNumber. It supports:
+- &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot; as string arguments
+- the block number
+Returned errors:
+- an invalid block number error when the given argument isn&apos;t a known strings
+- an out of range error when the given block number is either too little or too large
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BlockNumberOrHash">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=4189:4411#L126">BlockNumberOrHash</a>
+				<a class="permalink" href="index.html#BlockNumberOrHash">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BlockNumberOrHash struct {
+<span id="BlockNumberOrHash.BlockNumber"></span>    BlockNumber      *<a href="index.html#BlockNumber">BlockNumber</a> `json:&#34;blockNumber,omitempty&#34;`
+<span id="BlockNumberOrHash.BlockHash"></span>    BlockHash        *<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a> `json:&#34;blockHash,omitempty&#34;`
+<span id="BlockNumberOrHash.RequireCanonical"></span>    RequireCanonical <a href="../../../../builtin/index.html#bool">bool</a>         `json:&#34;requireCanonical,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BlockNumberOrHashWithHash">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=6495:6577#L227">BlockNumberOrHashWithHash</a>
+					<a class="permalink" href="index.html#BlockNumberOrHashWithHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BlockNumberOrHashWithHash(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, canonical <a href="../../../../builtin/index.html#bool">bool</a>) <a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="BlockNumberOrHashWithNumber">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=6306:6377#L219">BlockNumberOrHashWithNumber</a>
+					<a class="permalink" href="index.html#BlockNumberOrHashWithNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BlockNumberOrHashWithNumber(blockNr <a href="index.html#BlockNumber">BlockNumber</a>) <a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="BlockNumberOrHash.Hash">func (*BlockNumberOrHash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=6155:6211#L212">Hash</a>
+					<a class="permalink" href="index.html#BlockNumberOrHash.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bnh *<a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a>) Hash() (<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockNumberOrHash.Number">func (*BlockNumberOrHash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=5793:5851#L195">Number</a>
+					<a class="permalink" href="index.html#BlockNumberOrHash.Number">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bnh *<a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a>) Number() (<a href="index.html#BlockNumber">BlockNumber</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockNumberOrHash.String">func (*BlockNumberOrHash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=5951:5996#L202">String</a>
+					<a class="permalink" href="index.html#BlockNumberOrHash.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bnh *<a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockNumberOrHash.UnmarshalJSON">func (*BlockNumberOrHash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=4413:4475#L132">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#BlockNumberOrHash.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bnh *<a href="index.html#BlockNumberOrHash">BlockNumberOrHash</a>) UnmarshalJSON(data []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=2571:3678#L65">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client represents a connection to an RPC server.
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ClientFromContext">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=6285:6344#L181">ClientFromContext</a>
+					<a class="permalink" href="index.html#ClientFromContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientFromContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>ClientFromContext retrieves the client from the context, if any. This can be used to perform
+&apos;reverse calls&apos; in a handler method.
+
+				
+				
+			
+				
+				<h3 id="Dial">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=5410:5451#L152">Dial</a>
+					<a class="permalink" href="index.html#Dial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Dial(rawurl <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Dial creates a new client for the given URL.
+<p>The currently supported URL schemes are &quot;http&quot;, &quot;https&quot;, &quot;ws&quot; and &quot;wss&quot;. If rawurl is a
+file name with no URL scheme, a local socket connection is established using UNIX
+domain sockets on supported platforms and named pipes on Windows. If you want to
+configure transport options, use DialHTTP, DialWebsocket or DialIPC instead.
+<p>For websocket connections, the origin is set to the local host name.
+<p>The client reconnects automatically if the connection is lost.
+
+				
+				
+			
+				
+				<h3 id="DialContext">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=5713:5782#L160">DialContext</a>
+					<a class="permalink" href="index.html#DialContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, rawurl <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialContext creates a new RPC client, just like Dial.
+<p>The context is used to cancel or time out the initial connection establishment. It does
+not affect subsequent interactions with the client.
+
+				
+				
+			
+				
+				<h3 id="DialHTTP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/http.go?s=4514:4561#L135">DialHTTP</a>
+					<a class="permalink" href="index.html#DialHTTP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialHTTP(endpoint <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialHTTP creates a new RPC client that connects to an RPC server over HTTP.
+
+				
+				
+			
+				
+				<h3 id="DialHTTPWithClient">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/http.go?s=3838:3916#L112">DialHTTPWithClient</a>
+					<a class="permalink" href="index.html#DialHTTPWithClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialHTTPWithClient(endpoint <a href="../../../../builtin/index.html#string">string</a>, client *<a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Client">Client</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialHTTPWithClient creates a new RPC client that connects to an RPC server over HTTP
+using the provided HTTP Client.
+
+				
+				
+			
+				
+				<h3 id="DialIO">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/stdio.go?s=1072:1150#L24">DialIO</a>
+					<a class="permalink" href="index.html#DialIO">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialIO(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, in <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, out <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialIO creates a client which uses the given IO channels
+
+				
+				
+			
+				
+				<h3 id="DialIPC">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/ipc.go?s=1661:1728#L38">DialIPC</a>
+					<a class="permalink" href="index.html#DialIPC">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialIPC(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, endpoint <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialIPC create a new IPC client that connects to the given endpoint. On Unix it assumes
+the endpoint is the full path to a unix socket, and Windows the endpoint is an
+identifier for a named pipe.
+<p>The context is used for the initial connection establishment. It does not
+affect subsequent interactions with the client.
+
+				
+				
+			
+				
+				<h3 id="DialInProc">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/inproc.go?s=909:949#L15">DialInProc</a>
+					<a class="permalink" href="index.html#DialInProc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialInProc(handler *<a href="index.html#Server">Server</a>) *<a href="index.html#Client">Client</a></pre>
+				<p>DialInProc attaches an in-process connection to the given RPC server.
+
+				
+				
+			
+				
+				<h3 id="DialStdIO">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/stdio.go?s=913:965#L19">DialStdIO</a>
+					<a class="permalink" href="index.html#DialStdIO">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialStdIO(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialStdIO creates a client on stdin/stdout.
+
+				
+				
+			
+				
+				<h3 id="DialWebsocket">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/websocket.go?s=6272:6353#L199">DialWebsocket</a>
+					<a class="permalink" href="index.html#DialWebsocket">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialWebsocket(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, endpoint, origin <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialWebsocket creates a new RPC client that communicates with a JSON-RPC server
+that is listening on the given endpoint.
+<p>The context is used for the initial connection establishment. It does not
+affect subsequent interactions with the client.
+
+				
+				
+			
+				
+				<h3 id="DialWebsocketWithDialer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/websocket.go?s=5464:5580#L176">DialWebsocketWithDialer</a>
+					<a class="permalink" href="index.html#DialWebsocketWithDialer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DialWebsocketWithDialer(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, endpoint, origin <a href="../../../../builtin/index.html#string">string</a>, dialer <a href="../../../gorilla/websocket/index.html">websocket</a>.<a href="../../../gorilla/websocket/index.html#Dialer">Dialer</a>) (*<a href="index.html#Client">Client</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DialWebsocketWithDialer creates a new RPC client that communicates with a JSON-RPC server
+that is listening on the given endpoint using the provided dialer.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.BatchCall">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=10777:10824#L321">BatchCall</a>
+					<a class="permalink" href="index.html#Client.BatchCall">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BatchCall(b []<a href="index.html#BatchElem">BatchElem</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>BatchCall sends all given requests as a single batch and waits for the server
+to return a response for all of them.
+<p>In contrast to Call, BatchCall only returns I/O errors. Any error specific to
+a request is reported through the Error field of the corresponding BatchElem.
+<p>Note that batch calls may not be executed atomically on the server side.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.BatchCallContext">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=11384:11459#L335">BatchCallContext</a>
+					<a class="permalink" href="index.html#Client.BatchCallContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) BatchCallContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, b []<a href="index.html#BatchElem">BatchElem</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>BatchCallContext sends all given requests as a single batch and waits for the server
+to return a response for all of them. The wait duration is bounded by the
+context&apos;s deadline.
+<p>In contrast to CallContext, BatchCallContext only returns errors that have occurred
+while sending the request. Any error specific to a request is reported through the
+Error field of the corresponding BatchElem.
+<p>Note that batch calls may not be executed atomically on the server side.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Call">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=9056:9139#L272">Call</a>
+					<a class="permalink" href="index.html#Client.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Call(result interface{}, method <a href="../../../../builtin/index.html#string">string</a>, args ...interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Call performs a JSON-RPC call with the given arguments and unmarshals into
+result if no error occurred.
+<p>The result must be a pointer so that package json can unmarshal into it. You
+can also pass nil, in which case the result is ignored.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.CallContext">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=9540:9651#L282">CallContext</a>
+					<a class="permalink" href="index.html#Client.CallContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) CallContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, result interface{}, method <a href="../../../../builtin/index.html#string">string</a>, args ...interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>CallContext performs a JSON-RPC call with the given arguments. If the context is
+canceled before the call has successfully returned, CallContext returns immediately.
+<p>The result must be a pointer so that package json can unmarshal into it. You
+can also pass nil, in which case the result is ignored.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Close">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=8312:8336#L243">Close</a>
+					<a class="permalink" href="index.html#Client.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Close()</pre>
+				<p>Close closes the client, aborting any in-flight requests.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.EthSubscribe">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=12975:13096#L401">EthSubscribe</a>
+					<a class="permalink" href="index.html#Client.EthSubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) EthSubscribe(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, channel interface{}, args ...interface{}) (*<a href="index.html#ClientSubscription">ClientSubscription</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>EthSubscribe registers a subscription under the &quot;eth&quot; namespace.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Notify">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=12621:12707#L386">Notify</a>
+					<a class="permalink" href="index.html#Client.Notify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Notify(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, method <a href="../../../../builtin/index.html#string">string</a>, args ...interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Notify sends a notification, i.e. a method call that doesn&apos;t expect a response.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.RegisterName">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=7615:7685#L223">RegisterName</a>
+					<a class="permalink" href="index.html#Client.RegisterName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) RegisterName(name <a href="../../../../builtin/index.html#string">string</a>, receiver interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterName creates a service for the given receiver type under the given name. When no
+methods on the given receiver match the criteria to be either a RPC method or a
+subscription an error is returned. Otherwise a new service is created and added to the
+service collection this client provides to the server.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.SetHeader">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=8628:8673#L257">SetHeader</a>
+					<a class="permalink" href="index.html#Client.SetHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) SetHeader(key, value <a href="../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetHeader adds a custom HTTP header to the client&apos;s requests.
+This method only works for clients using HTTP, it doesn&apos;t have
+any effect for clients using another transport.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.ShhSubscribe">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=13267:13388#L407">ShhSubscribe</a>
+					<a class="permalink" href="index.html#Client.ShhSubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) ShhSubscribe(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, channel interface{}, args ...interface{}) (*<a href="index.html#ClientSubscription">ClientSubscription</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ShhSubscribe registers a subscription under the &quot;shh&quot; namespace.
+Deprecated: use Subscribe(ctx, &quot;shh&quot;, ...).
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Subscribe">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=14230:14366#L423">Subscribe</a>
+					<a class="permalink" href="index.html#Client.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) Subscribe(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, namespace <a href="../../../../builtin/index.html#string">string</a>, channel interface{}, args ...interface{}) (*<a href="index.html#ClientSubscription">ClientSubscription</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Subscribe calls the &quot;&lt;namespace&gt;_subscribe&quot; method with the given arguments,
+registering a subscription. Server notifications for the subscription are
+sent to the given channel. The element type of the channel must match the
+expected type of content returned by the subscription.
+<p>The context argument cancels the RPC request that sets up the subscription but has no
+effect on the subscription after Subscribe has returned.
+<p>Slow subscribers will be dropped eventually. Client buffers up to 20000 notifications
+before considering the subscriber dead. The subscription Err channel will receive
+ErrSubscriptionQueueOverflow. Use a sufficiently large buffer on the channel or ensure
+that the channel usually has at least one reader to prevent this issue.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.SupportedModules">func (*Client) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/client.go?s=7990:8052#L234">SupportedModules</a>
+					<a class="permalink" href="index.html#Client.SupportedModules">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Client">Client</a>) SupportedModules() (map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SupportedModules calls the rpc_modules method, retrieving the list of
+APIs that are available on the server.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ClientSubscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=5849:6561#L195">ClientSubscription</a>
+				<a class="permalink" href="index.html#ClientSubscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientSubscription is a subscription established through the Client&apos;s Subscribe or
+EthSubscribe methods.
+
+			<pre>type ClientSubscription struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_ClientSubscription" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package rpc_test
+
+import (
+    &#34;context&#34;
+    &#34;fmt&#34;
+    &#34;time&#34;
+
+    &#34;github.com/ethereum/go-ethereum/common/hexutil&#34;
+    &#34;github.com/ethereum/go-ethereum/rpc&#34;
+)
+
+<span class="comment">// In this example, our client wishes to track the latest &#39;block number&#39;</span>
+<span class="comment">// known to the server. The server supports two methods:</span>
+<span class="comment">//</span>
+<span class="comment">// eth_getBlockByNumber(&#34;latest&#34;, {})</span>
+<span class="comment">//    returns the latest block object.</span>
+<span class="comment">//</span>
+<span class="comment">// eth_subscribe(&#34;newHeads&#34;)</span>
+<span class="comment">//    creates a subscription which fires block objects when new blocks arrive.</span>
+
+type Block struct {
+    Number *hexutil.Big
+}
+
+func ExampleClientSubscription() {
+    <span class="comment">// Connect the client.</span>
+    client, _ := rpc.Dial(&#34;ws://127.0.0.1:8545&#34;)
+    subch := make(chan Block)
+
+    <span class="comment">// Ensure that subch receives the latest block.</span>
+    go func() {
+        for i := 0; ; i++ {
+            if i &gt; 0 {
+                time.Sleep(2 * time.Second)
+            }
+            subscribeBlocks(client, subch)
+        }
+    }()
+
+    <span class="comment">// Print events from the subscription as they arrive.</span>
+    for block := range subch {
+        fmt.Println(&#34;latest block:&#34;, block.Number)
+    }
+}
+
+<span class="comment">// subscribeBlocks runs in its own goroutine and maintains</span>
+<span class="comment">// a subscription for new blocks.</span>
+func subscribeBlocks(client *rpc.Client, subch chan Block) {
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    <span class="comment">// Subscribe to new blocks.</span>
+    sub, err := client.EthSubscribe(ctx, subch, &#34;newHeads&#34;)
+    if err != nil {
+        fmt.Println(&#34;subscribe error:&#34;, err)
+        return
+    }
+
+    <span class="comment">// The connection is established now.</span>
+    <span class="comment">// Update the channel with the current block.</span>
+    var lastBlock Block
+    err = client.CallContext(ctx, &amp;lastBlock, &#34;eth_getBlockByNumber&#34;, &#34;latest&#34;, false)
+    if err != nil {
+        fmt.Println(&#34;can&#39;t get latest block:&#34;, err)
+        return
+    }
+    subch &lt;- lastBlock
+
+    <span class="comment">// The subscription will deliver events to the channel. Wait for the</span>
+    <span class="comment">// subscription to end for any reason, then loop around to re-establish</span>
+    <span class="comment">// the connection.</span>
+    fmt.Println(&#34;connection lost: &#34;, &lt;-sub.Err())
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+				
+				<h3 id="ClientSubscription.Err">func (*ClientSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=7568:7617#L244">Err</a>
+					<a class="permalink" href="index.html#ClientSubscription.Err">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sub *<a href="index.html#ClientSubscription">ClientSubscription</a>) Err() &lt;-chan <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Err returns the subscription error channel. The intended use of Err is to schedule
+resubscription when the client connection is closed unexpectedly.
+<p>The error channel receives a value when the subscription has ended due to an error. The
+received error is nil if Close has been called on the underlying client and no other
+error has occurred.
+<p>The error channel is closed when Unsubscribe is called on the subscription.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientSubscription.Unsubscribe">func (*ClientSubscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=7757:7801#L250">Unsubscribe</a>
+					<a class="permalink" href="index.html#ClientSubscription.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sub *<a href="index.html#ClientSubscription">ClientSubscription</a>) Unsubscribe()</pre>
+				<p>Unsubscribe unsubscribes the notification and closes the error channel.
+It can safely be called more than once.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CodecOption">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=1113:1133#L24">CodecOption</a>
+				<a class="permalink" href="index.html#CodecOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CodecOption specifies which type of messages a codec supports.
+<p>Deprecated: this option is no longer honored by Server.
+
+			<pre>type CodecOption <a href="../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// OptionMethodInvocation is an indication that the codec supports RPC method calls</span>
+    <span id="OptionMethodInvocation">OptionMethodInvocation</span> <a href="index.html#CodecOption">CodecOption</a> = 1 &lt;&lt; <a href="../../../../builtin/index.html#iota">iota</a>
+
+    <span class="comment">// OptionSubscriptions is an indication that the codec supports RPC notifications</span>
+    <span id="OptionSubscriptions">OptionSubscriptions</span> = 1 &lt;&lt; <a href="../../../../builtin/index.html#iota">iota</a> <span class="comment">// support pub sub</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Conn">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/json.go?s=3982:4060#L137">Conn</a>
+				<a class="permalink" href="index.html#Conn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Conn is a subset of the methods of net.Conn which are sufficient for ServerCodec.
+
+			<pre>type Conn interface {
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadWriteCloser">ReadWriteCloser</a>
+    SetWriteDeadline(<a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConnRemoteAddr">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/json.go?s=4348:4402#L150">ConnRemoteAddr</a>
+				<a class="permalink" href="index.html#ConnRemoteAddr">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ConnRemoteAddr wraps the RemoteAddr operation, which returns a description
+of the peer address of a connection. If a Conn also implements ConnRemoteAddr, this
+description is used in log messages.
+
+			<pre>type ConnRemoteAddr interface {
+    RemoteAddr() <a href="../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DataError">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/errors.go?s=1408:1535#L33">DataError</a>
+				<a class="permalink" href="index.html#DataError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A DataError contains some data in addition to the error message.
+
+			<pre>type DataError interface {
+    Error() <a href="../../../../builtin/index.html#string">string</a>          <span class="comment">// returns the message</span>
+    ErrorData() interface{} <span class="comment">// returns the error data</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecimalOrHex">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=6778:6802#L236">DecimalOrHex</a>
+				<a class="permalink" href="index.html#DecimalOrHex">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecimalOrHex unmarshals a non-negative decimal or hex parameter into a uint64.
+
+			<pre>type DecimalOrHex <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DecimalOrHex.UnmarshalJSON">func (*DecimalOrHex) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=6850:6906#L239">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#DecimalOrHex.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dh *<a href="index.html#DecimalOrHex">DecimalOrHex</a>) UnmarshalJSON(data []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON implements json.Unmarshaler.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Error">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/errors.go?s=1237:1338#L27">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Error wraps RPC errors, which contain an error code in addition to the message.
+
+			<pre>type Error interface {
+    Error() <a href="../../../../builtin/index.html#string">string</a>  <span class="comment">// returns the message</span>
+    ErrorCode() <a href="../../../../builtin/index.html#int">int</a> <span class="comment">// returns the code</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HTTPError">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/errors.go?s=932:1011#L13">HTTPError</a>
+				<a class="permalink" href="index.html#HTTPError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HTTPError is returned by client operations when the HTTP status code of the
+response is not a 2xx status.
+
+			<pre>type HTTPError struct {
+<span id="HTTPError.StatusCode"></span>    StatusCode <a href="../../../../builtin/index.html#int">int</a>
+<span id="HTTPError.Status"></span>    Status     <a href="../../../../builtin/index.html#string">string</a>
+<span id="HTTPError.Body"></span>    Body       []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="HTTPError.Error">func (HTTPError) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/errors.go?s=1013:1048#L19">Error</a>
+					<a class="permalink" href="index.html#HTTPError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (err <a href="index.html#HTTPError">HTTPError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HTTPTimeouts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/http.go?s=2152:3406#L70">HTTPTimeouts</a>
+				<a class="permalink" href="index.html#HTTPTimeouts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HTTPTimeouts represents the configuration params for the HTTP RPC server.
+
+			<pre>type HTTPTimeouts struct {
+<span id="HTTPTimeouts.ReadTimeout"></span>    <span class="comment">// ReadTimeout is the maximum duration for reading the entire</span>
+    <span class="comment">// request, including the body.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Because ReadTimeout does not let Handlers make per-request</span>
+    <span class="comment">// decisions on each request body&#39;s acceptable deadline or</span>
+    <span class="comment">// upload rate, most users will prefer to use</span>
+<span id="HTTPTimeouts.ReadHeaderTimeout"></span>    <span class="comment">// ReadHeaderTimeout. It is valid to use them both.</span>
+    ReadTimeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>
+
+    <span class="comment">// ReadHeaderTimeout is the amount of time allowed to read</span>
+    <span class="comment">// request headers. The connection&#39;s read deadline is reset</span>
+    <span class="comment">// after reading the headers and the Handler can decide what</span>
+    <span class="comment">// is considered too slow for the body. If ReadHeaderTimeout</span>
+    <span class="comment">// is zero, the value of ReadTimeout is used. If both are</span>
+    <span class="comment">// zero, there is no timeout.</span>
+    ReadHeaderTimeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>
+
+<span id="HTTPTimeouts.WriteTimeout"></span>    <span class="comment">// WriteTimeout is the maximum duration before timing out</span>
+    <span class="comment">// writes of the response. It is reset whenever a new</span>
+    <span class="comment">// request&#39;s header is read. Like ReadTimeout, it does not</span>
+    <span class="comment">// let Handlers make decisions on a per-request basis.</span>
+    WriteTimeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>
+
+<span id="HTTPTimeouts.IdleTimeout"></span>    <span class="comment">// IdleTimeout is the maximum amount of time to wait for the</span>
+    <span class="comment">// next request when keep-alives are enabled. If IdleTimeout</span>
+    <span class="comment">// is zero, the value of ReadTimeout is used. If both are</span>
+    <span class="comment">// zero, ReadHeaderTimeout is used.</span>
+    IdleTimeout <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ID">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=1431:1445#L34">ID</a>
+				<a class="permalink" href="index.html#ID">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ID defines a pseudo random number that is used to identify RPC subscriptions.
+
+			<pre>type ID <a href="../../../../builtin/index.html#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=1482:1497#L37">NewID</a>
+					<a class="permalink" href="index.html#NewID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewID() <a href="index.html#ID">ID</a></pre>
+				<p>NewID returns a new, random ID.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Notifier">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=2559:2745#L83">Notifier</a>
+				<a class="permalink" href="index.html#Notifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Notifier is tied to a RPC connection that supports subscriptions.
+Server callbacks use the notifier to send notifications.
+
+			<pre>type Notifier struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NotifierFromContext">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=2300:2363#L76">NotifierFromContext</a>
+					<a class="permalink" href="index.html#NotifierFromContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NotifierFromContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>) (*<a href="index.html#Notifier">Notifier</a>, <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>NotifierFromContext returns the Notifier value stored in ctx, if any.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Notifier.Closed">func (*Notifier) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=4090:4136#L136">Closed</a>
+					<a class="permalink" href="index.html#Notifier.Closed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Notifier">Notifier</a>) Closed() &lt;-chan interface{}</pre>
+				<p>Closed returns a channel that is closed when the RPC connection is closed.
+Deprecated: use subscription error channel
+
+				
+				
+				
+			
+				
+				<h3 id="Notifier.CreateSubscription">func (*Notifier) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=3036:3089#L98">CreateSubscription</a>
+					<a class="permalink" href="index.html#Notifier.CreateSubscription">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Notifier">Notifier</a>) CreateSubscription() *<a href="index.html#Subscription">Subscription</a></pre>
+				<p>CreateSubscription returns a new subscription that is coupled to the
+RPC connection. By default subscriptions are inactive and notifications
+are dropped until the subscription is marked as active. This is done
+by the RPC server after the subscription ID is send to the client.
+
+				
+				
+				
+			
+				
+				<h3 id="Notifier.Notify">func (*Notifier) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=3571:3627#L113">Notify</a>
+					<a class="permalink" href="index.html#Notifier.Notify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Notifier">Notifier</a>) Notify(id <a href="index.html#ID">ID</a>, data interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Notify sends a notification to the client with the given data as payload.
+If an error occurs the RPC connection is closed and the error is returned.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PeerInfo">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=4907:5406#L145">PeerInfo</a>
+				<a class="permalink" href="index.html#PeerInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PeerInfo contains information about the remote end of the network connection.
+<p>This is available within RPC method handlers through the context. Call
+PeerInfoFromContext to get information about the client connection related to
+the current method call.
+
+			<pre>type PeerInfo struct {
+<span id="PeerInfo.Transport"></span>    <span class="comment">// Transport is name of the protocol used by the client.</span>
+    <span class="comment">// This can be &#34;http&#34;, &#34;ws&#34; or &#34;ipc&#34;.</span>
+    Transport <a href="../../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// Address of client. This will usually contain the IP address and port.</span>
+<span id="PeerInfo.RemoteAddr"></span>    RemoteAddr <a href="../../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// Additional information for HTTP and WebSocket connections.</span>
+<span id="PeerInfo.HTTP"></span>    HTTP struct {
+        <span class="comment">// Protocol version, i.e. &#34;HTTP/1.1&#34;. This is not set for WebSocket.</span>
+        Version <a href="../../../../builtin/index.html#string">string</a>
+        <span class="comment">// Header values sent by the client.</span>
+        UserAgent <a href="../../../../builtin/index.html#string">string</a>
+        Origin    <a href="../../../../builtin/index.html#string">string</a>
+        Host      <a href="../../../../builtin/index.html#string">string</a>
+    }
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PeerInfoFromContext">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=5667:5721#L170">PeerInfoFromContext</a>
+					<a class="permalink" href="index.html#PeerInfoFromContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PeerInfoFromContext(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>) <a href="index.html#PeerInfo">PeerInfo</a></pre>
+				<p>PeerInfoFromContext returns information about the client&apos;s network connection.
+Use this with the context passed to RPC method handler functions.
+<p>The zero value is returned if no connection info is present in ctx.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="RPCService">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=4278:4320#L124">RPCService</a>
+				<a class="permalink" href="index.html#RPCService">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RPCService gives meta information about the server.
+e.g. gives information about the loaded modules.
+
+			<pre>type RPCService struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RPCService.Modules">func (*RPCService) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=4392:4440#L129">Modules</a>
+					<a class="permalink" href="index.html#RPCService.Modules">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#RPCService">RPCService</a>) Modules() map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Modules returns the list of RPC services with their version number
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=1443:1548#L35">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server is an RPC server.
+
+			<pre>type Server struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=1622:1646#L43">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer() *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer creates a new server instance with no registered handlers.
+
+				
+				
+			
+				
+				<h3 id="StartIPCEndpoint">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/endpoints.go?s=920:1004#L17">StartIPCEndpoint</a>
+					<a class="permalink" href="index.html#StartIPCEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StartIPCEndpoint(ipcEndpoint <a href="../../../../builtin/index.html#string">string</a>, apis []<a href="index.html#API">API</a>) (<a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Listener">Listener</a>, *<a href="index.html#Server">Server</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StartIPCEndpoint starts an IPC endpoint.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.RegisterName">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=2278:2348#L56">RegisterName</a>
+					<a class="permalink" href="index.html#Server.RegisterName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) RegisterName(name <a href="../../../../builtin/index.html#string">string</a>, receiver interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterName creates a service for the given receiver type under the given name. When no
+methods on the given receiver match the criteria to be either a RPC method or a
+subscription an error is returned. Otherwise a new service is created and added to the
+service collection this server provides to clients.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.ServeCodec">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=2698:2765#L65">ServeCodec</a>
+					<a class="permalink" href="index.html#Server.ServeCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) ServeCodec(codec <a href="index.html#ServerCodec">ServerCodec</a>, options <a href="index.html#CodecOption">CodecOption</a>)</pre>
+				<p>ServeCodec reads incoming requests from codec, calls the appropriate callback and writes
+the response back using the given codec. It will block until the codec is closed or the
+server is stopped. In either case the codec is closed.
+<p>Note that codec options are no longer supported.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.ServeHTTP">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/http.go?s=7094:7160#L235">ServeHTTP</a>
+					<a class="permalink" href="index.html#Server.ServeHTTP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) ServeHTTP(w <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, r *<a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>ServeHTTP serves JSON-RPC requests over HTTP.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.ServeListener">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/ipc.go?s=992:1044#L18">ServeListener</a>
+					<a class="permalink" href="index.html#Server.ServeListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) ServeListener(l <a href="../../../../net/index.html">net</a>.<a href="../../../../net/index.html#Listener">Listener</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ServeListener accepts connections on l, serving JSON-RPC on them.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Stop">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/server.go?s=3962:3985#L112">Stop</a>
+					<a class="permalink" href="index.html#Server.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Stop()</pre>
+				<p>Stop stops reading new requests, waits for stopPendingRequestTimeout to allow pending
+requests to finish, then closes all codecs which will cancel pending requests and
+subscriptions.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.WebsocketHandler">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/websocket.go?s=1493:1564#L40">WebsocketHandler</a>
+					<a class="permalink" href="index.html#Server.WebsocketHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) WebsocketHandler(allowedOrigins []<a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../net/http/index.html">http</a>.<a href="../../../../net/http/index.html#Handler">Handler</a></pre>
+				<p>WebsocketHandler returns a handler that serves JSON-RPC to WebSocket connections.
+<p>allowedOrigins should be a comma-separated list of allowed origin URLs.
+To allow connections with any origin, pass &quot;*&quot;.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerCodec">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/types.go?s=1749:1885#L33">ServerCodec</a>
+				<a class="permalink" href="index.html#ServerCodec">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerCodec implements reading, parsing and writing RPC messages for the server side of
+a RPC session. Implementations must be go-routine safe since the codec can be called in
+multiple go-routines concurrently.
+
+			<pre>type ServerCodec interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCodec">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/json.go?s=5620:5656#L184">NewCodec</a>
+					<a class="permalink" href="index.html#NewCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCodec(conn <a href="index.html#Conn">Conn</a>) <a href="index.html#ServerCodec">ServerCodec</a></pre>
+				<p>NewCodec creates a codec on the given connection. If conn implements ConnRemoteAddr, log
+messages will use it to include the remote address of the connection.
+
+				
+				
+			
+				
+				<h3 id="NewFuncCodec">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/json.go?s=5150:5242#L169">NewFuncCodec</a>
+					<a class="permalink" href="index.html#NewFuncCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFuncCodec(conn deadlineCloser, encode, decode func(v interface{}) <a href="../../../../builtin/index.html#error">error</a>) <a href="index.html#ServerCodec">ServerCodec</a></pre>
+				<p>NewFuncCodec creates a codec which uses the given functions to read and write. If conn
+implements ConnRemoteAddr, log messages will use it to include the remote address of
+the connection.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Subscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=5348:5455#L177">Subscription</a>
+				<a class="permalink" href="index.html#Subscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Subscription is created by a notifier and tied to that notifier. The client can use
+this subscription to wait for an unsubscribe request for the client, see Err().
+
+			<pre>type Subscription struct {
+<span id="Subscription.ID"></span>    ID <a href="index.html#ID">ID</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Subscription.Err">func (*Subscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=5542:5583#L184">Err</a>
+					<a class="permalink" href="index.html#Subscription.Err">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Subscription">Subscription</a>) Err() &lt;-chan <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Err returns a channel that is closed when the client send an unsubscribe request.
+
+				
+				
+				
+			
+				
+				<h3 id="Subscription.MarshalJSON">func (*Subscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rpc/subscription.go?s=5653:5705#L189">MarshalJSON</a>
+					<a class="permalink" href="index.html#Subscription.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Subscription">Subscription</a>) MarshalJSON() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals a subscription as its ID.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

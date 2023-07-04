@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>pubsub - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package pubsub
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/libs/pubsub"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package pubsub implements a pub-sub model with a single publisher (Server)
+and multiple subscribers (clients).
+<p>Though you can have multiple publishers by sharing a pointer to a server or
+by giving the same channel to each publisher and publishing messages from
+that channel (fan-in).
+<p>Clients subscribe for messages, which could be of any type, using a query.
+When some message is published, we match it with all queries. If there is a
+match, this message will be pushed to all clients, subscribed to that query.
+See query subpackage for our implementation.
+<p>Example:
+<pre>q, err := query.New(&quot;account.name=&apos;John&apos;&quot;)
+if err != nil {
+    return err
+}
+ctx, cancel := context.WithTimeout(context.Background(), 1 * time.Second)
+defer cancel()
+subscription, err := pubsub.Subscribe(ctx, &quot;johns-transactions&quot;, q)
+if err != nil {
+    return err
+}
+
+for {
+    select {
+    case msg &lt;- subscription.Out():
+        // handle msg.Data() and msg.Events()
+    case &lt;-subscription.Cancelled():
+        return subscription.Err()
+    }
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#Message">type Message</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMessage">func NewMessage(data interface{}, events map[string][]string) Message</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Data">func (msg Message) Data() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Events">func (msg Message) Events() map[string][]string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BufferCapacity">func BufferCapacity(cap int) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Query">type Query</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer(options ...Option) *Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.BufferCapacity">func (s *Server) BufferCapacity() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.NumClientSubscriptions">func (s *Server) NumClientSubscriptions(clientID string) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.NumClients">func (s *Server) NumClients() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.OnReset">func (s *Server) OnReset() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.OnStart">func (s *Server) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.OnStop">func (s *Server) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Publish">func (s *Server) Publish(ctx context.Context, msg interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.PublishWithEvents">func (s *Server) PublishWithEvents(ctx context.Context, msg interface{}, events map[string][]string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Subscribe">func (s *Server) Subscribe(ctx context.Context, clientID string, query Query, outCapacity ...int) (*Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.SubscribeUnbuffered">func (s *Server) SubscribeUnbuffered(ctx context.Context, clientID string, query Query) (*Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Unsubscribe">func (s *Server) Unsubscribe(ctx context.Context, clientID string, query Query) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.UnsubscribeAll">func (s *Server) UnsubscribeAll(ctx context.Context, clientID string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Subscription">type Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSubscription">func NewSubscription(outCapacity int) *Subscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Cancelled">func (s *Subscription) Cancelled() &lt;-chan struct{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Err">func (s *Subscription) Err() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Out">func (s *Subscription) Out() &lt;-chan Message</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go">pubsub.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go">subscription.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrSubscriptionNotFound is returned when a client tries to unsubscribe</span>
+    <span class="comment">// from not existing subscription.</span>
+    <span id="ErrSubscriptionNotFound">ErrSubscriptionNotFound</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;subscription not found&#34;)
+
+    <span class="comment">// ErrAlreadySubscribed is returned when a client tries to subscribe twice or</span>
+    <span class="comment">// more using the same query.</span>
+    <span id="ErrAlreadySubscribed">ErrAlreadySubscribed</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;already subscribed&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrUnsubscribed is returned by Err when a client unsubscribes.</span>
+    <span id="ErrUnsubscribed">ErrUnsubscribed</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;client unsubscribed&#34;)
+
+    <span class="comment">// ErrOutOfCapacity is returned by Err when a client is not pulling messages</span>
+    <span class="comment">// fast enough. Note the client&#39;s subscription will be terminated.</span>
+    <span id="ErrOutOfCapacity">ErrOutOfCapacity</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;internal subscription event buffer is out of capacity&#34;)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Message">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=2219:2290#L66">Message</a>
+				<a class="permalink" href="index.html#Message">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Message glues data and events together.
+
+			<pre>type Message struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMessage">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=2292:2361#L71">NewMessage</a>
+					<a class="permalink" href="index.html#NewMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMessage(data interface{}, events map[<a href="../../../../../builtin/index.html#string">string</a>][]<a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Message">Message</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Message.Data">func (Message) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=2441:2478#L76">Data</a>
+					<a class="permalink" href="index.html#Message.Data">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msg <a href="index.html#Message">Message</a>) Data() interface{}</pre>
+				<p>Data returns an original data published.
+
+				
+				
+				
+			
+				
+				<h3 id="Message.Events">func (Message) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=2561:2608#L81">Events</a>
+					<a class="permalink" href="index.html#Message.Events">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msg <a href="index.html#Message">Message</a>) Events() map[<a href="../../../../../builtin/index.html#string">string</a>][]<a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>Events returns events, which matched the client&apos;s query.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=2845:2870#L93">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option sets a parameter for the server.
+
+			<pre>type Option func(*<a href="index.html#Server">Server</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BufferCapacity">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=3690:3725#L118">BufferCapacity</a>
+					<a class="permalink" href="index.html#BufferCapacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BufferCapacity(cap <a href="../../../../../builtin/index.html#int">int</a>) <a href="index.html#Option">Option</a></pre>
+				<p>BufferCapacity allows you to specify capacity for the internal server&apos;s
+queue. Since the server, given Y subscribers, could only process X messages,
+this option could be used to survive spikes (e.g. high amount of
+transactions during peak hours).
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Query">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=2099:2191#L60">Query</a>
+				<a class="permalink" href="index.html#Query">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Query defines an interface for a query to be used for subscribing. A query
+matches against a map of events. Each key in this map is a composite of the
+even type and an attribute key (e.g. &quot;{eventType}.{eventAttrKey}&quot;) and the
+values are the event values that are contained under that relationship. This
+allows event types to repeat themselves with the same set of keys and
+different values.
+
+			<pre>type Query interface {
+    Matches(events map[<a href="../../../../../builtin/index.html#string">string</a>][]<a href="../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    String() <a href="../../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=2525:2800#L80">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server allows clients to subscribe/unsubscribe for messages, publishing
+messages with or without events, and manages internal state.
+
+			<pre>type Server struct {
+    <a href="../service/index.html">service</a>.<a href="../service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=3086:3127#L98">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer(options ...<a href="index.html#Option">Option</a>) *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer returns a new server. See the commentary on the Option functions
+for a detailed description of how to configure buffering. If no options are
+provided, the resulting server&apos;s queue is unbuffered.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.BufferCapacity">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=3865:3902#L127">BufferCapacity</a>
+					<a class="permalink" href="index.html#Server.BufferCapacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) BufferCapacity() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>BufferCapacity returns capacity of the internal server&apos;s queue.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.NumClientSubscriptions">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=7405:7465#L251">NumClientSubscriptions</a>
+					<a class="permalink" href="index.html#Server.NumClientSubscriptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) NumClientSubscriptions(clientID <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>NumClientSubscriptions returns the number of subscriptions the client has.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.NumClients">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=7221:7254#L244">NumClients</a>
+					<a class="permalink" href="index.html#Server.NumClients">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) NumClients() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>NumClients returns the number of clients.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.OnReset">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=9056:9088#L307">OnReset</a>
+					<a class="permalink" href="index.html#Server.OnReset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) OnReset() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnReset implements Service.OnReset
+
+				
+				
+				
+			
+				
+				<h3 id="Server.OnStart">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=8832:8864#L298">OnStart</a>
+					<a class="permalink" href="index.html#Server.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) OnStart() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements Service.OnStart by starting the server.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.OnStop">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=8303:8328#L278">OnStop</a>
+					<a class="permalink" href="index.html#Server.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) OnStop()</pre>
+				<p>OnStop implements Service.OnStop by shutting down the server.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Publish">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=7659:7727#L259">Publish</a>
+					<a class="permalink" href="index.html#Server.Publish">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Publish(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, msg interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Publish publishes the given message. An error will be returned to the caller
+if the context is canceled.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.PublishWithEvents">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=7974:8080#L266">PublishWithEvents</a>
+					<a class="permalink" href="index.html#Server.PublishWithEvents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) PublishWithEvents(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, msg interface{}, events map[<a href="../../../../../builtin/index.html#string">string</a>][]<a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>PublishWithEvents publishes the given message with the set of events. The set
+is matched with clients queries. If there is a match, the message is sent to
+the client.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Subscribe">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=4334:4459#L139">Subscribe</a>
+					<a class="permalink" href="index.html#Server.Subscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Subscribe(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    clientID <a href="../../../../../builtin/index.html#string">string</a>,
+    query <a href="index.html#Query">Query</a>,
+    outCapacity ...<a href="../../../../../builtin/index.html#int">int</a>) (*<a href="index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Subscribe creates a subscription for the given client.
+<p>An error will be returned to the caller if the context is canceled or if
+subscription already exist for pair clientID and query.
+<p>outCapacity can be used to set a capacity for Subscription#Out channel (1 by
+default). Panics if outCapacity is less than or equal to zero. If you want
+an unbuffered channel, use SubscribeUnbuffered.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.SubscribeUnbuffered">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=4874:4984#L158">SubscribeUnbuffered</a>
+					<a class="permalink" href="index.html#Server.SubscribeUnbuffered">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) SubscribeUnbuffered(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, clientID <a href="../../../../../builtin/index.html#string">string</a>, query <a href="index.html#Query">Query</a>) (*<a href="index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeUnbuffered does the same as Subscribe, except it returns a
+subscription with unbuffered channel. Use with caution as it can freeze the
+server.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Unsubscribe">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=6007:6092#L193">Unsubscribe</a>
+					<a class="permalink" href="index.html#Server.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Unsubscribe(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, clientID <a href="../../../../../builtin/index.html#string">string</a>, query <a href="index.html#Query">Query</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Unsubscribe removes the subscription on the given query. An error will be
+returned to the caller if the context is canceled or if subscription does
+not exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.UnsubscribeAll">func (*Server) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/pubsub.go?s=6764:6839#L222">UnsubscribeAll</a>
+					<a class="permalink" href="index.html#Server.UnsubscribeAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) UnsubscribeAll(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, clientID <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnsubscribeAll removes all client subscriptions. An error will be returned
+to the caller if the context is canceled or if subscription does not exist.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Subscription">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=738:851#L13">Subscription</a>
+				<a class="permalink" href="index.html#Subscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Subscription represents a client subscription for a particular query and
+consists of three things:
+1) channel onto which messages and events are published
+2) channel which is closed if a client is too slow or choose to unsubscribe
+3) err indicating the reason for (2)
+
+			<pre>type Subscription struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSubscription">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=927:978#L22">NewSubscription</a>
+					<a class="permalink" href="index.html#NewSubscription">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSubscription(outCapacity <a href="../../../../../builtin/index.html#int">int</a>) *<a href="index.html#Subscription">Subscription</a></pre>
+				<p>NewSubscription returns a new subscription with the given outCapacity.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Subscription.Cancelled">func (*Subscription) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=1481:1531#L40">Cancelled</a>
+					<a class="permalink" href="index.html#Subscription.Cancelled">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Subscription">Subscription</a>) Cancelled() &lt;-chan struct{}</pre>
+				<p>Cancelled returns a channel that&apos;s closed when the subscription is
+terminated and supposed to be used in a select statement.
+
+				
+				
+				
+			
+				
+				<h3 id="Subscription.Err">func (*Subscription) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=1976:2010#L52">Err</a>
+					<a class="permalink" href="index.html#Subscription.Err">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Subscription">Subscription</a>) Err() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Err returns nil if the channel returned is not yet closed.
+If the channel is closed, Err returns a non-nil error explaining why:
+<ul>
+<li>ErrUnsubscribed if the subscriber choose to unsubscribe,
+<li>ErrOutOfCapacity if the subscriber is not pulling messages fast enough
+and the channel returned by Out became full,
+</ul>
+<p>After Err returns a non-nil error, successive calls to Err return the same
+error.
+
+				
+				
+				
+			
+				
+				<h3 id="Subscription.Out">func (*Subscription) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/pubsub/subscription.go?s=1266:1309#L32">Out</a>
+					<a class="permalink" href="index.html#Subscription.Out">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Subscription">Subscription</a>) Out() &lt;-chan <a href="index.html#Message">Message</a></pre>
+				<p>Out returns a channel onto which messages and events are published.
+Unsubscribe/UnsubscribeAll does not close the channel to avoid clients from
+receiving a nil message.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="query/index.html">query</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package query provides a parser for a custom query format:
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="query/fuzz_test/index.html">fuzz_test</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

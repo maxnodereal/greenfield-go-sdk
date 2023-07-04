@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>testgen - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package testgen
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/gogo/protobuf/plugin/testgen"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>The testgen plugin generates Test and Benchmark functions for each message.
+<p>Tests are enabled using the following extensions:
+<ul>
+<li>testgen
+<li>testgen_all
+</ul>
+<p>Benchmarks are enabled using the following extensions:
+<ul>
+<li>benchgen
+<li>benchgen_all
+</ul>
+<p>Let us look at:
+<pre>github.com/gogo/protobuf/test/example/example.proto
+</pre>
+<p>Btw all the output can be seen at:
+<pre>github.com/gogo/protobuf/test/example/*
+</pre>
+<p>The following message:
+<pre>  option (gogoproto.testgen_all) = true;
+  option (gogoproto.benchgen_all) = true;
+
+  message A {
+	optional string Description = 1 [(gogoproto.nullable) = false];
+	optional int64 Number = 2 [(gogoproto.nullable) = false];
+	optional bytes Id = 3 [(gogoproto.customtype) = &quot;github.com/gogo/protobuf/test/custom.Uuid&quot;, (gogoproto.nullable) = false];
+  }
+</pre>
+<p>given to the testgen plugin, will generate the following test code:
+<pre>func TestAProto(t *testing.T) {
+	popr := math_rand.New(math_rand.NewSource(time.Now().UnixNano()))
+	p := NewPopulatedA(popr, false)
+	dAtA, err := github_com_gogo_protobuf_proto.Marshal(p)
+	if err != nil {
+		panic(err)
+	}
+	msg := &amp;A{}
+	if err := github_com_gogo_protobuf_proto.Unmarshal(dAtA, msg); err != nil {
+		panic(err)
+	}
+	for i := range dAtA {
+		dAtA[i] = byte(popr.Intn(256))
+	}
+	if err := p.VerboseEqual(msg); err != nil {
+		t.Fatalf(&quot;%#v !VerboseProto %#v, since %v&quot;, msg, p, err)
+	}
+	if !p.Equal(msg) {
+		t.Fatalf(&quot;%#v !Proto %#v&quot;, msg, p)
+	}
+}
+
+func BenchmarkAProtoMarshal(b *testing.B) {
+	popr := math_rand.New(math_rand.NewSource(616))
+	total := 0
+	pops := make([]*A, 10000)
+	for i := 0; i &lt; 10000; i++ {
+		pops[i] = NewPopulatedA(popr, false)
+	}
+	b.ResetTimer()
+	for i := 0; i &lt; b.N; i++ {
+		dAtA, err := github_com_gogo_protobuf_proto.Marshal(pops[i%10000])
+		if err != nil {
+			panic(err)
+		}
+		total += len(dAtA)
+	}
+	b.SetBytes(int64(total / b.N))
+}
+
+func BenchmarkAProtoUnmarshal(b *testing.B) {
+	popr := math_rand.New(math_rand.NewSource(616))
+	total := 0
+	datas := make([][]byte, 10000)
+	for i := 0; i &lt; 10000; i++ {
+		dAtA, err := github_com_gogo_protobuf_proto.Marshal(NewPopulatedA(popr, false))
+		if err != nil {
+			panic(err)
+		}
+		datas[i] = dAtA
+	}
+	msg := &amp;A{}
+	b.ResetTimer()
+	for i := 0; i &lt; b.N; i++ {
+		total += len(datas[i%10000])
+		if err := github_com_gogo_protobuf_proto.Unmarshal(datas[i%10000], msg); err != nil {
+			panic(err)
+		}
+	}
+	b.SetBytes(int64(total / b.N))
+}
+
+func TestAJSON(t *testing1.T) {
+	popr := math_rand1.New(math_rand1.NewSource(time1.Now().UnixNano()))
+	p := NewPopulatedA(popr, true)
+	jsondata, err := encoding_json.Marshal(p)
+	if err != nil {
+		panic(err)
+	}
+	msg := &amp;A{}
+	err = encoding_json.Unmarshal(jsondata, msg)
+	if err != nil {
+		panic(err)
+	}
+	if err := p.VerboseEqual(msg); err != nil {
+		t.Fatalf(&quot;%#v !VerboseProto %#v, since %v&quot;, msg, p, err)
+	}
+	if !p.Equal(msg) {
+		t.Fatalf(&quot;%#v !Json Equal %#v&quot;, msg, p)
+	}
+}
+
+func TestAProtoText(t *testing2.T) {
+	popr := math_rand2.New(math_rand2.NewSource(time2.Now().UnixNano()))
+	p := NewPopulatedA(popr, true)
+	dAtA := github_com_gogo_protobuf_proto1.MarshalTextString(p)
+	msg := &amp;A{}
+	if err := github_com_gogo_protobuf_proto1.UnmarshalText(dAtA, msg); err != nil {
+		panic(err)
+	}
+	if err := p.VerboseEqual(msg); err != nil {
+		t.Fatalf(&quot;%#v !VerboseProto %#v, since %v&quot;, msg, p, err)
+	}
+	if !p.Equal(msg) {
+		t.Fatalf(&quot;%#v !Proto %#v&quot;, msg, p)
+	}
+}
+
+func TestAProtoCompactText(t *testing2.T) {
+	popr := math_rand2.New(math_rand2.NewSource(time2.Now().UnixNano()))
+	p := NewPopulatedA(popr, true)
+	dAtA := github_com_gogo_protobuf_proto1.CompactTextString(p)
+	msg := &amp;A{}
+	if err := github_com_gogo_protobuf_proto1.UnmarshalText(dAtA, msg); err != nil {
+		panic(err)
+	}
+	if err := p.VerboseEqual(msg); err != nil {
+		t.Fatalf(&quot;%#v !VerboseProto %#v, since %v&quot;, msg, p, err)
+	}
+	if !p.Equal(msg) {
+		t.Fatalf(&quot;%#v !Proto %#v&quot;, msg, p)
+	}
+}
+</pre>
+<p>Other registered tests are also generated.
+Tests are registered to this test plugin by calling the following function.
+<pre>func RegisterTestPlugin(newFunc NewTestPlugin)
+</pre>
+<p>where NewTestPlugin is:
+<pre>type NewTestPlugin func(g *generator.Generator) TestPlugin
+</pre>
+<p>and TestPlugin is an interface:
+<pre>  type TestPlugin interface {
+	Generate(imports generator.PluginImports, file *generator.FileDescriptor) (used bool)
+  }
+</pre>
+<p>Plugins that use this interface include:
+<ul>
+<li>populate
+<li>gostring
+<li>equal
+<li>union
+<li>and more
+</ul>
+<p>Please look at these plugins as examples of how to create your own.
+A good idea is to let each plugin generate its own tests.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewPlugin">func NewPlugin() *plugin</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterTestPlugin">func RegisterTestPlugin(newFunc NewTestPlugin)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NewTestPlugin">type NewTestPlugin</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TestPlugin">type TestPlugin</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/gogo/protobuf/plugin/testgen/testgen.go">testgen.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewPlugin">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/plugin/testgen/testgen.go?s=6530:6554#L220">NewPlugin</a>
+				<a class="permalink" href="index.html#NewPlugin">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewPlugin() *plugin</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterTestPlugin">func <a href="http://localhost:6060/src/github.com/gogo/protobuf/plugin/testgen/testgen.go?s=6343:6389#L210">RegisterTestPlugin</a>
+				<a class="permalink" href="index.html#RegisterTestPlugin">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterTestPlugin(newFunc <a href="index.html#NewTestPlugin">NewTestPlugin</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="NewTestPlugin">type <a href="http://localhost:6060/src/github.com/gogo/protobuf/plugin/testgen/testgen.go?s=6239:6297#L206">NewTestPlugin</a>
+				<a class="permalink" href="index.html#NewTestPlugin">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type NewTestPlugin func(g *<a href="../../protoc-gen-gogo/generator/index.html">generator</a>.<a href="../../protoc-gen-gogo/generator/index.html#Generator">Generator</a>) <a href="index.html#TestPlugin">TestPlugin</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TestPlugin">type <a href="http://localhost:6060/src/github.com/gogo/protobuf/plugin/testgen/testgen.go?s=6121:6237#L202">TestPlugin</a>
+				<a class="permalink" href="index.html#TestPlugin">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type TestPlugin interface {
+    Generate(imports <a href="../../protoc-gen-gogo/generator/index.html">generator</a>.<a href="../../protoc-gen-gogo/generator/index.html#PluginImports">PluginImports</a>, file *<a href="../../protoc-gen-gogo/generator/index.html">generator</a>.<a href="../../protoc-gen-gogo/generator/index.html#FileDescriptor">FileDescriptor</a>) (used <a href="../../../../../builtin/index.html#bool">bool</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

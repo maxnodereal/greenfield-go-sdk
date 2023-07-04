@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>rlp - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package rlp
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/rlp"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package rlp implements the RLP serialization format.
+<p>The purpose of RLP (Recursive Linear Prefix) is to encode arbitrarily nested arrays of
+binary data, and RLP is the main encoding method used to serialize objects in Ethereum.
+The only purpose of RLP is to encode structure; encoding specific atomic data types (eg.
+strings, ints, floats) is left up to higher-order protocols. In Ethereum integers must be
+represented in big endian binary form with no leading zeroes (thus making the integer
+value zero equivalent to the empty string).
+<p>RLP values are distinguished by a type tag. The type tag precedes the value in the input
+stream and defines the size and kind of the bytes that follow.
+<h3 id="hdr-Encoding_Rules">Encoding Rules</h3>
+<p>Package rlp uses reflection and encodes RLP based on the Go type of the value.
+<p>If the type implements the Encoder interface, Encode calls EncodeRLP. It does not
+call EncodeRLP on nil pointer values.
+<p>To encode a pointer, the value being pointed to is encoded. A nil pointer to a struct
+type, slice or array always encodes as an empty RLP list unless the slice or array has
+element type byte. A nil pointer to any other value encodes as the empty string.
+<p>Struct values are encoded as an RLP list of all their encoded public fields. Recursive
+struct types are supported.
+<p>To encode slices and arrays, the elements are encoded as an RLP list of the value&apos;s
+elements. Note that arrays and slices with element type uint8 or byte are always encoded
+as an RLP string.
+<p>A Go string is encoded as an RLP string.
+<p>An unsigned integer value is encoded as an RLP string. Zero always encodes as an empty RLP
+string. big.Int values are treated as integers. Signed integers (int, int8, int16, ...)
+are not supported and will return an error when encoding.
+<p>Boolean values are encoded as the unsigned integers zero (false) and one (true).
+<p>An interface value encodes as the value contained in the interface.
+<p>Floating point numbers, maps, channels and functions are not supported.
+<h3 id="hdr-Decoding_Rules">Decoding Rules</h3>
+<p>Decoding uses the following type-dependent rules:
+<p>If the type implements the Decoder interface, DecodeRLP is called.
+<p>To decode into a pointer, the value will be decoded as the element type of the pointer. If
+the pointer is nil, a new value of the pointer&apos;s element type is allocated. If the pointer
+is non-nil, the existing value will be reused. Note that package rlp never leaves a
+pointer-type struct field as nil unless one of the &quot;nil&quot; struct tags is present.
+<p>To decode into a struct, decoding expects the input to be an RLP list. The decoded
+elements of the list are assigned to each public field in the order given by the struct&apos;s
+definition. The input list must contain an element for each decoded field. Decoding
+returns an error if there are too few or too many elements for the struct.
+<p>To decode into a slice, the input must be a list and the resulting slice will contain the
+input elements in order. For byte slices, the input must be an RLP string. Array types
+decode similarly, with the additional restriction that the number of input elements (or
+bytes) must match the array&apos;s defined length.
+<p>To decode into a Go string, the input must be an RLP string. The input bytes are taken
+as-is and will not necessarily be valid UTF-8.
+<p>To decode into an unsigned integer type, the input must also be an RLP string. The bytes
+are interpreted as a big endian representation of the integer. If the RLP string is larger
+than the bit size of the type, decoding will return an error. Decode also supports
+*big.Int. There is no size limit for big integers.
+<p>To decode into a boolean, the input must contain an unsigned integer of value zero (false)
+or one (true).
+<p>To decode into an interface value, one of these types is stored in the value:
+<pre>[]interface{}, for RLP lists
+[]byte, for RLP strings
+</pre>
+<p>Non-empty interface types are not supported when decoding.
+Signed integers, floating point numbers, maps, channels and functions cannot be decoded into.
+<h3 id="hdr-Struct_Tags">Struct Tags</h3>
+<p>As with other encoding packages, the &quot;-&quot; tag ignores fields.
+<pre>type StructWithIgnoredField struct{
+    Ignored uint `rlp:&quot;-&quot;`
+    Field   uint
+}
+</pre>
+<p>Go struct values encode/decode as RLP lists. There are two ways of influencing the mapping
+of fields to list elements. The &quot;tail&quot; tag, which may only be used on the last exported
+struct field, allows slurping up any excess list elements into a slice.
+<pre>type StructWithTail struct{
+    Field   uint
+    Tail    []string `rlp:&quot;tail&quot;`
+}
+</pre>
+<p>The &quot;optional&quot; tag says that the field may be omitted if it is zero-valued. If this tag is
+used on a struct field, all subsequent public fields must also be declared optional.
+<p>When encoding a struct with optional fields, the output RLP list contains all values up to
+the last non-zero optional field.
+<p>When decoding into a struct, optional fields may be omitted from the end of the input
+list. For the example below, this means input lists of one, two, or three elements are
+accepted.
+<pre>type StructWithOptionalFields struct{
+     Required  uint
+     Optional1 uint `rlp:&quot;optional&quot;`
+     Optional2 uint `rlp:&quot;optional&quot;`
+}
+</pre>
+<p>The &quot;nil&quot;, &quot;nilList&quot; and &quot;nilString&quot; tags apply to pointer-typed fields only, and change
+the decoding rules for the field type. For regular pointer fields without the &quot;nil&quot; tag,
+input values must always match the required input length exactly and the decoder does not
+produce nil values. When the &quot;nil&quot; tag is set, input values of size zero decode as a nil
+pointer. This is especially useful for recursive types.
+<pre>type StructWithNilField struct {
+    Field *[3]byte `rlp:&quot;nil&quot;`
+}
+</pre>
+<p>In the example above, Field allows two possible input sizes. For input 0xC180 (a list
+containing an empty string) Field is set to nil after decoding. For input 0xC483000000 (a
+list containing a 3-byte string), Field is set to a non-nil array pointer.
+<p>RLP supports two kinds of empty values: empty lists and empty strings. When using the
+&quot;nil&quot; tag, the kind of empty value allowed for a type is chosen automatically. A field
+whose Go type is a pointer to an unsigned integer, string, boolean or byte array/slice
+expects an empty RLP string. Any other pointer field type encodes/decodes as an empty RLP
+list.
+<p>The choice of null value can be made explicit with the &quot;nilList&quot; and &quot;nilString&quot; struct
+tags. Using these tags encodes/decodes a Go nil pointer value as the empty RLP value kind
+defined by the tag.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AppendUint64">func AppendUint64(b []byte, i uint64) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#CountValues">func CountValues(b []byte) (int, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Decode">func Decode(r io.Reader, val interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeBytes">func DecodeBytes(b []byte, val interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#Encode">func Encode(w io.Writer, val interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeToBytes">func EncodeToBytes(val interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeToReader">func EncodeToReader(val interface{}) (size int, r io.Reader, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#IntSize">func IntSize(x uint64) int</a></dd>
+			
+				
+				<dd><a href="index.html#ListSize">func ListSize(contentSize uint64) uint64</a></dd>
+			
+				
+				<dd><a href="index.html#NewListIterator">func NewListIterator(data RawValue) (*listIterator, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SplitList">func SplitList(b []byte) (content, rest []byte, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#SplitString">func SplitString(b []byte) (content, rest []byte, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#SplitUint64">func SplitUint64(b []byte) (x uint64, rest []byte, err error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ByteReader">type ByteReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Decoder">type Decoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Encoder">type Encoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncoderBuffer">type EncoderBuffer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEncoderBuffer">func NewEncoderBuffer(dst io.Writer) EncoderBuffer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.AppendToBytes">func (w *EncoderBuffer) AppendToBytes(dst []byte) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.Flush">func (w *EncoderBuffer) Flush() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.List">func (w EncoderBuffer) List() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.ListEnd">func (w EncoderBuffer) ListEnd(index int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.Reset">func (w *EncoderBuffer) Reset(dst io.Writer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.ToBytes">func (w *EncoderBuffer) ToBytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.Write">func (w EncoderBuffer) Write(b []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.WriteBigInt">func (w EncoderBuffer) WriteBigInt(i *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.WriteBool">func (w EncoderBuffer) WriteBool(b bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.WriteBytes">func (w EncoderBuffer) WriteBytes(b []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.WriteString">func (w EncoderBuffer) WriteString(s string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncoderBuffer.WriteUint64">func (w EncoderBuffer) WriteUint64(i uint64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Kind">type Kind</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Split">func Split(b []byte) (k Kind, content, rest []byte, err error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Kind.String">func (k Kind) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RawValue">type RawValue</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Stream">type Stream</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewListStream">func NewListStream(r io.Reader, len uint64) *Stream</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStream">func NewStream(r io.Reader, inputLimit uint64) *Stream</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.BigInt">func (s *Stream) BigInt() (*big.Int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Bool">func (s *Stream) Bool() (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Bytes">func (s *Stream) Bytes() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Decode">func (s *Stream) Decode(val interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Kind">func (s *Stream) Kind() (kind Kind, size uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.List">func (s *Stream) List() (size uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.ListEnd">func (s *Stream) ListEnd() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.MoreDataInList">func (s *Stream) MoreDataInList() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Raw">func (s *Stream) Raw() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.ReadBytes">func (s *Stream) ReadBytes(b []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Reset">func (s *Stream) Reset(r io.Reader, inputLimit uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Uint">func (s *Stream) Uint() (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Uint16">func (s *Stream) Uint16() (uint16, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Uint32">func (s *Stream) Uint32() (uint32, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Uint64">func (s *Stream) Uint64() (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Stream.Uint8">func (s *Stream) Uint8() (uint8, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Decode">Decode</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Decode_structTagNil">Decode (StructTagNil)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Decode_structTagTail">Decode (StructTagTail)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Encoder">Encoder</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_EncoderBuffer">EncoderBuffer</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Stream">Stream</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go">decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go">encbuffer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encode.go">encode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go">raw.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/typecache.go">typecache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/unsafe.go">unsafe.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrExpectedString">ErrExpectedString</span>   = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: expected String or Byte&#34;)
+    <span id="ErrExpectedList">ErrExpectedList</span>     = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: expected List&#34;)
+    <span id="ErrCanonInt">ErrCanonInt</span>         = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: non-canonical integer format&#34;)
+    <span id="ErrCanonSize">ErrCanonSize</span>        = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: non-canonical size information&#34;)
+    <span id="ErrElemTooLarge">ErrElemTooLarge</span>     = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: element is larger than containing list&#34;)
+    <span id="ErrValueTooLarge">ErrValueTooLarge</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: value size exceeds available input length&#34;)
+    <span id="ErrMoreThanOneValue">ErrMoreThanOneValue</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: input contains more than one value&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// Common encoded values.</span>
+    <span class="comment">// These are useful when implementing EncodeRLP.</span>
+    <span id="EmptyString">EmptyString</span> = []<a href="../../../../builtin/index.html#byte">byte</a>{0x80}
+    <span id="EmptyList">EmptyList</span>   = []<a href="../../../../builtin/index.html#byte">byte</a>{0xC0}
+)</pre>
+			
+				<p>EOL is returned when the end of the current list
+has been reached during streaming.
+
+				<pre>var <span id="EOL">EOL</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: end of list&#34;)</pre>
+			
+				
+				<pre>var <span id="ErrNegativeBigInt">ErrNegativeBigInt</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;rlp: cannot encode negative big.Int&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="AppendUint64">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=5315:5359#L183">AppendUint64</a>
+				<a class="permalink" href="index.html#AppendUint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AppendUint64(b []<a href="../../../../builtin/index.html#byte">byte</a>, i <a href="../../../../builtin/index.html#uint64">uint64</a>) []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+			<p>AppendUint64 appends the RLP encoding of i to b, and returns the resulting slice.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CountValues">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=3038:3077#L98">CountValues</a>
+				<a class="permalink" href="index.html#CountValues">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CountValues(b []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#int">int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CountValues counts the number of encoded values in b.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Decode">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=2926:2973#L70">Decode</a>
+				<a class="permalink" href="index.html#Decode">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Decode(r <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, val interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Decode parses RLP-encoded data from r and stores the result in the value pointed to by
+val. Please see package-level documentation for the decoding rules. Val must be a
+non-nil pointer.
+<p>If r does not implement ByteReader, Decode will do its own buffering.
+<p>Note that Decode does not set an input limit for all readers and may be vulnerable to
+panics cause by huge value sizes. If you need an input limit, use
+<pre>NewStream(r, limit).Decode(val)
+</pre>
+
+			<div id="example_Decode" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">input, _ := hex.DecodeString(&#34;C90A1486666F6F626172&#34;)
+
+type example struct {
+    A, B   uint
+    String string
+}
+
+var s example
+err := Decode(bytes.NewReader(input), &amp;s)
+if err != nil {
+    fmt.Printf(&#34;Error: %v\n&#34;, err)
+} else {
+    fmt.Printf(&#34;Decoded value: %#v\n&#34;, s)
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Decoded value: rlp.example{A:0xa, B:0x14, String:&#34;foobar&#34;}
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example_Decode_structTagNil" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (StructTagNil)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (StructTagNil)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// In this example, we&#39;ll use the &#34;nil&#34; struct tag to change</span>
+<span class="comment">// how a pointer-typed field is decoded. The input contains an RLP</span>
+<span class="comment">// list of one element, an empty string.</span>
+input := []byte{0xC1, 0x80}
+
+<span class="comment">// This type uses the normal rules.</span>
+<span class="comment">// The empty input string is decoded as a pointer to an empty Go string.</span>
+var normalRules struct {
+    String *string
+}
+Decode(bytes.NewReader(input), &amp;normalRules)
+fmt.Printf(&#34;normal: String = %q\n&#34;, *normalRules.String)
+
+<span class="comment">// This type uses the struct tag.</span>
+<span class="comment">// The empty input string is decoded as a nil pointer.</span>
+var withEmptyOK struct {
+    String *string `rlp:&#34;nil&#34;`
+}
+Decode(bytes.NewReader(input), &amp;withEmptyOK)
+fmt.Printf(&#34;with nil tag: String = %v\n&#34;, withEmptyOK.String)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">normal: String = &#34;&#34;
+with nil tag: String = &lt;nil&gt;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example_Decode_structTagTail" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (StructTagTail)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (StructTagTail)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package rlp
+
+import (
+    &#34;bytes&#34;
+    &#34;fmt&#34;
+)
+
+type structWithTail struct {
+    A, B uint
+    C    []uint `rlp:&#34;tail&#34;`
+}
+
+func ExampleDecode_structTagTail() {
+    <span class="comment">// In this example, the &#34;tail&#34; struct tag is used to decode lists of</span>
+    <span class="comment">// differing length into a struct.</span>
+    var val structWithTail
+
+    err := Decode(bytes.NewReader([]byte{0xC4, 0x01, 0x02, 0x03, 0x04}), &amp;val)
+    fmt.Printf(&#34;with 4 elements: err=%v val=%v\n&#34;, err, val)
+
+    err = Decode(bytes.NewReader([]byte{0xC6, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06}), &amp;val)
+    fmt.Printf(&#34;with 6 elements: err=%v val=%v\n&#34;, err, val)
+
+    <span class="comment">// Note that at least two list elements must be present to</span>
+    <span class="comment">// fill fields A and B:</span>
+    err = Decode(bytes.NewReader([]byte{0xC1, 0x01}), &amp;val)
+    fmt.Printf(&#34;with 1 element: err=%q\n&#34;, err)
+
+    <span class="comment">// Output:</span>
+    <span class="comment">// with 4 elements: err=&lt;nil&gt; val={1 2 [3 4]}</span>
+    <span class="comment">// with 6 elements: err=&lt;nil&gt; val={1 2 [3 4 5 6]}</span>
+    <span class="comment">// with 1 element: err=&#34;rlp: too few elements for rlp.structWithTail&#34;</span>
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+
+		
+			
+			
+			<h2 id="DecodeBytes">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=3272:3321#L80">DecodeBytes</a>
+				<a class="permalink" href="index.html#DecodeBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeBytes(b []<a href="../../../../builtin/index.html#byte">byte</a>, val interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>DecodeBytes parses RLP data from b into val. Please see package-level documentation for
+the decoding rules. The input must contain exactly one value and no trailing data.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Encode">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encode.go?s=1919:1966#L47">Encode</a>
+				<a class="permalink" href="index.html#Encode">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Encode(w <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, val interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Encode writes the RLP encoding of val to w. Note that Encode may
+perform many small writes in some cases. Consider making w
+buffered.
+<p>Please see package-level documentation of encoding rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeToBytes">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encode.go?s=2359:2410#L63">EncodeToBytes</a>
+				<a class="permalink" href="index.html#EncodeToBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeToBytes(val interface{}) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>EncodeToBytes returns the RLP encoding of val.
+Please see package-level documentation for the encoding rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeToReader">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encode.go?s=2776:2847#L78">EncodeToReader</a>
+				<a class="permalink" href="index.html#EncodeToReader">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeToReader(val interface{}) (size <a href="../../../../builtin/index.html#int">int</a>, r <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>EncodeToReader returns a reader from which the RLP encoding of val
+can be read. The returned size is the total size of the encoded
+data.
+<p>Please see the documentation of Encode for the encoding rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IntSize">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=1343:1369#L28">IntSize</a>
+				<a class="permalink" href="index.html#IntSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IntSize(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+			<p>IntSize returns the encoded size of the integer x.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ListSize">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=1191:1231#L23">ListSize</a>
+				<a class="permalink" href="index.html#ListSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ListSize(contentSize <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+			<p>ListSize returns the encoded size of an RLP list with the given
+content size.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewListIterator">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/iterator.go?s=1021:1079#L17">NewListIterator</a>
+				<a class="permalink" href="index.html#NewListIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewListIterator(data <a href="index.html#RawValue">RawValue</a>) (*listIterator, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewListIterator creates an iterator for the (list) represented by data
+TODO: Consider removing this implementation, as it is no longer used.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SplitList">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=2762:2820#L86">SplitList</a>
+				<a class="permalink" href="index.html#SplitList">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SplitList(b []<a href="../../../../builtin/index.html#byte">byte</a>) (content, rest []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SplitList splits b into the content of a list and any remaining
+bytes after the list.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SplitString">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=1814:1874#L47">SplitString</a>
+				<a class="permalink" href="index.html#SplitString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SplitString(b []<a href="../../../../builtin/index.html#byte">byte</a>) (content, rest []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SplitString splits b into the content of an RLP string
+and any remaining bytes after the string.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SplitUint64">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=2161:2222#L60">SplitUint64</a>
+				<a class="permalink" href="index.html#SplitUint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SplitUint64(b []<a href="../../../../builtin/index.html#byte">byte</a>) (x <a href="../../../../builtin/index.html#uint64">uint64</a>, rest []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SplitUint64 decodes an integer at the beginning of b.
+It also returns the remaining data after the integer in &apos;rest&apos;.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ByteReader">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=14698:14753#L534">ByteReader</a>
+				<a class="permalink" href="index.html#ByteReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ByteReader must be implemented by any input reader for a Stream. It
+is implemented by e.g. bufio.Reader and bytes.Reader.
+
+			<pre>type ByteReader interface {
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ByteReader">ByteReader</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Decoder">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=2398:2450#L56">Decoder</a>
+				<a class="permalink" href="index.html#Decoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Decoder is implemented by types that require custom RLP decoding rules or need to decode
+into private fields.
+<p>The DecodeRLP method should read one value from the given Stream. It is not forbidden to
+read less or more, but it might be confusing.
+
+			<pre>type Decoder interface {
+    DecodeRLP(*<a href="index.html#Stream">Stream</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Encoder">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encode.go?s=1247:1710#L30">Encoder</a>
+				<a class="permalink" href="index.html#Encoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Encoder is implemented by types that require custom
+encoding rules or want to encode private fields.
+
+			<pre>type Encoder interface {
+    <span class="comment">// EncodeRLP should write the RLP encoding of its receiver to w.</span>
+    <span class="comment">// If the implementation is a pointer method, it may also be</span>
+    <span class="comment">// called for nil pointers.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Implementations should generate valid RLP. The data written is</span>
+    <span class="comment">// not verified at the moment, but a future version might. It is</span>
+    <span class="comment">// recommended to write only a single value but writing multiple</span>
+    <span class="comment">// values or no value at all is also permitted.</span>
+    EncodeRLP(<a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			<div id="example_Encoder" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">package rlp_test
+
+import (
+    &#34;fmt&#34;
+    &#34;io&#34;
+
+    &#34;github.com/ethereum/go-ethereum/rlp&#34;
+)
+
+type MyCoolType struct {
+    Name string
+    a, b uint
+}
+
+<span class="comment">// EncodeRLP writes x as RLP list [a, b] that omits the Name field.</span>
+func (x *MyCoolType) EncodeRLP(w io.Writer) (err error) {
+    return rlp.Encode(w, []uint{x.a, x.b})
+}
+
+func ExampleEncoder() {
+    var t *MyCoolType <span class="comment">// t is nil pointer to MyCoolType</span>
+    bytes, _ := rlp.EncodeToBytes(t)
+    fmt.Printf(&#34;%v → %X\n&#34;, t, bytes)
+
+    t = &amp;MyCoolType{Name: &#34;foobar&#34;, a: 5, b: 6}
+    bytes, _ = rlp.EncodeToBytes(t)
+    fmt.Printf(&#34;%v → %X\n&#34;, t, bytes)
+
+    <span class="comment">// Output:</span>
+    <span class="comment">// &lt;nil&gt; → C0</span>
+    <span class="comment">// &amp;{foobar 5 6} → C20506</span>
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncoderBuffer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=7444:7521#L282">EncoderBuffer</a>
+				<a class="permalink" href="index.html#EncoderBuffer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncoderBuffer is a buffer for incremental encoding.
+<p>The zero value is NOT ready for use. To get a usable buffer,
+create it using NewEncoderBuffer or call Reset.
+
+			<pre>type EncoderBuffer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_EncoderBuffer" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">var w bytes.Buffer
+
+<span class="comment">// Encode [4, [5, 6]] to w.</span>
+buf := rlp.NewEncoderBuffer(&amp;w)
+l1 := buf.List()
+buf.WriteUint64(4)
+l2 := buf.List()
+buf.WriteUint64(5)
+buf.WriteUint64(6)
+buf.ListEnd(l2)
+buf.ListEnd(l1)
+
+if err := buf.Flush(); err != nil {
+    panic(err)
+}
+fmt.Printf(&#34;%X\n&#34;, w.Bytes())
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">C404C20506
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+				
+				<h3 id="NewEncoderBuffer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=7570:7620#L290">NewEncoderBuffer</a>
+					<a class="permalink" href="index.html#NewEncoderBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEncoderBuffer(dst <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>) <a href="index.html#EncoderBuffer">EncoderBuffer</a></pre>
+				<p>NewEncoderBuffer creates an encoder buffer.
+
+				
+				
+			
+
+			
+				
+				<h3 id="EncoderBuffer.AppendToBytes">func (*EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=8780:8836#L341">AppendToBytes</a>
+					<a class="permalink" href="index.html#EncoderBuffer.AppendToBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#EncoderBuffer">EncoderBuffer</a>) AppendToBytes(dst []<a href="../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+				<p>AppendToBytes appends the encoded bytes to dst.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.Flush">func (*EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=8395:8432#L322">Flush</a>
+					<a class="permalink" href="index.html#EncoderBuffer.Flush">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#EncoderBuffer">EncoderBuffer</a>) Flush() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Flush writes encoded RLP data to the output writer. This can only be called once.
+If you want to re-use the buffer after Flush, you must call Reset.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.List">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9860:9893#L381">List</a>
+					<a class="permalink" href="index.html#EncoderBuffer.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) List() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>List starts a list. It returns an internal index. Call EndList with
+this index after encoding the content to finish the list.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.ListEnd">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9956:9997#L386">ListEnd</a>
+					<a class="permalink" href="index.html#EncoderBuffer.ListEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) ListEnd(index <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>ListEnd finishes the given list.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.Reset">func (*EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=7734:7778#L297">Reset</a>
+					<a class="permalink" href="index.html#EncoderBuffer.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#EncoderBuffer">EncoderBuffer</a>) Reset(dst <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>)</pre>
+				<p>Reset truncates the buffer and sets the output destination.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.ToBytes">func (*EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=8657:8697#L336">ToBytes</a>
+					<a class="permalink" href="index.html#EncoderBuffer.ToBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#EncoderBuffer">EncoderBuffer</a>) ToBytes() []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+				<p>ToBytes returns the encoded bytes.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.Write">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9000:9051#L349">Write</a>
+					<a class="permalink" href="index.html#EncoderBuffer.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) Write(b []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#int">int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write appends b directly to the encoder output.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.WriteBigInt">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9428:9474#L365">WriteBigInt</a>
+					<a class="permalink" href="index.html#EncoderBuffer.WriteBigInt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) WriteBigInt(i *<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>WriteBigInt encodes a big.Int as an RLP string.
+Note: Unlike with Encode, the sign of i is ignored.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.WriteBool">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9140:9180#L354">WriteBool</a>
+					<a class="permalink" href="index.html#EncoderBuffer.WriteBool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) WriteBool(b <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>WriteBool writes b as the integer 0 (false) or 1 (true).
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.WriteBytes">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9544:9587#L370">WriteBytes</a>
+					<a class="permalink" href="index.html#EncoderBuffer.WriteBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) WriteBytes(b []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>WriteBytes encodes b as an RLP string.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.WriteString">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9656:9700#L375">WriteString</a>
+					<a class="permalink" href="index.html#EncoderBuffer.WriteString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) WriteString(s <a href="../../../../builtin/index.html#string">string</a>)</pre>
+				<p>WriteBytes encodes s as an RLP string.
+
+				
+				
+				
+			
+				
+				<h3 id="EncoderBuffer.WriteUint64">func (EncoderBuffer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/encbuffer.go?s=9250:9294#L359">WriteUint64</a>
+					<a class="permalink" href="index.html#EncoderBuffer.WriteUint64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#EncoderBuffer">EncoderBuffer</a>) WriteUint64(i <a href="../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>WriteUint64 encodes an unsigned integer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Kind">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=14324:14338#L511">Kind</a>
+				<a class="permalink" href="index.html#Kind">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Kind represents the kind of value contained in an RLP stream.
+
+			<pre>type Kind <a href="../../../../builtin/index.html#int8">int8</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="Byte">Byte</span> <a href="index.html#Kind">Kind</a> = <a href="../../../../builtin/index.html#iota">iota</a>
+    <span id="String">String</span>
+    <span id="List">List</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Split">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=1527:1589#L37">Split</a>
+					<a class="permalink" href="index.html#Split">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Split(b []<a href="../../../../builtin/index.html#byte">byte</a>) (k <a href="index.html#Kind">Kind</a>, content, rest []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Split returns the content of first RLP value and any
+bytes after the value as subslices of b.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Kind.String">func (Kind) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=14383:14412#L519">String</a>
+					<a class="permalink" href="index.html#Kind.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Kind">Kind</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RawValue">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/raw.go?s=1038:1058#L17">RawValue</a>
+				<a class="permalink" href="index.html#RawValue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RawValue represents an encoded RLP value and can be used to delay
+RLP decoding or to precompute an encoding. Note that the decoder does
+not verify whether the content of RawValues is valid RLP.
+
+			<pre>type RawValue []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Stream">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=15373:15818#L551">Stream</a>
+				<a class="permalink" href="index.html#Stream">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Stream can be used for piecemeal decoding of an input stream. This
+is useful if the input is very large or if the decoding rules for a
+type depend on the input structure. Stream does not keep an
+internal buffer. After decoding a value, the input reader will be
+positioned just before the type information for the next value.
+<p>When decoding a list and the input position reaches the declared
+length of the list, all operations will return error EOL.
+The end of the list must be acknowledged using ListEnd to continue
+reading the enclosing list.
+<p>Stream is not safe for concurrent use.
+
+			<pre>type Stream struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_Stream" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">input, _ := hex.DecodeString(&#34;C90A1486666F6F626172&#34;)
+s := NewStream(bytes.NewReader(input), 0)
+
+<span class="comment">// Check what kind of value lies ahead</span>
+kind, size, _ := s.Kind()
+fmt.Printf(&#34;Kind: %v size:%d\n&#34;, kind, size)
+
+<span class="comment">// Enter the list</span>
+if _, err := s.List(); err != nil {
+    fmt.Printf(&#34;List error: %v\n&#34;, err)
+    return
+}
+
+<span class="comment">// Decode elements</span>
+fmt.Println(s.Uint())
+fmt.Println(s.Uint())
+fmt.Println(s.Bytes())
+
+<span class="comment">// Acknowledge end of list</span>
+if err := s.ListEnd(); err != nil {
+    fmt.Printf(&#34;ListEnd error: %v\n&#34;, err)
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Kind: List size:9
+10 &lt;nil&gt;
+20 &lt;nil&gt;
+[102 111 111 98 97 114] &lt;nil&gt;
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+				
+				<h3 id="NewListStream">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=16798:16849#L589">NewListStream</a>
+					<a class="permalink" href="index.html#NewListStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewListStream(r <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, len <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Stream">Stream</a></pre>
+				<p>NewListStream creates a new stream that pretends to be positioned
+at an encoded list of the given length.
+
+				
+				
+			
+				
+				<h3 id="NewStream">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=16574:16628#L581">NewStream</a>
+					<a class="permalink" href="index.html#NewStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStream(r <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, inputLimit <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Stream">Stream</a></pre>
+				<p>NewStream creates a new decoding stream reading from r.
+<p>If r implements the ByteReader interface, Stream will
+not introduce any buffering.
+<p>For non-toplevel values, Stream returns ErrElemTooLarge
+for values that do not fit into the enclosing list.
+<p>Stream supports an optional input limit. If a limit is set, the
+size of any toplevel value will be checked against the remaining
+input length. Stream operations that encounter a value exceeding
+the remaining input length will return ErrValueTooLarge. The limit
+can be set by passing a non-zero value for inputLimit.
+<p>If r is a bytes.Reader or strings.Reader, the input limit is set to
+the length of r&apos;s underlying data unless an explicit limit is
+provided.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Stream.BigInt">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=21974:22017#L805">BigInt</a>
+					<a class="permalink" href="index.html#Stream.BigInt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) BigInt() (*<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BigInt decodes an arbitrary-size integer value.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Bool">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=20336:20373#L743">Bool</a>
+					<a class="permalink" href="index.html#Stream.Bool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Bool() (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Bool reads an RLP string of up to 1 byte and returns its contents
+as a boolean. If the input does not contain an RLP string, the
+returned error will be ErrExpectedString.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Bytes">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=17097:17137#L600">Bytes</a>
+					<a class="permalink" href="index.html#Stream.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Bytes() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Bytes reads an RLP string and returns its contents as a byte slice.
+If the input does not contain an RLP string, the returned
+error will be ErrExpectedString.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Decode">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=23306:23352#L859">Decode</a>
+					<a class="permalink" href="index.html#Stream.Decode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Decode(val interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Decode decodes a value and stores the result in the value pointed
+to by val. Please see the documentation for the Decode function
+to learn about the decoding rules.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Kind">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=25468:25527#L937">Kind</a>
+					<a class="permalink" href="index.html#Stream.Kind">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Kind() (kind <a href="index.html#Kind">Kind</a>, size <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Kind returns the kind and size of the next value in the
+input stream.
+<p>The returned size is the number of bytes that make up the value.
+For kind == Byte, the size is zero because the value is
+contained in the type tag.
+<p>The first call to Kind will read size information from the input
+reader and leave it positioned at the start of the actual bytes of
+the value. Subsequent calls to Kind (until the value is decoded)
+will not advance the input reader and return cached information.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.List">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=20793:20841#L761">List</a>
+					<a class="permalink" href="index.html#Stream.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) List() (size <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>List starts decoding an RLP list. If the input does not contain a
+list, the returned error will be ErrExpectedList. When the list&apos;s
+end has been reached, any Stream operation will return EOL.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.ListEnd">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=21429:21461#L784">ListEnd</a>
+					<a class="permalink" href="index.html#Stream.ListEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) ListEnd() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ListEnd returns to the enclosing list.
+The input reader must be positioned at the end of a list.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.MoreDataInList">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=21826:21864#L799">MoreDataInList</a>
+					<a class="permalink" href="index.html#Stream.MoreDataInList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) MoreDataInList() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>MoreDataInList reports whether the current list context contains
+more data to be read.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Raw">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=18284:18322#L655">Raw</a>
+					<a class="permalink" href="index.html#Stream.Raw">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Raw() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Raw reads a raw encoded value including RLP type information.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.ReadBytes">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=17636:17678#L625">ReadBytes</a>
+					<a class="permalink" href="index.html#Stream.ReadBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) ReadBytes(b []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ReadBytes decodes the next RLP value and stores the result in b.
+The value size must match len(b) exactly.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Reset">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=24171:24225#L890">Reset</a>
+					<a class="permalink" href="index.html#Stream.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Reset(r <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>, inputLimit <a href="../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>Reset discards any information about the current decoding context
+and starts reading from r. This method is meant to facilitate reuse
+of a preallocated Stream across many decoding operations.
+<p>If r does not also implement ByteReader, Stream will do its own
+buffering.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Uint">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=19089:19128#L684">Uint</a>
+					<a class="permalink" href="index.html#Stream.Uint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Uint() (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Uint reads an RLP string of up to 8 bytes and returns its contents
+as an unsigned integer. If the input does not contain an RLP string, the
+returned error will be ErrExpectedString.
+<p>Deprecated: use s.Uint64 instead.
+
+				
+				
+				
+			
+				
+				<h3 id="Stream.Uint16">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=19311:19352#L697">Uint16</a>
+					<a class="permalink" href="index.html#Stream.Uint16">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Uint16() (<a href="../../../../builtin/index.html#uint16">uint16</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Stream.Uint32">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=19219:19260#L692">Uint32</a>
+					<a class="permalink" href="index.html#Stream.Uint32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Uint32() (<a href="../../../../builtin/index.html#uint32">uint32</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Stream.Uint64">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=19153:19194#L688">Uint64</a>
+					<a class="permalink" href="index.html#Stream.Uint64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Uint64() (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Stream.Uint8">func (*Stream) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/rlp/decode.go?s=19403:19442#L702">Uint8</a>
+					<a class="permalink" href="index.html#Stream.Uint8">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Stream">Stream</a>) Uint8() (<a href="../../../../builtin/index.html#uint8">uint8</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="rlpgen/index.html">rlpgen</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>gateway - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package gateway
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/api/gateway"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package gateway defines a grpc-gateway server that serves HTTP-JSON traffic and acts a proxy between HTTP and gRPC.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#SwaggerServer">func SwaggerServer() http.HandlerFunc</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Gateway">type Gateway</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(ctx context.Context, opts ...Option) (*Gateway, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gateway.SetRouter">func (g *Gateway) SetRouter(r *mux.Router) *Gateway</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gateway.Start">func (g *Gateway) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gateway.Status">func (g *Gateway) Status() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gateway.Stop">func (g *Gateway) Stop() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MuxHandler">type MuxHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithAllowedOrigins">func WithAllowedOrigins(origins []string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithApiMiddleware">func WithApiMiddleware(endpointFactory apimiddleware.EndpointFactory) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithGatewayAddr">func WithGatewayAddr(addr string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithMaxCallRecvMsgSize">func WithMaxCallRecvMsgSize(size uint64) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithMuxHandler">func WithMuxHandler(m MuxHandler) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithPbHandlers">func WithPbHandlers(handlers []*PbMux) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithRemoteAddr">func WithRemoteAddr(addr string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithRemoteCert">func WithRemoteCert(cert string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithRouter">func WithRouter(r *mux.Router) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PbHandlerRegistration">type PbHandlerRegistration</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PbMux">type PbMux</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go">gateway.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go">options.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="SwaggerServer">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=5035:5072#L171">SwaggerServer</a>
+				<a class="permalink" href="index.html#SwaggerServer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SwaggerServer() <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#HandlerFunc">HandlerFunc</a></pre>
+			<p>SwaggerServer returns swagger specification files located under &quot;/swagger/&quot;
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Gateway">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=1931:2165#L48">Gateway</a>
+				<a class="permalink" href="index.html#Gateway">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Gateway is the gRPC gateway to serve HTTP JSON traffic as a proxy and forward it to the gRPC server.
+
+			<pre>type Gateway struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=2213:2276#L59">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, opts ...<a href="index.html#Option">Option</a>) (*<a href="index.html#Gateway">Gateway</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New returns a new instance of the Gateway.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Gateway.SetRouter">func (*Gateway) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=151:202#L1">SetRouter</a>
+					<a class="permalink" href="index.html#Gateway.SetRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gateway">Gateway</a>) SetRouter(r *<a href="../../../../gorilla/mux/index.html">mux</a>.<a href="../../../../gorilla/mux/index.html#Router">Router</a>) *<a href="index.html#Gateway">Gateway</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Gateway.Start">func (*Gateway) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=2494:2519#L75">Start</a>
+					<a class="permalink" href="index.html#Gateway.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gateway">Gateway</a>) Start()</pre>
+				<p>Start the gateway service.
+
+				
+				
+				
+			
+				
+				<h3 id="Gateway.Status">func (*Gateway) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=3853:3885#L128">Status</a>
+					<a class="permalink" href="index.html#Gateway.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gateway">Gateway</a>) Status() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Status of grpc gateway. Returns an error if this service is unhealthy.
+
+				
+				
+				
+			
+				
+				<h3 id="Gateway.Stop">func (*Gateway) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=4105:4135#L139">Stop</a>
+					<a class="permalink" href="index.html#Gateway.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gateway">Gateway</a>) Stop() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop the gateway with a graceful shutdown.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MuxHandler">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=1230:1375#L27">MuxHandler</a>
+				<a class="permalink" href="index.html#MuxHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MuxHandler is a function that implements the mux handler functionality.
+
+			<pre>type MuxHandler func(
+    apiMiddlewareHandler *<a href="apimiddleware/index.html">apimiddleware</a>.<a href="apimiddleware/index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>,
+    h <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#HandlerFunc">HandlerFunc</a>,
+    w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>,
+    req *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>,
+)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=115:149#L1">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Option func(g *<a href="index.html#Gateway">Gateway</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WithAllowedOrigins">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=978:1026#L42">WithAllowedOrigins</a>
+					<a class="permalink" href="index.html#WithAllowedOrigins">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithAllowedOrigins(origins []<a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithAllowedOrigins allows adding a set of allowed origins to the gateway.
+
+				
+				
+			
+				
+				<h3 id="WithApiMiddleware">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=1597:1673#L66">WithApiMiddleware</a>
+					<a class="permalink" href="index.html#WithApiMiddleware">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithApiMiddleware(endpointFactory <a href="apimiddleware/index.html">apimiddleware</a>.<a href="apimiddleware/index.html#EndpointFactory">EndpointFactory</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithApiMiddleware allows adding an API middleware proxy to the gateway.
+
+				
+				
+			
+				
+				<h3 id="WithGatewayAddr">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=484:524#L19">WithGatewayAddr</a>
+					<a class="permalink" href="index.html#WithGatewayAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithGatewayAddr(addr <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="WithMaxCallRecvMsgSize">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=1386:1433#L58">WithMaxCallRecvMsgSize</a>
+					<a class="permalink" href="index.html#WithMaxCallRecvMsgSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithMaxCallRecvMsgSize(size <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithMaxCallRecvMsgSize allows specifying the maximum allowed gRPC message size.
+
+				
+				
+			
+				
+				<h3 id="WithMuxHandler">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=366:406#L12">WithMuxHandler</a>
+					<a class="permalink" href="index.html#WithMuxHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithMuxHandler(m <a href="index.html#MuxHandler">MuxHandler</a>) <a href="index.html#Option">Option</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="WithPbHandlers">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=236:281#L5">WithPbHandlers</a>
+					<a class="permalink" href="index.html#WithPbHandlers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithPbHandlers(handlers []*<a href="index.html#PbMux">PbMux</a>) <a href="index.html#Option">Option</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="WithRemoteAddr">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=606:645#L26">WithRemoteAddr</a>
+					<a class="permalink" href="index.html#WithRemoteAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithRemoteAddr(addr <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="WithRemoteCert">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=1183:1222#L50">WithRemoteCert</a>
+					<a class="permalink" href="index.html#WithRemoteCert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithRemoteCert(cert <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithRemoteCert allows adding a custom certificate to the gateway,
+
+				
+				
+			
+				
+				<h3 id="WithRouter">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/options.go?s=790:827#L34">WithRouter</a>
+					<a class="permalink" href="index.html#WithRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithRouter(r *<a href="../../../../gorilla/mux/index.html">mux</a>.<a href="../../../../gorilla/mux/index.html#Router">Router</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithRouter allows adding a custom mux router to the gateway.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PbHandlerRegistration">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=1060:1153#L24">PbHandlerRegistration</a>
+				<a class="permalink" href="index.html#PbHandlerRegistration">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PbHandlerRegistration is a function that registers a protobuf handler.
+
+			<pre>type PbHandlerRegistration func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/grpc-ecosystem/grpc-gateway/v2/runtime/">gwruntime</a>.<a href="http://localhost:6060/pkg/github.com/grpc-ecosystem/grpc-gateway/v2/runtime/#ServeMux">ServeMux</a>, *<a href="../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../google.golang.org/grpc/index.html#ClientConn">ClientConn</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PbMux">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/gateway.go?s=691:984#L17">PbMux</a>
+				<a class="permalink" href="index.html#PbMux">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PbMux serves grpc-gateway requests for selected patterns using registered protobuf handlers.
+
+			<pre>type PbMux struct {
+<span id="PbMux.Registrations"></span>    Registrations []<a href="index.html#PbHandlerRegistration">PbHandlerRegistration</a> <span class="comment">// Protobuf registrations to be registered in Mux.</span>
+<span id="PbMux.Patterns"></span>    Patterns      []<a href="../../../../../builtin/index.html#string">string</a>                <span class="comment">// URL patterns that will be handled by Mux.</span>
+<span id="PbMux.Mux"></span>    Mux           *<a href="http://localhost:6060/pkg/github.com/grpc-ecosystem/grpc-gateway/v2/runtime/">gwruntime</a>.<a href="http://localhost:6060/pkg/github.com/grpc-ecosystem/grpc-gateway/v2/runtime/#ServeMux">ServeMux</a>     <span class="comment">// The router that will be used for grpc-gateway requests.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="apimiddleware/index.html">apimiddleware</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

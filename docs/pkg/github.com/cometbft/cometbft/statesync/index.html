@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>statesync - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package statesync
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/statesync"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Reactor">type Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReactor">func NewReactor(cfg config.StateSyncConfig, conn proxy.AppConnSnapshot, connQuery proxy.AppConnQuery, tempDir string) *Reactor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.AddPeer">func (r *Reactor) AddPeer(peer p2p.Peer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.GetChannels">func (r *Reactor) GetChannels() []*p2p.ChannelDescriptor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStart">func (r *Reactor) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.ReceiveEnvelope">func (r *Reactor) ReceiveEnvelope(e p2p.Envelope)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.RemovePeer">func (r *Reactor) RemovePeer(peer p2p.Peer, reason interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.Sync">func (r *Reactor) Sync(stateProvider StateProvider, discoveryTime time.Duration) (sm.State, *types.Commit, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateProvider">type StateProvider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLightClientStateProvider">func NewLightClientStateProvider(ctx context.Context, chainID string, version cmtstate.Version, initialHeight int64, servers []string, trustOptions light.TrustOptions, logger log.Logger) (StateProvider, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/chunks.go">chunks.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/messages.go">messages.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go">reactor.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/snapshots.go">snapshots.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/stateprovider.go">stateprovider.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/syncer.go">syncer.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// SnapshotChannel exchanges snapshot metadata</span>
+    <span id="SnapshotChannel">SnapshotChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x60)
+    <span class="comment">// ChunkChannel exchanges chunk contents</span>
+    <span id="ChunkChannel">ChunkChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x61)
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="Reactor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=796:1121#L19">Reactor</a>
+				<a class="permalink" href="index.html#Reactor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reactor handles state sync, both restoring snapshots for the local node and serving snapshots
+for other nodes.
+
+			<pre>type Reactor struct {
+    <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#BaseReactor">BaseReactor</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReactor">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=1171:1304#L34">NewReactor</a>
+					<a class="permalink" href="index.html#NewReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReactor(
+    cfg <a href="../config/index.html">config</a>.<a href="../config/index.html#StateSyncConfig">StateSyncConfig</a>,
+    conn <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConnSnapshot">AppConnSnapshot</a>,
+    connQuery <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConnQuery">AppConnQuery</a>,
+    tempDir <a href="../../../../builtin/index.html#string">string</a>,
+) *<a href="index.html#Reactor">Reactor</a></pre>
+				<p>NewReactor creates a new state sync reactor.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reactor.AddPeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=2088:2128#L77">AddPeer</a>
+					<a class="permalink" href="index.html#Reactor.AddPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) AddPeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>)</pre>
+				<p>AddPeer implements p2p.Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.GetChannels">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=1494:1550#L52">GetChannels</a>
+					<a class="permalink" href="index.html#Reactor.GetChannels">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) GetChannels() []*<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ChannelDescriptor">ChannelDescriptor</a></pre>
+				<p>GetChannels implements p2p.Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStart">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=2002:2035#L72">OnStart</a>
+					<a class="permalink" href="index.html#Reactor.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements p2p.Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.ReceiveEnvelope">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=2455:2504#L95">ReceiveEnvelope</a>
+					<a class="permalink" href="index.html#Reactor.ReceiveEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) ReceiveEnvelope(e <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Envelope">Envelope</a>)</pre>
+				<p>Receive implements p2p.Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.RemovePeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=2260:2323#L86">RemovePeer</a>
+					<a class="permalink" href="index.html#Reactor.RemovePeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) RemovePeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>, reason interface{})</pre>
+				<p>RemovePeer implements p2p.Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.Sync">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/reactor.go?s=6948:7061#L252">Sync</a>
+					<a class="permalink" href="index.html#Reactor.Sync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reactor">Reactor</a>) Sync(stateProvider <a href="index.html#StateProvider">StateProvider</a>, discoveryTime <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>) (<a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>, *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Sync runs a state sync, returning the new state and last commit at the snapshot height.
+The caller must store the state and commit in the state database and block store.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateProvider">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/stateprovider.go?s=910:1312#L19">StateProvider</a>
+				<a class="permalink" href="index.html#StateProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StateProvider is a provider of trusted state data for bootstrapping a node. This refers
+to the state.State object, not the state machine.
+
+			<pre>type StateProvider interface {
+    <span class="comment">// AppHash returns the app hash after the given height has been committed.</span>
+    AppHash(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, height <a href="../../../../builtin/index.html#uint64">uint64</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Commit returns the commit at the given height.</span>
+    Commit(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, height <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// State returns a state object at the given height.</span>
+    State(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, height <a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLightClientStateProvider">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/statesync/stateprovider.go?s=1711:1930#L38">NewLightClientStateProvider</a>
+					<a class="permalink" href="index.html#NewLightClientStateProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLightClientStateProvider(
+    ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>,
+    chainID <a href="../../../../builtin/index.html#string">string</a>,
+    version <a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#Version">Version</a>,
+    initialHeight <a href="../../../../builtin/index.html#int64">int64</a>,
+    servers []<a href="../../../../builtin/index.html#string">string</a>,
+    trustOptions <a href="../light/index.html">light</a>.<a href="../light/index.html#TrustOptions">TrustOptions</a>,
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+) (<a href="index.html#StateProvider">StateProvider</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewLightClientStateProvider creates a new StateProvider using a light client and RPC clients.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>votepool - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package votepool
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/votepool"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#BlsSignatureVerifier">type BlsSignatureVerifier</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlsSignatureVerifier.Validate">func (b *BlsSignatureVerifier) Validate(vote *Vote) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EventType">type EventType</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FromValidatorVerifier">type FromValidatorVerifier</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFromValidatorVerifier">func NewFromValidatorVerifier() *FromValidatorVerifier</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromValidatorVerifier.Validate">func (f *FromValidatorVerifier) Validate(vote *Vote) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Pool">type Pool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewVotePool">func NewVotePool(logger log.Logger, validators []*types.Validator, eventBus *types.EventBus) *Pool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.AddVote">func (p *Pool) AddVote(vote *Vote) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.FlushVotes">func (p *Pool) FlushVotes()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.GetVotesByEventType">func (p *Pool) GetVotesByEventType(eventType EventType) ([]*Vote, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.GetVotesByEventTypeAndHash">func (p *Pool) GetVotesByEventTypeAndHash(eventType EventType, eventHash []byte) ([]*Vote, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.OnStart">func (p *Pool) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.OnStop">func (p *Pool) OnStop()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Reactor">type Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReactor">func NewReactor(votePool VotePool, eventBus *types.EventBus) *Reactor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.AddPeer">func (voteR *Reactor) AddPeer(peer p2p.Peer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.GetChannels">func (voteR *Reactor) GetChannels() []*conn.ChannelDescriptor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStart">func (voteR *Reactor) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStop">func (voteR *Reactor) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.Receive">func (voteR *Reactor) Receive(chID byte, peer p2p.Peer, msgBytes []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.ReceiveEnvelope">func (voteR *Reactor) ReceiveEnvelope(e p2p.Envelope)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.RemovePeer">func (voteR *Reactor) RemovePeer(peer p2p.Peer, reason interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.SetLogger">func (voteR *Reactor) SetLogger(l log.Logger)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Verifier">type Verifier</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Vote">type Vote</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewVote">func NewVote(pubKey, signature []byte, eventType uint8, eventHash []byte) *Vote</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Vote.Key">func (v *Vote) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Vote.ValidateBasic">func (v *Vote) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#VotePool">type VotePool</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#VoteQueue">type VoteQueue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewVoteQueue">func NewVoteQueue() *VoteQueue</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteQueue.Insert">func (p *VoteQueue) Insert(vote *Vote)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteQueue.Len">func (p *VoteQueue) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteQueue.Pop">func (p *VoteQueue) Pop() (*Vote, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteQueue.PopUntil">func (p *VoteQueue) PopUntil(vote *Vote) ([]*Vote, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/event_type.go">event_type.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/interface.go">interface.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go">pool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go">queue.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go">reactor.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go">verifier.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/vote.go">vote.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// VotePoolChannel is the p2p channel used for sending and receiving votes in vote Pool.</span>
+    <span id="VotePoolChannel">VotePoolChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x70)
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="BlsSignatureVerifier">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=1839:1875#L66">BlsSignatureVerifier</a>
+				<a class="permalink" href="index.html#BlsSignatureVerifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlsSignatureVerifier will check whether the Vote is correctly bls signed.
+
+			<pre>type BlsSignatureVerifier struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BlsSignatureVerifier.Validate">func (*BlsSignatureVerifier) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=1910:1967#L70">Validate</a>
+					<a class="permalink" href="index.html#BlsSignatureVerifier.Validate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BlsSignatureVerifier">BlsSignatureVerifier</a>) Validate(vote *<a href="index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Validate implements Verifier.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EventType">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/event_type.go?s=61:81#L1">EventType</a>
+				<a class="permalink" href="index.html#EventType">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EventType defines the types for voting.
+
+			<pre>type EventType <a href="../../../../builtin/index.html#uint8">uint8</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// ToBscCrossChainEvent defines the type of cross chain events from the current chain to BSC.</span>
+    <span id="ToBscCrossChainEvent">ToBscCrossChainEvent</span> <a href="index.html#EventType">EventType</a> = 1
+
+    <span class="comment">// FromBscCrossChainEvent defines the type of cross chain events from BSC to the current chain.</span>
+    <span id="FromBscCrossChainEvent">FromBscCrossChainEvent</span> <a href="index.html#EventType">EventType</a> = 2
+
+    <span class="comment">// DataAvailabilityChallengeEvent defines the type of events for data availability challenges.</span>
+    <span id="DataAvailabilityChallengeEvent">DataAvailabilityChallengeEvent</span> <a href="index.html#EventType">EventType</a> = 3
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FromValidatorVerifier">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=364:467#L8">FromValidatorVerifier</a>
+				<a class="permalink" href="index.html#FromValidatorVerifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FromValidatorVerifier will check whether the Vote is from a valid validator.
+
+			<pre>type FromValidatorVerifier struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFromValidatorVerifier">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=469:523#L13">NewFromValidatorVerifier</a>
+					<a class="permalink" href="index.html#NewFromValidatorVerifier">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFromValidatorVerifier() *<a href="index.html#FromValidatorVerifier">FromValidatorVerifier</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="FromValidatorVerifier.Validate">func (*FromValidatorVerifier) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=1537:1595#L55">Validate</a>
+					<a class="permalink" href="index.html#FromValidatorVerifier.Validate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#FromValidatorVerifier">FromValidatorVerifier</a>) Validate(vote *<a href="index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Validate implements Verifier.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Pool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=3159:3628#L116">Pool</a>
+				<a class="permalink" href="index.html#Pool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Pool implements VotePool to store different types of votes.
+Meanwhile, it will check the signature and source signer of a vote, only votes from validators will be saved.
+
+			<pre>type Pool struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewVotePool">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=3704:3802#L131">NewVotePool</a>
+					<a class="permalink" href="index.html#NewVotePool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewVotePool(logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>, validators []*<a href="../types/index.html">types</a>.<a href="../types/index.html#Validator">Validator</a>, eventBus *<a href="../types/index.html">types</a>.<a href="../types/index.html#EventBus">EventBus</a>) *<a href="index.html#Pool">Pool</a></pre>
+				<p>NewVotePool creates a Pool. The initial validators should be supplied.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Pool.AddVote">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=4965:5005#L176">AddVote</a>
+					<a class="permalink" href="index.html#Pool.AddVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) AddVote(vote *<a href="index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>AddVote implements VotePool.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.FlushVotes">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=6240:6267#L226">FlushVotes</a>
+					<a class="permalink" href="index.html#Pool.FlushVotes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) FlushVotes()</pre>
+				<p>FlushVotes implements VotePool.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.GetVotesByEventType">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=5996:6068#L217">GetVotesByEventType</a>
+					<a class="permalink" href="index.html#Pool.GetVotesByEventType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) GetVotesByEventType(eventType <a href="index.html#EventType">EventType</a>) ([]*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetVotesByEventType implements VotePool.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.GetVotesByEventTypeAndHash">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=5701:5798#L208">GetVotesByEventTypeAndHash</a>
+					<a class="permalink" href="index.html#Pool.GetVotesByEventTypeAndHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) GetVotesByEventTypeAndHash(eventType <a href="index.html#EventType">EventType</a>, eventHash []<a href="../../../../builtin/index.html#byte">byte</a>) ([]*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetVotesByEventTypeAndHash implements VotePool.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.OnStart">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=4664:4694#L160">OnStart</a>
+					<a class="permalink" href="index.html#Pool.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.OnStop">func (*Pool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/pool.go?s=4863:4886#L170">OnStop</a>
+					<a class="permalink" href="index.html#Pool.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) OnStop()</pre>
+				<p>OnStop implements Service.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Reactor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1016:1102#L25">Reactor</a>
+				<a class="permalink" href="index.html#Reactor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reactor will 1) subscribe votes from vote Pool and 2) broadcast votes to peers.
+
+			<pre>type Reactor struct {
+    <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#BaseReactor">BaseReactor</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReactor">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1166:1235#L33">NewReactor</a>
+					<a class="permalink" href="index.html#NewReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReactor(votePool <a href="index.html#VotePool">VotePool</a>, eventBus *<a href="../types/index.html">types</a>.<a href="../types/index.html#EventBus">EventBus</a>) *<a href="index.html#Reactor">Reactor</a></pre>
+				<p>NewReactor returns a new Reactor with the given vote Pool.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reactor.AddPeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1954:1998#L66">AddPeer</a>
+					<a class="permalink" href="index.html#Reactor.AddPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) AddPeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>)</pre>
+				<p>AddPeer implements Reactor.
+It starts a broadcast routine ensuring all local votes are forwarded to the remote peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.GetChannels">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=2617:2678#L86">GetChannels</a>
+					<a class="permalink" href="index.html#Reactor.GetChannels">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) GetChannels() []*<a href="../p2p/conn/index.html">conn</a>.<a href="../p2p/conn/index.html#ChannelDescriptor">ChannelDescriptor</a></pre>
+				<p>GetChannels implements Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStart">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1420:1457#L43">OnStart</a>
+					<a class="permalink" href="index.html#Reactor.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStop">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1638:1668#L54">OnStop</a>
+					<a class="permalink" href="index.html#Reactor.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) OnStop()</pre>
+				<p>OnStop implements Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.Receive">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=2939:3011#L98">Receive</a>
+					<a class="permalink" href="index.html#Reactor.Receive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) Receive(chID <a href="../../../../builtin/index.html#byte">byte</a>, peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>, msgBytes []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Receive implements Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.ReceiveEnvelope">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=3271:3324#L115">ReceiveEnvelope</a>
+					<a class="permalink" href="index.html#Reactor.ReceiveEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) ReceiveEnvelope(e <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Envelope">Envelope</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Reactor.RemovePeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=2197:2264#L73">RemovePeer</a>
+					<a class="permalink" href="index.html#Reactor.RemovePeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) RemovePeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>, reason interface{})</pre>
+				<p>RemovePeer implements Reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.SetLogger">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/reactor.go?s=1762:1807#L60">SetLogger</a>
+					<a class="permalink" href="index.html#Reactor.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (voteR *<a href="index.html#Reactor">Reactor</a>) SetLogger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)</pre>
+				<p>SetLogger implements Service.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Verifier">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/verifier.go?s=227:282#L3">Verifier</a>
+				<a class="permalink" href="index.html#Verifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Verifier will validate Votes by different policies.
+
+			<pre>type Verifier interface {
+    Validate(vote *<a href="index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Vote">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/vote.go?s=319:672#L10">Vote</a>
+				<a class="permalink" href="index.html#Vote">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Vote stands for votes from differently relayers/validators, to agree/disagree on something (e.g., cross chain).
+
+			<pre>type Vote struct {
+<span id="Vote.PubKey"></span>    PubKey    []<a href="../../../../builtin/index.html#byte">byte</a>    `json:&#34;pub_key&#34;`    <span class="comment">//bls public key</span>
+<span id="Vote.Signature"></span>    Signature []<a href="../../../../builtin/index.html#byte">byte</a>    `json:&#34;signature&#34;`  <span class="comment">//bls signature</span>
+<span id="Vote.EventType"></span>    EventType <a href="index.html#EventType">EventType</a> `json:&#34;event_type&#34;` <span class="comment">//event type of the vote</span>
+<span id="Vote.EventHash"></span>    EventHash []<a href="../../../../builtin/index.html#byte">byte</a>    `json:&#34;event_hash&#34;` <span class="comment">//the data, here []byte is used, so that Vote will not care about the meaning of the data</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewVote">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/vote.go?s=674:753#L19">NewVote</a>
+					<a class="permalink" href="index.html#NewVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewVote(pubKey, signature []<a href="../../../../builtin/index.html#byte">byte</a>, eventType <a href="../../../../builtin/index.html#uint8">uint8</a>, eventHash []<a href="../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#Vote">Vote</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Vote.Key">func (*Vote) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/vote.go?s=985:1012#L30">Key</a>
+					<a class="permalink" href="index.html#Vote.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#Vote">Vote</a>) Key() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Key is used as an identifier of a vote, it is usually used as the key of map of cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Vote.ValidateBasic">func (*Vote) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/vote.go?s=1119:1155#L35">ValidateBasic</a>
+					<a class="permalink" href="index.html#Vote.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#Vote">Vote</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic does basic validation of vote.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="VotePool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/interface.go?s=242:793#L1">VotePool</a>
+				<a class="permalink" href="index.html#VotePool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VotePool is used for pooling cross chain, challenge votes from different validators/relayers.
+Votes in the VotePool will be pruned based on Vote&apos;s expired time.
+
+			<pre>type VotePool interface {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#Service">Service</a>
+
+    <span class="comment">// AddVote will add a vote to the Pool. Different types of validations can be conducted before adding.</span>
+    AddVote(vote *<a href="index.html#Vote">Vote</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// GetVotesByEventTypeAndHash will query votes by event hash and event type.</span>
+    GetVotesByEventTypeAndHash(eventType <a href="index.html#EventType">EventType</a>, eventHash []<a href="../../../../builtin/index.html#byte">byte</a>) ([]*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// GetVotesByEventType will query votes by event type.</span>
+    GetVotesByEventType(eventType <a href="index.html#EventType">EventType</a>) ([]*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// FlushVotes will clear all votes in the Pool, no matter what types of events.</span>
+    FlushVotes()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="VoteQueue">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=166:211#L1">VoteQueue</a>
+				<a class="permalink" href="index.html#VoteQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VoteQueue represents a priority queue for Votes. The expiredAt field of a Vote will be used as priority.
+
+			<pre>type VoteQueue struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewVoteQueue">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=266:296#L4">NewVoteQueue</a>
+					<a class="permalink" href="index.html#NewVoteQueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewVoteQueue() *<a href="index.html#VoteQueue">VoteQueue</a></pre>
+				<p>NewVoteQueue initializes an empty priority queue.
+
+				
+				
+			
+
+			
+				
+				<h3 id="VoteQueue.Insert">func (*VoteQueue) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=518:556#L17">Insert</a>
+					<a class="permalink" href="index.html#VoteQueue.Insert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#VoteQueue">VoteQueue</a>) Insert(vote *<a href="index.html#Vote">Vote</a>)</pre>
+				<p>Insert inserts a new Vote into the queue.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteQueue.Len">func (*VoteQueue) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=413:442#L12">Len</a>
+					<a class="permalink" href="index.html#VoteQueue.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#VoteQueue">VoteQueue</a>) Len() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the number of elements in the queue.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteQueue.Pop">func (*VoteQueue) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=767:807#L26">Pop</a>
+					<a class="permalink" href="index.html#VoteQueue.Pop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#VoteQueue">VoteQueue</a>) Pop() (*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Pop removes the Vote with the highest priority from the queue and returns it.
+In case of an empty queue, an error is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteQueue.PopUntil">func (*VoteQueue) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/votepool/queue.go?s=1081:1138#L37">PopUntil</a>
+					<a class="permalink" href="index.html#VoteQueue.PopUntil">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#VoteQueue">VoteQueue</a>) PopUntil(vote *<a href="index.html#Vote">Vote</a>) ([]*<a href="index.html#Vote">Vote</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PopUntil removes the Votes, which have higher priority than the passed one.
+In case of an empty queue, an error is returned.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

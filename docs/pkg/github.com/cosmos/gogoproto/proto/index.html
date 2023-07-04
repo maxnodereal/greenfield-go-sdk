@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>proto - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package proto
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/gogoproto/proto"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package proto converts data structures to and from the wire format of
+protocol buffers.  It works in concert with the Go source code generated
+for .proto files by the protocol compiler.
+<p>A summary of the properties of the protocol buffer interface
+for a protocol buffer variable v:
+<ul>
+<li>Names are turned from camel_case to CamelCase for export.
+<li>There are no methods on v to set fields; just treat
+them as structure fields.
+<li>There are getters that return a field&apos;s value if set,
+and return the field&apos;s default value if unset.
+The getters work even if the receiver is a nil message.
+<li>The zero value for a struct is its correct initialization state.
+All desired fields must be set before marshaling.
+<li>A Reset() method will restore a protobuf struct to its zero state.
+<li>Non-repeated fields are pointers to the values; nil means unset.
+That is, optional or required field int32 f becomes F *int32.
+<li>Repeated fields are slices.
+<li>Helper functions are available to aid the setting of fields.
+msg.Foo = proto.String(&quot;hello&quot;) // set field
+<li>Constants are defined to hold the default values of all fields that
+have them.  They have the form Default_StructName_FieldName.
+Because the getter methods handle defaulted values,
+direct use of these constants should be rare.
+<li>Enums are given type names and maps from names to values.
+Enum values are prefixed by the enclosing message&apos;s name, or by the
+enum&apos;s type name if it is a top-level enum. Enum types have a String
+method, and a Enum method to assist in message construction.
+<li>Nested messages, groups and enums have type names prefixed with the name of
+the surrounding message type.
+<li>Extensions are given descriptor names that start with E_,
+followed by an underscore-delimited list of the nested messages
+that contain it (if any) followed by the CamelCased name of the
+extension field itself.  HasExtension, ClearExtension, GetExtension
+and SetExtension are functions for manipulating extensions.
+<li>Oneof field sets are given a single field in their message,
+with distinguished wrapper types for each possible field value.
+<li>Marshal and Unmarshal are functions to encode and decode the wire format.
+</ul>
+<p>When the .proto file specifies `syntax=&quot;proto3&quot;`, there are some differences:
+<ul>
+<li>Non-repeated fields of non-message type are values instead of pointers.
+<li>Enum types do not get an Enum method.
+</ul>
+<p>The simplest way to describe this is to see an example.
+Given file test.proto, containing
+<pre>package example;
+
+enum FOO { X = 17; }
+
+message Test {
+  required string label = 1;
+  optional int32 type = 2 [default=77];
+  repeated int64 reps = 3;
+  optional group OptionalGroup = 4 {
+    required string RequiredField = 5;
+  }
+  oneof union {
+    int32 number = 6;
+    string name = 7;
+  }
+}
+</pre>
+<p>The resulting file, test.pb.go, is:
+<pre>package example
+
+import proto &quot;github.com/cosmos/gogoproto/proto&quot;
+import math &quot;math&quot;
+
+type FOO int32
+const (
+	FOO_X FOO = 17
+)
+var FOO_name = map[int32]string{
+	17: &quot;X&quot;,
+}
+var FOO_value = map[string]int32{
+	&quot;X&quot;: 17,
+}
+
+func (x FOO) Enum() *FOO {
+	p := new(FOO)
+	*p = x
+	return p
+}
+func (x FOO) String() string {
+	return proto.EnumName(FOO_name, int32(x))
+}
+func (x *FOO) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(FOO_value, data)
+	if err != nil {
+		return err
+	}
+	*x = FOO(value)
+	return nil
+}
+
+type Test struct {
+	Label         *string             `protobuf:&quot;bytes,1,req,name=label&quot; json:&quot;label,omitempty&quot;`
+	Type          *int32              `protobuf:&quot;varint,2,opt,name=type,def=77&quot; json:&quot;type,omitempty&quot;`
+	Reps          []int64             `protobuf:&quot;varint,3,rep,name=reps&quot; json:&quot;reps,omitempty&quot;`
+	Optionalgroup *Test_OptionalGroup `protobuf:&quot;group,4,opt,name=OptionalGroup&quot; json:&quot;optionalgroup,omitempty&quot;`
+	// Types that are valid to be assigned to Union:
+	//	*Test_Number
+	//	*Test_Name
+	Union            isTest_Union `protobuf_oneof:&quot;union&quot;`
+	XXX_unrecognized []byte       `json:&quot;-&quot;`
+}
+func (m *Test) Reset()         { *m = Test{} }
+func (m *Test) String() string { return proto.CompactTextString(m) }
+func (*Test) ProtoMessage() {}
+
+type isTest_Union interface {
+	isTest_Union()
+}
+
+type Test_Number struct {
+	Number int32 `protobuf:&quot;varint,6,opt,name=number&quot;`
+}
+type Test_Name struct {
+	Name string `protobuf:&quot;bytes,7,opt,name=name&quot;`
+}
+
+func (*Test_Number) isTest_Union() {}
+func (*Test_Name) isTest_Union()   {}
+
+func (m *Test) GetUnion() isTest_Union {
+	if m != nil {
+		return m.Union
+	}
+	return nil
+}
+const Default_Test_Type int32 = 77
+
+func (m *Test) GetLabel() string {
+	if m != nil &amp;&amp; m.Label != nil {
+		return *m.Label
+	}
+	return &quot;&quot;
+}
+
+func (m *Test) GetType() int32 {
+	if m != nil &amp;&amp; m.Type != nil {
+		return *m.Type
+	}
+	return Default_Test_Type
+}
+
+func (m *Test) GetOptionalgroup() *Test_OptionalGroup {
+	if m != nil {
+		return m.Optionalgroup
+	}
+	return nil
+}
+
+type Test_OptionalGroup struct {
+	RequiredField *string `protobuf:&quot;bytes,5,req&quot; json:&quot;RequiredField,omitempty&quot;`
+}
+func (m *Test_OptionalGroup) Reset()         { *m = Test_OptionalGroup{} }
+func (m *Test_OptionalGroup) String() string { return proto.CompactTextString(m) }
+
+func (m *Test_OptionalGroup) GetRequiredField() string {
+	if m != nil &amp;&amp; m.RequiredField != nil {
+		return *m.RequiredField
+	}
+	return &quot;&quot;
+}
+
+func (m *Test) GetNumber() int32 {
+	if x, ok := m.GetUnion().(*Test_Number); ok {
+		return x.Number
+	}
+	return 0
+}
+
+func (m *Test) GetName() string {
+	if x, ok := m.GetUnion().(*Test_Name); ok {
+		return x.Name
+	}
+	return &quot;&quot;
+}
+
+func init() {
+	proto.RegisterEnum(&quot;example.FOO&quot;, FOO_name, FOO_value)
+}
+</pre>
+<p>To create and play with a Test object:
+<pre>package main
+
+import (
+	&quot;log&quot;
+
+	&quot;github.com/cosmos/gogoproto/proto&quot;
+	pb &quot;./example.pb&quot;
+)
+
+func main() {
+	test := &amp;pb.Test{
+		Label: proto.String(&quot;hello&quot;),
+		Type:  proto.Int32(17),
+		Reps:  []int64{1, 2, 3},
+		Optionalgroup: &amp;pb.Test_OptionalGroup{
+			RequiredField: proto.String(&quot;good bye&quot;),
+		},
+		Union: &amp;pb.Test_Name{&quot;fred&quot;},
+	}
+	data, err := proto.Marshal(test)
+	if err != nil {
+		log.Fatal(&quot;marshaling error: &quot;, err)
+	}
+	newTest := &amp;pb.Test{}
+	err = proto.Unmarshal(data, newTest)
+	if err != nil {
+		log.Fatal(&quot;unmarshaling error: &quot;, err)
+	}
+	// Now test and newTest contain the same data.
+	if test.GetLabel() != newTest.GetLabel() {
+		log.Fatalf(&quot;data mismatch %q != %q&quot;, test.GetLabel(), newTest.GetLabel())
+	}
+	// Use a type switch to determine which oneof was set.
+	switch u := test.Union.(type) {
+	case *pb.Test_Number: // u.Number contains the number.
+	case *pb.Test_Name: // u.Name contains the string.
+	}
+	// etc.
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AllFileDescriptors">func AllFileDescriptors() map[string][]byte</a></dd>
+			
+				
+				<dd><a href="index.html#AppendExtension">func AppendExtension(e Message, tag int32, buf []byte)</a></dd>
+			
+				
+				<dd><a href="index.html#Bool">func Bool(v bool) *bool</a></dd>
+			
+				
+				<dd><a href="index.html#BytesToExtensionsMap">func BytesToExtensionsMap(buf []byte) (map[int32]Extension, error)</a></dd>
+			
+				
+				<dd><a href="index.html#CheckImportPath">func CheckImportPath(fdName, fdPackage string) error</a></dd>
+			
+				
+				<dd><a href="index.html#ClearAllExtensions">func ClearAllExtensions(pb Message)</a></dd>
+			
+				
+				<dd><a href="index.html#ClearExtension">func ClearExtension(pb Message, extension *ExtensionDesc)</a></dd>
+			
+				
+				<dd><a href="index.html#CompactText">func CompactText(w io.Writer, pb Message) error</a></dd>
+			
+				
+				<dd><a href="index.html#CompactTextString">func CompactTextString(pb Message) string</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeVarint">func DecodeVarint(buf []byte) (x uint64, n int)</a></dd>
+			
+				
+				<dd><a href="index.html#DiscardUnknown">func DiscardUnknown(m Message)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeExtensionMap">func EncodeExtensionMap(m map[int32]Extension, data []byte) (n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeExtensionMapBackwards">func EncodeExtensionMapBackwards(m map[int32]Extension, data []byte) (n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInternalExtension">func EncodeInternalExtension(m extendableProto, data []byte) (n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInternalExtensionBackwards">func EncodeInternalExtensionBackwards(m extendableProto, data []byte) (n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeVarint">func EncodeVarint(x uint64) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#EnumName">func EnumName(m map[int32]string, v int32) string</a></dd>
+			
+				
+				<dd><a href="index.html#EnumValueMap">func EnumValueMap(enumType string) map[string]int32</a></dd>
+			
+				
+				<dd><a href="index.html#Equal">func Equal(a, b Message) bool</a></dd>
+			
+				
+				<dd><a href="index.html#FileDescriptor">func FileDescriptor(filename string) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#Float32">func Float32(v float32) *float32</a></dd>
+			
+				
+				<dd><a href="index.html#Float64">func Float64(v float64) *float64</a></dd>
+			
+				
+				<dd><a href="index.html#GetBoolExtension">func GetBoolExtension(pb Message, extension *ExtensionDesc, ifnotset bool) bool</a></dd>
+			
+				
+				<dd><a href="index.html#GetExtension">func GetExtension(pb Message, extension *ExtensionDesc) (interface{}, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetExtensions">func GetExtensions(pb Message, es []*ExtensionDesc) (extensions []interface{}, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetRawExtension">func GetRawExtension(m map[int32]Extension, id int32) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetUnsafeExtension">func GetUnsafeExtension(pb Message, fieldNum int32) (interface{}, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetUnsafeExtensionsMap">func GetUnsafeExtensionsMap(extendable Message) map[int32]Extension</a></dd>
+			
+				
+				<dd><a href="index.html#HasExtension">func HasExtension(pb Message, extension *ExtensionDesc) bool</a></dd>
+			
+				
+				<dd><a href="index.html#Int">func Int(v int) *int32</a></dd>
+			
+				
+				<dd><a href="index.html#Int32">func Int32(v int32) *int32</a></dd>
+			
+				
+				<dd><a href="index.html#Int64">func Int64(v int64) *int64</a></dd>
+			
+				
+				<dd><a href="index.html#Marshal">func Marshal(pb Message) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalJSONEnum">func MarshalJSONEnum(m map[int32]string, value int32) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalMessageSet">func MarshalMessageSet(interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalMessageSetJSON">func MarshalMessageSetJSON(interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalText">func MarshalText(w io.Writer, pb Message) error</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalTextString">func MarshalTextString(pb Message) string</a></dd>
+			
+				
+				<dd><a href="index.html#Merge">func Merge(dst, src Message)</a></dd>
+			
+				
+				<dd><a href="index.html#MergedFileDescriptors">func MergedFileDescriptors(globalFiles *protoregistry.Files, gogoFiles *protoregistry.Files) (*descriptorpb.FileDescriptorSet, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MergedFileDescriptorsWithValidation">func MergedFileDescriptorsWithValidation(globalFiles *protoregistry.Files, gogoFiles *protoregistry.Files) (*descriptorpb.FileDescriptorSet, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MergedGlobalFileDescriptors">func MergedGlobalFileDescriptors() (*descriptorpb.FileDescriptorSet, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MergedGlobalFileDescriptorsWithValidation">func MergedGlobalFileDescriptorsWithValidation() (*descriptorpb.FileDescriptorSet, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MergedRegistry">func MergedRegistry() (*protoregistry.Files, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MessageName">func MessageName(x Message) string</a></dd>
+			
+				
+				<dd><a href="index.html#MessageType">func MessageType(name string) reflect.Type</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterEnum">func RegisterEnum(typeName string, unusedNameMap map[int32]string, valueMap map[string]int32)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterExtension">func RegisterExtension(desc *ExtensionDesc)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterFile">func RegisterFile(filename string, fileDescriptor []byte)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterMapType">func RegisterMapType(x interface{}, name string)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterMessageSetType">func RegisterMessageSetType(Message, int32, string)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterType">func RegisterType(x Message, name string)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisteredExtensions">func RegisteredExtensions(pb Message) map[int32]*ExtensionDesc</a></dd>
+			
+				
+				<dd><a href="index.html#SetDefaults">func SetDefaults(pb Message)</a></dd>
+			
+				
+				<dd><a href="index.html#SetExtension">func SetExtension(pb Message, extension *ExtensionDesc, value interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#SetRawExtension">func SetRawExtension(base Message, id int32, b []byte)</a></dd>
+			
+				
+				<dd><a href="index.html#SetUnsafeExtension">func SetUnsafeExtension(pb Message, fieldNum int32, value interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#Size">func Size(pb Message) int</a></dd>
+			
+				
+				<dd><a href="index.html#SizeOfInternalExtension">func SizeOfInternalExtension(m extendableProto) (n int)</a></dd>
+			
+				
+				<dd><a href="index.html#SizeVarint">func SizeVarint(x uint64) int</a></dd>
+			
+				
+				<dd><a href="index.html#Skip">func Skip(data []byte) (n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#String">func String(v string) *string</a></dd>
+			
+				
+				<dd><a href="index.html#StringFromExtensionsBytes">func StringFromExtensionsBytes(ext []byte) string</a></dd>
+			
+				
+				<dd><a href="index.html#StringFromExtensionsMap">func StringFromExtensionsMap(m map[int32]Extension) string</a></dd>
+			
+				
+				<dd><a href="index.html#StringFromInternalExtension">func StringFromInternalExtension(m extendableProto) string</a></dd>
+			
+				
+				<dd><a href="index.html#Uint32">func Uint32(v uint32) *uint32</a></dd>
+			
+				
+				<dd><a href="index.html#Uint64">func Uint64(v uint64) *uint64</a></dd>
+			
+				
+				<dd><a href="index.html#Unmarshal">func Unmarshal(buf []byte, pb Message) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalJSONEnum">func UnmarshalJSONEnum(m map[string]int32, data []byte, enumName string) (int32, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalMerge">func UnmarshalMerge(buf []byte, pb Message) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalMessageSet">func UnmarshalMessageSet([]byte, interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalMessageSetJSON">func UnmarshalMessageSetJSON([]byte, interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalText">func UnmarshalText(s string, pb Message) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Buffer">type Buffer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBuffer">func NewBuffer(e []byte) *Buffer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.Bytes">func (p *Buffer) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DebugPrint">func (p *Buffer) DebugPrint(s string, b []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeFixed32">func (p *Buffer) DecodeFixed32() (x uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeFixed64">func (p *Buffer) DecodeFixed64() (x uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeGroup">func (p *Buffer) DecodeGroup(pb Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeMessage">func (p *Buffer) DecodeMessage(pb Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeRawBytes">func (p *Buffer) DecodeRawBytes(alloc bool) (buf []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeStringBytes">func (p *Buffer) DecodeStringBytes() (s string, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeVarint">func (p *Buffer) DecodeVarint() (x uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeZigzag32">func (p *Buffer) DecodeZigzag32() (x uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.DecodeZigzag64">func (p *Buffer) DecodeZigzag64() (x uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeFixed32">func (p *Buffer) EncodeFixed32(x uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeFixed64">func (p *Buffer) EncodeFixed64(x uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeMessage">func (p *Buffer) EncodeMessage(pb Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeRawBytes">func (p *Buffer) EncodeRawBytes(b []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeStringBytes">func (p *Buffer) EncodeStringBytes(s string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeVarint">func (p *Buffer) EncodeVarint(x uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeZigzag32">func (p *Buffer) EncodeZigzag32(x uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.EncodeZigzag64">func (p *Buffer) EncodeZigzag64(x uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.Marshal">func (p *Buffer) Marshal(pb Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.Reset">func (p *Buffer) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.SetBuf">func (p *Buffer) SetBuf(s []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.SetDeterministic">func (p *Buffer) SetDeterministic(deterministic bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Buffer.Unmarshal">func (p *Buffer) Unmarshal(pb Message) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Extension">type Extension</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewExtension">func NewExtension(e []byte) Extension</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Extension.Compare">func (this *Extension) Compare(that *Extension) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Extension.Encode">func (this *Extension) Encode() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Extension.Equal">func (this *Extension) Equal(that *Extension) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Extension.GoString">func (this Extension) GoString() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ExtensionDesc">type ExtensionDesc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ExtensionDescs">func ExtensionDescs(pb Message) ([]*ExtensionDesc, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ExtensionRange">type ExtensionRange</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#InternalMessageInfo">type InternalMessageInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalMessageInfo.DiscardUnknown">func (a *InternalMessageInfo) DiscardUnknown(m Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalMessageInfo.Marshal">func (a *InternalMessageInfo) Marshal(b []byte, msg Message, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalMessageInfo.Merge">func (a *InternalMessageInfo) Merge(dst, src Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalMessageInfo.Size">func (a *InternalMessageInfo) Size(msg Message) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalMessageInfo.Unmarshal">func (a *InternalMessageInfo) Unmarshal(msg Message, b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Marshaler">type Marshaler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Merger">type Merger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Message">type Message</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Clone">func Clone(src Message) Message</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#OneofProperties">type OneofProperties</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ParseError">type ParseError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParseError.Error">func (p *ParseError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Properties">type Properties</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Properties.Init">func (p *Properties) Init(typ reflect.Type, name, tag string, f *reflect.StructField)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Properties.Parse">func (p *Properties) Parse(s string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Properties.String">func (p *Properties) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ProtoSizer">type ProtoSizer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequiredNotSetError">type RequiredNotSetError</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRequiredNotSetError">func NewRequiredNotSetError(field string) *RequiredNotSetError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequiredNotSetError.Error">func (e *RequiredNotSetError) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequiredNotSetError.RequiredNotSet">func (e *RequiredNotSetError) RequiredNotSet() bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Resolver">type Resolver</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Sizer">type Sizer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Stats">type Stats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetStats">func GetStats() Stats</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StructProperties">type StructProperties</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetProperties">func GetProperties(t reflect.Type) *StructProperties</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructProperties.Len">func (sp *StructProperties) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructProperties.Less">func (sp *StructProperties) Less(i, j int) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructProperties.Swap">func (sp *StructProperties) Swap(i, j int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TextMarshaler">type TextMarshaler</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TextMarshaler.Marshal">func (tm *TextMarshaler) Marshal(w io.Writer, pb Message) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TextMarshaler.Text">func (tm *TextMarshaler) Text(pb Message) string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Unmarshaler">type Unmarshaler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#XXX_InternalExtensions">type XXX_InternalExtensions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewUnsafeXXX_InternalExtensions">func NewUnsafeXXX_InternalExtensions(m map[int32]Extension) XXX_InternalExtensions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/clone.go">clone.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/custom_gogo.go">custom_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go">decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go">deprecated.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/discard.go">discard.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/duration.go">duration.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/duration_gogo.go">duration_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go">encode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode_gogo.go">encode_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/equal.go">equal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go">extensions.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go">extensions_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go">lib.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib_gogo.go">lib_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go">merge.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/message_set.go">message_set.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/pointer_unsafe.go">pointer_unsafe.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/pointer_unsafe_gogo.go">pointer_unsafe_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go">properties.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties_gogo.go">properties_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/skip_gogo.go">skip_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go">table_marshal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal_gogo.go">table_marshal_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_merge.go">table_merge.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_unmarshal.go">table_unmarshal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_unmarshal_gogo.go">table_unmarshal_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go">text.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text_gogo.go">text_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text_parser.go">text_parser.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/timestamp.go">timestamp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/timestamp_gogo.go">timestamp_gogo.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/wrappers.go">wrappers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/wrappers_gogo.go">wrappers_gogo.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ProtoPackageIsVersion3 is referenced from generated protocol buffer files</span>
+    <span class="comment">// to assert that that code is compatible with this version of the proto package.</span>
+    <span id="GoGoProtoPackageIsVersion3">GoGoProtoPackageIsVersion3</span> = <a href="../../../../builtin/index.html#true">true</a>
+
+    <span class="comment">// ProtoPackageIsVersion2 is referenced from generated protocol buffer files</span>
+    <span class="comment">// to assert that that code is compatible with this version of the proto package.</span>
+    <span id="GoGoProtoPackageIsVersion2">GoGoProtoPackageIsVersion2</span> = <a href="../../../../builtin/index.html#true">true</a>
+
+    <span class="comment">// ProtoPackageIsVersion1 is referenced from generated protocol buffer files</span>
+    <span class="comment">// to assert that that code is compatible with this version of the proto package.</span>
+    <span id="GoGoProtoPackageIsVersion1">GoGoProtoPackageIsVersion1</span> = <a href="../../../../builtin/index.html#true">true</a>
+)</pre>
+			
+				<p>Constants that identify the encoding of a value on the wire.
+
+				<pre>const (
+    <span id="WireVarint">WireVarint</span>     = 0
+    <span id="WireFixed64">WireFixed64</span>    = 1
+    <span id="WireBytes">WireBytes</span>      = 2
+    <span id="WireStartGroup">WireStartGroup</span> = 3
+    <span id="WireEndGroup">WireEndGroup</span>   = 4
+    <span id="WireFixed32">WireFixed32</span>    = 5
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+
+    <span class="comment">// ErrNil is the error returned if Marshal is called with nil.</span>
+    <span id="ErrNil">ErrNil</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;proto: Marshal called with nil&#34;)
+
+    <span class="comment">// ErrTooLarge is the error returned if Marshal is called with a</span>
+    <span class="comment">// message that encodes to &gt;2GB.</span>
+    <span id="ErrTooLarge">ErrTooLarge</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;proto: message encodes to over 2 GB&#34;)
+)</pre>
+			
+				<p>ErrInternalBadWireType is returned by generated code when an incorrect
+wire type is encountered. It does not get returned to user code.
+
+				<pre>var <span id="ErrInternalBadWireType">ErrInternalBadWireType</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;proto: internal error: bad wiretype for oneof&#34;)</pre>
+			
+				<p>ErrMissingExtension is the error returned by GetExtension if the named extension is not in the message.
+
+				<pre>var <span id="ErrMissingExtension">ErrMissingExtension</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;proto: missing extension&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="AllFileDescriptors">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=19490:19533#L659">AllFileDescriptors</a>
+				<a class="permalink" href="index.html#AllFileDescriptors">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AllFileDescriptors() map[<a href="../../../../builtin/index.html#string">string</a>][]<a href="../../../../builtin/index.html#byte">byte</a></pre>
+			<p>AllFileDescriptors returns all the file descriptors registered with gogoproto
+as a map of the full file name of the .proto file to its gzip compressed
+FileDescriptorProto.
+
+			
+			
+
+		
+			
+			
+			<h2 id="AppendExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=6548:6602#L249">AppendExtension</a>
+				<a class="permalink" href="index.html#AppendExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AppendExtension(e <a href="index.html#Message">Message</a>, tag <a href="../../../../builtin/index.html#int32">int32</a>, buf []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Bool">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=12846:12869#L398">Bool</a>
+				<a class="permalink" href="index.html#Bool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Bool(v <a href="../../../../builtin/index.html#bool">bool</a>) *<a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>Bool is a helper routine that allocates a new bool value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="BytesToExtensionsMap">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=5956:6022#L222">BytesToExtensionsMap</a>
+				<a class="permalink" href="index.html#BytesToExtensionsMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BytesToExtensionsMap(buf []<a href="../../../../builtin/index.html#byte">byte</a>) (map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="CheckImportPath">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=2928:2980#L64">CheckImportPath</a>
+				<a class="permalink" href="index.html#CheckImportPath">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CheckImportPath(fdName, fdPackage <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>CheckImportPath checks that the import path of the given file descriptor
+matches its fully qualified package name. To mimic gogo&apos;s old behavior, the
+fdPackage string can be empty.
+<p>Example:
+Proto file &quot;google/protobuf/descriptor.proto&quot; should be imported
+from OS path ./google/protobuf/descriptor.proto, relatively to a protoc
+path folder (-I flag).
+
+			
+			
+
+		
+			
+			
+			<h2 id="ClearAllExtensions">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=17099:17134#L555">ClearAllExtensions</a>
+				<a class="permalink" href="index.html#ClearAllExtensions">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ClearAllExtensions(pb <a href="index.html#Message">Message</a>)</pre>
+			<p>ClearAllExtensions clears all extensions from pb.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ClearExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=9988:10045#L305">ClearExtension</a>
+				<a class="permalink" href="index.html#ClearExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ClearExtension(pb <a href="index.html#Message">Message</a>, extension *<a href="index.html#ExtensionDesc">ExtensionDesc</a>)</pre>
+			<p>ClearExtension removes the given extension from pb.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CompactText">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=23349:23396#L924">CompactText</a>
+				<a class="permalink" href="index.html#CompactText">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CompactText(w <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>CompactText writes a given protocol buffer in compact text format (one line).
+
+			
+			
+
+		
+			
+			
+			<h2 id="CompactTextString">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=23527:23568#L927">CompactTextString</a>
+				<a class="permalink" href="index.html#CompactTextString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CompactTextString(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>CompactTextString is the same as CompactText, but returns the string directly.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeVarint">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=2439:2486#L47">DecodeVarint</a>
+				<a class="permalink" href="index.html#DecodeVarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeVarint(buf []<a href="../../../../builtin/index.html#byte">byte</a>) (x <a href="../../../../builtin/index.html#uint64">uint64</a>, n <a href="../../../../builtin/index.html#int">int</a>)</pre>
+			<p>DecodeVarint reads a varint-encoded integer from the slice.
+It returns the integer and the number of bytes consumed, or
+zero if there is not enough.
+This is the format for the
+int32, int64, uint32, uint64, bool, and enum
+protocol buffer types.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DiscardUnknown">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/discard.go?s=2413:2443#L47">DiscardUnknown</a>
+				<a class="permalink" href="index.html#DiscardUnknown">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DiscardUnknown(m <a href="index.html#Message">Message</a>)</pre>
+			<p>DiscardUnknown recursively discards all unknown fields from this message
+and all embedded messages.
+<p>When unmarshaling a message with unrecognized fields, the tags and values
+of such fields are preserved in the Message. This allows a later call to
+marshal to be able to produce a message that continues to have those
+unrecognized fields. To avoid this, DiscardUnknown is used to
+explicitly clear the unknown fields after unmarshaling.
+<p>For proto2 messages, the unknown fields of message extensions are only
+discarded from messages that have been accessed via GetExtension.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeExtensionMap">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=4541:4619#L151">EncodeExtensionMap</a>
+				<a class="permalink" href="index.html#EncodeExtensionMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeExtensionMap(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>, data []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeExtensionMapBackwards">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=4828:4915#L166">EncodeExtensionMapBackwards</a>
+				<a class="permalink" href="index.html#EncodeExtensionMapBackwards">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeExtensionMapBackwards(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>, data []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInternalExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=4245:4324#L143">EncodeInternalExtension</a>
+				<a class="permalink" href="index.html#EncodeInternalExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInternalExtension(m extendableProto, data []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInternalExtensionBackwards">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=4384:4472#L147">EncodeInternalExtensionBackwards</a>
+				<a class="permalink" href="index.html#EncodeInternalExtensionBackwards">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInternalExtensionBackwards(m extendableProto, data []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeVarint">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=2945:2979#L62">EncodeVarint</a>
+				<a class="permalink" href="index.html#EncodeVarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeVarint(x <a href="../../../../builtin/index.html#uint64">uint64</a>) []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+			<p>EncodeVarint returns the varint encoding of x.
+This is the format for the
+int32, int64, uint32, uint64, bool, and enum
+protocol buffer types.
+Not used by the package itself, but helpful to clients
+wishing to use the same encoding.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EnumName">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=14328:14377#L455">EnumName</a>
+				<a class="permalink" href="index.html#EnumName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EnumName(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="../../../../builtin/index.html#string">string</a>, v <a href="../../../../builtin/index.html#int32">int32</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>EnumName is a helper function to simplify printing protocol buffer enums
+by name.  Given an enum map and a value, it returns a useful string.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EnumValueMap">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=14938:14989#L527">EnumValueMap</a>
+				<a class="permalink" href="index.html#EnumValueMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EnumValueMap(enumType <a href="../../../../builtin/index.html#string">string</a>) map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../builtin/index.html#int32">int32</a></pre>
+			<p>EnumValueMap returns the mapping from names to integers of the
+enum type enumType, or a nil if not found.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Equal">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/equal.go?s=3142:3171#L62">Equal</a>
+				<a class="permalink" href="index.html#Equal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Equal(a, b <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>Equal returns true iff protocol buffers a and b are equal.
+The arguments must both be pointers to protocol buffer structs.
+<p>Equality is defined in this way:
+<ul>
+<li>Two messages are equal iff they are the same type,
+corresponding fields are equal, unknown field sets
+are equal, and extensions sets are equal.
+<li>Two set scalar fields are equal iff their values are equal.
+If the fields are of a floating-point type, remember that
+NaN != x for all x, including NaN. If the message is defined
+in a proto3 .proto file, fields are not &quot;set&quot;; specifically,
+zero length proto3 &quot;bytes&quot; fields are equal (nil == {}).
+<li>Two repeated fields are equal iff their lengths are the same,
+and their corresponding elements are equal. Note a &quot;bytes&quot; field,
+although represented by []byte, is not a repeated field and the
+rule for the scalar fields described above applies.
+<li>Two unset fields are equal.
+<li>Two unknown field sets are equal if their current
+encoded state is equal.
+<li>Two extension sets are equal iff they have corresponding
+elements that are pairwise equal.
+<li>Two map fields are equal iff their lengths are the same,
+and they contain the same set of elements. Zero-length map
+fields are equal.
+<li>Every other combination of things are not equal.
+</ul>
+<p>The return value is undefined if a and b are not protocol buffers.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileDescriptor">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=19232:19275#L654">FileDescriptor</a>
+				<a class="permalink" href="index.html#FileDescriptor">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FileDescriptor(filename <a href="../../../../builtin/index.html#string">string</a>) []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+			<p>FileDescriptor returns the compressed FileDescriptorProto for a .proto file.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Float32">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13514:13546#L425">Float32</a>
+				<a class="permalink" href="index.html#Float32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Float32(v <a href="../../../../builtin/index.html#float32">float32</a>) *<a href="../../../../builtin/index.html#float32">float32</a></pre>
+			<p>Float32 is a helper routine that allocates a new float32 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Float64">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13672:13704#L431">Float64</a>
+				<a class="permalink" href="index.html#Float64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Float64(v <a href="../../../../builtin/index.html#float64">float64</a>) *<a href="../../../../builtin/index.html#float64">float64</a></pre>
+			<p>Float64 is a helper routine that allocates a new float64 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBoolExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=2156:2235#L55">GetBoolExtension</a>
+				<a class="permalink" href="index.html#GetBoolExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBoolExtension(pb <a href="index.html#Message">Message</a>, extension *<a href="index.html#ExtensionDesc">ExtensionDesc</a>, ifnotset <a href="../../../../builtin/index.html#bool">bool</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=10985:11061#L335">GetExtension</a>
+				<a class="permalink" href="index.html#GetExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetExtension(pb <a href="index.html#Message">Message</a>, extension *<a href="index.html#ExtensionDesc">ExtensionDesc</a>) (interface{}, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetExtension retrieves a proto2 extended field from pb.
+<p>If the descriptor is type complete (i.e., ExtensionDesc.ExtensionType is non-nil),
+then GetExtension parses the encoded field and returns a Go value of the specified type.
+If the field is not present, then the default value is returned (if one is specified),
+otherwise ErrMissingExtension is reported.
+<p>If the descriptor is not type complete (i.e., ExtensionDesc.ExtensionType is nil),
+then GetExtension returns the raw encoded bytes of the field extension.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetExtensions">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=14579:14668#L468">GetExtensions</a>
+				<a class="permalink" href="index.html#GetExtensions">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetExtensions(pb <a href="index.html#Message">Message</a>, es []*<a href="index.html#ExtensionDesc">ExtensionDesc</a>) (extensions []interface{}, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetExtensions returns a slice of the extensions present in pb that are also listed in es.
+The returned slice has the same length as es; missing extensions will appear as nil elements.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRawExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=5166:5235#L183">GetRawExtension</a>
+				<a class="permalink" href="index.html#GetRawExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetRawExtension(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>, id <a href="../../../../builtin/index.html#int32">int32</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetUnsafeExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=8717:8789#L332">GetUnsafeExtension</a>
+				<a class="permalink" href="index.html#GetUnsafeExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetUnsafeExtension(pb <a href="index.html#Message">Message</a>, fieldNum <a href="../../../../builtin/index.html#int32">int32</a>) (interface{}, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetUnsafeExtensionsMap">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=9342:9409#L356">GetUnsafeExtensionsMap</a>
+				<a class="permalink" href="index.html#GetUnsafeExtensionsMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetUnsafeExtensionsMap(extendable <a href="index.html#Message">Message</a>) map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HasExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=9218:9278#L268">HasExtension</a>
+				<a class="permalink" href="index.html#HasExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HasExtension(pb <a href="index.html#Message">Message</a>, extension *<a href="index.html#ExtensionDesc">ExtensionDesc</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>HasExtension returns whether the given extension is present in pb.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Int">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13187:13209#L411">Int</a>
+				<a class="permalink" href="index.html#Int">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Int(v <a href="../../../../builtin/index.html#int">int</a>) *<a href="../../../../builtin/index.html#int32">int32</a></pre>
+			<p>Int is a helper routine that allocates a new int32 value
+to store v and returns a pointer to it, but unlike Int32
+its argument value is an int.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Int32">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=12991:13017#L404">Int32</a>
+				<a class="permalink" href="index.html#Int32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Int32(v <a href="../../../../builtin/index.html#int32">int32</a>) *<a href="../../../../builtin/index.html#int32">int32</a></pre>
+			<p>Int32 is a helper routine that allocates a new int32 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Int64">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13362:13388#L419">Int64</a>
+				<a class="permalink" href="index.html#Int64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Int64(v <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../../../../builtin/index.html#int64">int64</a></pre>
+			<p>Int64 is a helper routine that allocates a new int64 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Marshal">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go?s=78527:78567#L2926">Marshal</a>
+				<a class="permalink" href="index.html#Marshal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Marshal(pb <a href="index.html#Message">Message</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Marshal takes a protocol buffer message
+and encodes it into the wire format, returning the data.
+This is the main entry point.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalJSONEnum">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib_gogo.go?s=1592:1661#L34">MarshalJSONEnum</a>
+				<a class="permalink" href="index.html#MarshalJSONEnum">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalJSONEnum(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="../../../../builtin/index.html#string">string</a>, value <a href="../../../../builtin/index.html#int32">int32</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalMessageSet">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=1905:1956#L33">MarshalMessageSet</a>
+				<a class="permalink" href="index.html#MarshalMessageSet">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalMessageSet(interface{}) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Deprecated: do not use.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalMessageSetJSON">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=2168:2223#L43">MarshalMessageSetJSON</a>
+				<a class="permalink" href="index.html#MarshalMessageSetJSON">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalMessageSetJSON(interface{}) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Deprecated: do not use.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalText">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=23006:23053#L918">MarshalText</a>
+				<a class="permalink" href="index.html#MarshalText">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalText(w <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>MarshalText writes a given protocol buffer in text format.
+The only errors returned are from w.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalTextString">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=23184:23225#L921">MarshalTextString</a>
+				<a class="permalink" href="index.html#MarshalTextString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalTextString(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>MarshalTextString is the same as MarshalText, but returns the string directly.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Merge">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/clone.go?s=2964:2992#L67">Merge</a>
+				<a class="permalink" href="index.html#Merge">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Merge(dst, src <a href="index.html#Message">Message</a>)</pre>
+			<p>Merge merges src into dst.
+Required and optional fields that are set in src will be set to that value in dst.
+Elements of repeated fields will be appended.
+Merge panics if src and dst are not the same type, or if dst is nil.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MergedFileDescriptors">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=699:832#L16">MergedFileDescriptors</a>
+				<a class="permalink" href="index.html#MergedFileDescriptors">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MergedFileDescriptors(globalFiles *<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html">protoregistry</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html#Files">Files</a>, gogoFiles *<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html">protoregistry</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html#Files">Files</a>) (*<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html">descriptorpb</a>.<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html#FileDescriptorSet">FileDescriptorSet</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MergedFileDescriptors returns a single FileDescriptorSet containing all the
+file descriptors registered with the given globalFiles and appFiles.
+<p>In contrast to MergedFileDescriptorsWithValidation,
+MergedFileDescriptors does not validate import paths
+
+			
+			
+
+		
+			
+			
+			<h2 id="MergedFileDescriptorsWithValidation">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=1277:1424#L26">MergedFileDescriptorsWithValidation</a>
+				<a class="permalink" href="index.html#MergedFileDescriptorsWithValidation">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MergedFileDescriptorsWithValidation(globalFiles *<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html">protoregistry</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html#Files">Files</a>, gogoFiles *<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html">protoregistry</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html#Files">Files</a>) (*<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html">descriptorpb</a>.<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html#FileDescriptorSet">FileDescriptorSet</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MergedFileDescriptorsWithValidation returns a single FileDescriptorSet containing all the
+file descriptors registered with the given globalFiles and appFiles.
+<p>If there are any incorrect import paths that do not match
+the fully qualified package name, or if there is a common file descriptor
+that differs accross globalFiles and appFiles, an error is returned.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MergedGlobalFileDescriptors">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=1637:1712#L33">MergedGlobalFileDescriptors</a>
+				<a class="permalink" href="index.html#MergedGlobalFileDescriptors">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MergedGlobalFileDescriptors() (*<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html">descriptorpb</a>.<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html#FileDescriptorSet">FileDescriptorSet</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MergedGlobalFileDescriptors calls MergedFileDescriptors
+with <a href="http://localhost:6060/google.golang.org/protobuf/reflect/protoregistry#GlobalFiles">protoregistry.GlobalFiles</a> and all files
+registered through <a href="index.html#RegisterFile">RegisterFile</a>.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MergedGlobalFileDescriptorsWithValidation">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=1969:2058#L40">MergedGlobalFileDescriptorsWithValidation</a>
+				<a class="permalink" href="index.html#MergedGlobalFileDescriptorsWithValidation">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MergedGlobalFileDescriptorsWithValidation() (*<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html">descriptorpb</a>.<a href="../../../../google.golang.org/protobuf/types/descriptorpb/index.html#FileDescriptorSet">FileDescriptorSet</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MergedGlobalFileDescriptorsWithValidation calls MergedFileDescriptorsWithValidation
+with <a href="http://localhost:6060/google.golang.org/protobuf/reflect/protoregistry#GlobalFiles">protoregistry.GlobalFiles</a> and all files
+registered through <a href="index.html#RegisterFile">RegisterFile</a>.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MergedRegistry">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=2384:2435#L47">MergedRegistry</a>
+				<a class="permalink" href="index.html#MergedRegistry">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MergedRegistry() (*<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html">protoregistry</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoregistry/index.html#Files">Files</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MergedRegistry returns a *protoregistry.Files that acts as a single registry
+which contains all the file descriptors registered with both gogoproto and
+protoregistry (the latter taking precendence if there&apos;s a mismatch).
+
+			
+			
+
+		
+			
+			
+			<h2 id="MessageName">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=16645:16679#L574">MessageName</a>
+				<a class="permalink" href="index.html#MessageName">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MessageName(x <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>MessageName returns the fully-qualified proto name for the given message type.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MessageType">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=17017:17059#L587">MessageType</a>
+				<a class="permalink" href="index.html#MessageType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MessageType(name <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#Type">Type</a></pre>
+			<p>MessageType returns the message type (pointer to struct) for a named message.
+The type is not guaranteed to implement proto.Message if the name refers to a
+map entry.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterEnum">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=14442:14535#L514">RegisterEnum</a>
+				<a class="permalink" href="index.html#RegisterEnum">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterEnum(typeName <a href="../../../../builtin/index.html#string">string</a>, unusedNameMap map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="../../../../builtin/index.html#string">string</a>, valueMap map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../builtin/index.html#int32">int32</a>)</pre>
+			<p>RegisterEnum is called from the generated code to install the enum descriptor
+maps into the global table to aid parsing text format protocol buffers.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=17622:17665#L577">RegisterExtension</a>
+				<a class="permalink" href="index.html#RegisterExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterExtension(desc *<a href="index.html#ExtensionDesc">ExtensionDesc</a>)</pre>
+			<p>RegisterExtension is called from the generated code.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterFile">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=17824:17881#L612">RegisterFile</a>
+				<a class="permalink" href="index.html#RegisterFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterFile(filename <a href="../../../../builtin/index.html#string">string</a>, fileDescriptor []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+			<p>RegisterFile is called from generated code and maps from the
+full file name of a .proto file to its compressed FileDescriptorProto.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterMapType">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=16203:16251#L560">RegisterMapType</a>
+				<a class="permalink" href="index.html#RegisterMapType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterMapType(x interface{}, name <a href="../../../../builtin/index.html#string">string</a>)</pre>
+			<p>RegisterMapType is called from generated code and maps from the fully qualified
+proto name to the native map type of the proto map definition.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterMessageSetType">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=2439:2490#L53">RegisterMessageSetType</a>
+				<a class="permalink" href="index.html#RegisterMessageSetType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterMessageSetType(<a href="index.html#Message">Message</a>, <a href="../../../../builtin/index.html#int32">int32</a>, <a href="../../../../builtin/index.html#string">string</a>)</pre>
+			<p>Deprecated: do not use.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterType">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=15523:15564#L541">RegisterType</a>
+				<a class="permalink" href="index.html#RegisterType">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterType(x <a href="index.html#Message">Message</a>, name <a href="../../../../builtin/index.html#string">string</a>)</pre>
+			<p>RegisterType is called from generated code and maps from the fully qualified
+proto name to the type (pointer to struct) of the protocol buffer.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisteredExtensions">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=18178:18240#L593">RegisteredExtensions</a>
+				<a class="permalink" href="index.html#RegisteredExtensions">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisteredExtensions(pb <a href="index.html#Message">Message</a>) map[<a href="../../../../builtin/index.html#int32">int32</a>]*<a href="index.html#ExtensionDesc">ExtensionDesc</a></pre>
+			<p>RegisteredExtensions returns a map of the registered extensions of a
+protocol buffer struct, indexed by the extension number.
+The argument pb should be a nil pointer to the struct type.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetDefaults">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=17737:17765#L597">SetDefaults</a>
+				<a class="permalink" href="index.html#SetDefaults">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetDefaults(pb <a href="index.html#Message">Message</a>)</pre>
+			<p>SetDefaults sets unset protocol buffer fields to their default values.
+It only modifies fields that are both unset and have defined defaults.
+It recursively sets default values in any non-nil sub-messages.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=15855:15935#L518">SetExtension</a>
+				<a class="permalink" href="index.html#SetExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetExtension(pb <a href="index.html#Message">Message</a>, extension *<a href="index.html#ExtensionDesc">ExtensionDesc</a>, value interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>SetExtension sets the specified extension of pb to the specified value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetRawExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=7133:7187#L186">SetRawExtension</a>
+				<a class="permalink" href="index.html#SetRawExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetRawExtension(base <a href="index.html#Message">Message</a>, id <a href="../../../../builtin/index.html#int32">int32</a>, b []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+			<p>SetRawExtension is for testing only.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetUnsafeExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=8320:8396#L319">SetUnsafeExtension</a>
+				<a class="permalink" href="index.html#SetUnsafeExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetUnsafeExtension(pb <a href="index.html#Message">Message</a>, fieldNum <a href="../../../../builtin/index.html#int32">int32</a>, value interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Size">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go?s=77983:78008#L2905">Size</a>
+				<a class="permalink" href="index.html#Size">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Size(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+			<p>Size returns the encoded size of a protocol buffer message.
+This is the main entry point.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SizeOfInternalExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=2906:2961#L92">SizeOfInternalExtension</a>
+				<a class="permalink" href="index.html#SizeOfInternalExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SizeOfInternalExtension(m extendableProto) (n <a href="../../../../builtin/index.html#int">int</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SizeVarint">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=3538:3567#L88">SizeVarint</a>
+				<a class="permalink" href="index.html#SizeVarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SizeVarint(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+			<p>SizeVarint returns the varint encoding size of an integer.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Skip">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/skip_gogo.go?s=1491:1532#L26">Skip</a>
+				<a class="permalink" href="index.html#Skip">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Skip(data []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="String">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=14134:14163#L449">String</a>
+				<a class="permalink" href="index.html#String">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func String(v <a href="../../../../builtin/index.html#string">string</a>) *<a href="../../../../builtin/index.html#string">string</a></pre>
+			<p>String is a helper routine that allocates a new string value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="StringFromExtensionsBytes">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=4085:4134#L135">StringFromExtensionsBytes</a>
+				<a class="permalink" href="index.html#StringFromExtensionsBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StringFromExtensionsBytes(ext []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="StringFromExtensionsMap">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=3972:4030#L131">StringFromExtensionsMap</a>
+				<a class="permalink" href="index.html#StringFromExtensionsMap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StringFromExtensionsMap(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="StringFromInternalExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=3855:3913#L127">StringFromInternalExtension</a>
+				<a class="permalink" href="index.html#StringFromInternalExtension">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StringFromInternalExtension(m extendableProto) <a href="../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Uint32">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13828:13857#L437">Uint32</a>
+				<a class="permalink" href="index.html#Uint32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Uint32(v <a href="../../../../builtin/index.html#uint32">uint32</a>) *<a href="../../../../builtin/index.html#uint32">uint32</a></pre>
+			<p>Uint32 is a helper routine that allocates a new uint32 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Uint64">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=13981:14010#L443">Uint64</a>
+				<a class="permalink" href="index.html#Uint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Uint64(v <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+			<p>Uint64 is a helper routine that allocates a new uint64 value
+to store v and returns a pointer to it.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Unmarshal">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=8381:8425#L324">Unmarshal</a>
+				<a class="permalink" href="index.html#Unmarshal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Unmarshal(buf []<a href="../../../../builtin/index.html#byte">byte</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Unmarshal parses the protocol buffer representation in buf and places the
+decoded result in pb.  If the struct underlying pb does not match
+the data in buf, the results can be unpredictable.
+<p>Unmarshal resets pb before starting to unmarshal, so any
+existing data in pb is always removed. Use UnmarshalMerge
+to preserve and append to existing data.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalJSONEnum">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=14846:14933#L469">UnmarshalJSONEnum</a>
+				<a class="permalink" href="index.html#UnmarshalJSONEnum">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalJSONEnum(m map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../builtin/index.html#int32">int32</a>, data []<a href="../../../../builtin/index.html#byte">byte</a>, enumName <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../builtin/index.html#int32">int32</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>UnmarshalJSONEnum is a helper function to simplify recovering enum int values
+from their JSON-encoded representation. Given a map from the enum&apos;s symbolic
+names to its int values, and a byte buffer containing the JSON-encoded
+value, it returns an int32 that can be cast to the enum type by the caller.
+<p>The function can deal with both JSON representations, numeric and symbolic.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalMerge">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=8919:8968#L341">UnmarshalMerge</a>
+				<a class="permalink" href="index.html#UnmarshalMerge">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalMerge(buf []<a href="../../../../builtin/index.html#byte">byte</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>UnmarshalMerge parses the protocol buffer representation in buf and
+writes the decoded result to pb.  If the struct underlying pb does not match
+the data in buf, the results can be unpredictable.
+<p>UnmarshalMerge merges into existing data in pb.
+Most code should use Unmarshal instead.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalMessageSet">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=2039:2090#L38">UnmarshalMessageSet</a>
+				<a class="permalink" href="index.html#UnmarshalMessageSet">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalMessageSet([]<a href="../../../../builtin/index.html#byte">byte</a>, interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Deprecated: do not use.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalMessageSetJSON">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=2306:2361#L48">UnmarshalMessageSetJSON</a>
+				<a class="permalink" href="index.html#UnmarshalMessageSetJSON">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalMessageSetJSON([]<a href="../../../../builtin/index.html#byte">byte</a>, interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Deprecated: do not use.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalText">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text_parser.go?s=25571:25617#L1001">UnmarshalText</a>
+				<a class="permalink" href="index.html#UnmarshalText">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalText(s <a href="../../../../builtin/index.html#string">string</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>UnmarshalText reads a protocol buffer in Text format. UnmarshalText resets pb
+before starting to unmarshal, so any existing data in pb is always removed.
+If a required field is not set and no other error occurs,
+UnmarshalText returns *RequiredNotSetError.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Buffer">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=10751:10865#L339">Buffer</a>
+				<a class="permalink" href="index.html#Buffer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Buffer is a buffer manager for marshaling and unmarshaling
+protocol buffers.  It may be reused between invocations to
+reduce memory usage.  It is not necessary to use a Buffer;
+the global functions Marshal and Unmarshal create a
+temporary Buffer and are fine for most applications.
+
+			<pre>type Buffer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBuffer">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=10979:11011#L348">NewBuffer</a>
+					<a class="permalink" href="index.html#NewBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBuffer(e []<a href="../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#Buffer">Buffer</a></pre>
+				<p>NewBuffer allocates a new Buffer and initializes its internal data to
+the contents of the argument slice.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Buffer.Bytes">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=11437:11468#L366">Bytes</a>
+					<a class="permalink" href="index.html#Buffer.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) Bytes() []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Bytes returns the contents of the Buffer.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DebugPrint">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=15576:15623#L492">DebugPrint</a>
+					<a class="permalink" href="index.html#Buffer.DebugPrint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DebugPrint(s <a href="../../../../builtin/index.html#string">string</a>, b []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>DebugPrint dumps the encoded data in b in a debugging format with a header
+including the string s. Used in testing but made available for general debugging.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeFixed32">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=5236:5290#L213">DecodeFixed32</a>
+					<a class="permalink" href="index.html#Buffer.DecodeFixed32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeFixed32() (x <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeFixed32 reads a 32-bit integer from the Buffer.
+This is the format for the
+fixed32, sfixed32, and float protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeFixed64">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=4663:4717#L190">DecodeFixed64</a>
+					<a class="permalink" href="index.html#Buffer.DecodeFixed64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeFixed64() (x <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeFixed64 reads a 64-bit integer from the Buffer.
+This is the format for the
+fixed64, sfixed64, and double protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeGroup">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=9822:9868#L369">DecodeGroup</a>
+					<a class="permalink" href="index.html#Buffer.DecodeGroup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeGroup(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeGroup reads a tag-delimited group from the Buffer.
+StartGroup tag is already consumed. This function consumes
+EndGroup tag.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeMessage">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=9522:9570#L358">DecodeMessage</a>
+					<a class="permalink" href="index.html#Buffer.DecodeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeMessage(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeMessage reads a count-delimited message from the Buffer.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeRawBytes">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=6343:6410#L256">DecodeRawBytes</a>
+					<a class="permalink" href="index.html#Buffer.DecodeRawBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeRawBytes(alloc <a href="../../../../builtin/index.html#bool">bool</a>) (buf []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeRawBytes reads a count-delimited byte buffer from the Buffer.
+This is the format used for the bytes protocol buffer
+type and for embedded messages.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeStringBytes">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=6984:7042#L286">DecodeStringBytes</a>
+					<a class="permalink" href="index.html#Buffer.DecodeStringBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeStringBytes() (s <a href="../../../../builtin/index.html#string">string</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeStringBytes reads an encoded string from the Buffer.
+This is the format used for the proto2 string type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeVarint">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=3315:3368#L91">DecodeVarint</a>
+					<a class="permalink" href="index.html#Buffer.DecodeVarint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeVarint() (x <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeVarint reads a varint-encoded integer from the Buffer.
+This is the format for the
+int32, int64, uint32, uint64, bool, and enum
+protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeZigzag32">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=5994:6049#L244">DecodeZigzag32</a>
+					<a class="permalink" href="index.html#Buffer.DecodeZigzag32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeZigzag32() (x <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeZigzag32 reads a zigzag-encoded 32-bit integer
+from  the Buffer.
+This is the format used for the sint32 protocol buffer type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.DecodeZigzag64">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=5683:5738#L232">DecodeZigzag64</a>
+					<a class="permalink" href="index.html#Buffer.DecodeZigzag64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) DecodeZigzag64() (x <a href="../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DecodeZigzag64 reads a zigzag-encoded 64-bit integer
+from the Buffer.
+This is the format used for the sint64 protocol buffer type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeFixed32">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=4341:4387#L131">EncodeFixed32</a>
+					<a class="permalink" href="index.html#Buffer.EncodeFixed32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeFixed32(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeFixed32 writes a 32-bit integer to the Buffer.
+This is the format for the
+fixed32, sfixed32, and float protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeFixed64">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=3990:4036#L115">EncodeFixed64</a>
+					<a class="permalink" href="index.html#Buffer.EncodeFixed64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeFixed64(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeFixed64 writes a 64-bit integer to the Buffer.
+This is the format for the
+fixed64, sfixed64, and double protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeMessage">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=5890:5938#L180">EncodeMessage</a>
+					<a class="permalink" href="index.html#Buffer.EncodeMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeMessage(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeMessage writes the protocol buffer to the Buffer,
+prefixed by a varint-encoded length.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeRawBytes">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=5283:5330#L159">EncodeRawBytes</a>
+					<a class="permalink" href="index.html#Buffer.EncodeRawBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeRawBytes(b []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRawBytes writes a count-delimited byte buffer to the Buffer.
+This is the format used for the bytes protocol buffer
+type and for embedded messages.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeStringBytes">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=5525:5575#L167">EncodeStringBytes</a>
+					<a class="permalink" href="index.html#Buffer.EncodeStringBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeStringBytes(s <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeStringBytes writes an encoded string to the Buffer.
+This is the format used for the proto2 string type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeVarint">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=3306:3351#L78">EncodeVarint</a>
+					<a class="permalink" href="index.html#Buffer.EncodeVarint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeVarint(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeVarint writes a varint-encoded integer to the Buffer.
+This is the format for the
+int32, int64, uint32, uint64, bool, and enum
+protocol buffer types.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeZigzag32">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=4939:4986#L151">EncodeZigzag32</a>
+					<a class="permalink" href="index.html#Buffer.EncodeZigzag32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeZigzag32(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeZigzag32 writes a zigzag-encoded 32-bit integer
+to the Buffer.
+This is the format used for the sint32 protocol buffer type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.EncodeZigzag64">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=4626:4673#L143">EncodeZigzag64</a>
+					<a class="permalink" href="index.html#Buffer.EncodeZigzag64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) EncodeZigzag64(x <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeZigzag64 writes a zigzag-encoded 64-bit integer
+to the Buffer.
+This is the format used for the sint64 protocol buffer type.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.Marshal">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go?s=79287:79329#L2952">Marshal</a>
+					<a class="permalink" href="index.html#Buffer.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) Marshal(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Marshal takes a protocol buffer message
+and encodes it into the wire format, writing the result to the
+Buffer.
+This is an alternative entry point. It is not necessary to use
+a Buffer for most applications.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.Reset">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=11113:11137#L353">Reset</a>
+					<a class="permalink" href="index.html#Buffer.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) Reset()</pre>
+				<p>Reset resets the Buffer, ready for marshaling a new protocol buffer.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.SetBuf">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=11329:11362#L360">SetBuf</a>
+					<a class="permalink" href="index.html#Buffer.SetBuf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) SetBuf(s []<a href="../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>SetBuf replaces the internal buffer with the slice,
+ready for unmarshaling the contents of the slice.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.SetDeterministic">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=12561:12614#L388">SetDeterministic</a>
+					<a class="permalink" href="index.html#Buffer.SetDeterministic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) SetDeterministic(deterministic <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SetDeterministic sets whether to use deterministic serialization.
+<p>Deterministic serialization guarantees that for a given binary, equal
+messages will always be serialized to the same bytes. This implies:
+<ul>
+<li>Repeated serialization of a message will return the same bytes.
+<li>Different processes of the same binary (which may be executing on
+different machines) will serialize equal messages to the same bytes.
+</ul>
+<p>Note that the deterministic serialization is NOT canonical across
+languages. It is not guaranteed to remain stable over time. It is unstable
+across different builds with schema changes due to unknown fields.
+Users who need canonical serialization (e.g., persistent storage in a
+canonical form, fingerprinting, etc.) should define their own
+canonicalization specification and implement their own serializer rather
+than relying on this API.
+<p>If deterministic serialization is requested, map entries will be sorted
+by keys in lexographical order. This is an implementation detail and
+subject to change.
+
+				
+				
+				
+			
+				
+				<h3 id="Buffer.Unmarshal">func (*Buffer) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=10320:10364#L386">Unmarshal</a>
+					<a class="permalink" href="index.html#Buffer.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Buffer">Buffer</a>) Unmarshal(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Unmarshal parses the protocol buffer representation in the
+Buffer and places the decoded result in pb.  If the struct
+underlying pb does not match the data in the buffer, the results can be
+unpredictable.
+<p>Unlike proto.Unmarshal, this does not reset pb before starting to unmarshal.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Extension">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=6613:7091#L171">Extension</a>
+				<a class="permalink" href="index.html#Extension">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Extension represents an extension in a message.
+
+			<pre>type Extension struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewExtension">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=6433:6470#L243">NewExtension</a>
+					<a class="permalink" href="index.html#NewExtension">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewExtension(e []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Extension">Extension</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Extension.Compare">func (*Extension) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=2700:2751#L82">Compare</a>
+					<a class="permalink" href="index.html#Extension.Compare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this *<a href="index.html#Extension">Extension</a>) Compare(that *<a href="index.html#Extension">Extension</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Extension.Encode">func (*Extension) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=7929:7966#L301">Encode</a>
+					<a class="permalink" href="index.html#Extension.Encode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this *<a href="index.html#Extension">Extension</a>) Encode() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Extension.Equal">func (*Extension) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=2490:2540#L72">Equal</a>
+					<a class="permalink" href="index.html#Extension.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this *<a href="index.html#Extension">Extension</a>) Equal(that *<a href="index.html#Extension">Extension</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Extension.GoString">func (Extension) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=8118:8157#L312">GoString</a>
+					<a class="permalink" href="index.html#Extension.GoString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this <a href="index.html#Extension">Extension</a>) GoString() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ExtensionDesc">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=5977:6405#L156">ExtensionDesc</a>
+				<a class="permalink" href="index.html#ExtensionDesc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ExtensionDesc represents an extension specification.
+Used in generated code from the protocol compiler.
+
+			<pre>type ExtensionDesc struct {
+<span id="ExtensionDesc.ExtendedType"></span>    ExtendedType  <a href="index.html#Message">Message</a>     <span class="comment">// nil pointer to the type that is being extended</span>
+<span id="ExtensionDesc.ExtensionType"></span>    ExtensionType interface{} <span class="comment">// nil pointer to the extension type</span>
+<span id="ExtensionDesc.Field"></span>    Field         <a href="../../../../builtin/index.html#int32">int32</a>       <span class="comment">// field number</span>
+<span id="ExtensionDesc.Name"></span>    Name          <a href="../../../../builtin/index.html#string">string</a>      <span class="comment">// fully-qualified name of extension, for text formatting</span>
+<span id="ExtensionDesc.Tag"></span>    Tag           <a href="../../../../builtin/index.html#string">string</a>      <span class="comment">// protobuf tag style</span>
+<span id="ExtensionDesc.Filename"></span>    Filename      <a href="../../../../builtin/index.html#string">string</a>      <span class="comment">// name of the file in which the extension is defined</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ExtensionDescs">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=15204:15261#L489">ExtensionDescs</a>
+					<a class="permalink" href="index.html#ExtensionDescs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ExtensionDescs(pb <a href="index.html#Message">Message</a>) ([]*<a href="index.html#ExtensionDesc">ExtensionDesc</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ExtensionDescs returns a new slice containing pb&apos;s extension descriptors, in undefined order.
+For non-registered extensions, ExtensionDescs returns an incomplete descriptor containing
+just the Field field, which defines the extension&apos;s field number.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ExtensionRange">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=2129:2195#L42">ExtensionRange</a>
+				<a class="permalink" href="index.html#ExtensionRange">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ExtensionRange represents a range of message extensions for a protocol buffer.
+Used in code generated by the protocol compiler.
+
+			<pre>type ExtensionRange struct {
+<span id="ExtensionRange.Start"></span>    Start, End <a href="../../../../builtin/index.html#int32">int32</a> <span class="comment">// both inclusive</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InternalMessageInfo">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=26956:27087#L958">InternalMessageInfo</a>
+				<a class="permalink" href="index.html#InternalMessageInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>InternalMessageInfo is a type used internally by generated .pb.go files.
+This type is not intended to be used by non-generated code.
+This type is not subject to any compatibility guarantee.
+
+			<pre>type InternalMessageInfo struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="InternalMessageInfo.DiscardUnknown">func (*InternalMessageInfo) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/discard.go?s=2809:2864#L59">DiscardUnknown</a>
+					<a class="permalink" href="index.html#InternalMessageInfo.DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#InternalMessageInfo">InternalMessageInfo</a>) DiscardUnknown(m <a href="index.html#Message">Message</a>)</pre>
+				<p>DiscardUnknown recursively discards all unknown fields.
+
+				
+				
+				
+			
+				
+				<h3 id="InternalMessageInfo.Marshal">func (*InternalMessageInfo) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go?s=5349:5445#L128">Marshal</a>
+					<a class="permalink" href="index.html#InternalMessageInfo.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#InternalMessageInfo">InternalMessageInfo</a>) Marshal(b []<a href="../../../../builtin/index.html#byte">byte</a>, msg <a href="index.html#Message">Message</a>, deterministic <a href="../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Marshal is the entry point from generated code,
+and should be ONLY called by generated code.
+It marshals msg to the end of b.
+a is a pointer to a place to store cached marshal info.
+
+				
+				
+				
+			
+				
+				<h3 id="InternalMessageInfo.Merge">func (*InternalMessageInfo) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_merge.go?s=1857:1910#L34">Merge</a>
+					<a class="permalink" href="index.html#InternalMessageInfo.Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#InternalMessageInfo">InternalMessageInfo</a>) Merge(dst, src <a href="index.html#Message">Message</a>)</pre>
+				<p>Merge merges the src message into dst.
+This assumes that dst and src of the same type and are non-nil.
+
+				
+				
+				
+			
+				
+				<h3 id="InternalMessageInfo.Size">func (*InternalMessageInfo) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_marshal.go?s=4815:4866#L112">Size</a>
+					<a class="permalink" href="index.html#InternalMessageInfo.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#InternalMessageInfo">InternalMessageInfo</a>) Size(msg <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>Size is the entry point from generated code,
+and should be ONLY called by generated code.
+It computes the size of encoded data of msg.
+a is a pointer to a place to store cached marshal info.
+
+				
+				
+				
+			
+				
+				<h3 id="InternalMessageInfo.Unmarshal">func (*InternalMessageInfo) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/table_unmarshal.go?s=2179:2247#L43">Unmarshal</a>
+					<a class="permalink" href="index.html#InternalMessageInfo.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#InternalMessageInfo">InternalMessageInfo</a>) Unmarshal(msg <a href="index.html#Message">Message</a>, b []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Unmarshal is the entry point from the generated .pb.go files.
+This function is not intended to be used by non-generated code.
+This function is not subject to any compatibility guarantee.
+msg contains a pointer to a protocol buffer struct.
+b is the data to be unmarshaled into the protocol buffer.
+a is a pointer to a place to store cached unmarshal information.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Marshaler">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode.go?s=5734:5789#L174">Marshaler</a>
+				<a class="permalink" href="index.html#Marshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Marshaler is the interface representing objects that can marshal themselves.
+
+			<pre>type Marshaler interface {
+    Marshal() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Merger">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/clone.go?s=2134:2440#L47">Merger</a>
+				<a class="permalink" href="index.html#Merger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Merger is the interface representing objects that can merge messages of the same type.
+
+			<pre>type Merger interface {
+    <span class="comment">// Merge merges src into this message.</span>
+    <span class="comment">// Required and optional fields that are set in src will be set to that value in dst.</span>
+    <span class="comment">// Elements of repeated fields will be appended.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Merge may panic if called with a different argument type than the receiver.</span>
+    Merge(src <a href="index.html#Message">Message</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Message">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=10382:10450#L328">Message</a>
+				<a class="permalink" href="index.html#Message">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Message is implemented by generated protocol buffer messages.
+
+			<pre>type Message interface {
+    Reset()
+    String() <a href="../../../../builtin/index.html#string">string</a>
+    ProtoMessage()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Clone">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/clone.go?s=1845:1876#L35">Clone</a>
+					<a class="permalink" href="index.html#Clone">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Clone(src <a href="index.html#Message">Message</a>) <a href="index.html#Message">Message</a></pre>
+				<p>Clone returns a deep copy of a protocol buffer.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="OneofProperties">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=4029:4238#L113">OneofProperties</a>
+				<a class="permalink" href="index.html#OneofProperties">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OneofProperties represents information about a specific field in a oneof.
+
+			<pre>type OneofProperties struct {
+<span id="OneofProperties.Type"></span>    Type  <a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#Type">Type</a> <span class="comment">// pointer to generated struct type for this oneof field</span>
+<span id="OneofProperties.Field"></span>    Field <a href="../../../../builtin/index.html#int">int</a>          <span class="comment">// struct field number of the containing oneof in the message</span>
+<span id="OneofProperties.Prop"></span>    Prop  *<a href="index.html#Properties">Properties</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ParseError">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text_parser.go?s=2172:2306#L46">ParseError</a>
+				<a class="permalink" href="index.html#ParseError">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ParseError struct {
+<span id="ParseError.Message"></span>    Message <a href="../../../../builtin/index.html#string">string</a>
+<span id="ParseError.Line"></span>    Line    <a href="../../../../builtin/index.html#int">int</a> <span class="comment">// 1-based line number</span>
+<span id="ParseError.Offset"></span>    Offset  <a href="../../../../builtin/index.html#int">int</a> <span class="comment">// 0-based byte offset from start of input</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ParseError.Error">func (*ParseError) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text_parser.go?s=2308:2343#L52">Error</a>
+					<a class="permalink" href="index.html#ParseError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#ParseError">ParseError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Properties">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=4741:5778#L129">Properties</a>
+				<a class="permalink" href="index.html#Properties">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Properties represents the protocol-specific behavior of a single struct field.
+
+			<pre>type Properties struct {
+<span id="Properties.Name"></span>    Name     <a href="../../../../builtin/index.html#string">string</a> <span class="comment">// name of the field, for error messages</span>
+<span id="Properties.OrigName"></span>    OrigName <a href="../../../../builtin/index.html#string">string</a> <span class="comment">// original name before protocol compiler (always set)</span>
+<span id="Properties.JSONName"></span>    JSONName <a href="../../../../builtin/index.html#string">string</a> <span class="comment">// name to use for JSON; determined by protoc</span>
+<span id="Properties.Wire"></span>    Wire     <a href="../../../../builtin/index.html#string">string</a>
+<span id="Properties.WireType"></span>    WireType <a href="../../../../builtin/index.html#int">int</a>
+<span id="Properties.Tag"></span>    Tag      <a href="../../../../builtin/index.html#int">int</a>
+<span id="Properties.Required"></span>    Required <a href="../../../../builtin/index.html#bool">bool</a>
+<span id="Properties.Optional"></span>    Optional <a href="../../../../builtin/index.html#bool">bool</a>
+<span id="Properties.Repeated"></span>    Repeated <a href="../../../../builtin/index.html#bool">bool</a>
+<span id="Properties.Packed"></span>    Packed   <a href="../../../../builtin/index.html#bool">bool</a>   <span class="comment">// relevant for repeated primitives only</span>
+<span id="Properties.Enum"></span>    Enum     <a href="../../../../builtin/index.html#string">string</a> <span class="comment">// set for enum types only</span>
+
+<span id="Properties.Default"></span>    Default     <a href="../../../../builtin/index.html#string">string</a> <span class="comment">// default value</span>
+<span id="Properties.HasDefault"></span>    HasDefault  <a href="../../../../builtin/index.html#bool">bool</a>   <span class="comment">// whether an explicit default was provided</span>
+<span id="Properties.CustomType"></span>    CustomType  <a href="../../../../builtin/index.html#string">string</a>
+<span id="Properties.CastType"></span>    CastType    <a href="../../../../builtin/index.html#string">string</a>
+<span id="Properties.StdTime"></span>    StdTime     <a href="../../../../builtin/index.html#bool">bool</a>
+<span id="Properties.StdDuration"></span>    StdDuration <a href="../../../../builtin/index.html#bool">bool</a>
+<span id="Properties.WktPointer"></span>    WktPointer  <a href="../../../../builtin/index.html#bool">bool</a>
+
+<span id="Properties.MapKeyProp"></span>    MapKeyProp *<a href="index.html#Properties">Properties</a> <span class="comment">// set for map types only</span>
+<span id="Properties.MapValProp"></span>    MapValProp *<a href="index.html#Properties">Properties</a> <span class="comment">// set for map types only</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Properties.Init">func (*Properties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=10283:10368#L355">Init</a>
+					<a class="permalink" href="index.html#Properties.Init">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Properties">Properties</a>) Init(typ <a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#Type">Type</a>, name, tag <a href="../../../../builtin/index.html#string">string</a>, f *<a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#StructField">StructField</a>)</pre>
+				<p>Init populates the properties from a protocol buffer struct tag.
+
+				
+				
+				
+			
+				
+				<h3 id="Properties.Parse">func (*Properties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=6430:6466#L198">Parse</a>
+					<a class="permalink" href="index.html#Properties.Parse">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Properties">Properties</a>) Parse(s <a href="../../../../builtin/index.html#string">string</a>)</pre>
+				<p>Parse populates p by parsing a string in the protobuf struct field tag style.
+
+				
+				
+				
+			
+				
+				<h3 id="Properties.String">func (*Properties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=5853:5889#L162">String</a>
+					<a class="permalink" href="index.html#Properties.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Properties">Properties</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String formats the properties in the protobuf struct field tag style.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProtoSizer">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib_gogo.go?s=1544:1590#L30">ProtoSizer</a>
+				<a class="permalink" href="index.html#ProtoSizer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ProtoSizer interface {
+    ProtoSize() <a href="../../../../builtin/index.html#int">int</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequiredNotSetError">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=8720:8767#L269">RequiredNotSetError</a>
+				<a class="permalink" href="index.html#RequiredNotSetError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequiredNotSetError is an error type returned by either Marshal or Unmarshal.
+Marshal reports this when a required field is not initialized.
+Unmarshal reports this when a required field is missing from the wire data.
+
+			<pre>type RequiredNotSetError struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRequiredNotSetError">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/encode_gogo.go?s=1466:1528#L21">NewRequiredNotSetError</a>
+					<a class="permalink" href="index.html#NewRequiredNotSetError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRequiredNotSetError(field <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#RequiredNotSetError">RequiredNotSetError</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="RequiredNotSetError.Error">func (*RequiredNotSetError) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=8769:8813#L271">Error</a>
+					<a class="permalink" href="index.html#RequiredNotSetError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#RequiredNotSetError">RequiredNotSetError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RequiredNotSetError.RequiredNotSet">func (*RequiredNotSetError) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib.go?s=8960:9011#L277">RequiredNotSet</a>
+					<a class="permalink" href="index.html#RequiredNotSetError.RequiredNotSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#RequiredNotSetError">RequiredNotSetError</a>) RequiredNotSet() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Resolver">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/merge.go?s=12246:12449#L335">Resolver</a>
+				<a class="permalink" href="index.html#Resolver">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Resolver is a protodesc.Resolver that can range over all the files in the resolver.
+
+			<pre>type Resolver interface {
+    <a href="../../../../google.golang.org/protobuf/reflect/protodesc/index.html">protodesc</a>.<a href="../../../../google.golang.org/protobuf/reflect/protodesc/index.html#Resolver">Resolver</a>
+
+    <span class="comment">// RangeFiles calls f for each file descriptor in the resolver while f returns true.</span>
+    RangeFiles(f func(fileDescriptor <a href="../../../../google.golang.org/protobuf/reflect/protoreflect/index.html">protoreflect</a>.<a href="../../../../google.golang.org/protobuf/reflect/protoreflect/index.html#FileDescriptor">FileDescriptor</a>) <a href="../../../../builtin/index.html#bool">bool</a>)
+}</pre>
+
+			
+
+			
+				<p>A registry of all linked proto files.
+
+				<pre>var (
+
+    <span class="comment">// GogoResolver is a Resolver that resolves types generated by gogoproto.</span>
+    <span id="GogoResolver">GogoResolver</span> <a href="index.html#Resolver">Resolver</a> = gogoProtoRegistry
+)</pre>
+			
+				<p>HybridResolver is a protodesc.Resolver that uses both protoregistry.GlobalFiles
+and the gogo proto global registry, checking protoregistry.GlobalFiles first and
+then gogo proto global registry.
+
+				<pre>var <span id="HybridResolver">HybridResolver</span> <a href="index.html#Resolver">Resolver</a> = &amp;hybridResolver{}</pre>
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Sizer">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/lib_gogo.go?s=1506:1542#L26">Sizer</a>
+				<a class="permalink" href="index.html#Sizer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Sizer interface {
+    Size() <a href="../../../../builtin/index.html#int">int</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Stats">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=1728:1807#L27">Stats</a>
+				<a class="permalink" href="index.html#Stats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Deprecated: do not use.
+
+			<pre>type Stats struct{ Emalloc, Dmalloc, Encode, Decode, Chit, Cmiss, Size <a href="../../../../builtin/index.html#uint64">uint64</a> }
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetStats">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/deprecated.go?s=1836:1857#L30">GetStats</a>
+					<a class="permalink" href="index.html#GetStats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetStats() <a href="index.html#Stats">Stats</a></pre>
+				<p>Deprecated: do not use.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StructProperties">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=3401:3950#L100">StructProperties</a>
+				<a class="permalink" href="index.html#StructProperties">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StructProperties represents properties for all the fields of a struct.
+decoderTags and decoderOrigNames should only be used by the decoder.
+
+			<pre>type StructProperties struct {
+<span id="StructProperties.Prop"></span>    Prop []*<a href="index.html#Properties">Properties</a> <span class="comment">// properties for each field</span>
+
+<span id="StructProperties.OneofTypes"></span>    <span class="comment">// OneofTypes contains information about the oneof fields in this message.</span>
+    <span class="comment">// It is keyed by the original name of a field.</span>
+    OneofTypes map[<a href="../../../../builtin/index.html#string">string</a>]*<a href="index.html#OneofProperties">OneofProperties</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetProperties">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=10901:10953#L377">GetProperties</a>
+					<a class="permalink" href="index.html#GetProperties">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetProperties(t <a href="../../../../reflect/index.html">reflect</a>.<a href="../../../../reflect/index.html#Type">Type</a>) *<a href="index.html#StructProperties">StructProperties</a></pre>
+				<p>GetProperties returns the list of properties for the type represented by t.
+t must represent a generated struct type of a protocol message.
+
+				
+				
+			
+
+			
+				
+				<h3 id="StructProperties.Len">func (*StructProperties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=4384:4421#L122">Len</a>
+					<a class="permalink" href="index.html#StructProperties.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sp *<a href="index.html#StructProperties">StructProperties</a>) Len() <a href="../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructProperties.Less">func (*StructProperties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=4447:4494#L123">Less</a>
+					<a class="permalink" href="index.html#StructProperties.Less">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sp *<a href="index.html#StructProperties">StructProperties</a>) Less(i, j <a href="../../../../builtin/index.html#int">int</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructProperties.Swap">func (*StructProperties) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/properties.go?s=4559:4601#L126">Swap</a>
+					<a class="permalink" href="index.html#StructProperties.Swap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sp *<a href="index.html#StructProperties">StructProperties</a>) Swap(i, j <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TextMarshaler">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=21505:21659#L853">TextMarshaler</a>
+				<a class="permalink" href="index.html#TextMarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TextMarshaler is a configurable text format marshaler.
+
+			<pre>type TextMarshaler struct {
+<span id="TextMarshaler.Compact"></span>    Compact   <a href="../../../../builtin/index.html#bool">bool</a> <span class="comment">// use compact text format (one line).</span>
+<span id="TextMarshaler.ExpandAny"></span>    ExpandAny <a href="../../../../builtin/index.html#bool">bool</a> <span class="comment">// expand google.protobuf.Any messages of known types</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TextMarshaler.Marshal">func (*TextMarshaler) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=21759:21822#L860">Marshal</a>
+					<a class="permalink" href="index.html#TextMarshaler.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tm *<a href="index.html#TextMarshaler">TextMarshaler</a>) Marshal(w <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Marshal writes a given protocol buffer in text format.
+The only errors returned are from w.
+
+				
+				
+				
+			
+				
+				<h3 id="TextMarshaler.Text">func (*TextMarshaler) <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/text.go?s=22618:22666#L903">Text</a>
+					<a class="permalink" href="index.html#TextMarshaler.Text">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tm *<a href="index.html#TextMarshaler">TextMarshaler</a>) Text(pb <a href="index.html#Message">Message</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Text is the same as Marshal, but returns the string directly.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Unmarshaler">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/decode.go?s=7587:7642#L302">Unmarshaler</a>
+				<a class="permalink" href="index.html#Unmarshaler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Unmarshaler is the interface representing objects that can
+unmarshal themselves.  The argument points to data that may be
+overwritten, so implementations should not keep references to the
+buffer.
+Unmarshal implementations should not clear the receiver.
+Any unmarshaled data should be merged into the receiver.
+Callers of Unmarshal that do not want to retain existing data
+should Reset the receiver before calling Unmarshal.
+
+			<pre>type Unmarshaler interface {
+    Unmarshal([]<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="XXX_InternalExtensions">type <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions.go?s=4700:5204#L119">XXX_InternalExtensions</a>
+				<a class="permalink" href="index.html#XXX_InternalExtensions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>XXX_InternalExtensions is an internal representation of proto extensions.
+<p>Each generated message struct type embeds an anonymous XXX_InternalExtensions field,
+thus gaining the unexported &apos;extensions&apos; method, which can be called only from the proto package.
+<p>The methods of XXX_InternalExtensions are not concurrency safe in general,
+but calls to logically read-only methods such as has and get may be executed concurrently.
+
+			<pre>type XXX_InternalExtensions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUnsafeXXX_InternalExtensions">func <a href="http://localhost:6060/src/github.com/cosmos/gogoproto/proto/extensions_gogo.go?s=9100:9182#L345">NewUnsafeXXX_InternalExtensions</a>
+					<a class="permalink" href="index.html#NewUnsafeXXX_InternalExtensions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewUnsafeXXX_InternalExtensions(m map[<a href="../../../../builtin/index.html#int32">int32</a>]<a href="index.html#Extension">Extension</a>) <a href="index.html#XXX_InternalExtensions">XXX_InternalExtensions</a></pre>
+				
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="proto3_proto/index.html">proto3_proto</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="test_proto/index.html">test_proto</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

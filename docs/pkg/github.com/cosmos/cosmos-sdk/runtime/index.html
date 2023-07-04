@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>runtime - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package runtime
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/runtime"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#ProvideDeliverTx">func ProvideDeliverTx(appBuilder *AppBuilder) func(abci.RequestDeliverTx) abci.ResponseDeliverTx</a></dd>
+			
+				
+				<dd><a href="index.html#ProvideKVStoreKey">func ProvideKVStoreKey(config *runtimev1alpha1.Module, key depinject.ModuleKey, app *AppBuilder) *storetypes.KVStoreKey</a></dd>
+			
+				
+				<dd><a href="index.html#ProvideMemoryStoreKey">func ProvideMemoryStoreKey(key depinject.ModuleKey, app *AppBuilder) *storetypes.MemoryStoreKey</a></dd>
+			
+				
+				<dd><a href="index.html#ProvideTransientStoreKey">func ProvideTransientStoreKey(key depinject.ModuleKey, app *AppBuilder) *storetypes.TransientStoreKey</a></dd>
+			
+				
+				<dd><a href="index.html#SetupAppBuilder">func SetupAppBuilder(inputs AppInputs)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#App">type App</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.BeginBlocker">func (a *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.Configurator">func (a *App) Configurator() module.Configurator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.DefaultGenesis">func (a *App) DefaultGenesis() map[string]json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.EndBlocker">func (a *App) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.GetStoreKeys">func (a *App) GetStoreKeys() []storetypes.StoreKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.InitChainer">func (a *App) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.Load">func (a *App) Load(loadLatest bool) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.LoadHeight">func (a *App) LoadHeight(height int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.RegisterAPIRoutes">func (a *App) RegisterAPIRoutes(apiSvr *api.Server, _ config.APIConfig)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.RegisterModules">func (a *App) RegisterModules(modules ...module.AppModule) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.RegisterNodeService">func (a *App) RegisterNodeService(clientCtx client.Context)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.RegisterTendermintService">func (a *App) RegisterTendermintService(clientCtx client.Context)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.RegisterTxService">func (a *App) RegisterTxService(clientCtx client.Context)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.SetInitChainer">func (a *App) SetInitChainer(initChainer sdk.InitChainer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#App.UnsafeFindStoreKey">func (a *App) UnsafeFindStoreKey(storeKey string) storetypes.StoreKey</a></dd>
+				
+			
+				
+				<dd><a href="index.html#AppBuilder">type AppBuilder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProvideApp">func ProvideApp() (codectypes.InterfaceRegistry, codec.Codec, *codec.LegacyAmino, *AppBuilder, codec.ProtoCodecMarshaler, *baseapp.MsgServiceRouter)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppBuilder.Build">func (a *AppBuilder) Build(logger log.Logger, db dbm.DB, traceStore io.Writer, baseAppOptions ...func(*baseapp.BaseApp)) *App</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AppBuilder.DefaultGenesis">func (a *AppBuilder) DefaultGenesis() map[string]json.RawMessage</a></dd>
+				
+			
+				
+				<dd><a href="index.html#AppI">type AppI</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AppInputs">type AppInputs</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BaseAppOption">type BaseAppOption</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseAppOption.IsManyPerContainerType">func (b BaseAppOption) IsManyPerContainerType()</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go">app.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/builder.go">builder.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go">module.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/services.go">services.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ProvideDeliverTx">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=3896:3992#L129">ProvideDeliverTx</a>
+				<a class="permalink" href="index.html#ProvideDeliverTx">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProvideDeliverTx(appBuilder *<a href="index.html#AppBuilder">AppBuilder</a>) func(<a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestDeliverTx">RequestDeliverTx</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ProvideKVStoreKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=3018:3137#L102">ProvideKVStoreKey</a>
+				<a class="permalink" href="index.html#ProvideKVStoreKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProvideKVStoreKey(config *<a href="../../../../cosmossdk.io/api/cosmos/app/runtime/v1alpha1/index.html">runtimev1alpha1</a>.<a href="../../../../cosmossdk.io/api/cosmos/app/runtime/v1alpha1/index.html#Module">Module</a>, key <a href="../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../cosmossdk.io/depinject/index.html#ModuleKey">ModuleKey</a>, app *<a href="index.html#AppBuilder">AppBuilder</a>) *<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#KVStoreKey">KVStoreKey</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ProvideMemoryStoreKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=3665:3760#L123">ProvideMemoryStoreKey</a>
+				<a class="permalink" href="index.html#ProvideMemoryStoreKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProvideMemoryStoreKey(key <a href="../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../cosmossdk.io/depinject/index.html#ModuleKey">ModuleKey</a>, app *<a href="index.html#AppBuilder">AppBuilder</a>) *<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#MemoryStoreKey">MemoryStoreKey</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ProvideTransientStoreKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=3422:3523#L117">ProvideTransientStoreKey</a>
+				<a class="permalink" href="index.html#ProvideTransientStoreKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProvideTransientStoreKey(key <a href="../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../cosmossdk.io/depinject/index.html#ModuleKey">ModuleKey</a>, app *<a href="index.html#AppBuilder">AppBuilder</a>) *<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#TransientStoreKey">TransientStoreKey</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetupAppBuilder">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=2161:2199#L73">SetupAppBuilder</a>
+				<a class="permalink" href="index.html#SetupAppBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetupAppBuilder(inputs <a href="index.html#AppInputs">AppInputs</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="App">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=1429:2080#L27">App</a>
+				<a class="permalink" href="index.html#App">&#xb6;</a>
+				
+				
+			</h2>
+			<p>App is a wrapper around BaseApp and ModuleManager that can be used in hybrid
+app.go/app config scenarios or directly as a servertypes.Application instance.
+To get an instance of *App, *AppBuilder must be requested as a dependency
+in a container which declares the runtime module and the AppBuilder.Build()
+method must be called.
+<p>App can be used to create a hybrid app.go setup where some configuration is
+done declaratively with an app config and the rest of it is done the old way.
+See simapp/app.go for an example of this setup.
+
+			<pre>type App struct {
+    *<a href="../baseapp/index.html">baseapp</a>.<a href="../baseapp/index.html#BaseApp">BaseApp</a>
+
+<span id="App.ModuleManager"></span>    ModuleManager *<a href="../types/module/index.html">module</a>.<a href="../types/module/index.html#Manager">Manager</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="App.BeginBlocker">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=4010:4105#L113">BeginBlocker</a>
+					<a class="permalink" href="index.html#App.BeginBlocker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) BeginBlocker(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseBeginBlock">ResponseBeginBlock</a></pre>
+				<p>BeginBlocker application updates every begin block
+
+				
+				
+				
+			
+				
+				<h3 id="App.Configurator">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=6146:6194#L169">Configurator</a>
+					<a class="permalink" href="index.html#App.Configurator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) Configurator() <a href="../types/module/index.html">module</a>.<a href="../types/module/index.html#Configurator">Configurator</a></pre>
+				<p>Configurator returns the app&apos;s configurator.
+
+				
+				
+				
+			
+				
+				<h3 id="App.DefaultGenesis">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=6425:6482#L179">DefaultGenesis</a>
+					<a class="permalink" href="index.html#App.DefaultGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) DefaultGenesis() map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../encoding/json/index.html">json</a>.<a href="../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>DefaultGenesis returns a default genesis from the registered AppModuleBasic&apos;s.
+
+				
+				
+				
+			
+				
+				<h3 id="App.EndBlocker">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=4206:4295#L118">EndBlocker</a>
+					<a class="permalink" href="index.html#App.EndBlocker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) EndBlocker(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEndBlock">ResponseEndBlock</a></pre>
+				<p>EndBlocker application updates every end block
+
+				
+				
+				
+			
+				
+				<h3 id="App.GetStoreKeys">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=6584:6634#L184">GetStoreKeys</a>
+					<a class="permalink" href="index.html#App.GetStoreKeys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) GetStoreKeys() []<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#StoreKey">StoreKey</a></pre>
+				<p>GetStoreKeys returns all the stored store keys.
+
+				
+				
+				
+			
+				
+				<h3 id="App.InitChainer">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=4382:4474#L123">InitChainer</a>
+					<a class="permalink" href="index.html#App.InitChainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) InitChainer(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestInitChain">RequestInitChain</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseInitChain">ResponseInitChain</a></pre>
+				<p>InitChainer initializes the chain.
+
+				
+				
+				
+			
+				
+				<h3 id="App.Load">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=2920:2961#L70">Load</a>
+					<a class="permalink" href="index.html#App.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) Load(loadLatest <a href="../../../../builtin/index.html#bool">bool</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Load finishes all initialization operations and loads the app.
+
+				
+				
+				
+			
+				
+				<h3 id="App.LoadHeight">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=6263:6307#L174">LoadHeight</a>
+					<a class="permalink" href="index.html#App.LoadHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) LoadHeight(height <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>LoadHeight loads a particular height
+
+				
+				
+				
+			
+				
+				<h3 id="App.RegisterAPIRoutes">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=4771:4842#L133">RegisterAPIRoutes</a>
+					<a class="permalink" href="index.html#App.RegisterAPIRoutes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) RegisterAPIRoutes(apiSvr *<a href="../server/api/index.html">api</a>.<a href="../server/api/index.html#Server">Server</a>, _ <a href="../server/config/index.html">config</a>.<a href="../server/config/index.html#APIConfig">APIConfig</a>)</pre>
+				<p>RegisterAPIRoutes registers all application module routes with the provided
+API server.
+
+				
+				
+				
+			
+				
+				<h3 id="App.RegisterModules">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=2293:2357#L49">RegisterModules</a>
+					<a class="permalink" href="index.html#App.RegisterModules">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) RegisterModules(modules ...<a href="../types/module/index.html">module</a>.<a href="../types/module/index.html#AppModule">AppModule</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>RegisterModules registers the provided modules with the module manager and
+the basic module manager. This is the primary hook for integrating with
+modules which are not registered using the app config.
+
+				
+				
+				
+			
+				
+				<h3 id="App.RegisterNodeService">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=5968:6027#L164">RegisterNodeService</a>
+					<a class="permalink" href="index.html#App.RegisterNodeService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) RegisterNodeService(clientCtx <a href="../client/index.html">client</a>.<a href="../client/index.html#Context">Context</a>)</pre>
+				<p>RegisterNodeService registers the node gRPC service on the app gRPC router.
+
+				
+				
+				
+			
+				
+				<h3 id="App.RegisterTendermintService">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=5707:5772#L154">RegisterTendermintService</a>
+					<a class="permalink" href="index.html#App.RegisterTendermintService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) RegisterTendermintService(clientCtx <a href="../client/index.html">client</a>.<a href="../client/index.html#Context">Context</a>)</pre>
+				<p>RegisterTendermintService implements the Application.RegisterTendermintService method.
+
+				
+				
+				
+			
+				
+				<h3 id="App.RegisterTxService">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=5463:5520#L149">RegisterTxService</a>
+					<a class="permalink" href="index.html#App.RegisterTxService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) RegisterTxService(clientCtx <a href="../client/index.html">client</a>.<a href="../client/index.html#Context">Context</a>)</pre>
+				<p>RegisterTxService implements the Application.RegisterTxService method.
+
+				
+				
+				
+			
+				
+				<h3 id="App.SetInitChainer">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=6798:6855#L190">SetInitChainer</a>
+					<a class="permalink" href="index.html#App.SetInitChainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) SetInitChainer(initChainer <a href="../types/index.html">sdk</a>.<a href="../types/index.html#InitChainer">InitChainer</a>)</pre>
+				<p>SetInitChainer sets the init chainer function
+It wraps `BaseApp.SetInitChainer` to allow setting a custom init chainer from an app.
+
+				
+				
+				
+			
+				
+				<h3 id="App.UnsafeFindStoreKey">func (*App) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/app.go?s=7059:7128#L198">UnsafeFindStoreKey</a>
+					<a class="permalink" href="index.html#App.UnsafeFindStoreKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#App">App</a>) UnsafeFindStoreKey(storeKey <a href="../../../../builtin/index.html#string">string</a>) <a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#StoreKey">StoreKey</a></pre>
+				<p>UnsafeFindStoreKey fetches a registered StoreKey from the App in linear time.
+<p>NOTE: This should only be used in testing.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="AppBuilder">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/builder.go?s=470:506#L8">AppBuilder</a>
+				<a class="permalink" href="index.html#AppBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppBuilder is a type that is injected into a container by the runtime module
+(as *AppBuilder) which can be used to create an app which is compatible with
+the existing app.go initialization conventions.
+
+			<pre>type AppBuilder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ProvideApp">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=1090:1247#L31">ProvideApp</a>
+					<a class="permalink" href="index.html#ProvideApp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ProvideApp() (
+    <a href="../codec/types/index.html">codectypes</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>,
+    <a href="../codec/index.html">codec</a>.<a href="../codec/index.html#Codec">Codec</a>,
+    *<a href="../codec/index.html">codec</a>.<a href="../codec/index.html#LegacyAmino">LegacyAmino</a>,
+    *<a href="index.html#AppBuilder">AppBuilder</a>,
+    <a href="../codec/index.html">codec</a>.<a href="../codec/index.html#ProtoCodecMarshaler">ProtoCodecMarshaler</a>,
+    *<a href="../baseapp/index.html">baseapp</a>.<a href="../baseapp/index.html#MsgServiceRouter">MsgServiceRouter</a>,
+)</pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="AppBuilder.Build">func (*AppBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/builder.go?s=725:857#L18">Build</a>
+					<a class="permalink" href="index.html#AppBuilder.Build">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AppBuilder">AppBuilder</a>) Build(
+    logger <a href="../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>,
+    db <a href="../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../cometbft/cometbft-db/index.html#DB">DB</a>,
+    traceStore <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>,
+    baseAppOptions ...func(*<a href="../baseapp/index.html">baseapp</a>.<a href="../baseapp/index.html#BaseApp">BaseApp</a>),
+) *<a href="index.html#App">App</a></pre>
+				<p>Build builds an *App instance.
+
+				
+				
+				
+			
+				
+				<h3 id="AppBuilder.DefaultGenesis">func (*AppBuilder) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/builder.go?s=590:654#L13">DefaultGenesis</a>
+					<a class="permalink" href="index.html#AppBuilder.DefaultGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AppBuilder">AppBuilder</a>) DefaultGenesis() map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../encoding/json/index.html">json</a>.<a href="../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>DefaultGenesis returns a default genesis from the registered AppModuleBasic&apos;s.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="AppI">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/types.go?s=344:1274#L4">AppI</a>
+				<a class="permalink" href="index.html#AppI">&#xb6;</a>
+				
+				
+			</h2>
+			<p>App implements the common methods for a Cosmos SDK-based application
+specific blockchain.
+
+			<pre>type AppI interface {
+    <span class="comment">// The assigned name of the app.</span>
+    Name() <a href="../../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// The application types codec.</span>
+    <span class="comment">// NOTE: This shoult be sealed before being returned.</span>
+    LegacyAmino() *<a href="../codec/index.html">codec</a>.<a href="../codec/index.html#LegacyAmino">LegacyAmino</a>
+
+    <span class="comment">// Application updates every begin block.</span>
+    BeginBlocker(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseBeginBlock">ResponseBeginBlock</a>
+
+    <span class="comment">// Application updates every end block.</span>
+    EndBlocker(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEndBlock">ResponseEndBlock</a>
+
+    <span class="comment">// Application update at chain (i.e app) initialization.</span>
+    InitChainer(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestInitChain">RequestInitChain</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseInitChain">ResponseInitChain</a>
+
+    <span class="comment">// Loads the app at a given height.</span>
+    LoadHeight(height <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Exports the state of the application for a genesis file.</span>
+    ExportAppStateAndValidators(forZeroHeight <a href="../../../../builtin/index.html#bool">bool</a>, jailAllowedAddrs []<a href="../../../../builtin/index.html#string">string</a>, modulesToExport []<a href="../../../../builtin/index.html#string">string</a>) (<a href="../server/types/index.html">types</a>.<a href="../server/types/index.html#ExportedApp">ExportedApp</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Helper for the simulation framework.</span>
+    SimulationManager() *<a href="../types/module/index.html">module</a>.<a href="../types/module/index.html#SimulationManager">SimulationManager</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AppInputs">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=1835:2159#L61">AppInputs</a>
+				<a class="permalink" href="index.html#AppInputs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type AppInputs struct {
+    <a href="../../../../cosmossdk.io/depinject/index.html">depinject</a>.<a href="../../../../cosmossdk.io/depinject/index.html#In">In</a>
+
+<span id="AppInputs.AppConfig"></span>    AppConfig         *<a href="../../../../cosmossdk.io/api/cosmos/app/v1alpha1/index.html">appv1alpha1</a>.<a href="../../../../cosmossdk.io/api/cosmos/app/v1alpha1/index.html#Config">Config</a>
+<span id="AppInputs.Config"></span>    Config            *<a href="../../../../cosmossdk.io/api/cosmos/app/runtime/v1alpha1/index.html">runtimev1alpha1</a>.<a href="../../../../cosmossdk.io/api/cosmos/app/runtime/v1alpha1/index.html#Module">Module</a>
+<span id="AppInputs.AppBuilder"></span>    AppBuilder        *<a href="index.html#AppBuilder">AppBuilder</a>
+<span id="AppInputs.Modules"></span>    Modules           map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../../../../cosmossdk.io/core/appmodule/index.html">appmodule</a>.<a href="../../../../cosmossdk.io/core/appmodule/index.html#AppModule">AppModule</a>
+<span id="AppInputs.BaseAppOptions"></span>    BaseAppOptions    []<a href="index.html#BaseAppOption">BaseAppOption</a>
+<span id="AppInputs.InterfaceRegistry"></span>    InterfaceRegistry <a href="../codec/types/index.html">codectypes</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>
+<span id="AppInputs.LegacyAmino"></span>    LegacyAmino       *<a href="../codec/index.html">codec</a>.<a href="../codec/index.html#LegacyAmino">LegacyAmino</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BaseAppOption">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=669:710#L13">BaseAppOption</a>
+				<a class="permalink" href="index.html#BaseAppOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BaseAppOption is a depinject.AutoGroupType which can be used to pass
+BaseApp options into the depinject. It should be used carefully.
+
+			<pre>type BaseAppOption func(*<a href="../baseapp/index.html">baseapp</a>.<a href="../baseapp/index.html#BaseApp">BaseApp</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BaseAppOption.IsManyPerContainerType">func (BaseAppOption) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/runtime/module.go?s=795:842#L16">IsManyPerContainerType</a>
+					<a class="permalink" href="index.html#BaseAppOption.IsManyPerContainerType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#BaseAppOption">BaseAppOption</a>) IsManyPerContainerType()</pre>
+				<p>IsManyPerContainerType indicates that this is a depinject.ManyPerContainerType.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="services/index.html">services</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

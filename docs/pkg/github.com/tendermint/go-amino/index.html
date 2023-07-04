@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>amino - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package amino
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/tendermint/go-amino"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Amino is an encoding library that can handle interfaces (like protobuf &quot;oneof&quot;)
+well.  This is achieved by prefixing bytes before each &quot;concrete type&quot;.
+<p>A concrete type is some non-interface value (generally a struct) which
+implements the interface to be (de)serialized. Not all structures need to be
+registered as concrete types -- only when they will be stored in interface type
+fields (or interface type slices) do they need to be registered.
+<h3 id="hdr-Registering_types">Registering types</h3>
+<p>All interfaces and the concrete types that implement them must be registered.
+<pre>amino.RegisterInterface((*MyInterface1)(nil), nil)
+amino.RegisterInterface((*MyInterface2)(nil), nil)
+amino.RegisterConcrete(MyStruct1{}, &quot;com.tendermint/MyStruct1&quot;, nil)
+amino.RegisterConcrete(MyStruct2{}, &quot;com.tendermint/MyStruct2&quot;, nil)
+amino.RegisterConcrete(&amp;MyStruct3{}, &quot;anythingcangoinhereifitsunique&quot;, nil)
+</pre>
+<p>Notice that an interface is represented by a nil pointer.
+<p>Structures that must be deserialized as pointer values must be registered with
+a pointer value as well.  It&apos;s OK to (de)serialize such structures in
+non-pointer (value) form, but when deserializing such structures into an
+interface field, they will always be deserialized as pointers.
+<h3 id="hdr-How_it_works">How it works</h3>
+<p>All registered concrete types are encoded with leading 4 bytes (called &quot;prefix
+bytes&quot;), even when it&apos;s not held in an interface field/element.  In this way,
+Amino ensures that concrete types (almost) always have the same canonical
+representation.  The first byte of the prefix bytes must not be a zero byte, so
+there are 2**(8*4)-2**(8*3) possible values.
+<p>When there are 4096 types registered at once, the probability of there being a
+conflict is ~ 0.2%. See <a href="https://instacalc.com/51189">https://instacalc.com/51189</a> for estimation.  This is
+assuming that all registered concrete types have unique natural names (e.g.
+prefixed by a unique entity name such as &quot;com.tendermint/&quot;, and not
+&quot;mined/grinded&quot; to produce a particular sequence of &quot;prefix bytes&quot;).
+<p>TODO Update instacalc.com link with 255/256 since 0x00 is an escape.
+<p>Do not mine/grind to produce a particular sequence of prefix bytes, and avoid
+using dependencies that do so.
+<p>Since 4 bytes are not sufficient to ensure no conflicts, sometimes it is
+necessary to prepend more than the 4 prefix bytes for disambiguation.  Like the
+prefix bytes, the disambiguation bytes are also computed from the registered
+name of the concrete type.  There are 3 disambiguation bytes, and in binary
+form they always precede the prefix bytes.  The first byte of the
+disambiguation bytes must not be a zero byte, so there are 2**(8*3)-2**(8*2)
+possible values.
+<pre>// Sample Amino encoded binary bytes with 4 prefix bytes.
+&gt; [0xBB 0x9C 0x83 0xDD] [...]
+
+// Sample Amino encoded binary bytes with 3 disambiguation bytes and 4
+// prefix bytes.
+&gt; 0x00 &lt;0xA8 0xFC 0x54&gt; [0xBB 0x9C 0x83 0xDD] [...]
+</pre>
+<p>The prefix bytes never start with a zero byte, so the disambiguation bytes are
+escaped with 0x00.
+<p>Notice that the 4 prefix bytes always immediately precede the binary encoding
+of the concrete type.
+<h3 id="hdr-Computing_prefix_bytes">Computing prefix bytes</h3>
+<p>To compute the disambiguation bytes, we take `hash := sha256(concreteTypeName)`,
+and drop the leading 0x00 bytes.
+<pre>&gt; hash := sha256(&quot;com.tendermint.consensus/MyConcreteName&quot;)
+&gt; hex.EncodeBytes(hash) // 0x{00 00 A8 FC 54 00 00 00 BB 9C 83 DD ...} (example)
+</pre>
+<p>In the example above, hash has two leading 0x00 bytes, so we drop them.
+<pre>&gt; rest = dropLeadingZeroBytes(hash) // 0x{A8 FC 54 00 00 BB 9C 83 DD ...}
+&gt; disamb = rest[0:3]
+&gt; rest = dropLeadingZeroBytes(rest[3:])
+&gt; prefix = rest[0:4]
+</pre>
+<p>The first 3 bytes are called the &quot;disambiguation bytes&quot; (in angle brackets).
+The next 4 bytes are called the &quot;prefix bytes&quot; (in square brackets).
+<pre>&gt; &lt;0xA8 0xFC 0x54&gt; [0xBB 0x9C 9x83 9xDD]
+</pre>
+
+				<div id="example_" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">defer func() {
+    if e := recover(); e != nil {
+        fmt.Println(&#34;Recovered:&#34;, e)
+    }
+}()
+
+type Message interface{}
+
+type bcMessage struct {
+    Message string
+    Height  int
+}
+
+type bcResponse struct {
+    Status  int
+    Message string
+}
+
+type bcStatus struct {
+    Peers int
+}
+
+var cdc = amino.NewCodec()
+cdc.RegisterInterface((*Message)(nil), nil)
+cdc.RegisterConcrete(&amp;bcMessage{}, &#34;bcMessage&#34;, nil)
+cdc.RegisterConcrete(&amp;bcResponse{}, &#34;bcResponse&#34;, nil)
+cdc.RegisterConcrete(&amp;bcStatus{}, &#34;bcStatus&#34;, nil)
+
+var bm = &amp;bcMessage{Message: &#34;ABC&#34;, Height: 100}
+var msg = bm
+
+var bz []byte <span class="comment">// the marshalled bytes.</span>
+var err error
+bz, err = cdc.MarshalBinaryLengthPrefixed(msg)
+fmt.Printf(&#34;Encoded: %X (err: %v)\n&#34;, bz, err)
+
+var msg2 Message
+err = cdc.UnmarshalBinaryLengthPrefixed(bz, &amp;msg2)
+fmt.Printf(&#34;Decoded: %v (err: %v)\n&#34;, msg2, err)
+var bm2 = msg2.(*bcMessage)
+fmt.Printf(&#34;Decoded successfully: %v\n&#34;, *bm == *bm2)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Encoded: 0B740613650A034142431064 (err: &lt;nil&gt;)
+Decoded: &amp;{ABC 100} (err: &lt;nil&gt;)
+Decoded successfully: true
+</pre>
+			
+		
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ByteSliceSize">func ByteSliceSize(bz []byte) int</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeBool">func DecodeBool(bz []byte) (b bool, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeByte">func DecodeByte(bz []byte) (b byte, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeByteSlice">func DecodeByteSlice(bz []byte) (bz2 []byte, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeDisambPrefixBytes">func DecodeDisambPrefixBytes(bz []byte) (db DisambBytes, hasDb bool, pb PrefixBytes, hasPb bool, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeFloat32">func DecodeFloat32(bz []byte) (f float32, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeFloat64">func DecodeFloat64(bz []byte) (f float64, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeInt16">func DecodeInt16(bz []byte) (i int16, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeInt32">func DecodeInt32(bz []byte) (i int32, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeInt64">func DecodeInt64(bz []byte) (i int64, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeInt8">func DecodeInt8(bz []byte) (i int8, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeString">func DecodeString(bz []byte) (s string, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeTime">func DecodeTime(bz []byte) (t time.Time, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeUint16">func DecodeUint16(bz []byte) (u uint16, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeUint32">func DecodeUint32(bz []byte) (u uint32, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeUint64">func DecodeUint64(bz []byte) (u uint64, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeUint8">func DecodeUint8(bz []byte) (u uint8, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeUvarint">func DecodeUvarint(bz []byte) (u uint64, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DecodeVarint">func DecodeVarint(bz []byte) (i int64, n int, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#DeepCopy">func DeepCopy(o interface{}) (r interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeBool">func EncodeBool(w io.Writer, b bool) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeByte">func EncodeByte(w io.Writer, b byte) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeByteSlice">func EncodeByteSlice(w io.Writer, bz []byte) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeFloat32">func EncodeFloat32(w io.Writer, f float32) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeFloat64">func EncodeFloat64(w io.Writer, f float64) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInt16">func EncodeInt16(w io.Writer, i int16) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInt32">func EncodeInt32(w io.Writer, i int32) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInt64">func EncodeInt64(w io.Writer, i int64) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeInt8">func EncodeInt8(w io.Writer, i int8) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeString">func EncodeString(w io.Writer, s string) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeTime">func EncodeTime(w io.Writer, t time.Time) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeUint16">func EncodeUint16(w io.Writer, u uint16) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeUint32">func EncodeUint32(w io.Writer, u uint32) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeUint64">func EncodeUint64(w io.Writer, u uint64) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeUint8">func EncodeUint8(w io.Writer, u uint8) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeUvarint">func EncodeUvarint(w io.Writer, u uint64) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeVarint">func EncodeVarint(w io.Writer, i int64) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalBinaryBare">func MarshalBinaryBare(o interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalBinaryLengthPrefixed">func MarshalBinaryLengthPrefixed(o interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalBinaryLengthPrefixedWriter">func MarshalBinaryLengthPrefixedWriter(w io.Writer, o interface{}) (n int64, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalJSON">func MarshalJSON(o interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MarshalJSONIndent">func MarshalJSONIndent(o interface{}, prefix, indent string) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MustMarshalBinaryBare">func MustMarshalBinaryBare(o interface{}) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#MustMarshalBinaryLengthPrefixed">func MustMarshalBinaryLengthPrefixed(o interface{}) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#MustUnmarshalBinaryBare">func MustUnmarshalBinaryBare(bz []byte, ptr interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#MustUnmarshalBinaryLengthPrefixed">func MustUnmarshalBinaryLengthPrefixed(bz []byte, ptr interface{})</a></dd>
+			
+				
+				<dd><a href="index.html#NameToDisfix">func NameToDisfix(name string) (db DisambBytes, pb PrefixBytes)</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalBinaryBare">func UnmarshalBinaryBare(bz []byte, ptr interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalBinaryLengthPrefixed">func UnmarshalBinaryLengthPrefixed(bz []byte, ptr interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalBinaryLengthPrefixedReader">func UnmarshalBinaryLengthPrefixedReader(r io.Reader, ptr interface{}, maxSize int64) (n int64, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnmarshalJSON">func UnmarshalJSON(bz []byte, ptr interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#UvarintSize">func UvarintSize(u uint64) int</a></dd>
+			
+				
+				<dd><a href="index.html#VarintSize">func VarintSize(i int64) int</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Codec">type Codec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCodec">func NewCodec() *Codec</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MarshalBinaryBare">func (cdc *Codec) MarshalBinaryBare(o interface{}) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MarshalBinaryLengthPrefixed">func (cdc *Codec) MarshalBinaryLengthPrefixed(o interface{}) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MarshalBinaryLengthPrefixedWriter">func (cdc *Codec) MarshalBinaryLengthPrefixedWriter(w io.Writer, o interface{}) (n int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MarshalJSON">func (cdc *Codec) MarshalJSON(o interface{}) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MarshalJSONIndent">func (cdc *Codec) MarshalJSONIndent(o interface{}, prefix, indent string) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustMarshalBinaryBare">func (cdc *Codec) MustMarshalBinaryBare(o interface{}) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustMarshalBinaryLengthPrefixed">func (cdc *Codec) MustMarshalBinaryLengthPrefixed(o interface{}) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustMarshalJSON">func (cdc *Codec) MustMarshalJSON(o interface{}) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustUnmarshalBinaryBare">func (cdc *Codec) MustUnmarshalBinaryBare(bz []byte, ptr interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustUnmarshalBinaryLengthPrefixed">func (cdc *Codec) MustUnmarshalBinaryLengthPrefixed(bz []byte, ptr interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.MustUnmarshalJSON">func (cdc *Codec) MustUnmarshalJSON(bz []byte, ptr interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.PrintTypes">func (cdc *Codec) PrintTypes(out io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.RegisterConcrete">func (cdc *Codec) RegisterConcrete(o interface{}, name string, copts *ConcreteOptions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.RegisterInterface">func (cdc *Codec) RegisterInterface(ptr interface{}, iopts *InterfaceOptions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.Seal">func (cdc *Codec) Seal() *Codec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.UnmarshalBinaryBare">func (cdc *Codec) UnmarshalBinaryBare(bz []byte, ptr interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.UnmarshalBinaryLengthPrefixed">func (cdc *Codec) UnmarshalBinaryLengthPrefixed(bz []byte, ptr interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.UnmarshalBinaryLengthPrefixedReader">func (cdc *Codec) UnmarshalBinaryLengthPrefixedReader(r io.Reader, ptr interface{}, maxSize int64) (n int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Codec.UnmarshalJSON">func (cdc *Codec) UnmarshalJSON(bz []byte, ptr interface{}) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ConcreteInfo">type ConcreteInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConcreteInfo.GetDisfix">func (cinfo ConcreteInfo) GetDisfix() DisfixBytes</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ConcreteOptions">type ConcreteOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DisambBytes">type DisambBytes</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DisambBytes.Bytes">func (db DisambBytes) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DisambBytes.EqualBytes">func (db DisambBytes) EqualBytes(bz []byte) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DisfixBytes">type DisfixBytes</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DisfixBytes.Bytes">func (df DisfixBytes) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DisfixBytes.EqualBytes">func (df DisfixBytes) EqualBytes(bz []byte) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FieldInfo">type FieldInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FieldOptions">type FieldOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#InterfaceInfo">type InterfaceInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#InterfaceOptions">type InterfaceOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#InvalidTimeErr">type InvalidTimeErr</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InvalidTimeErr.Error">func (e InvalidTimeErr) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PrefixBytes">type PrefixBytes</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPrefixBytes">func NewPrefixBytes(prefixBytes []byte) PrefixBytes</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixBytes.Bytes">func (pb PrefixBytes) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixBytes.EqualBytes">func (pb PrefixBytes) EqualBytes(bz []byte) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StructInfo">type StructInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Typ3">type Typ3</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Typ3.String">func (typ Typ3) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TypeInfo">type TypeInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeInfo.String">func (ti TypeInfo) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_">Package</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go">amino.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/binary-decode.go">binary-decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/binary-encode.go">binary-encode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go">codec.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go">decoder.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/deep_copy.go">deep_copy.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go">encoder.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/json-decode.go">json-decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/json-encode.go">json-encode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/reflect.go">reflect.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/tendermint/go-amino/version.go">version.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// Typ3 types</span>
+    <span id="Typ3_Varint">Typ3_Varint</span>     = <a href="index.html#Typ3">Typ3</a>(0)
+    <span id="Typ3_8Byte">Typ3_8Byte</span>      = <a href="index.html#Typ3">Typ3</a>(1)
+    <span id="Typ3_ByteLength">Typ3_ByteLength</span> = <a href="index.html#Typ3">Typ3</a>(2)
+    <span class="comment">//Typ3_Struct     = Typ3(3)</span>
+    <span class="comment">//Typ3_StructTerm = Typ3(4)</span>
+    <span id="Typ3_4Byte">Typ3_4Byte</span> = <a href="index.html#Typ3">Typ3</a>(5)
+)</pre>
+			
+				<p>Lengths
+
+				<pre>const (
+    <span id="PrefixBytesLen">PrefixBytesLen</span> = 4
+    <span id="DisambBytesLen">DisambBytesLen</span> = 3
+    <span id="DisfixBytesLen">DisfixBytesLen</span> = <a href="index.html#PrefixBytesLen">PrefixBytesLen</a> + <a href="index.html#DisambBytesLen">DisambBytesLen</a>
+)</pre>
+			
+				<p>Version
+
+				<pre>const <span id="Version">Version</span> = &#34;0.15.0&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrOverflowInt">ErrOverflowInt</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;encoded integer value overflows int(32)&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="ByteSliceSize">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=4365:4398#L177">ByteSliceSize</a>
+				<a class="permalink" href="index.html#ByteSliceSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ByteSliceSize(bz []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#int">int</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeBool">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=2929:2982#L141">DecodeBool</a>
+				<a class="permalink" href="index.html#DecodeBool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeBool(bz []<a href="../../../builtin/index.html#byte">byte</a>) (b <a href="../../../builtin/index.html#bool">bool</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeByte">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=1515:1568#L71">DecodeByte</a>
+				<a class="permalink" href="index.html#DecodeByte">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeByte(bz []<a href="../../../builtin/index.html#byte">byte</a>) (b <a href="../../../builtin/index.html#byte">byte</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeByteSlice">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=6179:6241#L273">DecodeByteSlice</a>
+				<a class="permalink" href="index.html#DecodeByteSlice">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeByteSlice(bz []<a href="../../../builtin/index.html#byte">byte</a>) (bz2 []<a href="../../../builtin/index.html#byte">byte</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeDisambPrefixBytes">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/binary-decode.go?s=22262:22376#L852">DecodeDisambPrefixBytes</a>
+				<a class="permalink" href="index.html#DecodeDisambPrefixBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeDisambPrefixBytes(bz []<a href="../../../builtin/index.html#byte">byte</a>) (db <a href="index.html#DisambBytes">DisambBytes</a>, hasDb <a href="../../../builtin/index.html#bool">bool</a>, pb <a href="index.html#PrefixBytes">PrefixBytes</a>, hasPb <a href="../../../builtin/index.html#bool">bool</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeFloat32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=3220:3279#L160">DecodeFloat32</a>
+				<a class="permalink" href="index.html#DecodeFloat32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeFloat32(bz []<a href="../../../builtin/index.html#byte">byte</a>) (f <a href="../../../builtin/index.html#float32">float32</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>NOTE: UNSAFE
+
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeFloat64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=3488:3547#L173">DecodeFloat64</a>
+				<a class="permalink" href="index.html#DecodeFloat64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeFloat64(bz []<a href="../../../builtin/index.html#byte">byte</a>) (f <a href="../../../builtin/index.html#float64">float64</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>NOTE: UNSAFE
+
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeInt16">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=409:464#L18">DecodeInt16</a>
+				<a class="permalink" href="index.html#DecodeInt16">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeInt16(bz []<a href="../../../builtin/index.html#byte">byte</a>) (i <a href="../../../builtin/index.html#int16">int16</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeInt32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=691:746#L32">DecodeInt32</a>
+				<a class="permalink" href="index.html#DecodeInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeInt32(bz []<a href="../../../builtin/index.html#byte">byte</a>) (i <a href="../../../builtin/index.html#int32">int32</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeInt64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=914:969#L43">DecodeInt64</a>
+				<a class="permalink" href="index.html#DecodeInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeInt64(bz []<a href="../../../builtin/index.html#byte">byte</a>) (i <a href="../../../builtin/index.html#int64">int64</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeInt8">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=133:186#L4">DecodeInt8</a>
+				<a class="permalink" href="index.html#DecodeInt8">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeInt8(bz []<a href="../../../builtin/index.html#byte">byte</a>) (i <a href="../../../builtin/index.html#int8">int8</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeString">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=6661:6718#L294">DecodeString</a>
+				<a class="permalink" href="index.html#DecodeString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeString(bz []<a href="../../../builtin/index.html#byte">byte</a>) (s <a href="../../../builtin/index.html#string">string</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeTime">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=4028:4086#L190">DecodeTime</a>
+				<a class="permalink" href="index.html#DecodeTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeTime(bz []<a href="../../../builtin/index.html#byte">byte</a>) (t <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>DecodeTime decodes seconds (int64) and nanoseconds (int32) since January 1,
+1970 UTC, and returns the corresponding time.  If nanoseconds is not in the
+range [0, 999999999], or if seconds is too large, the behavior is
+undefined.
+TODO return error if behavior is undefined.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeUint16">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=1852:1909#L88">DecodeUint16</a>
+				<a class="permalink" href="index.html#DecodeUint16">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeUint16(bz []<a href="../../../builtin/index.html#byte">byte</a>) (u <a href="../../../builtin/index.html#uint16">uint16</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeUint32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=2112:2169#L102">DecodeUint32</a>
+				<a class="permalink" href="index.html#DecodeUint32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeUint32(bz []<a href="../../../builtin/index.html#byte">byte</a>) (u <a href="../../../builtin/index.html#uint32">uint32</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeUint64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=2331:2388#L113">DecodeUint64</a>
+				<a class="permalink" href="index.html#DecodeUint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeUint64(bz []<a href="../../../builtin/index.html#byte">byte</a>) (u <a href="../../../builtin/index.html#uint64">uint64</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeUint8">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=1598:1653#L75">DecodeUint8</a>
+				<a class="permalink" href="index.html#DecodeUint8">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeUint8(bz []<a href="../../../builtin/index.html#byte">byte</a>) (u <a href="../../../builtin/index.html#uint8">uint8</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeUvarint">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=2550:2608#L124">DecodeUvarint</a>
+				<a class="permalink" href="index.html#DecodeUvarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeUvarint(bz []<a href="../../../builtin/index.html#byte">byte</a>) (u <a href="../../../builtin/index.html#uint64">uint64</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DecodeVarint">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/decoder.go?s=1137:1193#L54">DecodeVarint</a>
+				<a class="permalink" href="index.html#DecodeVarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeVarint(bz []<a href="../../../builtin/index.html#byte">byte</a>) (i <a href="../../../builtin/index.html#int64">int64</a>, n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DeepCopy">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/deep_copy.go?s=459:503#L8">DeepCopy</a>
+				<a class="permalink" href="index.html#DeepCopy">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeepCopy(o interface{}) (r interface{})</pre>
+			<p>Deeply copies an object.
+If anything implements `.DeepCopy() &lt;any&gt;` along the way,
+the result of that function will be used.
+Otherwise, if it implements `.MarshalAmino() (&lt;any&gt;, error)` and
+`.UnmarshalAmino(&lt;any&gt;) error`, the pair will be used to copy.
+If .MarshalAmino() or .UnmarshalAmino() returns an error, this
+function will panic.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeBool">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=2052:2100#L87">EncodeBool</a>
+				<a class="permalink" href="index.html#EncodeBool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeBool(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, b <a href="../../../builtin/index.html#bool">bool</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeByte">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=935:983#L41">EncodeByte</a>
+				<a class="permalink" href="index.html#EncodeByte">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeByte(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, b <a href="../../../builtin/index.html#byte">byte</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeByteSlice">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=4203:4259#L168">EncodeByteSlice</a>
+				<a class="permalink" href="index.html#EncodeByteSlice">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeByteSlice(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, bz []<a href="../../../builtin/index.html#byte">byte</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeFloat32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=2267:2321#L97">EncodeFloat32</a>
+				<a class="permalink" href="index.html#EncodeFloat32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeFloat32(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, f <a href="../../../builtin/index.html#float32">float32</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>NOTE: UNSAFE
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeFloat64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=2388:2442#L102">EncodeFloat64</a>
+				<a class="permalink" href="index.html#EncodeFloat64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeFloat64(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, f <a href="../../../builtin/index.html#float64">float64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>NOTE: UNSAFE
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInt16">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=230:280#L9">EncodeInt16</a>
+				<a class="permalink" href="index.html#EncodeInt16">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInt16(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, i <a href="../../../builtin/index.html#int16">int16</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInt32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=320:370#L13">EncodeInt32</a>
+				<a class="permalink" href="index.html#EncodeInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInt32(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, i <a href="../../../builtin/index.html#int32">int32</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInt64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=477:527#L20">EncodeInt64</a>
+				<a class="permalink" href="index.html#EncodeInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInt64(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, i <a href="../../../builtin/index.html#int64">int64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeInt8">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=142:190#L5">EncodeInt8</a>
+				<a class="permalink" href="index.html#EncodeInt8">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeInt8(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, i <a href="../../../builtin/index.html#int8">int8</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeString">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=4451:4503#L181">EncodeString</a>
+				<a class="permalink" href="index.html#EncodeString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeString(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, s <a href="../../../builtin/index.html#string">string</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeTime">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=3076:3129#L127">EncodeTime</a>
+				<a class="permalink" href="index.html#EncodeTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeTime(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, t <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>EncodeTime writes the number of seconds (int64) and nanoseconds (int32),
+with millisecond resolution since January 1, 1970 UTC to the Writer as an
+UInt64.
+Milliseconds are used to ease compatibility with Javascript,
+which does not support finer resolution.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeUint16">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1117:1169#L49">EncodeUint16</a>
+				<a class="permalink" href="index.html#EncodeUint16">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeUint16(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, u <a href="../../../builtin/index.html#uint16">uint16</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeUint32">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1211:1263#L53">EncodeUint32</a>
+				<a class="permalink" href="index.html#EncodeUint32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeUint32(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, u <a href="../../../builtin/index.html#uint32">uint32</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeUint64">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1362:1414#L60">EncodeUint64</a>
+				<a class="permalink" href="index.html#EncodeUint64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeUint64(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, u <a href="../../../builtin/index.html#uint64">uint64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeUint8">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1025:1075#L45">EncodeUint8</a>
+				<a class="permalink" href="index.html#EncodeUint8">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeUint8(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, u <a href="../../../builtin/index.html#uint8">uint8</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeUvarint">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1756:1809#L70">EncodeUvarint</a>
+				<a class="permalink" href="index.html#EncodeUvarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeUvarint(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, u <a href="../../../builtin/index.html#uint64">uint64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>EncodeUvarint is used to encode golang&apos;s int, int32, int64 by default. unless specified differently by the
+`binary:&quot;fixed32&quot;`, `binary:&quot;fixed64&quot;`, or `binary:&quot;zigzag32&quot;` `binary:&quot;zigzag64&quot;` tags.
+It matches protobufs varint encoding.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeVarint">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=638:689#L27">EncodeVarint</a>
+				<a class="permalink" href="index.html#EncodeVarint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeVarint(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, i <a href="../../../builtin/index.html#int64">int64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalBinaryBare">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1007:1060#L37">MarshalBinaryBare</a>
+				<a class="permalink" href="index.html#MarshalBinaryBare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalBinaryBare(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalBinaryLengthPrefixed">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=636:699#L25">MarshalBinaryLengthPrefixed</a>
+				<a class="permalink" href="index.html#MarshalBinaryLengthPrefixed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalBinaryLengthPrefixed(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalBinaryLengthPrefixedWriter">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=749:836#L29">MarshalBinaryLengthPrefixedWriter</a>
+				<a class="permalink" href="index.html#MarshalBinaryLengthPrefixedWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalBinaryLengthPrefixedWriter(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, o interface{}) (n <a href="../../../builtin/index.html#int64">int64</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalJSON">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1824:1871#L65">MarshalJSON</a>
+				<a class="permalink" href="index.html#MarshalJSON">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalJSON(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MarshalJSONIndent">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1999:2075#L73">MarshalJSONIndent</a>
+				<a class="permalink" href="index.html#MarshalJSONIndent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalJSONIndent(o interface{}, prefix, indent <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MustMarshalBinaryBare">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1100:1148#L41">MustMarshalBinaryBare</a>
+				<a class="permalink" href="index.html#MustMarshalBinaryBare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MustMarshalBinaryBare(o interface{}) []<a href="../../../builtin/index.html#byte">byte</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MustMarshalBinaryLengthPrefixed">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=895:953#L33">MustMarshalBinaryLengthPrefixed</a>
+				<a class="permalink" href="index.html#MustMarshalBinaryLengthPrefixed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MustMarshalBinaryLengthPrefixed(o interface{}) []<a href="../../../builtin/index.html#byte">byte</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MustUnmarshalBinaryBare">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1723:1779#L61">MustUnmarshalBinaryBare</a>
+				<a class="permalink" href="index.html#MustUnmarshalBinaryBare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MustUnmarshalBinaryBare(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{})</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MustUnmarshalBinaryLengthPrefixed">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1496:1562#L53">MustUnmarshalBinaryLengthPrefixed</a>
+				<a class="permalink" href="index.html#MustUnmarshalBinaryLengthPrefixed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MustUnmarshalBinaryLengthPrefixed(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{})</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NameToDisfix">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=1105:1168#L36">NameToDisfix</a>
+				<a class="permalink" href="index.html#NameToDisfix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NameToDisfix(name <a href="../../../builtin/index.html#string">string</a>) (db <a href="index.html#DisambBytes">DisambBytes</a>, pb <a href="index.html#PrefixBytes">PrefixBytes</a>)</pre>
+			<p>Return the DisambBytes and the PrefixBytes for a given name.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalBinaryBare">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1617:1675#L57">UnmarshalBinaryBare</a>
+				<a class="permalink" href="index.html#UnmarshalBinaryBare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalBinaryBare(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalBinaryLengthPrefixed">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1192:1260#L45">UnmarshalBinaryLengthPrefixed</a>
+				<a class="permalink" href="index.html#UnmarshalBinaryLengthPrefixed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalBinaryLengthPrefixed(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalBinaryLengthPrefixedReader">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1318:1424#L49">UnmarshalBinaryLengthPrefixedReader</a>
+				<a class="permalink" href="index.html#UnmarshalBinaryLengthPrefixedReader">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalBinaryLengthPrefixedReader(r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>, ptr interface{}, maxSize <a href="../../../builtin/index.html#int64">int64</a>) (n <a href="../../../builtin/index.html#int64">int64</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="UnmarshalJSON">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=1905:1957#L69">UnmarshalJSON</a>
+				<a class="permalink" href="index.html#UnmarshalJSON">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnmarshalJSON(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="UvarintSize">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=1904:1934#L77">UvarintSize</a>
+				<a class="permalink" href="index.html#UvarintSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UvarintSize(u <a href="../../../builtin/index.html#uint64">uint64</a>) <a href="../../../builtin/index.html#int">int</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="VarintSize">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=783:811#L34">VarintSize</a>
+				<a class="permalink" href="index.html#VarintSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VarintSize(i <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#int">int</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Codec">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=4213:4476#L122">Codec</a>
+				<a class="permalink" href="index.html#Codec">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Codec struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCodec">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=4478:4500#L132">NewCodec</a>
+					<a class="permalink" href="index.html#NewCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCodec() *<a href="index.html#Codec">Codec</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Codec.MarshalBinaryBare">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=4628:4694#L178">MarshalBinaryBare</a>
+					<a class="permalink" href="index.html#Codec.MarshalBinaryBare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MarshalBinaryBare(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalBinaryBare encodes the object o according to the Amino spec.
+MarshalBinaryBare doesn&apos;t prefix the byte-length of the encoding,
+so the caller must handle framing.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MarshalBinaryLengthPrefixed">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=3352:3428#L127">MarshalBinaryLengthPrefixed</a>
+					<a class="permalink" href="index.html#Codec.MarshalBinaryLengthPrefixed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MarshalBinaryLengthPrefixed(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalBinaryLengthPrefixed encodes the object o according to the Amino spec,
+but prefixed by a uvarint encoding of the object to encode.
+Use MarshalBinaryBare if you don&apos;t want byte-length prefixing.
+<p>For consistency, MarshalBinaryLengthPrefixed will first dereference pointers
+before encoding.  MarshalBinaryLengthPrefixed will panic if o is a nil-pointer,
+or if o is invalid.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MarshalBinaryLengthPrefixedWriter">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=3950:4050#L155">MarshalBinaryLengthPrefixedWriter</a>
+					<a class="permalink" href="index.html#Codec.MarshalBinaryLengthPrefixedWriter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MarshalBinaryLengthPrefixedWriter(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, o interface{}) (n <a href="../../../builtin/index.html#int64">int64</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalBinaryLengthPrefixedWriter writes the bytes as would be returned from
+MarshalBinaryLengthPrefixed to the writer w.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MarshalJSON">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=9641:9701#L352">MarshalJSON</a>
+					<a class="permalink" href="index.html#Codec.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MarshalJSON(o interface{}) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Codec.MarshalJSONIndent">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=11831:11920#L441">MarshalJSONIndent</a>
+					<a class="permalink" href="index.html#Codec.MarshalJSONIndent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MarshalJSONIndent(o interface{}, prefix, indent <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSONIndent calls json.Indent on the output of cdc.MarshalJSON
+using the given prefix and indent string.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustMarshalBinaryBare">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=5485:5546#L212">MustMarshalBinaryBare</a>
+					<a class="permalink" href="index.html#Codec.MustMarshalBinaryBare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustMarshalBinaryBare(o interface{}) []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Panics if error.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustMarshalBinaryLengthPrefixed">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=4282:4353#L167">MustMarshalBinaryLengthPrefixed</a>
+					<a class="permalink" href="index.html#Codec.MustMarshalBinaryLengthPrefixed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustMarshalBinaryLengthPrefixed(o interface{}) []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Panics if error.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustMarshalJSON">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=10546:10601#L393">MustMarshalJSON</a>
+					<a class="permalink" href="index.html#Codec.MustMarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustMarshalJSON(o interface{}) []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>MustMarshalJSON panics if an error occurs. Besides tha behaves exactly like MarshalJSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustUnmarshalBinaryBare">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=9492:9561#L345">MustUnmarshalBinaryBare</a>
+					<a class="permalink" href="index.html#Codec.MustUnmarshalBinaryBare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustUnmarshalBinaryBare(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{})</pre>
+				<p>Panics if error.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustUnmarshalBinaryLengthPrefixed">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=8114:8193#L303">MustUnmarshalBinaryLengthPrefixed</a>
+					<a class="permalink" href="index.html#Codec.MustUnmarshalBinaryLengthPrefixed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustUnmarshalBinaryLengthPrefixed(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{})</pre>
+				<p>Panics if error.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.MustUnmarshalJSON">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=11577:11640#L433">MustUnmarshalJSON</a>
+					<a class="permalink" href="index.html#Codec.MustUnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) MustUnmarshalJSON(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{})</pre>
+				<p>MustUnmarshalJSON panics if an error occurs. Besides tha behaves exactly like UnmarshalJSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.PrintTypes">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=7834:7883#L251">PrintTypes</a>
+					<a class="permalink" href="index.html#Codec.PrintTypes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) PrintTypes(out <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>PrintTypes writes all registered types in a markdown-style table.
+The table&apos;s header is:
+<p>| Type  | Name | Prefix | Notes |
+<p>Where Type is the golang type name and Name is the name the type was registered with.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.RegisterConcrete">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=6487:6573#L201">RegisterConcrete</a>
+					<a class="permalink" href="index.html#Codec.RegisterConcrete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) RegisterConcrete(o interface{}, name <a href="../../../builtin/index.html#string">string</a>, copts *<a href="index.html#ConcreteOptions">ConcreteOptions</a>)</pre>
+				<p>This function should be used to register concrete types that will appear in
+interface fields/elements to be encoded/decoded by go-amino.
+Usage:
+`amino.RegisterConcrete(MyStruct1{}, &quot;com.tendermint/MyStruct1&quot;, nil)`
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.RegisterInterface">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=4889:4966#L146">RegisterInterface</a>
+					<a class="permalink" href="index.html#Codec.RegisterInterface">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) RegisterInterface(ptr interface{}, iopts *<a href="index.html#InterfaceOptions">InterfaceOptions</a>)</pre>
+				<p>This function should be used to register all interfaces that will be
+encoded/decoded by go-amino.
+Usage:
+`amino.RegisterInterface((*MyInterface1)(nil), nil)`
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.Seal">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=7498:7529#L237">Seal</a>
+					<a class="permalink" href="index.html#Codec.Seal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) Seal() *<a href="index.html#Codec">Codec</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Codec.UnmarshalBinaryBare">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=8342:8413#L311">UnmarshalBinaryBare</a>
+					<a class="permalink" href="index.html#Codec.UnmarshalBinaryBare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) UnmarshalBinaryBare(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalBinaryBare will panic if ptr is a nil-pointer.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.UnmarshalBinaryLengthPrefixed">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=5827:5908#L223">UnmarshalBinaryLengthPrefixed</a>
+					<a class="permalink" href="index.html#Codec.UnmarshalBinaryLengthPrefixed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) UnmarshalBinaryLengthPrefixed(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Like UnmarshalBinaryBare, but will first decode the byte-length prefix.
+UnmarshalBinaryLengthPrefixed will panic if ptr is a nil-pointer.
+Returns an error if not all of bz is consumed.
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.UnmarshalBinaryLengthPrefixedReader">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=6775:6894#L249">UnmarshalBinaryLengthPrefixedReader</a>
+					<a class="permalink" href="index.html#Codec.UnmarshalBinaryLengthPrefixedReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) UnmarshalBinaryLengthPrefixedReader(r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>, ptr interface{}, maxSize <a href="../../../builtin/index.html#int64">int64</a>) (n <a href="../../../builtin/index.html#int64">int64</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Like UnmarshalBinaryBare, but will first read the byte-length prefix.
+UnmarshalBinaryLengthPrefixedReader will panic if ptr is a nil-pointer.
+If maxSize is 0, there is no limit (not recommended).
+
+				
+				
+				
+			
+				
+				<h3 id="Codec.UnmarshalJSON">func (*Codec) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=10682:10747#L401">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#Codec.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cdc *<a href="index.html#Codec">Codec</a>) UnmarshalJSON(bz []<a href="../../../builtin/index.html#byte">byte</a>, ptr interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ConcreteInfo">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=1775:3068#L64">ConcreteInfo</a>
+				<a class="permalink" href="index.html#ConcreteInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ConcreteInfo struct {
+
+    <span class="comment">// These fields are only set when registered (as implementing an interface).</span>
+<span id="ConcreteInfo.Registered"></span>    Registered       <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// Registered with RegisterConcrete().</span>
+<span id="ConcreteInfo.PointerPreferred"></span>    PointerPreferred <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// Deserialize to pointer type if possible.</span>
+    <span class="comment">// NilPreferred     bool        // Deserialize to nil for empty structs if PointerPreferred.</span>
+<span id="ConcreteInfo.Name"></span>    Name            <a href="../../../builtin/index.html#string">string</a>      <span class="comment">// Registered name.</span>
+<span id="ConcreteInfo.Disamb"></span>    Disamb          <a href="index.html#DisambBytes">DisambBytes</a> <span class="comment">// Disambiguation bytes derived from name.</span>
+<span id="ConcreteInfo.Prefix"></span>    Prefix          <a href="index.html#PrefixBytes">PrefixBytes</a> <span class="comment">// Prefix bytes derived from name.</span>
+    <a href="index.html#ConcreteOptions">ConcreteOptions</a>             <span class="comment">// Registration options.</span>
+
+    <span class="comment">// These fields get set for all concrete types,</span>
+    <span class="comment">// even those not manually registered (e.g. are never interface values).</span>
+<span id="ConcreteInfo.IsAminoMarshaler"></span>    IsAminoMarshaler           <a href="../../../builtin/index.html#bool">bool</a>         <span class="comment">// Implements MarshalAmino() (&lt;ReprObject&gt;, error).</span>
+<span id="ConcreteInfo.AminoMarshalReprType"></span>    AminoMarshalReprType       <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a> <span class="comment">// &lt;ReprType&gt;</span>
+<span id="ConcreteInfo.IsAminoUnmarshaler"></span>    IsAminoUnmarshaler         <a href="../../../builtin/index.html#bool">bool</a>         <span class="comment">// Implements UnmarshalAmino(&lt;ReprObject&gt;) (error).</span>
+<span id="ConcreteInfo.AminoUnmarshalReprType"></span>    AminoUnmarshalReprType     <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a> <span class="comment">// &lt;ReprType&gt;</span>
+<span id="ConcreteInfo.IsAminoJSONMarshaler"></span>    IsAminoJSONMarshaler       <a href="../../../builtin/index.html#bool">bool</a>         <span class="comment">// Implements MarshalAminoJSON() (&lt;ReprObject&gt;, error).</span>
+<span id="ConcreteInfo.AminoJSONMarshalReprType"></span>    AminoJSONMarshalReprType   <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a> <span class="comment">// &lt;ReprType&gt;</span>
+<span id="ConcreteInfo.IsAminoJSONUnmarshaler"></span>    IsAminoJSONUnmarshaler     <a href="../../../builtin/index.html#bool">bool</a>         <span class="comment">// Implements UnmarshalAminoJSON(&lt;ReprObject&gt;) (error).</span>
+<span id="ConcreteInfo.AminoJSONUnmarshalReprType"></span>    AminoJSONUnmarshalReprType <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a> <span class="comment">// &lt;ReprType&gt;</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ConcreteInfo.GetDisfix">func (ConcreteInfo) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=3134:3183#L91">GetDisfix</a>
+					<a class="permalink" href="index.html#ConcreteInfo.GetDisfix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cinfo <a href="index.html#ConcreteInfo">ConcreteInfo</a>) GetDisfix() <a href="index.html#DisfixBytes">DisfixBytes</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ConcreteOptions">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=3234:3265#L95">ConcreteOptions</a>
+				<a class="permalink" href="index.html#ConcreteOptions">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ConcreteOptions struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DisambBytes">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=366:398#L17">DisambBytes</a>
+				<a class="permalink" href="index.html#DisambBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Prefix types
+
+			<pre>type DisambBytes [<a href="index.html#DisambBytesLen">DisambBytesLen</a>]<a href="../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DisambBytes.Bytes">func (DisambBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=742:778#L30">Bytes</a>
+					<a class="permalink" href="index.html#DisambBytes.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db <a href="index.html#DisambBytes">DisambBytes</a>) Bytes() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DisambBytes.EqualBytes">func (DisambBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=808:856#L31">EqualBytes</a>
+					<a class="permalink" href="index.html#DisambBytes.EqualBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db <a href="index.html#DisambBytes">DisambBytes</a>) EqualBytes(bz []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DisfixBytes">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=400:432#L18">DisfixBytes</a>
+				<a class="permalink" href="index.html#DisfixBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Prefix types
+
+			<pre>type DisfixBytes [<a href="index.html#DisfixBytesLen">DisfixBytesLen</a>]<a href="../../../builtin/index.html#byte">byte</a> <span class="comment">// Disamb+Prefix</span>
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DisfixBytes.Bytes">func (DisfixBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=891:927#L32">Bytes</a>
+					<a class="permalink" href="index.html#DisfixBytes.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (df <a href="index.html#DisfixBytes">DisfixBytes</a>) Bytes() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DisfixBytes.EqualBytes">func (DisfixBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=957:1005#L33">EqualBytes</a>
+					<a class="permalink" href="index.html#DisfixBytes.EqualBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (df <a href="index.html#DisfixBytes">DisfixBytes</a>) EqualBytes(bz []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FieldInfo">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=3267:3657#L98">FieldInfo</a>
+				<a class="permalink" href="index.html#FieldInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FieldInfo struct {
+<span id="FieldInfo.Name"></span>    Name         <a href="../../../builtin/index.html#string">string</a>        <span class="comment">// Struct field name</span>
+<span id="FieldInfo.Type"></span>    Type         <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a>  <span class="comment">// Struct field type</span>
+<span id="FieldInfo.Index"></span>    Index        <a href="../../../builtin/index.html#int">int</a>           <span class="comment">// Struct field index</span>
+<span id="FieldInfo.ZeroValue"></span>    ZeroValue    <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Value">Value</a> <span class="comment">// Could be nil pointer unlike TypeInfo.ZeroValue.</span>
+<span id="FieldInfo.UnpackedList"></span>    UnpackedList <a href="../../../builtin/index.html#bool">bool</a>          <span class="comment">// True iff this field should be encoded as an unpacked list.</span>
+    <a href="index.html#FieldOptions">FieldOptions</a>               <span class="comment">// Encoding options</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FieldOptions">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=3659:4158#L107">FieldOptions</a>
+				<a class="permalink" href="index.html#FieldOptions">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FieldOptions struct {
+<span id="FieldOptions.JSONName"></span>    JSONName      <a href="../../../builtin/index.html#string">string</a> <span class="comment">// (JSON) field name</span>
+<span id="FieldOptions.JSONOmitEmpty"></span>    JSONOmitEmpty <a href="../../../builtin/index.html#bool">bool</a>   <span class="comment">// (JSON) omitempty</span>
+<span id="FieldOptions.BinFixed64"></span>    BinFixed64    <a href="../../../builtin/index.html#bool">bool</a>   <span class="comment">// (Binary) Encode as fixed64</span>
+<span id="FieldOptions.BinFixed32"></span>    BinFixed32    <a href="../../../builtin/index.html#bool">bool</a>   <span class="comment">// (Binary) Encode as fixed32</span>
+<span id="FieldOptions.BinFieldNum"></span>    BinFieldNum   <a href="../../../builtin/index.html#uint32">uint32</a> <span class="comment">// (Binary) max 1&lt;&lt;29-1</span>
+
+<span id="FieldOptions.Unsafe"></span>    Unsafe        <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// e.g. if this field is a float.</span>
+<span id="FieldOptions.WriteEmpty"></span>    WriteEmpty    <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// write empty structs and lists (default false except for pointers)</span>
+<span id="FieldOptions.EmptyElements"></span>    EmptyElements <a href="../../../builtin/index.html#bool">bool</a> <span class="comment">// Slice and Array elements are never nil, decode 0x00 as empty struct.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InterfaceInfo">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=1446:1619#L53">InterfaceInfo</a>
+				<a class="permalink" href="index.html#InterfaceInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type InterfaceInfo struct {
+<span id="InterfaceInfo.Priority"></span>    Priority     []<a href="index.html#DisfixBytes">DisfixBytes</a>               <span class="comment">// Disfix priority.</span>
+<span id="InterfaceInfo.Implementers"></span>    Implementers map[<a href="index.html#PrefixBytes">PrefixBytes</a>][]*<a href="index.html#TypeInfo">TypeInfo</a> <span class="comment">// Mutated over time.</span>
+    <a href="index.html#InterfaceOptions">InterfaceOptions</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InterfaceOptions">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=1621:1773#L59">InterfaceOptions</a>
+				<a class="permalink" href="index.html#InterfaceOptions">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type InterfaceOptions struct {
+<span id="InterfaceOptions.Priority"></span>    Priority           []<a href="../../../builtin/index.html#string">string</a> <span class="comment">// Disamb priority.</span>
+<span id="InterfaceOptions.AlwaysDisambiguate"></span>    AlwaysDisambiguate <a href="../../../builtin/index.html#bool">bool</a>     <span class="comment">// If true, include disamb for all types.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InvalidTimeErr">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=2695:2721#L116">InvalidTimeErr</a>
+				<a class="permalink" href="index.html#InvalidTimeErr">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type InvalidTimeErr <a href="../../../builtin/index.html#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="InvalidTimeErr.Error">func (InvalidTimeErr) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/encoder.go?s=2723:2761#L118">Error</a>
+					<a class="permalink" href="index.html#InvalidTimeErr.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#InvalidTimeErr">InvalidTimeErr</a>) Error() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PrefixBytes">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=332:364#L16">PrefixBytes</a>
+				<a class="permalink" href="index.html#PrefixBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Prefix types
+
+			<pre>type PrefixBytes [<a href="index.html#PrefixBytesLen">PrefixBytesLen</a>]<a href="../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPrefixBytes">func <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=478:529#L22">NewPrefixBytes</a>
+					<a class="permalink" href="index.html#NewPrefixBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrefixBytes(prefixBytes []<a href="../../../builtin/index.html#byte">byte</a>) <a href="index.html#PrefixBytes">PrefixBytes</a></pre>
+				<p>Copy into PrefixBytes
+
+				
+				
+			
+
+			
+				
+				<h3 id="PrefixBytes.Bytes">func (PrefixBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=593:629#L28">Bytes</a>
+					<a class="permalink" href="index.html#PrefixBytes.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pb <a href="index.html#PrefixBytes">PrefixBytes</a>) Bytes() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="PrefixBytes.EqualBytes">func (PrefixBytes) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=659:707#L29">EqualBytes</a>
+					<a class="permalink" href="index.html#PrefixBytes.EqualBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pb <a href="index.html#PrefixBytes">PrefixBytes</a>) EqualBytes(bz []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StructInfo">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=3070:3132#L87">StructInfo</a>
+				<a class="permalink" href="index.html#StructInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type StructInfo struct {
+<span id="StructInfo.Fields"></span>    Fields []<a href="index.html#FieldInfo">FieldInfo</a> <span class="comment">// If a struct.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Typ3">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=2183:2198#L80">Typ3</a>
+				<a class="permalink" href="index.html#Typ3">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Typ3 <a href="../../../builtin/index.html#uint8">uint8</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Typ3.String">func (Typ3) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/amino.go?s=2445:2476#L94">String</a>
+					<a class="permalink" href="index.html#Typ3.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (typ <a href="index.html#Typ3">Typ3</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TypeInfo">type <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=1264:1444#L43">TypeInfo</a>
+				<a class="permalink" href="index.html#TypeInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type TypeInfo struct {
+<span id="TypeInfo.Type"></span>    Type      <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a> <span class="comment">// Interface type.</span>
+<span id="TypeInfo.PtrToType"></span>    PtrToType <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Type">Type</a>
+<span id="TypeInfo.ZeroValue"></span>    ZeroValue <a href="../../../reflect/index.html">reflect</a>.<a href="../../../reflect/index.html#Value">Value</a>
+<span id="TypeInfo.ZeroProto"></span>    ZeroProto interface{}
+    <a href="index.html#InterfaceInfo">InterfaceInfo</a>
+    <a href="index.html#ConcreteInfo">ConcreteInfo</a>
+    <a href="index.html#StructInfo">StructInfo</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TypeInfo.String">func (TypeInfo) <a href="http://localhost:6060/src/github.com/tendermint/go-amino/codec.go?s=20201:20235#L681">String</a>
+					<a class="permalink" href="index.html#TypeInfo.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ti <a href="index.html#TypeInfo">TypeInfo</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/tendermint/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="cmd/index.html">cmd</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="cmd/aminoscan/index.html">aminoscan</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="tests/index.html">tests</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="tests/fuzz/index.html">fuzz</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="tests/fuzz/binary/index.html">binary</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 60px;">
+						<a href="tests/fuzz/binary/debug/index.html">debug</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 60px;">
+						<a href="tests/fuzz/binary/init-corpus/index.html">init-corpus</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="tests/fuzz/json/index.html">json</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 60px;">
+						<a href="tests/fuzz/json/debug/index.html">debug</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="tests/proto3/index.html">proto3</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="tests/proto3/proto/index.html">proto</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

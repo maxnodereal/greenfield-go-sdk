@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>logger - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package logger
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/eth/tracers/logger"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewMarkdownLogger">func NewMarkdownLogger(cfg *Config, writer io.Writer) *mdLogger</a></dd>
+			
+				
+				<dd><a href="index.html#WriteLogs">func WriteLogs(writer io.Writer, logs []*types.Log)</a></dd>
+			
+				
+				<dd><a href="index.html#WriteTrace">func WriteTrace(writer io.Writer, logs []StructLog)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AccessListTracer">type AccessListTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAccessListTracer">func NewAccessListTracer(acl types.AccessList, from, to common.Address, precompiles []common.Address) *AccessListTracer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.AccessList">func (a *AccessListTracer) AccessList() types.AccessList</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureEnd">func (*AccessListTracer) CaptureEnd(output []byte, gasUsed uint64, t time.Duration, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureEnter">func (*AccessListTracer) CaptureEnter(typ vm.OpCode, from common.Address, to common.Address, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureExit">func (*AccessListTracer) CaptureExit(output []byte, gasUsed uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureFault">func (*AccessListTracer) CaptureFault(pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureStart">func (a *AccessListTracer) CaptureStart(env *vm.EVM, from common.Address, to common.Address, create bool, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureState">func (a *AccessListTracer) CaptureState(pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, rData []byte, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureTxEnd">func (*AccessListTracer) CaptureTxEnd(restGas uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.CaptureTxStart">func (*AccessListTracer) CaptureTxStart(gasLimit uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessListTracer.Equal">func (a *AccessListTracer) Equal(other *AccessListTracer) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ExecutionResult">type ExecutionResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#JSONLogger">type JSONLogger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewJSONLogger">func NewJSONLogger(cfg *Config, writer io.Writer) *JSONLogger</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureEnd">func (l *JSONLogger) CaptureEnd(output []byte, gasUsed uint64, t time.Duration, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureEnter">func (l *JSONLogger) CaptureEnter(typ vm.OpCode, from common.Address, to common.Address, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureExit">func (l *JSONLogger) CaptureExit(output []byte, gasUsed uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureFault">func (l *JSONLogger) CaptureFault(pc uint64, op vm.OpCode, gas uint64, cost uint64, scope *vm.ScopeContext, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureStart">func (l *JSONLogger) CaptureStart(env *vm.EVM, from, to common.Address, create bool, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureState">func (l *JSONLogger) CaptureState(pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, rData []byte, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureTxEnd">func (l *JSONLogger) CaptureTxEnd(restGas uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JSONLogger.CaptureTxStart">func (l *JSONLogger) CaptureTxStart(gasLimit uint64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Storage">type Storage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Storage.Copy">func (s Storage) Copy() Storage</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StructLog">type StructLog</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLog.ErrorString">func (s *StructLog) ErrorString() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLog.MarshalJSON">func (s StructLog) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLog.OpName">func (s *StructLog) OpName() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLog.UnmarshalJSON">func (s *StructLog) UnmarshalJSON(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StructLogRes">type StructLogRes</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StructLogger">type StructLogger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStructLogger">func NewStructLogger(cfg *Config) *StructLogger</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureEnd">func (l *StructLogger) CaptureEnd(output []byte, gasUsed uint64, t time.Duration, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureEnter">func (l *StructLogger) CaptureEnter(typ vm.OpCode, from common.Address, to common.Address, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureExit">func (l *StructLogger) CaptureExit(output []byte, gasUsed uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureFault">func (l *StructLogger) CaptureFault(pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureStart">func (l *StructLogger) CaptureStart(env *vm.EVM, from common.Address, to common.Address, create bool, input []byte, gas uint64, value *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureState">func (l *StructLogger) CaptureState(pc uint64, op vm.OpCode, gas, cost uint64, scope *vm.ScopeContext, rData []byte, depth int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureTxEnd">func (l *StructLogger) CaptureTxEnd(restGas uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.CaptureTxStart">func (l *StructLogger) CaptureTxStart(gasLimit uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.Error">func (l *StructLogger) Error() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.GetResult">func (l *StructLogger) GetResult() (json.RawMessage, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.Output">func (l *StructLogger) Output() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.Reset">func (l *StructLogger) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.Stop">func (l *StructLogger) Stop(err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StructLogger.StructLogs">func (l *StructLogger) StructLogs() []StructLog</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go">access_list_tracer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/gen_structlog.go">gen_structlog.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go">logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go">logger_json.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewMarkdownLogger">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=10923:10986#L328">NewMarkdownLogger</a>
+				<a class="permalink" href="index.html#NewMarkdownLogger">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewMarkdownLogger(cfg *<a href="index.html#Config">Config</a>, writer <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>) *mdLogger</pre>
+			<p>NewMarkdownLogger creates a logger which outputs information in a format adapted
+for human readability, and is also a valid markdown table
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteLogs">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=10359:10410#L307">WriteLogs</a>
+				<a class="permalink" href="index.html#WriteLogs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteLogs(writer <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, logs []*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>)</pre>
+			<p>WriteLogs writes vm logs in a readable format to the given writer
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteTrace">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=9411:9462#L274">WriteTrace</a>
+				<a class="permalink" href="index.html#WriteTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteTrace(writer <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, logs []<a href="index.html#StructLog">StructLog</a>)</pre>
+			<p>WriteTrace writes a formatted trace to the given writer
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AccessListTracer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=3310:3498#L96">AccessListTracer</a>
+				<a class="permalink" href="index.html#AccessListTracer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccessListTracer is a tracer that accumulates touched accounts and storage
+slots into an internal set.
+
+			<pre>type AccessListTracer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAccessListTracer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=3680:3799#L104">NewAccessListTracer</a>
+					<a class="permalink" href="index.html#NewAccessListTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAccessListTracer(acl <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#AccessList">AccessList</a>, from, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, precompiles []<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>) *<a href="index.html#AccessListTracer">AccessListTracer</a></pre>
+				<p>NewAccessListTracer creates a new tracer that can generate AccessLists.
+An optional AccessList can be specified to occupy slots and addresses in
+the resulting accesslist.
+
+				
+				
+			
+
+			
+				
+				<h3 id="AccessListTracer.AccessList">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5983:6039#L167">AccessList</a>
+					<a class="permalink" href="index.html#AccessListTracer.AccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AccessListTracer">AccessListTracer</a>) AccessList() <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#AccessList">AccessList</a></pre>
+				<p>AccessList returns the current accesslist maintained by the tracer.
+
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureEnd">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5471:5565#L155">CaptureEnd</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureEnd(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, t <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureEnter">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5570:5704#L157">CaptureEnter</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureEnter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureEnter(typ <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, from <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureExit">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5710:5788#L160">CaptureExit</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureExit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureExit(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureFault">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5339:5465#L152">CaptureFault</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureFault">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureFault(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureStart">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=4194:4341#L126">CaptureStart</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureStart(env *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#EVM">EVM</a>, from <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, create <a href="../../../../../../builtin/index.html#bool">bool</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureState">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=4449:4591#L130">CaptureState</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureState(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, rData []<a href="../../../../../../builtin/index.html#byte">byte</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureState captures all opcodes that touch storage or addresses and adds them to the accesslist.
+
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureTxEnd">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5854:5907#L164">CaptureTxEnd</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureTxEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureTxEnd(restGas <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.CaptureTxStart">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=5793:5849#L162">CaptureTxStart</a>
+					<a class="permalink" href="index.html#AccessListTracer.CaptureTxStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#AccessListTracer">AccessListTracer</a>) CaptureTxStart(gasLimit <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AccessListTracer.Equal">func (*AccessListTracer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/access_list_tracer.go?s=6142:6204#L172">Equal</a>
+					<a class="permalink" href="index.html#AccessListTracer.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AccessListTracer">AccessListTracer</a>) Equal(other *<a href="index.html#AccessListTracer">AccessListTracer</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Equal returns if the content of two access list traces are equal.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=1540:2032#L41">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config are the configuration options for structured logger the EVM
+
+			<pre>type Config struct {
+<span id="Config.EnableMemory"></span>    EnableMemory     <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// enable memory capture</span>
+<span id="Config.DisableStack"></span>    DisableStack     <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// disable stack capture</span>
+<span id="Config.DisableStorage"></span>    DisableStorage   <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// disable storage capture</span>
+<span id="Config.EnableReturnData"></span>    EnableReturnData <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// enable return data capture</span>
+<span id="Config.Debug"></span>    Debug            <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// print output during capture end</span>
+<span id="Config.Limit"></span>    Limit            <a href="../../../../../../builtin/index.html#int">int</a>  <span class="comment">// maximum length of output, but zero means unlimited</span>
+    <span class="comment">// Chain overrides, can be used to execute a trace using future fork rules</span>
+<span id="Config.Overrides"></span>    Overrides *<a href="../../../params/index.html">params</a>.<a href="../../../params/index.html#ChainConfig">ChainConfig</a> `json:&#34;overrides,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ExecutionResult">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=13266:13479#L396">ExecutionResult</a>
+				<a class="permalink" href="index.html#ExecutionResult">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ExecutionResult groups all structured logs emitted by the EVM
+while replaying a transaction in debug mode as well as transaction
+execution status, the amount of gas used and the return value
+
+			<pre>type ExecutionResult struct {
+<span id="ExecutionResult.Gas"></span>    Gas         <a href="../../../../../../builtin/index.html#uint64">uint64</a>         `json:&#34;gas&#34;`
+<span id="ExecutionResult.Failed"></span>    Failed      <a href="../../../../../../builtin/index.html#bool">bool</a>           `json:&#34;failed&#34;`
+<span id="ExecutionResult.ReturnValue"></span>    ReturnValue <a href="../../../../../../builtin/index.html#string">string</a>         `json:&#34;returnValue&#34;`
+<span id="ExecutionResult.StructLogs"></span>    StructLogs  []<a href="index.html#StructLogRes">StructLogRes</a> `json:&#34;structLogs&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="JSONLogger">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=997:1080#L20">JSONLogger</a>
+				<a class="permalink" href="index.html#JSONLogger">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type JSONLogger struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewJSONLogger">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=1197:1258#L28">NewJSONLogger</a>
+					<a class="permalink" href="index.html#NewJSONLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewJSONLogger(cfg *<a href="index.html#Config">Config</a>, writer <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>) *<a href="index.html#JSONLogger">JSONLogger</a></pre>
+				<p>NewJSONLogger creates a new EVM tracer that prints execution steps as JSON objects
+into the provided stream.
+
+				
+				
+			
+
+			
+				
+				<h3 id="JSONLogger.CaptureEnd">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=2480:2570#L73">CaptureEnd</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureEnd(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, t <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureEnd is triggered at end of execution.
+
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureEnter">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=2948:3078#L87">CaptureEnter</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureEnter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureEnter(typ <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, from <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureExit">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=3084:3158#L90">CaptureExit</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureExit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureExit(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureFault">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=1523:1652#L40">CaptureFault</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureFault">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureFault(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureStart">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=1378:1504#L36">CaptureStart</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureStart(env *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#EVM">EVM</a>, from, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, create <a href="../../../../../../builtin/index.html#bool">bool</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureState">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=1820:1956#L46">CaptureState</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureState(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, rData []<a href="../../../../../../builtin/index.html#byte">byte</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureState outputs state information on the logger.
+
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureTxEnd">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=3220:3269#L94">CaptureTxEnd</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureTxEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureTxEnd(restGas <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="JSONLogger.CaptureTxStart">func (*JSONLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger_json.go?s=3163:3215#L92">CaptureTxStart</a>
+					<a class="permalink" href="index.html#JSONLogger.CaptureTxStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#JSONLogger">JSONLogger</a>) CaptureTxStart(gasLimit <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Storage">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=1258:1298#L29">Storage</a>
+				<a class="permalink" href="index.html#Storage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Storage represents a contract&apos;s storage.
+
+			<pre>type Storage map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>]<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Storage.Copy">func (Storage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=1340:1371#L32">Copy</a>
+					<a class="permalink" href="index.html#Storage.Copy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Storage">Storage</a>) Copy() <a href="index.html#Storage">Storage</a></pre>
+				<p>Copy duplicates the current storage.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StructLog">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=2299:3035#L56">StructLog</a>
+				<a class="permalink" href="index.html#StructLog">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StructLog is emitted to the EVM each cycle and lists information about the current internal state
+prior to the execution of the statement.
+
+			<pre>type StructLog struct {
+<span id="StructLog.Pc"></span>    Pc            <a href="../../../../../../builtin/index.html#uint64">uint64</a>                      `json:&#34;pc&#34;`
+<span id="StructLog.Op"></span>    Op            <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>                   `json:&#34;op&#34;`
+<span id="StructLog.Gas"></span>    Gas           <a href="../../../../../../builtin/index.html#uint64">uint64</a>                      `json:&#34;gas&#34;`
+<span id="StructLog.GasCost"></span>    GasCost       <a href="../../../../../../builtin/index.html#uint64">uint64</a>                      `json:&#34;gasCost&#34;`
+<span id="StructLog.Memory"></span>    Memory        []<a href="../../../../../../builtin/index.html#byte">byte</a>                      `json:&#34;memory,omitempty&#34;`
+<span id="StructLog.MemorySize"></span>    MemorySize    <a href="../../../../../../builtin/index.html#int">int</a>                         `json:&#34;memSize&#34;`
+<span id="StructLog.Stack"></span>    Stack         []<a href="http://localhost:6060/pkg/github.com/holiman/uint256/">uint256</a>.<a href="http://localhost:6060/pkg/github.com/holiman/uint256/#Int">Int</a>               `json:&#34;stack&#34;`
+<span id="StructLog.ReturnData"></span>    ReturnData    []<a href="../../../../../../builtin/index.html#byte">byte</a>                      `json:&#34;returnData,omitempty&#34;`
+<span id="StructLog.Storage"></span>    Storage       map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>]<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a> `json:&#34;-&#34;`
+<span id="StructLog.Depth"></span>    Depth         <a href="../../../../../../builtin/index.html#int">int</a>                         `json:&#34;depth&#34;`
+<span id="StructLog.RefundCounter"></span>    RefundCounter <a href="../../../../../../builtin/index.html#uint64">uint64</a>                      `json:&#34;refund&#34;`
+<span id="StructLog.Err"></span>    Err           <a href="../../../../../../builtin/index.html#error">error</a>                       `json:&#34;-&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StructLog.ErrorString">func (*StructLog) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=3573:3613#L87">ErrorString</a>
+					<a class="permalink" href="index.html#StructLog.ErrorString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StructLog">StructLog</a>) ErrorString() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>ErrorString formats the log&apos;s error as a string.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLog.MarshalJSON">func (StructLog) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/gen_structlog.go?s=388:436#L8">MarshalJSON</a>
+					<a class="permalink" href="index.html#StructLog.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#StructLog">StructLog</a>) MarshalJSON() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLog.OpName">func (*StructLog) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=3458:3493#L82">OpName</a>
+					<a class="permalink" href="index.html#StructLog.OpName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StructLog">StructLog</a>) OpName() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>OpName formats the operand name in a human-readable format.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLog.UnmarshalJSON">func (*StructLog) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/gen_structlog.go?s=1787:1840#L44">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#StructLog.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#StructLog">StructLog</a>) UnmarshalJSON(input []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StructLogRes">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=13587:14153#L405">StructLogRes</a>
+				<a class="permalink" href="index.html#StructLogRes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StructLogRes stores a structured log emitted by the EVM while replaying a
+transaction in debug mode
+
+			<pre>type StructLogRes struct {
+<span id="StructLogRes.Pc"></span>    Pc            <a href="../../../../../../builtin/index.html#uint64">uint64</a>             `json:&#34;pc&#34;`
+<span id="StructLogRes.Op"></span>    Op            <a href="../../../../../../builtin/index.html#string">string</a>             `json:&#34;op&#34;`
+<span id="StructLogRes.Gas"></span>    Gas           <a href="../../../../../../builtin/index.html#uint64">uint64</a>             `json:&#34;gas&#34;`
+<span id="StructLogRes.GasCost"></span>    GasCost       <a href="../../../../../../builtin/index.html#uint64">uint64</a>             `json:&#34;gasCost&#34;`
+<span id="StructLogRes.Depth"></span>    Depth         <a href="../../../../../../builtin/index.html#int">int</a>                `json:&#34;depth&#34;`
+<span id="StructLogRes.Error"></span>    Error         <a href="../../../../../../builtin/index.html#string">string</a>             `json:&#34;error,omitempty&#34;`
+<span id="StructLogRes.Stack"></span>    Stack         *[]<a href="../../../../../../builtin/index.html#string">string</a>          `json:&#34;stack,omitempty&#34;`
+<span id="StructLogRes.Memory"></span>    Memory        *[]<a href="../../../../../../builtin/index.html#string">string</a>          `json:&#34;memory,omitempty&#34;`
+<span id="StructLogRes.Storage"></span>    Storage       *map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#string">string</a> `json:&#34;storage,omitempty&#34;`
+<span id="StructLogRes.RefundCounter"></span>    RefundCounter <a href="../../../../../../builtin/index.html#uint64">uint64</a>             `json:&#34;refund,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StructLogger">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=3938:4242#L99">StructLogger</a>
+				<a class="permalink" href="index.html#StructLogger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StructLogger is an EVM state logger and implements EVMLogger.
+<p>StructLogger can capture state based on the given Log configuration and also keeps
+a track record of modified storage which is used in reporting snapshots of the
+contract their storage.
+
+			<pre>type StructLogger struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStructLogger">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=4284:4331#L115">NewStructLogger</a>
+					<a class="permalink" href="index.html#NewStructLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStructLogger(cfg *<a href="index.html#Config">Config</a>) *<a href="index.html#StructLogger">StructLogger</a></pre>
+				<p>NewStructLogger returns a new logger
+
+				
+				
+			
+
+			
+				
+				<h3 id="StructLogger.CaptureEnd">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=7650:7742#L213">CaptureEnd</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureEnd(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, t <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureEnd is called after the call finishes to finalize the tracing.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureEnter">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=7888:8020#L224">CaptureEnter</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureEnter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureEnter(typ <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, from <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureExit">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=8026:8102#L227">CaptureExit</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureExit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureExit(output []<a href="../../../../../../builtin/index.html#byte">byte</a>, gasUsed <a href="../../../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureFault">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=7447:7571#L209">CaptureFault</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureFault">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureFault(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureFault implements the EVMLogger interface to trace an execution fault
+while running an opcode.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureStart">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=4743:4886#L134">CaptureStart</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureStart(env *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#EVM">EVM</a>, from <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, to <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, create <a href="../../../../../../builtin/index.html#bool">bool</a>, input []<a href="../../../../../../builtin/index.html#byte">byte</a>, gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, value *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>CaptureStart implements the EVMLogger interface to initialize the tracing operation.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureState">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=5065:5203#L141">CaptureState</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureState(pc <a href="../../../../../../builtin/index.html#uint64">uint64</a>, op <a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#OpCode">OpCode</a>, gas, cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>, scope *<a href="../../../core/vm/index.html">vm</a>.<a href="../../../core/vm/index.html#ScopeContext">ScopeContext</a>, rData []<a href="../../../../../../builtin/index.html#byte">byte</a>, depth <a href="../../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CaptureState logs a new structured log message and pushes it out to the environment
+<p>CaptureState also tracks SLOAD/SSTORE ops to track storage change.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureTxEnd">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=8917:8968#L260">CaptureTxEnd</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureTxEnd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureTxEnd(restGas <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.CaptureTxStart">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=8834:8888#L256">CaptureTxStart</a>
+					<a class="permalink" href="index.html#StructLogger.CaptureTxStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) CaptureTxStart(gasLimit <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.Error">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=9176:9212#L268">Error</a>
+					<a class="permalink" href="index.html#StructLogger.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) Error() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Error returns the VM error captured by the trace.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.GetResult">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=8108:8167#L230">GetResult</a>
+					<a class="permalink" href="index.html#StructLogger.GetResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) GetResult() (<a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.Output">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=9292:9330#L271">Output</a>
+					<a class="permalink" href="index.html#StructLogger.Output">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) Output() []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Output returns the VM return value captured by the trace.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.Reset">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=4511:4541#L126">Reset</a>
+					<a class="permalink" href="index.html#StructLogger.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) Reset()</pre>
+				<p>Reset clears the data held by the logger.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.Stop">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=8737:8775#L251">Stop</a>
+					<a class="permalink" href="index.html#StructLogger.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) Stop(err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Stop terminates execution of the tracer at the first opportune moment.
+
+				
+				
+				
+			
+				
+				<h3 id="StructLogger.StructLogs">func (*StructLogger) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/logger/logger.go?s=9056:9103#L265">StructLogs</a>
+					<a class="permalink" href="index.html#StructLogger.StructLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#StructLogger">StructLogger</a>) StructLogs() []<a href="index.html#StructLog">StructLog</a></pre>
+				<p>StructLogs returns the captured log entries.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

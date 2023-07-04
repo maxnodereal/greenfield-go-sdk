@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>lru - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package lru
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/hashicorp/golang-lru"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package lru provides three different LRU caches of varying sophistication.
+<p>Cache is a simple LRU cache. It is based on the
+LRU implementation in groupcache:
+<a href="https://github.com/golang/groupcache/tree/master/lru">https://github.com/golang/groupcache/tree/master/lru</a>
+<p>TwoQueueCache tracks frequently used and recently used entries separately.
+This avoids a burst of accesses from taking out frequently used entries,
+at the cost of about 2x computational overhead and some extra bookkeeping.
+<p>ARCCache is an adaptive replacement cache. It tracks recent evictions as
+well as recent usage in both the frequent and recent caches. Its
+computational overhead is comparable to TwoQueueCache, but the memory
+overhead is linear with the size of the cache.
+<p>ARC has been patented by IBM, so do not use it if that is problematic for
+your program.
+<p>All caches in this package take locks while operating, and are therefore
+thread-safe for consumers.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#ARCCache">type ARCCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewARC">func NewARC(size int) (*ARCCache, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Add">func (c *ARCCache) Add(key, value interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Contains">func (c *ARCCache) Contains(key interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Get">func (c *ARCCache) Get(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Keys">func (c *ARCCache) Keys() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Len">func (c *ARCCache) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Peek">func (c *ARCCache) Peek(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Purge">func (c *ARCCache) Purge()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ARCCache.Remove">func (c *ARCCache) Remove(key interface{})</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Cache">type Cache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(size int) (*Cache, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWithEvict">func NewWithEvict(size int, onEvicted func(key, value interface{})) (c *Cache, err error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Add">func (c *Cache) Add(key, value interface{}) (evicted bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Contains">func (c *Cache) Contains(key interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.ContainsOrAdd">func (c *Cache) ContainsOrAdd(key, value interface{}) (ok, evicted bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Get">func (c *Cache) Get(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.GetOldest">func (c *Cache) GetOldest() (key, value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Keys">func (c *Cache) Keys() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Len">func (c *Cache) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Peek">func (c *Cache) Peek(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.PeekOrAdd">func (c *Cache) PeekOrAdd(key, value interface{}) (previous interface{}, ok, evicted bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Purge">func (c *Cache) Purge()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Remove">func (c *Cache) Remove(key interface{}) (present bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.RemoveOldest">func (c *Cache) RemoveOldest() (key, value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Resize">func (c *Cache) Resize(size int) (evicted int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TwoQueueCache">type TwoQueueCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New2Q">func New2Q(size int) (*TwoQueueCache, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New2QParams">func New2QParams(size int, recentRatio, ghostRatio float64) (*TwoQueueCache, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Add">func (c *TwoQueueCache) Add(key, value interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Contains">func (c *TwoQueueCache) Contains(key interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Get">func (c *TwoQueueCache) Get(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Keys">func (c *TwoQueueCache) Keys() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Len">func (c *TwoQueueCache) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Peek">func (c *TwoQueueCache) Peek(key interface{}) (value interface{}, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Purge">func (c *TwoQueueCache) Purge()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TwoQueueCache.Remove">func (c *TwoQueueCache) Remove(key interface{})</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go">2q.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go">arc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go">lru.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// Default2QRecentRatio is the ratio of the 2Q cache dedicated</span>
+    <span class="comment">// to recently added entries that have only been accessed once.</span>
+    <span id="Default2QRecentRatio">Default2QRecentRatio</span> = 0.25
+
+    <span class="comment">// Default2QGhostEntries is the default ratio of ghost</span>
+    <span class="comment">// entries kept to track entries recently evicted</span>
+    <span id="Default2QGhostEntries">Default2QGhostEntries</span> = 0.50
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultEvictedBufferSize defines the default buffer size to store evicted key/val</span>
+    <span id="DefaultEvictedBufferSize">DefaultEvictedBufferSize</span> = 16
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="ARCCache">type <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=652:1071#L7">ARCCache</a>
+				<a class="permalink" href="index.html#ARCCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ARCCache is a thread-safe fixed size Adaptive Replacement Cache (ARC).
+ARC is an enhancement over the standard LRU cache in that tracks both
+frequency and recency of use. This avoids a burst in access to new
+entries from evicting the frequently used older entries. It adds some
+additional tracking overhead to a standard LRU cache, computationally
+it is roughly 2x the cost, and the extra memory overhead is linear
+with the size of the cache. ARC has been patented by IBM, but is
+similar to the TwoQueueCache (2Q) which requires setting parameters.
+
+			<pre>type ARCCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewARC">func <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=1116:1156#L21">NewARC</a>
+					<a class="permalink" href="index.html#NewARC">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewARC(size <a href="../../../builtin/index.html#int">int</a>) (*<a href="index.html#ARCCache">ARCCache</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewARC creates an ARC of the given size
+
+				
+				
+			
+
+			
+				
+				<h3 id="ARCCache.Add">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=2142:2188#L75">Add</a>
+					<a class="permalink" href="index.html#ARCCache.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Add(key, value interface{})</pre>
+				<p>Add adds a value to the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Contains">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=5249:5298#L231">Contains</a>
+					<a class="permalink" href="index.html#ARCCache.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Contains(key interface{}) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Contains is used to check if the cache contains a key
+without updating recency or frequency.
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Get">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=1676:1744#L53">Get</a>
+					<a class="permalink" href="index.html#ARCCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Get(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Get looks up a key&apos;s value from the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Keys">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=4565:4604#L193">Keys</a>
+					<a class="permalink" href="index.html#ARCCache.Keys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Keys() []interface{}</pre>
+				<p>Keys returns all the cached keys
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Len">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=4423:4451#L186">Len</a>
+					<a class="permalink" href="index.html#ARCCache.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Len() <a href="../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the number of cached entries
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Peek">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=5487:5556#L239">Peek</a>
+					<a class="permalink" href="index.html#ARCCache.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Peek(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Peek is used to inspect the cache value of a key
+without updating recency or frequency.
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Purge">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=5024:5050#L220">Purge</a>
+					<a class="permalink" href="index.html#ARCCache.Purge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Purge()</pre>
+				<p>Purge is used to clear the cache
+
+				
+				
+				
+			
+				
+				<h3 id="ARCCache.Remove">func (*ARCCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/arc.go?s=4762:4804#L202">Remove</a>
+					<a class="permalink" href="index.html#ARCCache.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ARCCache">ARCCache</a>) Remove(key interface{})</pre>
+				<p>Remove is used to purge a key from the cache
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Cache">type <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=255:445#L5">Cache</a>
+				<a class="permalink" href="index.html#Cache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Cache is a thread-safe fixed size LRU cache.
+
+			<pre>type Cache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=488:522#L13">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(size <a href="../../../builtin/index.html#int">int</a>) (*<a href="index.html#Cache">Cache</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>New creates an LRU of the given size.
+
+				
+				
+			
+				
+				<h3 id="NewWithEvict">func <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=643:732#L19">NewWithEvict</a>
+					<a class="permalink" href="index.html#NewWithEvict">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWithEvict(size <a href="../../../builtin/index.html#int">int</a>, onEvicted func(key, value interface{})) (c *<a href="index.html#Cache">Cache</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewWithEvict constructs a fixed size cache with the given eviction
+callback.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Cache.Add">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=1852:1910#L63">Add</a>
+					<a class="permalink" href="index.html#Cache.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Add(key, value interface{}) (evicted <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Add adds a value to the cache. Returns true if an eviction occurred.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Contains">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=2537:2583#L88">Contains</a>
+					<a class="permalink" href="index.html#Cache.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Contains(key interface{}) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Contains checks if a key is in the cache, without updating the
+recent-ness or deleting it for being stale.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.ContainsOrAdd">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=3149:3221#L107">ContainsOrAdd</a>
+					<a class="permalink" href="index.html#Cache.ContainsOrAdd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) ContainsOrAdd(key, value interface{}) (ok, evicted <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>ContainsOrAdd checks if a key is in the cache without updating the
+recent-ness or deleting it for being stale, and if not, adds the value.
+Returns whether found and whether an eviction occurred.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Get">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=2275:2340#L79">Get</a>
+					<a class="permalink" href="index.html#Cache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Get(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Get looks up a key&apos;s value from the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.GetOldest">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=5647:5708#L200">GetOldest</a>
+					<a class="permalink" href="index.html#Cache.GetOldest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) GetOldest() (key, value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>GetOldest returns the oldest entry
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Keys">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=5865:5901#L208">Keys</a>
+					<a class="permalink" href="index.html#Cache.Keys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Keys() []interface{}</pre>
+				<p>Keys returns a slice of the keys in the cache, from oldest to newest.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Len">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=6025:6050#L216">Len</a>
+					<a class="permalink" href="index.html#Cache.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Len() <a href="../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the number of items in the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Peek">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=2792:2858#L97">Peek</a>
+					<a class="permalink" href="index.html#Cache.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Peek(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Peek returns the key value (or undefined if not found) without updating
+the &quot;recently used&quot;-ness of the key.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.PeekOrAdd">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=3823:3913#L129">PeekOrAdd</a>
+					<a class="permalink" href="index.html#Cache.PeekOrAdd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) PeekOrAdd(key, value interface{}) (previous interface{}, ok, evicted <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>PeekOrAdd checks if a key is in the cache without updating the
+recent-ness or deleting it for being stale, and if not, adds the value.
+Returns whether found and whether an eviction occurred.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Purge">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=1413:1436#L45">Purge</a>
+					<a class="permalink" href="index.html#Cache.Purge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Purge()</pre>
+				<p>Purge is used to completely clear the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Remove">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=4396:4450#L150">Remove</a>
+					<a class="permalink" href="index.html#Cache.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Remove(key interface{}) (present <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Remove removes the provided key from the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.RemoveOldest">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=5230:5294#L184">RemoveOldest</a>
+					<a class="permalink" href="index.html#Cache.RemoveOldest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) RemoveOldest() (key, value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>RemoveOldest removes the oldest item from the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Resize">func (*Cache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/lru.go?s=4797:4843#L166">Resize</a>
+					<a class="permalink" href="index.html#Cache.Resize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Cache">Cache</a>) Resize(size <a href="../../../builtin/index.html#int">int</a>) (evicted <a href="../../../builtin/index.html#int">int</a>)</pre>
+				<p>Resize changes the cache size.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TwoQueueCache">type <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=892:1076#L19">TwoQueueCache</a>
+				<a class="permalink" href="index.html#TwoQueueCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TwoQueueCache is a thread-safe fixed size 2Q cache.
+2Q is an enhancement over the standard LRU cache
+in that it tracks both frequently and recently used
+entries separately. This avoids a burst in access to new
+entries from evicting frequently used entries. It adds some
+additional tracking overhead to the standard LRU cache, and is
+computationally about 2x the cost, and adds some metadata over
+head. The ARCCache is similar, but does not require setting any
+parameters.
+
+			<pre>type TwoQueueCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New2Q">func <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=1163:1207#L31">New2Q</a>
+					<a class="permalink" href="index.html#New2Q">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New2Q(size <a href="../../../builtin/index.html#int">int</a>) (*<a href="index.html#TwoQueueCache">TwoQueueCache</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>New2Q creates a new TwoQueueCache using the default
+values for the parameters.
+
+				
+				
+			
+				
+				<h3 id="New2QParams">func <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=1367:1450#L37">New2QParams</a>
+					<a class="permalink" href="index.html#New2QParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New2QParams(size <a href="../../../builtin/index.html#int">int</a>, recentRatio, ghostRatio <a href="../../../builtin/index.html#float64">float64</a>) (*<a href="index.html#TwoQueueCache">TwoQueueCache</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>New2QParams creates a new TwoQueueCache using the provided
+parameter values.
+
+				
+				
+			
+
+			
+				
+				<h3 id="TwoQueueCache.Add">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=2816:2867#L100">Add</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Add(key, value interface{})</pre>
+				<p>Add adds a value to the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Contains">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=5108:5162#L197">Contains</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Contains(key interface{}) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Contains is used to check if the cache contains a key
+without updating recency or frequency.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Get">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=2347:2420#L78">Get</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Get(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Get looks up a key&apos;s value from the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Keys">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=4395:4439#L163">Keys</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Keys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Keys() []interface{}</pre>
+				<p>Keys returns a slice of the keys in the cache.
+The frequently used keys are first in the returned slice.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Len">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=4163:4196#L155">Len</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Len() <a href="../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the number of items in the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Peek">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=5361:5435#L205">Peek</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Peek(key interface{}) (value interface{}, ok <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Peek is used to inspect the cache value of a key
+without updating recency or frequency.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Purge">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=4873:4904#L187">Purge</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Purge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Purge()</pre>
+				<p>Purge is used to completely clear the cache.
+
+				
+				
+				
+			
+				
+				<h3 id="TwoQueueCache.Remove">func (*TwoQueueCache) <a href="http://localhost:6060/src/github.com/hashicorp/golang-lru/2q.go?s=4610:4657#L172">Remove</a>
+					<a class="permalink" href="index.html#TwoQueueCache.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TwoQueueCache">TwoQueueCache</a>) Remove(key interface{})</pre>
+				<p>Remove removes the provided key from the cache.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/hashicorp/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="simplelru/index.html">simplelru</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package simplelru provides simple LRU implementation based on build-in container/list.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

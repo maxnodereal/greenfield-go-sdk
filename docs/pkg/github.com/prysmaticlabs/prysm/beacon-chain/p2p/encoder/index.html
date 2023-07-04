@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>encoder - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package encoder
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package encoder allows for registering custom data encoders for information
+sent as raw bytes over the wire via p2p to other nodes. Examples of encoders
+are SSZ (SimpleSerialize), SSZ with Snappy compression, among others. Providing
+an abstract interface for these encoders allows for future flexibility of
+Ethereum beacon node p2p.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DecodeSnappy">func DecodeSnappy(msg []byte, maxSize uint64) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SetMaxChunkSizeForBellatrix">func SetMaxChunkSizeForBellatrix()</a></dd>
+			
+				
+				<dd><a href="index.html#SetMaxGossipSizeForBellatrix">func SetMaxGossipSizeForBellatrix()</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NetworkEncoding">type NetworkEncoding</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SszNetworkEncoder">type SszNetworkEncoder</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.DecodeGossip">func (_ SszNetworkEncoder) DecodeGossip(b []byte, to fastssz.Unmarshaler) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.DecodeWithMaxLength">func (e SszNetworkEncoder) DecodeWithMaxLength(r io.Reader, to fastssz.Unmarshaler) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.EncodeGossip">func (_ SszNetworkEncoder) EncodeGossip(w io.Writer, msg fastssz.Marshaler) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.EncodeWithMaxLength">func (_ SszNetworkEncoder) EncodeWithMaxLength(w io.Writer, msg fastssz.Marshaler) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.MaxLength">func (_ SszNetworkEncoder) MaxLength(length uint64) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SszNetworkEncoder.ProtocolSuffix">func (_ SszNetworkEncoder) ProtocolSuffix() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/network_encoding.go">network_encoding.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go">ssz.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/varint.go">varint.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>ProtocolSuffixSSZSnappy is the last part of the topic string to identify the encoding protocol.
+
+				<pre>const <span id="ProtocolSuffixSSZSnappy">ProtocolSuffixSSZSnappy</span> = &#34;ssz_snappy&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="MaxChunkSize">MaxChunkSize</span> = <a href="../../../config/params/index.html">params</a>.<a href="../../../config/params/index.html#BeaconNetworkConfig">BeaconNetworkConfig</a>().<a href="index.html#MaxChunkSize">MaxChunkSize</a> <span class="comment">// 1 Mib.</span>
+</pre>
+			
+				<p>MaxGossipSize allowed for gossip messages.
+
+				<pre>var <span id="MaxGossipSize">MaxGossipSize</span> = <a href="../../../config/params/index.html">params</a>.<a href="../../../config/params/index.html#BeaconNetworkConfig">BeaconNetworkConfig</a>().<a href="index.html#GossipMaxSize">GossipMaxSize</a> <span class="comment">// 1 Mib.</span>
+</pre>
+			
+		
+		
+			
+			
+			<h2 id="DecodeSnappy">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=2687:2748#L82">DecodeSnappy</a>
+				<a class="permalink" href="index.html#DecodeSnappy">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DecodeSnappy(msg []<a href="../../../../../../builtin/index.html#byte">byte</a>, maxSize <a href="../../../../../../builtin/index.html#uint64">uint64</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DecodeSnappy decodes a snappy compressed message.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMaxChunkSizeForBellatrix">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=5928:5962#L200">SetMaxChunkSizeForBellatrix</a>
+				<a class="permalink" href="index.html#SetMaxChunkSizeForBellatrix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMaxChunkSizeForBellatrix()</pre>
+			<p>SetMaxChunkSizeForBellatrix sets the MaxChunkSize to 10Mb.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMaxGossipSizeForBellatrix">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=5756:5791#L195">SetMaxGossipSizeForBellatrix</a>
+				<a class="permalink" href="index.html#SetMaxGossipSizeForBellatrix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMaxGossipSizeForBellatrix()</pre>
+			<p>SetMaxGossipSizeForBellatrix sets the MaxGossipSize to 10Mb.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="NetworkEncoding">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/network_encoding.go?s=152:1173#L1">NetworkEncoding</a>
+				<a class="permalink" href="index.html#NetworkEncoding">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NetworkEncoding represents an encoder compatible with Ethereum consensus p2p.
+
+			<pre>type NetworkEncoding interface {
+    <span class="comment">// DecodeGossip to the provided gossip message. The interface must be a pointer to the decoding destination.</span>
+    DecodeGossip([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../ferranbt/fastssz/index.html">ssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Unmarshaler">Unmarshaler</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// DecodeWithMaxLength a bytes from a reader with a varint length prefix. The interface must be a pointer to the</span>
+    <span class="comment">// decoding destination. The length of the message should not be more than the provided limit.</span>
+    DecodeWithMaxLength(<a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>, <a href="../../../../../ferranbt/fastssz/index.html">ssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Unmarshaler">Unmarshaler</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// EncodeGossip an arbitrary gossip message to the provided writer. The interface must be a pointer object to encode.</span>
+    EncodeGossip(<a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, <a href="../../../../../ferranbt/fastssz/index.html">ssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Marshaler">Marshaler</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// EncodeWithMaxLength an arbitrary message to the provided writer with a varint length prefix. The interface must be</span>
+    <span class="comment">// a pointer object to encode. The encoded message should not be bigger than the provided limit.</span>
+    EncodeWithMaxLength(<a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, <a href="../../../../../ferranbt/fastssz/index.html">ssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Marshaler">Marshaler</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// ProtocolSuffix returns the last part of the protocol ID to indicate the encoding scheme.</span>
+    ProtocolSuffix() <a href="../../../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SszNetworkEncoder">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=886:917#L22">SszNetworkEncoder</a>
+				<a class="permalink" href="index.html#SszNetworkEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SszNetworkEncoder supports p2p networking encoding using SimpleSerialize
+with snappy compression (if enabled).
+
+			<pre>type SszNetworkEncoder struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SszNetworkEncoder.DecodeGossip">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=2450:2529#L73">DecodeGossip</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.DecodeGossip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) DecodeGossip(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, to <a href="../../../../../ferranbt/fastssz/index.html">fastssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Unmarshaler">Unmarshaler</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeGossip decodes the bytes to the protobuf gossip message provided.
+
+				
+				
+				
+			
+				
+				<h3 id="SszNetworkEncoder.DecodeWithMaxLength">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=3223:3312#L99">DecodeWithMaxLength</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.DecodeWithMaxLength">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) DecodeWithMaxLength(r <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>, to <a href="../../../../../ferranbt/fastssz/index.html">fastssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Unmarshaler">Unmarshaler</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeWithMaxLength the bytes from io.Reader to the protobuf message provided.
+This checks that the decoded message isn&apos;t larger than the provided max limit.
+
+				
+				
+				
+			
+				
+				<h3 id="SszNetworkEncoder.EncodeGossip">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=1123:1211#L28">EncodeGossip</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.EncodeGossip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) EncodeGossip(w <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, msg <a href="../../../../../ferranbt/fastssz/index.html">fastssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Marshaler">Marshaler</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>EncodeGossip the proto gossip message to the io.Writer.
+
+				
+				
+				
+			
+				
+				<h3 id="SszNetworkEncoder.EncodeWithMaxLength">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=1762:1857#L45">EncodeWithMaxLength</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.EncodeWithMaxLength">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) EncodeWithMaxLength(w <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Writer">Writer</a>, msg <a href="../../../../../ferranbt/fastssz/index.html">fastssz</a>.<a href="../../../../../ferranbt/fastssz/index.html#Marshaler">Marshaler</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>EncodeWithMaxLength the proto message to the io.Writer. This encoding prefixes the byte slice with a protobuf varint
+to indicate the size of the message. This checks that the encoded message isn&apos;t larger than the provided max limit.
+
+				
+				
+				
+			
+				
+				<h3 id="SszNetworkEncoder.MaxLength">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=4187:4251#L137">MaxLength</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.MaxLength">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) MaxLength(length <a href="../../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MaxLength specifies the maximum possible length of an encoded
+chunk of data.
+
+				
+				
+				
+			
+				
+				<h3 id="SszNetworkEncoder.ProtocolSuffix">func (SszNetworkEncoder) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/p2p/encoder/ssz.go?s=4010:4060#L131">ProtocolSuffix</a>
+					<a class="permalink" href="index.html#SszNetworkEncoder.ProtocolSuffix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ <a href="index.html#SszNetworkEncoder">SszNetworkEncoder</a>) ProtocolSuffix() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>ProtocolSuffix returns the appropriate suffix for protocol IDs.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

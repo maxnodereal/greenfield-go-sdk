@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>flowrate - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package flowrate
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/libs/flowrate"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package flowrate provides the tools for monitoring and limiting the flow rate
+of an arbitrary data stream.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#Limiter">type Limiter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Monitor">type Monitor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(sampleRate, windowSize time.Duration) *Monitor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.Done">func (m *Monitor) Done() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.IO">func (m *Monitor) IO(n int, err error) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.Limit">func (m *Monitor) Limit(want int, rate int64, block bool) (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.SetREMA">func (m *Monitor) SetREMA(rEMA float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.SetTransferSize">func (m *Monitor) SetTransferSize(bytes int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.Status">func (m *Monitor) Status() Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Monitor.Update">func (m *Monitor) Update(n int) int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Percent">type Percent</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Percent.Float">func (p Percent) Float() float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Percent.String">func (p Percent) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Reader">type Reader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReader">func NewReader(r io.Reader, limit int64) *Reader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reader.Close">func (r *Reader) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reader.Read">func (r *Reader) Read(p []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reader.SetBlocking">func (r *Reader) SetBlocking(new bool) (old bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reader.SetLimit">func (r *Reader) SetLimit(new int64) (old int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Status">type Status</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Writer">type Writer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWriter">func NewWriter(w io.Writer, limit int64) *Writer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Writer.Close">func (w *Writer) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Writer.SetBlocking">func (w *Writer) SetBlocking(new bool) (old bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Writer.SetLimit">func (w *Writer) SetLimit(new int64) (old int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Writer.Write">func (w *Writer) Write(p []byte) (n int, err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go">flowrate.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go">io.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrLimit is returned by the Writer when a non-blocking write is short due to
+the transfer rate limit.
+
+				<pre>var <span id="ErrLimit">ErrLimit</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;flowrate: flow rate limit exceeded&#34;)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Limiter">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=404:558#L8">Limiter</a>
+				<a class="permalink" href="index.html#Limiter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Limiter is implemented by the Reader and Writer to provide a consistent
+interface for monitoring and controlling data transfer.
+
+			<pre>type Limiter interface {
+    Done() <a href="../../../../../builtin/index.html#int64">int64</a>
+    Status() <a href="index.html#Status">Status</a>
+    SetTransferSize(bytes <a href="../../../../../builtin/index.html#int64">int64</a>)
+    SetLimit(new <a href="../../../../../builtin/index.html#int64">int64</a>) (old <a href="../../../../../builtin/index.html#int64">int64</a>)
+    SetBlocking(new <a href="../../../../../builtin/index.html#bool">bool</a>) (old <a href="../../../../../builtin/index.html#bool">bool</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Monitor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=328:1227#L7">Monitor</a>
+				<a class="permalink" href="index.html#Monitor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Monitor monitors and limits the transfer rate of a data stream.
+
+			<pre>type Monitor struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=1778:1833#L39">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(sampleRate, windowSize <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#Monitor">Monitor</a></pre>
+				<p>New creates a new flow control monitor. Instantaneous transfer rate is
+measured and updated for each sampleRate interval. windowSize determines the
+weight of each sample in the exponential moving average (EMA) calculation.
+The exact formulas are:
+<pre>sampleTime = currentTime - prevSampleTime
+sampleRate = byteCount / sampleTime
+weight     = 1 - exp(-sampleTime/windowSize)
+newRate    = weight*sampleRate + (1-weight)*oldRate
+</pre>
+<p>The default values for sampleRate and windowSize (if &lt;= 0) are 100ms and 1s,
+respectively.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Monitor.Done">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=2969:2999#L83">Done</a>
+					<a class="permalink" href="index.html#Monitor.Done">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) Done() <a href="../../../../../builtin/index.html#int64">int64</a></pre>
+				<p>Done marks the transfer as finished and prevents any further updates or
+limiting. Instantaneous and current transfer rates drop to 0. Update, IO, and
+Limit methods become NOOPs. It returns the total number of bytes transferred.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.IO">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=2650:2701#L76">IO</a>
+					<a class="permalink" href="index.html#Monitor.IO">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) IO(n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>IO is a convenience method intended to wrap io.Reader and io.Writer method
+execution. It calls m.Update(n) and then returns (n, err) unmodified.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.Limit">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=5835:5900#L167">Limit</a>
+					<a class="permalink" href="index.html#Monitor.Limit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) Limit(want <a href="../../../../../builtin/index.html#int">int</a>, rate <a href="../../../../../builtin/index.html#int64">int64</a>, block <a href="../../../../../builtin/index.html#bool">bool</a>) (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Limit restricts the instantaneous (per-sample) data flow to rate bytes per
+second. It returns the maximum number of bytes (0 &lt;= n &lt;= want) that may be
+transferred immediately without exceeding the limit. If block == true, the
+call blocks until n &gt; 0. want is returned unmodified if want &lt; 1, rate &lt; 1,
+or the transfer is inactive (after a call to Done).
+<p>At least one byte is always allowed to be transferred in any given sampling
+period. Thus, if the sampling rate is 100ms, the lowest achievable flow rate
+is 10 bytes per second.
+<p>For usage examples, see the implementation of Reader and Writer in io.go.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.SetREMA">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=2398:2437#L67">SetREMA</a>
+					<a class="permalink" href="index.html#Monitor.SetREMA">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) SetREMA(rEMA <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Hack to set the current rEMA.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.SetTransferSize">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=6652:6698#L200">SetTransferSize</a>
+					<a class="permalink" href="index.html#Monitor.SetTransferSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) SetTransferSize(bytes <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetTransferSize specifies the total size of the data transfer, which allows
+the Monitor to calculate the overall progress and time to completion.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.Status">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=4328:4361#L118">Status</a>
+					<a class="permalink" href="index.html#Monitor.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) Status() <a href="index.html#Status">Status</a></pre>
+				<p>Status returns current transfer status information. The returned value
+becomes static after a call to Done.
+
+				
+				
+				
+			
+				
+				<h3 id="Monitor.Update">func (*Monitor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=2273:2308#L59">Update</a>
+					<a class="permalink" href="index.html#Monitor.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Monitor">Monitor</a>) Update(n <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Update records the transfer of n bytes and returns n. It should be called
+after each Read/Write operation, even if n is 0.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Percent">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/util.go?s=1098:1117#L34">Percent</a>
+				<a class="permalink" href="index.html#Percent">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Percent represents a percentage in increments of 1/1000th of a percent.
+
+			<pre>type Percent <a href="../../../../../builtin/index.html#uint32">uint32</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Percent.Float">func (Percent) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/util.go?s=1375:1407#L46">Float</a>
+					<a class="permalink" href="index.html#Percent.Float">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Percent">Percent</a>) Float() <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Percent.String">func (Percent) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/util.go?s=1439:1471#L50">String</a>
+					<a class="permalink" href="index.html#Percent.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Percent">Percent</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Reader">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=647:874#L18">Reader</a>
+				<a class="permalink" href="index.html#Reader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reader implements io.ReadCloser with a restriction on the rate of data
+transfer.
+
+			<pre>type Reader struct {
+    <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a> <span class="comment">// Data source</span>
+    *<a href="index.html#Monitor">Monitor</a>  <span class="comment">// Flow control monitor</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReader">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=951:999#L27">NewReader</a>
+					<a class="permalink" href="index.html#NewReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReader(r <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, limit <a href="../../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#Reader">Reader</a></pre>
+				<p>NewReader restricts all Read operations on r to limit bytes per second.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reader.Close">func (*Reader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=1983:2013#L58">Close</a>
+					<a class="permalink" href="index.html#Reader.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reader">Reader</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying reader if it implements the io.Closer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="Reader.Read">func (*Reader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=1241:1291#L34">Read</a>
+					<a class="permalink" href="index.html#Reader.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reader">Reader</a>) Read(p []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Read reads up to len(p) bytes into p without exceeding the current transfer
+rate limit. It returns (0, nil) immediately if r is non-blocking and no new
+bytes can be read at this time.
+
+				
+				
+				
+			
+				
+				<h3 id="Reader.SetBlocking">func (*Reader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=1811:1860#L52">SetBlocking</a>
+					<a class="permalink" href="index.html#Reader.SetBlocking">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reader">Reader</a>) SetBlocking(new <a href="../../../../../builtin/index.html#bool">bool</a>) (old <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SetBlocking changes the blocking behavior and returns the previous setting. A
+Read call on a non-blocking reader returns immediately if no additional bytes
+may be read at this time due to the rate limit.
+
+				
+				
+				
+			
+				
+				<h3 id="Reader.SetLimit">func (*Reader) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=1507:1555#L44">SetLimit</a>
+					<a class="permalink" href="index.html#Reader.SetLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Reader">Reader</a>) SetLimit(new <a href="../../../../../builtin/index.html#int64">int64</a>) (old <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetLimit changes the transfer rate limit to new bytes per second and returns
+the previous setting.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Status">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/flowrate.go?s=3392:4212#L100">Status</a>
+				<a class="permalink" href="index.html#Status">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Status represents the current Monitor status. All transfer rates are in bytes
+per second rounded to the nearest byte.
+
+			<pre>type Status struct {
+<span id="Status.Start"></span>    Start    <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>     <span class="comment">// Transfer start time</span>
+<span id="Status.Bytes"></span>    Bytes    <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Total number of bytes transferred</span>
+<span id="Status.Samples"></span>    Samples  <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Total number of samples taken</span>
+<span id="Status.InstRate"></span>    InstRate <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Instantaneous transfer rate</span>
+<span id="Status.CurRate"></span>    CurRate  <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Current transfer rate (EMA of InstRate)</span>
+<span id="Status.AvgRate"></span>    AvgRate  <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Average transfer rate (Bytes / Duration)</span>
+<span id="Status.PeakRate"></span>    PeakRate <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Maximum instantaneous transfer rate</span>
+<span id="Status.BytesRem"></span>    BytesRem <a href="../../../../../builtin/index.html#int64">int64</a>         <span class="comment">// Number of bytes remaining in the transfer</span>
+<span id="Status.Duration"></span>    Duration <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> <span class="comment">// Time period covered by the statistics</span>
+<span id="Status.Idle"></span>    Idle     <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> <span class="comment">// Time since the last transfer of at least 1 byte</span>
+<span id="Status.TimeRem"></span>    TimeRem  <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> <span class="comment">// Estimated time to completion</span>
+<span id="Status.Progress"></span>    Progress <a href="index.html#Percent">Percent</a>       <span class="comment">// Overall transfer progress</span>
+<span id="Status.Active"></span>    Active   <a href="../../../../../builtin/index.html#bool">bool</a>          <span class="comment">// Flag indicating an active transfer</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Writer">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=2197:2432#L68">Writer</a>
+				<a class="permalink" href="index.html#Writer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Writer implements io.WriteCloser with a restriction on the rate of data
+transfer.
+
+			<pre>type Writer struct {
+    <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a> <span class="comment">// Data destination</span>
+    *<a href="index.html#Monitor">Monitor</a>  <span class="comment">// Flow control monitor</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWriter">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=2624:2672#L79">NewWriter</a>
+					<a class="permalink" href="index.html#NewWriter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWriter(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>, limit <a href="../../../../../builtin/index.html#int64">int64</a>) *<a href="index.html#Writer">Writer</a></pre>
+				<p>NewWriter restricts all Write operations on w to limit bytes per second. The
+transfer rate and the default blocking behavior (true) can be changed
+directly on the returned *Writer.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Writer.Close">func (*Writer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=3792:3822#L117">Close</a>
+					<a class="permalink" href="index.html#Writer.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Writer">Writer</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying writer if it implements the io.Closer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="Writer.SetBlocking">func (*Writer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=3620:3669#L111">SetBlocking</a>
+					<a class="permalink" href="index.html#Writer.SetBlocking">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Writer">Writer</a>) SetBlocking(new <a href="../../../../../builtin/index.html#bool">bool</a>) (old <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SetBlocking changes the blocking behavior and returns the previous setting. A
+Write call on a non-blocking writer returns as soon as no additional bytes
+may be written at this time due to the rate limit.
+
+				
+				
+				
+			
+				
+				<h3 id="Writer.SetLimit">func (*Writer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=3316:3364#L103">SetLimit</a>
+					<a class="permalink" href="index.html#Writer.SetLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Writer">Writer</a>) SetLimit(new <a href="../../../../../builtin/index.html#int64">int64</a>) (old <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetLimit changes the transfer rate limit to new bytes per second and returns
+the previous setting.
+
+				
+				
+				
+			
+				
+				<h3 id="Writer.Write">func (*Writer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/libs/flowrate/io.go?s=2943:2994#L86">Write</a>
+					<a class="permalink" href="index.html#Writer.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w *<a href="index.html#Writer">Writer</a>) Write(p []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write writes len(p) bytes from p to the underlying data stream without
+exceeding the current transfer rate limit. It returns (n, ErrLimit) if w is
+non-blocking and no additional bytes can be written at this time.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

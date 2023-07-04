@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>orca - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package orca
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/orca"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package orca implements Open Request Cost Aggregation, which is an open
+standard for request cost aggregation and reporting by backends and the
+corresponding aggregation of such reports by L7 load balancers (such as
+Envoy) on the data plane. In a proxyless world with gRPC enabled
+applications, aggregation of such reports will be done by the gRPC client.
+<h3 id="hdr-Experimental">Experimental</h3>
+<p>Notice: All APIs is this package are EXPERIMENTAL and may be changed or
+removed in a later release.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CallMetricsServerOption">func CallMetricsServerOption() grpc.ServerOption</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterOOBListener">func RegisterOOBListener(sc balancer.SubConn, l OOBListener, opts OOBListenerOptions) (stop func())</a></dd>
+			
+				
+				<dd><a href="index.html#ToLoadReport">func ToLoadReport(md metadata.MD) (*v3orcapb.OrcaLoadReport, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CallMetricRecorder">type CallMetricRecorder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallMetricRecorderFromContext">func CallMetricRecorderFromContext(ctx context.Context) *CallMetricRecorder</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallMetricRecorder.SetCPUUtilization">func (c *CallMetricRecorder) SetCPUUtilization(val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallMetricRecorder.SetMemoryUtilization">func (c *CallMetricRecorder) SetMemoryUtilization(val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallMetricRecorder.SetRequestCost">func (c *CallMetricRecorder) SetRequestCost(name string, val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallMetricRecorder.SetUtilization">func (c *CallMetricRecorder) SetUtilization(name string, val float64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#OOBListener">type OOBListener</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#OOBListenerOptions">type OOBListenerOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewService">func NewService(opts ServiceOptions) (*Service, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Register">func Register(s *grpc.Server, opts ServiceOptions) (*Service, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.DeleteUtilization">func (s *Service) DeleteUtilization(name string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SetCPUUtilization">func (s *Service) SetCPUUtilization(val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SetMemoryUtilization">func (s *Service) SetMemoryUtilization(val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.SetUtilization">func (s *Service) SetUtilization(name string, val float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.StreamCoreMetrics">func (s *Service) StreamCoreMetrics(req *v3orcaservicepb.OrcaLoadReportRequest, stream v3orcaservicegrpc.OpenRcaService_StreamCoreMetricsServer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServiceOptions">type ServiceOptions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go">call_metric_recorder.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/orca/orca.go">orca.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/orca/producer.go">producer.go</a>
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go">service.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>ErrLoadReportMissing indicates no ORCA load report was found in trailers.
+
+				<pre>var <span id="ErrLoadReportMissing">ErrLoadReportMissing</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;orca load report missing in provided metadata&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="CallMetricsServerOption">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/orca.go?s=2541:2589#L58">CallMetricsServerOption</a>
+				<a class="permalink" href="index.html#CallMetricsServerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CallMetricsServerOption() <a href="../index.html">grpc</a>.<a href="../index.html#ServerOption">ServerOption</a></pre>
+			<p>CallMetricsServerOption returns a server option which enables the reporting
+of per-RPC custom backend metrics for unary and streaming RPCs.
+<p>Server applications interested in injecting custom backend metrics should
+pass the server option returned from this function as the first argument to
+grpc.NewServer().
+<p>Subsequently, server RPC handlers can retrieve a reference to the RPC
+specific custom metrics recorder <a href="index.html#CallMetricRecorder">CallMetricRecorder</a> to be used, via a call
+to CallMetricRecorderFromContext(), and inject custom metrics at any time
+during the RPC lifecycle.
+<p>The injected custom metrics will be sent as part of trailer metadata, as a
+binary-encoded <a href="https://github.com/cncf/xds/blob/main/xds/data/orca/v3/orca_load_report.proto#L15">ORCA LoadReport</a> protobuf message, with the metadata key
+being set be &quot;endpoint-load-metrics-bin&quot;.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterOOBListener">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/producer.go?s=2651:2750#L67">RegisterOOBListener</a>
+				<a class="permalink" href="index.html#RegisterOOBListener">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterOOBListener(sc <a href="../balancer/index.html">balancer</a>.<a href="../balancer/index.html#SubConn">SubConn</a>, l <a href="index.html#OOBListener">OOBListener</a>, opts <a href="index.html#OOBListenerOptions">OOBListenerOptions</a>) (stop func())</pre>
+			<p>RegisterOOBListener registers an out-of-band load report listener on sc.
+Any OOBListener may only be registered once per subchannel at a time.  The
+returned stop function must be called when no longer needed.  Do not
+register a single OOBListener more than once per SubConn.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ToLoadReport">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/orca.go?s=6036:6103#L145">ToLoadReport</a>
+				<a class="permalink" href="index.html#ToLoadReport">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ToLoadReport(md <a href="../metadata/index.html">metadata</a>.<a href="../metadata/index.html#MD">MD</a>) (*<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/data/orca/v3/">v3orcapb</a>.<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/data/orca/v3/#OrcaLoadReport">OrcaLoadReport</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>ToLoadReport unmarshals a binary encoded [ORCA LoadReport] protobuf message
+from md and returns the corresponding struct. The load report is expected to
+be stored as the value for key &quot;endpoint-load-metrics-bin&quot;.
+<p>If no load report was found in the provided metadata, ErrLoadReportMissing is
+returned.
+<p>[ORCA LoadReport]: (<a href="https://github.com/cncf/xds/blob/main/xds/data/orca/v3/orca_load_report.proto#L15">https://github.com/cncf/xds/blob/main/xds/data/orca/v3/orca_load_report.proto#L15</a>)
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CallMetricRecorder">type <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=886:1075#L23">CallMetricRecorder</a>
+				<a class="permalink" href="index.html#CallMetricRecorder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CallMetricRecorder provides functionality to record per-RPC custom backend
+metrics. See CallMetricsServerOption() for more details.
+<p>Safe for concurrent use.
+
+			<pre>type CallMetricRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CallMetricRecorderFromContext">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=2982:3057#L95">CallMetricRecorderFromContext</a>
+					<a class="permalink" href="index.html#CallMetricRecorderFromContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CallMetricRecorderFromContext(ctx <a href="../../../context/index.html">context</a>.<a href="../../../context/index.html#Context">Context</a>) *<a href="index.html#CallMetricRecorder">CallMetricRecorder</a></pre>
+				<p>CallMetricRecorderFromContext returns the RPC specific custom metrics
+recorder <a href="index.html#CallMetricRecorder">CallMetricRecorder</a> embedded in the provided RPC context.
+<p>Returns nil if no custom metrics recorder is found in the provided context,
+which will be the case when custom metrics reporting is not enabled.
+
+				
+				
+			
+
+			
+				
+				<h3 id="CallMetricRecorder.SetCPUUtilization">func (*CallMetricRecorder) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=1320:1379#L40">SetCPUUtilization</a>
+					<a class="permalink" href="index.html#CallMetricRecorder.SetCPUUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CallMetricRecorder">CallMetricRecorder</a>) SetCPUUtilization(val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetCPUUtilization records a measurement for the CPU utilization metric.
+
+				
+				
+				
+			
+				
+				<h3 id="CallMetricRecorder.SetMemoryUtilization">func (*CallMetricRecorder) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=1484:1546#L45">SetMemoryUtilization</a>
+					<a class="permalink" href="index.html#CallMetricRecorder.SetMemoryUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CallMetricRecorder">CallMetricRecorder</a>) SetMemoryUtilization(val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetMemoryUtilization records a measurement for the memory utilization metric.
+
+				
+				
+				
+			
+				
+				<h3 id="CallMetricRecorder.SetRequestCost">func (*CallMetricRecorder) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=1674:1743#L51">SetRequestCost</a>
+					<a class="permalink" href="index.html#CallMetricRecorder.SetRequestCost">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CallMetricRecorder">CallMetricRecorder</a>) SetRequestCost(name <a href="../../../builtin/index.html#string">string</a>, val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetRequestCost records a measurement for a request cost metric,
+uniquely identifiable by name.
+
+				
+				
+				
+			
+				
+				<h3 id="CallMetricRecorder.SetUtilization">func (*CallMetricRecorder) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/call_metric_recorder.go?s=1903:1972#L59">SetUtilization</a>
+					<a class="permalink" href="index.html#CallMetricRecorder.SetUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CallMetricRecorder">CallMetricRecorder</a>) SetUtilization(name <a href="../../../builtin/index.html#string">string</a>, val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetUtilization records a measurement for a utilization metric uniquely
+identifiable by name.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OOBListener">type <a href="http://localhost:6060/src/google.golang.org/grpc/orca/producer.go?s=1827:1956#L49">OOBListener</a>
+				<a class="permalink" href="index.html#OOBListener">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OOBListener is used to receive out-of-band load reports as they arrive.
+
+			<pre>type OOBListener interface {
+    <span class="comment">// OnLoadReport is called when a load report is received.</span>
+    OnLoadReport(*<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/data/orca/v3/">v3orcapb</a>.<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/data/orca/v3/#OrcaLoadReport">OrcaLoadReport</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OOBListenerOptions">type <a href="http://localhost:6060/src/google.golang.org/grpc/orca/producer.go?s=2038:2362#L55">OOBListenerOptions</a>
+				<a class="permalink" href="index.html#OOBListenerOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OOBListenerOptions contains options to control how an OOBListener is called.
+
+			<pre>type OOBListenerOptions struct {
+<span id="OOBListenerOptions.ReportInterval"></span>    <span class="comment">// ReportInterval specifies how often to request the server to provide a</span>
+    <span class="comment">// load report.  May be provided less frequently if the server requires a</span>
+    <span class="comment">// longer interval, or may be provided more frequently if another</span>
+    <span class="comment">// subscriber requests a shorter interval.</span>
+    ReportInterval <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=1932:2290#L47">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service provides an implementation of the OpenRcaService as defined in the
+<a href="https://github.com/cncf/xds/blob/main/xds/service/orca/v3/orca.proto">ORCA</a> service protos. Instances of this type must be created via calls to
+Register() or NewService().
+<p>Server applications can use the SetXxx() and DeleteXxx() methods to record
+measurements corresponding to backend metrics, which eventually get pushed to
+clients who have initiated the SteamCoreMetrics streaming RPC.
+
+			<pre>type Service struct {
+    <a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/">v3orcaservicegrpc</a>.<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/#UnimplementedOpenRcaServiceServer">UnimplementedOpenRcaServiceServer</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewService">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=3006:3060#L76">NewService</a>
+					<a class="permalink" href="index.html#NewService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewService(opts <a href="index.html#ServiceOptions">ServiceOptions</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewService creates a new ORCA service implementation configured using the
+provided options.
+
+				
+				
+			
+				
+				<h3 id="Register">func <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=3692:3760#L93">Register</a>
+					<a class="permalink" href="index.html#Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Register(s *<a href="../index.html">grpc</a>.<a href="../index.html#Server">Server</a>, opts <a href="index.html#ServiceOptions">ServiceOptions</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Register creates a new ORCA service implementation configured using the
+provided options and registers the same on the provided service registrar.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Service.DeleteUtilization">func (*Service) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=6145:6193#L166">DeleteUtilization</a>
+					<a class="permalink" href="index.html#Service.DeleteUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) DeleteUtilization(name <a href="../../../builtin/index.html#string">string</a>)</pre>
+				<p>DeleteUtilization deletes any previously recorded measurement for a
+utilization metric uniquely identifiable by name.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.SetCPUUtilization">func (*Service) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=5526:5574#L143">SetCPUUtilization</a>
+					<a class="permalink" href="index.html#Service.SetCPUUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SetCPUUtilization(val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetCPUUtilization records a measurement for the CPU utilization metric.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.SetMemoryUtilization">func (*Service) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=5702:5753#L150">SetMemoryUtilization</a>
+					<a class="permalink" href="index.html#Service.SetMemoryUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SetMemoryUtilization(val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetMemoryUtilization records a measurement for the memory utilization metric.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.SetUtilization">func (*Service) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=5902:5960#L158">SetUtilization</a>
+					<a class="permalink" href="index.html#Service.SetUtilization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) SetUtilization(name <a href="../../../builtin/index.html#string">string</a>, val <a href="../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>SetUtilization records a measurement for a utilization metric uniquely
+identifiable by name.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.StreamCoreMetrics">func (*Service) <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=4937:5087#L125">StreamCoreMetrics</a>
+					<a class="permalink" href="index.html#Service.StreamCoreMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) StreamCoreMetrics(req *<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/">v3orcaservicepb</a>.<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/#OrcaLoadReportRequest">OrcaLoadReportRequest</a>, stream <a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/">v3orcaservicegrpc</a>.<a href="http://localhost:6060/pkg/github.com/cncf/xds/go/xds/service/orca/v3/#OpenRcaService_StreamCoreMetricsServer">OpenRcaService_StreamCoreMetricsServer</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>StreamCoreMetrics streams custom backend metrics injected by the server
+application.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServiceOptions">type <a href="http://localhost:6060/src/google.golang.org/grpc/orca/service.go?s=2373:2906#L61">ServiceOptions</a>
+				<a class="permalink" href="index.html#ServiceOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServiceOptions contains options to configure the ORCA service implementation.
+
+			<pre>type ServiceOptions struct {
+<span id="ServiceOptions.MinReportingInterval"></span>    <span class="comment">// MinReportingInterval sets the lower bound for how often out-of-band</span>
+    <span class="comment">// metrics are reported on the streaming RPC initiated by the client. If</span>
+    <span class="comment">// unspecified, negative or less than the default value of 30s, the default</span>
+    <span class="comment">// is used. Clients may request a higher value as part of the</span>
+    <span class="comment">// StreamCoreMetrics streaming RPC.</span>
+    MinReportingInterval <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

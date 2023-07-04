@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>enr - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package enr
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/p2p/enr"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package enr implements Ethereum Node Records as defined in EIP-778. A node record holds
+arbitrary information about a node on the peer-to-peer network. Node information is
+stored in key/value pairs. To store and retrieve key/values in a record, use the Entry
+interface.
+<h3 id="hdr-Signature_Handling">Signature Handling</h3>
+<p>Records must be signed before transmitting them to another node.
+<p>Decoding a record doesn&apos;t check its signature. Code working with records from an
+untrusted source must always verify two things: that the record uses an identity scheme
+deemed secure, and that the signature is valid according to the declared scheme.
+<p>When creating a record, set the entries you want and use a signing function provided by
+the identity scheme to add the signature. Modifying a record invalidates the signature.
+<p>Package enr supports the &quot;secp256k1-keccak&quot; identity scheme.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#IsNotFound">func IsNotFound(err error) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Entry">type Entry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithEntry">func WithEntry(k string, v interface{}) Entry</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ID">type ID</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ID.ENRKey">func (v ID) ENRKey() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IP">type IP</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IP.DecodeRLP">func (v *IP) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IP.ENRKey">func (v IP) ENRKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IP.EncodeRLP">func (v IP) EncodeRLP(w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IPv4">type IPv4</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv4.DecodeRLP">func (v *IPv4) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv4.ENRKey">func (v IPv4) ENRKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv4.EncodeRLP">func (v IPv4) EncodeRLP(w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IPv6">type IPv6</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv6.DecodeRLP">func (v *IPv6) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv6.ENRKey">func (v IPv6) ENRKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IPv6.EncodeRLP">func (v IPv6) EncodeRLP(w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IdentityScheme">type IdentityScheme</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyError">type KeyError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#KeyError.Error">func (err *KeyError) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#KeyError.Unwrap">func (err *KeyError) Unwrap() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record">type Record</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.AppendElements">func (r *Record) AppendElements(list []interface{}) []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.DecodeRLP">func (r *Record) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.EncodeRLP">func (r Record) EncodeRLP(w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.IdentityScheme">func (r *Record) IdentityScheme() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Load">func (r *Record) Load(e Entry) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Seq">func (r *Record) Seq() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Set">func (r *Record) Set(e Entry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.SetSeq">func (r *Record) SetSeq(s uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.SetSig">func (r *Record) SetSig(s IdentityScheme, sig []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Signature">func (r *Record) Signature() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.VerifySignature">func (r *Record) VerifySignature(s IdentityScheme) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SchemeMap">type SchemeMap</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SchemeMap.NodeAddr">func (m SchemeMap) NodeAddr(r *Record) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SchemeMap.Verify">func (m SchemeMap) Verify(r *Record, sig []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TCP">type TCP</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TCP.ENRKey">func (v TCP) ENRKey() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TCP6">type TCP6</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TCP6.ENRKey">func (v TCP6) ENRKey() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UDP">type UDP</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDP.ENRKey">func (v UDP) ENRKey() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UDP6">type UDP6</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UDP6.ENRKey">func (v UDP6) ENRKey() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go">enr.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go">entries.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const <span id="IDv4">IDv4</span> = <a href="index.html#ID">ID</a>(&#34;v4&#34;) <span class="comment">// the default identity scheme</span>
+</pre>
+			
+				
+				<pre>const <span id="SizeLimit">SizeLimit</span> = 300 <span class="comment">// maximum encoded size of a node record in bytes</span>
+</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidSig">ErrInvalidSig</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;invalid signature on node record&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="IsNotFound">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=5010:5041#L180">IsNotFound</a>
+				<a class="permalink" href="index.html#IsNotFound">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsNotFound(err <a href="../../../../../builtin/index.html#error">error</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsNotFound reports whether the given error means that a key/value pair is
+missing from a record.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Entry">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1158:1199#L23">Entry</a>
+				<a class="permalink" href="index.html#Entry">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Entry is implemented by known node record entry types.
+<p>To define a new entry that is to be included in a node record,
+create a Go type that satisfies this interface. The type should
+also implement rlp.Decoder if additional checks are needed on the value.
+
+			<pre>type Entry interface {
+    ENRKey() <a href="../../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WithEntry">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1680:1725#L45">WithEntry</a>
+					<a class="permalink" href="index.html#WithEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithEntry(k <a href="../../../../../builtin/index.html#string">string</a>, v interface{}) <a href="index.html#Entry">Entry</a></pre>
+				<p>WithEntry wraps any value with a key name. It can be used to set and load arbitrary values
+in a record. The value v must be supported by rlp. To use WithEntry with Load, the value
+must be a pointer.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ID">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2376:2390#L70">ID</a>
+				<a class="permalink" href="index.html#ID">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ID is the &quot;id&quot; key, which holds the name of the identity scheme.
+
+			<pre>type ID <a href="../../../../../builtin/index.html#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ID.ENRKey">func (ID) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2446:2473#L74">ENRKey</a>
+					<a class="permalink" href="index.html#ID.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#ID">ID</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IP">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2688:2702#L79">IP</a>
+				<a class="permalink" href="index.html#IP">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IP is either the &quot;ip&quot; or &quot;ip6&quot; key, depending on the value.
+Use this value to encode IP addresses that can be either v4 or v6.
+To load an address from a record use the IPv4 or IPv6 types.
+
+			<pre>type IP <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#IP">IP</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IP.DecodeRLP">func (*IP) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=3118:3161#L100">DecodeRLP</a>
+					<a class="permalink" href="index.html#IP.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#IP">IP</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder.
+
+				
+				
+				
+			
+				
+				<h3 id="IP.ENRKey">func (IP) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2704:2731#L81">ENRKey</a>
+					<a class="permalink" href="index.html#IP.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IP">IP</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IP.EncodeRLP">func (IP) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2834:2874#L89">EncodeRLP</a>
+					<a class="permalink" href="index.html#IP.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IP">IP</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IPv4">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=3417:3433#L111">IPv4</a>
+				<a class="permalink" href="index.html#IPv4">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IPv4 is the &quot;ip&quot; key, which holds the IP address of the node.
+
+			<pre>type IPv4 <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#IP">IP</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IPv4.DecodeRLP">func (*IPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=3734:3779#L125">DecodeRLP</a>
+					<a class="permalink" href="index.html#IPv4.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#IPv4">IPv4</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder.
+
+				
+				
+				
+			
+				
+				<h3 id="IPv4.ENRKey">func (IPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=3435:3464#L113">ENRKey</a>
+					<a class="permalink" href="index.html#IPv4.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IPv4">IPv4</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IPv4.EncodeRLP">func (IPv4) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=3519:3561#L116">EncodeRLP</a>
+					<a class="permalink" href="index.html#IPv4.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IPv4">IPv4</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IPv6">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4015:4031#L136">IPv6</a>
+				<a class="permalink" href="index.html#IPv6">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IPv6 is the &quot;ip6&quot; key, which holds the IP address of the node.
+
+			<pre>type IPv6 <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#IP">IP</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IPv6.DecodeRLP">func (*IPv6) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4334:4379#L150">DecodeRLP</a>
+					<a class="permalink" href="index.html#IPv6.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#IPv6">IPv6</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder.
+
+				
+				
+				
+			
+				
+				<h3 id="IPv6.ENRKey">func (IPv6) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4033:4062#L138">ENRKey</a>
+					<a class="permalink" href="index.html#IPv6.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IPv6">IPv6</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IPv6.EncodeRLP">func (IPv6) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4118:4160#L141">EncodeRLP</a>
+					<a class="permalink" href="index.html#IPv6.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#IPv6">IPv6</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IdentityScheme">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=2525:2623#L51">IdentityScheme</a>
+				<a class="permalink" href="index.html#IdentityScheme">&#xb6;</a>
+				
+				
+			</h2>
+			<p>An IdentityScheme is capable of verifying record signatures and
+deriving node addresses.
+
+			<pre>type IdentityScheme interface {
+    Verify(r *<a href="index.html#Record">Record</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    NodeAddr(r *<a href="index.html#Record">Record</a>) []<a href="../../../../../builtin/index.html#byte">byte</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyError">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4593:4640#L161">KeyError</a>
+				<a class="permalink" href="index.html#KeyError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyError is an error related to a key.
+
+			<pre>type KeyError struct {
+<span id="KeyError.Key"></span>    Key <a href="../../../../../builtin/index.html#string">string</a>
+<span id="KeyError.Err"></span>    Err <a href="../../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="KeyError.Error">func (*KeyError) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4669:4704#L167">Error</a>
+					<a class="permalink" href="index.html#KeyError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (err *<a href="index.html#KeyError">KeyError</a>) Error() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>Error implements error.
+
+				
+				
+				
+			
+				
+				<h3 id="KeyError.Unwrap">func (*KeyError) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=4850:4885#L174">Unwrap</a>
+					<a class="permalink" href="index.html#KeyError.Unwrap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (err *<a href="index.html#KeyError">KeyError</a>) Unwrap() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=3078:3268#L76">Record</a>
+				<a class="permalink" href="index.html#Record">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Record represents a node record. The zero value is an empty record.
+
+			<pre>type Record struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record.AppendElements">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=8647:8712#L288">AppendElements</a>
+					<a class="permalink" href="index.html#Record.AppendElements">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) AppendElements(list []interface{}) []interface{}</pre>
+				<p>AppendElements appends the sequence number and entries to the given slice.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.DecodeRLP">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=5928:5975#L178">DecodeRLP</a>
+					<a class="permalink" href="index.html#Record.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder. Decoding doesn&apos;t verify the signature.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.EncodeRLP">func (Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=5709:5753#L169">EncodeRLP</a>
+					<a class="permalink" href="index.html#Record.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#Record">Record</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder. Encoding fails if
+the record is unsigned.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.IdentityScheme">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=7325:7365#L245">IdentityScheme</a>
+					<a class="permalink" href="index.html#Record.IdentityScheme">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) IdentityScheme() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>IdentityScheme returns the name of the identity scheme in the record.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.Load">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=4024:4060#L108">Load</a>
+					<a class="permalink" href="index.html#Record.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) Load(e <a href="index.html#Entry">Entry</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Load retrieves the value of a key/value pair. The given Entry must be a pointer and will
+be set to the value of the entry in the record.
+<p>Errors returned by Load are wrapped in KeyError. You can distinguish decoding errors
+from missing keys using the IsNotFound function.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.Seq">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=3395:3424#L90">Seq</a>
+					<a class="permalink" href="index.html#Record.Seq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) Seq() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Seq returns the sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.Set">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=4584:4613#L122">Set</a>
+					<a class="permalink" href="index.html#Record.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) Set(e <a href="index.html#Entry">Entry</a>)</pre>
+				<p>Set adds or updates the given entry in the record. It panics if the value can&apos;t be
+encoded. If the record is signed, Set increments the sequence number and invalidates
+the sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.SetSeq">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=3656:3689#L97">SetSeq</a>
+					<a class="permalink" href="index.html#Record.SetSeq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) SetSeq(s <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetSeq updates the record sequence number. This invalidates any signature on the record.
+Calling SetSeq is usually not required because setting any key in a signed record
+increments the sequence number.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.SetSig">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=7963:8022#L263">SetSig</a>
+					<a class="permalink" href="index.html#Record.SetSig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) SetSig(s <a href="index.html#IdentityScheme">IdentityScheme</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SetSig sets the record signature. It returns an error if the encoded record is larger
+than the size limit or if the signature is invalid according to the passed scheme.
+<p>You can also use SetSig to remove the signature explicitly by passing a nil scheme
+and signature.
+<p>SetSig panics when either the scheme or the signature (but not both) are nil.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.Signature">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=5470:5505#L158">Signature</a>
+					<a class="permalink" href="index.html#Record.Signature">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) Signature() []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Signature returns the signature of the record.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.VerifySignature">func (*Record) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=7502:7558#L252">VerifySignature</a>
+					<a class="permalink" href="index.html#Record.VerifySignature">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Record">Record</a>) VerifySignature(s <a href="index.html#IdentityScheme">IdentityScheme</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>VerifySignature checks whether the record is signed using the given identity scheme.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SchemeMap">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=2679:2719#L57">SchemeMap</a>
+				<a class="permalink" href="index.html#SchemeMap">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SchemeMap is a registry of named identity schemes.
+
+			<pre>type SchemeMap map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="index.html#IdentityScheme">IdentityScheme</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SchemeMap.NodeAddr">func (SchemeMap) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=2875:2920#L67">NodeAddr</a>
+					<a class="permalink" href="index.html#SchemeMap.NodeAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#SchemeMap">SchemeMap</a>) NodeAddr(r *<a href="index.html#Record">Record</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SchemeMap.Verify">func (SchemeMap) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/enr.go?s=2721:2775#L59">Verify</a>
+					<a class="permalink" href="index.html#SchemeMap.Verify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#SchemeMap">SchemeMap</a>) Verify(r *<a href="index.html#Record">Record</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TCP">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1829:1844#L50">TCP</a>
+				<a class="permalink" href="index.html#TCP">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TCP is the &quot;tcp&quot; key, which holds the TCP port of the node.
+
+			<pre>type TCP <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TCP.ENRKey">func (TCP) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1846:1874#L52">ENRKey</a>
+					<a class="permalink" href="index.html#TCP.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#TCP">TCP</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TCP6">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1970:1986#L55">TCP6</a>
+				<a class="permalink" href="index.html#TCP6">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDP is the &quot;udp&quot; key, which holds the IPv6-specific UDP port of the node.
+
+			<pre>type TCP6 <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TCP6.ENRKey">func (TCP6) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=1988:2017#L57">ENRKey</a>
+					<a class="permalink" href="index.html#TCP6.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#TCP6">TCP6</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UDP">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2100:2115#L60">UDP</a>
+				<a class="permalink" href="index.html#UDP">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDP is the &quot;udp&quot; key, which holds the UDP port of the node.
+
+			<pre>type UDP <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UDP.ENRKey">func (UDP) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2117:2145#L62">ENRKey</a>
+					<a class="permalink" href="index.html#UDP.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#UDP">UDP</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UDP6">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2241:2257#L65">UDP6</a>
+				<a class="permalink" href="index.html#UDP6">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UDP is the &quot;udp&quot; key, which holds the IPv6-specific UDP port of the node.
+
+			<pre>type UDP6 <a href="../../../../../builtin/index.html#uint16">uint16</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UDP6.ENRKey">func (UDP6) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/enr/entries.go?s=2259:2288#L67">ENRKey</a>
+					<a class="permalink" href="index.html#UDP6.ENRKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#UDP6">UDP6</a>) ENRKey() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

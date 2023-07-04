@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>prque - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package prque
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/common/prque"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package prque implements a priority queue data structure supporting arbitrary
+value types and int64 priorities.
+<p>If you would like to use a min-priority queue, simply negate the priorities.
+<p>Internally the queue is based on the standard heap package working on a
+sortable version of the block based stack.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#LazyQueue">type LazyQueue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLazyQueue">func NewLazyQueue(setIndex SetIndexCallback, priority PriorityCallback, maxPriority MaxPriorityCallback, clock mclock.Clock, refreshPeriod time.Duration) *LazyQueue</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Empty">func (q *LazyQueue) Empty() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.MultiPop">func (q *LazyQueue) MultiPop(callback func(data interface{}, priority int64) bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Pop">func (q *LazyQueue) Pop() (interface{}, int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.PopItem">func (q *LazyQueue) PopItem() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Push">func (q *LazyQueue) Push(data interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Refresh">func (q *LazyQueue) Refresh()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Remove">func (q *LazyQueue) Remove(index int) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Reset">func (q *LazyQueue) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Size">func (q *LazyQueue) Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LazyQueue.Update">func (q *LazyQueue) Update(index int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MaxPriorityCallback">type MaxPriorityCallback</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PriorityCallback">type PriorityCallback</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Prque">type Prque</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(setIndex SetIndexCallback) *Prque</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWrapAround">func NewWrapAround(setIndex SetIndexCallback) *Prque</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Empty">func (p *Prque) Empty() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Peek">func (p *Prque) Peek() (interface{}, int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Pop">func (p *Prque) Pop() (interface{}, int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.PopItem">func (p *Prque) PopItem() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Push">func (p *Prque) Push(data interface{}, priority int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Remove">func (p *Prque) Remove(i int) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Reset">func (p *Prque) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prque.Size">func (p *Prque) Size() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SetIndexCallback">type SetIndexCallback</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go">lazyqueue.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go">prque.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/sstack.go">sstack.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="LazyQueue">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=1368:1979#L24">LazyQueue</a>
+				<a class="permalink" href="index.html#LazyQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LazyQueue is a priority queue data structure where priorities can change over
+time and are only evaluated on demand.
+Two callbacks are required:
+<ul>
+<li>priority evaluates the actual priority of an item
+<li>maxPriority gives an upper estimate for the priority in any moment between
+now and the given absolute time
+</ul>
+<p>If the upper estimate is exceeded then Update should be called for that item.
+A global Refresh function should also be called periodically.
+
+			<pre>type LazyQueue struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLazyQueue">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=2243:2407#L46">NewLazyQueue</a>
+					<a class="permalink" href="index.html#NewLazyQueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLazyQueue(setIndex <a href="index.html#SetIndexCallback">SetIndexCallback</a>, priority <a href="index.html#PriorityCallback">PriorityCallback</a>, maxPriority <a href="index.html#MaxPriorityCallback">MaxPriorityCallback</a>, clock <a href="../mclock/index.html">mclock</a>.<a href="../mclock/index.html#Clock">Clock</a>, refreshPeriod <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#LazyQueue">LazyQueue</a></pre>
+				<p>NewLazyQueue creates a new lazy queue
+
+				
+				
+			
+
+			
+				
+				<h3 id="LazyQueue.Empty">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=5810:5842#L165">Empty</a>
+					<a class="permalink" href="index.html#LazyQueue.Empty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Empty() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Empty checks whether the priority queue is empty.
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.MultiPop">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=4707:4789#L131">MultiPop</a>
+					<a class="permalink" href="index.html#LazyQueue.MultiPop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) MultiPop(callback func(data interface{}, priority <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>MultiPop pops multiple items from the queue and is more efficient than calling
+Pop multiple times. Popped items are passed to the callback. MultiPop returns
+when the callback returns false or there are no more items to pop.
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Pop">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=3850:3896#L100">Pop</a>
+					<a class="permalink" href="index.html#LazyQueue.Pop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Pop() (interface{}, <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>Pop removes and returns the item with the greatest actual priority
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.PopItem">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=5471:5512#L151">PopItem</a>
+					<a class="permalink" href="index.html#LazyQueue.PopItem">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) PopItem() interface{}</pre>
+				<p>PopItem pops the item from the queue only, dropping the associated priority value.
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Push">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=3509:3551#L90">Push</a>
+					<a class="permalink" href="index.html#LazyQueue.Push">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Push(data interface{})</pre>
+				<p>Push adds an item to the queue
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Refresh">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=2927:2956#L69">Refresh</a>
+					<a class="permalink" href="index.html#LazyQueue.Refresh">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Refresh()</pre>
+				<p>Refresh performs queue re-evaluation if necessary
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Remove">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=5594:5643#L157">Remove</a>
+					<a class="permalink" href="index.html#LazyQueue.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Remove(index <a href="../../../../../builtin/index.html#int">int</a>) interface{}</pre>
+				<p>Remove removes the item with the given index.
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Reset">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=2753:2780#L63">Reset</a>
+					<a class="permalink" href="index.html#LazyQueue.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Reset()</pre>
+				<p>Reset clears the contents of the queue
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Size">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=5962:5992#L170">Size</a>
+					<a class="permalink" href="index.html#LazyQueue.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Size returns the number of items in the priority queue.
+
+				
+				
+				
+			
+				
+				<h3 id="LazyQueue.Update">func (*LazyQueue) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=3712:3749#L95">Update</a>
+					<a class="permalink" href="index.html#LazyQueue.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#LazyQueue">LazyQueue</a>) Update(index <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Update updates the upper priority estimate for the item with the given queue index
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MaxPriorityCallback">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=2089:2159#L42">MaxPriorityCallback</a>
+				<a class="permalink" href="index.html#MaxPriorityCallback">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type MaxPriorityCallback func(data interface{}, until <a href="../mclock/index.html">mclock</a>.<a href="../mclock/index.html#AbsTime">AbsTime</a>) <a href="../../../../../builtin/index.html#int64">int64</a> <span class="comment">// estimated maximum priority callback</span>
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PriorityCallback">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/lazyqueue.go?s=1989:2037#L41">PriorityCallback</a>
+				<a class="permalink" href="index.html#PriorityCallback">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PriorityCallback func(data interface{}) <a href="../../../../../builtin/index.html#int64">int64</a> <span class="comment">// actual priority callback</span>
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Prque">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=921:956#L15">Prque</a>
+				<a class="permalink" href="index.html#Prque">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Priority queue data structure.
+
+			<pre>type Prque struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=995:1037#L20">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(setIndex <a href="index.html#SetIndexCallback">SetIndexCallback</a>) *<a href="index.html#Prque">Prque</a></pre>
+				<p>New creates a new priority queue.
+
+				
+				
+			
+				
+				<h3 id="NewWrapAround">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=1168:1220#L25">NewWrapAround</a>
+					<a class="permalink" href="index.html#NewWrapAround">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWrapAround(setIndex <a href="index.html#SetIndexCallback">SetIndexCallback</a>) *<a href="index.html#Prque">Prque</a></pre>
+				<p>NewWrapAround creates a new priority queue with wrap-around priority handling.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Prque.Empty">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=2231:2259#L61">Empty</a>
+					<a class="permalink" href="index.html#Prque.Empty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Empty() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Checks whether the priority queue is empty.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Peek">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=1528:1571#L35">Peek</a>
+					<a class="permalink" href="index.html#Prque.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Peek() (interface{}, <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>Peek returns the value with the greatest priority but does not pop it off.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Pop">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=1750:1792#L42">Pop</a>
+					<a class="permalink" href="index.html#Prque.Pop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Pop() (interface{}, <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>Pops the value with the greatest priority off the stack and returns it.
+Currently no shrinking is done.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.PopItem">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=1944:1981#L48">PopItem</a>
+					<a class="permalink" href="index.html#Prque.PopItem">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) PopItem() interface{}</pre>
+				<p>Pops only the item from the queue, dropping the associated priority value.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Push">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=1348:1402#L30">Push</a>
+					<a class="permalink" href="index.html#Prque.Push">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Push(data interface{}, priority <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>Pushes a value with a given priority into the queue, expanding if necessary.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Remove">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=2078:2119#L53">Remove</a>
+					<a class="permalink" href="index.html#Prque.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Remove(i <a href="../../../../../builtin/index.html#int">int</a>) interface{}</pre>
+				<p>Remove removes the element with the given index.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Reset">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=2446:2469#L71">Reset</a>
+					<a class="permalink" href="index.html#Prque.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Reset()</pre>
+				<p>Clears the contents of the priority queue.
+
+				
+				
+				
+			
+				
+				<h3 id="Prque.Size">func (*Prque) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/prque.go?s=2347:2373#L66">Size</a>
+					<a class="permalink" href="index.html#Prque.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Prque">Prque</a>) Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Returns the number of element in the priority queue.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SetIndexCallback">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/common/prque/sstack.go?s=1115:1170#L18">SetIndexCallback</a>
+				<a class="permalink" href="index.html#SetIndexCallback">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SetIndexCallback is called when the element is moved to a new index.
+Providing SetIndexCallback is optional, it is needed only if the application needs
+to delete elements other than the top one.
+
+			<pre>type SetIndexCallback func(data interface{}, index <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

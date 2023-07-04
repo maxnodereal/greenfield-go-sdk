@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>filters - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package filters
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/db/filters"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package filters specifies utilities for building a set of data attribute
+filters to be used when filtering data through database queries in practice.
+For example, one can specify a filter query for data by start epoch + end epoch + shard
+for attestations, build a filter as follows, and respond to it accordingly:
+<pre>f := filters.NewFilter().SetStartEpoch(3).SetEndEpoch(5)
+for k, v := range f.Filters() {
+    switch k {
+    case filters.StartEpoch:
+       // Verify data matches filter criteria...
+    case filters.EndEpoch:
+       // Verify data matches filter criteria...
+    }
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#FilterType">type FilterType</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#QueryFilter">type QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFilter">func NewFilter() *QueryFilter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.Filters">func (q *QueryFilter) Filters() map[FilterType]interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetEndEpoch">func (q *QueryFilter) SetEndEpoch(val types.Epoch) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetEndSlot">func (q *QueryFilter) SetEndSlot(val types.Slot) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetHeadBlockRoot">func (q *QueryFilter) SetHeadBlockRoot(val []byte) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetParentRoot">func (q *QueryFilter) SetParentRoot(val []byte) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetSlotStep">func (q *QueryFilter) SetSlotStep(val uint64) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetSourceEpoch">func (q *QueryFilter) SetSourceEpoch(val types.Epoch) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetSourceRoot">func (q *QueryFilter) SetSourceRoot(val []byte) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetStartEpoch">func (q *QueryFilter) SetStartEpoch(val types.Epoch) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetStartSlot">func (q *QueryFilter) SetStartSlot(val types.Slot) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetTargetEpoch">func (q *QueryFilter) SetTargetEpoch(val types.Epoch) *QueryFilter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryFilter.SetTargetRoot">func (q *QueryFilter) SetTargetRoot(val []byte) *QueryFilter</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go">filter.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="FilterType">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=862:883#L11">FilterType</a>
+				<a class="permalink" href="index.html#FilterType">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterType defines an enum which is used as the keys in a map that tracks
+set attribute filters for data as part of the `FilterQuery` struct type.
+
+			<pre>type FilterType <a href="../../../../../../builtin/index.html#uint8">uint8</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// ParentRoot defines a filter for parent roots of blocks using Simple Serialize (SSZ).</span>
+    <span id="ParentRoot">ParentRoot</span> <a href="index.html#FilterType">FilterType</a> = <a href="../../../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// StartSlot is used for range filters of objects by their slot (inclusive).</span>
+    <span id="StartSlot">StartSlot</span>
+    <span class="comment">// EndSlot is used for range filters of objects by their slot (inclusive).</span>
+    <span id="EndSlot">EndSlot</span>
+    <span class="comment">// StartEpoch is used for range filters of objects by their epoch (inclusive).</span>
+    <span id="StartEpoch">StartEpoch</span>
+    <span class="comment">// EndEpoch is used for range filters of objects by their epoch (inclusive).</span>
+    <span id="EndEpoch">EndEpoch</span>
+    <span class="comment">// HeadBlockRoot defines a filter for the head block root attribute of objects.</span>
+    <span id="HeadBlockRoot">HeadBlockRoot</span>
+    <span class="comment">// SourceEpoch defines a filter for the source epoch attribute of objects.</span>
+    <span id="SourceEpoch">SourceEpoch</span>
+    <span class="comment">// SourceRoot defines a filter for the source root attribute of objects.</span>
+    <span id="SourceRoot">SourceRoot</span>
+    <span class="comment">// TargetEpoch defines a filter for the target epoch attribute of objects.</span>
+    <span id="TargetEpoch">TargetEpoch</span>
+    <span class="comment">// TargetRoot defines a filter for the target root attribute of objects.</span>
+    <span id="TargetRoot">TargetRoot</span>
+    <span class="comment">// SlotStep is used for range filters of objects by their slot in step increments.</span>
+    <span id="SlotStep">SlotStep</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="QueryFilter">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=2022:2085#L40">QueryFilter</a>
+				<a class="permalink" href="index.html#QueryFilter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryFilter defines a generic interface for type-asserting
+specific filters to use in querying DB objects.
+
+			<pre>type QueryFilter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFilter">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=2207:2236#L46">NewFilter</a>
+					<a class="permalink" href="index.html#NewFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFilter() *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>NewFilter instantiates a new QueryFilter type used to build filters for
+certain Ethereum data types by attribute.
+
+				
+				
+			
+
+			
+				
+				<h3 id="QueryFilter.Filters">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=2500:2558#L55">Filters</a>
+					<a class="permalink" href="index.html#QueryFilter.Filters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) Filters() map[<a href="index.html#FilterType">FilterType</a>]interface{}</pre>
+				<p>Filters returns and underlying map of FilterType to interface{}, giving us
+a copy of the currently set filters which can then be iterated over and type
+asserted for use anywhere.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetEndEpoch">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=4415:4478#L114">SetEndEpoch</a>
+					<a class="permalink" href="index.html#QueryFilter.SetEndEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetEndEpoch(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetEndEpoch enables filtering by the EndEpoch attribute of an object (inclusive).
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetEndSlot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=4028:4089#L102">SetEndSlot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetEndSlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetEndSlot(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetEndSlot enables filtering by all the items that end at a slot (inclusive).
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetHeadBlockRoot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=2868:2931#L66">SetHeadBlockRoot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetHeadBlockRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetHeadBlockRoot(val []<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetHeadBlockRoot allows for filtering by the beacon block root data attribute of an object.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetParentRoot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=2668:2728#L60">SetParentRoot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetParentRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetParentRoot(val []<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetParentRoot allows for filtering by the parent root data attribute of an object.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetSlotStep">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=4706:4764#L121">SetSlotStep</a>
+					<a class="permalink" href="index.html#QueryFilter.SetSlotStep">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetSlotStep(val <a href="../../../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetSlotStep enables filtering by slot for every step interval. For example, a slot range query
+for blocks from 0 to 9 with a step of 2 would return objects at slot 0, 2, 4, 6, 8.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetSourceEpoch">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=3446:3512#L84">SetSourceEpoch</a>
+					<a class="permalink" href="index.html#QueryFilter.SetSourceEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetSourceEpoch(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetSourceEpoch enables filtering by the source epoch data attribute of an object.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetSourceRoot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=3065:3125#L72">SetSourceRoot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetSourceRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetSourceRoot(val []<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetSourceRoot allows for filtering by the source root data attribute of an object.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetStartEpoch">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=4220:4285#L108">SetStartEpoch</a>
+					<a class="permalink" href="index.html#QueryFilter.SetStartEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetStartEpoch(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetStartEpoch enables filtering by the StartEpoch attribute of an object (inclusive).
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetStartSlot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=3840:3903#L96">SetStartSlot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetStartSlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetStartSlot(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetStartSlot enables filtering by all the items that begin at a slot (inclusive).
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetTargetEpoch">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=3643:3709#L90">SetTargetEpoch</a>
+					<a class="permalink" href="index.html#QueryFilter.SetTargetEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetTargetEpoch(val <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetTargetEpoch enables filtering by the target epoch data attribute of an object.
+
+				
+				
+				
+			
+				
+				<h3 id="QueryFilter.SetTargetRoot">func (*QueryFilter) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/filters/filter.go?s=3256:3316#L78">SetTargetRoot</a>
+					<a class="permalink" href="index.html#QueryFilter.SetTargetRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryFilter">QueryFilter</a>) SetTargetRoot(val []<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#QueryFilter">QueryFilter</a></pre>
+				<p>SetTargetRoot allows for filtering by the target root data attribute of an object.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

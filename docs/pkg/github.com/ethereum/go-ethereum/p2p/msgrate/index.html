@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>msgrate - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package msgrate
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/p2p/msgrate"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package msgrate allows estimating the throughput of peers for more balanced syncs.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Tracker">type Tracker</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTracker">func NewTracker(caps map[uint64]float64, rtt time.Duration) *Tracker</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tracker.Capacity">func (t *Tracker) Capacity(kind uint64, targetRTT time.Duration) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tracker.Update">func (t *Tracker) Update(kind uint64, elapsed time.Duration, items int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Trackers">type Trackers</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTrackers">func NewTrackers(log log.Logger) *Trackers</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.Capacity">func (t *Trackers) Capacity(id string, kind uint64, targetRTT time.Duration) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.MeanCapacities">func (t *Trackers) MeanCapacities() map[uint64]float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.MedianRoundTrip">func (t *Trackers) MedianRoundTrip() time.Duration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.TargetRoundTrip">func (t *Trackers) TargetRoundTrip() time.Duration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.TargetTimeout">func (t *Trackers) TargetTimeout() time.Duration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.Track">func (t *Trackers) Track(id string, tracker *Tracker) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.Untrack">func (t *Trackers) Untrack(id string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Trackers.Update">func (t *Trackers) Update(id string, kind uint64, elapsed time.Duration, items int)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go">msgrate.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Tracker">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=6113:7174#L112">Tracker</a>
+				<a class="permalink" href="index.html#Tracker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Tracker estimates the throughput capacity of a peer with regard to each data
+type it can deliver. The goal is to dynamically adjust request sizes to max
+out network throughput without overloading either the peer or th elocal node.
+<p>By tracking in real time the latencies and bandiwdths peers exhibit for each
+packet type, it&apos;s possible to prevent overloading by detecting a slowdown on
+one type when another type is pushed too hard.
+<p>Similarly, real time measurements also help avoid overloading the local net
+connection if our peers would otherwise be capable to deliver more, but the
+local link is saturated. In that case, the live measurements will force us
+to reduce request sizes until the throughput gets stable.
+<p>Lastly, message rate measurements allows us to detect if a peer is unusually
+slow compared to other peers, in which case we can decide to keep it around
+or free up the slot so someone closer.
+<p>Since throughput tracking and estimation adapts dynamically to live network
+conditions, it&apos;s fine to have multiple trackers locally track the same peer
+in different subsystem. The throughput will simply be distributed across the
+two trackers if both are highly active.
+
+			<pre>type Tracker struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTracker">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=7447:7515#L139">NewTracker</a>
+					<a class="permalink" href="index.html#NewTracker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTracker(caps map[<a href="../../../../../builtin/index.html#uint64">uint64</a>]<a href="../../../../../builtin/index.html#float64">float64</a>, rtt <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#Tracker">Tracker</a></pre>
+				<p>NewTracker creates a new message rate tracker for a specific peer. An initial
+RTT is needed to avoid a peer getting marked as an outlier compared to others
+right after joining. It&apos;s suggested to use the median rtt across all peers to
+init a new peer tracker.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Tracker.Capacity">func (*Tracker) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=8167:8235#L156">Capacity</a>
+					<a class="permalink" href="index.html#Tracker.Capacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tracker">Tracker</a>) Capacity(kind <a href="../../../../../builtin/index.html#uint64">uint64</a>, targetRTT <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Capacity calculates the number of items the peer is estimated to be able to
+retrieve within the allotted time slot. The method will round up any division
+errors and will add an additional overestimation ratio on top. The reason for
+overshooting the capacity is because certain message types might not increase
+the load proportionally to the requested items, so fetching a bit more might
+still take the same RTT. By forcefully overshooting by a small amount, we can
+avoid locking into a lower-that-real capacity.
+
+				
+				
+				
+			
+				
+				<h3 id="Tracker.Update">func (*Tracker) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=9188:9259#L179">Update</a>
+					<a class="permalink" href="index.html#Tracker.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tracker">Tracker</a>) Update(kind <a href="../../../../../builtin/index.html#uint64">uint64</a>, elapsed <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>, items <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Update modifies the peer&apos;s capacity values for a specific data type with a new
+measurement. If the delivery is zero, the peer is assumed to have either timed
+out or to not have the requested data, resulting in a slash to 0 capacity. This
+avoids assigning the peer retrievals that it won&apos;t be able to honour.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Trackers">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=10059:11513#L202">Trackers</a>
+				<a class="permalink" href="index.html#Trackers">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Trackers is a set of message rate trackers across a number of peers with the
+goal of aggregating certain measurements across the entire set for outlier
+filtering and newly joining initialization.
+
+			<pre>type Trackers struct {
+
+    <span class="comment">// The fields below can be used to override certain default values. Their</span>
+    <span class="comment">// purpose is to allow quicker tests. Don&#39;t use them in production.</span>
+<span id="Trackers.OverrideTTLLimit"></span>    OverrideTTLLimit <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTrackers">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=11588:11630#L236">NewTrackers</a>
+					<a class="permalink" href="index.html#NewTrackers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTrackers(log <a href="../../log/index.html">log</a>.<a href="../../log/index.html#Logger">Logger</a>) *<a href="index.html#Trackers">Trackers</a></pre>
+				<p>NewTrackers creates an empty set of trackers to be filled with peers.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Trackers.Capacity">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=18240:18320#L436">Capacity</a>
+					<a class="permalink" href="index.html#Trackers.Capacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) Capacity(id <a href="../../../../../builtin/index.html#string">string</a>, kind <a href="../../../../../builtin/index.html#uint64">uint64</a>, targetRTT <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Capacity is a helper function to access a specific tracker without having to
+track it explicitly outside.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.MeanCapacities">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=13982:14036#L316">MeanCapacities</a>
+					<a class="permalink" href="index.html#Trackers.MeanCapacities">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) MeanCapacities() map[<a href="../../../../../builtin/index.html#uint64">uint64</a>]<a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				<p>MeanCapacities returns the capacities averaged across all the added trackers.
+The purpos of the mean capacities are to initialize a new peer with some sane
+starting values that it will hopefully outperform. If the mean overshoots, the
+peer will be cut back to minimal capacity and given another chance.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.MedianRoundTrip">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=12689:12739#L277">MedianRoundTrip</a>
+					<a class="permalink" href="index.html#Trackers.MedianRoundTrip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) MedianRoundTrip() <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a></pre>
+				<p>MedianRoundTrip returns the median RTT across all known trackers. The purpose
+of the median RTT is to initialize a new peer with sane statistics that it will
+hopefully outperform. If it seriously underperforms, there&apos;s a risk of dropping
+the peer, but that is ok as we&apos;re aiming for a strong median.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.TargetRoundTrip">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=14928:14978#L345">TargetRoundTrip</a>
+					<a class="permalink" href="index.html#Trackers.TargetRoundTrip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) TargetRoundTrip() <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a></pre>
+				<p>TargetRoundTrip returns the current target round trip time for a request to
+complete in.The returned RTT is slightly under the estimated RTT. The reason
+is that message rate estimation is a 2 dimensional problem which is solvable
+for any RTT. The goal is to gravitate towards smaller RTTs instead of large
+messages, to result in a stabler download stream.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.TargetTimeout">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=15504:15552#L360">TargetTimeout</a>
+					<a class="permalink" href="index.html#Trackers.TargetTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) TargetTimeout() <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a></pre>
+				<p>TargetTimeout returns the timeout allowance for a single request to finish
+under. The timeout is proportional to the roundtrip, but also takes into
+consideration the tracker&apos;s confidence in said roundtrip and scales it
+accordingly. The final value is capped to avoid runaway requests.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.Track">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=11896:11955#L248">Track</a>
+					<a class="permalink" href="index.html#Trackers.Track">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) Track(id <a href="../../../../../builtin/index.html#string">string</a>, tracker *<a href="index.html#Tracker">Tracker</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Track inserts a new tracker into the set.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.Untrack">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=12179:12222#L262">Untrack</a>
+					<a class="permalink" href="index.html#Trackers.Untrack">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) Untrack(id <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Untrack stops tracking a previously added peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Trackers.Update">func (*Trackers) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/p2p/msgrate/msgrate.go?s=18641:18724#L449">Update</a>
+					<a class="permalink" href="index.html#Trackers.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Trackers">Trackers</a>) Update(id <a href="../../../../../builtin/index.html#string">string</a>, kind <a href="../../../../../builtin/index.html#uint64">uint64</a>, elapsed <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>, items <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Update is a helper function to access a specific tracker without having to
+track it explicitly outside.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

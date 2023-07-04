@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>zk - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package zk
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/sd/zk"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package zk provides Instancer and Registrar implementations for ZooKeeper.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(servers []string, logger log.Logger, options ...Option) (Client, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Instancer">type Instancer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInstancer">func NewInstancer(c Client, path string, logger log.Logger) (*Instancer, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Deregister">func (s *Instancer) Deregister(ch chan&lt;- sd.Event)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Register">func (s *Instancer) Register(ch chan&lt;- sd.Event)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Instancer.Stop">func (s *Instancer) Stop()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ACL">func ACL(acl []zk.ACL) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectTimeout">func ConnectTimeout(t time.Duration) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Credentials">func Credentials(user, pass string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventHandler">func EventHandler(handler func(zk.Event)) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Payload">func Payload(payload [][]byte) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SessionTimeout">func SessionTimeout(t time.Duration) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Registrar">type Registrar</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRegistrar">func NewRegistrar(client Client, service Service, logger log.Logger) *Registrar</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Registrar.Deregister">func (r *Registrar) Deregister()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Registrar.Register">func (r *Registrar) Register()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go">instancer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/logwrapper.go">logwrapper.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go">registrar.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultConnectTimeout is the default timeout to establish a connection to</span>
+    <span class="comment">// a ZooKeeper node.</span>
+    <span id="DefaultConnectTimeout">DefaultConnectTimeout</span> = 2 * <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Second">Second</a>
+    <span class="comment">// DefaultSessionTimeout is the default timeout to keep the current</span>
+    <span class="comment">// ZooKeeper session alive during a temporary disconnect.</span>
+    <span id="DefaultSessionTimeout">DefaultSessionTimeout</span> = 5 * <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Second">Second</a>
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>DefaultACL is the default ACL to use for creating znodes.
+
+				<pre>var (
+    <span id="DefaultACL">DefaultACL</span>            = <a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/">zk</a>.<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/#WorldACL">WorldACL</a>(<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/">zk</a>.<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/#PermAll">PermAll</a>)
+    <span id="ErrInvalidCredentials">ErrInvalidCredentials</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;invalid credentials provided&#34;)
+    <span id="ErrClientClosed">ErrClientClosed</span>       = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;client service closed&#34;)
+    <span id="ErrNotRegistered">ErrNotRegistered</span>      = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;not registered&#34;)
+    <span id="ErrNodeNotFound">ErrNodeNotFound</span>       = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;node not found&#34;)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=871:1432#L23">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client is a wrapper around a lower level ZooKeeper client implementation.
+
+			<pre>type Client interface {
+    <span class="comment">// GetEntries should query the provided path in ZooKeeper, place a watch on</span>
+    <span class="comment">// it and retrieve data from its current child nodes.</span>
+    GetEntries(path <a href="../../../../../builtin/index.html#string">string</a>) ([]<a href="../../../../../builtin/index.html#string">string</a>, &lt;-chan <a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/">zk</a>.<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/#Event">Event</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// CreateParentNodes should try to create the path in case it does not exist</span>
+    <span class="comment">// yet on ZooKeeper.</span>
+    CreateParentNodes(path <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Register a service with ZooKeeper.</span>
+    Register(s *<a href="index.html#Service">Service</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Deregister a service with ZooKeeper.</span>
+    Deregister(s *<a href="index.html#Service">Service</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Stop should properly shutdown the client implementation</span>
+    Stop()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=3694:3780#L121">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(servers []<a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>, options ...<a href="index.html#Option">Option</a>) (<a href="index.html#Client">Client</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewClient returns a ZooKeeper client with a connection to the server cluster.
+It will return an error if the server cluster cannot be resolved.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Instancer">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go?s=298:418#L3">Instancer</a>
+				<a class="permalink" href="index.html#Instancer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Instancer yield instances stored in a certain ZooKeeper path. Any kind of
+change in that path is watched and will update the subscribers.
+
+			<pre>type Instancer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewInstancer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go?s=563:642#L13">NewInstancer</a>
+					<a class="permalink" href="index.html#NewInstancer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInstancer(c <a href="index.html#Client">Client</a>, path <a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) (*<a href="index.html#Instancer">Instancer</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewInstancer returns a ZooKeeper Instancer. ZooKeeper will start watching
+the given path for changes and update the Instancer endpoints.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Instancer.Deregister">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go?s=2156:2206#L78">Deregister</a>
+					<a class="permalink" href="index.html#Instancer.Deregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Deregister(ch chan&lt;- <a href="../index.html">sd</a>.<a href="../index.html#Event">Event</a>)</pre>
+				<p>Deregister implements Instancer.
+
+				
+				
+				
+			
+				
+				<h3 id="Instancer.Register">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go?s=2044:2092#L73">Register</a>
+					<a class="permalink" href="index.html#Instancer.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Register(ch chan&lt;- <a href="../index.html">sd</a>.<a href="../index.html#Event">Event</a>)</pre>
+				<p>Register implements Instancer.
+
+				
+				
+				
+			
+				
+				<h3 id="Instancer.Stop">func (*Instancer) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/instancer.go?s=1962:1988#L68">Stop</a>
+					<a class="permalink" href="index.html#Instancer.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Instancer">Instancer</a>) Stop()</pre>
+				<p>Stop terminates the Instancer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=1704:1741#L49">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option functions enable friendly APIs.
+
+			<pre>type Option func(*clientConfig) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ACL">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=1907:1936#L59">ACL</a>
+					<a class="permalink" href="index.html#ACL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ACL(acl []<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/">zk</a>.<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/#ACL">ACL</a>) <a href="index.html#Option">Option</a></pre>
+				<p>ACL returns an Option specifying a non-default ACL for creating parent nodes.
+
+				
+				
+			
+				
+				<h3 id="ConnectTimeout">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=2498:2541#L80">ConnectTimeout</a>
+					<a class="permalink" href="index.html#ConnectTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ConnectTimeout(t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="index.html#Option">Option</a></pre>
+				<p>ConnectTimeout returns an Option specifying a non-default connection timeout
+when we try to establish a connection to a ZooKeeper server.
+
+				
+				
+			
+				
+				<h3 id="Credentials">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=2140:2182#L68">Credentials</a>
+					<a class="permalink" href="index.html#Credentials">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Credentials(user, pass <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				<p>Credentials returns an Option specifying a user/password combination which
+the client will use to authenticate itself with.
+
+				
+				
+			
+				
+				<h3 id="EventHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=3409:3457#L112">EventHandler</a>
+					<a class="permalink" href="index.html#EventHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EventHandler(handler func(<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/">zk</a>.<a href="http://localhost:6060/pkg/github.com/go-zookeeper/zk/#Event">Event</a>)) <a href="index.html#Option">Option</a></pre>
+				<p>EventHandler returns an Option specifying a callback function to handle
+incoming zk.Event payloads (ZooKeeper connection events).
+
+				
+				
+			
+				
+				<h3 id="Payload">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=3146:3183#L103">Payload</a>
+					<a class="permalink" href="index.html#Payload">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Payload(payload [][]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Option">Option</a></pre>
+				<p>Payload returns an Option specifying non-default data values for each znode
+created by CreateParentNodes.
+
+				
+				
+			
+				
+				<h3 id="SessionTimeout">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/client.go?s=2805:2848#L91">SessionTimeout</a>
+					<a class="permalink" href="index.html#SessionTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SessionTimeout(t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="index.html#Option">Option</a></pre>
+				<p>SessionTimeout returns an Option specifying a non-default session timeout.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Registrar">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go?s=119:197#L1">Registrar</a>
+				<a class="permalink" href="index.html#Registrar">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Registrar registers service instance liveness information to ZooKeeper.
+
+			<pre>type Registrar struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRegistrar">func <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go?s=706:785#L13">NewRegistrar</a>
+					<a class="permalink" href="index.html#NewRegistrar">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRegistrar(client <a href="index.html#Client">Client</a>, service <a href="index.html#Service">Service</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) *<a href="index.html#Registrar">Registrar</a></pre>
+				<p>NewRegistrar returns a ZooKeeper Registrar acting on the provided catalog
+registration.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Registrar.Deregister">func (*Registrar) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go?s=1235:1267#L35">Deregister</a>
+					<a class="permalink" href="index.html#Registrar.Deregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Registrar">Registrar</a>) Deregister()</pre>
+				<p>Deregister implements sd.Registrar interface.
+
+				
+				
+				
+			
+				
+				<h3 id="Registrar.Register">func (*Registrar) <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go?s=1018:1048#L26">Register</a>
+					<a class="permalink" href="index.html#Registrar.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Registrar">Registrar</a>) Register()</pre>
+				<p>Register implements sd.Registrar interface.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/go-kit/kit/sd/zk/registrar.go?s=311:610#L4">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service holds the root path, service name and instance identifying data you
+want to publish to ZooKeeper.
+
+			<pre>type Service struct {
+<span id="Service.Path"></span>    Path <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// discovery namespace, example: /myorganization/myplatform/</span>
+<span id="Service.Name"></span>    Name <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// service name, example: addscv</span>
+<span id="Service.Data"></span>    Data []<a href="../../../../../builtin/index.html#byte">byte</a> <span class="comment">// instance data to store for discovery, example: 10.0.2.10:80</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

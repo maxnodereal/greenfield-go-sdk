@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>transition - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package transition
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/core/transition"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package transition implements the whole state transition
+function which consists of per slot, per-epoch transitions.
+It also bootstraps the genesis beacon state for slot 0.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CalculateStateRoot">func CalculateStateRoot(ctx context.Context, state state.BeaconState, signed block.SignedBeaconBlock) ([32]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#EmptyGenesisState">func EmptyGenesisState() (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ExecuteStateTransition">func ExecuteStateTransition(ctx context.Context, state state.BeaconState, signed block.SignedBeaconBlock) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ExecuteStateTransitionNoVerifyAnySig">func ExecuteStateTransitionNoVerifyAnySig(ctx context.Context, state state.BeaconState, signed block.SignedBeaconBlock) (*bls.SignatureBatch, state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenesisBeaconState">func GenesisBeaconState(ctx context.Context, deposits []*ethpb.Deposit, genesisTime uint64, eth1Data *ethpb.Eth1Data) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#IsValidGenesisState">func IsValidGenesisState(chainStartDepositCount, currentTime uint64) bool</a></dd>
+			
+				
+				<dd><a href="index.html#NextSlotState">func NextSlotState(_ context.Context, root []byte) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#OptimizedGenesisBeaconState">func OptimizedGenesisBeaconState(genesisTime uint64, preState state.BeaconState, eth1Data *ethpb.Eth1Data) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessBlockForStateRoot">func ProcessBlockForStateRoot(ctx context.Context, state state.BeaconState, signed block.SignedBeaconBlock) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessBlockNoVerifyAnySig">func ProcessBlockNoVerifyAnySig(ctx context.Context, state state.BeaconState, signed block.SignedBeaconBlock) (*bls.SignatureBatch, state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessEpochPrecompute">func ProcessEpochPrecompute(ctx context.Context, state state.BeaconState) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessOperationsNoVerifyAttsSigs">func ProcessOperationsNoVerifyAttsSigs(ctx context.Context, state state.BeaconState, signedBeaconBlock block.SignedBeaconBlock) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessSlot">func ProcessSlot(ctx context.Context, state state.BeaconState) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessSlots">func ProcessSlots(ctx context.Context, state state.BeaconState, slot types.Slot) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessSlotsUsingNextSlotCache">func ProcessSlotsUsingNextSlotCache(ctx context.Context, parentState state.BeaconState, parentRoot []byte, slot types.Slot) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#UpdateNextSlotCache">func UpdateNextSlotCache(ctx context.Context, root []byte, state state.BeaconState) error</a></dd>
+			
+				
+				<dd><a href="index.html#VerifyOperationLengths">func VerifyOperationLengths(_ context.Context, state state.BeaconState, b block.SignedBeaconBlock) (state.BeaconState, error)</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/skip_slot_cache.go">skip_slot_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/state.go">state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/trailing_slot_state_cache.go">trailing_slot_state_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go">transition.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go">transition_no_verify_sig.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>SkipSlotCache exists for the unlikely scenario that is a large gap between the head state and
+the current slot. If the beacon chain were ever to be stalled for several epochs, it may be
+difficult or impossible to compute the appropriate beacon state for assignments within a
+reasonable amount of time.
+
+				<pre>var <span id="SkipSlotCache">SkipSlotCache</span> = <a href="../../cache/index.html">cache</a>.<a href="../../cache/index.html#NewSkipSlotCache">NewSkipSlotCache</a>()</pre>
+			
+		
+		
+			
+			
+			<h2 id="CalculateStateRoot">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go?s=4455:4580#L105">CalculateStateRoot</a>
+				<a class="permalink" href="index.html#CalculateStateRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateStateRoot(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+) ([32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>CalculateStateRoot defines the procedure for a state transition function.
+This does not validate any BLS signatures in a block, it is used for calculating the
+state root of the state for the block proposer to use.
+This does not modify state.
+<p>WARNING: This method does not validate any BLS signatures (i.e. calling `state_transition()` with `validate_result=False`).
+This is used for proposer to compute state root before proposing a new block, and this does not modify state.
+<p>Spec pseudocode definition:
+<pre>def state_transition(state: BeaconState, signed_block: SignedBeaconBlock, validate_result: bool=True) -&gt; None:
+  block = signed_block.message
+  # Process slots (including those with no blocks) since block
+  process_slots(state, block.slot)
+  # Verify signature
+  if validate_result:
+      assert verify_block_signature(state, signed_block)
+  # Process block
+  process_block(state, block)
+  # Verify state root
+  if validate_result:
+      assert block.state_root == hash_tree_root(state)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="EmptyGenesisState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/state.go?s=6367:6418#L173">EmptyGenesisState</a>
+				<a class="permalink" href="index.html#EmptyGenesisState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EmptyGenesisState() (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>EmptyGenesisState returns an empty beacon state object.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExecuteStateTransition">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=1857:1995#L37">ExecuteStateTransition</a>
+				<a class="permalink" href="index.html#ExecuteStateTransition">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExecuteStateTransition(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ExecuteStateTransition defines the procedure for a state transition function.
+<p>Note: This method differs from the spec pseudocode as it uses a batch signature verification.
+See: ExecuteStateTransitionNoVerifyAnySig
+<p>Spec pseudocode definition:
+<pre>def state_transition(state: BeaconState, signed_block: SignedBeaconBlock, validate_result: bool=True) -&gt; None:
+  block = signed_block.message
+  # Process slots (including those with no blocks) since block
+  process_slots(state, block.slot)
+  # Verify signature
+  if validate_result:
+      assert verify_block_signature(state, signed_block)
+  # Process block
+  process_block(state, block)
+  # Verify state root
+  if validate_result:
+      assert block.state_root == hash_tree_root(state)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExecuteStateTransitionNoVerifyAnySig">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go?s=1882:2055#L34">ExecuteStateTransitionNoVerifyAnySig</a>
+				<a class="permalink" href="index.html#ExecuteStateTransitionNoVerifyAnySig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExecuteStateTransitionNoVerifyAnySig(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+) (*<a href="../../../crypto/bls/index.html">bls</a>.<a href="../../../crypto/bls/index.html#SignatureBatch">SignatureBatch</a>, <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ExecuteStateTransitionNoVerifyAnySig defines the procedure for a state transition function.
+This does not validate any BLS signatures of attestations, block proposer signature, randao signature,
+it is used for performing a state transition as quickly as possible. This function also returns a signature
+set of all signatures not verified, so that they can be stored and verified later.
+<p>WARNING: This method does not validate any signatures (i.e. calling `state_transition()` with `validate_result=False`).
+This method also modifies the passed in state.
+<p>Spec pseudocode definition:
+<pre>def state_transition(state: BeaconState, signed_block: SignedBeaconBlock, validate_result: bool=True) -&gt; None:
+  block = signed_block.message
+  # Process slots (including those with no blocks) since block
+  process_slots(state, block.slot)
+  # Verify signature
+  if validate_result:
+      assert verify_block_signature(state, signed_block)
+  # Process block
+  process_block(state, block)
+  # Verify state root
+  if validate_result:
+      assert block.state_root == hash_tree_root(state)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenesisBeaconState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/state.go?s=2539:2683#L46">GenesisBeaconState</a>
+				<a class="permalink" href="index.html#GenesisBeaconState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenesisBeaconState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, deposits []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>, genesisTime <a href="../../../../../../builtin/index.html#uint64">uint64</a>, eth1Data *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Eth1Data">Eth1Data</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenesisBeaconState gets called when MinGenesisActiveValidatorCount count of
+full deposits were made to the deposit contract and the ChainStart log gets emitted.
+<p>Spec pseudocode definition:
+<pre>def initialize_beacon_state_from_eth1(eth1_block_hash: Bytes32,
+                                    eth1_timestamp: uint64,
+                                    deposits: Sequence[Deposit]) -&gt; BeaconState:
+  fork = Fork(
+      previous_version=GENESIS_FORK_VERSION,
+      current_version=GENESIS_FORK_VERSION,
+      epoch=GENESIS_EPOCH,
+  )
+  state = BeaconState(
+      genesis_time=eth1_timestamp + GENESIS_DELAY,
+      fork=fork,
+      eth1_data=Eth1Data(block_hash=eth1_block_hash, deposit_count=uint64(len(deposits))),
+      latest_block_header=BeaconBlockHeader(body_root=hash_tree_root(BeaconBlockBody())),
+      randao_mixes=[eth1_block_hash] * EPOCHS_PER_HISTORICAL_VECTOR,  # Seed RANDAO with Eth1 entropy
+  )
+
+  # Process deposits
+  leaves = list(map(lambda deposit: deposit.data, deposits))
+  for index, deposit in enumerate(deposits):
+      deposit_data_list = List[DepositData, 2**DEPOSIT_CONTRACT_TREE_DEPTH](*leaves[:index + 1])
+      state.eth1_data.deposit_root = hash_tree_root(deposit_data_list)
+      process_deposit(state, deposit)
+
+  # Process activations
+  for index, validator in enumerate(state.validators):
+      balance = state.balances[index]
+      validator.effective_balance = min(balance - balance % EFFECTIVE_BALANCE_INCREMENT, MAX_EFFECTIVE_BALANCE)
+      if validator.effective_balance == MAX_EFFECTIVE_BALANCE:
+          validator.activation_eligibility_epoch = GENESIS_EPOCH
+          validator.activation_epoch = GENESIS_EPOCH
+
+  # Set genesis validators root for domain separation and chain versioning
+  state.genesis_validators_root = hash_tree_root(state.validators)
+
+  return state
+</pre>
+<p>This method differs from the spec so as to process deposits beforehand instead of the end of the function.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsValidGenesisState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/state.go?s=7750:7823#L212">IsValidGenesisState</a>
+				<a class="permalink" href="index.html#IsValidGenesisState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsValidGenesisState(chainStartDepositCount, currentTime <a href="../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsValidGenesisState gets called whenever there&apos;s a deposit event,
+it checks whether there&apos;s enough effective balance to trigger and
+if the minimum genesis time arrived already.
+<p>Spec pseudocode definition:
+<pre>def is_valid_genesis_state(state: BeaconState) -&gt; bool:
+   if state.genesis_time &lt; MIN_GENESIS_TIME:
+       return False
+   if len(get_active_validator_indices(state, GENESIS_EPOCH)) &lt; MIN_GENESIS_ACTIVE_VALIDATOR_COUNT:
+       return False
+   return True
+</pre>
+<p>This method has been modified from the spec to allow whole states not to be saved
+but instead only cache the relevant information.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NextSlotState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/trailing_slot_state_cache.go?s=978:1055#L25">NextSlotState</a>
+				<a class="permalink" href="index.html#NextSlotState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NextSlotState(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NextSlotState returns the saved state if the input root matches the root in `nextSlotCache`. Returns nil otherwise.
+This is useful to check before processing slots. With a cache hit, it will return last processed state with slot plus
+one advancement.
+
+			
+			
+
+		
+			
+			
+			<h2 id="OptimizedGenesisBeaconState">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/state.go?s=3291:3424#L68">OptimizedGenesisBeaconState</a>
+				<a class="permalink" href="index.html#OptimizedGenesisBeaconState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func OptimizedGenesisBeaconState(genesisTime <a href="../../../../../../builtin/index.html#uint64">uint64</a>, preState <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, eth1Data *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Eth1Data">Eth1Data</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>OptimizedGenesisBeaconState is used to create a state that has already processed deposits. This is to efficiently
+create a mainnet state at chainstart.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessBlockForStateRoot">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go?s=11036:11176#L290">ProcessBlockForStateRoot</a>
+				<a class="permalink" href="index.html#ProcessBlockForStateRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessBlockForStateRoot(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessBlockForStateRoot processes the state for state root computation. It skips proposer signature
+and randao signature verifications.
+<p>Spec pseudocode definition:
+def process_block(state: BeaconState, block: BeaconBlock) -&gt; None:
+<pre>process_block_header(state, block)
+if is_execution_enabled(state, block.body):
+    process_execution_payload(state, block.body.execution_payload, EXECUTION_ENGINE)  # [New in Bellatrix]
+process_randao(state, block.body)
+process_eth1_data(state, block.body)
+process_operations(state, block.body)
+process_sync_aggregate(state, block.body.sync_aggregate)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessBlockNoVerifyAnySig">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go?s=6611:6774#L171">ProcessBlockNoVerifyAnySig</a>
+				<a class="permalink" href="index.html#ProcessBlockNoVerifyAnySig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessBlockNoVerifyAnySig(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+) (*<a href="../../../crypto/bls/index.html">bls</a>.<a href="../../../crypto/bls/index.html#SignatureBatch">SignatureBatch</a>, <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessBlockNoVerifyAnySig creates a new, modified beacon state by applying block operation
+transformations as defined in the Ethereum Serenity specification. It does not validate
+any block signature except for deposit and slashing signatures. It also returns the relevant
+signature set from all the respective methods.
+<p>Spec pseudocode definition:
+<pre>def process_block(state: BeaconState, block: BeaconBlock) -&gt; None:
+  process_block_header(state, block)
+  process_randao(state, block.body)
+  process_eth1_data(state, block.body)
+  process_operations(state, block.body)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessEpochPrecompute">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=11501:11601#L331">ProcessEpochPrecompute</a>
+				<a class="permalink" href="index.html#ProcessEpochPrecompute">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessEpochPrecompute(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessEpochPrecompute describes the per epoch operations that are performed on the beacon state.
+It&apos;s optimized by pre computing validator attested info and epoch total/attested balances upfront.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessOperationsNoVerifyAttsSigs">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition_no_verify_sig.go?s=9463:9621#L245">ProcessOperationsNoVerifyAttsSigs</a>
+				<a class="permalink" href="index.html#ProcessOperationsNoVerifyAttsSigs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessOperationsNoVerifyAttsSigs(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    signedBeaconBlock <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessOperationsNoVerifyAttsSigs processes the operations in the beacon block and updates beacon state
+with the operations in block. It does not verify attestation signatures.
+<p>WARNING: This method does not verify attestation signatures.
+This is used to perform the block operations as fast as possible.
+<p>Spec pseudocode definition:
+<pre>def process_operations(state: BeaconState, body: BeaconBlockBody) -&gt; None:
+  # Verify that outstanding deposits are processed up to the maximum number of deposits
+  assert len(body.deposits) == min(MAX_DEPOSITS, state.eth1_data.deposit_count - state.eth1_deposit_index)
+
+  def for_ops(operations: Sequence[Any], fn: Callable[[BeaconState, Any], None]) -&gt; None:
+      for operation in operations:
+          fn(state, operation)
+
+  for_ops(body.proposer_slashings, process_proposer_slashing)
+  for_ops(body.attester_slashings, process_attester_slashing)
+  for_ops(body.attestations, process_attestation)
+  for_ops(body.deposits, process_deposit)
+  for_ops(body.voluntary_exits, process_voluntary_exit)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessSlot">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=3386:3475#L82">ProcessSlot</a>
+				<a class="permalink" href="index.html#ProcessSlot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessSlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessSlot happens every slot and focuses on the slot counter and block roots record updates.
+It happens regardless if there&apos;s an incoming block or not.
+Spec pseudocode definition:
+<pre>def process_slot(state: BeaconState) -&gt; None:
+  # Cache state root
+  previous_state_root = hash_tree_root(state)
+  state.state_roots[state.slot % SLOTS_PER_HISTORICAL_ROOT] = previous_state_root
+  # Cache latest block header state root
+  if state.latest_block_header.state_root == Bytes32():
+      state.latest_block_header.state_root = previous_state_root
+  # Cache block root
+  previous_block_root = hash_tree_root(state.latest_block_header)
+  state.block_roots[state.slot % SLOTS_PER_HISTORICAL_ROOT] = previous_block_root
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessSlots">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=6116:6223#L164">ProcessSlots</a>
+				<a class="permalink" href="index.html#ProcessSlots">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessSlots(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessSlots process through skip slots and apply epoch transition when it&apos;s needed
+<p>Spec pseudocode definition:
+<pre>def process_slots(state: BeaconState, slot: Slot) -&gt; None:
+  assert state.slot &lt; slot
+  while state.slot &lt; slot:
+      process_slot(state)
+      # Process epoch on the start slot of the next epoch
+      if (state.slot + 1) % SLOTS_PER_EPOCH == 0:
+          process_epoch(state)
+      state.slot = Slot(state.slot + 1)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessSlotsUsingNextSlotCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=4704:4859#L123">ProcessSlotsUsingNextSlotCache</a>
+				<a class="permalink" href="index.html#ProcessSlotsUsingNextSlotCache">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessSlotsUsingNextSlotCache(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    parentState <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>,
+    parentRoot []<a href="../../../../../../builtin/index.html#byte">byte</a>,
+    slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessSlotsUsingNextSlotCache processes slots by using next slot cache for higher efficiency.
+
+			
+			
+
+		
+			
+			
+			<h2 id="UpdateNextSlotCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/trailing_slot_state_cache.go?s=1515:1604#L40">UpdateNextSlotCache</a>
+				<a class="permalink" href="index.html#UpdateNextSlotCache">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UpdateNextSlotCache(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root []<a href="../../../../../../builtin/index.html#byte">byte</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>UpdateNextSlotCache updates the `nextSlotCache`. It saves the input state after advancing the state slot by 1
+by calling `ProcessSlots`, it also saves the input root for later look up.
+This is useful to call after successfully processing a block.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyOperationLengths">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/transition/transition.go?s=9259:9384#L275">VerifyOperationLengths</a>
+				<a class="permalink" href="index.html#VerifyOperationLengths">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VerifyOperationLengths(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, b <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>VerifyOperationLengths verifies that block operation lengths are valid.
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="interop/index.html">interop</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package interop contains useful utilities for persisting ssz-encoded states and blocks to disk during each state transition for development purposes.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="stateutils/index.html">stateutils</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package stateutils contains useful tools for faster computation of state transitions using maps to represent validators instead of slices.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

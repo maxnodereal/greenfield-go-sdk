@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>cloudwatch - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package cloudwatch
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/metrics/cloudwatch"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#WithConcurrentRequests">func WithConcurrentRequests(n int) option</a></dd>
+			
+				
+				<dd><a href="index.html#WithLogger">func WithLogger(logger log.Logger) option</a></dd>
+			
+				
+				<dd><a href="index.html#WithPercentiles">func WithPercentiles(percentiles ...float64) option</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CloudWatch">type CloudWatch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(namespace string, svc cloudwatchiface.CloudWatchAPI, options ...option) *CloudWatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CloudWatch.NewCounter">func (cw *CloudWatch) NewCounter(name string) metrics.Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CloudWatch.NewGauge">func (cw *CloudWatch) NewGauge(name string) metrics.Gauge</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CloudWatch.NewHistogram">func (cw *CloudWatch) NewHistogram(name string) metrics.Histogram</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CloudWatch.Send">func (cw *CloudWatch) Send() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CloudWatch.WriteLoop">func (cw *CloudWatch) WriteLoop(ctx context.Context, c &lt;-chan time.Time)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Counter">type Counter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.Add">func (c *Counter) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Counter.With">func (c *Counter) With(labelValues ...string) metrics.Counter</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Gauge">type Gauge</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Add">func (g *Gauge) Add(delta float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.Set">func (g *Gauge) Set(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Gauge.With">func (g *Gauge) With(labelValues ...string) metrics.Gauge</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Histogram">type Histogram</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.Observe">func (h *Histogram) Observe(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Histogram.With">func (h *Histogram) With(labelValues ...string) metrics.Histogram</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Percentiles">type Percentiles</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go">cloudwatch.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="WithConcurrentRequests">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=1925:1966#L69">WithConcurrentRequests</a>
+				<a class="permalink" href="index.html#WithConcurrentRequests">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WithConcurrentRequests(n <a href="../../../../../builtin/index.html#int">int</a>) option</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="WithLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=1295:1336#L47">WithLogger</a>
+				<a class="permalink" href="index.html#WithLogger">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WithLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) option</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="WithPercentiles">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=1632:1683#L57">WithPercentiles</a>
+				<a class="permalink" href="index.html#WithPercentiles">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WithPercentiles(percentiles ...<a href="../../../../../builtin/index.html#float64">float64</a>) option</pre>
+			<p>WithPercentiles registers the percentiles to track, overriding the
+existing/default values.
+Reason is that Cloudwatch makes you pay per metric, so you can save half the money
+by only using 2 metrics instead of the default 4.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CloudWatch">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=790:1189#L26">CloudWatch</a>
+				<a class="permalink" href="index.html#CloudWatch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CloudWatch receives metrics observations and forwards them to CloudWatch.
+Create a CloudWatch object, use it to create metrics, and pass those metrics as
+dependencies to the components that will use them.
+<p>To regularly report metrics to CloudWatch, use the WriteLoop helper method.
+
+			<pre>type CloudWatch struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=2376:2468#L82">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(namespace <a href="../../../../../builtin/index.html#string">string</a>, svc <a href="http://localhost:6060/pkg/github.com/aws/aws-sdk-go/service/cloudwatch/cloudwatchiface/">cloudwatchiface</a>.<a href="http://localhost:6060/pkg/github.com/aws/aws-sdk-go/service/cloudwatch/cloudwatchiface/#CloudWatchAPI">CloudWatchAPI</a>, options ...option) *<a href="index.html#CloudWatch">CloudWatch</a></pre>
+				<p>New returns a CloudWatch object that may be used to create metrics.
+Namespace is applied to all created metrics and maps to the CloudWatch namespace.
+Callers must ensure that regular calls to Send are performed, either
+manually or with one of the helper methods.
+
+				
+				
+			
+
+			
+				
+				<h3 id="CloudWatch.NewCounter">func (*CloudWatch) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=3097:3158#L106">NewCounter</a>
+					<a class="permalink" href="index.html#CloudWatch.NewCounter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="index.html#CloudWatch">CloudWatch</a>) NewCounter(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Counter">Counter</a></pre>
+				<p>NewCounter returns a counter. Observations are aggregated and emitted once
+per write invocation.
+
+				
+				
+				
+			
+				
+				<h3 id="CloudWatch.NewGauge">func (*CloudWatch) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=3258:3315#L114">NewGauge</a>
+					<a class="permalink" href="index.html#CloudWatch.NewGauge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="index.html#CloudWatch">CloudWatch</a>) NewGauge(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+				<p>NewGauge returns an gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="CloudWatch.NewHistogram">func (*CloudWatch) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=3441:3506#L123">NewHistogram</a>
+					<a class="permalink" href="index.html#CloudWatch.NewHistogram">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="index.html#CloudWatch">CloudWatch</a>) NewHistogram(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>NewHistogram returns a histogram.
+
+				
+				
+				
+			
+				
+				<h3 id="CloudWatch.Send">func (*CloudWatch) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=4230:4264#L149">Send</a>
+					<a class="permalink" href="index.html#CloudWatch.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="index.html#CloudWatch">CloudWatch</a>) Send() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Send will fire an API request to CloudWatch with the latest stats for
+all metrics. It is preferred that the WriteLoop method is used.
+
+				
+				
+				
+			
+				
+				<h3 id="CloudWatch.WriteLoop">func (*CloudWatch) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=3854:3926#L134">WriteLoop</a>
+					<a class="permalink" href="index.html#CloudWatch.WriteLoop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="index.html#CloudWatch">CloudWatch</a>) WriteLoop(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, c &lt;-chan <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>)</pre>
+				<p>WriteLoop is a helper method that invokes Send every time the passed
+channel fires. This method blocks until ctx is canceled, so clients
+probably want to run it in its own goroutine. For typical usage, create a
+time.Ticker and pass its C channel to this method.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Counter">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=7458:7533#L279">Counter</a>
+				<a class="permalink" href="index.html#Counter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Counter is a counter. Observations are forwarded to a node
+object, and aggregated (summed) per timeseries.
+
+			<pre>type Counter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Counter.Add">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=7761:7797#L295">Add</a>
+					<a class="permalink" href="index.html#Counter.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add implements metrics.Counter.
+
+				
+				
+				
+			
+				
+				<h3 id="Counter.With">func (*Counter) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=7571:7632#L286">With</a>
+					<a class="permalink" href="index.html#Counter.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Counter">Counter</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Counter">Counter</a></pre>
+				<p>With implements metrics.Counter.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Gauge">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=7964:8055#L301">Gauge</a>
+				<a class="permalink" href="index.html#Gauge">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Gauge is a gauge. Observations are forwarded to a node
+object, and aggregated (the last observation selected) per timeseries.
+
+			<pre>type Gauge struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Gauge.Add">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8390:8424#L324">Add</a>
+					<a class="permalink" href="index.html#Gauge.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Add(delta <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Add implements metrics.Gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.Set">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8288:8322#L319">Set</a>
+					<a class="permalink" href="index.html#Gauge.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) Set(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Set implements metrics.Gauge.
+
+				
+				
+				
+			
+				
+				<h3 id="Gauge.With">func (*Gauge) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8091:8148#L309">With</a>
+					<a class="permalink" href="index.html#Gauge.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Gauge">Gauge</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+				<p>With implements metrics.Gauge.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Histogram">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8610:8687#L330">Histogram</a>
+				<a class="permalink" href="index.html#Histogram">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Histogram is an Influx histrogram. Observations are aggregated into a
+generic.Histogram and emitted as per-quantile gauges to the Influx server.
+
+			<pre>type Histogram struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Histogram.Observe">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8929:8971#L346">Observe</a>
+					<a class="permalink" href="index.html#Histogram.Observe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) Observe(value <a href="../../../../../builtin/index.html#float64">float64</a>)</pre>
+				<p>Observe implements metrics.Histogram.
+
+				
+				
+				
+			
+				
+				<h3 id="Histogram.With">func (*Histogram) <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=8727:8792#L337">With</a>
+					<a class="permalink" href="index.html#Histogram.With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Histogram">Histogram</a>) With(labelValues ...<a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>With implements metrics.Histogram.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Percentiles">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/cloudwatch/cloudwatch.go?s=442:492#L16">Percentiles</a>
+				<a class="permalink" href="index.html#Percentiles">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Percentiles []struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

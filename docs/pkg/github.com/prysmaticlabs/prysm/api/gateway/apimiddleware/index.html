@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>apimiddleware - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package apimiddleware
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/api/gateway/apimiddleware"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#GrpcResponseIsEmpty">func GrpcResponseIsEmpty(grpcResponseBody []byte) bool</a></dd>
+			
+				
+				<dd><a href="index.html#WriteError">func WriteError(w http.ResponseWriter, errJson ErrorJson, responseHeader http.Header)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ApiProxyMiddleware">type ApiProxyMiddleware</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ApiProxyMiddleware.PrepareRequestForProxying">func (m *ApiProxyMiddleware) PrepareRequestForProxying(endpoint Endpoint, req *http.Request) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ApiProxyMiddleware.Run">func (m *ApiProxyMiddleware) Run(gatewayRouter *mux.Router)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ApiProxyMiddleware.ServeHTTP">func (m *ApiProxyMiddleware) ServeHTTP(w http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ApiProxyMiddleware.WithMiddleware">func (m *ApiProxyMiddleware) WithMiddleware(path string) http.HandlerFunc</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CustomHandler">type CustomHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DefaultErrorJson">type DefaultErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalServerError">func InternalServerError(err error) *DefaultErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InternalServerErrorWithMessage">func InternalServerErrorWithMessage(err error, message string) *DefaultErrorJson</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultErrorJson.Msg">func (e *DefaultErrorJson) Msg() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultErrorJson.SetCode">func (e *DefaultErrorJson) SetCode(code int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultErrorJson.SetMsg">func (e *DefaultErrorJson) SetMsg(msg string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultErrorJson.StatusCode">func (e *DefaultErrorJson) StatusCode() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Endpoint">type Endpoint</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultEndpoint">func DefaultEndpoint() Endpoint</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EndpointFactory">type EndpointFactory</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorJson">type ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cleanup">func Cleanup(grpcResponseBody io.ReadCloser) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DeserializeGrpcResponseBodyIntoContainer">func DeserializeGrpcResponseBodyIntoContainer(body []byte, responseContainer interface{}) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DeserializeRequestBodyIntoContainer">func DeserializeRequestBodyIntoContainer(body io.Reader, requestContainer interface{}) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandleGrpcResponseError">func HandleGrpcResponseError(errJson ErrorJson, resp *http.Response, respBody []byte, w http.ResponseWriter) (bool, ErrorJson)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandleQueryParameters">func HandleQueryParameters(req *http.Request, params []QueryParam) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HandleURLParameters">func HandleURLParameters(url string, req *http.Request, literals []string) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProcessMiddlewareResponseFields">func ProcessMiddlewareResponseFields(responseContainer interface{}) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProcessRequestContainerFields">func ProcessRequestContainerFields(requestContainer interface{}) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProxyRequest">func ProxyRequest(req *http.Request) (*http.Response, ErrorJson)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadGrpcResponseBody">func ReadGrpcResponseBody(r io.Reader) ([]byte, ErrorJson)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SerializeMiddlewareResponseIntoJson">func SerializeMiddlewareResponseIntoJson(responseContainer interface{}) (jsonResponse []byte, errJson ErrorJson)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetRequestBodyToRequestContainer">func SetRequestBodyToRequestContainer(requestContainer interface{}, req *http.Request) ErrorJson</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WriteMiddlewareResponseHeadersAndBody">func WriteMiddlewareResponseHeadersAndBody(grpcResp *http.Response, responseJson []byte, w http.ResponseWriter) ErrorJson</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HookCollection">type HookCollection</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#QueryParam">type QueryParam</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RunDefault">type RunDefault</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go">api_middleware.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/param_handling.go">param_handling.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_field.go">process_field.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go">process_request.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go">structs.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GrpcResponseIsEmpty">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=4313:4367#L112">GrpcResponseIsEmpty</a>
+				<a class="permalink" href="index.html#GrpcResponseIsEmpty">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GrpcResponseIsEmpty(grpcResponseBody []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+			<p>GrpcResponseIsEmpty determines whether the grpc-gateway&apos;s response body contains no data.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteError">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=7096:7181#L191">WriteError</a>
+				<a class="permalink" href="index.html#WriteError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteError(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, errJson <a href="index.html#ErrorJson">ErrorJson</a>, responseHeader <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Header">Header</a>)</pre>
+			<p>WriteError writes the error by manipulating headers and the body of the final response.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ApiProxyMiddleware">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=445:565#L4">ApiProxyMiddleware</a>
+				<a class="permalink" href="index.html#ApiProxyMiddleware">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ApiProxyMiddleware is a proxy between an Ethereum consensus API HTTP client and grpc-gateway.
+The purpose of the proxy is to handle HTTP requests and gRPC responses in such a way that:
+<ul>
+<li>Ethereum consensus API requests can be handled by grpc-gateway correctly
+<li>gRPC responses can be returned as spec-compliant Ethereum consensus API responses
+</ul>
+
+			<pre>type ApiProxyMiddleware struct {
+<span id="ApiProxyMiddleware.GatewayAddress"></span>    GatewayAddress  <a href="../../../../../../builtin/index.html#string">string</a>
+<span id="ApiProxyMiddleware.EndpointCreator"></span>    EndpointCreator <a href="index.html#EndpointFactory">EndpointFactory</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ApiProxyMiddleware.PrepareRequestForProxying">func (*ApiProxyMiddleware) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=1977:2079#L52">PrepareRequestForProxying</a>
+					<a class="permalink" href="index.html#ApiProxyMiddleware.PrepareRequestForProxying">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>) PrepareRequestForProxying(endpoint <a href="index.html#Endpoint">Endpoint</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>PrepareRequestForProxying applies additional logic to the request so that it can be correctly proxied to grpc-gateway.
+
+				
+				
+				
+			
+				
+				<h3 id="ApiProxyMiddleware.Run">func (*ApiProxyMiddleware) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=3703:3762#L68">Run</a>
+					<a class="permalink" href="index.html#ApiProxyMiddleware.Run">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>) Run(gatewayRouter *<a href="../../../../../gorilla/mux/index.html">mux</a>.<a href="../../../../../gorilla/mux/index.html#Router">Router</a>)</pre>
+				<p>Run starts the proxy, registering all proxy endpoints.
+
+				
+				
+				
+			
+				
+				<h3 id="ApiProxyMiddleware.ServeHTTP">func (*ApiProxyMiddleware) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=3943:4023#L76">ServeHTTP</a>
+					<a class="permalink" href="index.html#ApiProxyMiddleware.ServeHTTP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>) ServeHTTP(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>ServeHTTP for the proxy middleware.
+
+				
+				
+				
+			
+				
+				<h3 id="ApiProxyMiddleware.WithMiddleware">func (*ApiProxyMiddleware) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=4135:4208#L81">WithMiddleware</a>
+					<a class="permalink" href="index.html#ApiProxyMiddleware.WithMiddleware">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>) WithMiddleware(path <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#HandlerFunc">HandlerFunc</a></pre>
+				<p>WithMiddleware wraps the given endpoint handler with the middleware logic.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CustomHandler">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=2712:2836#L51">CustomHandler</a>
+				<a class="permalink" href="index.html#CustomHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CustomHandler is a function that can be invoked at the very beginning of the request,
+essentially replacing the whole default request/response logic with custom logic for a specific endpoint.
+
+			<pre>type CustomHandler = func(m *<a href="index.html#ApiProxyMiddleware">ApiProxyMiddleware</a>, endpoint <a href="index.html#Endpoint">Endpoint</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) (handled <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DefaultErrorJson">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=426:521#L12">DefaultErrorJson</a>
+				<a class="permalink" href="index.html#DefaultErrorJson">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DefaultErrorJson is a JSON representation of a simple error value, containing only a message and an error code.
+
+			<pre>type DefaultErrorJson struct {
+<span id="DefaultErrorJson.Message"></span>    Message <a href="../../../../../../builtin/index.html#string">string</a> `json:&#34;message&#34;`
+<span id="DefaultErrorJson.Code"></span>    Code    <a href="../../../../../../builtin/index.html#int">int</a>    `json:&#34;code&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InternalServerError">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=899:952#L27">InternalServerError</a>
+					<a class="permalink" href="index.html#InternalServerError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InternalServerError(err <a href="../../../../../../builtin/index.html#error">error</a>) *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a></pre>
+				<p>InternalServerError returns a DefaultErrorJson with 500 code.
+
+				
+				
+			
+				
+				<h3 id="InternalServerErrorWithMessage">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=620:700#L18">InternalServerErrorWithMessage</a>
+					<a class="permalink" href="index.html#InternalServerErrorWithMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InternalServerErrorWithMessage(err <a href="../../../../../../builtin/index.html#error">error</a>, message <a href="../../../../../../builtin/index.html#string">string</a>) *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a></pre>
+				<p>InternalServerErrorWithMessage returns a DefaultErrorJson with 500 code and a custom message.
+
+				
+				
+			
+
+			
+				
+				<h3 id="DefaultErrorJson.Msg">func (*DefaultErrorJson) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=1223:1262#L40">Msg</a>
+					<a class="permalink" href="index.html#DefaultErrorJson.Msg">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a>) Msg() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>Msg returns the error&apos;s underlying message.
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultErrorJson.SetCode">func (*DefaultErrorJson) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=1337:1381#L45">SetCode</a>
+					<a class="permalink" href="index.html#DefaultErrorJson.SetCode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a>) SetCode(code <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>SetCode sets the error&apos;s underlying error code.
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultErrorJson.SetMsg">func (*DefaultErrorJson) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=1449:1494#L50">SetMsg</a>
+					<a class="permalink" href="index.html#DefaultErrorJson.SetMsg">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a>) SetMsg(msg <a href="../../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetMsg sets the error&apos;s underlying message.
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultErrorJson.StatusCode">func (*DefaultErrorJson) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=1112:1155#L35">StatusCode</a>
+					<a class="permalink" href="index.html#DefaultErrorJson.StatusCode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#DefaultErrorJson">DefaultErrorJson</a>) StatusCode() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>StatusCode returns the error&apos;s underlying error code.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Endpoint">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=854:2061#L18">Endpoint</a>
+				<a class="permalink" href="index.html#Endpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Endpoint is a representation of an API HTTP endpoint that should be proxied by the middleware.
+
+			<pre>type Endpoint struct {
+<span id="Endpoint.Path"></span>    Path               <a href="../../../../../../builtin/index.html#string">string</a>          <span class="comment">// The path of the HTTP endpoint.</span>
+<span id="Endpoint.GetResponse"></span>    GetResponse        interface{}     <span class="comment">// The struct corresponding to the JSON structure used in a GET response.</span>
+<span id="Endpoint.PostRequest"></span>    PostRequest        interface{}     <span class="comment">// The struct corresponding to the JSON structure used in a POST request.</span>
+<span id="Endpoint.PostResponse"></span>    PostResponse       interface{}     <span class="comment">// The struct corresponding to the JSON structure used in a POST response.</span>
+<span id="Endpoint.DeleteRequest"></span>    DeleteRequest      interface{}     <span class="comment">// The struct corresponding to the JSON structure used in a DELETE request.</span>
+<span id="Endpoint.DeleteResponse"></span>    DeleteResponse     interface{}     <span class="comment">// The struct corresponding to the JSON structure used in a DELETE response.</span>
+<span id="Endpoint.RequestURLLiterals"></span>    RequestURLLiterals []<a href="../../../../../../builtin/index.html#string">string</a>        <span class="comment">// Names of URL parameters that should not be base64-encoded.</span>
+<span id="Endpoint.RequestQueryParams"></span>    RequestQueryParams []<a href="index.html#QueryParam">QueryParam</a>    <span class="comment">// Query parameters of the request.</span>
+<span id="Endpoint.Err"></span>    Err                <a href="index.html#ErrorJson">ErrorJson</a>       <span class="comment">// The struct corresponding to the error that should be returned in case of a request failure.</span>
+<span id="Endpoint.Hooks"></span>    Hooks              <a href="index.html#HookCollection">HookCollection</a>  <span class="comment">// A collection of functions that can be invoked at various stages of the request/response cycle.</span>
+<span id="Endpoint.CustomHandlers"></span>    CustomHandlers     []<a href="index.html#CustomHandler">CustomHandler</a> <span class="comment">// Functions that will be executed instead of the default request/response behaviour.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultEndpoint">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=2303:2334#L36">DefaultEndpoint</a>
+					<a class="permalink" href="index.html#DefaultEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultEndpoint() <a href="index.html#Endpoint">Endpoint</a></pre>
+				<p>DefaultEndpoint returns an Endpoint with default configuration, e.g. DefaultErrorJson for error handling.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="EndpointFactory">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=648:754#L11">EndpointFactory</a>
+				<a class="permalink" href="index.html#EndpointFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointFactory is responsible for creating new instances of Endpoint values.
+
+			<pre>type EndpointFactory interface {
+    Create(path <a href="../../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Endpoint">Endpoint</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    Paths() []<a href="../../../../../../builtin/index.html#string">string</a>
+    IsNil() <a href="../../../../../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorJson">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/structs.go?s=210:309#L4">ErrorJson</a>
+				<a class="permalink" href="index.html#ErrorJson">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorJson describes common functionality of all JSON error representations.
+
+			<pre>type ErrorJson interface {
+    StatusCode() <a href="../../../../../../builtin/index.html#int">int</a>
+    SetCode(code <a href="../../../../../../builtin/index.html#int">int</a>)
+    Msg() <a href="../../../../../../builtin/index.html#string">string</a>
+    SetMsg(msg <a href="../../../../../../builtin/index.html#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Cleanup">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=8786:8840#L240">Cleanup</a>
+					<a class="permalink" href="index.html#Cleanup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Cleanup(grpcResponseBody <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#ReadCloser">ReadCloser</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>Cleanup performs final cleanup on the initial response from grpc-gateway.
+
+				
+				
+			
+				
+				<h3 id="DeserializeGrpcResponseBodyIntoContainer">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=4568:4667#L117">DeserializeGrpcResponseBodyIntoContainer</a>
+					<a class="permalink" href="index.html#DeserializeGrpcResponseBodyIntoContainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DeserializeGrpcResponseBodyIntoContainer(body []<a href="../../../../../../builtin/index.html#byte">byte</a>, responseContainer interface{}) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>DeserializeGrpcResponseBodyIntoContainer deserializes the grpc-gateway&apos;s response body into an endpoint-specific struct.
+
+				
+				
+			
+				
+				<h3 id="DeserializeRequestBodyIntoContainer">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=296:392#L8">DeserializeRequestBodyIntoContainer</a>
+					<a class="permalink" href="index.html#DeserializeRequestBodyIntoContainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DeserializeRequestBodyIntoContainer(body <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>, requestContainer interface{}) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>DeserializeRequestBodyIntoContainer deserializes the request&apos;s body into an endpoint-specific struct.
+
+				
+				
+			
+				
+				<h3 id="HandleGrpcResponseError">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=3485:3611#L91">HandleGrpcResponseError</a>
+					<a class="permalink" href="index.html#HandleGrpcResponseError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandleGrpcResponseError(errJson <a href="index.html#ErrorJson">ErrorJson</a>, resp *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Response">Response</a>, respBody []<a href="../../../../../../builtin/index.html#byte">byte</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="index.html#ErrorJson">ErrorJson</a>)</pre>
+				<p>HandleGrpcResponseError acts on an error that resulted from a grpc-gateway&apos;s response.
+
+				
+				
+			
+				
+				<h3 id="HandleQueryParameters">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/param_handling.go?s=1590:1666#L42">HandleQueryParameters</a>
+					<a class="permalink" href="index.html#HandleQueryParameters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandleQueryParameters(req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>, params []<a href="index.html#QueryParam">QueryParam</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>HandleQueryParameters processes query parameters, allowing them to be safely and correctly proxied to grpc-gateway.
+
+				
+				
+			
+				
+				<h3 id="HandleURLParameters">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/param_handling.go?s=340:424#L5">HandleURLParameters</a>
+					<a class="permalink" href="index.html#HandleURLParameters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func HandleURLParameters(url <a href="../../../../../../builtin/index.html#string">string</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>, literals []<a href="../../../../../../builtin/index.html#string">string</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>HandleURLParameters processes URL parameters, allowing parameterized URLs to be safely and correctly proxied to grpc-gateway.
+
+				
+				
+			
+				
+				<h3 id="ProcessMiddlewareResponseFields">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=4942:5019#L125">ProcessMiddlewareResponseFields</a>
+					<a class="permalink" href="index.html#ProcessMiddlewareResponseFields">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ProcessMiddlewareResponseFields(responseContainer interface{}) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>ProcessMiddlewareResponseFields processes fields of an endpoint-specific container according to field tags.
+
+				
+				
+			
+				
+				<h3 id="ProcessRequestContainerFields">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=942:1016#L25">ProcessRequestContainerFields</a>
+					<a class="permalink" href="index.html#ProcessRequestContainerFields">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ProcessRequestContainerFields(requestContainer interface{}) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>ProcessRequestContainerFields processes fields of an endpoint-specific container according to field tags.
+
+				
+				
+			
+				
+				<h3 id="ProxyRequest">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=2615:2679#L68">ProxyRequest</a>
+					<a class="permalink" href="index.html#ProxyRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ProxyRequest(req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) (*<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Response">Response</a>, <a href="index.html#ErrorJson">ErrorJson</a>)</pre>
+				<p>ProxyRequest proxies the request to grpc-gateway.
+
+				
+				
+			
+				
+				<h3 id="ReadGrpcResponseBody">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=3179:3237#L82">ReadGrpcResponseBody</a>
+					<a class="permalink" href="index.html#ReadGrpcResponseBody">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ReadGrpcResponseBody(r <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="index.html#ErrorJson">ErrorJson</a>)</pre>
+				<p>ReadGrpcResponseBody reads the body from the grpc-gateway&apos;s response.
+
+				
+				
+			
+				
+				<h3 id="SerializeMiddlewareResponseIntoJson">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=5482:5594#L146">SerializeMiddlewareResponseIntoJson</a>
+					<a class="permalink" href="index.html#SerializeMiddlewareResponseIntoJson">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SerializeMiddlewareResponseIntoJson(responseContainer interface{}) (jsonResponse []<a href="../../../../../../builtin/index.html#byte">byte</a>, errJson <a href="index.html#ErrorJson">ErrorJson</a>)</pre>
+				<p>SerializeMiddlewareResponseIntoJson serializes the endpoint-specific response struct into a JSON representation.
+
+				
+				
+			
+				
+				<h3 id="SetRequestBodyToRequestContainer">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=1351:1447#L38">SetRequestBodyToRequestContainer</a>
+					<a class="permalink" href="index.html#SetRequestBodyToRequestContainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetRequestBodyToRequestContainer(requestContainer interface{}, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>SetRequestBodyToRequestContainer makes the endpoint-specific container the new body of the request.
+
+				
+				
+			
+				
+				<h3 id="WriteMiddlewareResponseHeadersAndBody">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/process_request.go?s=5853:5974#L155">WriteMiddlewareResponseHeadersAndBody</a>
+					<a class="permalink" href="index.html#WriteMiddlewareResponseHeadersAndBody">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WriteMiddlewareResponseHeadersAndBody(grpcResp *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Response">Response</a>, responseJson []<a href="../../../../../../builtin/index.html#byte">byte</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>) <a href="index.html#ErrorJson">ErrorJson</a></pre>
+				<p>WriteMiddlewareResponseHeadersAndBody populates headers and the body of the final response.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="HookCollection">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=2975:3461#L54">HookCollection</a>
+				<a class="permalink" href="index.html#HookCollection">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HookCollection contains hooks that can be used to amend the default request/response cycle with custom logic for a specific endpoint.
+
+			<pre>type HookCollection struct {
+<span id="HookCollection.OnPreDeserializeRequestBodyIntoContainer"></span>    OnPreDeserializeRequestBodyIntoContainer      func(endpoint *<a href="index.html#Endpoint">Endpoint</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) (<a href="index.html#RunDefault">RunDefault</a>, <a href="index.html#ErrorJson">ErrorJson</a>)
+<span id="HookCollection.OnPostDeserializeRequestBodyIntoContainer"></span>    OnPostDeserializeRequestBodyIntoContainer     func(endpoint *<a href="index.html#Endpoint">Endpoint</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, req *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>) <a href="index.html#ErrorJson">ErrorJson</a>
+<span id="HookCollection.OnPreDeserializeGrpcResponseBodyIntoContainer"></span>    OnPreDeserializeGrpcResponseBodyIntoContainer func([]<a href="../../../../../../builtin/index.html#byte">byte</a>, interface{}) (<a href="index.html#RunDefault">RunDefault</a>, <a href="index.html#ErrorJson">ErrorJson</a>)
+<span id="HookCollection.OnPreSerializeMiddlewareResponseIntoJson"></span>    OnPreSerializeMiddlewareResponseIntoJson      func(interface{}) (<a href="index.html#RunDefault">RunDefault</a>, []<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="index.html#ErrorJson">ErrorJson</a>)
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="QueryParam">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=2451:2512#L43">QueryParam</a>
+				<a class="permalink" href="index.html#QueryParam">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryParam represents a single query parameter&apos;s metadata.
+
+			<pre>type QueryParam struct {
+<span id="QueryParam.Name"></span>    Name <a href="../../../../../../builtin/index.html#string">string</a>
+<span id="QueryParam.Hex"></span>    Hex  <a href="../../../../../../builtin/index.html#bool">bool</a>
+<span id="QueryParam.Enum"></span>    Enum <a href="../../../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RunDefault">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/api/gateway/apimiddleware/api_middleware.go?s=2172:2192#L33">RunDefault</a>
+				<a class="permalink" href="index.html#RunDefault">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RunDefault expresses whether the default processing logic should be carried out after running a pre hook.
+
+			<pre>type RunDefault <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

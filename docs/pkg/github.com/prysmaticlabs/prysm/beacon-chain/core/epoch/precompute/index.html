@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>precompute - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package precompute
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package precompute provides gathering of nicely-structured
+data important to feed into epoch processing, such as attesting
+records and balances, for faster computation.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#AttestationsDelta">func AttestationsDelta(state state.ReadOnlyBeaconState, pBal *Balance, vp []*Validator) ([]uint64, []uint64, error)</a></dd>
+			
+				
+				<dd><a href="index.html#AttestedCurrentEpoch">func AttestedCurrentEpoch(s state.ReadOnlyBeaconState, a *ethpb.PendingAttestation) (bool, bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#AttestedPrevEpoch">func AttestedPrevEpoch(s state.ReadOnlyBeaconState, a *ethpb.PendingAttestation) (bool, bool, bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#EligibleForRewards">func EligibleForRewards(v *Validator) bool</a></dd>
+			
+				
+				<dd><a href="index.html#New">func New(ctx context.Context, s state.BeaconState) ([]*Validator, *Balance, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessAttestations">func ProcessAttestations(ctx context.Context, state state.ReadOnlyBeaconState, vp []*Validator, pBal *Balance) ([]*Validator, *Balance, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessJustificationAndFinalizationPreCompute">func ProcessJustificationAndFinalizationPreCompute(state state.BeaconState, pBal *Balance) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessRewardsAndPenaltiesPrecompute">func ProcessRewardsAndPenaltiesPrecompute(state state.BeaconState, pBal *Balance, vp []*Validator, attRewardsFunc attesterRewardsFunc, proRewardsFunc proposerRewardsFunc) (state.BeaconState, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ProcessSlashingsPrecompute">func ProcessSlashingsPrecompute(s state.BeaconState, pBal *Balance) error</a></dd>
+			
+				
+				<dd><a href="index.html#ProposersDelta">func ProposersDelta(state state.ReadOnlyBeaconState, pBal *Balance, vp []*Validator) ([]uint64, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SameHead">func SameHead(state state.ReadOnlyBeaconState, a *ethpb.PendingAttestation) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SameTarget">func SameTarget(state state.ReadOnlyBeaconState, a *ethpb.PendingAttestation, e types.Epoch) (bool, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Balance">type Balance</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EnsureBalancesLowerBound">func EnsureBalancesLowerBound(bBal *Balance) *Balance</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UpdateBalance">func UpdateBalance(vp []*Validator, bBal *Balance, stateVersion int) *Balance</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Validator">type Validator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UpdateValidator">func UpdateValidator(vp []*Validator, record *Validator, indices []uint64, a *ethpb.PendingAttestation, aSlot types.Slot) []*Validator</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go">attestation.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/justification_finalization.go">justification_finalization.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/new.go">new.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/reward_penalty.go">reward_penalty.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/slashing.go">slashing.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/type.go">type.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="AttestationsDelta">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/reward_penalty.go?s=2530:2645#L58">AttestationsDelta</a>
+				<a class="permalink" href="index.html#AttestationsDelta">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AttestationsDelta(state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, pBal *<a href="index.html#Balance">Balance</a>, vp []*<a href="index.html#Validator">Validator</a>) ([]<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, []<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>AttestationsDelta computes and returns the rewards and penalties differences for individual validators based on the
+voting records.
+
+			
+			
+
+		
+			
+			
+			<h2 id="AttestedCurrentEpoch">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=2406:2509#L64">AttestedCurrentEpoch</a>
+				<a class="permalink" href="index.html#AttestedCurrentEpoch">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AttestedCurrentEpoch(s <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, a *<a href="../../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../../proto/prysm/v1alpha1/index.html#PendingAttestation">PendingAttestation</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>AttestedCurrentEpoch returns true if attestation `a` attested once in current epoch and/or epoch boundary block.
+
+			
+			
+
+		
+			
+			
+			<h2 id="AttestedPrevEpoch">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=3014:3120#L82">AttestedPrevEpoch</a>
+				<a class="permalink" href="index.html#AttestedPrevEpoch">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AttestedPrevEpoch(s <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, a *<a href="../../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../../proto/prysm/v1alpha1/index.html#PendingAttestation">PendingAttestation</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>AttestedPrevEpoch returns true if attestation `a` attested once in previous epoch and epoch boundary block and/or the same head.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EligibleForRewards">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/reward_penalty.go?s=7571:7613#L183">EligibleForRewards</a>
+				<a class="permalink" href="index.html#EligibleForRewards">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EligibleForRewards(v *<a href="index.html#Validator">Validator</a>) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+			<p>EligibleForRewards for validator.
+<p>Spec code:
+if is_active_validator(v, previous_epoch) or (v.slashed and previous_epoch + 1 &lt; v.withdrawable_epoch)
+
+			
+			
+
+		
+			
+			
+			<h2 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/new.go?s=662:744#L10">New</a>
+				<a class="permalink" href="index.html#New">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func New(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, s <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>) ([]*<a href="index.html#Validator">Validator</a>, *<a href="index.html#Balance">Balance</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>New gets called at the beginning of process epoch cycle to return
+pre computed instances of validators attesting records and total
+balances attested in an epoch.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessAttestations">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=759:908#L12">ProcessAttestations</a>
+				<a class="permalink" href="index.html#ProcessAttestations">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessAttestations(
+    ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>,
+    vp []*<a href="index.html#Validator">Validator</a>,
+    pBal *<a href="index.html#Balance">Balance</a>,
+) ([]*<a href="index.html#Validator">Validator</a>, *<a href="index.html#Balance">Balance</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessAttestations process the attestations in state and update individual validator&apos;s pre computes,
+it also tracks and updates epoch attesting balances.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessJustificationAndFinalizationPreCompute">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/justification_finalization.go?s=1516:1633#L18">ProcessJustificationAndFinalizationPreCompute</a>
+				<a class="permalink" href="index.html#ProcessJustificationAndFinalizationPreCompute">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessJustificationAndFinalizationPreCompute(state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>, pBal *<a href="index.html#Balance">Balance</a>) (<a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessJustificationAndFinalizationPreCompute processes justification and finalization during
+epoch processing. This is where a beacon node can justify and finalize a new epoch.
+Note: this is an optimized version by passing in precomputed total and attesting balances.
+<p>Spec pseudocode definition:
+<pre>def process_justification_and_finalization(state: BeaconState) -&gt; None:
+  # Initial FFG checkpoint values have a `0x00` stub for `root`.
+  # Skip FFG updates in the first two epochs to avoid corner cases that might result in modifying this stub.
+  if get_current_epoch(state) &lt;= GENESIS_EPOCH + 1:
+      return
+  previous_attestations = get_matching_target_attestations(state, get_previous_epoch(state))
+  current_attestations = get_matching_target_attestations(state, get_current_epoch(state))
+  total_active_balance = get_total_active_balance(state)
+  previous_target_balance = get_attesting_balance(state, previous_attestations)
+  current_target_balance = get_attesting_balance(state, current_attestations)
+  weigh_justification_and_finalization(state, total_active_balance, previous_target_balance, current_target_balance)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessRewardsAndPenaltiesPrecompute">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/reward_penalty.go?s=785:990#L8">ProcessRewardsAndPenaltiesPrecompute</a>
+				<a class="permalink" href="index.html#ProcessRewardsAndPenaltiesPrecompute">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessRewardsAndPenaltiesPrecompute(
+    state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>,
+    pBal *<a href="index.html#Balance">Balance</a>,
+    vp []*<a href="index.html#Validator">Validator</a>,
+    attRewardsFunc attesterRewardsFunc,
+    proRewardsFunc proposerRewardsFunc,
+) (<a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProcessRewardsAndPenaltiesPrecompute processes the rewards and penalties of individual validator.
+This is an optimized version by passing in precomputed validator attesting records and and total epoch balances.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProcessSlashingsPrecompute">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/slashing.go?s=563:636#L5">ProcessSlashingsPrecompute</a>
+				<a class="permalink" href="index.html#ProcessSlashingsPrecompute">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProcessSlashingsPrecompute(s <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#BeaconState">BeaconState</a>, pBal *<a href="index.html#Balance">Balance</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+			<p>ProcessSlashingsPrecompute processes the slashed validators during epoch processing.
+This is an optimized version by passing in precomputed total epoch balances.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProposersDelta">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/reward_penalty.go?s=6231:6333#L149">ProposersDelta</a>
+				<a class="permalink" href="index.html#ProposersDelta">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ProposersDelta(state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, pBal *<a href="index.html#Balance">Balance</a>, vp []*<a href="index.html#Validator">Validator</a>) ([]<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ProposersDelta computes and returns the rewards and penalties differences for individual validators based on the
+proposer inclusion records.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SameHead">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=4205:4294#L122">SameHead</a>
+				<a class="permalink" href="index.html#SameHead">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SameHead(state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, a *<a href="../../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../../proto/prysm/v1alpha1/index.html#PendingAttestation">PendingAttestation</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SameHead returns true if attestation `a` attested to the same block by attestation slot in state.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SameTarget">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=3831:3937#L110">SameTarget</a>
+				<a class="permalink" href="index.html#SameTarget">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SameTarget(state <a href="../../../state/index.html">state</a>.<a href="../../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, a *<a href="../../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../../proto/prysm/v1alpha1/index.html#PendingAttestation">PendingAttestation</a>, e <a href="../../../../../eth2-types/index.html">types</a>.<a href="../../../../../eth2-types/index.html#Epoch">Epoch</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SameTarget returns true if attestation `a` attested to the same target block in state.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Balance">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/type.go?s=2430:3482#L39">Balance</a>
+				<a class="permalink" href="index.html#Balance">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Balance stores the pre computation of the total participated balances for a given epoch
+Pre computing and storing such record is essential for process epoch optimizations.
+
+			<pre>type Balance struct {
+<span id="Balance.ActiveCurrentEpoch"></span>    <span class="comment">// ActiveCurrentEpoch is the total effective balance of all active validators during current epoch.</span>
+    ActiveCurrentEpoch <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.ActivePrevEpoch"></span>    <span class="comment">// ActivePrevEpoch is the total effective balance of all active validators during prev epoch.</span>
+    ActivePrevEpoch <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.CurrentEpochAttested"></span>    <span class="comment">// CurrentEpochAttested is the total effective balance of all validators who attested during current epoch.</span>
+    CurrentEpochAttested <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.CurrentEpochTargetAttested"></span>    <span class="comment">// CurrentEpochTargetAttested is the total effective balance of all validators who attested</span>
+    <span class="comment">// for epoch boundary block during current epoch.</span>
+    CurrentEpochTargetAttested <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.PrevEpochAttested"></span>    <span class="comment">// PrevEpochAttested is the total effective balance of all validators who attested during prev epoch.</span>
+    PrevEpochAttested <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.PrevEpochTargetAttested"></span>    <span class="comment">// PrevEpochTargetAttested is the total effective balance of all validators who attested</span>
+    <span class="comment">// for epoch boundary block during prev epoch.</span>
+    PrevEpochTargetAttested <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Balance.PrevEpochHeadAttested"></span>    <span class="comment">// PrevEpochHeadAttested is the total effective balance of all validators who attested</span>
+    <span class="comment">// correctly for head block during prev epoch.</span>
+    PrevEpochHeadAttested <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="EnsureBalancesLowerBound">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=6580:6633#L193">EnsureBalancesLowerBound</a>
+					<a class="permalink" href="index.html#EnsureBalancesLowerBound">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EnsureBalancesLowerBound(bBal *<a href="index.html#Balance">Balance</a>) *<a href="index.html#Balance">Balance</a></pre>
+				<p>EnsureBalancesLowerBound ensures all the balances such as active current epoch, active previous epoch and more
+have EffectiveBalanceIncrement(1 eth) as a lower bound.
+
+				
+				
+			
+				
+				<h3 id="UpdateBalance">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=5500:5577#L164">UpdateBalance</a>
+					<a class="permalink" href="index.html#UpdateBalance">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UpdateBalance(vp []*<a href="index.html#Validator">Validator</a>, bBal *<a href="index.html#Balance">Balance</a>, stateVersion <a href="../../../../../../../builtin/index.html#int">int</a>) *<a href="index.html#Balance">Balance</a></pre>
+				<p>UpdateBalance updates pre computed balance store.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Validator">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/type.go?s=314:2250#L1">Validator</a>
+				<a class="permalink" href="index.html#Validator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Validator stores the pre computation of individual validator&apos;s attesting records these records
+consist of attestation votes, block inclusion record. Pre computing and storing such record
+is essential for process epoch optimizations.
+
+			<pre>type Validator struct {
+<span id="Validator.IsSlashed"></span>    <span class="comment">// IsSlashed is true if the validator has been slashed.</span>
+    IsSlashed <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsWithdrawableCurrentEpoch"></span>    <span class="comment">// IsWithdrawableCurrentEpoch is true if the validator can withdraw current epoch.</span>
+    IsWithdrawableCurrentEpoch <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsActiveCurrentEpoch"></span>    <span class="comment">// IsActiveCurrentEpoch is true if the validator was active current epoch.</span>
+    IsActiveCurrentEpoch <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsActivePrevEpoch"></span>    <span class="comment">// IsActivePrevEpoch is true if the validator was active prev epoch.</span>
+    IsActivePrevEpoch <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsCurrentEpochAttester"></span>    <span class="comment">// IsCurrentEpochAttester is true if the validator attested current epoch.</span>
+    IsCurrentEpochAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsCurrentEpochTargetAttester"></span>    <span class="comment">// IsCurrentEpochTargetAttester is true if the validator attested current epoch target.</span>
+    IsCurrentEpochTargetAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsPrevEpochAttester"></span>    <span class="comment">// IsPrevEpochAttester is true if the validator attested previous epoch.</span>
+    IsPrevEpochAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsPrevEpochSourceAttester"></span>    <span class="comment">// IsPrevEpochSourceAttester is true if the validator attested to source previous epoch. [Only for Altair]</span>
+    IsPrevEpochSourceAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+<span id="Validator.IsPrevEpochTargetAttester"></span>    <span class="comment">// IsPrevEpochTargetAttester is true if the validator attested previous epoch target.</span>
+    IsPrevEpochTargetAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+    <span class="comment">// IsHeadAttester is true if the validator attested head.</span>
+<span id="Validator.IsPrevEpochHeadAttester"></span>    IsPrevEpochHeadAttester <a href="../../../../../../../builtin/index.html#bool">bool</a>
+
+<span id="Validator.CurrentEpochEffectiveBalance"></span>    <span class="comment">// CurrentEpochEffectiveBalance is how much effective balance this validator has current epoch.</span>
+    CurrentEpochEffectiveBalance <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Validator.InclusionSlot"></span>    <span class="comment">// InclusionSlot is the slot of when the attestation gets included in the chain.</span>
+    InclusionSlot <a href="../../../../../eth2-types/index.html">types</a>.<a href="../../../../../eth2-types/index.html#Slot">Slot</a>
+<span id="Validator.InclusionDistance"></span>    <span class="comment">// InclusionDistance is the distance between the assigned slot and this validator&#39;s attestation was included in block.</span>
+    InclusionDistance <a href="../../../../../eth2-types/index.html">types</a>.<a href="../../../../../eth2-types/index.html#Slot">Slot</a>
+<span id="Validator.ProposerIndex"></span>    <span class="comment">// ProposerIndex is the index of proposer at slot where this validator&#39;s attestation was included.</span>
+    ProposerIndex <a href="../../../../../eth2-types/index.html">types</a>.<a href="../../../../../eth2-types/index.html#ValidatorIndex">ValidatorIndex</a>
+<span id="Validator.BeforeEpochTransitionBalance"></span>    <span class="comment">// BeforeEpochTransitionBalance is the validator balance prior to epoch transition.</span>
+    BeforeEpochTransitionBalance <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Validator.AfterEpochTransitionBalance"></span>    <span class="comment">// AfterEpochTransitionBalance is the validator balance after epoch transition.</span>
+    AfterEpochTransitionBalance <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+
+<span id="Validator.InactivityScore"></span>    <span class="comment">// InactivityScore of the validator. [New in Altair]</span>
+    InactivityScore <a href="../../../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="UpdateValidator">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/core/epoch/precompute/attestation.go?s=4538:4672#L134">UpdateValidator</a>
+					<a class="permalink" href="index.html#UpdateValidator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UpdateValidator(vp []*<a href="index.html#Validator">Validator</a>, record *<a href="index.html#Validator">Validator</a>, indices []<a href="../../../../../../../builtin/index.html#uint64">uint64</a>, a *<a href="../../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../../proto/prysm/v1alpha1/index.html#PendingAttestation">PendingAttestation</a>, aSlot <a href="../../../../../eth2-types/index.html">types</a>.<a href="../../../../../eth2-types/index.html#Slot">Slot</a>) []*<a href="index.html#Validator">Validator</a></pre>
+				<p>UpdateValidator updates pre computed validator store.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

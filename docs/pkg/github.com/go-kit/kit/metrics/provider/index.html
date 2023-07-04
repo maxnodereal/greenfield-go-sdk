@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>provider - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package provider
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/metrics/provider"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package provider provides a factory-like abstraction for metrics backends.
+This package is provided specifically for the needs of the NY Times framework
+Gizmo. Most normal Go kit users shouldn&apos;t need to use it.
+<p>Normally, if your microservice needs to support different metrics backends,
+you can simply do different construction based on a flag. For example,
+<pre>var latency metrics.Histogram
+var requests metrics.Counter
+switch *metricsBackend {
+case &quot;prometheus&quot;:
+    latency = prometheus.NewSummaryVec(...)
+    requests = prometheus.NewCounterVec(...)
+case &quot;statsd&quot;:
+    s := statsd.New(...)
+    t := time.NewTicker(5*time.Second)
+    go s.SendLoop(ctx, t.C, &quot;tcp&quot;, &quot;statsd.local:8125&quot;)
+    latency = s.NewHistogram(...)
+    requests = s.NewCounter(...)
+default:
+    log.Fatal(&quot;unsupported metrics backend %q&quot;, *metricsBackend)
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Provider">type Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDiscardProvider">func NewDiscardProvider() Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDogstatsdProvider">func NewDogstatsdProvider(d *dogstatsd.Dogstatsd, stop func()) Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewExpvarProvider">func NewExpvarProvider() Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGraphiteProvider">func NewGraphiteProvider(g *graphite.Graphite, stop func()) Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInfluxProvider">func NewInfluxProvider(in *influx.Influx, stop func()) Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPrometheusProvider">func NewPrometheusProvider(namespace, subsystem string) Provider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStatsdProvider">func NewStatsdProvider(s *statsd.Statsd, stop func()) Provider</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/discard.go">discard.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/dogstatsd.go">dogstatsd.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/expvar.go">expvar.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/graphite.go">graphite.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/influx.go">influx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/prometheus.go">prometheus.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/provider.go">provider.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/statsd.go">statsd.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Provider">type <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/provider.go?s=1395:1566#L27">Provider</a>
+				<a class="permalink" href="index.html#Provider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Provider abstracts over constructors and lifecycle management functions for
+each supported metrics backend. It should only be used by those who need to
+swap out implementations dynamically.
+<p>This is primarily useful for intermediating frameworks, and is likely
+unnecessary for most Go kit services. See the package-level doc comment for
+more typical usage instructions.
+
+			<pre>type Provider interface {
+    NewCounter(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Counter">Counter</a>
+    NewGauge(name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Gauge">Gauge</a>
+    NewHistogram(name <a href="../../../../../builtin/index.html#string">string</a>, buckets <a href="../../../../../builtin/index.html#int">int</a>) <a href="../index.html">metrics</a>.<a href="../index.html#Histogram">Histogram</a>
+    Stop()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDiscardProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/discard.go?s=235:269#L2">NewDiscardProvider</a>
+					<a class="permalink" href="index.html#NewDiscardProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDiscardProvider() <a href="index.html#Provider">Provider</a></pre>
+				<p>NewDiscardProvider returns a provider that produces no-op metrics via the
+discarding backend.
+
+				
+				
+			
+				
+				<h3 id="NewDogstatsdProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/dogstatsd.go?s=413:484#L6">NewDogstatsdProvider</a>
+					<a class="permalink" href="index.html#NewDogstatsdProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDogstatsdProvider(d *<a href="../dogstatsd/index.html">dogstatsd</a>.<a href="../dogstatsd/index.html#Dogstatsd">Dogstatsd</a>, stop func()) <a href="index.html#Provider">Provider</a></pre>
+				<p>NewDogstatsdProvider wraps the given Dogstatsd object and stop func and
+returns a Provider that produces Dogstatsd metrics. A typical stop function
+would be ticker.Stop from the ticker passed to the SendLoop helper method.
+
+				
+				
+			
+				
+				<h3 id="NewExpvarProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/expvar.go?s=203:236#L1">NewExpvarProvider</a>
+					<a class="permalink" href="index.html#NewExpvarProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewExpvarProvider() <a href="index.html#Provider">Provider</a></pre>
+				<p>NewExpvarProvider returns a Provider that produces expvar metrics.
+
+				
+				
+			
+				
+				<h3 id="NewGraphiteProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/graphite.go?s=406:474#L6">NewGraphiteProvider</a>
+					<a class="permalink" href="index.html#NewGraphiteProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGraphiteProvider(g *<a href="../graphite/index.html">graphite</a>.<a href="../graphite/index.html#Graphite">Graphite</a>, stop func()) <a href="index.html#Provider">Provider</a></pre>
+				<p>NewGraphiteProvider wraps the given Graphite object and stop func and returns
+a Provider that produces Graphite metrics. A typical stop function would be
+ticker.Stop from the ticker passed to the SendLoop helper method.
+
+				
+				
+			
+				
+				<h3 id="NewInfluxProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/influx.go?s=291:354#L5">NewInfluxProvider</a>
+					<a class="permalink" href="index.html#NewInfluxProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInfluxProvider(in *<a href="../influx/index.html">influx</a>.<a href="../influx/index.html#Influx">Influx</a>, stop func()) <a href="index.html#Provider">Provider</a></pre>
+				<p>NewInfluxProvider takes the given Influx object and stop func, and returns
+a Provider that produces Influx metrics.
+
+				
+				
+			
+				
+				<h3 id="NewPrometheusProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/prometheus.go?s=386:450#L7">NewPrometheusProvider</a>
+					<a class="permalink" href="index.html#NewPrometheusProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrometheusProvider(namespace, subsystem <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Provider">Provider</a></pre>
+				<p>NewPrometheusProvider returns a Provider that produces Prometheus metrics.
+Namespace and subsystem are applied to all produced metrics.
+
+				
+				
+			
+				
+				<h3 id="NewStatsdProvider">func <a href="http://localhost:6060/src/github.com/go-kit/kit/metrics/provider/statsd.go?s=392:454#L6">NewStatsdProvider</a>
+					<a class="permalink" href="index.html#NewStatsdProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStatsdProvider(s *<a href="../statsd/index.html">statsd</a>.<a href="../statsd/index.html#Statsd">Statsd</a>, stop func()) <a href="index.html#Provider">Provider</a></pre>
+				<p>NewStatsdProvider wraps the given Statsd object and stop func and returns a
+Provider that produces Statsd metrics. A typical stop function would be
+ticker.Stop from the ticker passed to the SendLoop helper method.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

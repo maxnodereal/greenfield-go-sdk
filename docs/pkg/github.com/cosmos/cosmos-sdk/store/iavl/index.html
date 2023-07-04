@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>iavl - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package iavl
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/store/iavl"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#LoadStore">func LoadStore(db dbm.DB, logger log.Logger, key types.StoreKey, id types.CommitID, lazyLoading bool, cacheSize int, disableFastNode bool) (types.CommitKVStore, error)</a></dd>
+			
+				
+				<dd><a href="index.html#LoadStoreWithInitialVersion">func LoadStoreWithInitialVersion(db dbm.DB, logger log.Logger, key types.StoreKey, id types.CommitID, lazyLoading bool, initialVersion uint64, cacheSize int, disableFastNode bool) (types.CommitKVStore, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsafeNewStore">func UnsafeNewStore(tree *iavl.MutableTree) *Store</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.CacheWrap">func (st *Store) CacheWrap() types.CacheWrap</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.CacheWrapWithTrace">func (st *Store) CacheWrapWithTrace(w io.Writer, tc types.TraceContext) types.CacheWrap</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Commit">func (st *Store) Commit() types.CommitID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Delete">func (st *Store) Delete(key []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DeleteVersions">func (st *Store) DeleteVersions(versions ...int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Export">func (st *Store) Export(version int64) (*iavl.Exporter, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Get">func (st *Store) Get(key []byte) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GetAllVersions">func (st *Store) GetAllVersions() []int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GetImmutable">func (st *Store) GetImmutable(version int64) (*Store, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GetPruning">func (st *Store) GetPruning() pruningtypes.PruningOptions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GetStoreType">func (st *Store) GetStoreType() types.StoreType</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Has">func (st *Store) Has(key []byte) (exists bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Import">func (st *Store) Import(version int64) (*iavl.Importer, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Iterator">func (st *Store) Iterator(start, end []byte) types.Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LastCommitID">func (st *Store) LastCommitID() types.CommitID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LazyLoadVersionForOverwriting">func (st *Store) LazyLoadVersionForOverwriting(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LoadVersionForOverwriting">func (st *Store) LoadVersionForOverwriting(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Query">func (st *Store) Query(req abci.RequestQuery) (res abci.ResponseQuery)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.ReverseIterator">func (st *Store) ReverseIterator(start, end []byte) types.Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Set">func (st *Store) Set(key, value []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SetInitialVersion">func (st *Store) SetInitialVersion(version int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SetPruning">func (st *Store) SetPruning(_ pruningtypes.PruningOptions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.VersionExists">func (st *Store) VersionExists(version int64) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Tree">type Tree</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go">store.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/tree.go">tree.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="DefaultIAVLCacheSize">DefaultIAVLCacheSize</span> = 500000
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="LoadStore">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=1296:1463#L36">LoadStore</a>
+				<a class="permalink" href="index.html#LoadStore">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func LoadStore(db <a href="../../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../../cometbft/cometbft-db/index.html#DB">DB</a>, logger <a href="../../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>, key <a href="../types/index.html">types</a>.<a href="../types/index.html#StoreKey">StoreKey</a>, id <a href="../types/index.html">types</a>.<a href="../types/index.html#CommitID">CommitID</a>, lazyLoading <a href="../../../../../builtin/index.html#bool">bool</a>, cacheSize <a href="../../../../../builtin/index.html#int">int</a>, disableFastNode <a href="../../../../../builtin/index.html#bool">bool</a>) (<a href="../types/index.html">types</a>.<a href="../types/index.html#CommitKVStore">CommitKVStore</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>LoadStore returns an IAVL Store as a CommitKVStore. Internally, it will load the
+store&apos;s version (id) from the provided DB. An error is returned if the version
+fails to load, or if called with a positive version on an empty tree.
+
+			
+			
+
+		
+			
+			
+			<h2 id="LoadStoreWithInitialVersion">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=1874:2082#L44">LoadStoreWithInitialVersion</a>
+				<a class="permalink" href="index.html#LoadStoreWithInitialVersion">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func LoadStoreWithInitialVersion(db <a href="../../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../../cometbft/cometbft-db/index.html#DB">DB</a>, logger <a href="../../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>, key <a href="../types/index.html">types</a>.<a href="../types/index.html#StoreKey">StoreKey</a>, id <a href="../types/index.html">types</a>.<a href="../types/index.html#CommitID">CommitID</a>, lazyLoading <a href="../../../../../builtin/index.html#bool">bool</a>, initialVersion <a href="../../../../../builtin/index.html#uint64">uint64</a>, cacheSize <a href="../../../../../builtin/index.html#int">int</a>, disableFastNode <a href="../../../../../builtin/index.html#bool">bool</a>) (<a href="../types/index.html">types</a>.<a href="../types/index.html#CommitKVStore">CommitKVStore</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>LoadStoreWithInitialVersion returns an IAVL Store as a CommitKVStore setting its initialVersion
+to the one given. Internally, it will load the store&apos;s version (id) from the
+provided DB. An error is returned if the version fails to load, or if called with a positive
+version on an empty tree.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=1002:1055#L28">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store Implements types.KVStore and CommitKVStore.
+
+			<pre>type Store struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="UnsafeNewStore">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=3213:3263#L91">UnsafeNewStore</a>
+					<a class="permalink" href="index.html#UnsafeNewStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UnsafeNewStore(tree *<a href="../../../iavl/index.html">iavl</a>.<a href="../../../iavl/index.html#MutableTree">MutableTree</a>) *<a href="index.html#Store">Store</a></pre>
+				<p>UnsafeNewStore returns a reference to a new IAVL Store with a given mutable
+IAVL tree reference. It should only be used for testing purposes.
+<p>CONTRACT: The IAVL tree should be fully loaded.
+CONTRACT: PruningOptions passed in as argument must be the same as pruning options
+passed into iavl.MutableTree
+
+				
+				
+			
+
+			
+				
+				<h3 id="Store.CacheWrap">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5575:5619#L174">CacheWrap</a>
+					<a class="permalink" href="index.html#Store.CacheWrap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) CacheWrap() <a href="../types/index.html">types</a>.<a href="../types/index.html#CacheWrap">CacheWrap</a></pre>
+				<p>Implements Store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.CacheWrapWithTrace">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5708:5795#L179">CacheWrapWithTrace</a>
+					<a class="permalink" href="index.html#Store.CacheWrapWithTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) CacheWrapWithTrace(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>, tc <a href="../types/index.html">types</a>.<a href="../types/index.html#TraceContext">TraceContext</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#CacheWrap">CacheWrap</a></pre>
+				<p>CacheWrapWithTrace implements the Store interface.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Commit">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=4158:4198#L119">Commit</a>
+					<a class="permalink" href="index.html#Store.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Commit() <a href="../types/index.html">types</a>.<a href="../types/index.html#CommitID">CommitID</a></pre>
+				<p>Commit commits the current store state and returns a CommitID with the new
+version and hash.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Delete">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=6590:6625#L214">Delete</a>
+					<a class="permalink" href="index.html#Store.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Delete(key []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DeleteVersions">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=6929:6985#L222">DeleteVersions</a>
+					<a class="permalink" href="index.html#Store.DeleteVersions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) DeleteVersions(versions ...<a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteVersions deletes a series of versions from the MutableTree. An error
+is returned if any single version is invalid or the delete fails. All writes
+happen in a single batch with a single commit.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Export">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=8306:8368#L262">Export</a>
+					<a class="permalink" href="index.html#Store.Export">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Export(version <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../../iavl/index.html">iavl</a>.<a href="../../../iavl/index.html#Exporter">Exporter</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Exports the IAVL store at the given version, returning an iavl.Exporter for the tree.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Get">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=6149:6188#L194">Get</a>
+					<a class="permalink" href="index.html#Store.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Get(key []<a href="../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GetAllVersions">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5371:5410#L164">GetAllVersions</a>
+					<a class="permalink" href="index.html#Store.GetAllVersions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) GetAllVersions() []<a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>GetAllVersions returns all versions in the iavl tree
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GetImmutable">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=3660:3720#L102">GetImmutable</a>
+					<a class="permalink" href="index.html#Store.GetImmutable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) GetImmutable(version <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="index.html#Store">Store</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetImmutable returns a reference to a new store backed by an immutable IAVL
+tree at a specific version (height) without any pruning options. This should
+be used for querying and iteration only. If the version does not exist or has
+been pruned, an empty immutable IAVL tree will be used.
+Any mutable operations executed will result in a panic.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GetPruning">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5024:5081#L154">GetPruning</a>
+					<a class="permalink" href="index.html#Store.GetPruning">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) GetPruning() <a href="../pruning/types/index.html">pruningtypes</a>.<a href="../pruning/types/index.html#PruningOptions">PruningOptions</a></pre>
+				<p>SetPruning panics as pruning options should be provided at initialization
+since IAVl accepts pruning options directly.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GetStoreType">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5473:5520#L169">GetStoreType</a>
+					<a class="permalink" href="index.html#Store.GetStoreType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) GetStoreType() <a href="../types/index.html">types</a>.<a href="../types/index.html#StoreType">StoreType</a></pre>
+				<p>Implements Store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Has">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=6368:6414#L204">Has</a>
+					<a class="permalink" href="index.html#Store.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Has(key []<a href="../../../../../builtin/index.html#byte">byte</a>) (exists <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Import">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=8795:8857#L275">Import</a>
+					<a class="permalink" href="index.html#Store.Import">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Import(version <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../../iavl/index.html">iavl</a>.<a href="../../../iavl/index.html#Importer">Importer</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Import imports an IAVL tree at the given version, returning an iavl.Importer for importing.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Iterator">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=7617:7676#L238">Iterator</a>
+					<a class="permalink" href="index.html#Store.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Iterator(start, end []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#Iterator">Iterator</a></pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LastCommitID">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=4455:4501#L134">LastCommitID</a>
+					<a class="permalink" href="index.html#Store.LastCommitID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) LastCommitID() <a href="../types/index.html">types</a>.<a href="../types/index.html#CommitID">CommitID</a></pre>
+				<p>LastCommitID implements Committer.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LazyLoadVersionForOverwriting">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=7439:7521#L233">LazyLoadVersionForOverwriting</a>
+					<a class="permalink" href="index.html#Store.LazyLoadVersionForOverwriting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) LazyLoadVersionForOverwriting(targetVersion <a href="../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LazyLoadVersionForOverwriting is the lazy version of LoadVersionForOverwriting.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LoadVersionForOverwriting">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=7215:7293#L228">LoadVersionForOverwriting</a>
+					<a class="permalink" href="index.html#Store.LoadVersionForOverwriting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) LoadVersionForOverwriting(targetVersion <a href="../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadVersionForOverwriting attempts to load a tree at a previously committed
+version, or the latest version below it. Any versions greater than targetVersion will be deleted.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Query">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=9680:9750#L304">Query</a>
+					<a class="permalink" href="index.html#Store.Query">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Query(req <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestQuery">RequestQuery</a>) (res <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ResponseQuery">ResponseQuery</a>)</pre>
+				<p>Query implements ABCI interface, allows queries
+<p>by default we will return from (latest height -1),
+as we will have merkle proofs immediately (header height = data height + 1)
+If latest-1 is not present, use latest (which must be present)
+if you care to have the latest data to see a tx results, you must
+explicitly set the height you want to see
+
+				
+				
+				
+			
+				
+				<h3 id="Store.ReverseIterator">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=7814:7880#L247">ReverseIterator</a>
+					<a class="permalink" href="index.html#Store.ReverseIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) ReverseIterator(start, end []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#Iterator">Iterator</a></pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Set">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5884:5923#L184">Set</a>
+					<a class="permalink" href="index.html#Store.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) Set(key, value []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Implements types.KVStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SetInitialVersion">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=8118:8167#L257">SetInitialVersion</a>
+					<a class="permalink" href="index.html#Store.SetInitialVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) SetInitialVersion(version <a href="../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetInitialVersion sets the initial version of the IAVL tree. It is used when
+starting a new chain at an arbitrary height.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SetPruning">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=4769:4827#L148">SetPruning</a>
+					<a class="permalink" href="index.html#Store.SetPruning">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) SetPruning(_ <a href="../pruning/types/index.html">pruningtypes</a>.<a href="../pruning/types/index.html#PruningOptions">PruningOptions</a>)</pre>
+				<p>SetPruning panics as pruning options should be provided at initialization
+since IAVl accepts pruning options directly.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.VersionExists">func (*Store) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/store.go?s=5220:5270#L159">VersionExists</a>
+					<a class="permalink" href="index.html#Store.VersionExists">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (st *<a href="index.html#Store">Store</a>) VersionExists(version <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>VersionExists returns whether or not a given version is stored.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Tree">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/store/iavl/tree.go?s=427:1174#L10">Tree</a>
+				<a class="permalink" href="index.html#Tree">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Tree defines an interface that both mutable and immutable IAVL trees
+must implement. For mutable IAVL trees, the interface is directly
+implemented by an iavl.MutableTree. For an immutable IAVL tree, a wrapper
+must be made.
+
+			<pre>type Tree interface {
+    Has(key []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    Get(key []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    Set(key, value []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    Remove(key []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    SaveVersion() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    DeleteVersion(version <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    DeleteVersions(versions ...<a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    Version() <a href="../../../../../builtin/index.html#int64">int64</a>
+    Hash() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    VersionExists(version <a href="../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+    GetVersioned(key []<a href="../../../../../builtin/index.html#byte">byte</a>, version <a href="../../../../../builtin/index.html#int64">int64</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    GetImmutable(version <a href="../../../../../builtin/index.html#int64">int64</a>) (*<a href="../../../iavl/index.html">iavl</a>.<a href="../../../iavl/index.html#ImmutableTree">ImmutableTree</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    SetInitialVersion(version <a href="../../../../../builtin/index.html#uint64">uint64</a>)
+    Iterator(start, end []<a href="../../../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../../../builtin/index.html#bool">bool</a>) (<a href="../types/index.html">types</a>.<a href="../types/index.html#Iterator">Iterator</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    AvailableVersions() []<a href="../../../../../builtin/index.html#int">int</a>
+    LoadVersionForOverwriting(targetVersion <a href="../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    LazyLoadVersionForOverwriting(targetVersion <a href="../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

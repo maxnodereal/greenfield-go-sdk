@@ -1,0 +1,3214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>consensus - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package consensus
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/consensus"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CompareHRS">func CompareHRS(h1 int64, r1 int32, s1 cstypes.RoundStepType, h2 int64, r2 int32, s2 cstypes.RoundStepType) int</a></dd>
+			
+				
+				<dd><a href="index.html#IsDataCorruptionError">func IsDataCorruptionError(err error) bool</a></dd>
+			
+				
+				<dd><a href="index.html#MsgToProto">func MsgToProto(msg Message) (proto.Message, error)</a></dd>
+			
+				
+				<dd><a href="index.html#RunReplayFile">func RunReplayFile(config cfg.BaseConfig, csConfig *cfg.ConsensusConfig, console bool)</a></dd>
+			
+				
+				<dd><a href="index.html#WALGenerateNBlocks">func WALGenerateNBlocks(t *testing.T, wr io.Writer, numBlocks int) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#WALToProto">func WALToProto(msg WALMessage) (*cmtcons.WALMessage, error)</a></dd>
+			
+				
+				<dd><a href="index.html#WALWithNBlocks">func WALWithNBlocks(t *testing.T, numBlocks int) (data []byte, err error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BaseWAL">type BaseWAL</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWAL">func NewWAL(walFile string, groupOptions ...func(*auto.Group)) (*BaseWAL, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.FlushAndSync">func (wal *BaseWAL) FlushAndSync() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.Group">func (wal *BaseWAL) Group() *auto.Group</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.OnStart">func (wal *BaseWAL) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.OnStop">func (wal *BaseWAL) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.SearchForEndHeight">func (wal *BaseWAL) SearchForEndHeight(height int64, options *WALSearchOptions) (rd io.ReadCloser, found bool, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.SetFlushInterval">func (wal *BaseWAL) SetFlushInterval(i time.Duration)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.SetLogger">func (wal *BaseWAL) SetLogger(l log.Logger)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.Wait">func (wal *BaseWAL) Wait()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.Write">func (wal *BaseWAL) Write(msg WALMessage) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseWAL.WriteSync">func (wal *BaseWAL) WriteSync(msg WALMessage) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BlockPartMessage">type BlockPartMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPartMessage.String">func (m *BlockPartMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPartMessage.ValidateBasic">func (m *BlockPartMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DataCorruptionError">type DataCorruptionError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DataCorruptionError.Cause">func (e DataCorruptionError) Cause() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DataCorruptionError.Error">func (e DataCorruptionError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EndHeightMessage">type EndHeightMessage</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Handshaker">type Handshaker</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHandshaker">func NewHandshaker(stateStore sm.Store, state sm.State, store sm.BlockStore, genDoc *types.GenesisDoc) *Handshaker</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handshaker.Handshake">func (h *Handshaker) Handshake(proxyApp proxy.AppConns) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handshaker.NBlocks">func (h *Handshaker) NBlocks() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handshaker.ReplayBlocks">func (h *Handshaker) ReplayBlocks(state sm.State, appHash []byte, appBlockHeight int64, proxyApp proxy.AppConns) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handshaker.SetEventBus">func (h *Handshaker) SetEventBus(eventBus types.BlockEventPublisher)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handshaker.SetLogger">func (h *Handshaker) SetLogger(l log.Logger)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HasVoteMessage">type HasVoteMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HasVoteMessage.String">func (m *HasVoteMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HasVoteMessage.ValidateBasic">func (m *HasVoteMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Message">type Message</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgFromProto">func MsgFromProto(p proto.Message) (Message, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Metrics">type Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopMetrics">func NopMetrics() *Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrometheusMetrics">func PrometheusMetrics(namespace string, labelsAndValues ...string) *Metrics</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.MarkLateVote">func (m *Metrics) MarkLateVote(vt cmtproto.SignedMsgType)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.MarkProposalProcessed">func (m *Metrics) MarkProposalProcessed(accepted bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.MarkRound">func (m *Metrics) MarkRound(r int32, st time.Time)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.MarkStep">func (m *Metrics) MarkStep(s cstypes.RoundStepType)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.MarkVoteReceived">func (m *Metrics) MarkVoteReceived(vt cmtproto.SignedMsgType, power, totalPower int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Metrics.RecordConsMetrics">func (m *Metrics) RecordConsMetrics(block *types.Block)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NewRoundStepMessage">type NewRoundStepMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRoundStepMessage.String">func (m *NewRoundStepMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRoundStepMessage.ValidateBasic">func (m *NewRoundStepMessage) ValidateBasic() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRoundStepMessage.ValidateHeight">func (m *NewRoundStepMessage) ValidateHeight(initialHeight int64) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NewValidBlockMessage">type NewValidBlockMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewValidBlockMessage.String">func (m *NewValidBlockMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewValidBlockMessage.ValidateBasic">func (m *NewValidBlockMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PeerState">type PeerState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPeerState">func NewPeerState(peer p2p.Peer) *PeerState</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.ApplyHasVoteMessage">func (ps *PeerState) ApplyHasVoteMessage(msg *HasVoteMessage)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.ApplyNewRoundStepMessage">func (ps *PeerState) ApplyNewRoundStepMessage(msg *NewRoundStepMessage)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.ApplyNewValidBlockMessage">func (ps *PeerState) ApplyNewValidBlockMessage(msg *NewValidBlockMessage)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.ApplyProposalPOLMessage">func (ps *PeerState) ApplyProposalPOLMessage(msg *ProposalPOLMessage)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.ApplyVoteSetBitsMessage">func (ps *PeerState) ApplyVoteSetBitsMessage(msg *VoteSetBitsMessage, ourVotes *bits.BitArray)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.BlockPartsSent">func (ps *PeerState) BlockPartsSent() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.EnsureVoteBitArrays">func (ps *PeerState) EnsureVoteBitArrays(height int64, numValidators int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.GetHeight">func (ps *PeerState) GetHeight() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.GetRoundState">func (ps *PeerState) GetRoundState() *cstypes.PeerRoundState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.InitProposalBlockParts">func (ps *PeerState) InitProposalBlockParts(partSetHeader types.PartSetHeader)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.MarshalJSON">func (ps *PeerState) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.PickSendVote">func (ps *PeerState) PickSendVote(votes types.VoteSetReader) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.PickVoteToSend">func (ps *PeerState) PickVoteToSend(votes types.VoteSetReader) (vote *types.Vote, ok bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.RecordBlockPart">func (ps *PeerState) RecordBlockPart() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.RecordVote">func (ps *PeerState) RecordVote() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.SetHasProposal">func (ps *PeerState) SetHasProposal(proposal *types.Proposal)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.SetHasProposalBlockPart">func (ps *PeerState) SetHasProposalBlockPart(height int64, round int32, index int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.SetHasVote">func (ps *PeerState) SetHasVote(vote *types.Vote)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.SetLogger">func (ps *PeerState) SetLogger(logger log.Logger) *PeerState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.String">func (ps *PeerState) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.StringIndented">func (ps *PeerState) StringIndented(indent string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PeerState.VotesSent">func (ps *PeerState) VotesSent() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ProposalMessage">type ProposalMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposalMessage.String">func (m *ProposalMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposalMessage.ValidateBasic">func (m *ProposalMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ProposalPOLMessage">type ProposalPOLMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposalPOLMessage.String">func (m *ProposalPOLMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProposalPOLMessage.ValidateBasic">func (m *ProposalPOLMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Reactor">type Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReactor">func NewReactor(consensusState *State, waitSync bool, options ...ReactorOption) *Reactor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.AddPeer">func (conR *Reactor) AddPeer(peer p2p.Peer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.GetChannels">func (conR *Reactor) GetChannels() []*p2p.ChannelDescriptor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.InitPeer">func (conR *Reactor) InitPeer(peer p2p.Peer) p2p.Peer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStart">func (conR *Reactor) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStop">func (conR *Reactor) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.ReceiveEnvelope">func (conR *Reactor) ReceiveEnvelope(e p2p.Envelope)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.RemovePeer">func (conR *Reactor) RemovePeer(peer p2p.Peer, reason interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.SetEventBus">func (conR *Reactor) SetEventBus(b *types.EventBus)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.String">func (conR *Reactor) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.StringIndented">func (conR *Reactor) StringIndented(indent string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.SwitchToConsensus">func (conR *Reactor) SwitchToConsensus(state sm.State, skipWAL bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.WaitSync">func (conR *Reactor) WaitSync() bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ReactorOption">type ReactorOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReactorMetrics">func ReactorMetrics(metrics *Metrics) ReactorOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#State">type State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewState">func NewState(config *cfg.ConsensusConfig, state sm.State, blockExec *sm.BlockExecutor, blockStore sm.BlockStore, txNotifier txNotifier, evpool evidencePool, options ...StateOption) *State</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.AddProposalBlockPart">func (cs *State) AddProposalBlockPart(height int64, round int32, part *types.Part, peerID p2p.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.AddVote">func (cs *State) AddVote(vote *types.Vote, peerID p2p.ID) (added bool, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetLastHeight">func (cs *State) GetLastHeight() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetRoundState">func (cs *State) GetRoundState() *cstypes.RoundState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetRoundStateJSON">func (cs *State) GetRoundStateJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetRoundStateSimpleJSON">func (cs *State) GetRoundStateSimpleJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetState">func (cs *State) GetState() sm.State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.GetValidators">func (cs *State) GetValidators() (int64, []*types.Validator)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.LoadCommit">func (cs *State) LoadCommit(height int64) *types.Commit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.OnStart">func (cs *State) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.OnStop">func (cs *State) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.OpenWAL">func (cs *State) OpenWAL(walFile string) (WAL, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.ReplayFile">func (cs *State) ReplayFile(file string, console bool) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetEventBus">func (cs *State) SetEventBus(b *types.EventBus)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetLogger">func (cs *State) SetLogger(l log.Logger)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetPrivValidator">func (cs *State) SetPrivValidator(priv types.PrivValidator)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetProposal">func (cs *State) SetProposal(proposal *types.Proposal, peerID p2p.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetProposalAndBlock">func (cs *State) SetProposalAndBlock(proposal *types.Proposal, block *types.Block, parts *types.PartSet, peerID p2p.ID) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SetTimeoutTicker">func (cs *State) SetTimeoutTicker(timeoutTicker TimeoutTicker)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.String">func (cs *State) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.Wait">func (cs *State) Wait()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateOption">type StateOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateMetrics">func StateMetrics(metrics *Metrics) StateOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TimedWALMessage">type TimedWALMessage</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TimeoutTicker">type TimeoutTicker</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTimeoutTicker">func NewTimeoutTicker() TimeoutTicker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#VoteMessage">type VoteMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteMessage.String">func (m *VoteMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteMessage.ValidateBasic">func (m *VoteMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#VoteSetBitsMessage">type VoteSetBitsMessage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteSetBitsMessage.String">func (m *VoteSetBitsMessage) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteSetBitsMessage.ValidateBasic">func (m *VoteSetBitsMessage) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#VoteSetMaj23Message">type VoteSetMaj23Message</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteSetMaj23Message.String">func (m *VoteSetMaj23Message) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VoteSetMaj23Message.ValidateBasic">func (m *VoteSetMaj23Message) ValidateBasic() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WAL">type WAL</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WALDecoder">type WALDecoder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWALDecoder">func NewWALDecoder(rd io.Reader) *WALDecoder</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WALDecoder.Decode">func (dec *WALDecoder) Decode() (*TimedWALMessage, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WALEncoder">type WALEncoder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewWALEncoder">func NewWALEncoder(wr io.Writer) *WALEncoder</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WALEncoder.Encode">func (enc *WALEncoder) Encode(v *TimedWALMessage) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#WALMessage">type WALMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WALFromProto">func WALFromProto(msg *cmtcons.WALMessage) (WALMessage, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WALSearchOptions">type WALSearchOptions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.gen.go">metrics.gen.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/msgs.go">msgs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go">reactor.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go">replay.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay_file.go">replay_file.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay_stubs.go">replay_stubs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go">state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/ticker.go">ticker.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go">wal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal_generator.go">wal_generator.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="StateChannel">StateChannel</span>       = <a href="../../../../builtin/index.html#byte">byte</a>(0x20)
+    <span id="DataChannel">DataChannel</span>        = <a href="../../../../builtin/index.html#byte">byte</a>(0x21)
+    <span id="VoteChannel">VoteChannel</span>        = <a href="../../../../builtin/index.html#byte">byte</a>(0x22)
+    <span id="VoteSetBitsChannel">VoteSetBitsChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x23)
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// MetricsSubsystem is a subsystem shared by all metrics exposed by this</span>
+    <span class="comment">// package.</span>
+    <span id="MetricsSubsystem">MetricsSubsystem</span> = &#34;consensus&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrPeerStateHeightRegression">ErrPeerStateHeightRegression</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;error peer state height regression&#34;)
+    <span id="ErrPeerStateInvalidStartTime">ErrPeerStateInvalidStartTime</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;error peer state invalid startTime&#34;)
+)</pre>
+			
+				<p>Consensus sentinel errors
+
+				<pre>var (
+    <span id="ErrInvalidProposalSignature">ErrInvalidProposalSignature</span>   = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;error invalid proposal signature&#34;)
+    <span id="ErrInvalidProposalPOLRound">ErrInvalidProposalPOLRound</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;error invalid proposal POL round&#34;)
+    <span id="ErrAddingVote">ErrAddingVote</span>                 = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;error adding vote&#34;)
+    <span id="ErrSignatureFoundInPastBlocks">ErrSignatureFoundInPastBlocks</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;found signature from the same key&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="CompareHRS">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=76720:76831#L2382">CompareHRS</a>
+				<a class="permalink" href="index.html#CompareHRS">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CompareHRS(h1 <a href="../../../../builtin/index.html#int64">int64</a>, r1 <a href="../../../../builtin/index.html#int32">int32</a>, s1 <a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundStepType">RoundStepType</a>, h2 <a href="../../../../builtin/index.html#int64">int64</a>, r2 <a href="../../../../builtin/index.html#int32">int32</a>, s2 <a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundStepType">RoundStepType</a>) <a href="../../../../builtin/index.html#int">int</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsDataCorruptionError">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=8862:8904#L322">IsDataCorruptionError</a>
+				<a class="permalink" href="index.html#IsDataCorruptionError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsDataCorruptionError(err <a href="../../../../builtin/index.html#error">error</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsDataCorruptionError returns true if data has been corrupted inside WAL.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MsgToProto">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/msgs.go?s=604:655#L11">MsgToProto</a>
+				<a class="permalink" href="index.html#MsgToProto">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MsgToProto(msg <a href="index.html#Message">Message</a>) (<a href="../../../cosmos/gogoproto/proto/index.html">proto</a>.<a href="../../../cosmos/gogoproto/proto/index.html#Message">Message</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MsgToProto takes a consensus message type and returns the proto defined consensus message.
+<p>TODO: This needs to be removed, but WALToProto depends on this.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunReplayFile">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay_file.go?s=623:709#L23">RunReplayFile</a>
+				<a class="permalink" href="index.html#RunReplayFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RunReplayFile(config <a href="../config/index.html">cfg</a>.<a href="../config/index.html#BaseConfig">BaseConfig</a>, csConfig *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#ConsensusConfig">ConsensusConfig</a>, console <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+			<p>replay the wal file
+
+			
+			
+
+		
+			
+			
+			<h2 id="WALGenerateNBlocks">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal_generator.go?s=876:954#L20">WALGenerateNBlocks</a>
+				<a class="permalink" href="index.html#WALGenerateNBlocks">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WALGenerateNBlocks(t *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>, wr <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>, numBlocks <a href="../../../../builtin/index.html#int">int</a>) (err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>WALGenerateNBlocks generates a consensus WAL. It does this by spinning up a
+stripped down version of node (proxy app, event bus, consensus state) with a
+persistent kvstore application and special consensus wal instance
+(byteBufferWAL) and waits until numBlocks are created.
+If the node fails to produce given numBlocks, it returns an error.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WALToProto">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/msgs.go?s=5862:5922#L228">WALToProto</a>
+				<a class="permalink" href="index.html#WALToProto">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WALToProto(msg <a href="index.html#WALMessage">WALMessage</a>) (*<a href="../proto/tendermint/consensus/index.html">cmtcons</a>.<a href="../proto/tendermint/consensus/index.html#WALMessage">WALMessage</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>WALToProto takes a WAL message and return a proto walMessage and error
+
+			
+			
+
+		
+			
+			
+			<h2 id="WALWithNBlocks">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal_generator.go?s=4130:4203#L115">WALWithNBlocks</a>
+				<a class="permalink" href="index.html#WALWithNBlocks">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WALWithNBlocks(t *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>, numBlocks <a href="../../../../builtin/index.html#int">int</a>) (data []<a href="../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>WALWithNBlocks returns a WAL content with numBlocks.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BaseWAL">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=2096:2236#L66">BaseWAL</a>
+				<a class="permalink" href="index.html#BaseWAL">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Write ahead logger writes msgs to disk before they are processed.
+Can be used for crash-recovery and deterministic replay.
+TODO: currently the wal is overwritten during replay catchup, give it a mode
+so it&apos;s either reading or appending - must read to end to start appending
+again.
+
+			<pre>type BaseWAL struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWAL">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=2414:2494#L81">NewWAL</a>
+					<a class="permalink" href="index.html#NewWAL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWAL(walFile <a href="../../../../builtin/index.html#string">string</a>, groupOptions ...func(*<a href="../libs/autofile/index.html">auto</a>.<a href="../libs/autofile/index.html#Group">Group</a>)) (*<a href="index.html#BaseWAL">BaseWAL</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewWAL returns a new write-ahead logger based on `baseWAL`, which implements
+WAL. It&apos;s flushed and synced to disk every 2s and once when stopped.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BaseWAL.FlushAndSync">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=3987:4027#L147">FlushAndSync</a>
+					<a class="permalink" href="index.html#BaseWAL.FlushAndSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) FlushAndSync() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>FlushAndSync flushes and fsync&apos;s the underlying group&apos;s data to disk.
+See auto#FlushAndSync
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.Group">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=3120:3159#L105">Group</a>
+					<a class="permalink" href="index.html#BaseWAL.Group">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) Group() *<a href="../libs/autofile/index.html">auto</a>.<a href="../libs/autofile/index.html#Group">Group</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.OnStart">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=3284:3319#L114">OnStart</a>
+					<a class="permalink" href="index.html#BaseWAL.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.OnStop">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=4186:4214#L154">OnStop</a>
+					<a class="permalink" href="index.html#BaseWAL.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) OnStop()</pre>
+				<p>Stop the underlying autofile group.
+Use Wait() to ensure it&apos;s finished shutting down
+before cleaning up files.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.SearchForEndHeight">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=6129:6253#L221">SearchForEndHeight</a>
+					<a class="permalink" href="index.html#BaseWAL.SearchForEndHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) SearchForEndHeight(
+    height <a href="../../../../builtin/index.html#int64">int64</a>,
+    options *<a href="index.html#WALSearchOptions">WALSearchOptions</a>) (rd <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>, found <a href="../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SearchForEndHeight searches for the EndHeightMessage with the given height
+and returns an auto.GroupReader, whenever it was found or not and an error.
+Group reader will be nil if found equals false.
+<p>CONTRACT: caller must close group reader.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.SetFlushInterval">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=3038:3091#L101">SetFlushInterval</a>
+					<a class="permalink" href="index.html#BaseWAL.SetFlushInterval">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) SetFlushInterval(i <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Duration">Duration</a>)</pre>
+				<p>SetFlushInterval allows us to override the periodic flush interval for the WAL.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.SetLogger">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=3183:3226#L109">SetLogger</a>
+					<a class="permalink" href="index.html#BaseWAL.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) SetLogger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.Wait">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=4580:4606#L167">Wait</a>
+					<a class="permalink" href="index.html#BaseWAL.Wait">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) Wait()</pre>
+				<p>Wait for the underlying autofile group to finish shutting down
+so it&apos;s safe to cleanup files.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.Write">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=4758:4805#L174">Write</a>
+					<a class="permalink" href="index.html#BaseWAL.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) Write(msg <a href="index.html#WALMessage">WALMessage</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Write is called in newStep and for each receive on the
+peerMsgQueue and the timeoutTicker.
+NOTE: does not call fsync()
+
+				
+				
+				
+			
+				
+				<h3 id="BaseWAL.WriteSync">func (*BaseWAL) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=5240:5291#L191">WriteSync</a>
+					<a class="permalink" href="index.html#BaseWAL.WriteSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (wal *<a href="index.html#BaseWAL">BaseWAL</a>) WriteSync(msg <a href="index.html#WALMessage">WALMessage</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>WriteSync is called when we receive a msg from ourselves
+so that we write to disk before sending signed messages.
+NOTE: calls fsync()
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BlockPartMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=49766:49846#L1653">BlockPartMessage</a>
+				<a class="permalink" href="index.html#BlockPartMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockPartMessage is sent when gossipping a piece of the proposed block.
+
+			<pre>type BlockPartMessage struct {
+<span id="BlockPartMessage.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="BlockPartMessage.Round"></span>    Round  <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="BlockPartMessage.Part"></span>    Part   *<a href="../types/index.html">types</a>.<a href="../types/index.html#Part">Part</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BlockPartMessage.String">func (*BlockPartMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=50215:50257#L1674">String</a>
+					<a class="permalink" href="index.html#BlockPartMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#BlockPartMessage">BlockPartMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPartMessage.ValidateBasic">func (*BlockPartMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=49892:49940#L1660">ValidateBasic</a>
+					<a class="permalink" href="index.html#BlockPartMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#BlockPartMessage">BlockPartMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DataCorruptionError">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9036:9084#L328">DataCorruptionError</a>
+				<a class="permalink" href="index.html#DataCorruptionError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DataCorruptionError is an error that occures if data on disk was corrupted.
+
+			<pre>type DataCorruptionError struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DataCorruptionError.Cause">func (DataCorruptionError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9191:9233#L336">Cause</a>
+					<a class="permalink" href="index.html#DataCorruptionError.Cause">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#DataCorruptionError">DataCorruptionError</a>) Cause() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DataCorruptionError.Error">func (DataCorruptionError) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9086:9129#L332">Error</a>
+					<a class="permalink" href="index.html#DataCorruptionError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#DataCorruptionError">DataCorruptionError</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EndHeightMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=1085:1147#L32">EndHeightMessage</a>
+				<a class="permalink" href="index.html#EndHeightMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndHeightMessage marks the end of the given height inside WAL.
+@internal used by scripts/wal2json util.
+
+			<pre>type EndHeightMessage struct {
+<span id="EndHeightMessage.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a> `json:&#34;height&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Handshaker">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=6281:6533#L190">Handshaker</a>
+				<a class="permalink" href="index.html#Handshaker">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Handshaker struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewHandshaker">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=6535:6650#L201">NewHandshaker</a>
+					<a class="permalink" href="index.html#NewHandshaker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHandshaker(stateStore <a href="../state/index.html">sm</a>.<a href="../state/index.html#Store">Store</a>, state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>,
+    store <a href="../state/index.html">sm</a>.<a href="../state/index.html#BlockStore">BlockStore</a>, genDoc *<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>) *<a href="index.html#Handshaker">Handshaker</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Handshaker.Handshake">func (*Handshaker) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=7327:7388#L231">Handshake</a>
+					<a class="permalink" href="index.html#Handshaker.Handshake">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handshaker">Handshaker</a>) Handshake(proxyApp <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConns">AppConns</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>TODO: retry the handshake/replay if it fails ?
+
+				
+				
+				
+			
+				
+				<h3 id="Handshaker.NBlocks">func (*Handshaker) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=7219:7253#L226">NBlocks</a>
+					<a class="permalink" href="index.html#Handshaker.NBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handshaker">Handshaker</a>) NBlocks() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>NBlocks returns the number of blocks applied to the state.
+
+				
+				
+				
+			
+				
+				<h3 id="Handshaker.ReplayBlocks">func (*Handshaker) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=8603:8738#L274">ReplayBlocks</a>
+					<a class="permalink" href="index.html#Handshaker.ReplayBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handshaker">Handshaker</a>) ReplayBlocks(
+    state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>,
+    appHash []<a href="../../../../builtin/index.html#byte">byte</a>,
+    appBlockHeight <a href="../../../../builtin/index.html#int64">int64</a>,
+    proxyApp <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConns">AppConns</a>,
+) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReplayBlocks replays all blocks since appBlockHeight and ensures the result
+matches the current state.
+Returns the final AppHash or an error.
+
+				
+				
+				
+			
+				
+				<h3 id="Handshaker.SetEventBus">func (*Handshaker) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=7060:7128#L221">SetEventBus</a>
+					<a class="permalink" href="index.html#Handshaker.SetEventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handshaker">Handshaker</a>) SetEventBus(eventBus <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockEventPublisher">BlockEventPublisher</a>)</pre>
+				<p>SetEventBus - sets the event bus for publishing block related events.
+If not called, it defaults to types.NopEventBus.
+
+				
+				
+				
+			
+				
+				<h3 id="Handshaker.SetLogger">func (*Handshaker) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay.go?s=6871:6915#L215">SetLogger</a>
+					<a class="permalink" href="index.html#Handshaker.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handshaker">Handshaker</a>) SetLogger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HasVoteMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=50869:50972#L1698">HasVoteMessage</a>
+				<a class="permalink" href="index.html#HasVoteMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasVoteMessage is sent to indicate that a particular vote has been received.
+
+			<pre>type HasVoteMessage struct {
+<span id="HasVoteMessage.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="HasVoteMessage.Round"></span>    Round  <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="HasVoteMessage.Type"></span>    Type   <a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#SignedMsgType">SignedMsgType</a>
+<span id="HasVoteMessage.Index"></span>    Index  <a href="../../../../builtin/index.html#int32">int32</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="HasVoteMessage.String">func (*HasVoteMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=51380:51420#L1723">String</a>
+					<a class="permalink" href="index.html#HasVoteMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#HasVoteMessage">HasVoteMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="HasVoteMessage.ValidateBasic">func (*HasVoteMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=51018:51064#L1706">ValidateBasic</a>
+					<a class="permalink" href="index.html#HasVoteMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#HasVoteMessage">HasVoteMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Message">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=44210:44259#L1483">Message</a>
+				<a class="permalink" href="index.html#Message">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Message is a message that can be sent and received on the Reactor
+
+			<pre>type Message interface {
+    ValidateBasic() <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MsgFromProto">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/msgs.go?s=2803:2854#L111">MsgFromProto</a>
+					<a class="permalink" href="index.html#MsgFromProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MsgFromProto(p <a href="../../../cosmos/gogoproto/proto/index.html">proto</a>.<a href="../../../cosmos/gogoproto/proto/index.html#Message">Message</a>) (<a href="index.html#Message">Message</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MsgFromProto takes a consensus proto message and returns the native go type
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Metrics">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=486:4738#L13">Metrics</a>
+				<a class="permalink" href="index.html#Metrics">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Metrics contains metrics exposed by this package.
+
+			<pre>type Metrics struct {
+<span id="Metrics.Height"></span>    <span class="comment">// Height of the chain.</span>
+    Height <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+
+    <span class="comment">// Last height signed by this validator if the node is a validator.</span>
+<span id="Metrics.ValidatorLastSignedHeight"></span>    ValidatorLastSignedHeight <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;validator_address&#34;`
+
+    <span class="comment">// Number of rounds.</span>
+<span id="Metrics.Rounds"></span>    Rounds <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+
+    <span class="comment">// Histogram of round duration.</span>
+<span id="Metrics.RoundDurationSeconds"></span>    RoundDurationSeconds <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Histogram">Histogram</a> `metrics_buckettype:&#34;exprange&#34; metrics_bucketsizes:&#34;0.1, 100, 8&#34;`
+
+    <span class="comment">// Number of validators.</span>
+<span id="Metrics.Validators"></span>    Validators <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Total power of all validators.</span>
+<span id="Metrics.ValidatorsPower"></span>    ValidatorsPower <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Power of a validator.</span>
+<span id="Metrics.ValidatorPower"></span>    ValidatorPower <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;validator_address&#34;`
+    <span class="comment">// Amount of blocks missed per validator.</span>
+<span id="Metrics.ValidatorMissedBlocks"></span>    ValidatorMissedBlocks <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;validator_address&#34;`
+    <span class="comment">// Number of validators who did not sign.</span>
+<span id="Metrics.MissingValidators"></span>    MissingValidators <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Total power of the missing validators.</span>
+<span id="Metrics.MissingValidatorsPower"></span>    MissingValidatorsPower <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Number of validators who tried to double sign.</span>
+<span id="Metrics.ByzantineValidators"></span>    ByzantineValidators <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Total power of the byzantine validators.</span>
+<span id="Metrics.ByzantineValidatorsPower"></span>    ByzantineValidatorsPower <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+
+    <span class="comment">// Time between this and the last block.</span>
+<span id="Metrics.BlockIntervalSeconds"></span>    BlockIntervalSeconds <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Histogram">Histogram</a>
+
+    <span class="comment">// Number of transactions.</span>
+<span id="Metrics.NumTxs"></span>    NumTxs <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Size of the block.</span>
+<span id="Metrics.BlockSizeBytes"></span>    BlockSizeBytes <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Total number of transactions.</span>
+<span id="Metrics.TotalTxs"></span>    TotalTxs <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// The latest block height.</span>
+<span id="Metrics.CommittedHeight"></span>    CommittedHeight <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_name:&#34;latest_block_height&#34;`
+    <span class="comment">// Whether or not a node is block syncing. 1 if yes, 0 if no.</span>
+<span id="Metrics.BlockSyncing"></span>    BlockSyncing <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+    <span class="comment">// Whether or not a node is state syncing. 1 if yes, 0 if no.</span>
+<span id="Metrics.StateSyncing"></span>    StateSyncing <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a>
+
+    <span class="comment">// Number of block parts transmitted by each peer.</span>
+<span id="Metrics.BlockParts"></span>    BlockParts <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a> `metrics_labels:&#34;peer_id&#34;`
+
+    <span class="comment">// Histogram of durations for each step in the consensus protocol.</span>
+<span id="Metrics.StepDurationSeconds"></span>    StepDurationSeconds <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Histogram">Histogram</a> `metrics_labels:&#34;step&#34; metrics_buckettype:&#34;exprange&#34; metrics_bucketsizes:&#34;0.1, 100, 8&#34;`
+
+    <span class="comment">// Number of block parts received by the node, separated by whether the part</span>
+    <span class="comment">// was relevant to the block the node is trying to gather or not.</span>
+<span id="Metrics.BlockGossipPartsReceived"></span>    BlockGossipPartsReceived <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a> `metrics_labels:&#34;matches_current&#34;`
+
+    <span class="comment">// QuroumPrevoteMessageDelay is the interval in seconds between the proposal</span>
+    <span class="comment">// timestamp and the timestamp of the earliest prevote that achieved a quorum</span>
+    <span class="comment">// during the prevote step.</span>
+    <span class="comment">//</span>
+    <span class="comment">// To compute it, sum the voting power over each prevote received, in increasing</span>
+    <span class="comment">// order of timestamp. The timestamp of the first prevote to increase the sum to</span>
+    <span class="comment">// be above 2/3 of the total voting power of the network defines the endpoint</span>
+    <span class="comment">// the endpoint of the interval. Subtract the proposal timestamp from this endpoint</span>
+    <span class="comment">// to obtain the quorum delay.</span>
+    <span class="comment">//metrics:Interval in seconds between the proposal timestamp and the timestamp of the earliest prevote that achieved a quorum.</span>
+<span id="Metrics.QuorumPrevoteDelay"></span>    QuorumPrevoteDelay <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;proposer_address&#34;`
+
+<span id="Metrics.FullPrevoteDelay"></span>    <span class="comment">// FullPrevoteDelay is the interval in seconds between the proposal</span>
+    <span class="comment">// timestamp and the timestamp of the latest prevote in a round where 100%</span>
+    <span class="comment">// of the voting power on the network issued prevotes.</span>
+    <span class="comment">//metrics:Interval in seconds between the proposal timestamp and the timestamp of the latest prevote in a round where all validators voted.</span>
+    FullPrevoteDelay <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;proposer_address&#34;`
+
+<span id="Metrics.ProposalReceiveCount"></span>    <span class="comment">// ProposalReceiveCount is the total number of proposals received by this node</span>
+    <span class="comment">// since process start.</span>
+    <span class="comment">// The metric is annotated by the status of the proposal from the application,</span>
+    <span class="comment">// either &#39;accepted&#39; or &#39;rejected&#39;.</span>
+    ProposalReceiveCount <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a> `metrics_labels:&#34;status&#34;`
+
+    <span class="comment">// ProposalCreationCount is the total number of proposals created by this node</span>
+    <span class="comment">// since process start.</span>
+<span id="Metrics.ProposalCreateCount"></span>    ProposalCreateCount <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+
+<span id="Metrics.RoundVotingPowerPercent"></span>    <span class="comment">// RoundVotingPowerPercent is the percentage of the total voting power received</span>
+    <span class="comment">// with a round. The value begins at 0 for each round and approaches 1.0 as</span>
+    <span class="comment">// additional voting power is observed. The metric is labeled by vote type.</span>
+    RoundVotingPowerPercent <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Gauge">Gauge</a> `metrics_labels:&#34;vote_type&#34;`
+
+<span id="Metrics.LateVotes"></span>    <span class="comment">// LateVotes stores the number of votes that were received by this node that</span>
+    <span class="comment">// correspond to earlier heights and rounds than this node is currently</span>
+    <span class="comment">// in.</span>
+    LateVotes <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a> `metrics_labels:&#34;vote_type&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NopMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.gen.go?s=8820:8846#L182">NopMetrics</a>
+					<a class="permalink" href="index.html#NopMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NopMetrics() *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="PrometheusMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.gen.go?s=238:314#L1">PrometheusMetrics</a>
+					<a class="permalink" href="index.html#PrometheusMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PrometheusMetrics(namespace <a href="../../../../builtin/index.html#string">string</a>, labelsAndValues ...<a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Metrics.MarkLateVote">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=6004:6061#L145">MarkLateVote</a>
+					<a class="permalink" href="index.html#Metrics.MarkLateVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) MarkLateVote(vt <a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#SignedMsgType">SignedMsgType</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Metrics.MarkProposalProcessed">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=5066:5120#L117">MarkProposalProcessed</a>
+					<a class="permalink" href="index.html#Metrics.MarkProposalProcessed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) MarkProposalProcessed(accepted <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Metrics.MarkRound">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=5508:5558#L131">MarkRound</a>
+					<a class="permalink" href="index.html#Metrics.MarkRound">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) MarkRound(r <a href="../../../../builtin/index.html#int32">int32</a>, st <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Metrics.MarkStep">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=6183:6234#L150">MarkStep</a>
+					<a class="permalink" href="index.html#Metrics.MarkStep">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) MarkStep(s <a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundStepType">RoundStepType</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Metrics.MarkVoteReceived">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=5243:5329#L125">MarkVoteReceived</a>
+					<a class="permalink" href="index.html#Metrics.MarkVoteReceived">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) MarkVoteReceived(vt <a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#SignedMsgType">SignedMsgType</a>, power, totalPower <a href="../../../../builtin/index.html#int64">int64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Metrics.RecordConsMetrics">func (*Metrics) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/metrics.go?s=4824:4879#L110">RecordConsMetrics</a>
+					<a class="permalink" href="index.html#Metrics.RecordConsMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Metrics">Metrics</a>) RecordConsMetrics(block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>)</pre>
+				<p>RecordConsMetrics uses for recording the block related metrics during fast-sync.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NewRoundStepMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=45065:45261#L1503">NewRoundStepMessage</a>
+				<a class="permalink" href="index.html#NewRoundStepMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NewRoundStepMessage is sent for every step taken in the ConsensusState.
+For every height/round/step transition
+
+			<pre>type NewRoundStepMessage struct {
+<span id="NewRoundStepMessage.Height"></span>    Height                <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="NewRoundStepMessage.Round"></span>    Round                 <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="NewRoundStepMessage.Step"></span>    Step                  <a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundStepType">RoundStepType</a>
+<span id="NewRoundStepMessage.SecondsSinceStartTime"></span>    SecondsSinceStartTime <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="NewRoundStepMessage.LastCommitRound"></span>    LastCommitRound       <a href="../../../../builtin/index.html#int32">int32</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NewRoundStepMessage.String">func (*NewRoundStepMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=46588:46633#L1553">String</a>
+					<a class="permalink" href="index.html#NewRoundStepMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#NewRoundStepMessage">NewRoundStepMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="NewRoundStepMessage.ValidateBasic">func (*NewRoundStepMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=45307:45358#L1512">ValidateBasic</a>
+					<a class="permalink" href="index.html#NewRoundStepMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#NewRoundStepMessage">NewRoundStepMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+				
+				<h3 id="NewRoundStepMessage.ValidateHeight">func (*NewRoundStepMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=45979:46050#L1536">ValidateHeight</a>
+					<a class="permalink" href="index.html#NewRoundStepMessage.ValidateHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#NewRoundStepMessage">NewRoundStepMessage</a>) ValidateHeight(initialHeight <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateHeight validates the height given the chain&apos;s initial height.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NewValidBlockMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=47045:47233#L1563">NewValidBlockMessage</a>
+				<a class="permalink" href="index.html#NewValidBlockMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NewValidBlockMessage is sent when a validator observes a valid block B in some round r,
+i.e., there is a Proposal for block B and 2/3+ prevotes for the block B in the round r.
+In case the block is also committed, then IsCommit flag is set to true.
+
+			<pre>type NewValidBlockMessage struct {
+<span id="NewValidBlockMessage.Height"></span>    Height             <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="NewValidBlockMessage.Round"></span>    Round              <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="NewValidBlockMessage.BlockPartSetHeader"></span>    BlockPartSetHeader <a href="../types/index.html">types</a>.<a href="../types/index.html#PartSetHeader">PartSetHeader</a>
+<span id="NewValidBlockMessage.BlockParts"></span>    BlockParts         *<a href="../libs/bits/index.html">bits</a>.<a href="../libs/bits/index.html#BitArray">BitArray</a>
+<span id="NewValidBlockMessage.IsCommit"></span>    IsCommit           <a href="../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NewValidBlockMessage.String">func (*NewValidBlockMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48096:48142#L1597">String</a>
+					<a class="permalink" href="index.html#NewValidBlockMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#NewValidBlockMessage">NewValidBlockMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="NewValidBlockMessage.ValidateBasic">func (*NewValidBlockMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=47279:47331#L1572">ValidateBasic</a>
+					<a class="permalink" href="index.html#NewValidBlockMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#NewValidBlockMessage">NewValidBlockMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PeerState">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=30942:31213#L1003">PeerState</a>
+				<a class="permalink" href="index.html#PeerState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PeerState contains the known state of a peer, including its connection and
+threadsafe access to its PeerRoundState.
+NOTE: THIS GETS DUMPED WITH rpc/core/consensus.go.
+Be mindful of what you Expose.
+
+			<pre>type PeerState struct {
+<span id="PeerState.PRS"></span>    PRS   <a href="types/index.html">cstypes</a>.<a href="types/index.html#PeerRoundState">PeerRoundState</a> `json:&#34;round_state&#34;` <span class="comment">// Exposed.</span>
+<span id="PeerState.Stats"></span>    Stats *peerStateStats        `json:&#34;stats&#34;`       <span class="comment">// Exposed.</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPeerState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=31571:31614#L1024">NewPeerState</a>
+					<a class="permalink" href="index.html#NewPeerState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPeerState(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>) *<a href="index.html#PeerState">PeerState</a></pre>
+				<p>NewPeerState returns a new PeerState for the given Peer
+
+				
+				
+			
+
+			
+				
+				<h3 id="PeerState.ApplyHasVoteMessage">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=42649:42710#L1427">ApplyHasVoteMessage</a>
+					<a class="permalink" href="index.html#PeerState.ApplyHasVoteMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) ApplyHasVoteMessage(msg *<a href="index.html#HasVoteMessage">HasVoteMessage</a>)</pre>
+				<p>ApplyHasVoteMessage updates the peer state for the new vote.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.ApplyNewRoundStepMessage">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=40009:40080#L1339">ApplyNewRoundStepMessage</a>
+					<a class="permalink" href="index.html#PeerState.ApplyNewRoundStepMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) ApplyNewRoundStepMessage(msg *<a href="index.html#NewRoundStepMessage">NewRoundStepMessage</a>)</pre>
+				<p>ApplyNewRoundStepMessage updates the peer state for the new round.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.ApplyNewValidBlockMessage">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=41809:41882#L1393">ApplyNewValidBlockMessage</a>
+					<a class="permalink" href="index.html#PeerState.ApplyNewValidBlockMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) ApplyNewValidBlockMessage(msg *<a href="index.html#NewValidBlockMessage">NewValidBlockMessage</a>)</pre>
+				<p>ApplyNewValidBlockMessage updates the peer state for the new valid block.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.ApplyProposalPOLMessage">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=42216:42285#L1410">ApplyProposalPOLMessage</a>
+					<a class="permalink" href="index.html#PeerState.ApplyProposalPOLMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) ApplyProposalPOLMessage(msg *<a href="index.html#ProposalPOLMessage">ProposalPOLMessage</a>)</pre>
+				<p>ApplyProposalPOLMessage updates the peer state for the new proposal POL.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.ApplyVoteSetBitsMessage">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=43166:43260#L1443">ApplyVoteSetBitsMessage</a>
+					<a class="permalink" href="index.html#PeerState.ApplyVoteSetBitsMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) ApplyVoteSetBitsMessage(msg *<a href="index.html#VoteSetBitsMessage">VoteSetBitsMessage</a>, ourVotes *<a href="../libs/bits/index.html">bits</a>.<a href="../libs/bits/index.html#BitArray">BitArray</a>)</pre>
+				<p>ApplyVoteSetBitsMessage updates the peer state for the bit-array of votes
+it claims to have for the corresponding BlockID.
+`ourVotes` is a BitArray of votes we have for msg.BlockID
+NOTE: if ourVotes is nil (e.g. msg.Height &lt; rs.Height),
+we conservatively overwrite ps&apos;s votes w/ msg.Votes.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.BlockPartsSent">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=39125:39166#L1308">BlockPartsSent</a>
+					<a class="permalink" href="index.html#PeerState.BlockPartsSent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) BlockPartsSent() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>BlockPartsSent returns the number of useful block parts the peer has sent us.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.EnsureVoteBitArrays">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=37559:37632#L1250">EnsureVoteBitArrays</a>
+					<a class="permalink" href="index.html#PeerState.EnsureVoteBitArrays">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) EnsureVoteBitArrays(height <a href="../../../../builtin/index.html#int64">int64</a>, numValidators <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>EnsureVoteBitArrays ensures the bit-arrays have been allocated for tracking
+what votes this peer has received.
+NOTE: It&apos;s important to make sure that numValidators actually matches
+what the node sees as the number of validators for height.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.GetHeight">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=32651:32689#L1065">GetHeight</a>
+					<a class="permalink" href="index.html#PeerState.GetHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) GetHeight() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>GetHeight returns an atomic snapshot of the PeerRoundState&apos;s height
+used by the mempool to ensure peers are caught up before broadcasting new txs
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.GetRoundState">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=32179:32239#L1047">GetRoundState</a>
+					<a class="permalink" href="index.html#PeerState.GetRoundState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) GetRoundState() *<a href="types/index.html">cstypes</a>.<a href="types/index.html#PeerRoundState">PeerRoundState</a></pre>
+				<p>GetRoundState returns an shallow copy of the PeerRoundState.
+There&apos;s no point in mutating it since it won&apos;t change PeerState.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.InitProposalBlockParts">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=33551:33629#L1098">InitProposalBlockParts</a>
+					<a class="permalink" href="index.html#PeerState.InitProposalBlockParts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) InitProposalBlockParts(partSetHeader <a href="../types/index.html">types</a>.<a href="../types/index.html#PartSetHeader">PartSetHeader</a>)</pre>
+				<p>InitProposalBlockParts initializes the peer&apos;s proposal block parts header and bit array.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.MarshalJSON">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=32376:32426#L1056">MarshalJSON</a>
+					<a class="permalink" href="index.html#PeerState.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) MarshalJSON() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON implements the json.Marshaler interface.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.PickSendVote">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=34264:34329#L1124">PickSendVote</a>
+					<a class="permalink" href="index.html#PeerState.PickSendVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) PickSendVote(votes <a href="../types/index.html">types</a>.<a href="../types/index.html#VoteSetReader">VoteSetReader</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>PickSendVote picks a vote and sends it to the peer.
+Returns true if vote was sent.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.PickVoteToSend">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=34807:34897#L1144">PickVoteToSend</a>
+					<a class="permalink" href="index.html#PeerState.PickVoteToSend">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) PickVoteToSend(votes <a href="../types/index.html">types</a>.<a href="../types/index.html#VoteSetReader">VoteSetReader</a>) (vote *<a href="../types/index.html">types</a>.<a href="../types/index.html#Vote">Vote</a>, ok <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>PickVoteToSend picks a vote to send to the peer.
+Returns true if a vote was picked.
+NOTE: `votes` must be the correct Size() for the Height().
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.RecordBlockPart">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=38906:38948#L1299">RecordBlockPart</a>
+					<a class="permalink" href="index.html#PeerState.RecordBlockPart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) RecordBlockPart() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>RecordBlockPart increments internal block part related statistics for this peer.
+It returns the total number of added block parts.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.RecordVote">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=38454:38491#L1279">RecordVote</a>
+					<a class="permalink" href="index.html#PeerState.RecordVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) RecordVote() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>RecordVote increments internal votes related statistics for this peer.
+It returns the total number of added votes.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.SetHasProposal">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=32820:32881#L1072">SetHasProposal</a>
+					<a class="permalink" href="index.html#PeerState.SetHasProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) SetHasProposal(proposal *<a href="../types/index.html">types</a>.<a href="../types/index.html#Proposal">Proposal</a>)</pre>
+				<p>SetHasProposal sets the given proposal as known for the peer.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.SetHasProposalBlockPart">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=33931:34013#L1111">SetHasProposalBlockPart</a>
+					<a class="permalink" href="index.html#PeerState.SetHasProposalBlockPart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) SetHasProposalBlockPart(height <a href="../../../../builtin/index.html#int64">int64</a>, round <a href="../../../../builtin/index.html#int32">int32</a>, index <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>SetHasProposalBlockPart sets the given block part index as known for the peer.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.SetHasVote">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=39294:39343#L1316">SetHasVote</a>
+					<a class="permalink" href="index.html#PeerState.SetHasVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) SetHasVote(vote *<a href="../types/index.html">types</a>.<a href="../types/index.html#Vote">Vote</a>)</pre>
+				<p>SetHasVote sets the given vote as known by the peer
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.SetLogger">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=31950:32010#L1040">SetLogger</a>
+					<a class="permalink" href="index.html#PeerState.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) SetLogger(logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>) *<a href="index.html#PeerState">PeerState</a></pre>
+				<p>SetLogger allows to set a logger on the peer state. Returns the peer state
+itself.
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.String">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=43616:43652#L1460">String</a>
+					<a class="permalink" href="index.html#PeerState.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of the PeerState
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.StringIndented">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=43755:43812#L1465">StringIndented</a>
+					<a class="permalink" href="index.html#PeerState.StringIndented">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) StringIndented(indent <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>StringIndented returns a string representation of the PeerState
+
+				
+				
+				
+			
+				
+				<h3 id="PeerState.VotesSent">func (*PeerState) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=38665:38701#L1290">VotesSent</a>
+					<a class="permalink" href="index.html#PeerState.VotesSent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ps *<a href="index.html#PeerState">PeerState</a>) VotesSent() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>VotesSent returns the number of blocks for which peer has been sending us
+votes.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProposalMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48392:48449#L1605">ProposalMessage</a>
+				<a class="permalink" href="index.html#ProposalMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProposalMessage is sent when a new block is proposed.
+
+			<pre>type ProposalMessage struct {
+<span id="ProposalMessage.Proposal"></span>    Proposal *<a href="../types/index.html">types</a>.<a href="../types/index.html#Proposal">Proposal</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ProposalMessage.String">func (*ProposalMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48626:48667#L1615">String</a>
+					<a class="permalink" href="index.html#ProposalMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ProposalMessage">ProposalMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="ProposalMessage.ValidateBasic">func (*ProposalMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48495:48542#L1610">ValidateBasic</a>
+					<a class="permalink" href="index.html#ProposalMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ProposalMessage">ProposalMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProposalPOLMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48834:48949#L1622">ProposalPOLMessage</a>
+				<a class="permalink" href="index.html#ProposalPOLMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProposalPOLMessage is sent when a previous proposal is re-proposed.
+
+			<pre>type ProposalPOLMessage struct {
+<span id="ProposalPOLMessage.Height"></span>    Height           <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ProposalPOLMessage.ProposalPOLRound"></span>    ProposalPOLRound <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="ProposalPOLMessage.ProposalPOL"></span>    ProposalPOL      *<a href="../libs/bits/index.html">bits</a>.<a href="../libs/bits/index.html#BitArray">BitArray</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ProposalPOLMessage.String">func (*ProposalPOLMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=49498:49542#L1646">String</a>
+					<a class="permalink" href="index.html#ProposalPOLMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ProposalPOLMessage">ProposalPOLMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="ProposalPOLMessage.ValidateBasic">func (*ProposalPOLMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=48995:49045#L1629">ValidateBasic</a>
+					<a class="permalink" href="index.html#ProposalPOLMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ProposalPOLMessage">ProposalPOLMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Reactor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=1116:1315#L29">Reactor</a>
+				<a class="permalink" href="index.html#Reactor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reactor defines a reactor for the consensus service.
+
+			<pre>type Reactor struct {
+    <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#BaseReactor">BaseReactor</a> <span class="comment">// BaseService + p2p.Switch</span>
+
+<span id="Reactor.Metrics"></span>    Metrics *<a href="index.html#Metrics">Metrics</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReactor">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=1422:1510#L46">NewReactor</a>
+					<a class="permalink" href="index.html#NewReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReactor(consensusState *<a href="index.html#State">State</a>, waitSync <a href="../../../../builtin/index.html#bool">bool</a>, options ...<a href="index.html#ReactorOption">ReactorOption</a>) *<a href="index.html#Reactor">Reactor</a></pre>
+				<p>NewReactor returns a new Reactor with the given
+consensusState.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reactor.AddPeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=5144:5187#L183">AddPeer</a>
+					<a class="permalink" href="index.html#Reactor.AddPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) AddPeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>)</pre>
+				<p>AddPeer implements Reactor by spawning multiple gossiping goroutines for the
+peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.GetChannels">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=3725:3784#L136">GetChannels</a>
+					<a class="permalink" href="index.html#Reactor.GetChannels">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) GetChannels() []*<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ChannelDescriptor">ChannelDescriptor</a></pre>
+				<p>GetChannels implements Reactor
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.InitPeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=4886:4939#L175">InitPeer</a>
+					<a class="permalink" href="index.html#Reactor.InitPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) InitPeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>) <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a></pre>
+				<p>InitPeer implements Reactor by creating a state for the peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStart">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=1941:1977#L64">OnStart</a>
+					<a class="permalink" href="index.html#Reactor.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements BaseService by subscribing to events, which later will be
+broadcasted to other peers and starting state if we&apos;re not in block sync.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStop">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=2406:2435#L85">OnStop</a>
+					<a class="permalink" href="index.html#Reactor.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) OnStop()</pre>
+				<p>OnStop implements BaseService by unsubscribing from events and stopping
+state.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.ReceiveEnvelope">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=6354:6406#L223">ReceiveEnvelope</a>
+					<a class="permalink" href="index.html#Reactor.ReceiveEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) ReceiveEnvelope(e <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Envelope">Envelope</a>)</pre>
+				<p>Receive implements Reactor
+NOTE: We process these messages even when we&apos;re block_syncing.
+Messages affect either a peer state or the consensus state.
+Peer state updates can happen in parallel, but processing of
+proposals, block parts, and votes are ordered by the receiveRoutine
+NOTE: blocks on consensus state for proposals, block parts, and votes
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.RemovePeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=5727:5793#L205">RemovePeer</a>
+					<a class="permalink" href="index.html#Reactor.RemovePeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) RemovePeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>, reason interface{})</pre>
+				<p>RemovePeer is a noop.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.SetEventBus">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=11349:11400#L386">SetEventBus</a>
+					<a class="permalink" href="index.html#Reactor.SetEventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) SetEventBus(b *<a href="../types/index.html">types</a>.<a href="../types/index.html#EventBus">EventBus</a>)</pre>
+				<p>SetEventBus sets event bus.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.String">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=29697:29733#L967">String</a>
+					<a class="permalink" href="index.html#Reactor.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of the Reactor.
+NOTE: For now, it is just a hard-coded string to avoid accessing unprotected shared variables.
+TODO: improve!
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.StringIndented">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=29910:29967#L973">StringIndented</a>
+					<a class="permalink" href="index.html#Reactor.StringIndented">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) StringIndented(indent <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>StringIndented returns an indented string representation of the Reactor
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.SwitchToConsensus">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=2791:2859#L97">SwitchToConsensus</a>
+					<a class="permalink" href="index.html#Reactor.SwitchToConsensus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) SwitchToConsensus(state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>, skipWAL <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SwitchToConsensus switches from block_sync mode to consensus mode.
+It resets the state, turns off block_sync, and starts the consensus state-machine
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.WaitSync">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=11534:11570#L392">WaitSync</a>
+					<a class="permalink" href="index.html#Reactor.WaitSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (conR *<a href="index.html#Reactor">Reactor</a>) WaitSync() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>WaitSync returns whether the consensus reactor is waiting for state/block sync.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ReactorOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=1317:1350#L42">ReactorOption</a>
+				<a class="permalink" href="index.html#ReactorOption">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ReactorOption func(*<a href="index.html#Reactor">Reactor</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ReactorMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=30368:30419#L988">ReactorMetrics</a>
+					<a class="permalink" href="index.html#ReactorMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ReactorMetrics(metrics *<a href="index.html#Metrics">Metrics</a>) <a href="index.html#ReactorOption">ReactorOption</a></pre>
+				<p>ReactorMetrics sets the metrics
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="State">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=2493:4442#L68">State</a>
+				<a class="permalink" href="index.html#State">&#xb6;</a>
+				
+				
+			</h2>
+			<p>State handles execution of the consensus algorithm.
+It processes votes and proposals, and upon reaching agreement,
+commits blocks to the chain and executes them against the application.
+The internal state machine receives input from peers, the internal validator, and from a timer.
+
+			<pre>type State struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+
+    <a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundState">RoundState</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=4564:4762#L139">NewState</a>
+					<a class="permalink" href="index.html#NewState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewState(
+    config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#ConsensusConfig">ConsensusConfig</a>,
+    state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>,
+    blockExec *<a href="../state/index.html">sm</a>.<a href="../state/index.html#BlockExecutor">BlockExecutor</a>,
+    blockStore <a href="../state/index.html">sm</a>.<a href="../state/index.html#BlockStore">BlockStore</a>,
+    txNotifier txNotifier,
+    evpool evidencePool,
+    options ...<a href="index.html#StateOption">StateOption</a>,
+) *<a href="index.html#State">State</a></pre>
+				<p>NewState returns a new State.
+
+				
+				
+			
+
+			
+				
+				<h3 id="State.AddProposalBlockPart">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=13598:13701#L472">AddProposalBlockPart</a>
+					<a class="permalink" href="index.html#State.AddProposalBlockPart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) AddProposalBlockPart(height <a href="../../../../builtin/index.html#int64">int64</a>, round <a href="../../../../builtin/index.html#int32">int32</a>, part *<a href="../types/index.html">types</a>.<a href="../types/index.html#Part">Part</a>, peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>AddProposalBlockPart inputs a part of the proposal block.
+
+				
+				
+				
+			
+				
+				<h3 id="State.AddVote">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=12940:13021#L448">AddVote</a>
+					<a class="permalink" href="index.html#State.AddVote">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) AddVote(vote *<a href="../types/index.html">types</a>.<a href="../types/index.html#Vote">Vote</a>, peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>) (added <a href="../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AddVote inputs a vote.
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetLastHeight">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6643:6681#L219">GetLastHeight</a>
+					<a class="permalink" href="index.html#State.GetLastHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetLastHeight() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>GetLastHeight returns the last height committed.
+If there were no blocks, returns 0.
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetRoundState">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6833:6885#L226">GetRoundState</a>
+					<a class="permalink" href="index.html#State.GetRoundState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetRoundState() *<a href="types/index.html">cstypes</a>.<a href="types/index.html#RoundState">RoundState</a></pre>
+				<p>GetRoundState returns a shallow copy of the internal consensus state.
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetRoundStateJSON">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=7017:7069#L234">GetRoundStateJSON</a>
+					<a class="permalink" href="index.html#State.GetRoundStateJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetRoundStateJSON() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetRoundStateJSON returns a json of RoundState.
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetRoundStateSimpleJSON">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=7216:7274#L241">GetRoundStateSimpleJSON</a>
+					<a class="permalink" href="index.html#State.GetRoundStateSimpleJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetRoundStateSimpleJSON() ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetRoundStateSimpleJSON returns a json of RoundStateSimple
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetState">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6446:6482#L211">GetState</a>
+					<a class="permalink" href="index.html#State.GetState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetState() <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a></pre>
+				<p>GetState returns a copy of the chain state.
+
+				
+				
+				
+			
+				
+				<h3 id="State.GetValidators">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=7437:7497#L248">GetValidators</a>
+					<a class="permalink" href="index.html#State.GetValidators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) GetValidators() (<a href="../../../../builtin/index.html#int64">int64</a>, []*<a href="../types/index.html">types</a>.<a href="../types/index.html#Validator">Validator</a>)</pre>
+				<p>GetValidators returns a copy of the current validators.
+
+				
+				
+				
+			
+				
+				<h3 id="State.LoadCommit">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=8272:8327#L276">LoadCommit</a>
+					<a class="permalink" href="index.html#State.LoadCommit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) LoadCommit(height <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a></pre>
+				<p>LoadCommit loads the commit for a given height.
+
+				
+				
+				
+			
+				
+				<h3 id="State.OnStart">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=8604:8636#L289">OnStart</a>
+					<a class="permalink" href="index.html#State.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart loads the latest state via the WAL, and starts the timeout and
+receive routines.
+
+				
+				
+				
+			
+				
+				<h3 id="State.OnStop">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=11539:11564#L403">OnStop</a>
+					<a class="permalink" href="index.html#State.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) OnStop()</pre>
+				<p>OnStop implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="State.OpenWAL">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=12135:12188#L423">OpenWAL</a>
+					<a class="permalink" href="index.html#State.OpenWAL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) OpenWAL(walFile <a href="../../../../builtin/index.html#string">string</a>) (<a href="index.html#WAL">WAL</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OpenWAL opens a file to log all consensus messages and timeouts for
+deterministic accountability.
+
+				
+				
+				
+			
+				
+				<h3 id="State.ReplayFile">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/replay_file.go?s=975:1035#L32">ReplayFile</a>
+					<a class="permalink" href="index.html#State.ReplayFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) ReplayFile(file <a href="../../../../builtin/index.html#string">string</a>, console <a href="../../../../builtin/index.html#bool">bool</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Replay msgs in file or start the console
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetEventBus">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6031:6078#L194">SetEventBus</a>
+					<a class="permalink" href="index.html#State.SetEventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetEventBus(b *<a href="../types/index.html">types</a>.<a href="../types/index.html#EventBus">EventBus</a>)</pre>
+				<p>SetEventBus sets event bus.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetLogger">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=5896:5936#L188">SetLogger</a>
+					<a class="permalink" href="index.html#State.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetLogger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)</pre>
+				<p>SetLogger implements Service.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetPrivValidator">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=7738:7797#L256">SetPrivValidator</a>
+					<a class="permalink" href="index.html#State.SetPrivValidator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetPrivValidator(priv <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a>)</pre>
+				<p>SetPrivValidator sets the private validator account for signing votes. It
+immediately requests pubkey and caches it.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetProposal">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=13254:13329#L460">SetProposal</a>
+					<a class="permalink" href="index.html#State.SetProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetProposal(proposal *<a href="../types/index.html">types</a>.<a href="../types/index.html#Proposal">Proposal</a>, peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SetProposal inputs a proposal.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetProposalAndBlock">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=13997:14129#L484">SetProposalAndBlock</a>
+					<a class="permalink" href="index.html#State.SetProposalAndBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetProposalAndBlock(
+    proposal *<a href="../types/index.html">types</a>.<a href="../types/index.html#Proposal">Proposal</a>,
+    block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>,
+    parts *<a href="../types/index.html">types</a>.<a href="../types/index.html#PartSet">PartSet</a>,
+    peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>,
+) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SetProposalAndBlock inputs the proposal and all block parts.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SetTimeoutTicker">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=8087:8149#L269">SetTimeoutTicker</a>
+					<a class="permalink" href="index.html#State.SetTimeoutTicker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) SetTimeoutTicker(timeoutTicker <a href="index.html#TimeoutTicker">TimeoutTicker</a>)</pre>
+				<p>SetTimeoutTicker sets the local timer. It may be useful to overwrite for
+testing.
+
+				
+				
+				
+			
+				
+				<h3 id="State.String">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6294:6326#L205">String</a>
+					<a class="permalink" href="index.html#State.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string.
+
+				
+				
+				
+			
+				
+				<h3 id="State.Wait">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=11991:12014#L417">Wait</a>
+					<a class="permalink" href="index.html#State.Wait">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cs *<a href="index.html#State">State</a>) Wait()</pre>
+				<p>Wait waits for the the main routine to return.
+NOTE: be sure to Stop() the event switch and drain
+any event channels or this may deadlock
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=4500:4529#L136">StateOption</a>
+				<a class="permalink" href="index.html#StateOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StateOption sets an optional parameter on the State.
+
+			<pre>type StateOption func(*<a href="index.html#State">State</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="StateMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/state.go?s=6164:6211#L200">StateMetrics</a>
+					<a class="permalink" href="index.html#StateMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StateMetrics(metrics *<a href="index.html#Metrics">Metrics</a>) <a href="index.html#StateOption">StateOption</a></pre>
+				<p>StateMetrics sets the metrics.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TimedWALMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=881:973#L25">TimedWALMessage</a>
+				<a class="permalink" href="index.html#TimedWALMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TimedWALMessage wraps WALMessage and adds Time for debugging purposes.
+
+			<pre>type TimedWALMessage struct {
+<span id="TimedWALMessage.Time"></span>    Time <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>  `json:&#34;time&#34;`
+<span id="TimedWALMessage.Msg"></span>    Msg  <a href="index.html#WALMessage">WALMessage</a> `json:&#34;msg&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TimeoutTicker">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/ticker.go?s=321:524#L7">TimeoutTicker</a>
+				<a class="permalink" href="index.html#TimeoutTicker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TimeoutTicker is a timer that schedules timeouts
+conditional on the height/round/step in the timeoutInfo.
+The timeoutInfo.Duration may be non-positive.
+
+			<pre>type TimeoutTicker interface {
+    Start() <a href="../../../../builtin/index.html#error">error</a>
+    Stop() <a href="../../../../builtin/index.html#error">error</a>
+    Chan() &lt;-chan timeoutInfo       <span class="comment">// on which to receive a timeout</span>
+    ScheduleTimeout(ti timeoutInfo) <span class="comment">// reset the timer</span>
+
+    SetLogger(<a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTimeoutTicker">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/ticker.go?s=960:997#L30">NewTimeoutTicker</a>
+					<a class="permalink" href="index.html#NewTimeoutTicker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTimeoutTicker() <a href="index.html#TimeoutTicker">TimeoutTicker</a></pre>
+				<p>NewTimeoutTicker returns a new TimeoutTicker.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="VoteMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=50450:50495#L1681">VoteMessage</a>
+				<a class="permalink" href="index.html#VoteMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VoteMessage is sent when voting for a proposal (or lack thereof).
+
+			<pre>type VoteMessage struct {
+<span id="VoteMessage.Vote"></span>    Vote *<a href="../types/index.html">types</a>.<a href="../types/index.html#Vote">Vote</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="VoteMessage.String">func (*VoteMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=50664:50701#L1691">String</a>
+					<a class="permalink" href="index.html#VoteMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteMessage">VoteMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteMessage.ValidateBasic">func (*VoteMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=50541:50584#L1686">ValidateBasic</a>
+					<a class="permalink" href="index.html#VoteMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteMessage">VoteMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="VoteSetBitsMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=52481:52624#L1762">VoteSetBitsMessage</a>
+				<a class="permalink" href="index.html#VoteSetBitsMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VoteSetBitsMessage is sent to communicate the bit-array of votes seen for the BlockID.
+
+			<pre>type VoteSetBitsMessage struct {
+<span id="VoteSetBitsMessage.Height"></span>    Height  <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="VoteSetBitsMessage.Round"></span>    Round   <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="VoteSetBitsMessage.Type"></span>    Type    <a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#SignedMsgType">SignedMsgType</a>
+<span id="VoteSetBitsMessage.BlockID"></span>    BlockID <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockID">BlockID</a>
+<span id="VoteSetBitsMessage.Votes"></span>    Votes   *<a href="../libs/bits/index.html">bits</a>.<a href="../libs/bits/index.html#BitArray">BitArray</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="VoteSetBitsMessage.String">func (*VoteSetBitsMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=53229:53273#L1789">String</a>
+					<a class="permalink" href="index.html#VoteSetBitsMessage.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteSetBitsMessage">VoteSetBitsMessage</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteSetBitsMessage.ValidateBasic">func (*VoteSetBitsMessage) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=52670:52720#L1771">ValidateBasic</a>
+					<a class="permalink" href="index.html#VoteSetBitsMessage.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteSetBitsMessage">VoteSetBitsMessage</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="VoteSetMaj23Message">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=51642:51762#L1730">VoteSetMaj23Message</a>
+				<a class="permalink" href="index.html#VoteSetMaj23Message">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VoteSetMaj23Message is sent to indicate that a given BlockID has seen +2/3 votes.
+
+			<pre>type VoteSetMaj23Message struct {
+<span id="VoteSetMaj23Message.Height"></span>    Height  <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="VoteSetMaj23Message.Round"></span>    Round   <a href="../../../../builtin/index.html#int32">int32</a>
+<span id="VoteSetMaj23Message.Type"></span>    Type    <a href="../proto/tendermint/types/index.html">cmtproto</a>.<a href="../proto/tendermint/types/index.html#SignedMsgType">SignedMsgType</a>
+<span id="VoteSetMaj23Message.BlockID"></span>    BlockID <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockID">BlockID</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="VoteSetMaj23Message.String">func (*VoteSetMaj23Message) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=52216:52261#L1755">String</a>
+					<a class="permalink" href="index.html#VoteSetMaj23Message.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteSetMaj23Message">VoteSetMaj23Message</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation.
+
+				
+				
+				
+			
+				
+				<h3 id="VoteSetMaj23Message.ValidateBasic">func (*VoteSetMaj23Message) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/reactor.go?s=51808:51859#L1738">ValidateBasic</a>
+					<a class="permalink" href="index.html#VoteSetMaj23Message.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#VoteSetMaj23Message">VoteSetMaj23Message</a>) ValidateBasic() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic performs basic validation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WAL">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=1538:1798#L48">WAL</a>
+				<a class="permalink" href="index.html#WAL">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WAL is an interface for any write-ahead logger.
+
+			<pre>type WAL interface {
+    Write(<a href="index.html#WALMessage">WALMessage</a>) <a href="../../../../builtin/index.html#error">error</a>
+    WriteSync(<a href="index.html#WALMessage">WALMessage</a>) <a href="../../../../builtin/index.html#error">error</a>
+    FlushAndSync() <a href="../../../../builtin/index.html#error">error</a>
+
+    SearchForEndHeight(height <a href="../../../../builtin/index.html#int64">int64</a>, options *<a href="index.html#WALSearchOptions">WALSearchOptions</a>) (rd <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#ReadCloser">ReadCloser</a>, found <a href="../../../../builtin/index.html#bool">bool</a>, err <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// service methods</span>
+    Start() <a href="../../../../builtin/index.html#error">error</a>
+    Stop() <a href="../../../../builtin/index.html#error">error</a>
+    Wait()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="WALDecoder">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9535:9575#L345">WALDecoder</a>
+				<a class="permalink" href="index.html#WALDecoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A WALDecoder reads and decodes custom-encoded WAL messages from an input
+stream. See WALEncoder for the format used.
+<p>It will also compare the checksums and make sure data size is equal to the
+length from the header. If that is not the case, error will be returned.
+
+			<pre>type WALDecoder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWALDecoder">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9636:9680#L350">NewWALDecoder</a>
+					<a class="permalink" href="index.html#NewWALDecoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWALDecoder(rd <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Reader">Reader</a>) *<a href="index.html#WALDecoder">WALDecoder</a></pre>
+				<p>NewWALDecoder returns a new decoder that reads from rd.
+
+				
+				
+			
+
+			
+				
+				<h3 id="WALDecoder.Decode">func (*WALDecoder) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=9788:9845#L355">Decode</a>
+					<a class="permalink" href="index.html#WALDecoder.Decode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dec *<a href="index.html#WALDecoder">WALDecoder</a>) Decode() (*<a href="index.html#TimedWALMessage">TimedWALMessage</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Decode reads the next custom-encoded value from its reader and returns it.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WALEncoder">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=7705:7745#L278">WALEncoder</a>
+				<a class="permalink" href="index.html#WALEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A WALEncoder writes custom-encoded WAL messages to an output stream.
+<p>Format: 4 bytes CRC sum + 4 bytes length + arbitrary-length value
+
+			<pre>type WALEncoder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWALEncoder">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=7805:7849#L283">NewWALEncoder</a>
+					<a class="permalink" href="index.html#NewWALEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewWALEncoder(wr <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>) *<a href="index.html#WALEncoder">WALEncoder</a></pre>
+				<p>NewWALEncoder returns a new encoder that writes to wr.
+
+				
+				
+			
+
+			
+				
+				<h3 id="WALEncoder.Encode">func (*WALEncoder) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=8065:8120#L290">Encode</a>
+					<a class="permalink" href="index.html#WALEncoder.Encode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (enc *<a href="index.html#WALEncoder">WALEncoder</a>) Encode(v *<a href="index.html#TimedWALMessage">TimedWALMessage</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Encode writes the custom encoding of v to the stream. It returns an error if
+the encoded size of v is greater than 1MB. Any error encountered
+during the write is also returned.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WALMessage">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=1149:1176#L36">WALMessage</a>
+				<a class="permalink" href="index.html#WALMessage">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type WALMessage interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WALFromProto">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/msgs.go?s=7214:7276#L286">WALFromProto</a>
+					<a class="permalink" href="index.html#WALFromProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WALFromProto(msg *<a href="../proto/tendermint/consensus/index.html">cmtcons</a>.<a href="../proto/tendermint/consensus/index.html#WALMessage">WALMessage</a>) (<a href="index.html#WALMessage">WALMessage</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WALFromProto takes a proto wal message and return a consensus walMessage and error
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WALSearchOptions">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/consensus/wal.go?s=5715:5871#L211">WALSearchOptions</a>
+				<a class="permalink" href="index.html#WALSearchOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WALSearchOptions are optional arguments to SearchForEndHeight.
+
+			<pre>type WALSearchOptions struct {
+<span id="WALSearchOptions.IgnoreDataCorruptionErrors"></span>    <span class="comment">// IgnoreDataCorruptionErrors set to true will result in skipping data corruption errors.</span>
+    IgnoreDataCorruptionErrors <a href="../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

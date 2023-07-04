@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>keeper - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package keeper
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/x/authz/keeper"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#GrantQueueKey">func GrantQueueKey(expiration time.Time, granter sdk.AccAddress, grantee sdk.AccAddress) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#GrantQueueTimePrefix">func GrantQueueTimePrefix(expiration time.Time) []byte</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Keeper">type Keeper</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeeper">func NewKeeper(storeKey storetypes.StoreKey, cdc codec.BinaryCodec, router *baseapp.MsgServiceRouter, ak authz.AccountKeeper) Keeper</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.DeleteGrant">func (k Keeper) DeleteGrant(ctx sdk.Context, grantee sdk.AccAddress, granter sdk.AccAddress, msgType string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.DequeueAndDeleteExpiredGrants">func (k Keeper) DequeueAndDeleteExpiredGrants(ctx sdk.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.DispatchActions">func (k Keeper) DispatchActions(ctx sdk.Context, grantee sdk.AccAddress, msgs []sdk.Msg) ([][]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Exec">func (k Keeper) Exec(goCtx context.Context, msg *authz.MsgExec) (*authz.MsgExecResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.ExportGenesis">func (k Keeper) ExportGenesis(ctx sdk.Context) *authz.GenesisState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.GetAuthorization">func (k Keeper) GetAuthorization(ctx sdk.Context, grantee sdk.AccAddress, granter sdk.AccAddress, msgType string) (authz.Authorization, *time.Time)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.GetAuthorizations">func (k Keeper) GetAuthorizations(ctx sdk.Context, grantee sdk.AccAddress, granter sdk.AccAddress) ([]authz.Authorization, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.GetGrant">func (k Keeper) GetGrant(ctx sdk.Context, grantee, granter sdk.AccAddress, msgType string) (grant authz.Grant, found bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Grant">func (k Keeper) Grant(goCtx context.Context, msg *authz.MsgGrant) (*authz.MsgGrantResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.GranteeGrants">func (k Keeper) GranteeGrants(c context.Context, req *authz.QueryGranteeGrantsRequest) (*authz.QueryGranteeGrantsResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.GranterGrants">func (k Keeper) GranterGrants(c context.Context, req *authz.QueryGranterGrantsRequest) (*authz.QueryGranterGrantsResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Grants">func (k Keeper) Grants(c context.Context, req *authz.QueryGrantsRequest) (*authz.QueryGrantsResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.InitGenesis">func (k Keeper) InitGenesis(ctx sdk.Context, data *authz.GenesisState)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.IterateGrants">func (k Keeper) IterateGrants(ctx sdk.Context, handler func(granterAddr sdk.AccAddress, granteeAddr sdk.AccAddress, grant authz.Grant) bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Logger">func (k Keeper) Logger(ctx sdk.Context) log.Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Revoke">func (k Keeper) Revoke(goCtx context.Context, msg *authz.MsgRevoke) (*authz.MsgRevokeResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.SaveGrant">func (k Keeper) SaveGrant(ctx sdk.Context, grantee, granter sdk.AccAddress, authorization authz.Authorization, expiration *time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Keeper.Update">func (k Keeper) Update(ctx sdk.Context, grantee, granter sdk.AccAddress, updated authz.Authorization) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Migrator">type Migrator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMigrator">func NewMigrator(keeper Keeper) Migrator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Migrator.Migrate1to2">func (m Migrator) Migrate1to2(ctx sdk.Context) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/genesis.go">genesis.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/grpc_query.go">grpc_query.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go">keeper.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keys.go">keys.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/migrations.go">migrations.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/msg_server.go">msg_server.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>StoreKey is the store key string for authz
+
+				<pre>const <span id="StoreKey">StoreKey</span> = <a href="../index.html">authz</a>.<a href="../index.html#ModuleName">ModuleName</a></pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>Keys for store prefixes
+Items are stored with the following key: values
+<p>- 0x01&lt;grant_Bytes&gt;: Grant
+- 0x02&lt;grant_expiration_Bytes&gt;: GrantQueueItem
+
+				<pre>var (
+    <span id="GrantKey">GrantKey</span>         = []<a href="../../../../../../builtin/index.html#byte">byte</a>{0x01} <span class="comment">// prefix for each key</span>
+    <span id="GrantQueuePrefix">GrantQueuePrefix</span> = []<a href="../../../../../../builtin/index.html#byte">byte</a>{0x02}
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="GrantQueueKey">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keys.go?s=3366:3461#L72">GrantQueueKey</a>
+				<a class="permalink" href="index.html#GrantQueueKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GrantQueueKey(expiration <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, grantee <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>GrantQueueKey - return grant queue store key. If a given grant doesn&apos;t have a defined
+expiration, then it should not be used in the pruning queue.
+Key format is:
+<pre>0x02&lt;expiration&gt;&lt;granterAddressLen (1 Byte)&gt;&lt;granterAddressBytes&gt;&lt;granteeAddressLen (1 Byte)&gt;&lt;granteeAddressBytes&gt;: GrantQueueItem
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GrantQueueTimePrefix">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keys.go?s=3734:3788#L81">GrantQueueTimePrefix</a>
+				<a class="permalink" href="index.html#GrantQueueTimePrefix">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GrantQueueTimePrefix(expiration <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>GrantQueueTimePrefix - return grant queue time prefix
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Keeper">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=507:661#L11">Keeper</a>
+				<a class="permalink" href="index.html#Keeper">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Keeper struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewKeeper">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=718:850#L19">NewKeeper</a>
+					<a class="permalink" href="index.html#NewKeeper">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeeper(storeKey <a href="../../../store/types/index.html">storetypes</a>.<a href="../../../store/types/index.html#StoreKey">StoreKey</a>, cdc <a href="../../../codec/index.html">codec</a>.<a href="../../../codec/index.html#BinaryCodec">BinaryCodec</a>, router *<a href="../../../baseapp/index.html">baseapp</a>.<a href="../../../baseapp/index.html#MsgServiceRouter">MsgServiceRouter</a>, ak <a href="../index.html">authz</a>.<a href="../index.html#AccountKeeper">AccountKeeper</a>) <a href="index.html#Keeper">Keeper</a></pre>
+				<p>NewKeeper constructs a message authorization Keeper
+
+				
+				
+			
+
+			
+				
+				<h3 id="Keeper.DeleteGrant">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=5972:6086#L196">DeleteGrant</a>
+					<a class="permalink" href="index.html#Keeper.DeleteGrant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) DeleteGrant(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, msgType <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteGrant revokes any authorization for the provided message type granted to the grantee
+by the granter.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.DequeueAndDeleteExpiredGrants">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=11458:11526#L366">DequeueAndDeleteExpiredGrants</a>
+					<a class="permalink" href="index.html#Keeper.DequeueAndDeleteExpiredGrants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) DequeueAndDeleteExpiredGrants(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DequeueAndDeleteExpiredGrants deletes expired grants from the state and grant queue.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.DispatchActions">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=2345:2451#L75">DispatchActions</a>
+					<a class="permalink" href="index.html#Keeper.DispatchActions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) DispatchActions(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, msgs []<a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Msg">Msg</a>) ([][]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DispatchActions attempts to execute the provided messages via authorization
+grants from the message signer to the grantee.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Exec">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/msg_server.go?s=1817:1912#L62">Exec</a>
+					<a class="permalink" href="index.html#Keeper.Exec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Exec(goCtx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, msg *<a href="../index.html">authz</a>.<a href="../index.html#MsgExec">MsgExec</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#MsgExecResponse">MsgExecResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Exec implements the MsgServer.Exec method.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.ExportGenesis">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/genesis.go?s=797:863#L23">ExportGenesis</a>
+					<a class="permalink" href="index.html#Keeper.ExportGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) ExportGenesis(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>) *<a href="../index.html">authz</a>.<a href="../index.html#GenesisState">GenesisState</a></pre>
+				<p>ExportGenesis returns a GenesisState for a given context.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.GetAuthorization">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=7685:7832#L250">GetAuthorization</a>
+					<a class="permalink" href="index.html#Keeper.GetAuthorization">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) GetAuthorization(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, msgType <a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../index.html">authz</a>.<a href="../index.html#Authorization">Authorization</a>, *<a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>)</pre>
+				<p>GetAuthorization returns an Authorization and it&apos;s expiration time.
+A nil Authorization is returned under the following circumstances:
+<ul>
+<li>No grant is found.
+<li>A grant is found, but it is expired.
+<li>There was an error getting the authorization from the grant.
+</ul>
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.GetAuthorizations">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=6757:6886#L221">GetAuthorizations</a>
+					<a class="permalink" href="index.html#Keeper.GetAuthorizations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) GetAuthorizations(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>) ([]<a href="../index.html">authz</a>.<a href="../index.html#Authorization">Authorization</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetAuthorizations Returns list of `Authorizations` granted to the grantee by the granter.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.GetGrant">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=1418:1540#L44">GetGrant</a>
+					<a class="permalink" href="index.html#Keeper.GetGrant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) GetGrant(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, msgType <a href="../../../../../../builtin/index.html#string">string</a>) (grant <a href="../index.html">authz</a>.<a href="../index.html#Grant">Grant</a>, found <a href="../../../../../../builtin/index.html#bool">bool</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Grant">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/msg_server.go?s=281:379#L4">Grant</a>
+					<a class="permalink" href="index.html#Keeper.Grant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Grant(goCtx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, msg *<a href="../index.html">authz</a>.<a href="../index.html#MsgGrant">MsgGrant</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#MsgGrantResponse">MsgGrantResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Grant implements the MsgServer.Grant method to create a new grant.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.GranteeGrants">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/grpc_query.go?s=3836:3965#L128">GranteeGrants</a>
+					<a class="permalink" href="index.html#Keeper.GranteeGrants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) GranteeGrants(c <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, req *<a href="../index.html">authz</a>.<a href="../index.html#QueryGranteeGrantsRequest">QueryGranteeGrantsRequest</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#QueryGranteeGrantsResponse">QueryGranteeGrantsResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GranteeGrants implements the Query/GranteeGrants gRPC method.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.GranterGrants">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/grpc_query.go?s=2526:2655#L82">GranterGrants</a>
+					<a class="permalink" href="index.html#Keeper.GranterGrants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) GranterGrants(c <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, req *<a href="../index.html">authz</a>.<a href="../index.html#QueryGranterGrantsRequest">QueryGranterGrantsRequest</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#QueryGranterGrantsResponse">QueryGranterGrantsResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GranterGrants implements the Query/GranterGrants gRPC method.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Grants">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/grpc_query.go?s=589:697#L11">Grants</a>
+					<a class="permalink" href="index.html#Keeper.Grants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Grants(c <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, req *<a href="../index.html">authz</a>.<a href="../index.html#QueryGrantsRequest">QueryGrantsRequest</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#QueryGrantsResponse">QueryGrantsResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Grants implements the Query/Grants gRPC method.
+It returns grants for a granter-grantee pair. If msg type URL is set, it returns grants only for that msg type.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.InitGenesis">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/genesis.go?s=143:213#L1">InitGenesis</a>
+					<a class="permalink" href="index.html#Keeper.InitGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) InitGenesis(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, data *<a href="../index.html">authz</a>.<a href="../index.html#GenesisState">GenesisState</a>)</pre>
+				<p>InitGenesis new authz genesis
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.IterateGrants">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=8458:8601#L268">IterateGrants</a>
+					<a class="permalink" href="index.html#Keeper.IterateGrants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) IterateGrants(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>,
+    handler func(granterAddr <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, granteeAddr <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, grant <a href="../index.html">authz</a>.<a href="../index.html#Grant">Grant</a>) <a href="../../../../../../builtin/index.html#bool">bool</a>,
+)</pre>
+				<p>IterateGrants iterates over all authorization grants
+This function should be used with caution because it can involve significant IO operations.
+It should not be used in query or msg services without charging additional gas.
+The iteration stops when the handler function returns true or the iterator exhaust.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Logger">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=1002:1052#L29">Logger</a>
+					<a class="permalink" href="index.html#Keeper.Logger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Logger(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>) <a href="../../../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a></pre>
+				<p>Logger returns a module-specific logger.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Revoke">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/msg_server.go?s=1296:1397#L42">Revoke</a>
+					<a class="permalink" href="index.html#Keeper.Revoke">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Revoke(goCtx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, msg *<a href="../index.html">authz</a>.<a href="../index.html#MsgRevoke">MsgRevoke</a>) (*<a href="../index.html">authz</a>.<a href="../index.html#MsgRevokeResponse">MsgRevokeResponse</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Revoke implements the MsgServer.Revoke method.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.SaveGrant">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=4683:4822#L156">SaveGrant</a>
+					<a class="permalink" href="index.html#Keeper.SaveGrant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) SaveGrant(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, authorization <a href="../index.html">authz</a>.<a href="../index.html#Authorization">Authorization</a>, expiration *<a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Time">Time</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveGrant method grants the provided authorization to the grantee on the granter&apos;s account
+with the provided expiration time and insert authorization key into the grants queue. If there is an existing authorization grant for the
+same `sdk.Msg` type, this grant overwrites that.
+
+				
+				
+				
+			
+				
+				<h3 id="Keeper.Update">func (Keeper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/keeper.go?s=1626:1733#L49">Update</a>
+					<a class="permalink" href="index.html#Keeper.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Keeper">Keeper</a>) Update(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>, grantee, granter <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#AccAddress">AccAddress</a>, updated <a href="../index.html">authz</a>.<a href="../index.html#Authorization">Authorization</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Migrator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/migrations.go?s=191:230#L1">Migrator</a>
+				<a class="permalink" href="index.html#Migrator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Migrator is a struct for handling in-place store migrations.
+
+			<pre>type Migrator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMigrator">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/migrations.go?s=271:311#L4">NewMigrator</a>
+					<a class="permalink" href="index.html#NewMigrator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMigrator(keeper <a href="index.html#Keeper">Keeper</a>) <a href="index.html#Migrator">Migrator</a></pre>
+				<p>NewMigrator returns a new Migrator.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Migrator.Migrate1to2">func (Migrator) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/authz/keeper/migrations.go?s=395:447#L9">Migrate1to2</a>
+					<a class="permalink" href="index.html#Migrator.Migrate1to2">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Migrator">Migrator</a>) Migrate1to2(ctx <a href="../../../types/index.html">sdk</a>.<a href="../../../types/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Migrate1to2 migrates from version 1 to 2.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

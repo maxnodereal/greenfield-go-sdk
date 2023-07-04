@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>audit - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package audit
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/authz/audit"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package audit contains interfaces for audit logging during authorization.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#RegisterLoggerBuilder">func RegisterLoggerBuilder(b LoggerBuilder)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Event">type Event</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Logger">type Logger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LoggerBuilder">type LoggerBuilder</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetLoggerBuilder">func GetLoggerBuilder(name string) LoggerBuilder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LoggerConfig">type LoggerConfig</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go">audit_logger.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="RegisterLoggerBuilder">func <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=1337:1380#L36">RegisterLoggerBuilder</a>
+				<a class="permalink" href="index.html#RegisterLoggerBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterLoggerBuilder(b <a href="index.html#LoggerBuilder">LoggerBuilder</a>)</pre>
+			<p>RegisterLoggerBuilder registers the builder in a global map
+using b.Name() as the key.
+<p>This should only be called during initialization time (i.e. in an init()
+function). If multiple builders are registered with the same name,
+the one registered last will take effect.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Event">type <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=1818:2480#L52">Event</a>
+				<a class="permalink" href="index.html#Event">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Event contains information passed to the audit logger as part of an
+audit logging event.
+
+			<pre>type Event struct {
+<span id="Event.FullMethodName"></span>    <span class="comment">// FullMethodName is the full method name of the audited RPC, in the format</span>
+    <span class="comment">// of &#34;/pkg.Service/Method&#34;. For example, &#34;/helloworld.Greeter/SayHello&#34;.</span>
+    FullMethodName <a href="../../../../builtin/index.html#string">string</a>
+<span id="Event.Principal"></span>    <span class="comment">// Principal is the identity of the caller. Currently it will only be</span>
+    <span class="comment">// available in certificate-based TLS authentication.</span>
+    Principal <a href="../../../../builtin/index.html#string">string</a>
+<span id="Event.PolicyName"></span>    <span class="comment">// PolicyName is the authorization policy name or the xDS RBAC filter name.</span>
+    PolicyName <a href="../../../../builtin/index.html#string">string</a>
+<span id="Event.MatchedRule"></span>    <span class="comment">// MatchedRule is the matched rule or policy name in the xDS RBAC filter.</span>
+    <span class="comment">// It will be empty if there is no match.</span>
+    MatchedRule <a href="../../../../builtin/index.html#string">string</a>
+<span id="Event.Authorized"></span>    <span class="comment">// Authorized indicates whether the audited RPC is authorized or not.</span>
+    Authorized <a href="../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Logger">type <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=3253:3449#L85">Logger</a>
+				<a class="permalink" href="index.html#Logger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Logger is the interface to be implemented by audit loggers.
+<p>An audit logger is a logger instance that can be configured via the
+authorization policy API or xDS HTTP RBAC filters. When the authorization
+decision meets the condition for audit, all the configured audit loggers&apos;
+Log() method will be invoked to log that event.
+<p>TODO(lwge): Change the link to the merged gRFC once it&apos;s ready.
+Please refer to <a href="https://github.com/grpc/proposal/pull/346">https://github.com/grpc/proposal/pull/346</a> for more details
+about audit logging.
+
+			<pre>type Logger interface {
+    <span class="comment">// Log performs audit logging for the provided audit event.</span>
+    <span class="comment">//</span>
+    <span class="comment">// This method is invoked in the RPC path and therefore implementations</span>
+    <span class="comment">// must not block.</span>
+    Log(*<a href="index.html#Event">Event</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LoggerBuilder">type <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=3973:4751#L103">LoggerBuilder</a>
+				<a class="permalink" href="index.html#LoggerBuilder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LoggerBuilder is the interface to be implemented by audit logger
+builders that are used at runtime to configure and instantiate audit loggers.
+<p>Users who want to implement their own audit logging logic should
+implement this interface, along with the Logger interface, and register
+it by calling RegisterLoggerBuilder() at init time.
+<p>TODO(lwge): Change the link to the merged gRFC once it&apos;s ready.
+Please refer to <a href="https://github.com/grpc/proposal/pull/346">https://github.com/grpc/proposal/pull/346</a> for more details
+about audit logging.
+
+			<pre>type LoggerBuilder interface {
+    <span class="comment">// ParseLoggerConfig parses the given JSON bytes into a structured</span>
+    <span class="comment">// logger config this builder can use to build an audit logger.</span>
+    ParseLoggerConfig(config <a href="../../../../encoding/json/index.html">json</a>.<a href="../../../../encoding/json/index.html#RawMessage">RawMessage</a>) (<a href="index.html#LoggerConfig">LoggerConfig</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Build builds an audit logger with the given logger config.</span>
+    <span class="comment">// This will only be called with valid configs returned from</span>
+    <span class="comment">// ParseLoggerConfig() and any runtime issues such as failing to</span>
+    <span class="comment">// create a file should be handled by the logger implementation instead of</span>
+    <span class="comment">// failing the logger instantiation. So implementers need to make sure it</span>
+    <span class="comment">// can return a logger without error at this stage.</span>
+    Build(<a href="index.html#LoggerConfig">LoggerConfig</a>) <a href="index.html#Logger">Logger</a>
+    <span class="comment">// Name returns the name of logger built by this builder.</span>
+    <span class="comment">// This is used to register and pick the builder.</span>
+    Name() <a href="../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetLoggerBuilder">func <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=1589:1637#L44">GetLoggerBuilder</a>
+					<a class="permalink" href="index.html#GetLoggerBuilder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetLoggerBuilder(name <a href="../../../../builtin/index.html#string">string</a>) <a href="index.html#LoggerBuilder">LoggerBuilder</a></pre>
+				<p>GetLoggerBuilder returns a builder with the given name.
+It returns nil if the builder is not found in the registry.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="LoggerConfig">type <a href="http://localhost:6060/src/google.golang.org/grpc/authz/audit/audit_logger.go?s=2690:2737#L71">LoggerConfig</a>
+				<a class="permalink" href="index.html#LoggerConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LoggerConfig represents an opaque data structure holding an audit
+logger configuration. Concrete types representing configuration of specific
+audit loggers must embed this interface to implement it.
+
+			<pre>type LoggerConfig interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

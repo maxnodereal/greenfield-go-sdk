@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>nats - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package nats
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/nats"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package nats provides a NATS transport.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultErrorEncoder">func DefaultErrorEncoder(_ context.Context, err error, reply string, nc *nats.Conn)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeJSONRequest">func EncodeJSONRequest(_ context.Context, msg *nats.Msg, request interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeJSONResponse">func EncodeJSONResponse(_ context.Context, reply string, nc *nats.Conn, response interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#NopRequestDecoder">func NopRequestDecoder(_ context.Context, _ *nats.Msg) (interface{}, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeResponseFunc">type DecodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeRequestFunc">type EncodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorEncoder">type ErrorEncoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Publisher">type Publisher</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPublisher">func NewPublisher(publisher *nats.Conn, subject string, enc EncodeRequestFunc, dec DecodeResponseFunc, options ...PublisherOption) *Publisher</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Publisher.Endpoint">func (p Publisher) Endpoint() endpoint.Endpoint</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PublisherOption">type PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherAfter">func PublisherAfter(after ...PublisherResponseFunc) PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherBefore">func PublisherBefore(before ...RequestFunc) PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherTimeout">func PublisherTimeout(timeout time.Duration) PublisherOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PublisherResponseFunc">type PublisherResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestFunc">type RequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Subscriber">type Subscriber</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSubscriber">func NewSubscriber(e endpoint.Endpoint, dec DecodeRequestFunc, enc EncodeResponseFunc, options ...SubscriberOption) *Subscriber</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscriber.ServeMsg">func (s Subscriber) ServeMsg(nc *nats.Conn) func(msg *nats.Msg)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SubscriberFinalizerFunc">type SubscriberFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubscriberOption">type SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberAfter">func SubscriberAfter(after ...SubscriberResponseFunc) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberBefore">func SubscriberBefore(before ...RequestFunc) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorEncoder">func SubscriberErrorEncoder(ee ErrorEncoder) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorHandler">func SubscriberErrorHandler(errorHandler transport.ErrorHandler) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorLogger">func SubscriberErrorLogger(logger log.Logger) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberFinalizer">func SubscriberFinalizer(f ...SubscriberFinalizerFunc) SubscriberOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubscriberResponseFunc">type SubscriberResponseFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go">publisher.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/request_response_funcs.go">request_response_funcs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go">subscriber.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="DefaultErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=5608:5691#L167">DefaultErrorEncoder</a>
+				<a class="permalink" href="index.html#DefaultErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultErrorEncoder(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>, reply <a href="../../../../../builtin/index.html#string">string</a>, nc *nats.<a href="index.html#Conn">Conn</a>)</pre>
+			<p>DefaultErrorEncoder writes the error to the subscriber reply.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeJSONRequest">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=2636:2719#L91">EncodeJSONRequest</a>
+				<a class="permalink" href="index.html#EncodeJSONRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeJSONRequest(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, msg *nats.<a href="index.html#Msg">Msg</a>, request interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeJSONRequest is an EncodeRequestFunc that serializes the request as a
+JSON object to the Data of the Msg. Many JSON-over-NATS services can use it as
+a sensible default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeJSONResponse">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=5341:5440#L157">EncodeJSONResponse</a>
+				<a class="permalink" href="index.html#EncodeJSONResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeJSONResponse(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, reply <a href="../../../../../builtin/index.html#string">string</a>, nc *nats.<a href="index.html#Conn">Conn</a>, response interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeJSONResponse is a EncodeResponseFunc that serializes the response as a
+JSON object to the subscriber reply. Many JSON-over services can use it as
+a sensible default.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NopRequestDecoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=5062:5137#L150">NopRequestDecoder</a>
+				<a class="permalink" href="index.html#NopRequestDecoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NopRequestDecoder(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, _ *nats.<a href="index.html#Msg">Msg</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NopRequestDecoder is a DecodeRequestFunc that can be used for requests that do not
+need to be decoded, and simply returns nil, nil.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/encode_decode.go?s=374:462#L3">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from a publisher
+request object. It&apos;s designed to be used in NATS subscribers, for subscriber-side
+endpoints. One straightforward DecodeRequestFunc could be something that
+JSON decodes from the request body to the concrete response type.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Msg">Msg</a>) (request interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/encode_decode.go?s=1504:1594#L21">DecodeResponseFunc</a>
+				<a class="permalink" href="index.html#DecodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeResponseFunc extracts a user-domain response object from an NATS
+response object. It&apos;s designed to be used in NATS publisher, for publisher-side
+endpoints. One straightforward DecodeResponseFunc could be something that
+JSON decodes from the response payload to the concrete response type.
+
+			<pre>type DecodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Msg">Msg</a>) (response interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/encode_decode.go?s=749:823#L9">EncodeRequestFunc</a>
+				<a class="permalink" href="index.html#EncodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeRequestFunc encodes the passed request object into the NATS request
+object. It&apos;s designed to be used in NATS publishers, for publisher-side
+endpoints. One straightforward EncodeRequestFunc could something that JSON
+encodes the object directly to the request payload.
+
+			<pre>type EncodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Msg">Msg</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/encode_decode.go?s=1111:1195#L15">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object to the subscriber reply.
+It&apos;s designed to be used in NATS subscribers, for subscriber-side
+endpoints. One straightforward EncodeResponseFunc could be something that
+JSON encodes the object directly to the response body.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../../../../../builtin/index.html#string">string</a>, *nats.<a href="index.html#Conn">Conn</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorEncoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=4563:4646#L141">ErrorEncoder</a>
+				<a class="permalink" href="index.html#ErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorEncoder is responsible for encoding an error to the subscriber reply.
+Users are encouraged to use custom ErrorEncoders to encode errors to
+their replies, and will likely want to pass and check for their own error
+types.
+
+			<pre>type ErrorEncoder func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>, reply <a href="../../../../../builtin/index.html#string">string</a>, nc *nats.<a href="index.html#Conn">Conn</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Publisher">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=208:417#L2">Publisher</a>
+				<a class="permalink" href="index.html#Publisher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Publisher wraps a URL and provides a method that implements endpoint.Endpoint.
+
+			<pre>type Publisher struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPublisher">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=493:642#L13">NewPublisher</a>
+					<a class="permalink" href="index.html#NewPublisher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPublisher(
+    publisher *nats.<a href="index.html#Conn">Conn</a>,
+    subject <a href="../../../../../builtin/index.html#string">string</a>,
+    enc <a href="index.html#EncodeRequestFunc">EncodeRequestFunc</a>,
+    dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>,
+    options ...<a href="index.html#PublisherOption">PublisherOption</a>,
+) *<a href="index.html#Publisher">Publisher</a></pre>
+				<p>NewPublisher constructs a usable Publisher for a single remote method.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Publisher.Endpoint">func (Publisher) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=1801:1848#L55">Endpoint</a>
+					<a class="permalink" href="index.html#Publisher.Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Publisher">Publisher</a>) Endpoint() <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a></pre>
+				<p>Endpoint returns a usable endpoint that invokes the remote endpoint.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PublisherOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=900:937#L34">PublisherOption</a>
+				<a class="permalink" href="index.html#PublisherOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublisherOption sets an optional parameter for clients.
+
+			<pre>type PublisherOption func(*<a href="index.html#Publisher">Publisher</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PublisherAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=1407:1474#L45">PublisherAfter</a>
+					<a class="permalink" href="index.html#PublisherAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherAfter(after ...<a href="index.html#PublisherResponseFunc">PublisherResponseFunc</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherAfter sets the ClientResponseFuncs applied to the incoming NATS
+request prior to it being decoded. This is useful for obtaining anything off
+of the response and adding onto the context prior to decoding.
+
+				
+				
+			
+				
+				<h3 id="PublisherBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=1050:1109#L38">PublisherBefore</a>
+					<a class="permalink" href="index.html#PublisherBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherBefore sets the RequestFuncs that are applied to the outgoing NATS
+request before it&apos;s invoked.
+
+				
+				
+			
+				
+				<h3 id="PublisherTimeout">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/publisher.go?s=1612:1672#L50">PublisherTimeout</a>
+					<a class="permalink" href="index.html#PublisherTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherTimeout(timeout <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherTimeout sets the available timeout for NATS request.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PublisherResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/request_response_funcs.go?s=857:932#L12">PublisherResponseFunc</a>
+				<a class="permalink" href="index.html#PublisherResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublisherResponseFunc may take information from an NATS request and make the
+response available for consumption. ClientResponseFuncs are only executed in
+clients, after a request has been made, but prior to it being decoded.
+
+			<pre>type PublisherResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Msg">Msg</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/request_response_funcs.go?s=244:309#L2">RequestFunc</a>
+				<a class="permalink" href="index.html#RequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestFunc may take information from a publisher request and put it into a
+request context. In Subscribers, RequestFuncs are executed prior to invoking the
+endpoint.
+
+			<pre>type RequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Msg">Msg</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Subscriber">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=242:536#L5">Subscriber</a>
+				<a class="permalink" href="index.html#Subscriber">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Subscriber wraps an endpoint and provides nats.MsgHandler.
+
+			<pre>type Subscriber struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSubscriber">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=651:785#L18">NewSubscriber</a>
+					<a class="permalink" href="index.html#NewSubscriber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSubscriber(
+    e <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a>,
+    dec <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>,
+    enc <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>,
+    options ...<a href="index.html#SubscriberOption">SubscriberOption</a>,
+) *<a href="index.html#Subscriber">Subscriber</a></pre>
+				<p>NewSubscriber constructs a new subscriber, which provides nats.MsgHandler and wraps
+the provided endpoint.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Subscriber.ServeMsg">func (Subscriber) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=3354:3417#L84">ServeMsg</a>
+					<a class="permalink" href="index.html#Subscriber.ServeMsg">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Subscriber">Subscriber</a>) ServeMsg(nc *nats.<a href="index.html#Conn">Conn</a>) func(msg *nats.<a href="index.html#Msg">Msg</a>)</pre>
+				<p>ServeMsg provides nats.MsgHandler.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SubscriberFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=4853:4922#L146">SubscriberFinalizerFunc</a>
+				<a class="permalink" href="index.html#SubscriberFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerFinalizerFunc can be used to perform work at the end of an request
+from a publisher, after the response has been written to the publisher. The principal
+intended use is for request logging.
+
+			<pre>type SubscriberFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, msg *nats.<a href="index.html#Msg">Msg</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SubscriberOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=1100:1139#L38">SubscriberOption</a>
+				<a class="permalink" href="index.html#SubscriberOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubscriberOption sets an optional parameter for subscribers.
+
+			<pre>type SubscriberOption func(*<a href="index.html#Subscriber">Subscriber</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SubscriberAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=1535:1605#L48">SubscriberAfter</a>
+					<a class="permalink" href="index.html#SubscriberAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberAfter(after ...<a href="index.html#SubscriberResponseFunc">SubscriberResponseFunc</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberAfter functions are executed on the subscriber reply after the
+endpoint is invoked, but before anything is published to the reply.
+
+				
+				
+			
+				
+				<h3 id="SubscriberBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=1250:1311#L42">SubscriberBefore</a>
+					<a class="permalink" href="index.html#SubscriberBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberBefore functions are executed on the publisher request object before the
+request is decoded.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=1948:2009#L56">SubscriberErrorEncoder</a>
+					<a class="permalink" href="index.html#SubscriberErrorEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorEncoder(ee <a href="index.html#ErrorEncoder">ErrorEncoder</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorEncoder is used to encode errors to the subscriber reply
+whenever they&apos;re encountered in the processing of a request. Clients can
+use this to provide custom error formatting. By default,
+errors will be published with the DefaultErrorEncoder.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=2905:2986#L73">SubscriberErrorHandler</a>
+					<a class="permalink" href="index.html#SubscriberErrorHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorHandler(errorHandler <a href="../index.html">transport</a>.<a href="../index.html#ErrorHandler">ErrorHandler</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorHandler is used to handle non-terminal errors. By default, non-terminal errors
+are ignored. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom SubscriberErrorEncoder which has access to the context.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=2427:2489#L65">SubscriberErrorLogger</a>
+					<a class="permalink" href="index.html#SubscriberErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorLogger is used to log non-terminal errors. By default, no errors
+are logged. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom SubscriberErrorEncoder which has access to the context.
+Deprecated: Use SubscriberErrorHandler instead.
+
+				
+				
+			
+				
+				<h3 id="SubscriberFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/subscriber.go?s=3191:3262#L79">SubscriberFinalizer</a>
+					<a class="permalink" href="index.html#SubscriberFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberFinalizer(f ...<a href="index.html#SubscriberFinalizerFunc">SubscriberFinalizerFunc</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberFinalizer is executed at the end of every request from a publisher through NATS.
+By default, no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SubscriberResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/nats/request_response_funcs.go?s=544:621#L7">SubscriberResponseFunc</a>
+				<a class="permalink" href="index.html#SubscriberResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubscriberResponseFunc may take information from a request context and use it to
+manipulate a Publisher. SubscriberResponseFuncs are only executed in
+subscribers, after invoking the endpoint but prior to publishing a reply.
+
+			<pre>type SubscriberResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *nats.<a href="index.html#Conn">Conn</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

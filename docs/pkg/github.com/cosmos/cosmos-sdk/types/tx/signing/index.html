@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>signing - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package signing
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/types/tx/signing"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#MultiSignatureData">type MultiSignatureData</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignMode">type SignMode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignMode.EnumDescriptor">func (SignMode) EnumDescriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignMode.String">func (x SignMode) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureData">type SignatureData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDataFromProto">func SignatureDataFromProto(descData *SignatureDescriptor_Data) SignatureData</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor">type SignatureDescriptor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.Descriptor">func (*SignatureDescriptor) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.GetData">func (m *SignatureDescriptor) GetData() *SignatureDescriptor_Data</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.GetPublicKey">func (m *SignatureDescriptor) GetPublicKey() *types.Any</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.GetSequence">func (m *SignatureDescriptor) GetSequence() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.Marshal">func (m *SignatureDescriptor) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.MarshalTo">func (m *SignatureDescriptor) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.MarshalToSizedBuffer">func (m *SignatureDescriptor) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.ProtoMessage">func (*SignatureDescriptor) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.Reset">func (m *SignatureDescriptor) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.Size">func (m *SignatureDescriptor) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.String">func (m *SignatureDescriptor) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.Unmarshal">func (m *SignatureDescriptor) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.UnpackInterfaces">func (sd *SignatureDescriptor) UnpackInterfaces(unpacker codectypes.AnyUnpacker) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.XXX_DiscardUnknown">func (m *SignatureDescriptor) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.XXX_Marshal">func (m *SignatureDescriptor) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.XXX_Merge">func (m *SignatureDescriptor) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.XXX_Size">func (m *SignatureDescriptor) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor.XXX_Unmarshal">func (m *SignatureDescriptor) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor_Data">type SignatureDescriptor_Data</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDataToProto">func SignatureDataToProto(data SignatureData) *SignatureDescriptor_Data</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.Descriptor">func (*SignatureDescriptor_Data) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.GetMulti">func (m *SignatureDescriptor_Data) GetMulti() *SignatureDescriptor_Data_Multi</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.GetSingle">func (m *SignatureDescriptor_Data) GetSingle() *SignatureDescriptor_Data_Single</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.GetSum">func (m *SignatureDescriptor_Data) GetSum() isSignatureDescriptor_Data_Sum</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.Marshal">func (m *SignatureDescriptor_Data) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.MarshalTo">func (m *SignatureDescriptor_Data) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.MarshalToSizedBuffer">func (m *SignatureDescriptor_Data) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.ProtoMessage">func (*SignatureDescriptor_Data) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.Reset">func (m *SignatureDescriptor_Data) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.Size">func (m *SignatureDescriptor_Data) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.String">func (m *SignatureDescriptor_Data) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.Unmarshal">func (m *SignatureDescriptor_Data) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_DiscardUnknown">func (m *SignatureDescriptor_Data) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_Marshal">func (m *SignatureDescriptor_Data) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_Merge">func (m *SignatureDescriptor_Data) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_OneofWrappers">func (*SignatureDescriptor_Data) XXX_OneofWrappers() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_Size">func (m *SignatureDescriptor_Data) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data.XXX_Unmarshal">func (m *SignatureDescriptor_Data) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor_Data_Multi">type SignatureDescriptor_Data_Multi</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.Descriptor">func (*SignatureDescriptor_Data_Multi) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.GetBitarray">func (m *SignatureDescriptor_Data_Multi) GetBitarray() *types1.CompactBitArray</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.GetSignatures">func (m *SignatureDescriptor_Data_Multi) GetSignatures() []*SignatureDescriptor_Data</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.Marshal">func (m *SignatureDescriptor_Data_Multi) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.MarshalTo">func (m *SignatureDescriptor_Data_Multi) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.MarshalToSizedBuffer">func (m *SignatureDescriptor_Data_Multi) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.ProtoMessage">func (*SignatureDescriptor_Data_Multi) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.Reset">func (m *SignatureDescriptor_Data_Multi) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.Size">func (m *SignatureDescriptor_Data_Multi) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.String">func (m *SignatureDescriptor_Data_Multi) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.Unmarshal">func (m *SignatureDescriptor_Data_Multi) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.XXX_DiscardUnknown">func (m *SignatureDescriptor_Data_Multi) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.XXX_Marshal">func (m *SignatureDescriptor_Data_Multi) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.XXX_Merge">func (m *SignatureDescriptor_Data_Multi) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.XXX_Size">func (m *SignatureDescriptor_Data_Multi) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi.XXX_Unmarshal">func (m *SignatureDescriptor_Data_Multi) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor_Data_Multi_">type SignatureDescriptor_Data_Multi_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi_.MarshalTo">func (m *SignatureDescriptor_Data_Multi_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi_.MarshalToSizedBuffer">func (m *SignatureDescriptor_Data_Multi_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Multi_.Size">func (m *SignatureDescriptor_Data_Multi_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor_Data_Single">type SignatureDescriptor_Data_Single</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.Descriptor">func (*SignatureDescriptor_Data_Single) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.GetMode">func (m *SignatureDescriptor_Data_Single) GetMode() SignMode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.GetSignature">func (m *SignatureDescriptor_Data_Single) GetSignature() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.Marshal">func (m *SignatureDescriptor_Data_Single) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.MarshalTo">func (m *SignatureDescriptor_Data_Single) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.MarshalToSizedBuffer">func (m *SignatureDescriptor_Data_Single) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.ProtoMessage">func (*SignatureDescriptor_Data_Single) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.Reset">func (m *SignatureDescriptor_Data_Single) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.Size">func (m *SignatureDescriptor_Data_Single) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.String">func (m *SignatureDescriptor_Data_Single) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.Unmarshal">func (m *SignatureDescriptor_Data_Single) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.XXX_DiscardUnknown">func (m *SignatureDescriptor_Data_Single) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.XXX_Marshal">func (m *SignatureDescriptor_Data_Single) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.XXX_Merge">func (m *SignatureDescriptor_Data_Single) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.XXX_Size">func (m *SignatureDescriptor_Data_Single) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single.XXX_Unmarshal">func (m *SignatureDescriptor_Data_Single) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptor_Data_Single_">type SignatureDescriptor_Data_Single_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single_.MarshalTo">func (m *SignatureDescriptor_Data_Single_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single_.MarshalToSizedBuffer">func (m *SignatureDescriptor_Data_Single_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptor_Data_Single_.Size">func (m *SignatureDescriptor_Data_Single_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureDescriptors">type SignatureDescriptors</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.Descriptor">func (*SignatureDescriptors) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.GetSignatures">func (m *SignatureDescriptors) GetSignatures() []*SignatureDescriptor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.Marshal">func (m *SignatureDescriptors) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.MarshalTo">func (m *SignatureDescriptors) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.MarshalToSizedBuffer">func (m *SignatureDescriptors) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.ProtoMessage">func (*SignatureDescriptors) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.Reset">func (m *SignatureDescriptors) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.Size">func (m *SignatureDescriptors) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.String">func (m *SignatureDescriptors) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.Unmarshal">func (m *SignatureDescriptors) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.UnpackInterfaces">func (sds *SignatureDescriptors) UnpackInterfaces(unpacker codectypes.AnyUnpacker) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.XXX_DiscardUnknown">func (m *SignatureDescriptors) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.XXX_Marshal">func (m *SignatureDescriptors) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.XXX_Merge">func (m *SignatureDescriptors) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.XXX_Size">func (m *SignatureDescriptors) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignatureDescriptors.XXX_Unmarshal">func (m *SignatureDescriptors) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureV2">type SignatureV2</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SingleSignatureData">type SingleSignatureData</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go">signature.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature_data.go">signature_data.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go">signing.pb.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidLengthSigning">ErrInvalidLengthSigning</span>        = <a href="../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: negative length found during unmarshaling&#34;)
+    <span id="ErrIntOverflowSigning">ErrIntOverflowSigning</span>          = <a href="../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: integer overflow&#34;)
+    <span id="ErrUnexpectedEndOfGroupSigning">ErrUnexpectedEndOfGroupSigning</span> = <a href="../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: unexpected end of group&#34;)
+)</pre>
+			
+				
+				<pre>var <span id="SignMode_name">SignMode_name</span> = map[<a href="../../../../../../builtin/index.html#int32">int32</a>]<a href="../../../../../../builtin/index.html#string">string</a>{
+    0:   &#34;SIGN_MODE_UNSPECIFIED&#34;,
+    1:   &#34;SIGN_MODE_DIRECT&#34;,
+    2:   &#34;SIGN_MODE_TEXTUAL&#34;,
+    3:   &#34;SIGN_MODE_DIRECT_AUX&#34;,
+    127: &#34;SIGN_MODE_LEGACY_AMINO_JSON&#34;,
+    191: &#34;SIGN_MODE_EIP_191&#34;,
+    712: &#34;SIGN_MODE_EIP_712&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="SignMode_value">SignMode_value</span> = map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#int32">int32</a>{
+    &#34;SIGN_MODE_UNSPECIFIED&#34;:       0,
+    &#34;SIGN_MODE_DIRECT&#34;:            1,
+    &#34;SIGN_MODE_TEXTUAL&#34;:           2,
+    &#34;SIGN_MODE_DIRECT_AUX&#34;:        3,
+    &#34;SIGN_MODE_LEGACY_AMINO_JSON&#34;: 127,
+    &#34;SIGN_MODE_EIP_191&#34;:           191,
+    &#34;SIGN_MODE_EIP_712&#34;:           712,
+}</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="MultiSignatureData">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature_data.go?s=679:932#L14">MultiSignatureData</a>
+				<a class="permalink" href="index.html#MultiSignatureData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MultiSignatureData represents the nested SignatureData of a multisig signature
+
+			<pre>type MultiSignatureData struct {
+<span id="MultiSignatureData.BitArray"></span>    <span class="comment">// BitArray is a compact way of indicating which signers from the multisig key</span>
+    <span class="comment">// have signed</span>
+    BitArray *<a href="../../../crypto/types/index.html">types</a>.<a href="../../../crypto/types/index.html#CompactBitArray">CompactBitArray</a>
+
+<span id="MultiSignatureData.Signatures"></span>    <span class="comment">// Signatures is the nested SignatureData&#39;s for each signer</span>
+    Signatures []<a href="index.html#SignatureData">SignatureData</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SignMode">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=1261:1280#L25">SignMode</a>
+				<a class="permalink" href="index.html#SignMode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignMode represents a signing mode with its own security guarantees.
+<p>This enum should be considered a registry of all known sign modes
+in the Cosmos ecosystem. Apps are not expected to support all known
+sign modes. Apps that would like to support custom  sign modes are
+encouraged to open a small PR against this file to add a new case
+to this SignMode enum describing their sign mode so that different
+apps have a consistent version of this enum.
+
+			<pre>type SignMode <a href="../../../../../../builtin/index.html#int32">int32</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be</span>
+    <span class="comment">// rejected.</span>
+    <span id="SignMode_SIGN_MODE_UNSPECIFIED">SignMode_SIGN_MODE_UNSPECIFIED</span> <a href="index.html#SignMode">SignMode</a> = 0
+    <span class="comment">// SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is</span>
+    <span class="comment">// verified with raw bytes from Tx.</span>
+    <span id="SignMode_SIGN_MODE_DIRECT">SignMode_SIGN_MODE_DIRECT</span> <a href="index.html#SignMode">SignMode</a> = 1
+    <span class="comment">// SIGN_MODE_TEXTUAL is a future signing mode that will verify some</span>
+    <span class="comment">// human-readable textual representation on top of the binary representation</span>
+    <span class="comment">// from SIGN_MODE_DIRECT. It is currently not supported.</span>
+    <span id="SignMode_SIGN_MODE_TEXTUAL">SignMode_SIGN_MODE_TEXTUAL</span> <a href="index.html#SignMode">SignMode</a> = 2
+    <span class="comment">// SIGN_MODE_DIRECT_AUX specifies a signing mode which uses</span>
+    <span class="comment">// SignDocDirectAux. As opposed to SIGN_MODE_DIRECT, this sign mode does not</span>
+    <span class="comment">// require signers signing over other signers&#39; `signer_info`. It also allows</span>
+    <span class="comment">// for adding Tips in transactions.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Since: cosmos-sdk 0.46</span>
+    <span id="SignMode_SIGN_MODE_DIRECT_AUX">SignMode_SIGN_MODE_DIRECT_AUX</span> <a href="index.html#SignMode">SignMode</a> = 3
+    <span class="comment">// SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses</span>
+    <span class="comment">// Amino JSON and will be removed in the future.</span>
+    <span id="SignMode_SIGN_MODE_LEGACY_AMINO_JSON">SignMode_SIGN_MODE_LEGACY_AMINO_JSON</span> <a href="index.html#SignMode">SignMode</a> = 127
+    <span class="comment">// SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos</span>
+    <span class="comment">// SDK. Ref: https://eips.ethereum.org/EIPS/eip-191</span>
+    <span class="comment">//</span>
+    <span class="comment">// Currently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,</span>
+    <span class="comment">// but is not implemented on the SDK by default. To enable EIP-191, you need</span>
+    <span class="comment">// to pass a custom `TxConfig` that has an implementation of</span>
+    <span class="comment">// `SignModeHandler` for EIP-191. The SDK may decide to fully support</span>
+    <span class="comment">// EIP-191 in the future.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Since: cosmos-sdk 0.45.2</span>
+    <span id="SignMode_SIGN_MODE_EIP_191">SignMode_SIGN_MODE_EIP_191</span> <a href="index.html#SignMode">SignMode</a> = 191
+    <span class="comment">// SIGN_MODE_EIP_712 specifies the sign mode for EIP 712 signing on the Cosmos</span>
+    <span class="comment">// SDK. Ref: https://eips.ethereum.org/EIPS/eip-712</span>
+    <span id="SignMode_SIGN_MODE_EIP_712">SignMode_SIGN_MODE_EIP_712</span> <a href="index.html#SignMode">SignMode</a> = 712
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignMode.EnumDescriptor">func (SignMode) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=3656:3704#L88">EnumDescriptor</a>
+					<a class="permalink" href="index.html#SignMode.EnumDescriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#SignMode">SignMode</a>) EnumDescriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignMode.String">func (SignMode) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=3569:3602#L84">String</a>
+					<a class="permalink" href="index.html#SignMode.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x <a href="index.html#SignMode">SignMode</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureData">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature_data.go?s=284:335#L1">SignatureData</a>
+				<a class="permalink" href="index.html#SignatureData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureData represents either a *SingleSignatureData or *MultiSignatureData.
+It is a convenience type that is easier to use in business logic than the encoded
+protobuf ModeInfo&apos;s and raw signatures.
+
+			<pre>type SignatureData interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SignatureDataFromProto">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go?s=2033:2110#L55">SignatureDataFromProto</a>
+					<a class="permalink" href="index.html#SignatureDataFromProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignatureDataFromProto(descData *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) <a href="index.html#SignatureData">SignatureData</a></pre>
+				<p>SignatureDataFromProto converts a SignatureDescriptor_Data to SignatureData.
+SignatureDescriptor_Data is considered an encoding type whereas SignatureData is used for
+business logic.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=5485:6057#L142">SignatureDescriptor</a>
+				<a class="permalink" href="index.html#SignatureDescriptor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureDescriptor is a convenience type which represents the full data for
+a signature including the public key of the signer, signing modes and the
+signature itself. It is primarily used for coordinating signatures between
+clients.
+
+			<pre>type SignatureDescriptor struct {
+    <span class="comment">// public_key is the public key of the signer</span>
+<span id="SignatureDescriptor.PublicKey"></span>    PublicKey *<a href="../../../codec/types/index.html">types</a>.<a href="../../../codec/types/index.html#Any">Any</a>                `protobuf:&#34;bytes,1,opt,name=public_key,json=publicKey,proto3&#34; json:&#34;public_key,omitempty&#34;`
+<span id="SignatureDescriptor.Data"></span>    Data      *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a> `protobuf:&#34;bytes,2,opt,name=data,proto3&#34; json:&#34;data,omitempty&#34;`
+    <span class="comment">// sequence is the sequence of the account, which describes the</span>
+    <span class="comment">// number of committed transactions signed by a given address. It is used to prevent</span>
+    <span class="comment">// replay attacks.</span>
+<span id="SignatureDescriptor.Sequence"></span>    Sequence <a href="../../../../../../builtin/index.html#uint64">uint64</a> `protobuf:&#34;varint,3,opt,name=sequence,proto3&#34; json:&#34;sequence,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptor.Descriptor">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6269:6325#L155">Descriptor</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) Descriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.GetData">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7252:7317#L192">GetData</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.GetData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) GetData() *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.GetPublicKey">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7140:7195#L185">GetPublicKey</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.GetPublicKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) GetPublicKey() *<a href="../../../codec/types/index.html">types</a>.<a href="../../../codec/types/index.html#Any">Any</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.GetSequence">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7369:7419#L199">GetSequence</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.GetSequence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) GetSequence() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.Marshal">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=19407:19471#L496">Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) Marshal() (dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.MarshalTo">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=19629:19694#L506">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.MarshalToSizedBuffer">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=19762:19838#L511">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.ProtoMessage">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6220:6262#L154">ProtoMessage</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.Reset">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6059:6096#L152">Reset</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.Size">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=24438:24482#L732">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.String">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6136:6181#L153">String</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.Unmarshal">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=27979:28037#L913">Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) Unmarshal(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.UnpackInterfaces">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go?s=3156:3242#L94">UnpackInterfaces</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.UnpackInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sd *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) UnpackInterfaces(unpacker <a href="../../../codec/types/index.html">codectypes</a>.<a href="../../../codec/types/index.html#AnyUnpacker">AnyUnpacker</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackInterfaces implements the UnpackInterfaceMessages.UnpackInterfaces method
+
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.XXX_DiscardUnknown">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6962:7012#L179">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.XXX_Marshal">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6467:6554#L161">XXX_Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) XXX_Marshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.XXX_Merge">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6782:6840#L173">XXX_Merge</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) XXX_Merge(src <a href="../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.XXX_Size">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6896:6940#L176">XXX_Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) XXX_Size() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor.XXX_Unmarshal">func (*SignatureDescriptor) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=6380:6439#L158">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor">SignatureDescriptor</a>) XXX_Unmarshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor_Data">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7507:7829#L207">SignatureDescriptor_Data</a>
+				<a class="permalink" href="index.html#SignatureDescriptor_Data">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Data represents signature data
+
+			<pre>type SignatureDescriptor_Data struct {
+    <span class="comment">// sum is the one of that specifies whether this represents single or multi-signature data</span>
+    <span class="comment">//</span>
+    <span class="comment">// Types that are valid to be assigned to Sum:</span>
+    <span class="comment">//</span>
+    <span class="comment">//	*SignatureDescriptor_Data_Single_</span>
+    <span class="comment">//	*SignatureDescriptor_Data_Multi_</span>
+<span id="SignatureDescriptor_Data.Sum"></span>    Sum isSignatureDescriptor_Data_Sum `protobuf_oneof:&#34;sum&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SignatureDataToProto">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go?s=1056:1127#L21">SignatureDataToProto</a>
+					<a class="permalink" href="index.html#SignatureDataToProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignatureDataToProto(data <a href="index.html#SignatureData">SignatureData</a>) *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a></pre>
+				<p>SignatureDataToProto converts a SignatureData to SignatureDescriptor_Data.
+SignatureDescriptor_Data is considered an encoding type whereas SignatureData is used for
+business logic.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SignatureDescriptor_Data.Descriptor">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8061:8122#L220">Descriptor</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) Descriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.GetMulti">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=9902:9979#L280">GetMulti</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.GetMulti">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) GetMulti() *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.GetSingle">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=9718:9797#L273">GetSingle</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.GetSingle">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) GetSingle() *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.GetSum">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=9593:9667#L266">GetSum</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.GetSum">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) GetSum() isSignatureDescriptor_Data_Sum</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.Marshal">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=20450:20519#L548">Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) Marshal() (dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.MarshalTo">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=20677:20747#L558">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.MarshalToSizedBuffer">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=20815:20896#L563">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.ProtoMessage">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8007:8054#L219">ProtoMessage</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.Reset">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7831:7873#L217">Reset</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.Size">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=24782:24831#L752">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.String">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=7918:7968#L218">String</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.Unmarshal">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=31027:31090#L1054">Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) Unmarshal(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_DiscardUnknown">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8792:8847#L244">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_Marshal">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8272:8364#L226">XXX_Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_Marshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_Merge">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8597:8660#L238">XXX_Merge</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_Merge(src <a href="../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_OneofWrappers">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10149:10215#L288">XXX_OneofWrappers</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_OneofWrappers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_OneofWrappers() []interface{}</pre>
+				<p>XXX_OneofWrappers is for the internal use of the proto package.
+
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_Size">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8721:8770#L241">XXX_Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_Size() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data.XXX_Unmarshal">func (*SignatureDescriptor_Data) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=8180:8244#L223">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a>) XXX_Unmarshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor_Data_Multi">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12309:12699#L351">SignatureDescriptor_Data_Multi</a>
+				<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Multi is the signature data for a multisig public key
+
+			<pre>type SignatureDescriptor_Data_Multi struct {
+    <span class="comment">// bitarray specifies which keys within the multisig are signing</span>
+<span id="SignatureDescriptor_Data_Multi.Bitarray"></span>    Bitarray *<a href="../../../crypto/types/index.html">types1</a>.<a href="../../../crypto/types/index.html#CompactBitArray">CompactBitArray</a> `protobuf:&#34;bytes,1,opt,name=bitarray,proto3&#34; json:&#34;bitarray,omitempty&#34;`
+    <span class="comment">// signatures is the signatures of the multi-signature</span>
+<span id="SignatureDescriptor_Data_Multi.Signatures"></span>    Signatures []*<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a> `protobuf:&#34;bytes,2,rep,name=signatures,proto3&#34; json:&#34;signatures,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.Descriptor">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12955:13022#L361">Descriptor</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) Descriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.GetBitarray">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13942:14020#L391">GetBitarray</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.GetBitarray">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) GetBitarray() *<a href="../../../crypto/types/index.html">types1</a>.<a href="../../../crypto/types/index.html#CompactBitArray">CompactBitArray</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.GetSignatures">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=14076:14160#L398">GetSignatures</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.GetSignatures">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) GetSignatures() []*<a href="index.html#SignatureDescriptor_Data">SignatureDescriptor_Data</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.Marshal">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=22914:22989#L657">Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) Marshal() (dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.MarshalTo">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=23147:23223#L667">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.MarshalToSizedBuffer">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=23291:23378#L672">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.ProtoMessage">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12895:12948#L360">ProtoMessage</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.Reset">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12701:12749#L358">Reset</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.Size">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=25591:25646#L804">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.String">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12800:12856#L359">String</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.Unmarshal">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=35886:35955#L1277">Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) Unmarshal(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.XXX_DiscardUnknown">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13731:13792#L385">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.XXX_Marshal">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13181:13279#L367">XXX_Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) XXX_Marshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.XXX_Merge">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13518:13587#L379">XXX_Merge</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) XXX_Merge(src <a href="../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.XXX_Size">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13654:13709#L382">XXX_Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) XXX_Size() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi.XXX_Unmarshal">func (*SignatureDescriptor_Data_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=13083:13153#L364">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a>) XXX_Unmarshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor_Data_Multi_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=9278:9436#L259">SignatureDescriptor_Data_Multi_</a>
+				<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SignatureDescriptor_Data_Multi_ struct {
+<span id="SignatureDescriptor_Data_Multi_.Multi"></span>    Multi *<a href="index.html#SignatureDescriptor_Data_Multi">SignatureDescriptor_Data_Multi</a> `protobuf:&#34;bytes,2,opt,name=multi,proto3,oneof&#34; json:&#34;multi,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi_.MarshalTo">func (*SignatureDescriptor_Data_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=21615:21692#L601">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi_">SignatureDescriptor_Data_Multi_</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi_.MarshalToSizedBuffer">func (*SignatureDescriptor_Data_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=21760:21848#L606">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi_">SignatureDescriptor_Data_Multi_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Multi_.Size">func (*SignatureDescriptor_Data_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=25139:25195#L776">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Multi_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Multi_">SignatureDescriptor_Data_Multi_</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor_Data_Single">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10386:10736#L296">SignatureDescriptor_Data_Single</a>
+				<a class="permalink" href="index.html#SignatureDescriptor_Data_Single">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Single is the signature data for a single signer
+
+			<pre>type SignatureDescriptor_Data_Single struct {
+    <span class="comment">// mode is the signing mode of the single signer</span>
+<span id="SignatureDescriptor_Data_Single.Mode"></span>    Mode <a href="index.html#SignMode">SignMode</a> `protobuf:&#34;varint,1,opt,name=mode,proto3,enum=cosmos.tx.signing.v1beta1.SignMode&#34; json:&#34;mode,omitempty&#34;`
+    <span class="comment">// signature is the raw signature bytes</span>
+<span id="SignatureDescriptor_Data_Single.Signature"></span>    Signature []<a href="../../../../../../builtin/index.html#byte">byte</a> `protobuf:&#34;bytes,2,opt,name=signature,proto3&#34; json:&#34;signature,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.Descriptor">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10996:11064#L306">Descriptor</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) Descriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.GetMode">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11993:12053#L336">GetMode</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.GetMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) GetMode() <a href="index.html#SignMode">SignMode</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.GetSignature">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=12132:12195#L343">GetSignature</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.GetSignature">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) GetSignature() []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.Marshal">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=22111:22187#L622">Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) Marshal() (dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.MarshalTo">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=22345:22422#L632">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.MarshalToSizedBuffer">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=22490:22578#L637">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.ProtoMessage">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10935:10989#L305">ProtoMessage</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.Reset">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10738:10787#L303">Reset</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.Size">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=25339:25395#L788">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.String">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=10839:10896#L304">String</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.Unmarshal">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=33672:33742#L1174">Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) Unmarshal(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.XXX_DiscardUnknown">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11779:11841#L330">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.XXX_Marshal">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11224:11323#L312">XXX_Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) XXX_Marshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.XXX_Merge">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11563:11633#L324">XXX_Merge</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) XXX_Merge(src <a href="../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.XXX_Size">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11701:11757#L327">XXX_Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) XXX_Size() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single.XXX_Unmarshal">func (*SignatureDescriptor_Data_Single) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=11125:11196#L309">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a>) XXX_Unmarshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptor_Data_Single_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=9114:9277#L256">SignatureDescriptor_Data_Single_</a>
+				<a class="permalink" href="index.html#SignatureDescriptor_Data_Single_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SignatureDescriptor_Data_Single_ struct {
+<span id="SignatureDescriptor_Data_Single_.Single"></span>    Single *<a href="index.html#SignatureDescriptor_Data_Single">SignatureDescriptor_Data_Single</a> `protobuf:&#34;bytes,1,opt,name=single,proto3,oneof&#34; json:&#34;single,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single_.MarshalTo">func (*SignatureDescriptor_Data_Single_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=21116:21194#L580">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single_">SignatureDescriptor_Data_Single_</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single_.MarshalToSizedBuffer">func (*SignatureDescriptor_Data_Single_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=21262:21351#L585">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single_">SignatureDescriptor_Data_Single_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptor_Data_Single_.Size">func (*SignatureDescriptor_Data_Single_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=24936:24993#L764">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptor_Data_Single_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptor_Data_Single_">SignatureDescriptor_Data_Single_</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureDescriptors">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=3822:4014#L93">SignatureDescriptors</a>
+				<a class="permalink" href="index.html#SignatureDescriptors">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureDescriptors wraps multiple SignatureDescriptor&apos;s.
+
+			<pre>type SignatureDescriptors struct {
+    <span class="comment">// signatures are the signature descriptors</span>
+<span id="SignatureDescriptors.Signatures"></span>    Signatures []*<a href="index.html#SignatureDescriptor">SignatureDescriptor</a> `protobuf:&#34;bytes,1,rep,name=signatures,proto3&#34; json:&#34;signatures,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SignatureDescriptors.Descriptor">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4230:4287#L101">Descriptor</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) Descriptor() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.GetSignatures">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=5111:5180#L131">GetSignatures</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.GetSignatures">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) GetSignatures() []*<a href="index.html#SignatureDescriptor">SignatureDescriptor</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.Marshal">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=18592:18657#L459">Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) Marshal() (dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.MarshalTo">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=18815:18881#L469">MarshalTo</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) MarshalTo(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.MarshalToSizedBuffer">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=18949:19026#L474">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.ProtoMessage">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4180:4223#L100">ProtoMessage</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.Reset">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4016:4054#L98">Reset</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.Size">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=24206:24251#L717">Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) Size() (n <a href="../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.String">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4095:4141#L99">String</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) String() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.Unmarshal">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=26100:26159#L829">Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) Unmarshal(dAtA []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.UnpackInterfaces">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go?s=2849:2937#L82">UnpackInterfaces</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.UnpackInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sds *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) UnpackInterfaces(unpacker <a href="../../../codec/types/index.html">codectypes</a>.<a href="../../../codec/types/index.html#AnyUnpacker">AnyUnpacker</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackInterfaces implements the UnpackInterfaceMessages.UnpackInterfaces method
+
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.XXX_DiscardUnknown">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4930:4981#L125">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.XXX_Marshal">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4430:4518#L107">XXX_Marshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) XXX_Marshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.XXX_Merge">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4747:4806#L119">XXX_Merge</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) XXX_Merge(src <a href="../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.XXX_Size">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4863:4908#L122">XXX_Size</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) XXX_Size() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SignatureDescriptors.XXX_Unmarshal">func (*SignatureDescriptors) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signing.pb.go?s=4342:4402#L104">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#SignatureDescriptors.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#SignatureDescriptors">SignatureDescriptors</a>) XXX_Unmarshal(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureV2">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature.go?s=477:864#L5">SignatureV2</a>
+				<a class="permalink" href="index.html#SignatureV2">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureV2 is a convenience type that is easier to use in application logic
+than the protobuf SignerInfo&apos;s and raw signature bytes. It goes beyond the
+first sdk.Signature types by supporting sign modes and explicitly nested
+multi-signatures. It is intended to be used for both building and verifying
+signatures.
+
+			<pre>type SignatureV2 struct {
+<span id="SignatureV2.PubKey"></span>    <span class="comment">// PubKey is the public key to use for verifying the signature</span>
+    PubKey <a href="../../../crypto/types/index.html">cryptotypes</a>.<a href="../../../crypto/types/index.html#PubKey">PubKey</a>
+
+<span id="SignatureV2.Data"></span>    <span class="comment">// Data is the actual data of the signature which includes SignMode&#39;s and</span>
+    <span class="comment">// the signatures themselves for either single or multi-signatures.</span>
+    Data <a href="index.html#SignatureData">SignatureData</a>
+
+<span id="SignatureV2.Sequence"></span>    <span class="comment">// Sequence is the sequence of this account. Only populated in</span>
+    <span class="comment">// SIGN_MODE_DIRECT.</span>
+    Sequence <a href="../../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SingleSignatureData">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/tx/signing/signature_data.go?s=432:595#L5">SingleSignatureData</a>
+				<a class="permalink" href="index.html#SingleSignatureData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SingleSignatureData represents the signature and SignMode of a single (non-multisig) signer
+
+			<pre>type SingleSignatureData struct {
+<span id="SingleSignatureData.SignMode"></span>    <span class="comment">// SignMode represents the SignMode of the signature</span>
+    SignMode <a href="index.html#SignMode">SignMode</a>
+
+<span id="SingleSignatureData.Signature"></span>    <span class="comment">// Signature is the raw signature.</span>
+    Signature []<a href="../../../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

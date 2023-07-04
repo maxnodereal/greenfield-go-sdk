@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>server - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package server
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/les/vflux/server"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#AtomicBalanceOperator">type AtomicBalanceOperator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientPool">type ClientPool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClientPool">func NewClientPool(balanceDb ethdb.KeyValueStore, minCap uint64, connectedBias time.Duration, clock mclock.Clock, synced func() bool) *ClientPool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Active">func (pp ClientPool) Active() (uint64, uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.BalanceOperation">func (bt ClientPool) BalanceOperation(id enode.ID, connAddress string, cb func(AtomicBalanceOperator))</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.GetExpirationTCs">func (bt ClientPool) GetExpirationTCs() (pos, neg uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.GetPosBalanceIDs">func (bt ClientPool) GetPosBalanceIDs(start, stop enode.ID, maxCount int) (result []enode.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Handle">func (cp *ClientPool) Handle(id enode.ID, address string, name string, data []byte) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Inactive">func (pp ClientPool) Inactive() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Limits">func (pp ClientPool) Limits() (uint64, uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Register">func (cp *ClientPool) Register(peer clientPeer) ConnectedBalance</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.SetCapacity">func (cp *ClientPool) SetCapacity(node *enode.Node, reqCap uint64, bias time.Duration, requested bool) (capacity uint64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.SetConnectedBias">func (cp *ClientPool) SetConnectedBias(bias time.Duration)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.SetDefaultFactors">func (bt ClientPool) SetDefaultFactors(posFactors, negFactors PriceFactors)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.SetExpirationTCs">func (bt ClientPool) SetExpirationTCs(pos, neg uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.SetLimits">func (pp ClientPool) SetLimits(maxCount, maxCap uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Start">func (cp *ClientPool) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Stop">func (cp *ClientPool) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.TotalTokenAmount">func (bt ClientPool) TotalTokenAmount() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientPool.Unregister">func (cp *ClientPool) Unregister(peer clientPeer)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ConnectedBalance">type ConnectedBalance</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PriceFactors">type PriceFactors</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ReadOnlyBalance">type ReadOnlyBalance</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer(delayPerRequest time.Duration) *Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Register">func (s *Server) Register(b Service, id, desc string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Serve">func (s *Server) Serve(id enode.ID, address string, requests vflux.Requests) vflux.Replies</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeEncoded">func (s *Server) ServeEncoded(id enode.ID, addr *net.UDPAddr, req []byte) []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.Stop">func (s *Server) Stop()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance.go">balance.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go">balance_tracker.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientdb.go">clientdb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go">clientpool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/prioritypool.go">prioritypool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go">service.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/status.go">status.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrNotConnected">ErrNotConnected</span>    = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;client not connected&#34;)
+    <span id="ErrNoPriority">ErrNoPriority</span>      = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;priority too low to raise capacity&#34;)
+    <span id="ErrCantFindMaximum">ErrCantFindMaximum</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;unable to find maximum allowed capacity&#34;)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AtomicBalanceOperator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance.go?s=3440:3581#L75">AtomicBalanceOperator</a>
+				<a class="permalink" href="index.html#AtomicBalanceOperator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AtomicBalanceOperator provides operations permitted in an atomic BalanceOperation
+
+			<pre>type AtomicBalanceOperator interface {
+    <a href="index.html#ReadOnlyBalance">ReadOnlyBalance</a>
+    AddBalance(amount <a href="../../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    SetBalance(pos, neg <a href="../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ClientPool">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=2559:2951#L48">ClientPool</a>
+				<a class="permalink" href="index.html#ClientPool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientPool implements a client database that assigns a priority to each client
+based on a positive and negative balance. Positive balance is externally assigned
+to prioritized clients and is decreased with connection time and processed
+requests (unless the price factors are zero). If the positive balance is zero
+then negative balance is accumulated.
+<p>Balance tracking and priority calculation for connected clients is done by
+balanceTracker. PriorityQueue ensures that clients with the lowest positive or
+highest negative balance get evicted when the total capacity allowance is full
+and new clients with a better balance want to connect.
+<p>Already connected nodes receive a small bias in their favor in order to avoid
+accepting and instantly kicking out clients. In theory, we try to ensure that
+each client can have several minutes of connection time.
+<p>Balances of disconnected clients are stored in nodeDB including positive balance
+and negative banalce. Boeth positive balance and negative balance will decrease
+exponentially. If the balance is low enough, then the record will be dropped.
+
+			<pre>type ClientPool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClientPool">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=3632:3777#L74">NewClientPool</a>
+					<a class="permalink" href="index.html#NewClientPool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClientPool(balanceDb <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#KeyValueStore">KeyValueStore</a>, minCap <a href="../../../../../../builtin/index.html#uint64">uint64</a>, connectedBias <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>, clock <a href="../../../common/mclock/index.html">mclock</a>.<a href="../../../common/mclock/index.html#Clock">Clock</a>, synced func() <a href="../../../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#ClientPool">ClientPool</a></pre>
+				<p>NewClientPool creates a new client pool
+
+				
+				
+			
+
+			
+				
+				<h3 id="ClientPool.Active">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/prioritypool.go?s=8766:8815#L219">Active</a>
+					<a class="permalink" href="index.html#ClientPool.Active">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pp <a href="index.html#ClientPool">ClientPool</a>) Active() (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>Active returns the number and total capacity of currently active nodes
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.BalanceOperation">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=7509:7616#L211">BalanceOperation</a>
+					<a class="permalink" href="index.html#ClientPool.BalanceOperation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) BalanceOperation(id <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, connAddress <a href="../../../../../../builtin/index.html#string">string</a>, cb func(<a href="index.html#AtomicBalanceOperator">AtomicBalanceOperator</a>))</pre>
+				<p>BalanceOperation allows atomic operations on the balance of a node regardless of whether
+it is currently connected or not
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.GetExpirationTCs">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=7239:7301#L202">GetExpirationTCs</a>
+					<a class="permalink" href="index.html#ClientPool.GetExpirationTCs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) GetExpirationTCs() (pos, neg <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>GetExpirationTCs returns the current positive and negative token expiration
+time constants
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.GetPosBalanceIDs">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=6162:6260#L168">GetPosBalanceIDs</a>
+					<a class="permalink" href="index.html#ClientPool.GetPosBalanceIDs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) GetPosBalanceIDs(start, stop <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, maxCount <a href="../../../../../../builtin/index.html#int">int</a>) (result []<a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>)</pre>
+				<p>GetPosBalanceIDs lists node IDs with an associated positive balance
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Handle">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=12181:12271#L311">Handle</a>
+					<a class="permalink" href="index.html#ClientPool.Handle">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) Handle(id <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, address <a href="../../../../../../builtin/index.html#string">string</a>, name <a href="../../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Handle implements Service
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Inactive">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/prioritypool.go?s=8958:8996#L227">Inactive</a>
+					<a class="permalink" href="index.html#ClientPool.Inactive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pp <a href="index.html#ClientPool">ClientPool</a>) Inactive() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>Inactive returns the number of currently inactive nodes
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Limits">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/prioritypool.go?s=9155:9204#L235">Limits</a>
+					<a class="permalink" href="index.html#ClientPool.Limits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pp <a href="index.html#ClientPool">ClientPool</a>) Limits() (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>Limits returns the maximum allowed number and total capacity of active nodes
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Register">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=6952:7016#L158">Register</a>
+					<a class="permalink" href="index.html#ClientPool.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) Register(peer clientPeer) <a href="index.html#ConnectedBalance">ConnectedBalance</a></pre>
+				<p>Register registers the peer into the client pool. If the peer has insufficient
+priority and remains inactive for longer than the allowed timeout then it will be
+disconnected by calling the Disconnect function of the clientPeer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.SetCapacity">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=7815:7946#L180">SetCapacity</a>
+					<a class="permalink" href="index.html#ClientPool.SetCapacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) SetCapacity(node *<a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#Node">Node</a>, reqCap <a href="../../../../../../builtin/index.html#uint64">uint64</a>, bias <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>, requested <a href="../../../../../../builtin/index.html#bool">bool</a>) (capacity <a href="../../../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SetCapacity sets the assigned capacity of a connected client
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.SetConnectedBias">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=7604:7662#L172">SetConnectedBias</a>
+					<a class="permalink" href="index.html#ClientPool.SetConnectedBias">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) SetConnectedBias(bias <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>)</pre>
+				<p>SetConnectedBias sets the connection bias, which is applied to already connected clients
+So that already connected client won&apos;t be kicked out very soon and we can ensure all
+connected clients can have enough time to request or sync some data.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.SetDefaultFactors">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=6415:6495#L173">SetDefaultFactors</a>
+					<a class="permalink" href="index.html#ClientPool.SetDefaultFactors">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) SetDefaultFactors(posFactors, negFactors <a href="index.html#PriceFactors">PriceFactors</a>)</pre>
+				<p>SetDefaultFactors sets the default price factors applied to subsequently connected clients
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.SetExpirationTCs">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=6744:6803#L182">SetExpirationTCs</a>
+					<a class="permalink" href="index.html#ClientPool.SetExpirationTCs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) SetExpirationTCs(pos, neg <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetExpirationTCs sets positive and negative token expiration time constants.
+Specified in seconds, 0 means infinite (no expiration).
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.SetLimits">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/prioritypool.go?s=7833:7891#L187">SetLimits</a>
+					<a class="permalink" href="index.html#ClientPool.SetLimits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pp <a href="index.html#ClientPool">ClientPool</a>) SetLimits(maxCount, maxCap <a href="../../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetLimits sets the maximum number and total capacity of simultaneously active nodes
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Start">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=6444:6473#L144">Start</a>
+					<a class="permalink" href="index.html#ClientPool.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) Start()</pre>
+				<p>Start starts the client pool. Should be called before Register/Unregister.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Stop">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=6631:6659#L150">Stop</a>
+					<a class="permalink" href="index.html#ClientPool.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) Stop()</pre>
+				<p>Stop shuts the client pool down. The clientPeer interface callbacks will not be called
+after Stop. Register calls will return nil.
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.TotalTokenAmount">func (ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance_tracker.go?s=5521:5572#L148">TotalTokenAmount</a>
+					<a class="permalink" href="index.html#ClientPool.TotalTokenAmount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bt <a href="index.html#ClientPool">ClientPool</a>) TotalTokenAmount() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>TotalTokenAmount returns the current total amount of service tokens in existence
+
+				
+				
+				
+			
+				
+				<h3 id="ClientPool.Unregister">func (*ClientPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/clientpool.go?s=7241:7290#L165">Unregister</a>
+					<a class="permalink" href="index.html#ClientPool.Unregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cp *<a href="index.html#ClientPool">ClientPool</a>) Unregister(peer clientPeer)</pre>
+				<p>Unregister removes the peer from the client pool
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ConnectedBalance">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance.go?s=3213:3351#L68">ConnectedBalance</a>
+				<a class="permalink" href="index.html#ConnectedBalance">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ConnectedBalance provides operations permitted on connected nodes (non-read-only
+operations are not permitted inside a BalanceOperation)
+
+			<pre>type ConnectedBalance interface {
+    <a href="index.html#ReadOnlyBalance">ReadOnlyBalance</a>
+    SetPriceFactors(posFactor, negFactor <a href="index.html#PriceFactors">PriceFactors</a>)
+    RequestServed(cost <a href="../../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../../builtin/index.html#uint64">uint64</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PriceFactors">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance.go?s=1780:1859#L36">PriceFactors</a>
+				<a class="permalink" href="index.html#PriceFactors">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PriceFactors determine the pricing policy (may apply either to positive or
+negative balances which may have different factors).
+- TimeFactor is cost unit per nanosecond of connection time
+- CapacityFactor is cost unit per nanosecond of connection time per 1000000 capacity
+- RequestFactor is cost unit per request &quot;realCost&quot; unit
+
+			<pre>type PriceFactors struct {
+<span id="PriceFactors.TimeFactor"></span>    TimeFactor, CapacityFactor, RequestFactor <a href="../../../../../../builtin/index.html#float64">float64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ReadOnlyBalance">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/balance.go?s=2873:3065#L59">ReadOnlyBalance</a>
+				<a class="permalink" href="index.html#ReadOnlyBalance">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReadOnlyBalance provides read-only operations on the node balance
+
+			<pre>type ReadOnlyBalance interface {
+    GetBalance() (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#uint64">uint64</a>)
+    GetRawBalance() (<a href="../../utils/index.html">utils</a>.<a href="../../utils/index.html#ExpiredValue">ExpiredValue</a>, <a href="../../utils/index.html">utils</a>.<a href="../../utils/index.html#ExpiredValue">ExpiredValue</a>)
+    GetPriceFactors() (posFactor, negFactor <a href="index.html#PriceFactors">PriceFactors</a>)
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=1110:1265#L24">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server serves vflux requests
+
+			<pre>type Server struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=1572:1625#L43">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer(delayPerRequest <a href="../../../../../../time/index.html">time</a>.<a href="../../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer creates a new Server
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.Register">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=1813:1866#L52">Register</a>
+					<a class="permalink" href="index.html#Server.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Register(b <a href="index.html#Service">Service</a>, id, desc <a href="../../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>Register registers a Service
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Serve">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=2395:2485#L68">Serve</a>
+					<a class="permalink" href="index.html#Server.Serve">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Serve(id <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, address <a href="../../../../../../builtin/index.html#string">string</a>, requests <a href="../index.html">vflux</a>.<a href="../index.html#Requests">Requests</a>) <a href="../index.html">vflux</a>.<a href="../index.html#Replies">Replies</a></pre>
+				<p>Serve serves a vflux request batch
+Note: requests are served by the Handle functions of the registered services. Serve
+may be called concurrently but the Handle functions are called sequentially and
+therefore thread safety is guaranteed.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.ServeEncoded">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=3347:3427#L94">ServeEncoded</a>
+					<a class="permalink" href="index.html#Server.ServeEncoded">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) ServeEncoded(id <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, addr *<a href="../../../../../../net/index.html">net</a>.<a href="../../../../../../net/index.html#UDPAddr">UDPAddr</a>, req []<a href="../../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>ServeEncoded serves an encoded vflux request batch and returns the encoded replies
+
+				
+				
+				
+			
+				
+				<h3 id="Server.Stop">func (*Server) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=3702:3725#L108">Stop</a>
+					<a class="permalink" href="index.html#Server.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Server">Server</a>) Stop()</pre>
+				<p>Stop shuts down the server
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/les/vflux/server/service.go?s=1348:1470#L32">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service is a service registered at the Server and identified by a string id
+
+			<pre>type Service interface {
+    Handle(id <a href="../../../p2p/enode/index.html">enode</a>.<a href="../../../p2p/enode/index.html#ID">ID</a>, address <a href="../../../../../../builtin/index.html#string">string</a>, name <a href="../../../../../../builtin/index.html#string">string</a>, data []<a href="../../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a> <span class="comment">// never called concurrently</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

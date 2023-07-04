@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>protoarray - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package protoarray
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package protoarray implements proto array fork choice as outlined:
+<a href="https://github.com/protolambda/lmd-ghost#array-based-stateful-dag-proto_array">https://github.com/protolambda/lmd-ghost#array-based-stateful-dag-proto_array</a>
+This was motivated by the the original implementation by Sigma Prime here:
+<a href="https://github.com/sigp/lighthouse/pull/804">https://github.com/sigp/lighthouse/pull/804</a>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#ForkChoice">type ForkChoice</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(justifiedEpoch, finalizedEpoch types.Epoch, finalizedRoot [32]byte) *ForkChoice</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.AncestorRoot">func (f *ForkChoice) AncestorRoot(ctx context.Context, root [32]byte, slot types.Slot) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.HasNode">func (f *ForkChoice) HasNode(root [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.HasParent">func (f *ForkChoice) HasParent(root [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.Head">func (f *ForkChoice) Head(ctx context.Context, justifiedEpoch types.Epoch, justifiedRoot [32]byte, justifiedStateBalances []uint64, finalizedEpoch types.Epoch) ([32]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.IsCanonical">func (f *ForkChoice) IsCanonical(root [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.Node">func (f *ForkChoice) Node(root [32]byte) *Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.Nodes">func (f *ForkChoice) Nodes() []*Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.ProcessAttestation">func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []uint64, blockRoot [32]byte, targetEpoch types.Epoch)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.ProcessBlock">func (f *ForkChoice) ProcessBlock(ctx context.Context, slot types.Slot, blockRoot, parentRoot, graffiti [32]byte, justifiedEpoch, finalizedEpoch types.Epoch) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.Prune">func (f *ForkChoice) Prune(ctx context.Context, finalizedRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ForkChoice.Store">func (f *ForkChoice) Store() *Store</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Node">type Node</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.BestChild">func (n *Node) BestChild() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.BestDescendant">func (n *Node) BestDescendant() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.FinalizedEpoch">func (n *Node) FinalizedEpoch() types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Graffiti">func (n *Node) Graffiti() [32]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.JustifiedEpoch">func (n *Node) JustifiedEpoch() types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Parent">func (n *Node) Parent() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Root">func (n *Node) Root() [32]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Slot">func (n *Node) Slot() types.Slot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Weight">func (n *Node) Weight() uint64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.FinalizedEpoch">func (s *Store) FinalizedEpoch() types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.JustifiedEpoch">func (s *Store) JustifiedEpoch() types.Epoch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Nodes">func (s *Store) Nodes() []*Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.NodesIndices">func (s *Store) NodesIndices() map[[32]byte]uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.PruneThreshold">func (s *Store) PruneThreshold() uint64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Vote">type Vote</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/helpers.go">helpers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go">node.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go">store.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>NonExistentNode defines an unknown node which is used for the array based stateful DAG.
+
+				<pre>const <span id="NonExistentNode">NonExistentNode</span> = ^<a href="../../../../../../builtin/index.html#uint64">uint64</a>(0)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="ForkChoice">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/types.go?s=209:417#L1">ForkChoice</a>
+				<a class="permalink" href="index.html#ForkChoice">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ForkChoice defines the overall fork choice store which includes all block nodes, validator&apos;s latest votes and balances.
+
+			<pre>type ForkChoice struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=494:582#L12">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(justifiedEpoch, finalizedEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>, finalizedRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#ForkChoice">ForkChoice</a></pre>
+				<p>New initializes a new fork choice store.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ForkChoice.AncestorRoot">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=5754:5856#L174">AncestorRoot</a>
+					<a class="permalink" href="index.html#ForkChoice.AncestorRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) AncestorRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AncestorRoot returns the ancestor root of input block root at a given slot.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.HasNode">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=4909:4957#L143">HasNode</a>
+					<a class="permalink" href="index.html#ForkChoice.HasNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) HasNode(root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasNode returns true if the node exists in fork choice store,
+false else wise.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.HasParent">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=5168:5218#L153">HasParent</a>
+					<a class="permalink" href="index.html#ForkChoice.HasParent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) HasParent(root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasParent returns true if the node parent exists in fork choice store,
+false else wise.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.Head">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=1126:1311#L31">Head</a>
+					<a class="permalink" href="index.html#ForkChoice.Head">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) Head(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    justifiedEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+    justifiedRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>,
+    justifiedStateBalances []<a href="../../../../../../builtin/index.html#uint64">uint64</a>,
+    finalizedEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) ([32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Head returns the head root from fork choice store.
+It firsts computes validator&apos;s balance changes then recalculates block tree from leaves to root.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.IsCanonical">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=5517:5569#L166">IsCanonical</a>
+					<a class="permalink" href="index.html#ForkChoice.IsCanonical">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) IsCanonical(root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsCanonical returns true if the given root is part of the canonical chain.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.Node">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=4602:4648#L129">Node</a>
+					<a class="permalink" href="index.html#ForkChoice.Node">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) Node(root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#Node">Node</a></pre>
+				<p>Node returns the copied node in the fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.Nodes">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=4126:4162#L112">Nodes</a>
+					<a class="permalink" href="index.html#ForkChoice.Nodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) Nodes() []*<a href="index.html#Node">Node</a></pre>
+				<p>Nodes returns the copied list of block nodes in the fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.ProcessAttestation">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=2279:2411#L66">ProcessAttestation</a>
+					<a class="permalink" href="index.html#ForkChoice.ProcessAttestation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) ProcessAttestation(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, validatorIndices []<a href="../../../../../../builtin/index.html#uint64">uint64</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, targetEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>)</pre>
+				<p>ProcessAttestation processes attestation for vote accounting, it iterates around validator indices
+and update their votes accordingly.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.ProcessBlock">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=3343:3513#L93">ProcessBlock</a>
+					<a class="permalink" href="index.html#ForkChoice.ProcessBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) ProcessBlock(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>,
+    blockRoot, parentRoot, graffiti [32]<a href="../../../../../../builtin/index.html#byte">byte</a>,
+    justifiedEpoch, finalizedEpoch <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ProcessBlock processes a new block by inserting it to the fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.Prune">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=3927:4004#L107">Prune</a>
+					<a class="permalink" href="index.html#ForkChoice.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) Prune(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, finalizedRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Prune prunes the fork choice store with the new finalized root. The store is only pruned if the input
+root is different than the current store finalized root, and the number of the store has met prune threshold.
+
+				
+				
+				
+			
+				
+				<h3 id="ForkChoice.Store">func (*ForkChoice) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=4427:4462#L122">Store</a>
+					<a class="permalink" href="index.html#ForkChoice.Store">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#ForkChoice">ForkChoice</a>) Store() *<a href="index.html#Store">Store</a></pre>
+				<p>Store returns the fork choice store object which contains all the information regarding proto array fork choice.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Node">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/types.go?s=1347:1921#L21">Node</a>
+				<a class="permalink" href="index.html#Node">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Node defines the individual block which includes its block parent, ancestor and how much weight accounted for it.
+This is used as an array based stateful DAG for efficient fork choice look up.
+
+			<pre>type Node struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Node.BestChild">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=695:728#L28">BestChild</a>
+					<a class="permalink" href="index.html#Node.BestChild">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) BestChild() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>BestChild of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.BestDescendant">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=797:835#L33">BestDescendant</a>
+					<a class="permalink" href="index.html#Node.BestDescendant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) BestDescendant() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>BestDescendant of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.FinalizedEpoch">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=495:538#L18">FinalizedEpoch</a>
+					<a class="permalink" href="index.html#Node.FinalizedEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) FinalizedEpoch() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>FinalizedEpoch of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Graffiti">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=903:937#L38">Graffiti</a>
+					<a class="permalink" href="index.html#Node.Graffiti">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Graffiti() [32]<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Graffiti of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.JustifiedEpoch">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=378:421#L13">JustifiedEpoch</a>
+					<a class="permalink" href="index.html#Node.JustifiedEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) JustifiedEpoch() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>JustifiedEpoch of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Parent">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=282:312#L8">Parent</a>
+					<a class="permalink" href="index.html#Node.Parent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Parent() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Parent of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Root">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=196:226#L3">Root</a>
+					<a class="permalink" href="index.html#Node.Root">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Root() [32]<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Root of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Slot">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=110:142#L1">Slot</a>
+					<a class="permalink" href="index.html#Node.Slot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Slot() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a></pre>
+				<p>Slot of the fork choice node.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Weight">func (*Node) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/node.go?s=604:634#L23">Weight</a>
+					<a class="permalink" href="index.html#Node.Weight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Weight() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Weight of the fork choice node.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/types.go?s=530:1146#L8">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store defines the fork choice store which includes block nodes and the last view of checkpoint information.
+
+			<pre>type Store struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Store.FinalizedEpoch">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=6722:6766#L215">FinalizedEpoch</a>
+					<a class="permalink" href="index.html#Store.FinalizedEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) FinalizedEpoch() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>FinalizedEpoch of fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.JustifiedEpoch">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=6607:6651#L210">JustifiedEpoch</a>
+					<a class="permalink" href="index.html#Store.JustifiedEpoch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) JustifiedEpoch() <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Epoch">Epoch</a></pre>
+				<p>JustifiedEpoch of fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Nodes">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=6828:6859#L220">Nodes</a>
+					<a class="permalink" href="index.html#Store.Nodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Nodes() []*<a href="index.html#Node">Node</a></pre>
+				<p>Nodes of fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.NodesIndices">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=6969:7019#L227">NodesIndices</a>
+					<a class="permalink" href="index.html#Store.NodesIndices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) NodesIndices() map[[32]<a href="../../../../../../builtin/index.html#byte">byte</a>]<a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>NodesIndices of fork choice store.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.PruneThreshold">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/store.go?s=6497:6536#L205">PruneThreshold</a>
+					<a class="permalink" href="index.html#Store.PruneThreshold">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) PruneThreshold() <a href="../../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>PruneThreshold of fork choice store.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Vote">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/forkchoice/protoarray/types.go?s=1971:2143#L34">Vote</a>
+				<a class="permalink" href="index.html#Vote">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Vote defines an individual validator&apos;s vote.
+
+			<pre>type Vote struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

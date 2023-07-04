@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>cache - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package cache
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/syndtr/goleveldb/leveldb/cache"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package cache provides interface and implementation of a cache algorithms.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Cache">type Cache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCache">func NewCache(cacher Cacher) *Cache</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Capacity">func (r *Cache) Capacity() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Close">func (r *Cache) Close(force bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Delete">func (r *Cache) Delete(ns, key uint64, delFunc func()) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Evict">func (r *Cache) Evict(ns, key uint64) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.EvictAll">func (r *Cache) EvictAll()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.EvictNS">func (r *Cache) EvictNS(ns uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Get">func (r *Cache) Get(ns, key uint64, setFunc func() (size int, value Value)) *Handle</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.GetStats">func (r *Cache) GetStats() Stats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Nodes">func (r *Cache) Nodes() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.SetCapacity">func (r *Cache) SetCapacity(capacity int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Cache.Size">func (r *Cache) Size() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Cacher">type Cacher</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLRU">func NewLRU(capacity int) Cacher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Handle">type Handle</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handle.Release">func (h *Handle) Release()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Handle.Value">func (h *Handle) Value() Value</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NamespaceGetter">type NamespaceGetter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NamespaceGetter.Get">func (g *NamespaceGetter) Get(key uint64, setFunc func() (size int, value Value)) *Handle</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Node">type Node</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.GetHandle">func (n *Node) GetHandle() *Handle</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Key">func (n *Node) Key() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.NS">func (n *Node) NS() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Ref">func (n *Node) Ref() int32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Size">func (n *Node) Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Value">func (n *Node) Value() Value</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Stats">type Stats</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Value">type Value</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go">cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/lru.go">lru.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Cache">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=7691:7939#L353">Cache</a>
+				<a class="permalink" href="index.html#Cache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Cache is a &apos;cache map&apos;.
+
+			<pre>type Cache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCache">func <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=8022:8057#L371">NewCache</a>
+					<a class="permalink" href="index.html#NewCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCache(cacher <a href="index.html#Cacher">Cacher</a>) *<a href="index.html#Cache">Cache</a></pre>
+				<p>NewCache creates a new &apos;cache map&apos;. The cacher is optional and
+may be nil.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Cache.Capacity">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=9814:9844#L440">Capacity</a>
+					<a class="permalink" href="index.html#Cache.Capacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Capacity() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Capacity returns cache capacity.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Close">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=13834:13867#L630">Close</a>
+					<a class="permalink" href="index.html#Cache.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Close(force <a href="../../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>Close closes the &apos;cache map&apos;.
+All &apos;Cache&apos; method is no-op after &apos;cache map&apos; is closed.
+All &apos;cache node&apos; will be evicted from &apos;cacher&apos;.
+<p>If &apos;force&apos; is true then all &apos;cache node&apos; will be forcefully released
+even if the &apos;node ref&apos; is not zero.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Delete">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=11763:11822#L519">Delete</a>
+					<a class="permalink" href="index.html#Cache.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Delete(ns, key <a href="../../../../../builtin/index.html#uint64">uint64</a>, delFunc func()) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Delete removes and ban &apos;cache node&apos; with the given namespace and key.
+A banned &apos;cache node&apos; will never inserted into the &apos;cache tree&apos;. Ban
+only attributed to the particular &apos;cache node&apos;, so when a &apos;cache node&apos;
+is recreated it will not be banned.
+<p>If delFunc is not nil, then it will be executed if such &apos;cache node&apos;
+doesn&apos;t exist or once the &apos;cache node&apos; is released.
+<p>Delete return true is such &apos;cache node&apos; exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Evict">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=12479:12521#L559">Evict</a>
+					<a class="permalink" href="index.html#Cache.Evict">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Evict(ns, key <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Evict evicts &apos;cache node&apos; with the given namespace and key. This will
+simply call Cacher.Evict.
+<p>Evict return true is such &apos;cache node&apos; exist.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.EvictAll">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=13440:13466#L612">EvictAll</a>
+					<a class="permalink" href="index.html#Cache.EvictAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) EvictAll()</pre>
+				<p>EvictAll evicts all &apos;cache node&apos;. This will simply call Cacher.EvictAll.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.EvictNS">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=13011:13045#L588">EvictNS</a>
+					<a class="permalink" href="index.html#Cache.EvictNS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) EvictNS(ns <a href="../../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>EvictNS evicts &apos;cache node&apos; with the given namespace. This will
+simply call Cacher.Evict on all nodes with the given namespace.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Get">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=10361:10444#L460">Get</a>
+					<a class="permalink" href="index.html#Cache.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Get(ns, key <a href="../../../../../builtin/index.html#uint64">uint64</a>, setFunc func() (size <a href="../../../../../builtin/index.html#int">int</a>, value <a href="index.html#Value">Value</a>)) *<a href="index.html#Handle">Handle</a></pre>
+				<p>Get gets &apos;cache node&apos; with the given namespace and key.
+If cache node is not found and setFunc is not nil, Get will atomically creates
+the &apos;cache node&apos; by calling setFunc. Otherwise Get will returns nil.
+<p>The returned &apos;cache handle&apos; should be released after use by calling Release
+method.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.GetStats">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=9028:9060#L415">GetStats</a>
+					<a class="permalink" href="index.html#Cache.GetStats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) GetStats() <a href="index.html#Stats">Stats</a></pre>
+				<p>GetStats returns cache statistics.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Nodes">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=9572:9599#L430">Nodes</a>
+					<a class="permalink" href="index.html#Cache.Nodes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Nodes() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Nodes returns number of &apos;cache node&apos; in the map.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.SetCapacity">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=9950:9991#L448">SetCapacity</a>
+					<a class="permalink" href="index.html#Cache.SetCapacity">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) SetCapacity(capacity <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>SetCapacity sets cache capacity.
+
+				
+				
+				
+			
+				
+				<h3 id="Cache.Size">func (*Cache) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=9703:9729#L435">Size</a>
+					<a class="permalink" href="index.html#Cache.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Cache">Cache</a>) Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Size returns sums of &apos;cache node&apos; size in the map.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Cacher">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=508:842#L11">Cacher</a>
+				<a class="permalink" href="index.html#Cacher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Cacher provides interface to implements a caching functionality.
+An implementation must be safe for concurrent use.
+
+			<pre>type Cacher interface {
+    <span class="comment">// Capacity returns cache capacity.</span>
+    Capacity() <a href="../../../../../builtin/index.html#int">int</a>
+
+    <span class="comment">// SetCapacity sets cache capacity.</span>
+    SetCapacity(capacity <a href="../../../../../builtin/index.html#int">int</a>)
+
+    <span class="comment">// Promote promotes the &#39;cache node&#39;.</span>
+    Promote(n *<a href="index.html#Node">Node</a>)
+
+    <span class="comment">// Ban evicts the &#39;cache node&#39; and prevent subsequent &#39;promote&#39;.</span>
+    Ban(n *<a href="index.html#Node">Node</a>)
+
+    <span class="comment">// Evict evicts the &#39;cache node&#39;.</span>
+    Evict(n *<a href="index.html#Node">Node</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLRU">func <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/lru.go?s=2508:2540#L144">NewLRU</a>
+					<a class="permalink" href="index.html#NewLRU">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLRU(capacity <a href="../../../../../builtin/index.html#int">int</a>) <a href="index.html#Cacher">Cacher</a></pre>
+				<p>NewLRU create a new LRU-cache.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Handle">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=16004:16053#L751">Handle</a>
+				<a class="permalink" href="index.html#Handle">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Handle is a &apos;cache handle&apos; of a &apos;cache node&apos;.
+
+			<pre>type Handle struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Handle.Release">func (*Handle) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=16313:16339#L766">Release</a>
+					<a class="permalink" href="index.html#Handle.Release">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handle">Handle</a>) Release()</pre>
+				<p>Release releases this &apos;cache handle&apos;.
+It is safe to call release multiple times.
+
+				
+				
+				
+			
+				
+				<h3 id="Handle.Value">func (*Handle) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=16103:16133#L756">Value</a>
+					<a class="permalink" href="index.html#Handle.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Handle">Handle</a>) Value() <a href="index.html#Value">Value</a></pre>
+				<p>Value returns the value of the &apos;cache node&apos;.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NamespaceGetter">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=1070:1129#L33">NamespaceGetter</a>
+				<a class="permalink" href="index.html#NamespaceGetter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NamespaceGetter provides convenient wrapper for namespace.
+
+			<pre>type NamespaceGetter struct {
+<span id="NamespaceGetter.Cache"></span>    Cache *<a href="index.html#Cache">Cache</a>
+<span id="NamespaceGetter.NS"></span>    NS    <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NamespaceGetter.Get">func (*NamespaceGetter) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=1171:1260#L39">Get</a>
+					<a class="permalink" href="index.html#NamespaceGetter.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#NamespaceGetter">NamespaceGetter</a>) Get(key <a href="../../../../../builtin/index.html#uint64">uint64</a>, setFunc func() (size <a href="../../../../../builtin/index.html#int">int</a>, value <a href="index.html#Value">Value</a>)) *<a href="index.html#Handle">Handle</a></pre>
+				<p>Get simply calls Cache.Get() method.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Node">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=14480:14649#L663">Node</a>
+				<a class="permalink" href="index.html#Node">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Node is a &apos;cache node&apos;.
+
+			<pre>type Node struct {
+<span id="Node.CacheData"></span>    CacheData <a href="../../../../../unsafe/index.html">unsafe</a>.<a href="../../../../../unsafe/index.html#Pointer">Pointer</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Node.GetHandle">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=15167:15201#L705">GetHandle</a>
+					<a class="permalink" href="index.html#Node.GetHandle">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) GetHandle() *<a href="index.html#Handle">Handle</a></pre>
+				<p>GetHandle returns an handle for this &apos;cache node&apos;.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Key">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=14777:14804#L685">Key</a>
+					<a class="permalink" href="index.html#Node.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Key() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Key returns this &apos;cache node&apos; key.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.NS">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=14694:14720#L680">NS</a>
+					<a class="permalink" href="index.html#Node.NS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) NS() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>NS returns this &apos;cache node&apos; namespace.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Ref">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=15048:15074#L700">Ref</a>
+					<a class="permalink" href="index.html#Node.Ref">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Ref() <a href="../../../../../builtin/index.html#int32">int32</a></pre>
+				<p>Ref returns this &apos;cache node&apos; ref counter.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Size">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=14864:14889#L690">Size</a>
+					<a class="permalink" href="index.html#Node.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Size returns this &apos;cache node&apos; size.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Value">func (*Node) <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=14952:14980#L695">Value</a>
+					<a class="permalink" href="index.html#Node.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Value() <a href="index.html#Value">Value</a></pre>
+				<p>Value returns this &apos;cache node&apos; value.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Stats">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=7472:7662#L340">Stats</a>
+				<a class="permalink" href="index.html#Stats">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Stats struct {
+<span id="Stats.Buckets"></span>    Buckets     <a href="../../../../../builtin/index.html#int">int</a>
+<span id="Stats.Nodes"></span>    Nodes       <a href="../../../../../builtin/index.html#int64">int64</a>
+<span id="Stats.Size"></span>    Size        <a href="../../../../../builtin/index.html#int64">int64</a>
+<span id="Stats.GrowCount"></span>    GrowCount   <a href="../../../../../builtin/index.html#int32">int32</a>
+<span id="Stats.ShrinkCount"></span>    ShrinkCount <a href="../../../../../builtin/index.html#int32">int32</a>
+<span id="Stats.HitCount"></span>    HitCount    <a href="../../../../../builtin/index.html#int64">int64</a>
+<span id="Stats.MissCount"></span>    MissCount   <a href="../../../../../builtin/index.html#int64">int64</a>
+<span id="Stats.SetCount"></span>    SetCount    <a href="../../../../../builtin/index.html#int64">int64</a>
+<span id="Stats.DelCount"></span>    DelCount    <a href="../../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Value">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/cache/cache.go?s=984:1006#L30">Value</a>
+				<a class="permalink" href="index.html#Value">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Value is a &apos;cache-able object&apos;. It may implements util.Releaser, if
+so the the Release method will be called once object is released.
+
+			<pre>type Value interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

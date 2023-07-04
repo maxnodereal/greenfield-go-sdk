@@ -1,0 +1,3089 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>keyring - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package keyring
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/crypto/keyring"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package keyring provides common key management API.
+<h3 id="hdr-The_Keyring_interface">The Keyring interface</h3>
+<p>The Keyring interface defines the methods that a type needs to implement to be used
+as key storage backend. This package provides a few implementations out-of-the-box.
+<h3 id="hdr-NewInMemory">NewInMemory</h3>
+<p>The NewInMemory constructor returns an implementation backed by an in-memory, goroutine-safe
+map that has historically been used for testing purposes or on-the-fly key generation as the
+generated keys are discarded when the process terminates or the type instance is garbage
+collected.
+<h3 id="hdr-New">New</h3>
+<p>The New constructor returns an implementation backed by a keyring library
+(<a href="https://github.com/99designs/keyring">https://github.com/99designs/keyring</a>), whose aim is to provide a common abstraction and uniform
+interface between secret stores available for Windows, macOS, and most GNU/Linux distributions
+as well as operating system-agnostic encrypted file-based backends.
+<p>The backends:
+<pre>os	The instance returned by this constructor uses the operating system&apos;s default
+	credentials store to handle keys storage operations securely. It should be noted
+	that the keyring may be kept unlocked for the whole duration of the user
+	session.
+file	This backend more closely resembles the previous keyring storage used prior to
+	v0.38.1. It stores the keyring encrypted within the app&apos;s configuration directory.
+	This keyring will request a password each time it is accessed, which may occur
+	multiple times in a single command resulting in repeated password prompts.
+kwallet	This backend uses KDE Wallet Manager as a credentials management application:
+	https://github.com/KDE/kwallet
+pass	This backend uses the pass command line utility to store and retrieve keys:
+	https://www.passwordstore.org/
+test	This backend stores keys insecurely to disk. It does not prompt for a password to
+	be unlocked and it should be used only for testing purposes.
+memory	Same instance as returned by NewInMemory. This backend uses a transient storage. Keys
+	are discarded when the process terminates or the type instance is garbage collected.
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#MarshalInfo">func MarshalInfo(i LegacyInfo) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterLegacyAminoCodec">func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino)</a></dd>
+			
+				
+				<dd><a href="index.html#SignWithLedger">func SignWithLedger(k *Record, msg []byte) (sig []byte, pub types.PubKey, err error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DeriveKeyFunc">type DeriveKeyFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Exporter">type Exporter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Importer">type Importer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyOutput">type KeyOutput</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MkAccKeyOutput">func MkAccKeyOutput(k *Record) (KeyOutput, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MkAccKeysOutput">func MkAccKeysOutput(records []*Record) ([]KeyOutput, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MkConsKeyOutput">func MkConsKeyOutput(k *Record) (KeyOutput, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MkValKeyOutput">func MkValKeyOutput(k *Record) (KeyOutput, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeyOutput">func NewKeyOutput(name string, keyType KeyType, a sdk.Address, pk cryptotypes.PubKey) (KeyOutput, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyType">type KeyType</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#KeyType.String">func (kt KeyType) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Keyring">type Keyring</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(appName, backend, rootDir string, userInput io.Reader, cdc codec.Codec, opts ...Option) (Keyring, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInMemory">func NewInMemory(cdc codec.Codec, opts ...Option) Keyring</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewInMemoryWithKeyring">func NewInMemoryWithKeyring(kr keyring.Keyring, cdc codec.Codec, opts ...Option) Keyring</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Language">type Language</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LegacyInfo">type LegacyInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLegacyMultiInfo">func NewLegacyMultiInfo(name string, pub cryptotypes.PubKey) (LegacyInfo, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LegacyMultiInfo">type LegacyMultiInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetAddress">func (i LegacyMultiInfo) GetAddress() sdk.AccAddress</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetAlgo">func (i LegacyMultiInfo) GetAlgo() hd.PubKeyType</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetName">func (i LegacyMultiInfo) GetName() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetPath">func (i LegacyMultiInfo) GetPath() (*hd.BIP44Params, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetPubKey">func (i LegacyMultiInfo) GetPubKey() cryptotypes.PubKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.GetType">func (i LegacyMultiInfo) GetType() KeyType</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LegacyMultiInfo.UnpackInterfaces">func (i LegacyMultiInfo) UnpackInterfaces(unpacker codectypes.AnyUnpacker) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Migrator">type Migrator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ETHAlgoOption">func ETHAlgoOption() Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Options">type Options</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PrivKeyGenFunc">type PrivKeyGenFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Record">type Record</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLedgerRecord">func NewLedgerRecord(name string, pk cryptotypes.PubKey, path *hd.BIP44Params) (*Record, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLocalRecord">func NewLocalRecord(name string, priv cryptotypes.PrivKey, pk cryptotypes.PubKey) (*Record, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMultiRecord">func NewMultiRecord(name string, pk cryptotypes.PubKey) (*Record, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewOfflineRecord">func NewOfflineRecord(name string, pk cryptotypes.PubKey) (*Record, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Descriptor">func (*Record) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetAddress">func (k Record) GetAddress() (types.AccAddress, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetItem">func (m *Record) GetItem() isRecord_Item</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetLedger">func (m *Record) GetLedger() *Record_Ledger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetLocal">func (m *Record) GetLocal() *Record_Local</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetMulti">func (m *Record) GetMulti() *Record_Multi</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetOffline">func (m *Record) GetOffline() *Record_Offline</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetPubKey">func (k *Record) GetPubKey() (cryptotypes.PubKey, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.GetType">func (k Record) GetType() KeyType</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Marshal">func (m *Record) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.MarshalTo">func (m *Record) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.MarshalToSizedBuffer">func (m *Record) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.ProtoMessage">func (*Record) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Reset">func (m *Record) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Size">func (m *Record) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.String">func (m *Record) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.Unmarshal">func (m *Record) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.UnpackInterfaces">func (k *Record) UnpackInterfaces(unpacker codectypes.AnyUnpacker) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_DiscardUnknown">func (m *Record) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_Marshal">func (m *Record) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_Merge">func (m *Record) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_OneofWrappers">func (*Record) XXX_OneofWrappers() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_Size">func (m *Record) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record.XXX_Unmarshal">func (m *Record) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Ledger">type Record_Ledger</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.Descriptor">func (*Record_Ledger) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.GetPath">func (rl *Record_Ledger) GetPath() *hd.BIP44Params</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.Marshal">func (m *Record_Ledger) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.MarshalTo">func (m *Record_Ledger) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.MarshalToSizedBuffer">func (m *Record_Ledger) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.ProtoMessage">func (*Record_Ledger) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.Reset">func (m *Record_Ledger) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.Size">func (m *Record_Ledger) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.String">func (m *Record_Ledger) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.Unmarshal">func (m *Record_Ledger) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.XXX_DiscardUnknown">func (m *Record_Ledger) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.XXX_Marshal">func (m *Record_Ledger) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.XXX_Merge">func (m *Record_Ledger) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.XXX_Size">func (m *Record_Ledger) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger.XXX_Unmarshal">func (m *Record_Ledger) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Ledger_">type Record_Ledger_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger_.MarshalTo">func (m *Record_Ledger_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger_.MarshalToSizedBuffer">func (m *Record_Ledger_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Ledger_.Size">func (m *Record_Ledger_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Local">type Record_Local</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.Descriptor">func (*Record_Local) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.Marshal">func (m *Record_Local) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.MarshalTo">func (m *Record_Local) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.MarshalToSizedBuffer">func (m *Record_Local) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.ProtoMessage">func (*Record_Local) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.Reset">func (m *Record_Local) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.Size">func (m *Record_Local) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.String">func (m *Record_Local) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.Unmarshal">func (m *Record_Local) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.XXX_DiscardUnknown">func (m *Record_Local) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.XXX_Marshal">func (m *Record_Local) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.XXX_Merge">func (m *Record_Local) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.XXX_Size">func (m *Record_Local) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local.XXX_Unmarshal">func (m *Record_Local) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Local_">type Record_Local_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local_.MarshalTo">func (m *Record_Local_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local_.MarshalToSizedBuffer">func (m *Record_Local_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Local_.Size">func (m *Record_Local_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Multi">type Record_Multi</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.Descriptor">func (*Record_Multi) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.Marshal">func (m *Record_Multi) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.MarshalTo">func (m *Record_Multi) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.MarshalToSizedBuffer">func (m *Record_Multi) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.ProtoMessage">func (*Record_Multi) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.Reset">func (m *Record_Multi) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.Size">func (m *Record_Multi) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.String">func (m *Record_Multi) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.Unmarshal">func (m *Record_Multi) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.XXX_DiscardUnknown">func (m *Record_Multi) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.XXX_Marshal">func (m *Record_Multi) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.XXX_Merge">func (m *Record_Multi) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.XXX_Size">func (m *Record_Multi) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi.XXX_Unmarshal">func (m *Record_Multi) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Multi_">type Record_Multi_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi_.MarshalTo">func (m *Record_Multi_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi_.MarshalToSizedBuffer">func (m *Record_Multi_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Multi_.Size">func (m *Record_Multi_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Offline">type Record_Offline</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.Descriptor">func (*Record_Offline) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.Marshal">func (m *Record_Offline) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.MarshalTo">func (m *Record_Offline) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.MarshalToSizedBuffer">func (m *Record_Offline) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.ProtoMessage">func (*Record_Offline) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.Reset">func (m *Record_Offline) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.Size">func (m *Record_Offline) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.String">func (m *Record_Offline) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.Unmarshal">func (m *Record_Offline) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.XXX_DiscardUnknown">func (m *Record_Offline) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.XXX_Marshal">func (m *Record_Offline) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.XXX_Merge">func (m *Record_Offline) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.XXX_Size">func (m *Record_Offline) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline.XXX_Unmarshal">func (m *Record_Offline) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Record_Offline_">type Record_Offline_</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline_.MarshalTo">func (m *Record_Offline_) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline_.MarshalToSizedBuffer">func (m *Record_Offline_) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Record_Offline_.Size">func (m *Record_Offline_) Size() (n int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SignatureAlgo">type SignatureAlgo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSigningAlgoFromString">func NewSigningAlgoFromString(str string, algoList SigningAlgoList) (SignatureAlgo, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Signer">type Signer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SigningAlgoList">type SigningAlgoList</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SigningAlgoList.Contains">func (sal SigningAlgoList) Contains(algo SignatureAlgo) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SigningAlgoList.String">func (sal SigningAlgoList) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_New">New</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/codec.go">codec.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go">keyring.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go">legacy_info.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/options.go">options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go">output.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go">record.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go">record.pb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go">signing_algorithms.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>Backend options for Keyring
+
+				<pre>const (
+    <span id="BackendFile">BackendFile</span>    = &#34;file&#34;
+    <span id="BackendOS">BackendOS</span>      = &#34;os&#34;
+    <span id="BackendKWallet">BackendKWallet</span> = &#34;kwallet&#34;
+    <span id="BackendPass">BackendPass</span>    = &#34;pass&#34;
+    <span id="BackendTest">BackendTest</span>    = &#34;test&#34;
+    <span id="BackendMemory">BackendMemory</span>  = &#34;memory&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultBIP39Passphrase used for deriving seed from mnemonic</span>
+    <span id="DefaultBIP39Passphrase">DefaultBIP39Passphrase</span> = &#34;&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrUnsupportedSigningAlgo is raised when the caller tries to use a</span>
+    <span class="comment">// different signing scheme than secp256k1.</span>
+    <span id="ErrUnsupportedSigningAlgo">ErrUnsupportedSigningAlgo</span> = <a href="../../../../pkg/errors/index.html">errors</a>.<a href="../../../../pkg/errors/index.html#New">New</a>(&#34;unsupported signing algo&#34;)
+
+    <span class="comment">// ErrUnsupportedLanguage is raised when the caller tries to use a</span>
+    <span class="comment">// different language than english for creating a mnemonic sentence.</span>
+    <span id="ErrUnsupportedLanguage">ErrUnsupportedLanguage</span> = <a href="../../../../pkg/errors/index.html">errors</a>.<a href="../../../../pkg/errors/index.html#New">New</a>(&#34;unsupported language: only english is supported&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// SupportedAlgorithms defines the list of signing algorithms used on Greenfield:</span>
+    <span class="comment">//  - eth_secp256k1 (Ethereum)</span>
+    <span class="comment">//  - eth_bls (Ethereum)</span>
+    <span class="comment">//  - secp256k1 (For legacy accounts)</span>
+    <span id="SupportedAlgorithms">SupportedAlgorithms</span> = <a href="index.html#SigningAlgoList">SigningAlgoList</a>{<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#EthSecp256k1">EthSecp256k1</a>, <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#EthBLS">EthBLS</a>, <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#Secp256k1">Secp256k1</a>}
+    <span class="comment">// SupportedAlgorithmsLedger defines the list of signing algorithms used on Greenfield for the Ledger device:</span>
+    <span class="comment">//  - eth_secp256k1 (Ethereum)</span>
+    <span class="comment">//  - eth_bls (Ethereum)</span>
+    <span class="comment">//  - secp256k1 (For legacy accounts)</span>
+    <span id="SupportedAlgorithmsLedger">SupportedAlgorithmsLedger</span> = <a href="index.html#SigningAlgoList">SigningAlgoList</a>{<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#EthSecp256k1">EthSecp256k1</a>, <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#EthBLS">EthBLS</a>, <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#Secp256k1">Secp256k1</a>}
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidLengthRecord">ErrInvalidLengthRecord</span>        = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: negative length found during unmarshaling&#34;)
+    <span id="ErrIntOverflowRecord">ErrIntOverflowRecord</span>          = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: integer overflow&#34;)
+    <span id="ErrUnexpectedEndOfGroupRecord">ErrUnexpectedEndOfGroupRecord</span> = <a href="../../../../../fmt/index.html">fmt</a>.<a href="../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: unexpected end of group&#34;)
+)</pre>
+			
+				<p>ErrPrivKeyExtr is used to output an error if extraction of a private key from Local item fails
+
+				<pre>var <span id="ErrPrivKeyExtr">ErrPrivKeyExtr</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;private key extraction works only for Local&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="MarshalInfo">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=6283:6320#L217">MarshalInfo</a>
+				<a class="permalink" href="index.html#MarshalInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MarshalInfo(i <a href="index.html#LegacyInfo">LegacyInfo</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>encoding info
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterLegacyAminoCodec">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/codec.go?s=297:350#L4">RegisterLegacyAminoCodec</a>
+				<a class="permalink" href="index.html#RegisterLegacyAminoCodec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterLegacyAminoCodec(cdc *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a>)</pre>
+			<p>RegisterLegacyAminoCodec registers concrete types and interfaces on the given codec.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SignWithLedger">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=16457:16541#L591">SignWithLedger</a>
+				<a class="permalink" href="index.html#SignWithLedger">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SignWithLedger(k *<a href="index.html#Record">Record</a>, msg []<a href="../../../../../builtin/index.html#byte">byte</a>) (sig []<a href="../../../../../builtin/index.html#byte">byte</a>, pub <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SignWithLedger signs a binary message with the ledger device referenced by an Info object
+and returns the signed bytes and the public key. It returns an error if the device could
+not be queried or it returned an error.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DeriveKeyFunc">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go?s=1658:1761#L58">DeriveKeyFunc</a>
+				<a class="permalink" href="index.html#DeriveKeyFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DeriveKeyFunc defines the function to derive a new key from a seed and hd path
+
+			<pre>type DeriveKeyFunc func(mnemonic <a href="../../../../../builtin/index.html#string">string</a>, bip39Passphrase, hdPath <a href="../../../../../builtin/index.html#string">string</a>, algo <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#PubKeyType">PubKeyType</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Exporter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=4230:4737#L117">Exporter</a>
+				<a class="permalink" href="index.html#Exporter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Exporter is implemented by key stores that support export of public and private keys.
+
+			<pre>type Exporter interface {
+    <span class="comment">// Export public key</span>
+    ExportPubKeyArmor(uid <a href="../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    ExportPubKeyArmorByAddress(address <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>) (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// ExportPrivKeyArmor returns a private key in ASCII armored format.</span>
+    <span class="comment">// It returns an error if the key does not exist or a wrong encryption passphrase is supplied.</span>
+    ExportPrivKeyArmor(uid, encryptPassphrase <a href="../../../../../builtin/index.html#string">string</a>) (armor <a href="../../../../../builtin/index.html#string">string</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+    ExportPrivKeyArmorByAddress(address <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>, encryptPassphrase <a href="../../../../../builtin/index.html#string">string</a>) (armor <a href="../../../../../builtin/index.html#string">string</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Importer">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=3733:3986#L103">Importer</a>
+				<a class="permalink" href="index.html#Importer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Importer is implemented by key stores that support import of public and private keys.
+
+			<pre>type Importer interface {
+    <span class="comment">// ImportPrivKey imports ASCII armored passphrase-encrypted private keys.</span>
+    ImportPrivKey(uid, armor, passphrase <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// ImportPubKey imports ASCII armored public keys.</span>
+    ImportPubKey(uid <a href="../../../../../builtin/index.html#string">string</a>, armor <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyOutput">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=437:766#L7">KeyOutput</a>
+				<a class="permalink" href="index.html#KeyOutput">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyOutput defines a structure wrapping around an Info object used for output
+functionality.
+
+			<pre>type KeyOutput struct {
+<span id="KeyOutput.Name"></span>    Name      <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;name&#34; yaml:&#34;name&#34;`
+<span id="KeyOutput.Type"></span>    Type      <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;type&#34; yaml:&#34;type&#34;`
+<span id="KeyOutput.Address"></span>    Address   <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;address&#34; yaml:&#34;address&#34;`
+<span id="KeyOutput.PubKey"></span>    PubKey    <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;pubkey&#34; yaml:&#34;pubkey&#34;`
+<span id="KeyOutput.PubKeyHex"></span>    PubKeyHex <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;pubkey_hex&#34; yaml:&#34;pubkey_hex&#34;`
+<span id="KeyOutput.Mnemonic"></span>    Mnemonic  <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;mnemonic,omitempty&#34; yaml:&#34;mnemonic&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MkAccKeyOutput">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=2100:2149#L60">MkAccKeyOutput</a>
+					<a class="permalink" href="index.html#MkAccKeyOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MkAccKeyOutput(k *<a href="index.html#Record">Record</a>) (<a href="index.html#KeyOutput">KeyOutput</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MkAccKeyOutput create a KeyOutput in with &quot;acc&quot; Bech32 prefixes. If the
+public key is a multisig public key, then the threshold and constituent
+public keys will be added.
+
+				
+				
+			
+				
+				<h3 id="MkAccKeysOutput">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=2504:2564#L72">MkAccKeysOutput</a>
+					<a class="permalink" href="index.html#MkAccKeysOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MkAccKeysOutput(records []*<a href="index.html#Record">Record</a>) ([]<a href="index.html#KeyOutput">KeyOutput</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MkAccKeysOutput returns a slice of KeyOutput objects, each with the &quot;acc&quot;
+Bech32 prefixes, given a slice of Record objects. It returns an error if any
+call to MkKeyOutput fails.
+
+				
+				
+			
+				
+				<h3 id="MkConsKeyOutput">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=1414:1464#L36">MkConsKeyOutput</a>
+					<a class="permalink" href="index.html#MkConsKeyOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MkConsKeyOutput(k *<a href="index.html#Record">Record</a>) (<a href="index.html#KeyOutput">KeyOutput</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MkConsKeyOutput create a KeyOutput in with &quot;cons&quot; Bech32 prefixes.
+
+				
+				
+			
+				
+				<h3 id="MkValKeyOutput">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=1701:1750#L46">MkValKeyOutput</a>
+					<a class="permalink" href="index.html#MkValKeyOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MkValKeyOutput(k *<a href="index.html#Record">Record</a>) (<a href="index.html#KeyOutput">KeyOutput</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MkValKeyOutput create a KeyOutput in with &quot;val&quot; Bech32 prefixes.
+
+				
+				
+			
+				
+				<h3 id="NewKeyOutput">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/output.go?s=861:965#L17">NewKeyOutput</a>
+					<a class="permalink" href="index.html#NewKeyOutput">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeyOutput(name <a href="../../../../../builtin/index.html#string">string</a>, keyType <a href="index.html#KeyType">KeyType</a>, a <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>, pk <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>) (<a href="index.html#KeyOutput">KeyOutput</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKeyOutput creates a default KeyOutput instance without Mnemonic, Threshold and PubKeys
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="KeyType">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go?s=1170:1187#L34">KeyType</a>
+				<a class="permalink" href="index.html#KeyType">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyType reflects a human-readable type for key listing.
+
+			<pre>type KeyType <a href="../../../../../builtin/index.html#uint">uint</a></pre>
+
+			
+				<p>Info KeyTypes
+
+				<pre>const (
+    <span id="TypeLocal">TypeLocal</span>   <a href="index.html#KeyType">KeyType</a> = 0
+    <span id="TypeLedger">TypeLedger</span>  <a href="index.html#KeyType">KeyType</a> = 1
+    <span id="TypeOffline">TypeOffline</span> <a href="index.html#KeyType">KeyType</a> = 2
+    <span id="TypeMulti">TypeMulti</span>   <a href="index.html#KeyType">KeyType</a> = 3
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="KeyType.String">func (KeyType) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go?s=1507:1540#L52">String</a>
+					<a class="permalink" href="index.html#KeyType.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (kt <a href="index.html#KeyType">KeyType</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>String implements the stringer interface for KeyType.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Keyring">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=1239:3273#L44">Keyring</a>
+				<a class="permalink" href="index.html#Keyring">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Keyring exposes operations over a backend supported by github.com/99designs/keyring.
+
+			<pre>type Keyring interface {
+    <span class="comment">// Get the backend type used in the keyring config: &#34;file&#34;, &#34;os&#34;, &#34;kwallet&#34;, &#34;pass&#34;, &#34;test&#34;, &#34;memory&#34;.</span>
+    Backend() <a href="../../../../../builtin/index.html#string">string</a>
+    <span class="comment">// List all keys.</span>
+    List() ([]*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Supported signing algorithms for Keyring and Ledger respectively.</span>
+    SupportedAlgorithms() (<a href="index.html#SigningAlgoList">SigningAlgoList</a>, <a href="index.html#SigningAlgoList">SigningAlgoList</a>)
+
+    <span class="comment">// Key and KeyByAddress return keys by uid and address respectively.</span>
+    Key(uid <a href="../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    KeyByAddress(address <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Delete and DeleteByAddress remove keys from the keyring.</span>
+    Delete(uid <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    DeleteByAddress(address <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Rename an existing key from the Keyring</span>
+    Rename(from <a href="../../../../../builtin/index.html#string">string</a>, to <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// NewMnemonic generates a new mnemonic, derives a hierarchical deterministic key from it, and</span>
+    <span class="comment">// persists the key to storage. Returns the generated mnemonic and the key Info.</span>
+    <span class="comment">// It returns an error if it fails to generate a key for the given algo type, or if</span>
+    <span class="comment">// another key is already stored under the same name or address.</span>
+    <span class="comment">//</span>
+    <span class="comment">// A passphrase set to the empty string will set the passphrase to the DefaultBIP39Passphrase value.</span>
+    NewMnemonic(uid <a href="../../../../../builtin/index.html#string">string</a>, language <a href="index.html#Language">Language</a>, hdPath, bip39Passphrase <a href="../../../../../builtin/index.html#string">string</a>, algo <a href="index.html#SignatureAlgo">SignatureAlgo</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// NewAccount converts a mnemonic to a private key and BIP-39 HD Path and persists it.</span>
+    <span class="comment">// It fails if there is an existing key Info with the same address.</span>
+    NewAccount(uid, mnemonic, bip39Passphrase, hdPath <a href="../../../../../builtin/index.html#string">string</a>, algo <a href="index.html#SignatureAlgo">SignatureAlgo</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SaveLedgerKey retrieves a public key reference from a Ledger device and persists it.</span>
+    SaveLedgerKey(uid <a href="../../../../../builtin/index.html#string">string</a>, algo <a href="index.html#SignatureAlgo">SignatureAlgo</a>, hrp <a href="../../../../../builtin/index.html#string">string</a>, coinType, account, index <a href="../../../../../builtin/index.html#uint32">uint32</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SaveOfflineKey stores a public key and returns the persisted Info structure.</span>
+    SaveOfflineKey(uid <a href="../../../../../builtin/index.html#string">string</a>, pubkey <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SaveMultisig stores and returns a new multsig (offline) key reference.</span>
+    SaveMultisig(uid <a href="../../../../../builtin/index.html#string">string</a>, pubkey <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <a href="index.html#Signer">Signer</a>
+
+    <a href="index.html#Importer">Importer</a>
+    <a href="index.html#Exporter">Exporter</a>
+
+    <a href="index.html#Migrator">Migrator</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=6217:6334#L164">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(
+    appName, backend, rootDir <a href="../../../../../builtin/index.html#string">string</a>, userInput <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Reader">Reader</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#Codec">Codec</a>, opts ...<a href="index.html#Option">Option</a>,
+) (<a href="index.html#Keyring">Keyring</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New creates a new instance of a keyring.
+Keyring options can be applied when generating the new instance.
+Available backends are &quot;os&quot;, &quot;file&quot;, &quot;kwallet&quot;, &quot;memory&quot;, &quot;pass&quot;, &quot;test&quot;.
+
+				<div id="example_New" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code"><span class="comment">// Select the encryption and storage for your cryptostore</span>
+cdc := getCodec()
+cstore := NewInMemory(cdc)
+
+sec := hd.Secp256k1
+
+<span class="comment">// Add keys and see they return in alphabetical order</span>
+bob, _, err := cstore.NewMnemonic(&#34;Bob&#34;, English, sdk.FullFundraiserPath, DefaultBIP39Passphrase, sec)
+if err != nil {
+    <span class="comment">// this should never happen</span>
+    fmt.Println(err)
+} else {
+    <span class="comment">// return info here just like in List</span>
+    fmt.Println(bob.Name)
+}
+_, _, _ = cstore.NewMnemonic(&#34;Alice&#34;, English, sdk.FullFundraiserPath, DefaultBIP39Passphrase, sec)
+_, _, _ = cstore.NewMnemonic(&#34;Carl&#34;, English, sdk.FullFundraiserPath, DefaultBIP39Passphrase, sec)
+records, _ := cstore.List()
+for _, k := range records {
+    fmt.Println(k.Name)
+}
+
+<span class="comment">// We need to use passphrase to generate a signature</span>
+tx := []byte(&#34;deadbeef&#34;)
+sig, pub, err := cstore.Sign(&#34;Bob&#34;, tx)
+if err != nil {
+    fmt.Println(&#34;don&#39;t accept real passphrase&#34;)
+}
+
+<span class="comment">// and we can validate the signature with publicly available info</span>
+bRecord, _ := cstore.Key(&#34;Bob&#34;)
+key, _ := bRecord.GetPubKey()
+bobKey, _ := bob.GetPubKey()
+if !key.Equals(bobKey) {
+    fmt.Println(&#34;Get and Create return different keys&#34;)
+}
+
+if pub.Equals(key) {
+    fmt.Println(&#34;signed by Bob&#34;)
+}
+if !pub.VerifySignature(tx, sig) {
+    fmt.Println(&#34;invalid signature&#34;)
+}
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Bob
+Alice
+Bob
+Carl
+signed by Bob
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="NewInMemory">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=5625:5682#L151">NewInMemory</a>
+					<a class="permalink" href="index.html#NewInMemory">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInMemory(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#Codec">Codec</a>, opts ...<a href="index.html#Option">Option</a>) <a href="index.html#Keyring">Keyring</a></pre>
+				<p>NewInMemory creates a transient keyring useful for testing
+purposes and on-the-fly key generation.
+Keybase options can be applied when generating this new Keybase.
+
+				
+				
+			
+				
+				<h3 id="NewInMemoryWithKeyring">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=5881:5969#L157">NewInMemoryWithKeyring</a>
+					<a class="permalink" href="index.html#NewInMemoryWithKeyring">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewInMemoryWithKeyring(kr <a href="../../../../99designs/keyring/index.html">keyring</a>.<a href="../../../../99designs/keyring/index.html#Keyring">Keyring</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#Codec">Codec</a>, opts ...<a href="index.html#Option">Option</a>) <a href="index.html#Keyring">Keyring</a></pre>
+				<p>NewInMemoryWithKeyring returns an in memory keyring using the specified keyring.Keyring
+as the backing keyring.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Language">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go?s=311:328#L1">Language</a>
+				<a class="permalink" href="index.html#Language">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Language is a language to create the BIP 39 mnemonic in.
+Currently, only english is supported though.
+Find a list of all supported languages in the BIP 39 spec (word lists).
+
+			<pre>type Language <a href="../../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// English is the default language to create a mnemonic.</span>
+    <span class="comment">// It is the only supported language by this package.</span>
+    <span id="English">English</span> <a href="index.html#Language">Language</a> = <a href="../../../../../builtin/index.html#iota">iota</a> + 1
+    <span class="comment">// Japanese is currently not supported.</span>
+    <span id="Japanese">Japanese</span>
+    <span class="comment">// Korean is currently not supported.</span>
+    <span id="Korean">Korean</span>
+    <span class="comment">// Spanish is currently not supported.</span>
+    <span id="Spanish">Spanish</span>
+    <span class="comment">// ChineseSimplified is currently not supported.</span>
+    <span id="ChineseSimplified">ChineseSimplified</span>
+    <span class="comment">// ChineseTraditional is currently not supported.</span>
+    <span id="ChineseTraditional">ChineseTraditional</span>
+    <span class="comment">// French is currently not supported.</span>
+    <span id="French">French</span>
+    <span class="comment">// Italian is currently not supported.</span>
+    <span id="Italian">Italian</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LegacyInfo">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=409:708#L5">LegacyInfo</a>
+				<a class="permalink" href="index.html#LegacyInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Deprecated: LegacyInfo is the publicly exposed information about a keypair
+
+			<pre>type LegacyInfo interface {
+    <span class="comment">// Human-readable type for key listing</span>
+    GetType() <a href="index.html#KeyType">KeyType</a>
+    <span class="comment">// Name of the key</span>
+    GetName() <a href="../../../../../builtin/index.html#string">string</a>
+    <span class="comment">// Public key</span>
+    GetPubKey() <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>
+    <span class="comment">// Address</span>
+    GetAddress() <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>
+    <span class="comment">// Bip44 Path</span>
+    GetPath() (*<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#BIP44Params">BIP44Params</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Algo</span>
+    GetAlgo() <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#PubKeyType">PubKeyType</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLegacyMultiInfo">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=4963:5043#L169">NewLegacyMultiInfo</a>
+					<a class="permalink" href="index.html#NewLegacyMultiInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLegacyMultiInfo(name <a href="../../../../../builtin/index.html#string">string</a>, pub <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>) (<a href="index.html#LegacyInfo">LegacyInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewLegacyMultiInfo creates a new legacyMultiInfo instance
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="LegacyMultiInfo">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=4675:4900#L161">LegacyMultiInfo</a>
+				<a class="permalink" href="index.html#LegacyMultiInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>multiInfo is the public information about a multisig key
+
+			<pre>type LegacyMultiInfo struct {
+<span id="LegacyMultiInfo.Name"></span>    Name      <a href="../../../../../builtin/index.html#string">string</a>               `json:&#34;name&#34;`
+<span id="LegacyMultiInfo.PubKey"></span>    PubKey    <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>   `json:&#34;pubkey&#34;`
+<span id="LegacyMultiInfo.Threshold"></span>    Threshold <a href="../../../../../builtin/index.html#uint">uint</a>                 `json:&#34;threshold&#34;`
+<span id="LegacyMultiInfo.PubKeys"></span>    PubKeys   []multisigPubKeyInfo `json:&#34;pubkeys&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LegacyMultiInfo.GetAddress">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5623:5675#L195">GetAddress</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetAddress() <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#AccAddress">AccAddress</a></pre>
+				<p>GetAddress implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.GetAlgo">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5753:5801#L200">GetAlgo</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetAlgo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetAlgo() <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#PubKeyType">PubKeyType</a></pre>
+				<p>GetPath implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.GetName">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5404:5445#L185">GetName</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetName() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>GetName implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.GetPath">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5865:5924#L205">GetPath</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetPath() (*<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#BIP44Params">BIP44Params</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetPath implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.GetPubKey">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5505:5560#L190">GetPubKey</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetPubKey() <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a></pre>
+				<p>GetPubKey implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.GetType">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=5301:5343#L180">GetType</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.GetType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) GetType() <a href="index.html#KeyType">KeyType</a></pre>
+				<p>GetType implements Info interface
+
+				
+				
+				
+			
+				
+				<h3 id="LegacyMultiInfo.UnpackInterfaces">func (LegacyMultiInfo) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/legacy_info.go?s=6073:6153#L210">UnpackInterfaces</a>
+					<a class="permalink" href="index.html#LegacyMultiInfo.UnpackInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i <a href="index.html#LegacyMultiInfo">LegacyMultiInfo</a>) UnpackInterfaces(unpacker <a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#AnyUnpacker">AnyUnpacker</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackInterfaces implements UnpackInterfacesMessage.UnpackInterfaces
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Migrator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=4079:4139#L112">Migrator</a>
+				<a class="permalink" href="index.html#Migrator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Migrator is implemented by key stores and enables migration of keys from amino to proto
+
+			<pre>type Migrator interface {
+    MigrateAll() ([]*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=4790:4824#L129">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option overrides keyring configuration options.
+
+			<pre>type Option func(options *<a href="index.html#Options">Options</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ETHAlgoOption">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/options.go?s=776:803#L12">ETHAlgoOption</a>
+					<a class="permalink" href="index.html#ETHAlgoOption">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ETHAlgoOption() <a href="index.html#Option">Option</a></pre>
+				<p>ETHAlgoOption defines a function keys options for the ethereum Secp256k1 curve.
+It supports eth_secp256k1, eth_bls keys for accounts.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Options">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=4872:5450#L132">Options</a>
+				<a class="permalink" href="index.html#Options">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Options define the options of the Keyring.
+
+			<pre>type Options struct {
+    <span class="comment">// supported signing algorithms for keyring</span>
+<span id="Options.SupportedAlgos"></span>    SupportedAlgos <a href="index.html#SigningAlgoList">SigningAlgoList</a>
+    <span class="comment">// supported signing algorithms for Ledger</span>
+<span id="Options.SupportedAlgosLedger"></span>    SupportedAlgosLedger <a href="index.html#SigningAlgoList">SigningAlgoList</a>
+    <span class="comment">// define Ledger Derivation function</span>
+<span id="Options.LedgerDerivation"></span>    LedgerDerivation func() (<a href="../ledger/index.html">ledger</a>.<a href="../ledger/index.html#SECP256K1">SECP256K1</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// define Ledger key generation function</span>
+<span id="Options.LedgerCreateKey"></span>    LedgerCreateKey func([]<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>
+    <span class="comment">// define Ledger app name</span>
+<span id="Options.LedgerAppName"></span>    LedgerAppName <a href="../../../../../builtin/index.html#string">string</a>
+    <span class="comment">// indicate whether Ledger should skip DER Conversion on signature,</span>
+    <span class="comment">// depending on which format (DER or BER) the Ledger app returns signatures</span>
+<span id="Options.LedgerSigSkipDERConv"></span>    LedgerSigSkipDERConv <a href="../../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PrivKeyGenFunc">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/types.go?s=1860:1939#L60">PrivKeyGenFunc</a>
+				<a class="permalink" href="index.html#PrivKeyGenFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PrivKeyGenFunc defines the function to convert derived key bytes to a tendermint private key
+
+			<pre>type PrivKeyGenFunc func(bz []<a href="../../../../../builtin/index.html#byte">byte</a>, algo <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#PubKeyType">PubKeyType</a>) (<a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PrivKey">PrivKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Record">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=875:1385#L19">Record</a>
+				<a class="permalink" href="index.html#Record">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Record is used for representing a key in the keyring.
+
+			<pre>type Record struct {
+    <span class="comment">// name represents a name of Record</span>
+<span id="Record.Name"></span>    Name <a href="../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,1,opt,name=name,proto3&#34; json:&#34;name,omitempty&#34;`
+    <span class="comment">// pub_key represents a public key in any format</span>
+<span id="Record.PubKey"></span>    PubKey *<a href="../../codec/types/index.html">types</a>.<a href="../../codec/types/index.html#Any">Any</a> `protobuf:&#34;bytes,2,opt,name=pub_key,json=pubKey,proto3&#34; json:&#34;pub_key,omitempty&#34;`
+    <span class="comment">// Record contains one of the following items</span>
+    <span class="comment">//</span>
+    <span class="comment">// Types that are valid to be assigned to Item:</span>
+    <span class="comment">//	*Record_Local_</span>
+    <span class="comment">//	*Record_Ledger_</span>
+    <span class="comment">//	*Record_Multi_</span>
+    <span class="comment">//	*Record_Offline_</span>
+<span id="Record.Item"></span>    Item isRecord_Item `protobuf_oneof:&#34;item&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLedgerRecord">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=1058:1153#L28">NewLedgerRecord</a>
+					<a class="permalink" href="index.html#NewLedgerRecord">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLedgerRecord(name <a href="../../../../../builtin/index.html#string">string</a>, pk <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>, path *<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#BIP44Params">BIP44Params</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewLedgerRecord creates a new Record with ledger item
+
+				
+				
+			
+				
+				<h3 id="NewLocalRecord">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=683:781#L15">NewLocalRecord</a>
+					<a class="permalink" href="index.html#NewLocalRecord">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLocalRecord(name <a href="../../../../../builtin/index.html#string">string</a>, priv <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PrivKey">PrivKey</a>, pk <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewLocalRecord creates a new Record with local key item
+
+				
+				
+			
+				
+				<h3 id="NewMultiRecord">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=1697:1769#L46">NewMultiRecord</a>
+					<a class="permalink" href="index.html#NewMultiRecord">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMultiRecord(name <a href="../../../../../builtin/index.html#string">string</a>, pk <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewMultiRecord creates a new Record with multi item
+
+				
+				
+			
+				
+				<h3 id="NewOfflineRecord">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=1425:1499#L39">NewOfflineRecord</a>
+					<a class="permalink" href="index.html#NewOfflineRecord">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewOfflineRecord(name <a href="../../../../../builtin/index.html#string">string</a>, pk <a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>) (*<a href="index.html#Record">Record</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewOfflineRecord creates a new Record with offline item
+
+				
+				
+			
+
+			
+				
+				<h3 id="Record.Descriptor">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1545:1588#L37">Descriptor</a>
+					<a class="permalink" href="index.html#Record.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record">Record</a>) Descriptor() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetAddress">func (Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=2214:2268#L63">GetAddress</a>
+					<a class="permalink" href="index.html#Record.GetAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Record">Record</a>) GetAddress() (<a href="../../types/index.html">types</a>.<a href="../../types/index.html#AccAddress">AccAddress</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetAddress fetches an address of the record
+
+				
+				
+				
+			
+				
+				<h3 id="Record.GetItem">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3062:3102#L91">GetItem</a>
+					<a class="permalink" href="index.html#Record.GetItem">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) GetItem() isRecord_Item</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetLedger">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3281:3324#L105">GetLedger</a>
+					<a class="permalink" href="index.html#Record.GetLedger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) GetLedger() *<a href="index.html#Record_Ledger">Record_Ledger</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetLocal">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3154:3195#L98">GetLocal</a>
+					<a class="permalink" href="index.html#Record.GetLocal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) GetLocal() *<a href="index.html#Record_Local">Record_Local</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetMulti">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3412:3453#L112">GetMulti</a>
+					<a class="permalink" href="index.html#Record.GetMulti">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) GetMulti() *<a href="index.html#Record_Multi">Record_Multi</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetOffline">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3539:3584#L119">GetOffline</a>
+					<a class="permalink" href="index.html#Record.GetOffline">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) GetOffline() *<a href="index.html#Record_Offline">Record_Offline</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.GetPubKey">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=1948:2004#L53">GetPubKey</a>
+					<a class="permalink" href="index.html#Record.GetPubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k *<a href="index.html#Record">Record</a>) GetPubKey() (<a href="../types/index.html">cryptotypes</a>.<a href="../types/index.html#PubKey">PubKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetPubKey fetches a public key of the record
+
+				
+				
+				
+			
+				
+				<h3 id="Record.GetType">func (Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=2410:2443#L72">GetType</a>
+					<a class="permalink" href="index.html#Record.GetType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="index.html#Record">Record</a>) GetType() <a href="index.html#KeyType">KeyType</a></pre>
+				<p>GetType fetches type of the record
+
+				
+				
+				
+			
+				
+				<h3 id="Record.Marshal">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=11463:11514#L329">Marshal</a>
+					<a class="permalink" href="index.html#Record.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) Marshal() (dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.MarshalTo">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=11672:11724#L339">MarshalTo</a>
+					<a class="permalink" href="index.html#Record.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.MarshalToSizedBuffer">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=11792:11855#L344">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.ProtoMessage">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1509:1538#L36">ProtoMessage</a>
+					<a class="permalink" href="index.html#Record.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record">Record</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.Reset">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1387:1411#L34">Reset</a>
+					<a class="permalink" href="index.html#Record.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.Size">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=16885:16916#L591">Size</a>
+					<a class="permalink" href="index.html#Record.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.String">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1438:1470#L35">String</a>
+					<a class="permalink" href="index.html#Record.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.Unmarshal">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=18650:18695#L709">Unmarshal</a>
+					<a class="permalink" href="index.html#Record.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) Unmarshal(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.UnpackInterfaces">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=2770:2842#L88">UnpackInterfaces</a>
+					<a class="permalink" href="index.html#Record.UnpackInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (k *<a href="index.html#Record">Record</a>) UnpackInterfaces(unpacker <a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#AnyUnpacker">AnyUnpacker</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackInterfaces implements UnpackInterfacesMessage.UnpackInterfaces
+
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_DiscardUnknown">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2147:2184#L61">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Record.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_Marshal">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1717:1791#L43">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Record.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) XXX_Marshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_Merge">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2006:2051#L55">XXX_Merge</a>
+					<a class="permalink" href="index.html#Record.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) XXX_Merge(src <a href="../../../../golang/protobuf/proto/index.html">proto</a>.<a href="../../../../golang/protobuf/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_OneofWrappers">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3741:3789#L127">XXX_OneofWrappers</a>
+					<a class="permalink" href="index.html#Record.XXX_OneofWrappers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record">Record</a>) XXX_OneofWrappers() []interface{}</pre>
+				<p>XXX_OneofWrappers is for the internal use of the proto package.
+
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_Size">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2094:2125#L58">XXX_Size</a>
+					<a class="permalink" href="index.html#Record.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) XXX_Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record.XXX_Unmarshal">func (*Record) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=1643:1689#L40">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Record.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record">Record</a>) XXX_Unmarshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Ledger">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5129:5244#L176">Record_Ledger</a>
+				<a class="permalink" href="index.html#Record_Ledger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Ledger item
+
+			<pre>type Record_Ledger struct {
+<span id="Record_Ledger.Path"></span>    Path *<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#BIP44Params">BIP44Params</a> `protobuf:&#34;bytes,1,opt,name=path,proto3&#34; json:&#34;path,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Ledger.Descriptor">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5432:5482#L183">Descriptor</a>
+					<a class="permalink" href="index.html#Record_Ledger.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Ledger">Record_Ledger</a>) Descriptor() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.GetPath">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.go?s=1294:1344#L34">GetPath</a>
+					<a class="permalink" href="index.html#Record_Ledger.GetPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rl *<a href="index.html#Record_Ledger">Record_Ledger</a>) GetPath() *<a href="../hd/index.html">hd</a>.<a href="../hd/index.html#BIP44Params">BIP44Params</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.Marshal">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=14989:15047#L499">Marshal</a>
+					<a class="permalink" href="index.html#Record_Ledger.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) Marshal() (dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.MarshalTo">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=15205:15264#L509">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Ledger.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.MarshalToSizedBuffer">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=15332:15402#L514">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Ledger.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.ProtoMessage">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5389:5425#L182">ProtoMessage</a>
+					<a class="permalink" href="index.html#Record_Ledger.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Ledger">Record_Ledger</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.Reset">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5246:5277#L180">Reset</a>
+					<a class="permalink" href="index.html#Record_Ledger.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.Size">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=18092:18130#L672">Size</a>
+					<a class="permalink" href="index.html#Record_Ledger.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.String">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5311:5350#L181">String</a>
+					<a class="permalink" href="index.html#Record_Ledger.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.Unmarshal">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=26042:26094#L1053">Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Ledger.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) Unmarshal(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.XXX_DiscardUnknown">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6086:6130#L207">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Record_Ledger.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.XXX_Marshal">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5621:5702#L189">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Record_Ledger.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) XXX_Marshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.XXX_Merge">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5924:5976#L201">XXX_Merge</a>
+					<a class="permalink" href="index.html#Record_Ledger.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) XXX_Merge(src <a href="../../../../golang/protobuf/proto/index.html">proto</a>.<a href="../../../../golang/protobuf/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.XXX_Size">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6026:6064#L204">XXX_Size</a>
+					<a class="permalink" href="index.html#Record_Ledger.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) XXX_Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger.XXX_Unmarshal">func (*Record_Ledger) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=5540:5593#L186">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Ledger.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger">Record_Ledger</a>) XXX_Unmarshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Ledger_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2504:2631#L76">Record_Ledger_</a>
+				<a class="permalink" href="index.html#Record_Ledger_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Record_Ledger_ struct {
+<span id="Record_Ledger_.Ledger"></span>    Ledger *<a href="index.html#Record_Ledger">Record_Ledger</a> `protobuf:&#34;bytes,4,opt,name=ledger,proto3,oneof&#34; json:&#34;ledger,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Ledger_.MarshalTo">func (*Record_Ledger_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=12899:12959#L401">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Ledger_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger_">Record_Ledger_</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger_.MarshalToSizedBuffer">func (*Record_Ledger_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=13027:13098#L406">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Ledger_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger_">Record_Ledger_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Ledger_.Size">func (*Record_Ledger_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=17355:17394#L623">Size</a>
+					<a class="permalink" href="index.html#Record_Ledger_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Ledger_">Record_Ledger_</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Local">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=3993:4126#L138">Record_Local</a>
+				<a class="permalink" href="index.html#Record_Local">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Item is a keyring item stored in a keyring backend.
+Local item
+
+			<pre>type Record_Local struct {
+<span id="Record_Local.PrivKey"></span>    PrivKey *<a href="../../codec/types/index.html">types</a>.<a href="../../codec/types/index.html#Any">Any</a> `protobuf:&#34;bytes,1,opt,name=priv_key,json=privKey,proto3&#34; json:&#34;priv_key,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Local.Descriptor">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4310:4359#L145">Descriptor</a>
+					<a class="permalink" href="index.html#Record_Local.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Local">Record_Local</a>) Descriptor() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.Marshal">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=14288:14345#L464">Marshal</a>
+					<a class="permalink" href="index.html#Record_Local.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) Marshal() (dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.MarshalTo">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=14503:14561#L474">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Local.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.MarshalToSizedBuffer">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=14629:14698#L479">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Local.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.ProtoMessage">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4268:4303#L144">ProtoMessage</a>
+					<a class="permalink" href="index.html#Record_Local.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Local">Record_Local</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.Reset">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4128:4158#L142">Reset</a>
+					<a class="permalink" href="index.html#Record_Local.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.Size">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=17907:17944#L659">Size</a>
+					<a class="permalink" href="index.html#Record_Local.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.String">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4191:4229#L143">String</a>
+					<a class="permalink" href="index.html#Record_Local.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.Unmarshal">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=24238:24289#L967">Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Local.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) Unmarshal(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.XXX_DiscardUnknown">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4957:5000#L169">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Record_Local.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.XXX_Marshal">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4497:4577#L151">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Record_Local.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) XXX_Marshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.XXX_Merge">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4798:4849#L163">XXX_Merge</a>
+					<a class="permalink" href="index.html#Record_Local.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) XXX_Merge(src <a href="../../../../golang/protobuf/proto/index.html">proto</a>.<a href="../../../../golang/protobuf/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.XXX_Size">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4898:4935#L166">XXX_Size</a>
+					<a class="permalink" href="index.html#Record_Local.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) XXX_Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local.XXX_Unmarshal">func (*Record_Local) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=4417:4469#L148">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Local.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local">Record_Local</a>) XXX_Unmarshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Local_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2381:2503#L73">Record_Local_</a>
+				<a class="permalink" href="index.html#Record_Local_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Record_Local_ struct {
+<span id="Record_Local_.Local"></span>    Local *<a href="index.html#Record_Local">Record_Local</a> `protobuf:&#34;bytes,3,opt,name=local,proto3,oneof&#34; json:&#34;local,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Local_.MarshalTo">func (*Record_Local_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=12440:12499#L380">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Local_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local_">Record_Local_</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local_.MarshalToSizedBuffer">func (*Record_Local_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=12567:12637#L385">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Local_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local_">Record_Local_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Local_.Size">func (*Record_Local_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=17174:17212#L611">Size</a>
+					<a class="permalink" href="index.html#Record_Local_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Local_">Record_Local_</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Multi">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6260:6288#L214">Record_Multi</a>
+				<a class="permalink" href="index.html#Record_Multi">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Multi item
+
+			<pre>type Record_Multi struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Multi.Descriptor">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6472:6521#L220">Descriptor</a>
+					<a class="permalink" href="index.html#Record_Multi.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Multi">Record_Multi</a>) Descriptor() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.Marshal">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=15687:15744#L534">Marshal</a>
+					<a class="permalink" href="index.html#Record_Multi.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) Marshal() (dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.MarshalTo">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=15902:15960#L544">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Multi.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.MarshalToSizedBuffer">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=16028:16097#L549">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Multi.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.ProtoMessage">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6430:6465#L219">ProtoMessage</a>
+					<a class="permalink" href="index.html#Record_Multi.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Multi">Record_Multi</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.Reset">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6290:6320#L217">Reset</a>
+					<a class="permalink" href="index.html#Record_Multi.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.Size">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=18272:18309#L685">Size</a>
+					<a class="permalink" href="index.html#Record_Multi.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.String">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6353:6391#L218">String</a>
+					<a class="permalink" href="index.html#Record_Multi.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.Unmarshal">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=27842:27893#L1139">Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Multi.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) Unmarshal(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.XXX_DiscardUnknown">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7119:7162#L244">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Record_Multi.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.XXX_Marshal">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6659:6739#L226">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Record_Multi.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) XXX_Marshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.XXX_Merge">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6960:7011#L238">XXX_Merge</a>
+					<a class="permalink" href="index.html#Record_Multi.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) XXX_Merge(src <a href="../../../../golang/protobuf/proto/index.html">proto</a>.<a href="../../../../golang/protobuf/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.XXX_Size">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7060:7097#L241">XXX_Size</a>
+					<a class="permalink" href="index.html#Record_Multi.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) XXX_Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi.XXX_Unmarshal">func (*Record_Multi) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=6579:6631#L223">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Multi.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi">Record_Multi</a>) XXX_Unmarshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Multi_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2632:2754#L79">Record_Multi_</a>
+				<a class="permalink" href="index.html#Record_Multi_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Record_Multi_ struct {
+<span id="Record_Multi_.Multi"></span>    Multi *<a href="index.html#Record_Multi">Record_Multi</a> `protobuf:&#34;bytes,5,opt,name=multi,proto3,oneof&#34; json:&#34;multi,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Multi_.MarshalTo">func (*Record_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=13362:13421#L422">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Multi_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi_">Record_Multi_</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi_.MarshalToSizedBuffer">func (*Record_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=13489:13559#L427">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Multi_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi_">Record_Multi_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Multi_.Size">func (*Record_Multi_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=17539:17577#L635">Size</a>
+					<a class="permalink" href="index.html#Record_Multi_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Multi_">Record_Multi_</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Offline">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7292:7322#L251">Record_Offline</a>
+				<a class="permalink" href="index.html#Record_Offline">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Offline item
+
+			<pre>type Record_Offline struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Offline.Descriptor">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7514:7565#L257">Descriptor</a>
+					<a class="permalink" href="index.html#Record_Offline.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Offline">Record_Offline</a>) Descriptor() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.Marshal">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=16171:16230#L557">Marshal</a>
+					<a class="permalink" href="index.html#Record_Offline.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) Marshal() (dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.MarshalTo">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=16388:16448#L567">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Offline.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.MarshalToSizedBuffer">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=16516:16587#L572">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Offline.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.ProtoMessage">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7470:7507#L256">ProtoMessage</a>
+					<a class="permalink" href="index.html#Record_Offline.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Record_Offline">Record_Offline</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.Reset">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7324:7356#L254">Reset</a>
+					<a class="permalink" href="index.html#Record_Offline.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.Size">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=18372:18411#L694">Size</a>
+					<a class="permalink" href="index.html#Record_Offline.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.String">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7391:7431#L255">String</a>
+					<a class="permalink" href="index.html#Record_Offline.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.Unmarshal">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=28867:28920#L1189">Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Offline.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) Unmarshal(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.XXX_DiscardUnknown">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=8175:8220#L281">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Record_Offline.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.XXX_Marshal">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7705:7787#L263">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Record_Offline.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) XXX_Marshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.XXX_Merge">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=8010:8063#L275">XXX_Merge</a>
+					<a class="permalink" href="index.html#Record_Offline.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) XXX_Merge(src <a href="../../../../golang/protobuf/proto/index.html">proto</a>.<a href="../../../../golang/protobuf/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.XXX_Size">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=8114:8153#L278">XXX_Size</a>
+					<a class="permalink" href="index.html#Record_Offline.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) XXX_Size() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline.XXX_Unmarshal">func (*Record_Offline) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=7623:7677#L260">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Record_Offline.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline">Record_Offline</a>) XXX_Unmarshal(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Record_Offline_">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=2755:2887#L82">Record_Offline_</a>
+				<a class="permalink" href="index.html#Record_Offline_">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Record_Offline_ struct {
+<span id="Record_Offline_.Offline"></span>    Offline *<a href="index.html#Record_Offline">Record_Offline</a> `protobuf:&#34;bytes,6,opt,name=offline,proto3,oneof&#34; json:&#34;offline,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Record_Offline_.MarshalTo">func (*Record_Offline_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=13821:13882#L443">MarshalTo</a>
+					<a class="permalink" href="index.html#Record_Offline_.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline_">Record_Offline_</a>) MarshalTo(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline_.MarshalToSizedBuffer">func (*Record_Offline_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=13950:14022#L448">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Record_Offline_.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline_">Record_Offline_</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#int">int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Record_Offline_.Size">func (*Record_Offline_) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/record.pb.go?s=17720:17760#L647">Size</a>
+					<a class="permalink" href="index.html#Record_Offline_.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Record_Offline_">Record_Offline_</a>) Size() (n <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SignatureAlgo">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go?s=164:266#L1">SignatureAlgo</a>
+				<a class="permalink" href="index.html#SignatureAlgo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignatureAlgo defines the interface for a keyring supported algorithm.
+
+			<pre>type SignatureAlgo interface {
+    Name() <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#PubKeyType">PubKeyType</a>
+    Derive() <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#DeriveFn">DeriveFn</a>
+    Generate() <a href="../hd/index.html">hd</a>.<a href="../hd/index.html#GenerateFn">GenerateFn</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSigningAlgoFromString">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go?s=331:421#L8">NewSigningAlgoFromString</a>
+					<a class="permalink" href="index.html#NewSigningAlgoFromString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSigningAlgoFromString(str <a href="../../../../../builtin/index.html#string">string</a>, algoList <a href="index.html#SigningAlgoList">SigningAlgoList</a>) (<a href="index.html#SignatureAlgo">SignatureAlgo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewSigningAlgoFromString creates a supported SignatureAlgo.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Signer">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/keyring.go?s=3357:3642#L94">Signer</a>
+				<a class="permalink" href="index.html#Signer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Signer is implemented by key stores that want to provide signing capabilities.
+
+			<pre>type Signer interface {
+    <span class="comment">// Sign sign byte messages with a user key.</span>
+    Sign(uid <a href="../../../../../builtin/index.html#string">string</a>, msg []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SignByAddress sign byte messages with a user key providing the address.</span>
+    SignByAddress(address <a href="../../types/index.html">sdk</a>.<a href="../../types/index.html#Address">Address</a>, msg []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../types/index.html">types</a>.<a href="../types/index.html#PubKey">PubKey</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SigningAlgoList">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go?s=646:682#L18">SigningAlgoList</a>
+				<a class="permalink" href="index.html#SigningAlgoList">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SigningAlgoList is a slice of signature algorithms
+
+			<pre>type SigningAlgoList []<a href="index.html#SignatureAlgo">SignatureAlgo</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SigningAlgoList.Contains">func (SigningAlgoList) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go?s=757:817#L21">Contains</a>
+					<a class="permalink" href="index.html#SigningAlgoList.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sal <a href="index.html#SigningAlgoList">SigningAlgoList</a>) Contains(algo <a href="index.html#SignatureAlgo">SignatureAlgo</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Contains returns true if the SigningAlgoList the given SignatureAlgo.
+
+				
+				
+				
+			
+				
+				<h3 id="SigningAlgoList.String">func (SigningAlgoList) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/crypto/keyring/signing_algorithms.go?s=1013:1055#L32">String</a>
+					<a class="permalink" href="index.html#SigningAlgoList.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sal <a href="index.html#SigningAlgoList">SigningAlgoList</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a comma separated string of the signature algorithm names in the list.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

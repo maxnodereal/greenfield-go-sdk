@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>amqp - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package amqp
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/amqp"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package amqp implements an AMQP transport.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultDeliverer">func DefaultDeliverer(ctx context.Context, p Publisher, pub *amqp.Publishing) (*amqp.Delivery, error)</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultErrorEncoder">func DefaultErrorEncoder(ctx context.Context, err error, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing)</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultResponsePublisher">func DefaultResponsePublisher(ctx context.Context, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeJSONResponse">func EncodeJSONResponse(ctx context.Context, pub *amqp.Publishing, response interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeNopResponse">func EncodeNopResponse(ctx context.Context, pub *amqp.Publishing, response interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#NopResponsePublisher">func NopResponsePublisher(ctx context.Context, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing) error</a></dd>
+			
+				
+				<dd><a href="index.html#ReplyAndAckErrorEncoder">func ReplyAndAckErrorEncoder(ctx context.Context, err error, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing)</a></dd>
+			
+				
+				<dd><a href="index.html#ReplyErrorEncoder">func ReplyErrorEncoder(ctx context.Context, err error, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing)</a></dd>
+			
+				
+				<dd><a href="index.html#SendAndForgetDeliverer">func SendAndForgetDeliverer(ctx context.Context, p Publisher, pub *amqp.Publishing) (*amqp.Delivery, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SingleNackRequeueErrorEncoder">func SingleNackRequeueErrorEncoder(ctx context.Context, err error, deliv *amqp.Delivery, ch Channel, pub *amqp.Publishing)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Channel">type Channel</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeResponseFunc">type DecodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DefaultErrorResponse">type DefaultErrorResponse</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Deliverer">type Deliverer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeRequestFunc">type EncodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorEncoder">type ErrorEncoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Publisher">type Publisher</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPublisher">func NewPublisher(ch Channel, q *amqp.Queue, enc EncodeRequestFunc, dec DecodeResponseFunc, options ...PublisherOption) *Publisher</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Publisher.Endpoint">func (p Publisher) Endpoint() endpoint.Endpoint</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PublisherOption">type PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherAfter">func PublisherAfter(after ...PublisherResponseFunc) PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherBefore">func PublisherBefore(before ...RequestFunc) PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherDeliverer">func PublisherDeliverer(deliverer Deliverer) PublisherOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PublisherTimeout">func PublisherTimeout(timeout time.Duration) PublisherOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PublisherResponseFunc">type PublisherResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestFunc">type RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetConsumeArgs">func SetConsumeArgs(args amqp.Table) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetConsumeAutoAck">func SetConsumeAutoAck(autoAck bool) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetContentEncoding">func SetContentEncoding(contentEncoding string) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetContentType">func SetContentType(contentType string) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetCorrelationID">func SetCorrelationID(cid string) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetNackSleepDuration">func SetNackSleepDuration(duration time.Duration) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetPublishDeliveryMode">func SetPublishDeliveryMode(dmode uint8) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetPublishExchange">func SetPublishExchange(publishExchange string) RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetPublishKey">func SetPublishKey(publishKey string) RequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ResponsePublisher">type ResponsePublisher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Subscriber">type Subscriber</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSubscriber">func NewSubscriber(e endpoint.Endpoint, dec DecodeRequestFunc, enc EncodeResponseFunc, options ...SubscriberOption) *Subscriber</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscriber.ServeDelivery">func (s Subscriber) ServeDelivery(ch Channel) func(deliv *amqp.Delivery)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SubscriberOption">type SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberAfter">func SubscriberAfter(after ...SubscriberResponseFunc) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberBefore">func SubscriberBefore(before ...RequestFunc) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorEncoder">func SubscriberErrorEncoder(ee ErrorEncoder) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorHandler">func SubscriberErrorHandler(errorHandler transport.ErrorHandler) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberErrorLogger">func SubscriberErrorLogger(logger log.Logger) SubscriberOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SubscriberResponsePublisher">func SubscriberResponsePublisher(rp ResponsePublisher) SubscriberOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SubscriberResponseFunc">type SubscriberResponseFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetAckAfterEndpoint">func SetAckAfterEndpoint(multiple bool) SubscriberResponseFunc</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go">publisher.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go">request_response_func.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go">subscriber.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ContextKeyExchange is the value of the reply Exchange in</span>
+    <span class="comment">// amqp.Publish.</span>
+    <span id="ContextKeyExchange">ContextKeyExchange</span> contextKey = <a href="../../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// ContextKeyPublishKey is the value of the ReplyTo field in</span>
+    <span class="comment">// amqp.Publish.</span>
+    <span id="ContextKeyPublishKey">ContextKeyPublishKey</span>
+    <span class="comment">// ContextKeyNackSleepDuration is the duration to sleep for if the</span>
+    <span class="comment">// service Nack and requeues a message.</span>
+    <span class="comment">// This is to prevent sporadic send-resending of message</span>
+    <span class="comment">// when a message is constantly Nack&#39;d and requeued.</span>
+    <span id="ContextKeyNackSleepDuration">ContextKeyNackSleepDuration</span>
+    <span class="comment">// ContextKeyAutoAck is the value of autoAck field when calling</span>
+    <span class="comment">// amqp.Channel.Consume.</span>
+    <span id="ContextKeyAutoAck">ContextKeyAutoAck</span>
+    <span class="comment">// ContextKeyConsumeArgs is the value of consumeArgs field when calling</span>
+    <span class="comment">// amqp.Channel.Consume.</span>
+    <span id="ContextKeyConsumeArgs">ContextKeyConsumeArgs</span>
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="DefaultDeliverer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=3428:3535#L114">DefaultDeliverer</a>
+				<a class="permalink" href="index.html#DefaultDeliverer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultDeliverer(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    p <a href="index.html#Publisher">Publisher</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) (*<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultDeliverer is a deliverer that publishes the specified Publishing
+and returns the first Delivery object with the matching correlationId.
+If the context times out while waiting for a reply, an error will be returned.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=6776:6889#L216">DefaultErrorEncoder</a>
+				<a class="permalink" href="index.html#DefaultErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultErrorEncoder(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    err <a href="../../../../../builtin/index.html#error">error</a>, deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, ch <a href="index.html#Channel">Channel</a>, pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>)</pre>
+			<p>DefaultErrorEncoder simply ignores the message. It does not reply
+nor Ack/Nack the message.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultResponsePublisher">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=5596:5715#L170">DefaultResponsePublisher</a>
+				<a class="permalink" href="index.html#DefaultResponsePublisher">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultResponsePublisher(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>,
+    ch <a href="index.html#Channel">Channel</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>DefaultResponsePublisher extracts the reply exchange and reply key
+from the request, and sends the response object to that destination.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeJSONResponse">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=4691:4791#L134">EncodeJSONResponse</a>
+				<a class="permalink" href="index.html#EncodeJSONResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeJSONResponse(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+    response interface{},
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeJSONResponse marshals the response as JSON as part of the
+payload of the AMQP Publishing object.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeNopResponse">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=4953:5052#L148">EncodeNopResponse</a>
+				<a class="permalink" href="index.html#EncodeNopResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeNopResponse(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+    response interface{},
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeNopResponse is a response function that does nothing.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NopResponsePublisher">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=6195:6310#L198">NopResponsePublisher</a>
+				<a class="permalink" href="index.html#NopResponsePublisher">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NopResponsePublisher(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>,
+    ch <a href="index.html#Channel">Channel</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>NopResponsePublisher does not deliver a response to the original sender.
+This response publisher is used when the user wants the subscriber to
+receive and forget.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReplyAndAckErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=8145:8261#L272">ReplyAndAckErrorEncoder</a>
+				<a class="permalink" href="index.html#ReplyAndAckErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReplyAndAckErrorEncoder(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>, deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, ch <a href="index.html#Channel">Channel</a>, pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>)</pre>
+			<p>ReplyAndAckErrorEncoder serializes the error message as a DefaultErrorResponse
+JSON and sends the message to the ReplyTo address then Acks the original
+message.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReplyErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=7429:7547#L234">ReplyErrorEncoder</a>
+				<a class="permalink" href="index.html#ReplyErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReplyErrorEncoder(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    err <a href="../../../../../builtin/index.html#error">error</a>,
+    deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>,
+    ch <a href="index.html#Channel">Channel</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+)</pre>
+			<p>ReplyErrorEncoder serializes the error message as a DefaultErrorResponse
+JSON and sends the message to the ReplyTo address.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SendAndForgetDeliverer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=4381:4494#L165">SendAndForgetDeliverer</a>
+				<a class="permalink" href="index.html#SendAndForgetDeliverer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SendAndForgetDeliverer(
+    ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    p <a href="index.html#Publisher">Publisher</a>,
+    pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) (*<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>SendAndForgetDeliverer delivers the supplied publishing and
+returns a nil response.
+When using this deliverer please ensure that the supplied DecodeResponseFunc and
+PublisherResponseFunc are able to handle nil-type responses.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SingleNackRequeueErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=7054:7177#L222">SingleNackRequeueErrorEncoder</a>
+				<a class="permalink" href="index.html#SingleNackRequeueErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SingleNackRequeueErrorEncoder(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    err <a href="../../../../../builtin/index.html#error">error</a>, deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, ch <a href="index.html#Channel">Channel</a>, pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>)</pre>
+			<p>SingleNackRequeueErrorEncoder issues a Nack to the delivery with multiple flag set as false
+and requeue flag set as true. It does not reply the message.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Channel">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=8628:8861#L285">Channel</a>
+				<a class="permalink" href="index.html#Channel">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Channel is a channel interface to make testing possible.
+It is highly recommended to use *amqp.Channel as the interface implementation.
+
+			<pre>type Channel interface {
+    Publish(exchange, key <a href="../../../../../builtin/index.html#string">string</a>, mandatory, immediate <a href="../../../../../builtin/index.html#bool">bool</a>, msg <a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>) <a href="../../../../../builtin/index.html#error">error</a>
+    Consume(queue, consumer <a href="../../../../../builtin/index.html#string">string</a>, autoAck, exclusive, noLocal, noWail <a href="../../../../../builtin/index.html#bool">bool</a>, args <a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Table">Table</a>) (&lt;-chan <a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/encode_decode.go?s=206:299#L1">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from
+an AMQP Delivery object. It is designed to be used in AMQP Subscribers.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>) (request interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/encode_decode.go?s=881:976#L13">DecodeResponseFunc</a>
+				<a class="permalink" href="index.html#DecodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeResponseFunc extracts a user-domain response object from
+an AMQP Delivery object. It is designed to be used in AMQP Publishers.
+
+			<pre>type DecodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>) (response interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DefaultErrorResponse">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=8421:8484#L279">DefaultErrorResponse</a>
+				<a class="permalink" href="index.html#DefaultErrorResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DefaultErrorResponse is the default structure of responses in the event
+of an error.
+
+			<pre>type DefaultErrorResponse struct {
+<span id="DefaultErrorResponse.Error"></span>    Error <a href="../../../../../builtin/index.html#string">string</a> `json:&#34;err&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Deliverer">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=3100:3195#L105">Deliverer</a>
+				<a class="permalink" href="index.html#Deliverer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Deliverer is invoked by the Publisher to publish the specified Publishing, and to
+retrieve the appropriate response Delivery object.
+
+			<pre>type Deliverer func(
+    <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    <a href="index.html#Publisher">Publisher</a>,
+    *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) (*<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/encode_decode.go?s=437:518#L5">EncodeRequestFunc</a>
+				<a class="permalink" href="index.html#EncodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeRequestFunc encodes the passed request object into
+an AMQP Publishing object. It is designed to be used in AMQP Publishers.
+
+			<pre>type EncodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/encode_decode.go?s=657:739#L9">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object to
+an AMQP Publishing object. It is designed to be used in AMQP Subscribers.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorEncoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=6565:6676#L211">ErrorEncoder</a>
+				<a class="permalink" href="index.html#ErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorEncoder is responsible for encoding an error to the subscriber reply.
+Users are encouraged to use custom ErrorEncoders to encode errors to
+their replies, and will likely want to pass and check for their own error
+types.
+
+			<pre>type ErrorEncoder func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    err <a href="../../../../../builtin/index.html#error">error</a>, deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>, ch <a href="index.html#Channel">Channel</a>, pub *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Publisher">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=388:620#L7">Publisher</a>
+				<a class="permalink" href="index.html#Publisher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Publisher wraps an AMQP channel and queue, and provides a method that
+implements endpoint.Endpoint.
+
+			<pre>type Publisher struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPublisher">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=696:834#L19">NewPublisher</a>
+					<a class="permalink" href="index.html#NewPublisher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPublisher(
+    ch <a href="index.html#Channel">Channel</a>,
+    q *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Queue">Queue</a>,
+    enc <a href="index.html#EncodeRequestFunc">EncodeRequestFunc</a>,
+    dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>,
+    options ...<a href="index.html#PublisherOption">PublisherOption</a>,
+) *<a href="index.html#Publisher">Publisher</a></pre>
+				<p>NewPublisher constructs a usable Publisher for a single remote method.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Publisher.Endpoint">func (Publisher) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=2213:2260#L67">Endpoint</a>
+					<a class="permalink" href="index.html#Publisher.Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p <a href="index.html#Publisher">Publisher</a>) Endpoint() <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a></pre>
+				<p>Endpoint returns a usable endpoint that invokes the remote endpoint.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PublisherOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=1110:1147#L41">PublisherOption</a>
+				<a class="permalink" href="index.html#PublisherOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublisherOption sets an optional parameter for clients.
+
+			<pre>type PublisherOption func(*<a href="index.html#Publisher">Publisher</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PublisherAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=1617:1684#L52">PublisherAfter</a>
+					<a class="permalink" href="index.html#PublisherAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherAfter(after ...<a href="index.html#PublisherResponseFunc">PublisherResponseFunc</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherAfter sets the ClientResponseFuncs applied to the incoming AMQP
+request prior to it being decoded. This is useful for obtaining anything off
+of the response and adding onto the context prior to decoding.
+
+				
+				
+			
+				
+				<h3 id="PublisherBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=1260:1319#L45">PublisherBefore</a>
+					<a class="permalink" href="index.html#PublisherBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherBefore sets the RequestFuncs that are applied to the outgoing AMQP
+request before it&apos;s invoked.
+
+				
+				
+			
+				
+				<h3 id="PublisherDeliverer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=1835:1895#L57">PublisherDeliverer</a>
+					<a class="permalink" href="index.html#PublisherDeliverer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherDeliverer(deliverer <a href="index.html#Deliverer">Deliverer</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherDeliverer sets the deliverer function that the Publisher invokes.
+
+				
+				
+			
+				
+				<h3 id="PublisherTimeout">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/publisher.go?s=2024:2084#L62">PublisherTimeout</a>
+					<a class="permalink" href="index.html#PublisherTimeout">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PublisherTimeout(timeout <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="index.html#PublisherOption">PublisherOption</a></pre>
+				<p>PublisherTimeout sets the available timeout for an AMQP request.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PublisherResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=928:1008#L17">PublisherResponseFunc</a>
+				<a class="permalink" href="index.html#PublisherResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublisherResponseFunc may take information from an AMQP request and make the
+response available for consumption. PublisherResponseFunc are only executed
+in publishers, after a request has been made, but prior to it being decoded.
+
+			<pre>type PublisherResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=251:339#L3">RequestFunc</a>
+				<a class="permalink" href="index.html#RequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestFunc may take information from a publisher request and put it into a
+request context. In Subscribers, RequestFuncs are executed prior to invoking
+the endpoint.
+
+			<pre>type RequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>, *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetConsumeArgs">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=3105:3153#L69">SetConsumeArgs</a>
+					<a class="permalink" href="index.html#SetConsumeArgs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetConsumeArgs(args <a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Table">Table</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetConsumeArgs returns a RequestFunc that set the arguments for amqp Consume
+function.
+It is designed to be used by Publishers.
+
+				
+				
+			
+				
+				<h3 id="SetConsumeAutoAck">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=2759:2807#L60">SetConsumeAutoAck</a>
+					<a class="permalink" href="index.html#SetConsumeAutoAck">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetConsumeAutoAck(autoAck <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetConsumeAutoAck returns a RequestFunc that sets whether or not to autoAck
+messages when consuming.
+When set to false, the publisher will Ack the first message it receives with
+a matching correlationId.
+It is designed to be used by Publishers.
+
+				
+				
+			
+				
+				<h3 id="SetContentEncoding">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=3716:3775#L86">SetContentEncoding</a>
+					<a class="permalink" href="index.html#SetContentEncoding">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetContentEncoding(contentEncoding <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetContentEncoding returns a RequestFunc that sets the ContentEncoding field
+of an AMQP Publishing.
+
+				
+				
+			
+				
+				<h3 id="SetContentType">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=3413:3464#L77">SetContentType</a>
+					<a class="permalink" href="index.html#SetContentType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetContentType(contentType <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetContentType returns a RequestFunc that sets the ContentType field of
+an AMQP Publishing.
+
+				
+				
+			
+				
+				<h3 id="SetCorrelationID">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=4031:4076#L95">SetCorrelationID</a>
+					<a class="permalink" href="index.html#SetCorrelationID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetCorrelationID(cid <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetCorrelationID returns a RequestFunc that sets the CorrelationId field
+of an AMQP Publishing.
+
+				
+				
+			
+				
+				<h3 id="SetNackSleepDuration">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=2266:2327#L49">SetNackSleepDuration</a>
+					<a class="permalink" href="index.html#SetNackSleepDuration">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetNackSleepDuration(duration <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetNackSleepDuration returns a RequestFunc that sets the amount of time
+to sleep in the event of a Nack.
+This has to be used in conjunction with an error encoder that Nack and sleeps.
+One example is the SingleNackRequeueErrorEncoder.
+It is designed to be used by Subscribers.
+
+				
+				
+			
+				
+				<h3 id="SetPublishDeliveryMode">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=1782:1834#L37">SetPublishDeliveryMode</a>
+					<a class="permalink" href="index.html#SetPublishDeliveryMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetPublishDeliveryMode(dmode <a href="../../../../../builtin/index.html#uint8">uint8</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetPublishDeliveryMode sets the delivery mode of a Publishing.
+Please refer to AMQP delivery mode constants in the AMQP package.
+
+				
+				
+			
+				
+				<h3 id="SetPublishExchange">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=1111:1170#L21">SetPublishExchange</a>
+					<a class="permalink" href="index.html#SetPublishExchange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetPublishExchange(publishExchange <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetPublishExchange returns a RequestFunc that sets the Exchange field
+of an AMQP Publish call.
+
+				
+				
+			
+				
+				<h3 id="SetPublishKey">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=1431:1480#L29">SetPublishKey</a>
+					<a class="permalink" href="index.html#SetPublishKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetPublishKey(publishKey <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetPublishKey returns a RequestFunc that sets the Key field
+of an AMQP Publish call.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ResponsePublisher">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=5352:5452#L161">ResponsePublisher</a>
+				<a class="permalink" href="index.html#ResponsePublisher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ResponsePublisher functions are executed by the subscriber to
+publish response object to the original sender.
+Please note that the word &quot;publisher&quot; does not refer
+to the publisher of pub/sub.
+Rather, publisher is merely a function that publishes, or sends responses.
+
+			<pre>type ResponsePublisher func(
+    <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>,
+    <a href="index.html#Channel">Channel</a>,
+    *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Subscriber">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=269:595#L5">Subscriber</a>
+				<a class="permalink" href="index.html#Subscriber">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Subscriber wraps an endpoint and provides a handler for AMQP Delivery messages.
+
+			<pre>type Subscriber struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSubscriber">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=699:833#L18">NewSubscriber</a>
+					<a class="permalink" href="index.html#NewSubscriber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSubscriber(
+    e <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a>,
+    dec <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>,
+    enc <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>,
+    options ...<a href="index.html#SubscriberOption">SubscriberOption</a>,
+) *<a href="index.html#Subscriber">Subscriber</a></pre>
+				<p>NewSubscriber constructs a new subscriber, which provides a handler
+for AMQP Delivery messages.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Subscriber.ServeDelivery">func (Subscriber) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=3617:3689#L88">ServeDelivery</a>
+					<a class="permalink" href="index.html#Subscriber.ServeDelivery">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Subscriber">Subscriber</a>) ServeDelivery(ch <a href="index.html#Channel">Channel</a>) func(deliv *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>)</pre>
+				<p>ServeDelivery handles AMQP Delivery messages
+It is strongly recommended to use *amqp.Channel as the
+Channel interface implementation.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SubscriberOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=1220:1259#L39">SubscriberOption</a>
+				<a class="permalink" href="index.html#SubscriberOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubscriberOption sets an optional parameter for subscribers.
+
+			<pre>type SubscriberOption func(*<a href="index.html#Subscriber">Subscriber</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SubscriberAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=1656:1726#L49">SubscriberAfter</a>
+					<a class="permalink" href="index.html#SubscriberAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberAfter(after ...<a href="index.html#SubscriberResponseFunc">SubscriberResponseFunc</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberAfter functions are executed on the subscriber reply after the
+endpoint is invoked, but before anything is published to the reply.
+
+				
+				
+			
+				
+				<h3 id="SubscriberBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=1371:1432#L43">SubscriberBefore</a>
+					<a class="permalink" href="index.html#SubscriberBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberBefore functions are executed on the publisher delivery object
+before the request is decoded.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=2368:2429#L64">SubscriberErrorEncoder</a>
+					<a class="permalink" href="index.html#SubscriberErrorEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorEncoder(ee <a href="index.html#ErrorEncoder">ErrorEncoder</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorEncoder is used to encode errors to the subscriber reply
+whenever they&apos;re encountered in the processing of a request. Clients can
+use this to provide custom error formatting. By default,
+errors will be published with the DefaultErrorEncoder.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=3325:3406#L81">SubscriberErrorHandler</a>
+					<a class="permalink" href="index.html#SubscriberErrorHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorHandler(errorHandler <a href="../index.html">transport</a>.<a href="../index.html#ErrorHandler">ErrorHandler</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorHandler is used to handle non-terminal errors. By default, non-terminal errors
+are ignored. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom SubscriberErrorEncoder which has access to the context.
+
+				
+				
+			
+				
+				<h3 id="SubscriberErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=2847:2909#L73">SubscriberErrorLogger</a>
+					<a class="permalink" href="index.html#SubscriberErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberErrorLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberErrorLogger is used to log non-terminal errors. By default, no errors
+are logged. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom SubscriberErrorEncoder which has access to the context.
+Deprecated: Use SubscriberErrorHandler instead.
+
+				
+				
+			
+				
+				<h3 id="SubscriberResponsePublisher">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/subscriber.go?s=1965:2036#L56">SubscriberResponsePublisher</a>
+					<a class="permalink" href="index.html#SubscriberResponsePublisher">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SubscriberResponsePublisher(rp <a href="index.html#ResponsePublisher">ResponsePublisher</a>) <a href="index.html#SubscriberOption">SubscriberOption</a></pre>
+				<p>SubscriberResponsePublisher is used by the subscriber to deliver response
+objects to the original sender.
+By default, the DefaultResponsePublisher is used.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SubscriberResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=574:687#L8">SubscriberResponseFunc</a>
+				<a class="permalink" href="index.html#SubscriberResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SubscriberResponseFunc may take information from a request context and use it to
+manipulate a Publisher. SubscriberResponseFuncs are only executed in
+subscribers, after invoking the endpoint but prior to publishing a reply.
+
+			<pre>type SubscriberResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>,
+    *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Delivery">Delivery</a>,
+    <a href="index.html#Channel">Channel</a>,
+    *<a href="http://localhost:6060/pkg/github.com/streadway/amqp/">amqp</a>.<a href="http://localhost:6060/pkg/github.com/streadway/amqp/#Publishing">Publishing</a>,
+) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetAckAfterEndpoint">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/amqp/request_response_func.go?s=4455:4517#L106">SetAckAfterEndpoint</a>
+					<a class="permalink" href="index.html#SetAckAfterEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetAckAfterEndpoint(multiple <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#SubscriberResponseFunc">SubscriberResponseFunc</a></pre>
+				<p>SetAckAfterEndpoint returns a SubscriberResponseFunc that prompts the service
+to Ack the Delivery object after successfully evaluating the endpoint,
+and before it encodes the response.
+It is designed to be used by Subscribers.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>flags - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package flags
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/client/flags"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AddKeyringFlags">func AddKeyringFlags(flags *pflag.FlagSet)</a></dd>
+			
+				
+				<dd><a href="index.html#AddPaginationFlagsToCmd">func AddPaginationFlagsToCmd(cmd *cobra.Command, query string)</a></dd>
+			
+				
+				<dd><a href="index.html#AddQueryFlagsToCmd">func AddQueryFlagsToCmd(cmd *cobra.Command)</a></dd>
+			
+				
+				<dd><a href="index.html#AddTxFlagsToCmd">func AddTxFlagsToCmd(cmd *cobra.Command)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#GasSetting">type GasSetting</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParseGasSetting">func ParseGasSetting(gasStr string) (GasSetting, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GasSetting.String">func (v *GasSetting) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go">flags.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultGasAdjustment is applied to gas estimates to avoid tx execution</span>
+    <span class="comment">// failures due to state changes that might occur between the tx simulation</span>
+    <span class="comment">// and the actual run.</span>
+    <span id="DefaultGasAdjustment">DefaultGasAdjustment</span> = 1.0
+    <span id="DefaultGasLimit">DefaultGasLimit</span>      = 200000
+    <span id="GasFlagAuto">GasFlagAuto</span>          = &#34;auto&#34;
+
+    <span class="comment">// DefaultKeyringBackend</span>
+    <span id="DefaultKeyringBackend">DefaultKeyringBackend</span> = <a href="../../crypto/keyring/index.html">keyring</a>.<a href="../../crypto/keyring/index.html#BackendOS">BackendOS</a>
+
+    <span class="comment">// BroadcastSync defines a tx broadcasting mode where the client waits for</span>
+    <span class="comment">// a CheckTx execution response only.</span>
+    <span id="BroadcastSync">BroadcastSync</span> = &#34;sync&#34;
+    <span class="comment">// BroadcastAsync defines a tx broadcasting mode where the client returns</span>
+    <span class="comment">// immediately.</span>
+    <span id="BroadcastAsync">BroadcastAsync</span> = &#34;async&#34;
+
+    <span class="comment">// SignModeDirect is the value of the --sign-mode flag for SIGN_MODE_DIRECT</span>
+    <span id="SignModeDirect">SignModeDirect</span> = &#34;direct&#34;
+    <span class="comment">// SignModeLegacyAminoJSON is the value of the --sign-mode flag for SIGN_MODE_LEGACY_AMINO_JSON</span>
+    <span id="SignModeLegacyAminoJSON">SignModeLegacyAminoJSON</span> = &#34;amino-json&#34;
+    <span class="comment">// SignModeDirectAux is the value of the --sign-mode flag for SIGN_MODE_DIRECT_AUX</span>
+    <span id="SignModeDirectAux">SignModeDirectAux</span> = &#34;direct-aux&#34;
+    <span class="comment">// SignModeEIP191 is the value of the --sign-mode flag for SIGN_MODE_EIP_191</span>
+    <span id="SignModeEIP191">SignModeEIP191</span> = &#34;eip-191&#34;
+    <span class="comment">// SignModeEIP712 is the value of the --sign-mode flag for SIGN_MODE_EIP_712</span>
+    <span id="SignModeEIP712">SignModeEIP712</span> = &#34;eip-712&#34;
+)</pre>
+			
+				<p>List of CLI flags
+
+				<pre>const (
+    <span id="FlagHome">FlagHome</span>             = <a href="../../../../cometbft/cometbft/libs/cli/index.html">tmcli</a>.<a href="../../../../cometbft/cometbft/libs/cli/index.html#HomeFlag">HomeFlag</a>
+    <span id="FlagKeyringDir">FlagKeyringDir</span>       = &#34;keyring-dir&#34;
+    <span id="FlagUseLedger">FlagUseLedger</span>        = &#34;ledger&#34;
+    <span id="FlagChainID">FlagChainID</span>          = &#34;chain-id&#34;
+    <span id="FlagNode">FlagNode</span>             = &#34;node&#34;
+    <span id="FlagGRPC">FlagGRPC</span>             = &#34;grpc-addr&#34;
+    <span id="FlagGRPCInsecure">FlagGRPCInsecure</span>     = &#34;grpc-insecure&#34;
+    <span id="FlagHeight">FlagHeight</span>           = &#34;height&#34;
+    <span id="FlagGasAdjustment">FlagGasAdjustment</span>    = &#34;gas-adjustment&#34;
+    <span id="FlagFrom">FlagFrom</span>             = &#34;from&#34;
+    <span id="FlagName">FlagName</span>             = &#34;name&#34;
+    <span id="FlagAccountNumber">FlagAccountNumber</span>    = &#34;account-number&#34;
+    <span id="FlagSequence">FlagSequence</span>         = &#34;sequence&#34;
+    <span id="FlagNote">FlagNote</span>             = &#34;note&#34;
+    <span id="FlagFees">FlagFees</span>             = &#34;fees&#34;
+    <span id="FlagGas">FlagGas</span>              = &#34;gas&#34;
+    <span id="FlagGasPrices">FlagGasPrices</span>        = &#34;gas-prices&#34;
+    <span id="FlagBroadcastMode">FlagBroadcastMode</span>    = &#34;broadcast-mode&#34;
+    <span id="FlagDryRun">FlagDryRun</span>           = &#34;dry-run&#34;
+    <span id="FlagGenerateOnly">FlagGenerateOnly</span>     = &#34;generate-only&#34;
+    <span id="FlagOffline">FlagOffline</span>          = &#34;offline&#34;
+    <span id="FlagOutputDocument">FlagOutputDocument</span>   = &#34;output-document&#34; <span class="comment">// inspired by wget -O</span>
+    <span id="FlagSkipConfirmation">FlagSkipConfirmation</span> = &#34;yes&#34;
+    <span id="FlagProve">FlagProve</span>            = &#34;prove&#34;
+    <span id="FlagKeyringBackend">FlagKeyringBackend</span>   = &#34;keyring-backend&#34;
+    <span id="FlagPage">FlagPage</span>             = &#34;page&#34;
+    <span id="FlagLimit">FlagLimit</span>            = &#34;limit&#34;
+    <span id="FlagSignMode">FlagSignMode</span>         = &#34;sign-mode&#34;
+    <span id="FlagPageKey">FlagPageKey</span>          = &#34;page-key&#34;
+    <span id="FlagOffset">FlagOffset</span>           = &#34;offset&#34;
+    <span id="FlagCountTotal">FlagCountTotal</span>       = &#34;count-total&#34;
+    <span id="FlagTimeoutHeight">FlagTimeoutHeight</span>    = &#34;timeout-height&#34;
+    <span id="FlagKeyType">FlagKeyType</span>          = &#34;key-type&#34;
+    <span id="FlagFeePayer">FlagFeePayer</span>         = &#34;fee-payer&#34;
+    <span id="FlagFeeGranter">FlagFeeGranter</span>       = &#34;fee-granter&#34;
+    <span id="FlagReverse">FlagReverse</span>          = &#34;reverse&#34;
+    <span id="FlagTip">FlagTip</span>              = &#34;tip&#34;
+    <span id="FlagAux">FlagAux</span>              = &#34;aux&#34;
+    <span id="FlagInitHeight">FlagInitHeight</span>       = &#34;initial-height&#34;
+    <span class="comment">// FlagOutput is the flag to set the output format.</span>
+    <span class="comment">// This differs from FlagOutputDocument that is used to set the output file.</span>
+    <span id="FlagOutput">FlagOutput</span> = <a href="../../../../cometbft/cometbft/libs/cli/index.html">tmcli</a>.<a href="../../../../cometbft/cometbft/libs/cli/index.html#OutputFlag">OutputFlag</a>
+
+    <span class="comment">// Tendermint logging flags</span>
+    <span id="FlagLogLevel">FlagLogLevel</span>  = &#34;log_level&#34;
+    <span id="FlagLogFormat">FlagLogFormat</span> = &#34;log_format&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>LineBreak can be included in a command list to provide a blank line
+to help with readability
+
+				<pre>var <span id="LineBreak">LineBreak</span> = &amp;<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>{<a href="../../../../spf13/cobra/index.html#Command.Run">Run</a>: func(*<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>, []<a href="../../../../../builtin/index.html#string">string</a>) {}}</pre>
+			
+		
+		
+			
+			
+			<h2 id="AddKeyringFlags">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=6947:6989#L134">AddKeyringFlags</a>
+				<a class="permalink" href="index.html#AddKeyringFlags">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddKeyringFlags(flags *<a href="../../../../spf13/pflag/index.html">pflag</a>.<a href="../../../../spf13/pflag/index.html#FlagSet">FlagSet</a>)</pre>
+			<p>AddKeyringFlags sets common keyring flags
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddPaginationFlagsToCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=7299:7361#L140">AddPaginationFlagsToCmd</a>
+				<a class="permalink" href="index.html#AddPaginationFlagsToCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddPaginationFlagsToCmd(cmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>, query <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+			<p>AddPaginationFlagsToCmd adds common pagination flags to cmd
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddQueryFlagsToCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=3292:3335#L89">AddQueryFlagsToCmd</a>
+				<a class="permalink" href="index.html#AddQueryFlagsToCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddQueryFlagsToCmd(cmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>)</pre>
+			<p>AddQueryFlagsToCmd adds common flags to a module query command.
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddTxFlagsToCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=4097:4137#L102">AddTxFlagsToCmd</a>
+				<a class="permalink" href="index.html#AddTxFlagsToCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddTxFlagsToCmd(cmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>)</pre>
+			<p>AddTxFlagsToCmd adds common flags to a module tx command.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="GasSetting">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=8059:8117#L150">GasSetting</a>
+				<a class="permalink" href="index.html#GasSetting">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GasSetting encapsulates the possible values passed through the --gas flag.
+
+			<pre>type GasSetting struct {
+<span id="GasSetting.Simulate"></span>    Simulate <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="GasSetting.Gas"></span>    Gas      <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ParseGasSetting">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=8537:8592#L167">ParseGasSetting</a>
+					<a class="permalink" href="index.html#ParseGasSetting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseGasSetting(gasStr <a href="../../../../../builtin/index.html#string">string</a>) (<a href="index.html#GasSetting">GasSetting</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ParseGasSetting parses a string gas value. The value may either be &apos;auto&apos;,
+which indicates a transaction should be executed in simulate mode to
+automatically find a sufficient gas value, or a string integer. It returns an
+error if a string integer is provided which cannot be parsed.
+
+				
+				
+			
+
+			
+				
+				<h3 id="GasSetting.String">func (*GasSetting) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/client/flags/flags.go?s=8119:8155#L155">String</a>
+					<a class="permalink" href="index.html#GasSetting.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="index.html#GasSetting">GasSetting</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

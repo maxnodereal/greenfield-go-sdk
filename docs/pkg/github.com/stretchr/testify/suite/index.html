@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>suite - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package suite
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/stretchr/testify/suite"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package suite contains logic for creating testing suite structs
+and running the methods on those structs as tests.  The most useful
+piece of this package is that you can create setup/teardown methods
+on your testing suites, which will run before/after the whole suite
+or individual tests (depending on which interface(s) you
+implement).
+<p>A testing suite is usually built by first extending the built-in
+suite functionality from suite.Suite in testify.  Alternatively,
+you could reproduce that logic on your own if you wanted (you
+just need to implement the TestingSuite interface from
+suite/interfaces.go).
+<p>After that, you can implement any of the interfaces in
+suite/interfaces.go to add setup/teardown functionality to your
+suite, and add any methods that start with &quot;Test&quot; to add tests.
+Methods that do not match any suite interfaces and do not begin
+with &quot;Test&quot; will not be run by testify, and can safely be used as
+helper methods.
+<p>Once you&apos;ve built your testing suite, you need to run the suite
+(using suite.Run from testify) inside any function that matches the
+identity that &quot;go test&quot; is already looking for (i.e.
+func(*testing.T)).
+<p>Regular expression to select test suites specified command-line
+argument &quot;-run&quot;. Regular expression to select the methods
+of test suites specified command-line argument &quot;-m&quot;.
+Suite object has assertion methods.
+<p>A crude example:
+<pre>// Basic imports
+import (
+    &quot;testing&quot;
+    &quot;github.com/stretchr/testify/assert&quot;
+    &quot;github.com/stretchr/testify/suite&quot;
+)
+
+// Define the suite, and absorb the built-in basic suite
+// functionality from testify - including a T() method which
+// returns the current testing context
+type ExampleTestSuite struct {
+    suite.Suite
+    VariableThatShouldStartAtFive int
+}
+
+// Make sure that VariableThatShouldStartAtFive is set to five
+// before each test
+func (suite *ExampleTestSuite) SetupTest() {
+    suite.VariableThatShouldStartAtFive = 5
+}
+
+// All methods that begin with &quot;Test&quot; are run as tests within a
+// suite.
+func (suite *ExampleTestSuite) TestExample() {
+    assert.Equal(suite.T(), 5, suite.VariableThatShouldStartAtFive)
+    suite.Equal(5, suite.VariableThatShouldStartAtFive)
+}
+
+// In order for &apos;go test&apos; to run this suite, we need to create
+// a normal test function and pass our suite to suite.Run
+func TestExampleTestSuite(t *testing.T) {
+    suite.Run(t, new(ExampleTestSuite))
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#Run">func Run(t *testing.T, suite TestingSuite)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AfterTest">type AfterTest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BeforeTest">type BeforeTest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SetupAllSuite">type SetupAllSuite</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SetupSubTest">type SetupSubTest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SetupTestSuite">type SetupTestSuite</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Suite">type Suite</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.Assert">func (suite *Suite) Assert() *assert.Assertions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.Require">func (suite *Suite) Require() *require.Assertions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.Run">func (suite *Suite) Run(name string, subtest func()) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.SetS">func (suite *Suite) SetS(s TestingSuite)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.SetT">func (suite *Suite) SetT(t *testing.T)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Suite.T">func (suite *Suite) T() *testing.T</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SuiteInformation">type SuiteInformation</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SuiteInformation.Passed">func (s SuiteInformation) Passed() bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TearDownAllSuite">type TearDownAllSuite</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TearDownSubTest">type TearDownSubTest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TearDownTestSuite">type TearDownTestSuite</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TestInformation">type TestInformation</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TestingSuite">type TestingSuite</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WithStats">type WithStats</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/stretchr/testify/suite/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go">interfaces.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/stretchr/testify/suite/stats.go">stats.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go">suite.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="Run">func <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=2959:3001#L108">Run</a>
+				<a class="permalink" href="index.html#Run">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Run(t *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>, suite <a href="index.html#TestingSuite">TestingSuite</a>)</pre>
+			<p>Run takes a testing suite and runs all of the tests attached
+to it.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AfterTest">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=1142:1209#L35">AfterTest</a>
+				<a class="permalink" href="index.html#AfterTest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AfterTest has a function to be executed right after the test
+finishes and receives the suite and test names as input
+
+			<pre>type AfterTest interface {
+    AfterTest(suiteName, testName <a href="../../../../builtin/index.html#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BeforeTest">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=948:1017#L29">BeforeTest</a>
+				<a class="permalink" href="index.html#BeforeTest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BeforeTest has a function to be executed right before the test
+starts and receives the suite and test names as input
+
+			<pre>type BeforeTest interface {
+    BeforeTest(suiteName, testName <a href="../../../../builtin/index.html#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SetupAllSuite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=320:366#L5">SetupAllSuite</a>
+				<a class="permalink" href="index.html#SetupAllSuite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SetupAllSuite has a SetupSuite method, which will run before the
+tests in the suite are run.
+
+			<pre>type SetupAllSuite interface {
+    SetupSuite()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SetupSubTest">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=1578:1625#L48">SetupSubTest</a>
+				<a class="permalink" href="index.html#SetupSubTest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SetupSubTest has a SetupSubTest method, which will run before each
+subtest in the suite.
+
+			<pre>type SetupSubTest interface {
+    SetupSubTest()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SetupTestSuite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=459:505#L11">SetupTestSuite</a>
+				<a class="permalink" href="index.html#SetupTestSuite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SetupTestSuite has a SetupTest method, which will run before each
+test in the suite.
+
+			<pre>type SetupTestSuite interface {
+    SetupTest()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Suite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=488:694#L13">Suite</a>
+				<a class="permalink" href="index.html#Suite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Suite is a basic testing suite with methods for storing and
+retrieving the current *testing.T context.
+
+			<pre>type Suite struct {
+    *<a href="../assert/index.html">assert</a>.<a href="../assert/index.html#Assertions">Assertions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Suite.Assert">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=1775:1822#L61">Assert</a>
+					<a class="permalink" href="index.html#Suite.Assert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) Assert() *<a href="../assert/index.html">assert</a>.<a href="../assert/index.html#Assertions">Assertions</a></pre>
+				<p>Assert returns an assert context for suite.  Normally, you can call
+`suite.NoError(expected, actual)`, but for situations where the embedded
+methods are overridden (for example, you might want to override
+assert.Assertions with require.Assertions), this method is provided so you
+can call `suite.Assert().NoError()`.
+
+				
+				
+				
+			
+				
+				<h3 id="Suite.Require">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=1253:1302#L47">Require</a>
+					<a class="permalink" href="index.html#Suite.Require">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) Require() *<a href="../require/index.html">require</a>.<a href="../require/index.html#Assertions">Assertions</a></pre>
+				<p>Require returns a require context for suite.
+
+				
+				
+				
+			
+				
+				<h3 id="Suite.Run">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=2497:2554#L86">Run</a>
+					<a class="permalink" href="index.html#Suite.Run">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) Run(name <a href="../../../../builtin/index.html#string">string</a>, subtest func()) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Run provides suite functionality around golang subtests.  It should be
+called in place of t.Run(name, func(t *testing.T)) in test suite code.
+The passed-in func will be executed as a subtest with a fresh instance of t.
+Provides compatibility with go test pkg -run TestSuite/TestName/SubTestName.
+
+				
+				
+				
+			
+				
+				<h3 id="Suite.SetS">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=1146:1186#L42">SetS</a>
+					<a class="permalink" href="index.html#Suite.SetS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) SetS(s <a href="index.html#TestingSuite">TestingSuite</a>)</pre>
+				<p>SetS needs to set the current test suite as parent
+to get access to the parent methods
+
+				
+				
+				
+			
+				
+				<h3 id="Suite.SetT">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=888:926#L32">SetT</a>
+					<a class="permalink" href="index.html#Suite.SetT">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) SetT(t *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>)</pre>
+				<p>SetT sets the current *testing.T context.
+
+				
+				
+				
+			
+				
+				<h3 id="Suite.T">func (*Suite) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/suite.go?s=743:777#L25">T</a>
+					<a class="permalink" href="index.html#Suite.T">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (suite *<a href="index.html#Suite">Suite</a>) T() *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a></pre>
+				<p>T retrieves the current *testing.T context.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SuiteInformation">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/stats.go?s=100:194#L1">SuiteInformation</a>
+				<a class="permalink" href="index.html#SuiteInformation">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SuiteInformation stats stores stats for the whole suite execution.
+
+			<pre>type SuiteInformation struct {
+<span id="SuiteInformation.Start"></span>    Start, End <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="SuiteInformation.TestStats"></span>    TestStats  map[<a href="../../../../builtin/index.html#string">string</a>]*<a href="index.html#TestInformation">TestInformation</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SuiteInformation.Passed">func (SuiteInformation) <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/stats.go?s=802:841#L28">Passed</a>
+					<a class="permalink" href="index.html#SuiteInformation.Passed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#SuiteInformation">SuiteInformation</a>) Passed() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TearDownAllSuite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=621:673#L17">TearDownAllSuite</a>
+				<a class="permalink" href="index.html#TearDownAllSuite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TearDownAllSuite has a TearDownSuite method, which will run after
+all the tests in the suite have been run.
+
+			<pre>type TearDownAllSuite interface {
+    TearDownSuite()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TearDownSubTest">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=1741:1794#L54">TearDownSubTest</a>
+				<a class="permalink" href="index.html#TearDownSubTest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TearDownSubTest has a TearDownSubTest method, which will run after
+each subtest in the suite have been run.
+
+			<pre>type TearDownSubTest interface {
+    TearDownSubTest()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TearDownTestSuite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=771:823#L23">TearDownTestSuite</a>
+				<a class="permalink" href="index.html#TearDownTestSuite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TearDownTestSuite has a TearDownTest method, which will run after
+each test in the suite.
+
+			<pre>type TearDownTestSuite interface {
+    TearDownTest()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TestInformation">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/stats.go?s=268:357#L2">TestInformation</a>
+				<a class="permalink" href="index.html#TestInformation">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TestInformation stores information about the execution of each test.
+
+			<pre>type TestInformation struct {
+<span id="TestInformation.TestName"></span>    TestName   <a href="../../../../builtin/index.html#string">string</a>
+<span id="TestInformation.Start"></span>    Start, End <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+<span id="TestInformation.Passed"></span>    Passed     <a href="../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TestingSuite">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=128:219#L1">TestingSuite</a>
+				<a class="permalink" href="index.html#TestingSuite">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TestingSuite can store and return the current *testing.T context
+generated by &apos;go test&apos;.
+
+			<pre>type TestingSuite interface {
+    T() *<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>
+    SetT(*<a href="../../../../testing/index.html">testing</a>.<a href="../../../../testing/index.html#T">T</a>)
+    SetS(suite <a href="index.html#TestingSuite">TestingSuite</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="WithStats">type <a href="http://localhost:6060/src/github.com/stretchr/testify/suite/interfaces.go?s=1397:1481#L42">WithStats</a>
+				<a class="permalink" href="index.html#WithStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WithStats implements HandleStats, a function that will be executed
+when a test suite is finished. The stats contain information about
+the execution of that suite and its tests.
+
+			<pre>type WithStats interface {
+    HandleStats(suiteName <a href="../../../../builtin/index.html#string">string</a>, stats *<a href="index.html#SuiteInformation">SuiteInformation</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

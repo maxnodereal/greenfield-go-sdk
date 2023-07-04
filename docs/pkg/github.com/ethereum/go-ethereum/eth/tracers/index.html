@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>tracers - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package tracers
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/eth/tracers"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package tracers is a manager for transaction tracing engines.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#APIs">func APIs(backend Backend) []rpc.API</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterLookup">func RegisterLookup(wildcard bool, lookup lookupFunc)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#API">type API</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAPI">func NewAPI(backend Backend) *API</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.IntermediateRoots">func (api *API) IntermediateRoots(ctx context.Context, hash common.Hash, config *TraceConfig) ([]common.Hash, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.StandardTraceBadBlockToFile">func (api *API) StandardTraceBadBlockToFile(ctx context.Context, hash common.Hash, config *StdTraceConfig) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.StandardTraceBlockToFile">func (api *API) StandardTraceBlockToFile(ctx context.Context, hash common.Hash, config *StdTraceConfig) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceBadBlock">func (api *API) TraceBadBlock(ctx context.Context, hash common.Hash, config *TraceConfig) ([]*txTraceResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceBlock">func (api *API) TraceBlock(ctx context.Context, blob hexutil.Bytes, config *TraceConfig) ([]*txTraceResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceBlockByHash">func (api *API) TraceBlockByHash(ctx context.Context, hash common.Hash, config *TraceConfig) ([]*txTraceResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceBlockByNumber">func (api *API) TraceBlockByNumber(ctx context.Context, number rpc.BlockNumber, config *TraceConfig) ([]*txTraceResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceBlockFromFile">func (api *API) TraceBlockFromFile(ctx context.Context, file string, config *TraceConfig) ([]*txTraceResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceCall">func (api *API) TraceCall(ctx context.Context, args ethapi.TransactionArgs, blockNrOrHash rpc.BlockNumberOrHash, config *TraceCallConfig) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceChain">func (api *API) TraceChain(ctx context.Context, start, end rpc.BlockNumber, config *TraceConfig) (*rpc.Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.TraceTransaction">func (api *API) TraceTransaction(ctx context.Context, hash common.Hash, config *TraceConfig) (interface{}, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Backend">type Backend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Context">type Context</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StdTraceConfig">type StdTraceConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TraceCallConfig">type TraceCallConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TraceConfig">type TraceConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Tracer">type Tracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(code string, ctx *Context, cfg json.RawMessage) (Tracer, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go">api.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/tracers.go">tracers.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="APIs">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=33004:33040#L907">APIs</a>
+				<a class="permalink" href="index.html#APIs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func APIs(backend <a href="index.html#Backend">Backend</a>) []<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#API">API</a></pre>
+			<p>APIs return the collection of RPC services the tracer package offers.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterLookup">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/tracers.go?s=2103:2156#L45">RegisterLookup</a>
+				<a class="permalink" href="index.html#RegisterLookup">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterLookup(wildcard <a href="../../../../../builtin/index.html#bool">bool</a>, lookup lookupFunc)</pre>
+			<p>RegisterLookup registers a method as a lookup for tracers, meaning that
+users can invoke a named tracer through that lookup. If &apos;wildcard&apos; is true,
+then the lookup will be placed last. This is typically meant for interpreted
+engines (js) which can evaluate dynamic user-supplied code.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="API">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=3641:3677#L76">API</a>
+				<a class="permalink" href="index.html#API">&#xb6;</a>
+				
+				
+			</h2>
+			<p>API is the collection of tracing APIs exposed over the private debugging endpoint.
+
+			<pre>type API struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAPI">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=3767:3800#L81">NewAPI</a>
+					<a class="permalink" href="index.html#NewAPI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAPI(backend <a href="index.html#Backend">Backend</a>) *<a href="index.html#API">API</a></pre>
+				<p>NewAPI creates a new API definition for the tracing methods of the Ethereum service.
+
+				
+				
+			
+
+			
+				
+				<h3 id="API.IntermediateRoots">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=17963:18079#L488">IntermediateRoots</a>
+					<a class="permalink" href="index.html#API.IntermediateRoots">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) IntermediateRoots(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>IntermediateRoots executes a block (bad- or canon- or side-), and returns a list
+of intermediate roots: the stateroot after each transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="API.StandardTraceBadBlockToFile">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=20480:20604#L546">StandardTraceBadBlockToFile</a>
+					<a class="permalink" href="index.html#API.StandardTraceBadBlockToFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) StandardTraceBadBlockToFile(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#StdTraceConfig">StdTraceConfig</a>) ([]<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StandardTraceBadBlockToFile dumps the structured logs created during the
+execution of EVM against a block pulled from the pool of bad ones to the
+local file system and returns a list of files to the caller.
+
+				
+				
+				
+			
+				
+				<h3 id="API.StandardTraceBlockToFile">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=17551:17672#L478">StandardTraceBlockToFile</a>
+					<a class="permalink" href="index.html#API.StandardTraceBlockToFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) StandardTraceBlockToFile(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#StdTraceConfig">StdTraceConfig</a>) ([]<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StandardTraceBlockToFile dumps the structured logs created during the
+execution of EVM to the local file system and returns a list of files
+to the caller.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceBadBlock">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=17085:17200#L467">TraceBadBlock</a>
+					<a class="permalink" href="index.html#API.TraceBadBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceBadBlock(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]*txTraceResult, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceBadBlock returns the structured logs created during the execution of
+EVM against a block pulled from the pool of bad ones and returns them as a JSON
+object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceBlock">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=16199:16313#L446">TraceBlock</a>
+					<a class="permalink" href="index.html#API.TraceBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceBlock(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blob <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Bytes">Bytes</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]*txTraceResult, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceBlock returns the structured logs created during the execution of EVM
+and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceBlockByHash">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=15836:15954#L436">TraceBlockByHash</a>
+					<a class="permalink" href="index.html#API.TraceBlockByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceBlockByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]*txTraceResult, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceBlockByHash returns the structured logs created during the execution of
+EVM and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceBlockByNumber">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=15455:15581#L426">TraceBlockByNumber</a>
+					<a class="permalink" href="index.html#API.TraceBlockByNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceBlockByNumber(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, number <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumber">BlockNumber</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]*txTraceResult, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceBlockByNumber returns the structured logs created during the execution of
+EVM and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceBlockFromFile">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=16642:16757#L456">TraceBlockFromFile</a>
+					<a class="permalink" href="index.html#API.TraceBlockFromFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceBlockFromFile(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, file <a href="../../../../../builtin/index.html#string">string</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) ([]*txTraceResult, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceBlockFromFile returns the structured logs created during the execution of
+EVM and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceCall">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=29315:29473#L801">TraceCall</a>
+					<a class="permalink" href="index.html#API.TraceCall">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceCall(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, args <a href="../../internal/ethapi/index.html">ethapi</a>.<a href="../../internal/ethapi/index.html#TransactionArgs">TransactionArgs</a>, blockNrOrHash <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumberOrHash">BlockNumberOrHash</a>, config *<a href="index.html#TraceCallConfig">TraceCallConfig</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceCall lets you trace a given eth_call. It collects the structured logs
+created during the execution of EVM if the given transaction was added on
+top of the provided block and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceChain">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=8175:8298#L215">TraceChain</a>
+					<a class="permalink" href="index.html#API.TraceChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceChain(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, start, end <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumber">BlockNumber</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) (*<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceChain returns the structured logs created during the execution of EVM
+between two blocks (excluding start) and returns them as a JSON object.
+
+				
+				
+				
+			
+				
+				<h3 id="API.TraceTransaction">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=28234:28347#L769">TraceTransaction</a>
+					<a class="permalink" href="index.html#API.TraceTransaction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) TraceTransaction(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, config *<a href="index.html#TraceConfig">TraceConfig</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>TraceTransaction returns the structured logs created during the execution of EVM
+and returns them as a JSON object.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Backend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=2484:3553#L58">Backend</a>
+				<a class="permalink" href="index.html#Backend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Backend interface provides the common API services (that are provided by
+both full and light clients) with access to necessary functions.
+
+			<pre>type Backend interface {
+    HeaderByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    HeaderByNumber(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, number <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumber">BlockNumber</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockByNumber(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, number <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumber">BlockNumber</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    GetTransaction(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, txHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    RPCGasCap() <a href="../../../../../builtin/index.html#uint64">uint64</a>
+    ChainConfig() *<a href="../../params/index.html">params</a>.<a href="../../params/index.html#ChainConfig">ChainConfig</a>
+    Engine() <a href="../../consensus/index.html">consensus</a>.<a href="../../consensus/index.html#Engine">Engine</a>
+    ChainDb() <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#Database">Database</a>
+    <span class="comment">// StateAtBlock returns the state corresponding to the stateroot of the block.</span>
+    <span class="comment">// N.B: For executing transactions on block N, the required stateRoot is block N-1,</span>
+    <span class="comment">// so this method should be called with the parent.</span>
+    StateAtBlock(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, block *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, reexec <a href="../../../../../builtin/index.html#uint64">uint64</a>, base *<a href="../../core/state/index.html">state</a>.<a href="../../core/state/index.html#StateDB">StateDB</a>, checkLive, preferDisk <a href="../../../../../builtin/index.html#bool">bool</a>) (*<a href="../../core/state/index.html">state</a>.<a href="../../core/state/index.html#StateDB">StateDB</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    StateAtTransaction(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, block *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, txIndex <a href="../../../../../builtin/index.html#int">int</a>, reexec <a href="../../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../core/index.html">core</a>.<a href="../../core/index.html#Message">Message</a>, <a href="../../core/vm/index.html">vm</a>.<a href="../../core/vm/index.html#BlockContext">BlockContext</a>, *<a href="../../core/state/index.html">state</a>.<a href="../../core/state/index.html#StateDB">StateDB</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Context">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/tracers.go?s=1123:1430#L20">Context</a>
+				<a class="permalink" href="index.html#Context">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Context contains some contextual infos for a transaction execution that is not
+available from within the EVM object.
+
+			<pre>type Context struct {
+<span id="Context.BlockHash"></span>    BlockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> <span class="comment">// Hash of the block the tx is contained within (zero if dangling tx or call)</span>
+<span id="Context.TxIndex"></span>    TxIndex   <a href="../../../../../builtin/index.html#int">int</a>         <span class="comment">// Index of the transaction within a block (zero if dangling tx or call)</span>
+<span id="Context.TxHash"></span>    TxHash    <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> <span class="comment">// Hash of the transaction being traced (zero if dangling call)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StdTraceConfig">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=6636:6717#L177">StdTraceConfig</a>
+				<a class="permalink" href="index.html#StdTraceConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StdTraceConfig holds extra parameters to standard-json trace functions.
+
+			<pre>type StdTraceConfig struct {
+    <a href="logger/index.html">logger</a>.<a href="logger/index.html#Config">Config</a>
+<span id="StdTraceConfig.Reexec"></span>    Reexec *<a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="StdTraceConfig.TxHash"></span>    TxHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TraceCallConfig">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=6438:6559#L170">TraceCallConfig</a>
+				<a class="permalink" href="index.html#TraceCallConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TraceCallConfig is the config for traceCall API. It holds one more
+field to override the state for tracing.
+
+			<pre>type TraceCallConfig struct {
+    <a href="index.html#TraceConfig">TraceConfig</a>
+<span id="TraceCallConfig.StateOverrides"></span>    StateOverrides *<a href="../../internal/ethapi/index.html">ethapi</a>.<a href="../../internal/ethapi/index.html#StateOverride">StateOverride</a>
+<span id="TraceCallConfig.BlockOverrides"></span>    BlockOverrides *<a href="../../internal/ethapi/index.html">ethapi</a>.<a href="../../internal/ethapi/index.html#BlockOverrides">BlockOverrides</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TraceConfig">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/api.go?s=6089:6322#L158">TraceConfig</a>
+				<a class="permalink" href="index.html#TraceConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TraceConfig holds extra parameters to trace functions.
+
+			<pre>type TraceConfig struct {
+    *<a href="logger/index.html">logger</a>.<a href="logger/index.html#Config">Config</a>
+<span id="TraceConfig.Tracer"></span>    Tracer  *<a href="../../../../../builtin/index.html#string">string</a>
+<span id="TraceConfig.Timeout"></span>    Timeout *<a href="../../../../../builtin/index.html#string">string</a>
+<span id="TraceConfig.Reexec"></span>    Reexec  *<a href="../../../../../builtin/index.html#uint64">uint64</a>
+    <span class="comment">// Config specific to given tracer. Note struct logger</span>
+    <span class="comment">// config are historically embedded in main object.</span>
+<span id="TraceConfig.TracerConfig"></span>    TracerConfig <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Tracer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/tracers.go?s=1531:1700#L28">Tracer</a>
+				<a class="permalink" href="index.html#Tracer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Tracer interface extends vm.EVMLogger and additionally
+allows collecting the tracing result.
+
+			<pre>type Tracer interface {
+    <a href="../../core/vm/index.html">vm</a>.<a href="../../core/vm/index.html#EVMLogger">EVMLogger</a>
+    GetResult() (<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Stop terminates execution of the tracer at the first opportune moment.</span>
+    Stop(err <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/tracers/tracers.go?s=2370:2442#L55">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(code <a href="../../../../../builtin/index.html#string">string</a>, ctx *<a href="index.html#Context">Context</a>, cfg <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) (<a href="index.html#Tracer">Tracer</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New returns a new instance of a tracer, by iterating through the
+registered lookups.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="js/index.html">js</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="logger/index.html">logger</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="native/index.html">native</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package native is a collection of tracers written in go.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

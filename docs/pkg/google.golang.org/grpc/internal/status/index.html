@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>status - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package status
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "google.golang.org/grpc/internal/status"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package status implements errors returned by gRPC.  These errors are
+serialized and transmitted on the wire between server and client, and allow
+for additional data to be transmitted via the Details field in the status
+proto.  gRPC service handlers should return an error created by this
+package, and gRPC clients should expect a corresponding error to be
+returned from the RPC call.
+<p>This package upholds the invariants that a non-nil error may not
+contain an OK code, and an OK code must result in a nil error.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#Err">func Err(c codes.Code, msg string) error</a></dd>
+			
+				
+				<dd><a href="index.html#Errorf">func Errorf(c codes.Code, format string, a ...interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#IsRestrictedControlPlaneCode">func IsRestrictedControlPlaneCode(s *Status) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Error">type Error</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Error.Error">func (e *Error) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Error.GRPCStatus">func (e *Error) GRPCStatus() *Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Error.Is">func (e *Error) Is(target error) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Status">type Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromProto">func FromProto(s *spb.Status) *Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(c codes.Code, msg string) *Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Newf">func Newf(c codes.Code, format string, a ...interface{}) *Status</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Code">func (s *Status) Code() codes.Code</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Details">func (s *Status) Details() []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Err">func (s *Status) Err() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Message">func (s *Status) Message() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.Proto">func (s *Status) Proto() *spb.Status</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.String">func (s *Status) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Status.WithDetails">func (s *Status) WithDetails(details ...proto.Message) (*Status, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go">status.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="Err">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2057:2097#L52">Err</a>
+				<a class="permalink" href="index.html#Err">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Err(c <a href="../../codes/index.html">codes</a>.<a href="../../codes/index.html#Code">Code</a>, msg <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Err returns an error representing c and msg.  If c is OK, returns nil.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Errorf">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2184:2248#L57">Errorf</a>
+				<a class="permalink" href="index.html#Errorf">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Errorf(c <a href="../../codes/index.html">codes</a>.<a href="../../codes/index.html#Code">Code</a>, format <a href="../../../../builtin/index.html#string">string</a>, a ...interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>Errorf returns Error(c, fmt.Sprintf(format, a...)).
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsRestrictedControlPlaneCode">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4934:4983#L160">IsRestrictedControlPlaneCode</a>
+				<a class="permalink" href="index.html#IsRestrictedControlPlaneCode">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsRestrictedControlPlaneCode(s *<a href="index.html#Status">Status</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+			<p>IsRestrictedControlPlaneCode returns whether the status includes a code
+restricted for control plane usage as defined by gRFC A54.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Error">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4353:4385#L135">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Error wraps a pointer of a status proto. It implements error and Status,
+and a nil *Error should never be returned by this package.
+
+			<pre>type Error struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Error.Error">func (*Error) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4387:4417#L139">Error</a>
+					<a class="permalink" href="index.html#Error.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#Error">Error</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Error.GRPCStatus">func (*Error) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4496:4532#L144">GRPCStatus</a>
+					<a class="permalink" href="index.html#Error.GRPCStatus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#Error">Error</a>) GRPCStatus() *<a href="index.html#Status">Status</a></pre>
+				<p>GRPCStatus returns the Status represented by se.
+
+				
+				
+				
+			
+				
+				<h3 id="Error.Is">func (*Error) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4662:4699#L150">Is</a>
+					<a class="permalink" href="index.html#Error.Is">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#Error">Error</a>) Is(target <a href="../../../../builtin/index.html#error">error</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Is implements future error.Is functionality.
+A Error is equivalent if the code and message are identical.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Status">type <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=1485:1522#L32">Status</a>
+				<a class="permalink" href="index.html#Status">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Status represents an RPC status code, message, and details.  It is immutable
+and should be created with New, Newf, or FromProto.
+
+			<pre>type Status struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FromProto">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=1891:1928#L47">FromProto</a>
+					<a class="permalink" href="index.html#FromProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FromProto(s *<a href="../../../genproto/googleapis/rpc/status/index.html">spb</a>.<a href="../../../genproto/googleapis/rpc/status/index.html#Status">Status</a>) *<a href="index.html#Status">Status</a></pre>
+				<p>FromProto returns a Status representing s.
+
+				
+				
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=1572:1614#L37">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(c <a href="../../codes/index.html">codes</a>.<a href="../../codes/index.html#Code">Code</a>, msg <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Status">Status</a></pre>
+				<p>New returns a Status representing c and msg.
+
+				
+				
+			
+				
+				<h3 id="Newf">func <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=1733:1797#L42">Newf</a>
+					<a class="permalink" href="index.html#Newf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Newf(c <a href="../../codes/index.html">codes</a>.<a href="../../codes/index.html#Code">Code</a>, format <a href="../../../../builtin/index.html#string">string</a>, a ...interface{}) *<a href="index.html#Status">Status</a></pre>
+				<p>Newf returns New(c, fmt.Sprintf(format, a...)).
+
+				
+				
+			
+
+			
+				
+				<h3 id="Status.Code">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2344:2378#L62">Code</a>
+					<a class="permalink" href="index.html#Status.Code">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) Code() <a href="../../codes/index.html">codes</a>.<a href="../../codes/index.html#Code">Code</a></pre>
+				<p>Code returns the status code contained in s.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Details">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=3716:3756#L113">Details</a>
+					<a class="permalink" href="index.html#Status.Details">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) Details() []interface{}</pre>
+				<p>Details returns a slice of details messages attached to the status.
+If a detail cannot be decoded, the error is returned in place of the detail.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Err">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2866:2894#L86">Err</a>
+					<a class="permalink" href="index.html#Status.Err">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) Err() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Err returns an immutable error representing s; returns nil if s.Code() is OK.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Message">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2510:2543#L70">Message</a>
+					<a class="permalink" href="index.html#Status.Message">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) Message() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Message returns the message contained in s.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.Proto">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=2673:2709#L78">Proto</a>
+					<a class="permalink" href="index.html#Status.Proto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) Proto() *<a href="../../../genproto/googleapis/rpc/status/index.html">spb</a>.<a href="../../../genproto/googleapis/rpc/status/index.html#Status">Status</a></pre>
+				<p>Proto returns s&apos;s status as an spb.Status proto message.
+
+				
+				
+				
+			
+				
+				<h3 id="Status.String">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=4100:4132#L129">String</a>
+					<a class="permalink" href="index.html#Status.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) String() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Status.WithDetails">func (*Status) <a href="http://localhost:6060/src/google.golang.org/grpc/internal/status/status.go?s=3141:3212#L95">WithDetails</a>
+					<a class="permalink" href="index.html#Status.WithDetails">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Status">Status</a>) WithDetails(details ...<a href="../../../../github.com/golang/protobuf/proto/index.html">proto</a>.<a href="../../../../github.com/golang/protobuf/proto/index.html#Message">Message</a>) (*<a href="index.html#Status">Status</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WithDetails returns a new status with the provided details messages appended to the status.
+If any errors are encountered, it returns nil and the first error encountered.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

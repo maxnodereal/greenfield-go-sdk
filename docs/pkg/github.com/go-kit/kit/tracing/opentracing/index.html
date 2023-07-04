@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>opentracing - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package opentracing
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/tracing/opentracing"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package opentracing provides Go kit integration to the OpenTracing project.
+OpenTracing implements a general purpose interface that microservices can
+program against, and which adapts to all major distributed tracing systems.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#ContextToGRPC">func ContextToGRPC(tracer opentracing.Tracer, logger log.Logger) func(ctx context.Context, md *metadata.MD) context.Context</a></dd>
+			
+				
+				<dd><a href="index.html#ContextToHTTP">func ContextToHTTP(tracer opentracing.Tracer, logger log.Logger) kithttp.RequestFunc</a></dd>
+			
+				
+				<dd><a href="index.html#GRPCToContext">func GRPCToContext(tracer opentracing.Tracer, operationName string, logger log.Logger) func(ctx context.Context, md metadata.MD) context.Context</a></dd>
+			
+				
+				<dd><a href="index.html#HTTPToContext">func HTTPToContext(tracer opentracing.Tracer, operationName string, logger log.Logger) kithttp.RequestFunc</a></dd>
+			
+				
+				<dd><a href="index.html#TraceClient">func TraceClient(tracer opentracing.Tracer, operationName string, opts ...EndpointOption) endpoint.Middleware</a></dd>
+			
+				
+				<dd><a href="index.html#TraceEndpoint">func TraceEndpoint(tracer opentracing.Tracer, operationName string, opts ...EndpointOption) endpoint.Middleware</a></dd>
+			
+				
+				<dd><a href="index.html#TraceServer">func TraceServer(tracer opentracing.Tracer, operationName string, opts ...EndpointOption) endpoint.Middleware</a></dd>
+			
+			
+				
+				<dd><a href="index.html#EndpointOption">type EndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithIgnoreBusinessError">func WithIgnoreBusinessError(ignoreBusinessError bool) EndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithOperationNameFunc">func WithOperationNameFunc(getOperationName func(ctx context.Context, name string) string) EndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithOptions">func WithOptions(options EndpointOptions) EndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithTags">func WithTags(tags opentracing.Tags) EndpointOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithTagsFunc">func WithTagsFunc(getTags func(ctx context.Context) opentracing.Tags) EndpointOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EndpointOptions">type EndpointOptions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint.go">endpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go">endpoint_options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/grpc.go">grpc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/http.go">http.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ContextToGRPC">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/grpc.go?s=401:524#L8">ContextToGRPC</a>
+				<a class="permalink" href="index.html#ContextToGRPC">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ContextToGRPC(tracer opentracing.<a href="index.html#Tracer">Tracer</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, md *<a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+			<p>ContextToGRPC returns a grpc RequestFunc that injects an OpenTracing Span
+found in `ctx` into the grpc Metadata. If no such Span can be found, the
+RequestFunc is a noop.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ContextToHTTP">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/http.go?s=426:510#L9">ContextToHTTP</a>
+				<a class="permalink" href="index.html#ContextToHTTP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ContextToHTTP(tracer <a href="http://localhost:6060/pkg/github.com/opentracing/opentracing-go/">opentracing</a>.<a href="http://localhost:6060/pkg/github.com/opentracing/opentracing-go/#Tracer">Tracer</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="../../transport/http/index.html">kithttp</a>.<a href="../../transport/http/index.html#RequestFunc">RequestFunc</a></pre>
+			<p>ContextToHTTP returns an http RequestFunc that injects an OpenTracing Span
+found in `ctx` into the http headers. If no such Span can be found, the
+RequestFunc is a noop.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GRPCToContext">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/grpc.go?s=1219:1363#L25">GRPCToContext</a>
+				<a class="permalink" href="index.html#GRPCToContext">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GRPCToContext(tracer opentracing.<a href="index.html#Tracer">Tracer</a>, operationName <a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, md <a href="../../../../../google.golang.org/grpc/metadata/index.html">metadata</a>.<a href="../../../../../google.golang.org/grpc/metadata/index.html#MD">MD</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+			<p>GRPCToContext returns a grpc RequestFunc that tries to join with an
+OpenTracing trace found in `req` and starts a new Span called
+`operationName` accordingly. If no trace could be found in `req`, the Span
+will be a trace root. The Span is incorporated in the returned Context and
+can be retrieved with opentracing.SpanFromContext(ctx).
+
+			
+			
+
+		
+			
+			
+			<h2 id="HTTPToContext">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/http.go?s=1695:1801#L44">HTTPToContext</a>
+				<a class="permalink" href="index.html#HTTPToContext">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HTTPToContext(tracer <a href="http://localhost:6060/pkg/github.com/opentracing/opentracing-go/">opentracing</a>.<a href="http://localhost:6060/pkg/github.com/opentracing/opentracing-go/#Tracer">Tracer</a>, operationName <a href="../../../../../builtin/index.html#string">string</a>, logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="../../transport/http/index.html">kithttp</a>.<a href="../../transport/http/index.html#RequestFunc">RequestFunc</a></pre>
+			<p>HTTPToContext returns an http RequestFunc that tries to join with an
+OpenTracing trace found in `req` and starts a new Span called
+`operationName` accordingly. If no trace could be found in `req`, the Span
+will be a trace root. The Span is incorporated in the returned Context and
+can be retrieved with opentracing.SpanFromContext(ctx).
+
+			
+			
+
+		
+			
+			
+			<h2 id="TraceClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint.go?s=3033:3142#L102">TraceClient</a>
+				<a class="permalink" href="index.html#TraceClient">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TraceClient(tracer opentracing.<a href="index.html#Tracer">Tracer</a>, operationName <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="index.html#EndpointOption">EndpointOption</a>) <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Middleware">Middleware</a></pre>
+			<p>TraceClient returns a Middleware that wraps the `next` Endpoint in an
+OpenTracing Span called `operationName` with client span.kind tag.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TraceEndpoint">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint.go?s=511:622#L10">TraceEndpoint</a>
+				<a class="permalink" href="index.html#TraceEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TraceEndpoint(tracer opentracing.<a href="index.html#Tracer">Tracer</a>, operationName <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="index.html#EndpointOption">EndpointOption</a>) <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Middleware">Middleware</a></pre>
+			<p>TraceEndpoint returns a Middleware that wraps the `next` Endpoint in an
+OpenTracing Span called `operationName`.
+<p>If `ctx` already has a Span, child span is created from it.
+If `ctx` doesn&apos;t yet have a Span, the new one is created.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TraceServer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint.go?s=2599:2708#L92">TraceServer</a>
+				<a class="permalink" href="index.html#TraceServer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TraceServer(tracer opentracing.<a href="index.html#Tracer">Tracer</a>, operationName <a href="../../../../../builtin/index.html#string">string</a>, opts ...<a href="index.html#EndpointOption">EndpointOption</a>) <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Middleware">Middleware</a></pre>
+			<p>TraceServer returns a Middleware that wraps the `next` Endpoint in an
+OpenTracing Span called `operationName` with server span.kind tag..
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="EndpointOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=1041:1083#L21">EndpointOption</a>
+				<a class="permalink" href="index.html#EndpointOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointOption allows for functional options to endpoint tracing middleware.
+
+			<pre>type EndpointOption func(*<a href="index.html#EndpointOptions">EndpointOptions</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WithIgnoreBusinessError">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=1435:1504#L32">WithIgnoreBusinessError</a>
+					<a class="permalink" href="index.html#WithIgnoreBusinessError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithIgnoreBusinessError(ignoreBusinessError <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#EndpointOption">EndpointOption</a></pre>
+				<p>WithIgnoreBusinessError if set to true will not treat a business error
+identified through the endpoint.Failer interface as a span error.
+
+				
+				
+			
+				
+				<h3 id="WithOperationNameFunc">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=1757:1862#L40">WithOperationNameFunc</a>
+					<a class="permalink" href="index.html#WithOperationNameFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithOperationNameFunc(getOperationName func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#EndpointOption">EndpointOption</a></pre>
+				<p>WithOperationNameFunc allows to set function that can set the span operation name based on the existing one
+for the endpoint and information in the context.
+
+				
+				
+			
+				
+				<h3 id="WithOptions">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=1177:1233#L24">WithOptions</a>
+					<a class="permalink" href="index.html#WithOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithOptions(options <a href="index.html#EndpointOptions">EndpointOptions</a>) <a href="index.html#EndpointOption">EndpointOption</a></pre>
+				<p>WithOptions sets all configuration options at once by use of the EndpointOptions struct.
+
+				
+				
+			
+				
+				<h3 id="WithTags">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=2022:2073#L47">WithTags</a>
+					<a class="permalink" href="index.html#WithTags">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithTags(tags opentracing.<a href="index.html#Tags">Tags</a>) <a href="index.html#EndpointOption">EndpointOption</a></pre>
+				<p>WithTags adds default tags for the spans created by the Endpoint tracer.
+
+				
+				
+			
+				
+				<h3 id="WithTagsFunc">func <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=2313:2397#L60">WithTagsFunc</a>
+					<a class="permalink" href="index.html#WithTagsFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithTagsFunc(getTags func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) opentracing.<a href="index.html#Tags">Tags</a>) <a href="index.html#EndpointOption">EndpointOption</a></pre>
+				<p>WithTagsFunc set the func to extracts additional tags from the context.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="EndpointOptions">type <a href="http://localhost:6060/src/github.com/go-kit/kit/tracing/opentracing/endpoint_options.go?s=147:959#L1">EndpointOptions</a>
+				<a class="permalink" href="index.html#EndpointOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointOptions holds the options for tracing an endpoint
+
+			<pre>type EndpointOptions struct {
+<span id="EndpointOptions.IgnoreBusinessError"></span>    <span class="comment">// IgnoreBusinessError if set to true will not treat a business error</span>
+    <span class="comment">// identified through the endpoint.Failer interface as a span error.</span>
+    IgnoreBusinessError <a href="../../../../../builtin/index.html#bool">bool</a>
+
+<span id="EndpointOptions.GetOperationName"></span>    <span class="comment">// GetOperationName is an optional function that can set the span operation name based on the existing one</span>
+    <span class="comment">// for the endpoint and information in the context.</span>
+    <span class="comment">//</span>
+    <span class="comment">// If the function is nil, or the returned name is empty, the existing name for the endpoint is used.</span>
+    GetOperationName func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, name <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../../../../builtin/index.html#string">string</a>
+
+<span id="EndpointOptions.Tags"></span>    <span class="comment">// Tags holds the default tags which will be set on span</span>
+    <span class="comment">// creation by our Endpoint middleware.</span>
+    Tags opentracing.<a href="index.html#Tags">Tags</a>
+
+<span id="EndpointOptions.GetTags"></span>    <span class="comment">// GetTags is an optional function that can extract tags</span>
+    <span class="comment">// from the context and add them to the span.</span>
+    GetTags func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) opentracing.<a href="index.html#Tags">Tags</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>psql - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package psql
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/state/indexer/sink/psql"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package psql implements an event sink backed by a PostgreSQL database.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#BackportBlockIndexer">type BackportBlockIndexer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportBlockIndexer.Has">func (BackportBlockIndexer) Has(height int64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportBlockIndexer.Index">func (b BackportBlockIndexer) Index(block types.EventDataNewBlockHeader) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportBlockIndexer.Search">func (BackportBlockIndexer) Search(context.Context, *query.Query) ([]int64, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BackportTxIndexer">type BackportTxIndexer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportTxIndexer.AddBatch">func (b BackportTxIndexer) AddBatch(batch *txindex.Batch) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportTxIndexer.Get">func (BackportTxIndexer) Get([]byte) (*abci.TxResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportTxIndexer.Index">func (b BackportTxIndexer) Index(txr *abci.TxResult) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BackportTxIndexer.Search">func (BackportTxIndexer) Search(context.Context, *query.Query) ([]*abci.TxResult, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EventSink">type EventSink</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEventSink">func NewEventSink(connStr, chainID string) (*EventSink, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.BlockIndexer">func (es *EventSink) BlockIndexer() BackportBlockIndexer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.DB">func (es *EventSink) DB() *sql.DB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.GetTxByHash">func (es *EventSink) GetTxByHash(hash []byte) (*abci.TxResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.HasBlock">func (es *EventSink) HasBlock(h int64) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.IndexBlockEvents">func (es *EventSink) IndexBlockEvents(h types.EventDataNewBlockHeader) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.IndexTxEvents">func (es *EventSink) IndexTxEvents(txrs []*abci.TxResult) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.SearchBlockEvents">func (es *EventSink) SearchBlockEvents(ctx context.Context, q *query.Query) ([]int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.SearchTxEvents">func (es *EventSink) SearchTxEvents(ctx context.Context, q *query.Query) ([]*abci.TxResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.Stop">func (es *EventSink) Stop() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSink.TxIndexer">func (es *EventSink) TxIndexer() BackportTxIndexer</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go">backport.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go">psql.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="BackportBlockIndexer">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=2737:2788#L60">BackportBlockIndexer</a>
+				<a class="permalink" href="index.html#BackportBlockIndexer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BackportBlockIndexer implements the indexer.BlockIndexer interface by
+delegating indexing operations to an underlying PostgreSQL event sink.
+
+			<pre>type BackportBlockIndexer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BackportBlockIndexer.Has">func (BackportBlockIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=2938:2997#L64">Has</a>
+					<a class="permalink" href="index.html#BackportBlockIndexer.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#BackportBlockIndexer">BackportBlockIndexer</a>) Has(height <a href="../../../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has is implemented to satisfy the BlockIndexer interface, but it is not
+supported by the psql event sink and reports an error for all inputs.
+
+				
+				
+				
+			
+				
+				<h3 id="BackportBlockIndexer.Index">func (BackportBlockIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=3192:3270#L70">Index</a>
+					<a class="permalink" href="index.html#BackportBlockIndexer.Index">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#BackportBlockIndexer">BackportBlockIndexer</a>) Index(block <a href="../../../../types/index.html">types</a>.<a href="../../../../types/index.html#EventDataNewBlockHeader">EventDataNewBlockHeader</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Index indexes block begin and end events for the specified block.  It is
+part of the BlockIndexer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="BackportBlockIndexer.Search">func (BackportBlockIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=3466:3548#L76">Search</a>
+					<a class="permalink" href="index.html#BackportBlockIndexer.Search">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#BackportBlockIndexer">BackportBlockIndexer</a>) Search(<a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, *<a href="../../../../libs/pubsub/query/index.html">query</a>.<a href="../../../../libs/pubsub/query/index.html#Query">Query</a>) ([]<a href="../../../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Search is implemented to satisfy the BlockIndexer interface, but it is not
+supported by the psql event sink and reports an error for all inputs.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BackportTxIndexer">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=1318:1366#L28">BackportTxIndexer</a>
+				<a class="permalink" href="index.html#BackportTxIndexer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BackportTxIndexer implements the txindex.TxIndexer interface by delegating
+indexing operations to an underlying PostgreSQL event sink.
+
+			<pre>type BackportTxIndexer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BackportTxIndexer.AddBatch">func (BackportTxIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=1447:1510#L31">AddBatch</a>
+					<a class="permalink" href="index.html#BackportTxIndexer.AddBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#BackportTxIndexer">BackportTxIndexer</a>) AddBatch(batch *<a href="../../../txindex/index.html">txindex</a>.<a href="../../../txindex/index.html#Batch">Batch</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>AddBatch indexes a batch of transactions in Postgres, as part of TxIndexer.
+
+				
+				
+				
+			
+				
+				<h3 id="BackportTxIndexer.Get">func (BackportTxIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=1894:1954#L42">Get</a>
+					<a class="permalink" href="index.html#BackportTxIndexer.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#BackportTxIndexer">BackportTxIndexer</a>) Get([]<a href="../../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get is implemented to satisfy the TxIndexer interface, but is not supported
+by the psql event sink and reports an error for all inputs.
+
+				
+				
+				
+			
+				
+				<h3 id="BackportTxIndexer.Index">func (BackportTxIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=1636:1694#L36">Index</a>
+					<a class="permalink" href="index.html#BackportTxIndexer.Index">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#BackportTxIndexer">BackportTxIndexer</a>) Index(txr *<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Index indexes a single transaction result in Postgres, as part of TxIndexer.
+
+				
+				
+				
+			
+				
+				<h3 id="BackportTxIndexer.Search">func (BackportTxIndexer) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=2177:2265#L48">Search</a>
+					<a class="permalink" href="index.html#BackportTxIndexer.Search">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#BackportTxIndexer">BackportTxIndexer</a>) Search(<a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, *<a href="../../../../libs/pubsub/query/index.html">query</a>.<a href="../../../../libs/pubsub/query/index.html#Query">Query</a>) ([]*<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Search is implemented to satisfy the TxIndexer interface, but it is not
+supported by the psql event sink and reports an error for all inputs.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EventSink">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=704:762#L20">EventSink</a>
+				<a class="permalink" href="index.html#EventSink">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EventSink is an indexer backend providing the tx/block index services.  This
+implementation stores records in a PostgreSQL database using the schema
+defined in state/indexer/sink/psql/schema.sql.
+
+			<pre>type EventSink struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEventSink">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=941:1003#L28">NewEventSink</a>
+					<a class="permalink" href="index.html#NewEventSink">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEventSink(connStr, chainID <a href="../../../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#EventSink">EventSink</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewEventSink constructs an event sink associated with the PostgreSQL
+database specified by connStr. Events written to the sink are attributed to
+the specified chainID.
+
+				
+				
+			
+
+			
+				
+				<h3 id="EventSink.BlockIndexer">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=2489:2545#L54">BlockIndexer</a>
+					<a class="permalink" href="index.html#EventSink.BlockIndexer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) BlockIndexer() <a href="index.html#BackportBlockIndexer">BackportBlockIndexer</a></pre>
+				<p>BlockIndexer returns a bridge that implements the CometBFT v0.34 block
+indexer interface, using the Postgres event sink as a backing store.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.DB">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=1260:1293#L42">DB</a>
+					<a class="permalink" href="index.html#EventSink.DB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) DB() *<a href="../../../../../../../database/sql/index.html">sql</a>.<a href="../../../../../../../database/sql/index.html#DB">DB</a></pre>
+				<p>DB returns the underlying Postgres connection used by the sink.
+This is exported to support testing.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.GetTxByHash">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=8026:8095#L234">GetTxByHash</a>
+					<a class="permalink" href="index.html#EventSink.GetTxByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) GetTxByHash(hash []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetTxByHash is not implemented by this sink, and reports an error for all queries.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.HasBlock">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=8268:8320#L239">HasBlock</a>
+					<a class="permalink" href="index.html#EventSink.HasBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) HasBlock(h <a href="../../../../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasBlock is not implemented by this sink, and reports an error for all queries.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.IndexBlockEvents">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=4167:4243#L132">IndexBlockEvents</a>
+					<a class="permalink" href="index.html#EventSink.IndexBlockEvents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) IndexBlockEvents(h <a href="../../../../types/index.html">types</a>.<a href="../../../../types/index.html#EventDataNewBlockHeader">EventDataNewBlockHeader</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>IndexBlockEvents indexes the specified block header, part of the
+indexer.EventSink interface.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.IndexTxEvents">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=5433:5496#L167">IndexTxEvents</a>
+					<a class="permalink" href="index.html#EventSink.IndexTxEvents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) IndexTxEvents(txrs []*<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EventSink.SearchBlockEvents">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=7482:7574#L224">SearchBlockEvents</a>
+					<a class="permalink" href="index.html#EventSink.SearchBlockEvents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) SearchBlockEvents(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, q *<a href="../../../../libs/pubsub/query/index.html">query</a>.<a href="../../../../libs/pubsub/query/index.html#Query">Query</a>) ([]<a href="../../../../../../../builtin/index.html#int64">int64</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SearchBlockEvents is not implemented by this sink, and reports an error for all queries.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.SearchTxEvents">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=7754:7852#L229">SearchTxEvents</a>
+					<a class="permalink" href="index.html#EventSink.SearchTxEvents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) SearchTxEvents(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, q *<a href="../../../../libs/pubsub/query/index.html">query</a>.<a href="../../../../libs/pubsub/query/index.html#Query">Query</a>) ([]*<a href="../../../../abci/types/index.html">abci</a>.<a href="../../../../abci/types/index.html#TxResult">TxResult</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SearchTxEvents is not implemented by this sink, and reports an error for all queries.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.Stop">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/psql.go?s=8460:8493#L244">Stop</a>
+					<a class="permalink" href="index.html#EventSink.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) Stop() <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop closes the underlying PostgreSQL database.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSink.TxIndexer">func (*EventSink) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/indexer/sink/psql/backport.go?s=1085:1135#L22">TxIndexer</a>
+					<a class="permalink" href="index.html#EventSink.TxIndexer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSink">EventSink</a>) TxIndexer() <a href="index.html#BackportTxIndexer">BackportTxIndexer</a></pre>
+				<p>TxIndexer returns a bridge from es to the CometBFT v0.34 transaction indexer.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

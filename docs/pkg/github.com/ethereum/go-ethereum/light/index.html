@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>light - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package light
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/light"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package light implements on-demand retrieval capable state and chain objects
+for the Ethereum Light Client.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#GetBlock">func GetBlock(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) (*types.Block, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetBlockLogs">func GetBlockLogs(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) ([][]*types.Log, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetBlockReceipts">func GetBlockReceipts(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) (types.Receipts, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetBloomBits">func GetBloomBits(ctx context.Context, odr OdrBackend, bit uint, sections []uint64) ([][]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetBloomTrieRoot">func GetBloomTrieRoot(db ethdb.Database, sectionIdx uint64, sectionHead common.Hash) common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#GetBody">func GetBody(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) (*types.Body, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetBodyRLP">func GetBodyRLP(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) (rlp.RawValue, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetCanonicalHash">func GetCanonicalHash(ctx context.Context, odr OdrBackend, number uint64) (common.Hash, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetChtRoot">func GetChtRoot(db ethdb.Database, sectionIdx uint64, sectionHead common.Hash) common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#GetHeaderByNumber">func GetHeaderByNumber(ctx context.Context, odr OdrBackend, number uint64) (*types.Header, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetTd">func GetTd(ctx context.Context, odr OdrBackend, hash common.Hash, number uint64) (*big.Int, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetTransaction">func GetTransaction(ctx context.Context, odr OdrBackend, txHash common.Hash) (*types.Transaction, common.Hash, uint64, uint64, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetUntrustedBlockLogs">func GetUntrustedBlockLogs(ctx context.Context, odr OdrBackend, header *types.Header) ([][]*types.Log, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NewBloomTrieIndexer">func NewBloomTrieIndexer(db ethdb.Database, odr OdrBackend, parentSize, size uint64, disablePruning bool) *core.ChainIndexer</a></dd>
+			
+				
+				<dd><a href="index.html#NewChtIndexer">func NewChtIndexer(db ethdb.Database, odr OdrBackend, size, confirms uint64, disablePruning bool) *core.ChainIndexer</a></dd>
+			
+				
+				<dd><a href="index.html#NewState">func NewState(ctx context.Context, head *types.Header, odr OdrBackend) *state.StateDB</a></dd>
+			
+				
+				<dd><a href="index.html#NewStateDatabase">func NewStateDatabase(ctx context.Context, head *types.Header, odr OdrBackend) state.Database</a></dd>
+			
+				
+				<dd><a href="index.html#StoreBloomTrieRoot">func StoreBloomTrieRoot(db ethdb.Database, sectionIdx uint64, sectionHead, root common.Hash)</a></dd>
+			
+				
+				<dd><a href="index.html#StoreChtRoot">func StoreChtRoot(db ethdb.Database, sectionIdx uint64, sectionHead, root common.Hash)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BlockRequest">type BlockRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockRequest.StoreResult">func (req *BlockRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BloomRequest">type BloomRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BloomRequest.StoreResult">func (req *BloomRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BloomTrieIndexerBackend">type BloomTrieIndexerBackend</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BloomTrieIndexerBackend.Commit">func (b *BloomTrieIndexerBackend) Commit() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BloomTrieIndexerBackend.Process">func (b *BloomTrieIndexerBackend) Process(ctx context.Context, header *types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BloomTrieIndexerBackend.Prune">func (b *BloomTrieIndexerBackend) Prune(threshold uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BloomTrieIndexerBackend.Reset">func (b *BloomTrieIndexerBackend) Reset(ctx context.Context, section uint64, lastSectionHead common.Hash) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ChtIndexerBackend">type ChtIndexerBackend</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChtIndexerBackend.Commit">func (c *ChtIndexerBackend) Commit() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChtIndexerBackend.Process">func (c *ChtIndexerBackend) Process(ctx context.Context, header *types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChtIndexerBackend.Prune">func (c *ChtIndexerBackend) Prune(threshold uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChtIndexerBackend.Reset">func (c *ChtIndexerBackend) Reset(ctx context.Context, section uint64, lastSectionHead common.Hash) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ChtNode">type ChtNode</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChtRequest">type ChtRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChtRequest.StoreResult">func (req *ChtRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CodeRequest">type CodeRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CodeRequest.StoreResult">func (req *CodeRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IndexerConfig">type IndexerConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LightChain">type LightChain</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLightChain">func NewLightChain(odr OdrBackend, config *params.ChainConfig, engine consensus.Engine, checkpoint *params.TrustedCheckpoint) (*LightChain, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.AddTrustedCheckpoint">func (lc *LightChain) AddTrustedCheckpoint(cp *params.TrustedCheckpoint)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Config">func (lc *LightChain) Config() *params.ChainConfig</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.CurrentHeader">func (lc *LightChain) CurrentHeader() *types.Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.DisableCheckFreq">func (lc *LightChain) DisableCheckFreq()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.EnableCheckFreq">func (lc *LightChain) EnableCheckFreq()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Engine">func (lc *LightChain) Engine() consensus.Engine</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GasLimit">func (lc *LightChain) GasLimit() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Genesis">func (lc *LightChain) Genesis() *types.Block</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetAncestor">func (lc *LightChain) GetAncestor(hash common.Hash, number, ancestor uint64, maxNonCanonical *uint64) (common.Hash, uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetBlock">func (lc *LightChain) GetBlock(ctx context.Context, hash common.Hash, number uint64) (*types.Block, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetBlockByHash">func (lc *LightChain) GetBlockByHash(ctx context.Context, hash common.Hash) (*types.Block, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetBlockByNumber">func (lc *LightChain) GetBlockByNumber(ctx context.Context, number uint64) (*types.Block, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetBody">func (lc *LightChain) GetBody(ctx context.Context, hash common.Hash) (*types.Body, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetBodyRLP">func (lc *LightChain) GetBodyRLP(ctx context.Context, hash common.Hash) (rlp.RawValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetCanonicalHash">func (bc *LightChain) GetCanonicalHash(number uint64) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetHeader">func (lc *LightChain) GetHeader(hash common.Hash, number uint64) *types.Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetHeaderByHash">func (lc *LightChain) GetHeaderByHash(hash common.Hash) *types.Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetHeaderByNumber">func (lc *LightChain) GetHeaderByNumber(number uint64) *types.Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetHeaderByNumberOdr">func (lc *LightChain) GetHeaderByNumberOdr(ctx context.Context, number uint64) (*types.Header, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetTd">func (lc *LightChain) GetTd(hash common.Hash, number uint64) *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.GetTdOdr">func (lc *LightChain) GetTdOdr(ctx context.Context, hash common.Hash, number uint64) *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.HasBlock">func (lc *LightChain) HasBlock(hash common.Hash, number uint64) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.HasHeader">func (lc *LightChain) HasHeader(hash common.Hash, number uint64) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.HeaderChain">func (lc *LightChain) HeaderChain() *core.HeaderChain</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.InsertHeader">func (lc *LightChain) InsertHeader(header *types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.InsertHeaderChain">func (lc *LightChain) InsertHeaderChain(chain []*types.Header, checkFreq int) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.LockChain">func (lc *LightChain) LockChain()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Odr">func (lc *LightChain) Odr() OdrBackend</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Reset">func (lc *LightChain) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.ResetWithGenesisBlock">func (lc *LightChain) ResetWithGenesisBlock(genesis *types.Block)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Rollback">func (lc *LightChain) Rollback(chain []common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SetCanonical">func (lc *LightChain) SetCanonical(header *types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SetHead">func (lc *LightChain) SetHead(head uint64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.StateCache">func (lc *LightChain) StateCache() state.Database</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.Stop">func (lc *LightChain) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.StopInsert">func (lc *LightChain) StopInsert()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SubscribeChainEvent">func (lc *LightChain) SubscribeChainEvent(ch chan&lt;- core.ChainEvent) event.Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SubscribeChainHeadEvent">func (lc *LightChain) SubscribeChainHeadEvent(ch chan&lt;- core.ChainHeadEvent) event.Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SubscribeChainSideEvent">func (lc *LightChain) SubscribeChainSideEvent(ch chan&lt;- core.ChainSideEvent) event.Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SubscribeLogsEvent">func (lc *LightChain) SubscribeLogsEvent(ch chan&lt;- []*types.Log) event.Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SubscribeRemovedLogsEvent">func (lc *LightChain) SubscribeRemovedLogsEvent(ch chan&lt;- core.RemovedLogsEvent) event.Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.SyncCheckpoint">func (lc *LightChain) SyncCheckpoint(ctx context.Context, checkpoint *params.TrustedCheckpoint) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LightChain.UnlockChain">func (lc *LightChain) UnlockChain()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NodeList">type NodeList</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeList.DataSize">func (n NodeList) DataSize() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeList.Delete">func (n *NodeList) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeList.NodeSet">func (n NodeList) NodeSet() *NodeSet</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeList.Put">func (n *NodeList) Put(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeList.Store">func (n NodeList) Store(db ethdb.KeyValueWriter)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NodeSet">type NodeSet</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNodeSet">func NewNodeSet() *NodeSet</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.DataSize">func (db *NodeSet) DataSize() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.Delete">func (db *NodeSet) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.Get">func (db *NodeSet) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.Has">func (db *NodeSet) Has(key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.KeyCount">func (db *NodeSet) KeyCount() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.NodeList">func (db *NodeSet) NodeList() NodeList</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.Put">func (db *NodeSet) Put(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NodeSet.Store">func (db *NodeSet) Store(target ethdb.KeyValueWriter)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#OdrBackend">type OdrBackend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#OdrRequest">type OdrRequest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ReceiptsRequest">type ReceiptsRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReceiptsRequest.StoreResult">func (req *ReceiptsRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TrieID">type TrieID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateTrieID">func StateTrieID(header *types.Header) *TrieID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StorageTrieID">func StorageTrieID(state *TrieID, addrHash, root common.Hash) *TrieID</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TrieRequest">type TrieRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TrieRequest.StoreResult">func (req *TrieRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TxPool">type TxPool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTxPool">func NewTxPool(config *params.ChainConfig, chain *LightChain, relay TxRelayBackend) *TxPool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.Add">func (pool *TxPool) Add(ctx context.Context, tx *types.Transaction) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.AddBatch">func (pool *TxPool) AddBatch(ctx context.Context, txs []*types.Transaction)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.Content">func (pool *TxPool) Content() (map[common.Address]types.Transactions, map[common.Address]types.Transactions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.ContentFrom">func (pool *TxPool) ContentFrom(addr common.Address) (types.Transactions, types.Transactions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.GetNonce">func (pool *TxPool) GetNonce(ctx context.Context, addr common.Address) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.GetTransaction">func (pool *TxPool) GetTransaction(hash common.Hash) *types.Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.GetTransactions">func (pool *TxPool) GetTransactions() (txs types.Transactions, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.RemoveTransactions">func (pool *TxPool) RemoveTransactions(txs types.Transactions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.RemoveTx">func (pool *TxPool) RemoveTx(hash common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.Stats">func (pool *TxPool) Stats() (pending int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.Stop">func (pool *TxPool) Stop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxPool.SubscribeNewTxsEvent">func (pool *TxPool) SubscribeNewTxsEvent(ch chan&lt;- core.NewTxsEvent) event.Subscription</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TxRelayBackend">type TxRelayBackend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxStatus">type TxStatus</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxStatusRequest">type TxStatusRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxStatusRequest.StoreResult">func (req *TxStatusRequest) StoreResult(db ethdb.Database)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go">lightchain.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go">nodeset.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go">odr.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go">odr_util.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go">postprocess.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/trie.go">trie.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go">txpool.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// DefaultServerIndexerConfig wraps a set of configs as a default indexer config for server side.</span>
+    <span id="DefaultServerIndexerConfig">DefaultServerIndexerConfig</span> = &amp;<a href="index.html#IndexerConfig">IndexerConfig</a>{
+        <a href="index.html#IndexerConfig.ChtSize">ChtSize</a>:           <a href="../params/index.html">params</a>.<a href="../params/index.html#CHTFrequency">CHTFrequency</a>,
+        <a href="index.html#IndexerConfig.ChtConfirms">ChtConfirms</a>:       <a href="../params/index.html">params</a>.<a href="../params/index.html#HelperTrieProcessConfirmations">HelperTrieProcessConfirmations</a>,
+        <a href="index.html#IndexerConfig.BloomSize">BloomSize</a>:         <a href="../params/index.html">params</a>.<a href="../params/index.html#BloomBitsBlocks">BloomBitsBlocks</a>,
+        <a href="index.html#IndexerConfig.BloomConfirms">BloomConfirms</a>:     <a href="../params/index.html">params</a>.<a href="../params/index.html#BloomConfirms">BloomConfirms</a>,
+        <a href="index.html#IndexerConfig.BloomTrieSize">BloomTrieSize</a>:     <a href="../params/index.html">params</a>.<a href="../params/index.html#BloomTrieFrequency">BloomTrieFrequency</a>,
+        <a href="index.html#IndexerConfig.BloomTrieConfirms">BloomTrieConfirms</a>: <a href="../params/index.html">params</a>.<a href="../params/index.html#HelperTrieProcessConfirmations">HelperTrieProcessConfirmations</a>,
+    }
+    <span class="comment">// DefaultClientIndexerConfig wraps a set of configs as a default indexer config for client side.</span>
+    <span id="DefaultClientIndexerConfig">DefaultClientIndexerConfig</span> = &amp;<a href="index.html#IndexerConfig">IndexerConfig</a>{
+        <a href="index.html#IndexerConfig.ChtSize">ChtSize</a>:           <a href="../params/index.html">params</a>.<a href="../params/index.html#CHTFrequency">CHTFrequency</a>,
+        <a href="index.html#IndexerConfig.ChtConfirms">ChtConfirms</a>:       <a href="../params/index.html">params</a>.<a href="../params/index.html#HelperTrieConfirmations">HelperTrieConfirmations</a>,
+        <a href="index.html#IndexerConfig.BloomSize">BloomSize</a>:         <a href="../params/index.html">params</a>.<a href="../params/index.html#BloomBitsBlocksClient">BloomBitsBlocksClient</a>,
+        <a href="index.html#IndexerConfig.BloomConfirms">BloomConfirms</a>:     <a href="../params/index.html">params</a>.<a href="../params/index.html#HelperTrieConfirmations">HelperTrieConfirmations</a>,
+        <a href="index.html#IndexerConfig.BloomTrieSize">BloomTrieSize</a>:     <a href="../params/index.html">params</a>.<a href="../params/index.html#BloomTrieFrequency">BloomTrieFrequency</a>,
+        <a href="index.html#IndexerConfig.BloomTrieConfirms">BloomTrieConfirms</a>: <a href="../params/index.html">params</a>.<a href="../params/index.html#HelperTrieConfirmations">HelperTrieConfirmations</a>,
+    }
+    <span class="comment">// TestServerIndexerConfig wraps a set of configs as a test indexer config for server side.</span>
+    <span id="TestServerIndexerConfig">TestServerIndexerConfig</span> = &amp;<a href="index.html#IndexerConfig">IndexerConfig</a>{
+        <a href="index.html#IndexerConfig.ChtSize">ChtSize</a>:           128,
+        <a href="index.html#IndexerConfig.ChtConfirms">ChtConfirms</a>:       1,
+        <a href="index.html#IndexerConfig.BloomSize">BloomSize</a>:         16,
+        <a href="index.html#IndexerConfig.BloomConfirms">BloomConfirms</a>:     1,
+        <a href="index.html#IndexerConfig.BloomTrieSize">BloomTrieSize</a>:     128,
+        <a href="index.html#IndexerConfig.BloomTrieConfirms">BloomTrieConfirms</a>: 1,
+    }
+    <span class="comment">// TestClientIndexerConfig wraps a set of configs as a test indexer config for client side.</span>
+    <span id="TestClientIndexerConfig">TestClientIndexerConfig</span> = &amp;<a href="index.html#IndexerConfig">IndexerConfig</a>{
+        <a href="index.html#IndexerConfig.ChtSize">ChtSize</a>:           128,
+        <a href="index.html#IndexerConfig.ChtConfirms">ChtConfirms</a>:       8,
+        <a href="index.html#IndexerConfig.BloomSize">BloomSize</a>:         128,
+        <a href="index.html#IndexerConfig.BloomConfirms">BloomConfirms</a>:     8,
+        <a href="index.html#IndexerConfig.BloomTrieSize">BloomTrieSize</a>:     128,
+        <a href="index.html#IndexerConfig.BloomTrieConfirms">BloomTrieConfirms</a>: 8,
+    }
+)</pre>
+			
+				
+				<pre>var (
+    <span id="BloomTrieTablePrefix">BloomTrieTablePrefix</span> = &#34;blt-&#34;
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ChtTablePrefix">ChtTablePrefix</span> = &#34;cht-&#34;
+)</pre>
+			
+				<p>ErrNoPeers is returned if no peers capable of serving a queued request are available
+
+				<pre>var <span id="ErrNoPeers">ErrNoPeers</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;no suitable peers available&#34;)</pre>
+			
+				<p>NoOdr is the default context passed to an ODR capable function when the ODR
+service is not required.
+
+				<pre>var <span id="NoOdr">NoOdr</span> = <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Background">Background</a>()</pre>
+			
+		
+		
+			
+			
+			<h2 id="GetBlock">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=4654:4759#L126">GetBlock</a>
+				<a class="permalink" href="index.html#GetBlock">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBlock(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBlock retrieves an entire block corresponding to the hash, assembling it
+back from the stored header and body.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBlockLogs">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=6507:6618#L178">GetBlockLogs</a>
+				<a class="permalink" href="index.html#GetBlockLogs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBlockLogs(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) ([][]*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Log">Log</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBlockLogs retrieves the logs generated by the transactions included in a
+block given by its hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBlockReceipts">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=5233:5348#L142">GetBlockReceipts</a>
+				<a class="permalink" href="index.html#GetBlockReceipts">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBlockReceipts(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Receipts">Receipts</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBlockReceipts retrieves the receipts generated by the transactions included
+in a block given by its hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBloomBits">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=8121:8222#L217">GetBloomBits</a>
+				<a class="permalink" href="index.html#GetBloomBits">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBloomBits(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, bit <a href="../../../../builtin/index.html#uint">uint</a>, sections []<a href="../../../../builtin/index.html#uint64">uint64</a>) ([][]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBloomBits retrieves a batch of compressed bloomBits vectors belonging to
+the given bit index and section indexes.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBloomTrieRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=10678:10774#L307">GetBloomTrieRoot</a>
+				<a class="permalink" href="index.html#GetBloomTrieRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBloomTrieRoot(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, sectionIdx <a href="../../../../builtin/index.html#uint64">uint64</a>, sectionHead <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a></pre>
+			<p>GetBloomTrieRoot reads the BloomTrie root associated to the given section from the database
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBody">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=4209:4312#L112">GetBody</a>
+				<a class="permalink" href="index.html#GetBody">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBody(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Body">Body</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBody retrieves the block body (transactions, uncles) corresponding to the
+hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBodyRLP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=3531:3638#L91">GetBodyRLP</a>
+				<a class="permalink" href="index.html#GetBodyRLP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetBodyRLP(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../rlp/index.html">rlp</a>.<a href="../rlp/index.html#RawValue">RawValue</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetBodyRLP retrieves the block body (transactions and uncles) in RLP encoding.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCanonicalHash">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=2503:2597#L60">GetCanonicalHash</a>
+				<a class="permalink" href="index.html#GetCanonicalHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetCanonicalHash(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetCanonicalHash retrieves the canonical block hash corresponding to the number.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetChtRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=4059:4149#L107">GetChtRoot</a>
+				<a class="permalink" href="index.html#GetChtRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetChtRoot(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, sectionIdx <a href="../../../../builtin/index.html#uint64">uint64</a>, sectionHead <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a></pre>
+			<p>GetChtRoot reads the CHT root associated to the given section from the database
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetHeaderByNumber">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=1495:1592#L29">GetHeaderByNumber</a>
+				<a class="permalink" href="index.html#GetHeaderByNumber">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetHeaderByNumber(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetHeaderByNumber retrieves the canonical block header corresponding to the
+given number. The returned header is proven by local CHT.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTd">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=2982:3080#L74">GetTd</a>
+				<a class="permalink" href="index.html#GetTd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetTd(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetTd retrieves the total difficulty corresponding to the number and hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTransaction">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=10122:10255#L268">GetTransaction</a>
+				<a class="permalink" href="index.html#GetTransaction">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetTransaction(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, txHash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transaction">Transaction</a>, <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, <a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetTransaction retrieves a canonical transaction by hash and also returns
+its position in the chain. There is no guarantee in the LES protocol that
+the mined transaction will be retrieved back for sure because of different
+reasons(the transaction is unindexed, the malicious server doesn&apos;t reply it
+deliberately, etc). Therefore, unretrieved transactions will receive a certain
+number of retries, thus giving a weak guarantee.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetUntrustedBlockLogs">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr_util.go?s=7174:7283#L194">GetUntrustedBlockLogs</a>
+				<a class="permalink" href="index.html#GetUntrustedBlockLogs">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetUntrustedBlockLogs(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) ([][]*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Log">Log</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetUntrustedBlockLogs retrieves the logs generated by the transactions included in a
+block. The retrieved logs are regarded as untrusted and will not be stored in the
+database. This function should only be used in light client checkpoint syncing.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewBloomTrieIndexer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=11832:11956#L337">NewBloomTrieIndexer</a>
+				<a class="permalink" href="index.html#NewBloomTrieIndexer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewBloomTrieIndexer(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, parentSize, size <a href="../../../../builtin/index.html#uint64">uint64</a>, disablePruning <a href="../../../../builtin/index.html#bool">bool</a>) *<a href="../core/index.html">core</a>.<a href="../core/index.html#ChainIndexer">ChainIndexer</a></pre>
+			<p>NewBloomTrieIndexer creates a BloomTrie chain indexer
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewChtIndexer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=5098:5214#L134">NewChtIndexer</a>
+				<a class="permalink" href="index.html#NewChtIndexer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewChtIndexer(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>, size, confirms <a href="../../../../builtin/index.html#uint64">uint64</a>, disablePruning <a href="../../../../builtin/index.html#bool">bool</a>) *<a href="../core/index.html">core</a>.<a href="../core/index.html#ChainIndexer">ChainIndexer</a></pre>
+			<p>NewChtIndexer creates a Cht chain indexer
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewState">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/trie.go?s=1237:1322#L28">NewState</a>
+				<a class="permalink" href="index.html#NewState">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewState(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, head *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>) *<a href="../core/state/index.html">state</a>.<a href="../core/state/index.html#StateDB">StateDB</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewStateDatabase">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/trie.go?s=1415:1508#L33">NewStateDatabase</a>
+				<a class="permalink" href="index.html#NewStateDatabase">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewStateDatabase(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, head *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>, odr <a href="index.html#OdrBackend">OdrBackend</a>) <a href="../core/state/index.html">state</a>.<a href="../core/state/index.html#Database">Database</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="StoreBloomTrieRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=11081:11173#L315">StoreBloomTrieRoot</a>
+				<a class="permalink" href="index.html#StoreBloomTrieRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StoreBloomTrieRoot(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, sectionIdx <a href="../../../../builtin/index.html#uint64">uint64</a>, sectionHead, root <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)</pre>
+			<p>StoreBloomTrieRoot writes the BloomTrie root associated to the given section into the database
+
+			
+			
+
+		
+			
+			
+			<h2 id="StoreChtRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=4438:4524#L115">StoreChtRoot</a>
+				<a class="permalink" href="index.html#StoreChtRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StoreChtRoot(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>, sectionIdx <a href="../../../../builtin/index.html#uint64">uint64</a>, sectionHead, root <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)</pre>
+			<p>StoreChtRoot writes the CHT root associated to the given section into the database
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BlockRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3394:3494#L99">BlockRequest</a>
+				<a class="permalink" href="index.html#BlockRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockRequest is the ODR request type for retrieving block bodies
+
+			<pre>type BlockRequest struct {
+<span id="BlockRequest.Hash"></span>    Hash   <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="BlockRequest.Number"></span>    Number <a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="BlockRequest.Header"></span>    Header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>
+<span id="BlockRequest.Rlp"></span>    Rlp    []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BlockRequest.StoreResult">func (*BlockRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3555:3610#L107">StoreResult</a>
+					<a class="permalink" href="index.html#BlockRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#BlockRequest">BlockRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BloomRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=4816:5048#L146">BloomRequest</a>
+				<a class="permalink" href="index.html#BloomRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BloomRequest is the ODR request type for retrieving bloom filters from a CHT structure
+
+			<pre>type BloomRequest struct {
+    <a href="index.html#OdrRequest">OdrRequest</a>
+<span id="BloomRequest.Config"></span>    Config           *<a href="index.html#IndexerConfig">IndexerConfig</a>
+<span id="BloomRequest.BloomTrieNum"></span>    BloomTrieNum     <a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="BloomRequest.BitIdx"></span>    BitIdx           <a href="../../../../builtin/index.html#uint">uint</a>
+<span id="BloomRequest.SectionIndexList"></span>    SectionIndexList []<a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="BloomRequest.BloomTrieRoot"></span>    BloomTrieRoot    <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="BloomRequest.BloomBits"></span>    BloomBits        [][]<a href="../../../../builtin/index.html#byte">byte</a>
+<span id="BloomRequest.Proofs"></span>    Proofs           *<a href="index.html#NodeSet">NodeSet</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BloomRequest.StoreResult">func (*BloomRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=5109:5164#L158">StoreResult</a>
+					<a class="permalink" href="index.html#BloomRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#BloomRequest">BloomRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BloomTrieIndexerBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=11415:11773#L322">BloomTrieIndexerBackend</a>
+				<a class="permalink" href="index.html#BloomTrieIndexerBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BloomTrieIndexerBackend implements core.ChainIndexerBackend
+
+			<pre>type BloomTrieIndexerBackend struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BloomTrieIndexerBackend.Commit">func (*BloomTrieIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=14849:14897#L428">Commit</a>
+					<a class="permalink" href="index.html#BloomTrieIndexerBackend.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BloomTrieIndexerBackend">BloomTrieIndexerBackend</a>) Commit() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Commit implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+				
+				<h3 id="BloomTrieIndexerBackend.Process">func (*BloomTrieIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=14559:14649#L419">Process</a>
+					<a class="permalink" href="index.html#BloomTrieIndexerBackend.Process">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BloomTrieIndexerBackend">BloomTrieIndexerBackend</a>) Process(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Process implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+				
+				<h3 id="BloomTrieIndexerBackend.Prune">func (*BloomTrieIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=17318:17381#L508">Prune</a>
+					<a class="permalink" href="index.html#BloomTrieIndexerBackend.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BloomTrieIndexerBackend">BloomTrieIndexerBackend</a>) Prune(threshold <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Prune implements core.ChainIndexerBackend which deletes all
+bloombits which older than the specified threshold.
+
+				
+				
+				
+			
+				
+				<h3 id="BloomTrieIndexerBackend.Reset">func (*BloomTrieIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=14022:14133#L401">Reset</a>
+					<a class="permalink" href="index.html#BloomTrieIndexerBackend.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BloomTrieIndexerBackend">BloomTrieIndexerBackend</a>) Reset(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, section <a href="../../../../builtin/index.html#uint64">uint64</a>, lastSectionHead <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Reset implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChtIndexerBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=4755:5051#L122">ChtIndexerBackend</a>
+				<a class="permalink" href="index.html#ChtIndexerBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChtIndexerBackend implements core.ChainIndexerBackend.
+
+			<pre>type ChtIndexerBackend struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ChtIndexerBackend.Commit">func (*ChtIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=7537:7579#L209">Commit</a>
+					<a class="permalink" href="index.html#ChtIndexerBackend.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ChtIndexerBackend">ChtIndexerBackend</a>) Commit() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Commit implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+				
+				<h3 id="ChtIndexerBackend.Process">func (*ChtIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=7090:7174#L193">Process</a>
+					<a class="permalink" href="index.html#ChtIndexerBackend.Process">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ChtIndexerBackend">ChtIndexerBackend</a>) Process(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Process implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+				
+				<h3 id="ChtIndexerBackend.Prune">func (*ChtIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=9106:9163#L259">Prune</a>
+					<a class="permalink" href="index.html#ChtIndexerBackend.Prune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ChtIndexerBackend">ChtIndexerBackend</a>) Prune(threshold <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Prune implements core.ChainIndexerBackend which deletes all chain data
+(except hash&lt;-&gt;number mappings) older than the specified threshold.
+
+				
+				
+				
+			
+				
+				<h3 id="ChtIndexerBackend.Reset">func (*ChtIndexerBackend) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=6564:6669#L174">Reset</a>
+					<a class="permalink" href="index.html#ChtIndexerBackend.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ChtIndexerBackend">ChtIndexerBackend</a>) Reset(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, section <a href="../../../../builtin/index.html#uint64">uint64</a>, lastSectionHead <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Reset implements core.ChainIndexerBackend
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChtNode">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=3918:3974#L101">ChtNode</a>
+				<a class="permalink" href="index.html#ChtNode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChtNode structures are stored in the Canonical Hash Trie in an RLP encoded format
+
+			<pre>type ChtNode struct {
+<span id="ChtNode.Hash"></span>    Hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="ChtNode.Td"></span>    Td   *<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ChtRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=4232:4432#L128">ChtRequest</a>
+				<a class="permalink" href="index.html#ChtRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChtRequest is the ODR request type for retrieving header by Canonical Hash Trie
+
+			<pre>type ChtRequest struct {
+<span id="ChtRequest.Config"></span>    Config           *<a href="index.html#IndexerConfig">IndexerConfig</a>
+<span id="ChtRequest.ChtNum"></span>    ChtNum, BlockNum <a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="ChtRequest.ChtRoot"></span>    ChtRoot          <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="ChtRequest.Header"></span>    Header           *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>
+<span id="ChtRequest.Td"></span>    Td               *<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a>
+<span id="ChtRequest.Proof"></span>    Proof            *<a href="index.html#NodeSet">NodeSet</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ChtRequest.StoreResult">func (*ChtRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=4493:4546#L138">StoreResult</a>
+					<a class="permalink" href="index.html#ChtRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#ChtRequest">ChtRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CodeRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3050:3164#L87">CodeRequest</a>
+				<a class="permalink" href="index.html#CodeRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CodeRequest is the ODR request type for retrieving contract code
+
+			<pre>type CodeRequest struct {
+<span id="CodeRequest.Id"></span>    Id   *<a href="index.html#TrieID">TrieID</a> <span class="comment">// references storage trie of the account</span>
+<span id="CodeRequest.Hash"></span>    Hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="CodeRequest.Data"></span>    Data []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="CodeRequest.StoreResult">func (*CodeRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3225:3279#L94">StoreResult</a>
+					<a class="permalink" href="index.html#CodeRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#CodeRequest">CodeRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IndexerConfig">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/postprocess.go?s=1426:2017#L32">IndexerConfig</a>
+				<a class="permalink" href="index.html#IndexerConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IndexerConfig includes a set of configs for chain indexers.
+
+			<pre>type IndexerConfig struct {
+    <span class="comment">// The block frequency for creating CHTs.</span>
+<span id="IndexerConfig.ChtSize"></span>    ChtSize <a href="../../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// The number of confirmations needed to generate/accept a canonical hash help trie.</span>
+<span id="IndexerConfig.ChtConfirms"></span>    ChtConfirms <a href="../../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// The block frequency for creating new bloom bits.</span>
+<span id="IndexerConfig.BloomSize"></span>    BloomSize <a href="../../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// The number of confirmation needed before a bloom section is considered probably final and its rotated bits</span>
+    <span class="comment">// are calculated.</span>
+<span id="IndexerConfig.BloomConfirms"></span>    BloomConfirms <a href="../../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// The block frequency for creating BloomTrie.</span>
+<span id="IndexerConfig.BloomTrieSize"></span>    BloomTrieSize <a href="../../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// The number of confirmations needed to generate/accept a bloom trie.</span>
+<span id="IndexerConfig.BloomTrieConfirms"></span>    BloomTrieConfirms <a href="../../../../builtin/index.html#uint64">uint64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LightChain">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=1782:2663#L41">LightChain</a>
+				<a class="permalink" href="index.html#LightChain">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LightChain represents a canonical chain that by default only handles block
+headers, downloading block bodies and receipts on demand through an ODR
+interface. It only does header validation during chain insertion.
+
+			<pre>type LightChain struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLightChain">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=2827:2973#L71">NewLightChain</a>
+					<a class="permalink" href="index.html#NewLightChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLightChain(odr <a href="index.html#OdrBackend">OdrBackend</a>, config *<a href="../params/index.html">params</a>.<a href="../params/index.html#ChainConfig">ChainConfig</a>, engine <a href="../consensus/index.html">consensus</a>.<a href="../consensus/index.html#Engine">Engine</a>, checkpoint *<a href="../params/index.html">params</a>.<a href="../params/index.html#TrustedCheckpoint">TrustedCheckpoint</a>) (*<a href="index.html#LightChain">LightChain</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewLightChain returns a fully initialised light chain using information
+available in the database. It initialises the default Ethereum header
+validator.
+
+				
+				
+			
+
+			
+				
+				<h3 id="LightChain.AddTrustedCheckpoint">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=4318:4390#L114">AddTrustedCheckpoint</a>
+					<a class="permalink" href="index.html#LightChain.AddTrustedCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) AddTrustedCheckpoint(cp *<a href="../params/index.html">params</a>.<a href="../params/index.html#TrustedCheckpoint">TrustedCheckpoint</a>)</pre>
+				<p>AddTrustedCheckpoint adds a trusted checkpoint to the blockchain
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Config">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=17747:17797#L505">Config</a>
+					<a class="permalink" href="index.html#LightChain.Config">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Config() *<a href="../params/index.html">params</a>.<a href="../params/index.html#ChainConfig">ChainConfig</a></pre>
+				<p>Config retrieves the header chain&apos;s chain configuration.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.CurrentHeader">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=14987:15038#L436">CurrentHeader</a>
+					<a class="permalink" href="index.html#LightChain.CurrentHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) CurrentHeader() *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a></pre>
+				<p>CurrentHeader retrieves the current head header of the canonical chain. The
+header is retrieved from the HeaderChain&apos;s internal cache.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.DisableCheckFreq">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=20784:20824#L578">DisableCheckFreq</a>
+					<a class="permalink" href="index.html#LightChain.DisableCheckFreq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) DisableCheckFreq()</pre>
+				<p>DisableCheckFreq disables header validation. This is used for ultralight mode.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.EnableCheckFreq">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=20920:20959#L583">EnableCheckFreq</a>
+					<a class="permalink" href="index.html#LightChain.EnableCheckFreq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) EnableCheckFreq()</pre>
+				<p>EnableCheckFreq enables header validation.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Engine">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=7546:7593#L210">Engine</a>
+					<a class="permalink" href="index.html#LightChain.Engine">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Engine() <a href="../consensus/index.html">consensus</a>.<a href="../consensus/index.html#Engine">Engine</a></pre>
+				<p>Engine retrieves the light chain&apos;s consensus engine.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GasLimit">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=6477:6516#L176">GasLimit</a>
+					<a class="permalink" href="index.html#LightChain.GasLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GasLimit() <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>GasLimit returns the gas limit of the current HEAD block.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Genesis">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=7653:7697#L213">Genesis</a>
+					<a class="permalink" href="index.html#LightChain.Genesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Genesis() *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a></pre>
+				<p>Genesis returns the genesis block
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetAncestor">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=16870:16993#L485">GetAncestor</a>
+					<a class="permalink" href="index.html#LightChain.GetAncestor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetAncestor(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number, ancestor <a href="../../../../builtin/index.html#uint64">uint64</a>, maxNonCanonical *<a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, <a href="../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>GetAncestor retrieves the Nth ancestor of a given block. It assumes that either the given block or
+a close ancestor of it is canonical. maxNonCanonical points to a downwards counter limiting the
+number of blocks to be individually checked before we reach the canonical chain.
+<p>Note: ancestor == 0 returns the same block, 1 returns its parent and so on.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetBlock">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=9507:9613#L271">GetBlock</a>
+					<a class="permalink" href="index.html#LightChain.GetBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetBlock(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetBlock retrieves a block from the database or ODR service by hash and number,
+caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetBlockByHash">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=10079:10176#L287">GetBlockByHash</a>
+					<a class="permalink" href="index.html#LightChain.GetBlockByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetBlockByHash(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetBlockByHash retrieves a block from the database or ODR service by hash,
+caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetBlockByNumber">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=10458:10554#L297">GetBlockByNumber</a>
+					<a class="permalink" href="index.html#LightChain.GetBlockByNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetBlockByNumber(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetBlockByNumber retrieves a block from the database or ODR service by
+number, caching it (associated with its hash) if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetBody">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=7934:8023#L223">GetBody</a>
+					<a class="permalink" href="index.html#LightChain.GetBody">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetBody(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Body">Body</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetBody retrieves a block body (transactions and uncles) from the database
+or ODR service by hash, caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetBodyRLP">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=8610:8703#L244">GetBodyRLP</a>
+					<a class="permalink" href="index.html#LightChain.GetBodyRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetBodyRLP(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) (<a href="../rlp/index.html">rlp</a>.<a href="../rlp/index.html#RawValue">RawValue</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetBodyRLP retrieves a block body in RLP encoding from the database or
+ODR service by hash, caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetCanonicalHash">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=16393:16458#L476">GetCanonicalHash</a>
+					<a class="permalink" href="index.html#LightChain.GetCanonicalHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bc *<a href="index.html#LightChain">LightChain</a>) GetCanonicalHash(number <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a></pre>
+				<p>GetCanonicalHash returns the canonical hash for a given block number
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetHeader">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=15781:15859#L459">GetHeader</a>
+					<a class="permalink" href="index.html#LightChain.GetHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetHeader(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a></pre>
+				<p>GetHeader retrieves a block header from the database by hash and number,
+caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetHeaderByHash">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=15998:16067#L465">GetHeaderByHash</a>
+					<a class="permalink" href="index.html#LightChain.GetHeaderByHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetHeaderByHash(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a></pre>
+				<p>GetHeaderByHash retrieves a block header from the database by hash, caching it if
+found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetHeaderByNumber">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=17192:17260#L491">GetHeaderByNumber</a>
+					<a class="permalink" href="index.html#LightChain.GetHeaderByNumber">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetHeaderByNumber(number <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a></pre>
+				<p>GetHeaderByNumber retrieves a block header from the database by number,
+caching it (associated with its hash) if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetHeaderByNumberOdr">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=17446:17547#L497">GetHeaderByNumberOdr</a>
+					<a class="permalink" href="index.html#LightChain.GetHeaderByNumberOdr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetHeaderByNumberOdr(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetHeaderByNumberOdr retrieves a block header from the database or network
+by number, caching it (associated with its hash) if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetTd">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=15205:15274#L442">GetTd</a>
+					<a class="permalink" href="index.html#LightChain.GetTd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetTd(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GetTd retrieves a block&apos;s total difficulty in the canonical chain from the
+database by hash and number, caching it if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.GetTdOdr">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=15468:15561#L448">GetTdOdr</a>
+					<a class="permalink" href="index.html#LightChain.GetTdOdr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) GetTdOdr(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) *<a href="../../../../math/big/index.html">big</a>.<a href="../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GetHeaderByNumberOdr retrieves the total difficult from the database or
+network by hash and number, caching it (associated with its hash) if found.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.HasBlock">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=9263:9331#L264">HasBlock</a>
+					<a class="permalink" href="index.html#LightChain.HasBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) HasBlock(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasBlock checks if a block is fully present in the database or not, caching
+it if present.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.HasHeader">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=16208:16277#L471">HasHeader</a>
+					<a class="permalink" href="index.html#LightChain.HasHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) HasHeader(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasHeader checks if a block header is present in the database or not, caching
+it if present.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.HeaderChain">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=5253:5306#L139">HeaderChain</a>
+					<a class="permalink" href="index.html#LightChain.HeaderChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) HeaderChain() *<a href="../core/index.html">core</a>.<a href="../core/index.html#HeaderChain">HeaderChain</a></pre>
+				<p>HeaderChain returns the underlying header chain.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.InsertHeader">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=12145:12207#L348">InsertHeader</a>
+					<a class="permalink" href="index.html#LightChain.InsertHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) InsertHeader(header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LightChain.InsertHeaderChain">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=13831:13921#L395">InsertHeaderChain</a>
+					<a class="permalink" href="index.html#LightChain.InsertHeaderChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) InsertHeaderChain(chain []*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>, checkFreq <a href="../../../../builtin/index.html#int">int</a>) (<a href="../../../../builtin/index.html#int">int</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>InsertHeaderChain attempts to insert the given header chain in to the local
+chain, possibly creating a reorg. If an error is returned, it will return the
+index number of the failing header as well an error describing what went wrong.
+<p>The verify parameter can be used to fine tune whether nonce verification
+should be done or not. The reason behind the optional check is because some
+of the header retrieval mechanisms already need to verify nonces, as well as
+because nonces can be verified sparsely, not needing to check each.
+<p>In the case of a light chain, InsertHeaderChain also creates and posts light
+chain events when necessary.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.LockChain">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=19281:19314#L541">LockChain</a>
+					<a class="permalink" href="index.html#LightChain.LockChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) LockChain()</pre>
+				<p>LockChain locks the chain mutex for reading so that multiple canonical hashes can be
+retrieved while it is guaranteed that they belong to the same version of the chain
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Odr">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=5142:5180#L134">Odr</a>
+					<a class="permalink" href="index.html#LightChain.Odr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Odr() <a href="index.html#OdrBackend">OdrBackend</a></pre>
+				<p>Odr returns the ODR backend of the chain
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Reset">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=6635:6664#L181">Reset</a>
+					<a class="permalink" href="index.html#LightChain.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Reset()</pre>
+				<p>Reset purges the entire blockchain, restoring it to its genesis state.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.ResetWithGenesisBlock">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=6816:6881#L187">ResetWithGenesisBlock</a>
+					<a class="permalink" href="index.html#LightChain.ResetWithGenesisBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) ResetWithGenesisBlock(genesis *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Block">Block</a>)</pre>
+				<p>ResetWithGenesisBlock purges the entire blockchain, restoring it to the
+specified genesis state.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Rollback">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=11396:11447#L326">Rollback</a>
+					<a class="permalink" href="index.html#LightChain.Rollback">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Rollback(chain []<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)</pre>
+				<p>Rollback is designed to remove a chain of links from the database that aren&apos;t
+certain enough to be valid.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SetCanonical">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=12657:12719#L366">SetCanonical</a>
+					<a class="permalink" href="index.html#LightChain.SetCanonical">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SetCanonical(header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SetHead">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=6257:6305#L167">SetHead</a>
+					<a class="permalink" href="index.html#LightChain.SetHead">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SetHead(head <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SetHead rewinds the local chain to a new head. Everything above the new
+head will be deleted and the new one set.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.StateCache">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=7727:7776#L217">StateCache</a>
+					<a class="permalink" href="index.html#LightChain.StateCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) StateCache() <a href="../core/state/index.html">state</a>.<a href="../core/state/index.html#Database">Database</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LightChain.Stop">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=10842:10870#L307">Stop</a>
+					<a class="permalink" href="index.html#LightChain.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) Stop()</pre>
+				<p>Stop stops the blockchain service. If any imports are currently in progress
+it will abort them using the procInterrupt.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.StopInsert">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=11203:11237#L320">StopInsert</a>
+					<a class="permalink" href="index.html#LightChain.StopInsert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) StopInsert()</pre>
+				<p>StopInsert interrupts all insertion methods, causing them to return
+errInsertionInterrupted as soon as possible. Insertion is permanently disabled after
+calling this method.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SubscribeChainEvent">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=19505:19592#L551">SubscribeChainEvent</a>
+					<a class="permalink" href="index.html#LightChain.SubscribeChainEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SubscribeChainEvent(ch chan&lt;- <a href="../core/index.html">core</a>.<a href="../core/index.html#ChainEvent">ChainEvent</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeChainEvent registers a subscription of ChainEvent.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SubscribeChainHeadEvent">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=19720:19815#L556">SubscribeChainHeadEvent</a>
+					<a class="permalink" href="index.html#LightChain.SubscribeChainHeadEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SubscribeChainHeadEvent(ch chan&lt;- <a href="../core/index.html">core</a>.<a href="../core/index.html#ChainHeadEvent">ChainHeadEvent</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeChainHeadEvent registers a subscription of ChainHeadEvent.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SubscribeChainSideEvent">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=19947:20042#L561">SubscribeChainSideEvent</a>
+					<a class="permalink" href="index.html#LightChain.SubscribeChainSideEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SubscribeChainSideEvent(ch chan&lt;- <a href="../core/index.html">core</a>.<a href="../core/index.html#ChainSideEvent">ChainSideEvent</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeChainSideEvent registers a subscription of ChainSideEvent.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SubscribeLogsEvent">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=20243:20326#L567">SubscribeLogsEvent</a>
+					<a class="permalink" href="index.html#LightChain.SubscribeLogsEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SubscribeLogsEvent(ch chan&lt;- []*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Log">Log</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeLogsEvent implements the interface of filters.Backend
+LightChain does not send logs events, so return an empty subscription.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SubscribeRemovedLogsEvent">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=20543:20642#L573">SubscribeRemovedLogsEvent</a>
+					<a class="permalink" href="index.html#LightChain.SubscribeRemovedLogsEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SubscribeRemovedLogsEvent(ch chan&lt;- <a href="../core/index.html">core</a>.<a href="../core/index.html#RemovedLogsEvent">RemovedLogsEvent</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeRemovedLogsEvent implements the interface of filters.Backend
+LightChain does not send core.RemovedLogsEvent, so return an empty subscription.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.SyncCheckpoint">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=18057:18157#L512">SyncCheckpoint</a>
+					<a class="permalink" href="index.html#LightChain.SyncCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) SyncCheckpoint(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, checkpoint *<a href="../params/index.html">params</a>.<a href="../params/index.html#TrustedCheckpoint">TrustedCheckpoint</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>SyncCheckpoint fetches the checkpoint point block header according to
+the checkpoint provided by the remote peer.
+<p>Note if we are running the clique, fetches the last epoch snapshot header
+which covered by checkpoint.
+
+				
+				
+				
+			
+				
+				<h3 id="LightChain.UnlockChain">func (*LightChain) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/lightchain.go?s=19379:19414#L546">UnlockChain</a>
+					<a class="permalink" href="index.html#LightChain.UnlockChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (lc *<a href="index.html#LightChain">LightChain</a>) UnlockChain()</pre>
+				<p>UnlockChain unlocks the chain mutex
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NodeList">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3153:3181#L118">NodeList</a>
+				<a class="permalink" href="index.html#NodeList">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NodeList stores an ordered list of trie nodes. It implements ethdb.KeyValueWriter.
+
+			<pre>type NodeList []<a href="../rlp/index.html">rlp</a>.<a href="../rlp/index.html#RawValue">RawValue</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NodeList.DataSize">func (NodeList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3854:3886#L146">DataSize</a>
+					<a class="permalink" href="index.html#NodeList.DataSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="index.html#NodeList">NodeList</a>) DataSize() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>DataSize returns the aggregated data size of nodes in the list
+
+				
+				
+				
+			
+				
+				<h3 id="NodeList.Delete">func (*NodeList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3715:3758#L141">Delete</a>
+					<a class="permalink" href="index.html#NodeList.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#NodeList">NodeList</a>) Delete(key []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete panics as there&apos;s no reason to remove a node from the list.
+
+				
+				
+				
+			
+				
+				<h3 id="NodeList.NodeSet">func (NodeList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3415:3451#L128">NodeSet</a>
+					<a class="permalink" href="index.html#NodeList.NodeSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="index.html#NodeList">NodeList</a>) NodeSet() *<a href="index.html#NodeSet">NodeSet</a></pre>
+				<p>NodeSet converts the node list to a NodeSet
+
+				
+				
+				
+			
+				
+				<h3 id="NodeList.Put">func (*NodeList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3549:3603#L135">Put</a>
+					<a class="permalink" href="index.html#NodeList.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#NodeList">NodeList</a>) Put(key []<a href="../../../../builtin/index.html#byte">byte</a>, value []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Put stores a new node at the end of the list
+
+				
+				
+				
+			
+				
+				<h3 id="NodeList.Store">func (NodeList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=3246:3294#L121">Store</a>
+					<a class="permalink" href="index.html#NodeList.Store">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="index.html#NodeList">NodeList</a>) Store(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#KeyValueWriter">KeyValueWriter</a>)</pre>
+				<p>Store writes the contents of the list to the given database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NodeSet">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=1128:1230#L21">NodeSet</a>
+				<a class="permalink" href="index.html#NodeSet">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NodeSet stores a set of trie nodes. It implements trie.Database and can also
+act as a cache for another trie.Database.
+
+			<pre>type NodeSet struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNodeSet">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=1272:1298#L30">NewNodeSet</a>
+					<a class="permalink" href="index.html#NewNodeSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNodeSet() *<a href="index.html#NodeSet">NodeSet</a></pre>
+				<p>NewNodeSet creates an empty node set
+
+				
+				
+			
+
+			
+				
+				<h3 id="NodeSet.DataSize">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=2482:2515#L88">DataSize</a>
+					<a class="permalink" href="index.html#NodeSet.DataSize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) DataSize() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>DataSize returns the aggregated data size of nodes in the set
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.Delete">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=1736:1779#L54">Delete</a>
+					<a class="permalink" href="index.html#NodeSet.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) Delete(key []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete removes a node from the set
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.Get">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=1898:1948#L63">Get</a>
+					<a class="permalink" href="index.html#NodeSet.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) Get(key []<a href="../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get returns a stored node
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.Has">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=2161:2209#L74">Has</a>
+					<a class="permalink" href="index.html#NodeSet.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) Has(key []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has returns true if the node set contains the given key
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.KeyCount">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=2313:2346#L80">KeyCount</a>
+					<a class="permalink" href="index.html#NodeSet.KeyCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) KeyCount() <a href="../../../../builtin/index.html#int">int</a></pre>
+				<p>KeyCount returns the number of nodes in the set
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.NodeList">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=2632:2670#L96">NodeList</a>
+					<a class="permalink" href="index.html#NodeSet.NodeList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) NodeList() <a href="index.html#NodeList">NodeList</a></pre>
+				<p>NodeList converts the node set to a NodeList
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.Put">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=1395:1449#L37">Put</a>
+					<a class="permalink" href="index.html#NodeSet.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) Put(key []<a href="../../../../builtin/index.html#byte">byte</a>, value []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Put stores a new node in the set
+
+				
+				
+				
+			
+				
+				<h3 id="NodeSet.Store">func (*NodeSet) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/nodeset.go?s=2893:2946#L108">Store</a>
+					<a class="permalink" href="index.html#NodeSet.Store">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#NodeSet">NodeSet</a>) Store(target <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#KeyValueWriter">KeyValueWriter</a>)</pre>
+				<p>Store writes the contents of the set to the given database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OdrBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=1442:1757#L29">OdrBackend</a>
+				<a class="permalink" href="index.html#OdrBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OdrBackend is an interface to a backend service that handles ODR retrievals type
+
+			<pre>type OdrBackend interface {
+    Database() <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>
+    ChtIndexer() *<a href="../core/index.html">core</a>.<a href="../core/index.html#ChainIndexer">ChainIndexer</a>
+    BloomTrieIndexer() *<a href="../core/index.html">core</a>.<a href="../core/index.html#ChainIndexer">ChainIndexer</a>
+    BloomIndexer() *<a href="../core/index.html">core</a>.<a href="../core/index.html#ChainIndexer">ChainIndexer</a>
+    Retrieve(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, req <a href="index.html#OdrRequest">OdrRequest</a>) <a href="../../../../builtin/index.html#error">error</a>
+    RetrieveTxStatus(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, req *<a href="index.html#TxStatusRequest">TxStatusRequest</a>) <a href="../../../../builtin/index.html#error">error</a>
+    IndexerConfig() *<a href="index.html#IndexerConfig">IndexerConfig</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OdrRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=1812:1873#L40">OdrRequest</a>
+				<a class="permalink" href="index.html#OdrRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OdrRequest is an interface for retrieval requests
+
+			<pre>type OdrRequest interface {
+    StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ReceiptsRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3739:3938#L112">ReceiptsRequest</a>
+				<a class="permalink" href="index.html#ReceiptsRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReceiptsRequest is the ODR request type for retrieving receipts.
+
+			<pre>type ReceiptsRequest struct {
+<span id="ReceiptsRequest.Untrusted"></span>    Untrusted <a href="../../../../builtin/index.html#bool">bool</a> <span class="comment">// Indicator whether the result retrieved is trusted or not</span>
+<span id="ReceiptsRequest.Hash"></span>    Hash      <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="ReceiptsRequest.Number"></span>    Number    <a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="ReceiptsRequest.Header"></span>    Header    *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>
+<span id="ReceiptsRequest.Receipts"></span>    Receipts  <a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Receipts">Receipts</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ReceiptsRequest.StoreResult">func (*ReceiptsRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=3999:4057#L121">StoreResult</a>
+					<a class="permalink" href="index.html#ReceiptsRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#ReceiptsRequest">ReceiptsRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TrieID">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=1928:2027#L45">TrieID</a>
+				<a class="permalink" href="index.html#TrieID">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TrieID identifies a state or account storage trie
+
+			<pre>type TrieID struct {
+<span id="TrieID.BlockHash"></span>    BlockHash, Root <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="TrieID.BlockNumber"></span>    BlockNumber     <a href="../../../../builtin/index.html#uint64">uint64</a>
+<span id="TrieID.AccKey"></span>    AccKey          []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="StateTrieID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=2118:2164#L53">StateTrieID</a>
+					<a class="permalink" href="index.html#StateTrieID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StateTrieID(header *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Header">Header</a>) *<a href="index.html#TrieID">TrieID</a></pre>
+				<p>StateTrieID returns a TrieID for a state trie belonging to a certain block
+header.
+
+				
+				
+			
+				
+				<h3 id="StorageTrieID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=2488:2557#L65">StorageTrieID</a>
+					<a class="permalink" href="index.html#StorageTrieID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StorageTrieID(state *<a href="index.html#TrieID">TrieID</a>, addrHash, root <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) *<a href="index.html#TrieID">TrieID</a></pre>
+				<p>StorageTrieID returns a TrieID for a contract storage trie at a given account
+of a given state trie. It also requires the root hash of the trie for
+checking Merkle proofs.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="TrieRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=2768:2840#L75">TrieRequest</a>
+				<a class="permalink" href="index.html#TrieRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TrieRequest is the ODR request type for state/storage trie entries
+
+			<pre>type TrieRequest struct {
+<span id="TrieRequest.Id"></span>    Id    *<a href="index.html#TrieID">TrieID</a>
+<span id="TrieRequest.Key"></span>    Key   []<a href="../../../../builtin/index.html#byte">byte</a>
+<span id="TrieRequest.Proof"></span>    Proof *<a href="index.html#NodeSet">NodeSet</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TrieRequest.StoreResult">func (*TrieRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=2901:2955#L82">StoreResult</a>
+					<a class="permalink" href="index.html#TrieRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#TrieRequest">TrieRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TxPool">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=1848:2740#L41">TxPool</a>
+				<a class="permalink" href="index.html#TxPool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxPool implements the transaction pool for light clients, which keeps track
+of the status of locally created transactions, detecting if they are included
+in a block (mined) or rolled back. There are no queued transactions since we
+always receive all locally signed transactions in the same order as they are
+created.
+
+			<pre>type TxPool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTxPool">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=3534:3625#L80">NewTxPool</a>
+					<a class="permalink" href="index.html#NewTxPool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTxPool(config *<a href="../params/index.html">params</a>.<a href="../params/index.html#ChainConfig">ChainConfig</a>, chain *<a href="index.html#LightChain">LightChain</a>, relay <a href="index.html#TxRelayBackend">TxRelayBackend</a>) *<a href="index.html#TxPool">TxPool</a></pre>
+				<p>NewTxPool creates a new light transaction pool
+
+				
+				
+			
+
+			
+				
+				<h3 id="TxPool.Add">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=14498:14571#L421">Add</a>
+					<a class="permalink" href="index.html#TxPool.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) Add(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, tx *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transaction">Transaction</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Add adds a transaction to the pool if valid and passes it to the tx relay
+backend
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.AddBatch">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=14976:15051#L441">AddBatch</a>
+					<a class="permalink" href="index.html#TxPool.AddBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) AddBatch(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, txs []*<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transaction">Transaction</a>)</pre>
+				<p>AddTransactions adds all valid transactions to the pool and passes them to
+the tx relay backend
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.Content">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=16078:16186#L483">Content</a>
+					<a class="permalink" href="index.html#TxPool.Content">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) Content() (map[<a href="../common/index.html">common</a>.<a href="../common/index.html#Address">Address</a>]<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>, map[<a href="../common/index.html">common</a>.<a href="../common/index.html#Address">Address</a>]<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>)</pre>
+				<p>Content retrieves the data content of the transaction pool, returning all the
+pending as well as queued transactions, grouped by account and nonce.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.ContentFrom">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=16816:16909#L500">ContentFrom</a>
+					<a class="permalink" href="index.html#TxPool.ContentFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) ContentFrom(addr <a href="../common/index.html">common</a>.<a href="../common/index.html#Address">Address</a>) (<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>, <a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>)</pre>
+				<p>ContentFrom retrieves the data content of the transaction pool, returning the
+pending as well as queued transactions of this address, grouped by nonce.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.GetNonce">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=4742:4828#L111">GetNonce</a>
+					<a class="permalink" href="index.html#TxPool.GetNonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) GetNonce(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, addr <a href="../common/index.html">common</a>.<a href="../common/index.html#Address">Address</a>) (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetNonce returns the &quot;pending&quot; nonce of a given address. It always queries
+the nonce belonging to the latest header too in order to detect if another
+client using the same key sent a transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.GetTransaction">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=15381:15452#L458">GetTransaction</a>
+					<a class="permalink" href="index.html#TxPool.GetTransaction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) GetTransaction(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>) *<a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transaction">Transaction</a></pre>
+				<p>GetTransaction returns a transaction if it is contained in the pool
+and nil otherwise.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.GetTransactions">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=15668:15741#L468">GetTransactions</a>
+					<a class="permalink" href="index.html#TxPool.GetTransactions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) GetTransactions() (txs <a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetTransactions returns all currently processable transactions.
+The returned slice may be modified by the caller.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.RemoveTransactions">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=17386:17448#L518">RemoveTransactions</a>
+					<a class="permalink" href="index.html#TxPool.RemoveTransactions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) RemoveTransactions(txs <a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>)</pre>
+				<p>RemoveTransactions removes all given transactions from the pool.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.RemoveTx">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=17808:17854#L535">RemoveTx</a>
+					<a class="permalink" href="index.html#TxPool.RemoveTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) RemoveTx(hash <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)</pre>
+				<p>RemoveTx removes the transaction with the given hash from the pool.
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.Stats">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=11712:11753#L327">Stats</a>
+					<a class="permalink" href="index.html#TxPool.Stats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) Stats() (pending <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>Stats returns the number of currently pending (locally created) transactions
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.Stop">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=11113:11139#L311">Stop</a>
+					<a class="permalink" href="index.html#TxPool.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) Stop()</pre>
+				<p>Stop stops the light transaction pool
+
+				
+				
+				
+			
+				
+				<h3 id="TxPool.SubscribeNewTxsEvent">func (*TxPool) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=11487:11574#L322">SubscribeNewTxsEvent</a>
+					<a class="permalink" href="index.html#TxPool.SubscribeNewTxsEvent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#TxPool">TxPool</a>) SubscribeNewTxsEvent(ch chan&lt;- <a href="../core/index.html">core</a>.<a href="../core/index.html#NewTxsEvent">NewTxsEvent</a>) <a href="../event/index.html">event</a>.<a href="../event/index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeNewTxsEvent registers a subscription of core.NewTxsEvent and
+starts sending event to the given channel.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TxRelayBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/txpool.go?s=3316:3482#L73">TxRelayBackend</a>
+				<a class="permalink" href="index.html#TxRelayBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxRelayBackend provides an interface to the mechanism that forwards transactions
+to the ETH network. The implementations of the functions should be non-blocking.
+<p>Send instructs backend to forward new transactions
+NewHead notifies backend about a new head after processed by the tx pool,
+<pre>including  mined and rolled back transactions since the last event
+</pre>
+<p>Discard notifies backend about transactions that should be discarded either
+<pre>because they have been replaced by a re-send or because they have been mined
+long ago and no rollback is expected
+</pre>
+
+			<pre>type TxRelayBackend interface {
+    Send(txs <a href="../core/types/index.html">types</a>.<a href="../core/types/index.html#Transactions">Transactions</a>)
+    NewHead(head <a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, mined []<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>, rollback []<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)
+    Discard(hashes []<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxStatus">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=5801:5909#L170">TxStatus</a>
+				<a class="permalink" href="index.html#TxStatus">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxStatus describes the status of a transaction
+
+			<pre>type TxStatus struct {
+<span id="TxStatus.Status"></span>    Status <a href="../core/index.html">core</a>.<a href="../core/index.html#TxStatus">TxStatus</a>
+<span id="TxStatus.Lookup"></span>    Lookup *<a href="../core/rawdb/index.html">rawdb</a>.<a href="../core/rawdb/index.html#LegacyTxLookupEntry">LegacyTxLookupEntry</a> `rlp:&#34;nil&#34;`
+<span id="TxStatus.Error"></span>    Error  <a href="../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxStatusRequest">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=5988:6060#L177">TxStatusRequest</a>
+				<a class="permalink" href="index.html#TxStatusRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxStatusRequest is the ODR request type for retrieving transaction status
+
+			<pre>type TxStatusRequest struct {
+<span id="TxStatusRequest.Hashes"></span>    Hashes []<a href="../common/index.html">common</a>.<a href="../common/index.html#Hash">Hash</a>
+<span id="TxStatusRequest.Status"></span>    Status []<a href="index.html#TxStatus">TxStatus</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TxStatusRequest.StoreResult">func (*TxStatusRequest) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/light/odr.go?s=6121:6179#L183">StoreResult</a>
+					<a class="permalink" href="index.html#TxStatusRequest.StoreResult">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (req *<a href="index.html#TxStatusRequest">TxStatusRequest</a>) StoreResult(db <a href="../ethdb/index.html">ethdb</a>.<a href="../ethdb/index.html#Database">Database</a>)</pre>
+				<p>StoreResult stores the retrieved data in local database
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

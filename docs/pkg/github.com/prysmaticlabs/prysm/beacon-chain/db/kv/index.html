@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>kv - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package kv
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/db/kv"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package kv defines a bolt-db, key-value store implementation
+of the Database interface defined by a Prysm beacon node.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#KVStoreDatafilePath">func KVStoreDatafilePath(dirPath string) string</a></dd>
+			
+				
+				<dd><a href="index.html#WrapDBError">func WrapDBError(e error, outer string) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DBError">type DBError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DBError.Error">func (e DBError) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DBError.Unwrap">func (e DBError) Unwrap() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKVStore">func NewKVStore(ctx context.Context, dirPath string, config *Config) (*Store, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.ArchivedPointRoot">func (s *Store) ArchivedPointRoot(ctx context.Context, slot types.Slot) [32]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Backup">func (s *Store) Backup(ctx context.Context, outputDir string, permissionOverride bool) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Block">func (s *Store) Block(ctx context.Context, blockRoot [32]byte) (block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.BlockRoots">func (s *Store) BlockRoots(ctx context.Context, f *filters.QueryFilter) ([][32]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.BlockRootsBySlot">func (s *Store) BlockRootsBySlot(ctx context.Context, slot types.Slot) (bool, [][32]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Blocks">func (s *Store) Blocks(ctx context.Context, f *filters.QueryFilter) ([]block.SignedBeaconBlock, [][32]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.BlocksBySlot">func (s *Store) BlocksBySlot(ctx context.Context, slot types.Slot) (bool, []block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.CleanUpDirtyStates">func (s *Store) CleanUpDirtyStates(ctx context.Context, slotsPerArchivedPoint types.Slot) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.ClearDB">func (s *Store) ClearDB() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.Close">func (s *Store) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DatabasePath">func (s *Store) DatabasePath() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DeleteState">func (s *Store) DeleteState(ctx context.Context, blockRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DeleteStates">func (s *Store) DeleteStates(ctx context.Context, blockRoots [][32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.DepositContractAddress">func (s *Store) DepositContractAddress(ctx context.Context) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.EnsureEmbeddedGenesis">func (s *Store) EnsureEmbeddedGenesis(ctx context.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.FinalizedCheckpoint">func (s *Store) FinalizedCheckpoint(ctx context.Context) (*ethpb.Checkpoint, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.FinalizedChildBlock">func (s *Store) FinalizedChildBlock(ctx context.Context, blockRoot [32]byte) (block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GenesisBlock">func (s *Store) GenesisBlock(ctx context.Context) (block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.GenesisState">func (s *Store) GenesisState(ctx context.Context) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HasArchivedPoint">func (s *Store) HasArchivedPoint(ctx context.Context, slot types.Slot) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HasBlock">func (s *Store) HasBlock(ctx context.Context, blockRoot [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HasState">func (s *Store) HasState(ctx context.Context, blockRoot [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HasStateSummary">func (s *Store) HasStateSummary(ctx context.Context, blockRoot [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HeadBlock">func (s *Store) HeadBlock(ctx context.Context) (block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HighestSlotBlocksBelow">func (s *Store) HighestSlotBlocksBelow(ctx context.Context, slot types.Slot) ([]block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.HighestSlotStatesBelow">func (s *Store) HighestSlotStatesBelow(ctx context.Context, slot types.Slot) ([]state.ReadOnlyBeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.IsFinalizedBlock">func (s *Store) IsFinalizedBlock(ctx context.Context, blockRoot [32]byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.JustifiedCheckpoint">func (s *Store) JustifiedCheckpoint(ctx context.Context) (*ethpb.Checkpoint, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LastArchivedRoot">func (s *Store) LastArchivedRoot(ctx context.Context) [32]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LastArchivedSlot">func (s *Store) LastArchivedSlot(ctx context.Context) (types.Slot, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.LoadGenesis">func (s *Store) LoadGenesis(ctx context.Context, r io.Reader) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.OriginBlockRoot">func (s *Store) OriginBlockRoot(ctx context.Context) ([32]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.PowchainData">func (s *Store) PowchainData(ctx context.Context) (*v2.ETH1ChainData, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.RunMigrations">func (s *Store) RunMigrations(ctx context.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveBlock">func (s *Store) SaveBlock(ctx context.Context, signed block.SignedBeaconBlock) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveBlocks">func (s *Store) SaveBlocks(ctx context.Context, blocks []block.SignedBeaconBlock) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveDepositContractAddress">func (s *Store) SaveDepositContractAddress(ctx context.Context, addr common.Address) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveFinalizedCheckpoint">func (s *Store) SaveFinalizedCheckpoint(ctx context.Context, checkpoint *ethpb.Checkpoint) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveGenesisBlockRoot">func (s *Store) SaveGenesisBlockRoot(ctx context.Context, blockRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveGenesisData">func (s *Store) SaveGenesisData(ctx context.Context, genesisState state.BeaconState) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveHeadBlockRoot">func (s *Store) SaveHeadBlockRoot(ctx context.Context, blockRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveJustifiedCheckpoint">func (s *Store) SaveJustifiedCheckpoint(ctx context.Context, checkpoint *ethpb.Checkpoint) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveOrigin">func (s *Store) SaveOrigin(ctx context.Context, stateReader, blockReader io.Reader) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveOriginBlockRoot">func (s *Store) SaveOriginBlockRoot(ctx context.Context, blockRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SavePowchainData">func (s *Store) SavePowchainData(ctx context.Context, data *v2.ETH1ChainData) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveState">func (s *Store) SaveState(ctx context.Context, st state.ReadOnlyBeaconState, blockRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveStateSummaries">func (s *Store) SaveStateSummaries(ctx context.Context, summaries []*ethpb.StateSummary) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveStateSummary">func (s *Store) SaveStateSummary(ctx context.Context, summary *ethpb.StateSummary) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveStates">func (s *Store) SaveStates(ctx context.Context, states []state.ReadOnlyBeaconState, blockRoots [][32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.SaveStatesEfficient">func (s *Store) SaveStatesEfficient(ctx context.Context, states []state.ReadOnlyBeaconState, blockRoots [][32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.State">func (s *Store) State(ctx context.Context, blockRoot [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Store.StateSummary">func (s *Store) StateSummary(ctx context.Context, blockRoot [32]byte) (*ethpb.StateSummary, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/archived_point.go">archived_point.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/backup.go">backup.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go">blocks.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/checkpoint.go">checkpoint.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/deposit_contract.go">deposit_contract.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/encoding.go">encoding.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/error.go">error.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/finalized_block_roots.go">finalized_block_roots.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/genesis.go">genesis.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/key.go">key.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go">kv.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/migration.go">migration.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/migration_archived_index.go">migration_archived_index.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/migration_block_slot_index.go">migration_block_slot_index.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/migration_state_validators.go">migration_state_validators.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/powchain.go">powchain.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/schema.go">schema.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go">state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary.go">state_summary.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary_cache.go">state_summary_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/utils.go">utils.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/wss.go">wss.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// NumOfValidatorEntries is the size of the validator cache entries.</span>
+    <span class="comment">// we expect to hold a max of 200K validators, so setting it to 2 million (10x the capacity).</span>
+    <span id="NumOfValidatorEntries">NumOfValidatorEntries</span> = 1 &lt;&lt; 21
+    <span class="comment">// ValidatorEntryMaxCost is set to ~64Mb to allow 200K validators entries to be cached.</span>
+    <span id="ValidatorEntryMaxCost">ValidatorEntryMaxCost</span> = 1 &lt;&lt; 26
+    <span class="comment">// BeaconNodeDbDirName is the name of the directory containing the beacon node database.</span>
+    <span id="BeaconNodeDbDirName">BeaconNodeDbDirName</span> = &#34;beaconchaindata&#34;
+    <span class="comment">// DatabaseFileName is the name of the beacon node database.</span>
+    <span id="DatabaseFileName">DatabaseFileName</span> = &#34;beaconchain.db&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>BlockCacheSize specifies 1000 slots worth of blocks cached, which
+would be approximately 2MB
+
+				<pre>var <span id="BlockCacheSize">BlockCacheSize</span> = <a href="../../../../../../builtin/index.html#int64">int64</a>(1 &lt;&lt; 21)</pre>
+			
+				<p>ErrNotFound can be used directly, or as a wrapped DBError, whenever a db method needs to
+indicate that a value couldn&apos;t be found.
+
+				<pre>var <span id="ErrNotFound">ErrNotFound</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;not found in db&#34;)</pre>
+			
+				<p>ErrNotFoundOriginBlockRoot is an error specifically for the origin block root getter
+
+				<pre>var <span id="ErrNotFoundOriginBlockRoot">ErrNotFoundOriginBlockRoot</span> = <a href="index.html#WrapDBError">WrapDBError</a>(<a href="index.html#ErrNotFound">ErrNotFound</a>, &#34;OriginBlockRoot&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="KVStoreDatafilePath">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=3048:3095#L80">KVStoreDatafilePath</a>
+				<a class="permalink" href="index.html#KVStoreDatafilePath">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func KVStoreDatafilePath(dirPath <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#string">string</a></pre>
+			<p>KVStoreDatafilePath is the canonical construction of a full
+database file path from the directory path, so that code outside
+this package can find the full path in a consistent way.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WrapDBError">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/error.go?s=468:513#L3">WrapDBError</a>
+				<a class="permalink" href="index.html#WrapDBError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WrapDBError(e <a href="../../../../../../builtin/index.html#error">error</a>, outer <a href="../../../../../../builtin/index.html#string">string</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>WrapDBError wraps an error in a DBError. See commentary on DBError for more context.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=2430:2473#L62">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config for the bolt db kv store.
+
+			<pre>type Config struct {
+<span id="Config.InitialMMapSize"></span>    InitialMMapSize <a href="../../../../../../builtin/index.html#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DBError">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/error.go?s=1162:1211#L18">DBError</a>
+				<a class="permalink" href="index.html#DBError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DBError implements the Error method so that it can be asserted as an error.
+The Unwrap method supports error wrapping, enabling it to be used with errors.Is/As.
+The primary use case is to make it simple for database methods to return errors
+that wrap ErrNotFound, allowing calling code to check for &quot;not found&quot; errors
+like: `error.Is(err, ErrNotFound)`. This is intended to improve error handling
+in db lookup methods that need to differentiate between a missing value and some
+other database error. for more background see:
+<a href="https://go.dev/blog/go1.13-errors">https://go.dev/blog/go1.13-errors</a>
+
+			<pre>type DBError struct {
+<span id="DBError.Wraps"></span>    Wraps <a href="../../../../../../builtin/index.html#error">error</a>
+<span id="DBError.Outer"></span>    Outer <a href="../../../../../../builtin/index.html#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DBError.Error">func (DBError) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/error.go?s=1319:1350#L25">Error</a>
+					<a class="permalink" href="index.html#DBError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#DBError">DBError</a>) Error() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>Error satisfies the error interface, so that DBErrors can be used anywhere that
+expects an `error`.
+
+				
+				
+				
+			
+				
+				<h3 id="DBError.Unwrap">func (DBError) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/error.go?s=1504:1535#L34">Unwrap</a>
+					<a class="permalink" href="index.html#DBError.Unwrap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#DBError">DBError</a>) Unwrap() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Unwrap is used by the errors package Is and As methods.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=2623:2855#L68">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store defines an implementation of the Prysm Database interface
+using BoltDB as the underlying persistent kv-store for Ethereum Beacon Nodes.
+
+			<pre>type Store struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewKVStore">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=3359:3443#L87">NewKVStore</a>
+					<a class="permalink" href="index.html#NewKVStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKVStore(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, dirPath <a href="../../../../../../builtin/index.html#string">string</a>, config *<a href="index.html#Config">Config</a>) (*<a href="index.html#Store">Store</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKVStore initializes a new boltDB key-value store at the directory
+path specified, creates the kv-buckets based on the schema, and stores
+an open connection db object as a property of the Store struct.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Store.ArchivedPointRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/archived_point.go?s=1242:1322#L36">ArchivedPointRoot</a>
+					<a class="permalink" href="index.html#Store.ArchivedPointRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) ArchivedPointRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) [32]<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>ArchivedPointRoot returns the block root of an archived point from the DB.
+This is essential for cold state management and to restore a cold state.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Backup">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/backup.go?s=438:530#L9">Backup</a>
+					<a class="permalink" href="index.html#Store.Backup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Backup(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, outputDir <a href="../../../../../../builtin/index.html#string">string</a>, permissionOverride <a href="../../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Backup the database to the datadir backup directory.
+Example for backup at slot 345: $DATADIR/backups/prysm_beacondb_at_slot_0000345.backup
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Block">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=858:953#L18">Block</a>
+					<a class="permalink" href="index.html#Store.Block">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Block(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Block retrieval by root.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.BlockRoots">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=3955:4046#L117">BlockRoots</a>
+					<a class="permalink" href="index.html#Store.BlockRoots">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) BlockRoots(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, f *<a href="../filters/index.html">filters</a>.<a href="../filters/index.html#QueryFilter">QueryFilter</a>) ([][32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockRoots retrieves a list of beacon block roots by filter criteria. If the caller
+requires both the blocks and the block roots for a certain filter they should instead
+use the Blocks function rather than use BlockRoots. During periods of non finality
+there are potential race conditions which leads to differing roots when calling the db
+multiple times for the same filter.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.BlockRootsBySlot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=5831:5927#L180">BlockRootsBySlot</a>
+					<a class="permalink" href="index.html#Store.BlockRootsBySlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) BlockRootsBySlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, [][32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockRootsBySlot retrieves a list of beacon block roots by slot
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Blocks">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=2830:2944#L84">Blocks</a>
+					<a class="permalink" href="index.html#Store.Blocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Blocks(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, f *<a href="../filters/index.html">filters</a>.<a href="../filters/index.html#QueryFilter">QueryFilter</a>) ([]<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, [][32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Blocks retrieves a list of beacon blocks and its respective roots by filter criteria.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.BlocksBySlot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=5167:5274#L157">BlocksBySlot</a>
+					<a class="permalink" href="index.html#Store.BlocksBySlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) BlocksBySlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, []<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlocksBySlot retrieves a list of beacon blocks and its respective roots by slot.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.CleanUpDirtyStates">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=22625:22720#L707">CleanUpDirtyStates</a>
+					<a class="permalink" href="index.html#Store.CleanUpDirtyStates">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) CleanUpDirtyStates(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slotsPerArchivedPoint <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>CleanUpDirtyStates removes states in DB that falls to under archived point interval rules.
+Only following states would be kept:
+1.) state_slot % archived_interval == 0. (e.g. archived_interval=2048, states with slot 2048, 4096... etc)
+2.) archived_interval - archived_interval/3 &lt; state_slot % archived_interval
+<pre>(e.g. archived_interval=2048, states with slots after 1365).
+This is to tolerate skip slots. Not every state lays on the boundary.
+</pre>
+<p>3.) state with current finalized root
+4.) unfinalized States
+
+				
+				
+				
+			
+				
+				<h3 id="Store.ClearDB">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=5948:5979#L180">ClearDB</a>
+					<a class="permalink" href="index.html#Store.ClearDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) ClearDB() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ClearDB removes the previously stored database in the data directory.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.Close">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=6314:6343#L192">Close</a>
+					<a class="permalink" href="index.html#Store.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) Close() <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the underlying BoltDB database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DatabasePath">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/kv.go?s=6629:6666#L204">DatabasePath</a>
+					<a class="permalink" href="index.html#Store.DatabasePath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) DatabasePath() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>DatabasePath at which this database writes files.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DeleteState">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=10123:10197#L315">DeleteState</a>
+					<a class="permalink" href="index.html#Store.DeleteState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) DeleteState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteState by block root.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DeleteStates">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=12481:12559#L385">DeleteStates</a>
+					<a class="permalink" href="index.html#Store.DeleteStates">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) DeleteStates(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoots [][32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteStates by block roots.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.DepositContractAddress">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/deposit_contract.go?s=257:332#L4">DepositContractAddress</a>
+					<a class="permalink" href="index.html#Store.DepositContractAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) DepositContractAddress(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DepositContractAddress returns contract address is the address of
+the deposit contract on the proof of work chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.EnsureEmbeddedGenesis">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/genesis.go?s=3045:3109#L88">EnsureEmbeddedGenesis</a>
+					<a class="permalink" href="index.html#Store.EnsureEmbeddedGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) EnsureEmbeddedGenesis(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>EnsureEmbeddedGenesis checks that a genesis block has been generated when an embedded genesis
+state is used. If a genesis block does not exist, but a genesis state does, then we should call
+SaveGenesisData on the existing genesis state.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.FinalizedCheckpoint">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/checkpoint.go?s=1052:1135#L25">FinalizedCheckpoint</a>
+					<a class="permalink" href="index.html#Store.FinalizedCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) FinalizedCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FinalizedCheckpoint returns the latest finalized checkpoint in beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.FinalizedChildBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/finalized_block_roots.go?s=6304:6413#L174">FinalizedChildBlock</a>
+					<a class="permalink" href="index.html#Store.FinalizedChildBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) FinalizedChildBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FinalizedChildBlock returns the child block of a provided finalized block. If
+no finalized block or its respective child block exists we return with a nil
+block.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GenesisBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=10395:10477#L323">GenesisBlock</a>
+					<a class="permalink" href="index.html#Store.GenesisBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) GenesisBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GenesisBlock retrieves the genesis block of the beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.GenesisState">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=1576:1652#L40">GenesisState</a>
+					<a class="permalink" href="index.html#Store.GenesisState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) GenesisState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GenesisState returns the genesis state in beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HasArchivedPoint">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/archived_point.go?s=1816:1891#L53">HasArchivedPoint</a>
+					<a class="permalink" href="index.html#Store.HasArchivedPoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HasArchivedPoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasArchivedPoint returns true if an archived point exists in DB.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HasBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=4576:4646#L139">HasBlock</a>
+					<a class="permalink" href="index.html#Store.HasBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HasBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasBlock checks if a block by root exists in the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HasState">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=9701:9771#L296">HasState</a>
+					<a class="permalink" href="index.html#Store.HasState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HasState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasState checks if a state by root exists in the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HasStateSummary">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary.go?s=1870:1947#L56">HasStateSummary</a>
+					<a class="permalink" href="index.html#Store.HasStateSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HasStateSummary(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>HasStateSummary returns true if a state summary exists in DB.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HeadBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=2221:2300#L62">HeadBlock</a>
+					<a class="permalink" href="index.html#Store.HeadBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HeadBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HeadBlock returns the latest canonical block in the Ethereum Beacon Chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HighestSlotBlocksBelow">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=11952:12063#L365">HighestSlotBlocksBelow</a>
+					<a class="permalink" href="index.html#Store.HighestSlotBlocksBelow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HighestSlotBlocksBelow(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) ([]<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HighestSlotBlocksBelow returns the block with the highest slot below the input slot from the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.HighestSlotStatesBelow">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=20368:20481#L633">HighestSlotStatesBelow</a>
+					<a class="permalink" href="index.html#Store.HighestSlotStatesBelow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) HighestSlotStatesBelow(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) ([]<a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HighestSlotStatesBelow returns the states with the highest slot below the input slot
+from the db. Ideally there should just be one state per slot, but given validator
+can double propose, a single slot could have multiple block roots and
+results states. This returns a list of states.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.IsFinalizedBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/finalized_block_roots.go?s=5575:5653#L151">IsFinalizedBlock</a>
+					<a class="permalink" href="index.html#Store.IsFinalizedBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) IsFinalizedBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsFinalizedBlock returns true if the block root is present in the finalized block root index.
+A beacon block root contained exists in this index if it is considered finalized and canonical.
+Note: beacon blocks from the latest finalized epoch return true, whether or not they are
+considered canonical in the &quot;head view&quot; of the beacon node.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.JustifiedCheckpoint">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/checkpoint.go?s=430:513#L7">JustifiedCheckpoint</a>
+					<a class="permalink" href="index.html#Store.JustifiedCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) JustifiedCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>JustifiedCheckpoint returns the latest justified checkpoint in beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LastArchivedRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/archived_point.go?s=630:692#L18">LastArchivedRoot</a>
+					<a class="permalink" href="index.html#Store.LastArchivedRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LastArchivedRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) [32]<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>LastArchivedRoot from the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LastArchivedSlot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/archived_point.go?s=218:291#L3">LastArchivedSlot</a>
+					<a class="permalink" href="index.html#Store.LastArchivedSlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LastArchivedSlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LastArchivedSlot from the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.LoadGenesis">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/genesis.go?s=1732:1799#L44">LoadGenesis</a>
+					<a class="permalink" href="index.html#Store.LoadGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) LoadGenesis(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, r <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>LoadGenesis loads a genesis state from a given file path, if no genesis exists already.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.OriginBlockRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=1720:1790#L43">OriginBlockRoot</a>
+					<a class="permalink" href="index.html#Store.OriginBlockRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) OriginBlockRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) ([32]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>OriginBlockRoot returns the value written to the db in SaveOriginBlockRoot
+This is the root of a finalized block within the weak subjectivity period
+at the time the chain was started, used to initialize the database and chain
+without syncing from genesis.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.PowchainData">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/powchain.go?s=863:939#L28">PowchainData</a>
+					<a class="permalink" href="index.html#Store.PowchainData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) PowchainData(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">v2</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ETH1ChainData">ETH1ChainData</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PowchainData retrieves the powchain data.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.RunMigrations">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/migration.go?s=311:367#L10">RunMigrations</a>
+					<a class="permalink" href="index.html#Store.RunMigrations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) RunMigrations(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>RunMigrations defined in the migrations array.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveBlock">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=7969:8053#L250">SaveBlock</a>
+					<a class="permalink" href="index.html#Store.SaveBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveBlock(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, signed <a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveBlock to the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveBlocks">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=8406:8493#L265">SaveBlocks</a>
+					<a class="permalink" href="index.html#Store.SaveBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveBlocks(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blocks []<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveBlocks via bulk updates to the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveDepositContractAddress">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/deposit_contract.go?s=824:914#L19">SaveDepositContractAddress</a>
+					<a class="permalink" href="index.html#Store.SaveDepositContractAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveDepositContractAddress(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, addr <a href="../../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../../ethereum/go-ethereum/common/index.html#Address">Address</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveDepositContractAddress to the db. It returns an error if an address has been previously saved.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveFinalizedCheckpoint">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/checkpoint.go?s=2377:2473#L63">SaveFinalizedCheckpoint</a>
+					<a class="permalink" href="index.html#Store.SaveFinalizedCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveFinalizedCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, checkpoint *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveFinalizedCheckpoint saves finalized checkpoint in beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveGenesisBlockRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=10892:10975#L342">SaveGenesisBlockRoot</a>
+					<a class="permalink" href="index.html#Store.SaveGenesisBlockRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveGenesisBlockRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveGenesisBlockRoot to the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveGenesisData">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/genesis.go?s=579:669#L11">SaveGenesisData</a>
+					<a class="permalink" href="index.html#Store.SaveGenesisData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveGenesisData(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, genesisState <a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveGenesisData bootstraps the beaconDB with a given genesis state.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveHeadBlockRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=9776:9856#L307">SaveHeadBlockRoot</a>
+					<a class="permalink" href="index.html#Store.SaveHeadBlockRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveHeadBlockRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveHeadBlockRoot to the db.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveJustifiedCheckpoint">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/checkpoint.go?s=1665:1761#L43">SaveJustifiedCheckpoint</a>
+					<a class="permalink" href="index.html#Store.SaveJustifiedCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveJustifiedCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, checkpoint *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Checkpoint">Checkpoint</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveJustifiedCheckpoint saves justified checkpoint in beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveOrigin">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/wss.go?s=675:764#L10">SaveOrigin</a>
+					<a class="permalink" href="index.html#Store.SaveOrigin">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveOrigin(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, stateReader, blockReader <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveOrigin loads an ssz serialized Block &amp; BeaconState from an io.Reader
+(ex: an open file) prepares the database so that the beacon node can begin
+syncing, using the provided values as their point of origin. This is an alternative
+to syncing from genesis, and should only be run on an empty database.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveOriginBlockRoot">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/blocks.go?s=11541:11623#L355">SaveOriginBlockRoot</a>
+					<a class="permalink" href="index.html#Store.SaveOriginBlockRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveOriginBlockRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveOriginBlockRoot is used to keep track of the block root used for origin sync.
+This should be a finalized block from within the current weak subjectivity period.
+This value is used by a running beacon chain node to locate the state at the beginning
+of the chain history, in places where genesis would typically be used.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SavePowchainData">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/powchain.go?s=290:373#L5">SavePowchainData</a>
+					<a class="permalink" href="index.html#Store.SavePowchainData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SavePowchainData(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, data *<a href="../../../proto/prysm/v1alpha1/index.html">v2</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ETH1ChainData">ETH1ChainData</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SavePowchainData saves the pow chain data.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveState">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=2842:2944#L86">SaveState</a>
+					<a class="permalink" href="index.html#Store.SaveState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, st <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveState stores a state to the db using block&apos;s signing root which was used to generate the state.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveStateSummaries">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary.go?s=565:659#L11">SaveStateSummaries</a>
+					<a class="permalink" href="index.html#Store.SaveStateSummaries">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveStateSummaries(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, summaries []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveStateSummaries saves state summary objects to the DB.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveStateSummary">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary.go?s=261:349#L3">SaveStateSummary</a>
+					<a class="permalink" href="index.html#Store.SaveStateSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveStateSummary(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, summary *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveStateSummary saves a state summary object to the DB.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveStates">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=3377:3489#L100">SaveStates</a>
+					<a class="permalink" href="index.html#Store.SaveStates">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveStates(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, states []<a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, blockRoots [][32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveStates stores multiple states to the db using the provided corresponding roots.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.SaveStatesEfficient">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=4365:4486#L131">SaveStatesEfficient</a>
+					<a class="permalink" href="index.html#Store.SaveStatesEfficient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) SaveStatesEfficient(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, states []<a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, blockRoots [][32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveStatesEfficient stores multiple states to the db (new schema) using the provided corresponding roots.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.State">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state.go?s=1036:1125#L19">State</a>
+					<a class="permalink" href="index.html#Store.State">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) State(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../state/index.html">state</a>.<a href="../../state/index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>State returns the saved state using block&apos;s signing root,
+this particular block was used to generate the state.
+
+				
+				
+				
+			
+				
+				<h3 id="Store.StateSummary">func (*Store) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/db/kv/state_summary.go?s=1190:1288#L31">StateSummary</a>
+					<a class="permalink" href="index.html#Store.StateSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Store">Store</a>) StateSummary(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateSummary returns the state summary object from the db using input block root.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

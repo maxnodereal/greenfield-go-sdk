@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>ethdb - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package ethdb
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/ethdb"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package ethdb defines the interfaces for an Ethereum data store.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#AncientReader">type AncientReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AncientReaderOp">type AncientReaderOp</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AncientStater">type AncientStater</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AncientStore">type AncientStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AncientWriteOp">type AncientWriteOp</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AncientWriter">type AncientWriter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Batch">type Batch</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Batcher">type Batcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Compacter">type Compacter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Database">type Database</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HookedBatch">type HookedBatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HookedBatch.Delete">func (b HookedBatch) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HookedBatch.Put">func (b HookedBatch) Put(key []byte, value []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Iteratee">type Iteratee</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyValueReader">type KeyValueReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyValueStater">type KeyValueStater</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyValueStore">type KeyValueStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#KeyValueWriter">type KeyValueWriter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Reader">type Reader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Snapshot">type Snapshot</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Snapshotter">type Snapshotter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Stater">type Stater</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Writer">type Writer</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go">batch.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go">database.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/snapshot.go">snapshot.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>IdealBatchSize defines the size of the data batches should ideally add in one
+write.
+
+				<pre>const <span id="IdealBatchSize">IdealBatchSize</span> = 100 * 1024</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="AncientReader">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=3745:3972#L89">AncientReader</a>
+				<a class="permalink" href="index.html#AncientReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientReader is the extended ancient reader interface including &apos;batched&apos; or &apos;atomic&apos; reading.
+
+			<pre>type AncientReader interface {
+    <a href="index.html#AncientReaderOp">AncientReaderOp</a>
+
+    <span class="comment">// ReadAncients runs the given read operation while ensuring that no writes take place</span>
+    <span class="comment">// on the underlying freezer.</span>
+    ReadAncients(fn func(<a href="index.html#AncientReaderOp">AncientReaderOp</a>) <a href="../../../../builtin/index.html#error">error</a>) (err <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AncientReaderOp">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=2611:3644#L62">AncientReaderOp</a>
+				<a class="permalink" href="index.html#AncientReaderOp">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientReaderOp contains the methods required to read from immutable ancient data.
+
+			<pre>type AncientReaderOp interface {
+    <span class="comment">// HasAncient returns an indicator whether the specified data exists in the</span>
+    <span class="comment">// ancient store.</span>
+    HasAncient(kind <a href="../../../../builtin/index.html#string">string</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Ancient retrieves an ancient binary blob from the append-only immutable files.</span>
+    Ancient(kind <a href="../../../../builtin/index.html#string">string</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// AncientRange retrieves multiple items in sequence, starting from the index &#39;start&#39;.</span>
+    <span class="comment">// It will return</span>
+    <span class="comment">//  - at most &#39;count&#39; items,</span>
+    <span class="comment">//  - at least 1 item (even if exceeding the maxBytes), but will otherwise</span>
+    <span class="comment">//   return as many items as fit into maxBytes.</span>
+    AncientRange(kind <a href="../../../../builtin/index.html#string">string</a>, start, count, maxBytes <a href="../../../../builtin/index.html#uint64">uint64</a>) ([][]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Ancients returns the ancient item numbers in the ancient store.</span>
+    Ancients() (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Tail returns the number of first stored item in the freezer.</span>
+    <span class="comment">// This number can also be interpreted as the total deleted item numbers.</span>
+    Tail() (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// AncientSize returns the ancient size of the specified category.</span>
+    AncientSize(kind <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AncientStater">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=5677:5955#L134">AncientStater</a>
+				<a class="permalink" href="index.html#AncientStater">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientStater wraps the Stat method of a backing data store.
+
+			<pre>type AncientStater interface {
+    <span class="comment">// AncientDatadir returns the path of root ancient directory. Empty string</span>
+    <span class="comment">// will be returned if ancient store is not enabled at all. The returned</span>
+    <span class="comment">// path can be used to construct the path of other freezers.</span>
+    AncientDatadir() (<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AncientStore">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=6606:6678#L164">AncientStore</a>
+				<a class="permalink" href="index.html#AncientStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientStore contains all the methods required to allow handling different
+ancient data stores backing immutable chain data store.
+
+			<pre>type AncientStore interface {
+    <a href="index.html#AncientReader">AncientReader</a>
+    <a href="index.html#AncientWriter">AncientWriter</a>
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Closer">Closer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AncientWriteOp">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=5370:5611#L125">AncientWriteOp</a>
+				<a class="permalink" href="index.html#AncientWriteOp">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientWriteOp is given to the function argument of ModifyAncients.
+
+			<pre>type AncientWriteOp interface {
+    <span class="comment">// Append adds an RLP-encoded item.</span>
+    Append(kind <a href="../../../../builtin/index.html#string">string</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>, item interface{}) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// AppendRaw adds an item without RLP-encoding it.</span>
+    AppendRaw(kind <a href="../../../../builtin/index.html#string">string</a>, number <a href="../../../../builtin/index.html#uint64">uint64</a>, item []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AncientWriter">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=4057:5297#L98">AncientWriter</a>
+				<a class="permalink" href="index.html#AncientWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AncientWriter contains the methods required to write to immutable ancient data.
+
+			<pre>type AncientWriter interface {
+    <span class="comment">// ModifyAncients runs a write operation on the ancient store.</span>
+    <span class="comment">// If the function returns an error, any changes to the underlying store are reverted.</span>
+    <span class="comment">// The integer return value is the total size of the written data.</span>
+    ModifyAncients(func(<a href="index.html#AncientWriteOp">AncientWriteOp</a>) <a href="../../../../builtin/index.html#error">error</a>) (<a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// TruncateHead discards all but the first n ancient data from the ancient store.</span>
+    <span class="comment">// After the truncation, the latest item can be accessed it item_n-1(start from 0).</span>
+    TruncateHead(n <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// TruncateTail discards the first n ancient data from the ancient store. The already</span>
+    <span class="comment">// deleted items are ignored. After the truncation, the earliest item can be accessed</span>
+    <span class="comment">// is item_n(start from 0). The deleted items may not be removed from the ancient store</span>
+    <span class="comment">// immediately, but only when the accumulated deleted data reach the threshold then</span>
+    <span class="comment">// will be removed all together.</span>
+    TruncateTail(n <a href="../../../../builtin/index.html#uint64">uint64</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Sync flushes all in-memory ancient store data to disk.</span>
+    Sync() <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// MigrateTable processes and migrates entries of a given table to a new format.</span>
+    <span class="comment">// The second argument is a function that takes a raw entry and returns it</span>
+    <span class="comment">// in the newest format.</span>
+    MigrateTable(<a href="../../../../builtin/index.html#string">string</a>, func([]<a href="../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Batch">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go?s=1072:1380#L15">Batch</a>
+				<a class="permalink" href="index.html#Batch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Batch is a write-only database that commits changes to its host database
+when Write is called. A batch cannot be used concurrently.
+
+			<pre>type Batch interface {
+    <a href="index.html#KeyValueWriter">KeyValueWriter</a>
+
+    <span class="comment">// ValueSize retrieves the amount of data queued up for writing.</span>
+    ValueSize() <a href="../../../../builtin/index.html#int">int</a>
+
+    <span class="comment">// Write flushes any accumulated data to disk.</span>
+    Write() <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Reset resets the batch for reuse.</span>
+    Reset()
+
+    <span class="comment">// Replay replays the batch contents.</span>
+    Replay(w <a href="index.html#KeyValueWriter">KeyValueWriter</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Batcher">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go?s=1444:1721#L32">Batcher</a>
+				<a class="permalink" href="index.html#Batcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Batcher wraps the NewBatch method of a backing data store.
+
+			<pre>type Batcher interface {
+    <span class="comment">// NewBatch creates a write-only database that buffers changes to its host db</span>
+    <span class="comment">// until a final write is called.</span>
+    NewBatch() <a href="index.html#Batch">Batch</a>
+
+    <span class="comment">// NewBatchWithSize creates a write-only database batch with pre-allocated buffer.</span>
+    NewBatchWithSize(size <a href="../../../../builtin/index.html#int">int</a>) <a href="index.html#Batch">Batch</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Compacter">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=1752:2250#L37">Compacter</a>
+				<a class="permalink" href="index.html#Compacter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Compacter wraps the Compact method of a backing data store.
+
+			<pre>type Compacter interface {
+    <span class="comment">// Compact flattens the underlying data store for the given key range. In essence,</span>
+    <span class="comment">// deleted and overwritten versions are discarded, and the data is rearranged to</span>
+    <span class="comment">// reduce the cost of operations needed to access them.</span>
+    <span class="comment">//</span>
+    <span class="comment">// A nil start is treated as a key before all keys in the data store; a nil limit</span>
+    <span class="comment">// is treated as a key after all keys in the data store. If both is nil then it</span>
+    <span class="comment">// will compact entire data store.</span>
+    Compact(start []<a href="../../../../builtin/index.html#byte">byte</a>, limit []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Database">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=6828:6933#L172">Database</a>
+				<a class="permalink" href="index.html#Database">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Database contains all the methods required by the high level database to not
+only access the key-value data store but also the chain freezer.
+
+			<pre>type Database interface {
+    <a href="index.html#Reader">Reader</a>
+    <a href="index.html#Writer">Writer</a>
+    <a href="index.html#Batcher">Batcher</a>
+    <a href="index.html#Iteratee">Iteratee</a>
+    <a href="index.html#Stater">Stater</a>
+    <a href="index.html#Compacter">Compacter</a>
+    <a href="index.html#Snapshotter">Snapshotter</a>
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Closer">Closer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HookedBatch">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go?s=1838:2020#L43">HookedBatch</a>
+				<a class="permalink" href="index.html#HookedBatch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HookedBatch wraps an arbitrary batch where each operation may be hooked into
+to monitor from black box code.
+
+			<pre>type HookedBatch struct {
+    <a href="index.html#Batch">Batch</a>
+
+<span id="HookedBatch.OnPut"></span>    OnPut    func(key []<a href="../../../../builtin/index.html#byte">byte</a>, value []<a href="../../../../builtin/index.html#byte">byte</a>) <span class="comment">// Callback if a key is inserted</span>
+<span id="HookedBatch.OnDelete"></span>    OnDelete func(key []<a href="../../../../builtin/index.html#byte">byte</a>)               <span class="comment">// Callback if a key is deleted</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="HookedBatch.Delete">func (HookedBatch) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go?s=2281:2326#L59">Delete</a>
+					<a class="permalink" href="index.html#HookedBatch.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#HookedBatch">HookedBatch</a>) Delete(key []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Delete removes the key from the key-value data store.
+
+				
+				
+				
+			
+				
+				<h3 id="HookedBatch.Put">func (HookedBatch) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/batch.go?s=2084:2140#L51">Put</a>
+					<a class="permalink" href="index.html#HookedBatch.Put">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#HookedBatch">HookedBatch</a>) Put(key []<a href="../../../../builtin/index.html#byte">byte</a>, value []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Put inserts the given value into the key-value data store.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Iteratee">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/iterator.go?s=2215:2640#L43">Iteratee</a>
+				<a class="permalink" href="index.html#Iteratee">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iteratee wraps the NewIterator methods of a backing data store.
+
+			<pre>type Iteratee interface {
+    <span class="comment">// NewIterator creates a binary-alphabetical iterator over a subset</span>
+    <span class="comment">// of database content with a particular key prefix, starting at a particular</span>
+    <span class="comment">// initial key (or after, if it does not exist).</span>
+    <span class="comment">//</span>
+    <span class="comment">// Note: This method assumes that the prefix is NOT part of the start, so there&#39;s</span>
+    <span class="comment">// no need for the caller to prepend the prefix to the start</span>
+    NewIterator(prefix []<a href="../../../../builtin/index.html#byte">byte</a>, start []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Iterator">Iterator</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/iterator.go?s=1293:2146#L18">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator iterates over a database&apos;s key/value pairs in ascending key order.
+<p>When it encounters an error any seek will return false and will yield no key/
+value pairs. The error can be queried by calling the Error method. Calling
+Release is still necessary.
+<p>An iterator must be released after use, but it is not necessary to read an
+iterator until exhaustion. An iterator is not safe for concurrent use, but it
+is safe to use multiple iterators concurrently.
+
+			<pre>type Iterator interface {
+    <span class="comment">// Next moves the iterator to the next key/value pair. It returns whether the</span>
+    <span class="comment">// iterator is exhausted.</span>
+    Next() <a href="../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// Error returns any accumulated error. Exhausting all the key/value pairs</span>
+    <span class="comment">// is not considered to be an error.</span>
+    Error() <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Key returns the key of the current key/value pair, or nil if done. The caller</span>
+    <span class="comment">// should not modify the contents of the returned slice, and its contents may</span>
+    <span class="comment">// change on the next call to Next.</span>
+    Key() []<a href="../../../../builtin/index.html#byte">byte</a>
+
+    <span class="comment">// Value returns the value of the current key/value pair, or nil if done. The</span>
+    <span class="comment">// caller should not modify the contents of the returned slice, and its contents</span>
+    <span class="comment">// may change on the next call to Next.</span>
+    Value() []<a href="../../../../builtin/index.html#byte">byte</a>
+
+    <span class="comment">// Release releases associated resources. Release should always succeed and can</span>
+    <span class="comment">// be called multiple times without causing error.</span>
+    Release()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyValueReader">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=961:1203#L13">KeyValueReader</a>
+				<a class="permalink" href="index.html#KeyValueReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyValueReader wraps the Has and Get method of a backing data store.
+
+			<pre>type KeyValueReader interface {
+    <span class="comment">// Has retrieves if a key is present in the key-value data store.</span>
+    Has(key []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Get retrieves the given key if it&#39;s present in the key-value data store.</span>
+    Get(key []<a href="../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyValueStater">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=1554:1687#L31">KeyValueStater</a>
+				<a class="permalink" href="index.html#KeyValueStater">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyValueStater wraps the Stat method of a backing data store.
+
+			<pre>type KeyValueStater interface {
+    <span class="comment">// Stat returns a particular internal stat of the database.</span>
+    Stat(property <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyValueStore">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=2389:2523#L50">KeyValueStore</a>
+				<a class="permalink" href="index.html#KeyValueStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyValueStore contains all the methods required to allow handling different
+key-value data stores backing the high level database.
+
+			<pre>type KeyValueStore interface {
+    <a href="index.html#KeyValueReader">KeyValueReader</a>
+    <a href="index.html#KeyValueWriter">KeyValueWriter</a>
+    <a href="index.html#KeyValueStater">KeyValueStater</a>
+    <a href="index.html#Batcher">Batcher</a>
+    <a href="index.html#Iteratee">Iteratee</a>
+    <a href="index.html#Compacter">Compacter</a>
+    <a href="index.html#Snapshotter">Snapshotter</a>
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Closer">Closer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KeyValueWriter">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=1269:1487#L22">KeyValueWriter</a>
+				<a class="permalink" href="index.html#KeyValueWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>KeyValueWriter wraps the Put method of a backing data store.
+
+			<pre>type KeyValueWriter interface {
+    <span class="comment">// Put inserts the given value into the key-value data store.</span>
+    Put(key []<a href="../../../../builtin/index.html#byte">byte</a>, value []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Delete removes the key from the key-value data store.</span>
+    Delete(key []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Reader">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=6068:6124#L143">Reader</a>
+				<a class="permalink" href="index.html#Reader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reader contains the methods required to read data from both key-value as well as
+immutable ancient data.
+
+			<pre>type Reader interface {
+    <a href="index.html#KeyValueReader">KeyValueReader</a>
+    <a href="index.html#AncientReader">AncientReader</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Snapshot">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/snapshot.go?s=808:1239#L9">Snapshot</a>
+				<a class="permalink" href="index.html#Snapshot">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Snapshot interface {
+    <span class="comment">// Has retrieves if a key is present in the snapshot backing by a key-value</span>
+    <span class="comment">// data store.</span>
+    Has(key []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Get retrieves the given key if it&#39;s present in the snapshot backing by</span>
+    <span class="comment">// key-value data store.</span>
+    Get(key []<a href="../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Release releases associated resources. Release should always succeed and can</span>
+    <span class="comment">// be called multiple times without causing error.</span>
+    Release()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Snapshotter">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/snapshot.go?s=1307:1693#L24">Snapshotter</a>
+				<a class="permalink" href="index.html#Snapshotter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Snapshotter wraps the Snapshot method of a backing data store.
+
+			<pre>type Snapshotter interface {
+    <span class="comment">// NewSnapshot creates a database snapshot based on the current state.</span>
+    <span class="comment">// The created snapshot will not be affected by all following mutations</span>
+    <span class="comment">// happened on the database.</span>
+    <span class="comment">// Note don&#39;t forget to release the snapshot once it&#39;s used up, otherwise</span>
+    <span class="comment">// the stale data will never be cleaned up by the underlying compactor.</span>
+    NewSnapshot() (<a href="index.html#Snapshot">Snapshot</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Stater">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=6411:6467#L157">Stater</a>
+				<a class="permalink" href="index.html#Stater">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Stater contains the methods required to retrieve states from both key-value as well as
+immutable ancient data.
+
+			<pre>type Stater interface {
+    <a href="index.html#KeyValueStater">KeyValueStater</a>
+    <a href="index.html#AncientStater">AncientStater</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Writer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/ethdb/database.go?s=6236:6292#L150">Writer</a>
+				<a class="permalink" href="index.html#Writer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Writer contains the methods required to write data to both key-value as well as
+immutable ancient data.
+
+			<pre>type Writer interface {
+    <a href="index.html#KeyValueWriter">KeyValueWriter</a>
+    <a href="index.html#AncientWriter">AncientWriter</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="dbtest/index.html">dbtest</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="leveldb/index.html">leveldb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package leveldb implements the key-value database layer based on LevelDB.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="memorydb/index.html">memorydb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package memorydb implements the key-value database layer based on memory maps.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="remotedb/index.html">remotedb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package remotedb implements the key-value database layer based on a remote geth node.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

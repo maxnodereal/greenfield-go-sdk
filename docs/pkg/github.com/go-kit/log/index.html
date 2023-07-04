@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>log - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package log
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/log"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package log provides a structured logger.
+<p>Structured logging produces logs easily consumed later by humans or
+machines. Humans might be interested in debugging errors, or tracing
+specific requests. Machines might be interested in counting interesting
+events, or aggregating information for off-line processing. In both cases,
+it is important that the log messages are structured and actionable.
+Package log is designed to encourage both of these best practices.
+<h3 id="hdr-Basic_Usage">Basic Usage</h3>
+<p>The fundamental interface is Logger. Loggers create log events from
+key/value data. The Logger interface has a single method, Log, which
+accepts a sequence of alternating key/value pairs, which this package names
+keyvals.
+<pre>type Logger interface {
+    Log(keyvals ...interface{}) error
+}
+</pre>
+<p>Here is an example of a function using a Logger to create log events.
+<pre>func RunTask(task Task, logger log.Logger) string {
+    logger.Log(&quot;taskID&quot;, task.ID, &quot;event&quot;, &quot;starting task&quot;)
+    ...
+    logger.Log(&quot;taskID&quot;, task.ID, &quot;event&quot;, &quot;task complete&quot;)
+}
+</pre>
+<p>The keys in the above example are &quot;taskID&quot; and &quot;event&quot;. The values are
+task.ID, &quot;starting task&quot;, and &quot;task complete&quot;. Every key is followed
+immediately by its value.
+<p>Keys are usually plain strings. Values may be any type that has a sensible
+encoding in the chosen log format. With structured logging it is a good
+idea to log simple values without formatting them. This practice allows
+the chosen logger to encode values in the most appropriate way.
+<h3 id="hdr-Contextual_Loggers">Contextual Loggers</h3>
+<p>A contextual logger stores keyvals that it includes in all log events.
+Building appropriate contextual loggers reduces repetition and aids
+consistency in the resulting log output. With, WithPrefix, and WithSuffix
+add context to a logger. We can use With to improve the RunTask example.
+<pre>func RunTask(task Task, logger log.Logger) string {
+    logger = log.With(logger, &quot;taskID&quot;, task.ID)
+    logger.Log(&quot;event&quot;, &quot;starting task&quot;)
+    ...
+    taskHelper(task.Cmd, logger)
+    ...
+    logger.Log(&quot;event&quot;, &quot;task complete&quot;)
+}
+</pre>
+<p>The improved version emits the same log events as the original for the
+first and last calls to Log. Passing the contextual logger to taskHelper
+enables each log event created by taskHelper to include the task.ID even
+though taskHelper does not have access to that value. Using contextual
+loggers this way simplifies producing log output that enables tracing the
+life cycle of individual tasks. (See the Contextual example for the full
+code of the above snippet.)
+<h3 id="hdr-Dynamic_Contextual_Values">Dynamic Contextual Values</h3>
+<p>A Valuer function stored in a contextual logger generates a new value each
+time an event is logged. The Valuer example demonstrates how this feature
+works.
+<p>Valuers provide the basis for consistently logging timestamps and source
+code location. The log package defines several valuers for that purpose.
+See Timestamp, DefaultTimestamp, DefaultTimestampUTC, Caller, and
+DefaultCaller. A common logger initialization sequence that ensures all log
+entries contain a timestamp and source location looks like this:
+<pre>logger := log.NewLogfmtLogger(log.NewSyncWriter(os.Stdout))
+logger = log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC, &quot;caller&quot;, log.DefaultCaller)
+</pre>
+<h3 id="hdr-Concurrent_Safety">Concurrent Safety</h3>
+<p>Applications with multiple goroutines want each log event written to the
+same logger to remain separate from other log events. Package log provides
+two simple solutions for concurrent safe logging.
+<p>NewSyncWriter wraps an io.Writer and serializes each call to its Write
+method. Using a SyncWriter has the benefit that the smallest practical
+portion of the logging logic is performed within a mutex, but it requires
+the formatting Logger to make only one call to Write per log event.
+<p>NewSyncLogger wraps any Logger and serializes each call to its Log method.
+Using a SyncLogger has the benefit that it guarantees each log event is
+handled atomically within the wrapped logger, but it typically serializes
+both the formatting and output logic. Use a SyncLogger if the formatting
+logger may perform multiple writes per log event.
+<h3 id="hdr-Error_Handling">Error Handling</h3>
+<p>This package relies on the practice of wrapping or decorating loggers with
+other loggers to provide composable pieces of functionality. It also means
+that Logger.Log must return an error because some
+implementations—especially those that output log data to an io.Writer—may
+encounter errors that cannot be handled locally. This in turn means that
+Loggers that wrap other loggers should return errors from the wrapped
+logger up the stack.
+<p>Fortunately, the decorator pattern also provides a way to avoid the
+necessity to check for errors every time an application calls Logger.Log.
+An application required to panic whenever its Logger encounters
+an error could initialize its logger as follows.
+<pre>fmtlogger := log.NewLogfmtLogger(log.NewSyncWriter(os.Stdout))
+logger := log.LoggerFunc(func(keyvals ...interface{}) error {
+    if err := fmtlogger.Log(keyvals...); err != nil {
+        panic(err)
+    }
+    return nil
+})
+</pre>
+
+				<div id="example__basic" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Basic)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Basic)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">logger := log.NewLogfmtLogger(os.Stdout)
+
+type Task struct {
+    ID int
+}
+
+RunTask := func(task Task, logger log.Logger) {
+    logger.Log(&#34;taskID&#34;, task.ID, &#34;event&#34;, &#34;starting task&#34;)
+
+    logger.Log(&#34;taskID&#34;, task.ID, &#34;event&#34;, &#34;task complete&#34;)
+}
+
+RunTask(Task{ID: 1}, logger)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">taskID=1 event=&#34;starting task&#34;
+taskID=1 event=&#34;task complete&#34;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__contextual" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Contextual)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Contextual)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">logger := log.NewLogfmtLogger(os.Stdout)
+
+type Task struct {
+    ID  int
+    Cmd string
+}
+
+taskHelper := func(cmd string, logger log.Logger) {
+    <span class="comment">// execute(cmd)</span>
+    logger.Log(&#34;cmd&#34;, cmd, &#34;dur&#34;, 42*time.Millisecond)
+}
+
+RunTask := func(task Task, logger log.Logger) {
+    logger = log.With(logger, &#34;taskID&#34;, task.ID)
+    logger.Log(&#34;event&#34;, &#34;starting task&#34;)
+
+    taskHelper(task.Cmd, logger)
+
+    logger.Log(&#34;event&#34;, &#34;task complete&#34;)
+}
+
+RunTask(Task{ID: 1, Cmd: &#34;echo Hello, world!&#34;}, logger)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">taskID=1 event=&#34;starting task&#34;
+taskID=1 cmd=&#34;echo Hello, world!&#34; dur=42ms
+taskID=1 event=&#34;task complete&#34;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__debugInfo" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (DebugInfo)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (DebugInfo)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">logger := log.NewLogfmtLogger(os.Stdout)
+
+<span class="comment">// make time predictable for this test</span>
+baseTime := time.Date(2015, time.February, 3, 10, 0, 0, 0, time.UTC)
+mockTime := func() time.Time {
+    baseTime = baseTime.Add(time.Second)
+    return baseTime
+}
+
+logger = log.With(logger, &#34;time&#34;, log.Timestamp(mockTime), &#34;caller&#34;, log.DefaultCaller)
+
+logger.Log(&#34;call&#34;, &#34;first&#34;)
+logger.Log(&#34;call&#34;, &#34;second&#34;)
+
+<span class="comment">// ...</span>
+
+logger.Log(&#34;call&#34;, &#34;third&#34;)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">time=2015-02-03T10:00:01Z caller=example_test.go:93 call=first
+time=2015-02-03T10:00:02Z caller=example_test.go:94 call=second
+time=2015-02-03T10:00:03Z caller=example_test.go:98 call=third
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__syncWriter" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (SyncWriter)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (SyncWriter)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">w := log.NewSyncWriter(os.Stdout)
+logger := log.NewLogfmtLogger(w)
+
+type Task struct {
+    ID int
+}
+
+var wg sync.WaitGroup
+
+RunTask := func(task Task, logger log.Logger) {
+    logger.Log(&#34;taskID&#34;, task.ID, &#34;event&#34;, &#34;starting task&#34;)
+
+    time.Sleep(time.Duration(rand.Intn(200)) * time.Millisecond)
+
+    logger.Log(&#34;taskID&#34;, task.ID, &#34;event&#34;, &#34;task complete&#34;)
+    wg.Done()
+}
+
+wg.Add(2)
+
+go RunTask(Task{ID: 1}, logger)
+go RunTask(Task{ID: 2}, logger)
+
+wg.Wait()
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">taskID=1 event=&#34;starting task&#34;
+taskID=2 event=&#34;starting task&#34;
+taskID=1 event=&#34;task complete&#34;
+taskID=2 event=&#34;task complete&#34;
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example__valuer" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Valuer)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Valuer)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">logger := log.NewLogfmtLogger(os.Stdout)
+
+count := 0
+counter := func() interface{} {
+    count++
+    return count
+}
+
+logger = log.With(logger, &#34;count&#34;, log.Valuer(counter))
+
+logger.Log(&#34;call&#34;, &#34;first&#34;)
+logger.Log(&#34;call&#34;, &#34;second&#34;)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">count=1 call=first
+count=2 call=second
+</pre>
+			
+		
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NewStdlibAdapter">func NewStdlibAdapter(logger Logger, options ...StdlibAdapterOption) io.Writer</a></dd>
+			
+				
+				<dd><a href="index.html#NewSyncWriter">func NewSyncWriter(w io.Writer) io.Writer</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Logger">type Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewJSONLogger">func NewJSONLogger(w io.Writer) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLogfmtLogger">func NewLogfmtLogger(w io.Writer) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNopLogger">func NewNopLogger() Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSyncLogger">func NewSyncLogger(logger Logger) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#With">func With(logger Logger, keyvals ...interface{}) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithPrefix">func WithPrefix(logger Logger, keyvals ...interface{}) Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithSuffix">func WithSuffix(logger Logger, keyvals ...interface{}) Logger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LoggerFunc">type LoggerFunc</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LoggerFunc.Log">func (f LoggerFunc) Log(keyvals ...interface{}) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StdlibAdapter">type StdlibAdapter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StdlibAdapter.Write">func (a StdlibAdapter) Write(p []byte) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StdlibAdapterOption">type StdlibAdapterOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileKey">func FileKey(key string) StdlibAdapterOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageKey">func MessageKey(key string) StdlibAdapterOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Prefix">func Prefix(prefix string, joinPrefixToMsg bool) StdlibAdapterOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TimestampKey">func TimestampKey(key string) StdlibAdapterOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StdlibWriter">type StdlibWriter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StdlibWriter.Write">func (w StdlibWriter) Write(p []byte) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SwapLogger">type SwapLogger</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SwapLogger.Log">func (l *SwapLogger) Log(keyvals ...interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SwapLogger.Swap">func (l *SwapLogger) Swap(logger Logger)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Valuer">type Valuer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Caller">func Caller(depth int) Valuer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Timestamp">func Timestamp(t func() time.Time) Valuer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TimestampFormat">func TimestampFormat(t func() time.Time, layout string) Valuer</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example__basic">Package (Basic)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__contextual">Package (Contextual)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__debugInfo">Package (DebugInfo)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__syncWriter">Package (SyncWriter)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example__valuer">Package (Valuer)</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/json_logger.go">json_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/logfmt_logger.go">logfmt_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/nop_logger.go">nop_logger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go">stdlib.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/sync.go">sync.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/log/value.go">value.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// DefaultTimestamp is a Valuer that returns the current wallclock time,</span>
+    <span class="comment">// respecting time zones, when bound.</span>
+    <span id="DefaultTimestamp">DefaultTimestamp</span> = <a href="index.html#TimestampFormat">TimestampFormat</a>(<a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Now">Now</a>, <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#RFC3339Nano">RFC3339Nano</a>)
+
+    <span class="comment">// DefaultTimestampUTC is a Valuer that returns the current time in UTC</span>
+    <span class="comment">// when bound.</span>
+    <span id="DefaultTimestampUTC">DefaultTimestampUTC</span> = <a href="index.html#TimestampFormat">TimestampFormat</a>(
+        func() <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a> { return <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Now">Now</a>().<a href="index.html#UTC">UTC</a>() },
+        <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#RFC3339Nano">RFC3339Nano</a>,
+    )
+
+    <span class="comment">// DefaultCaller is a Valuer that returns the file and line where the Log</span>
+    <span class="comment">// method was invoked. It can only be used with log.With.</span>
+    <span id="DefaultCaller">DefaultCaller</span> = <a href="index.html#Caller">Caller</a>(3)
+)</pre>
+			
+				<p>ErrMissingValue is appended to keyvals slices with odd length to substitute
+the missing value.
+
+				<pre>var <span id="ErrMissingValue">ErrMissingValue</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;(MISSING)&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewStdlibAdapter">func <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=2281:2359#L57">NewStdlibAdapter</a>
+				<a class="permalink" href="index.html#NewStdlibAdapter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewStdlibAdapter(logger <a href="index.html#Logger">Logger</a>, options ...<a href="index.html#StdlibAdapterOption">StdlibAdapterOption</a>) <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a></pre>
+			<p>NewStdlibAdapter returns a new StdlibAdapter wrapper around the passed
+logger. It&apos;s designed to be passed to log.SetOutput.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewSyncWriter">func <a href="http://localhost:6060/src/github.com/go-kit/log/sync.go?s=1359:1400#L39">NewSyncWriter</a>
+				<a class="permalink" href="index.html#NewSyncWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewSyncWriter(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>) <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a></pre>
+			<p>NewSyncWriter returns a new writer that is safe for concurrent use by
+multiple goroutines. Writes to the returned writer are passed on to w. If
+another write is already in progress, the calling goroutine blocks until
+the writer is available.
+<p>If w implements the following interface, so does the returned writer.
+<pre>interface {
+    Fd() uintptr
+}
+</pre>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Logger">type <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=402:462#L1">Logger</a>
+				<a class="permalink" href="index.html#Logger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Logger is the fundamental interface for all log operations. Log creates a
+log event from keyvals, a variadic sequence of alternating keys and values.
+Implementations must be safe for concurrent use by multiple goroutines. In
+particular, any implementation of Logger that appends to keyvals or
+modifies or retains any of its elements must make a copy first.
+
+			<pre>type Logger interface {
+    Log(keyvals ...interface{}) <a href="../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewJSONLogger">func <a href="http://localhost:6060/src/github.com/go-kit/log/json_logger.go?s=401:439#L9">NewJSONLogger</a>
+					<a class="permalink" href="index.html#NewJSONLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewJSONLogger(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewJSONLogger returns a Logger that encodes keyvals to the Writer as a
+single JSON object. Each log event produces no more than one call to
+w.Write. The passed Writer must be safe for concurrent use by multiple
+goroutines if the returned Logger will be used concurrently.
+
+				
+				
+			
+				
+				<h3 id="NewLogfmtLogger">func <a href="http://localhost:6060/src/github.com/go-kit/log/logfmt_logger.go?s=690:730#L27">NewLogfmtLogger</a>
+					<a class="permalink" href="index.html#NewLogfmtLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLogfmtLogger(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewLogfmtLogger returns a logger that encodes keyvals to the Writer in
+logfmt format. Each log event produces no more than one call to w.Write.
+The passed Writer must be safe for concurrent use by multiple goroutines if
+the returned Logger will be used concurrently.
+
+				
+				
+			
+				
+				<h3 id="NewNopLogger">func <a href="http://localhost:6060/src/github.com/go-kit/log/nop_logger.go?s=97:123#L1">NewNopLogger</a>
+					<a class="permalink" href="index.html#NewNopLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNopLogger() <a href="index.html#Logger">Logger</a></pre>
+				<p>NewNopLogger returns a logger that doesn&apos;t do anything.
+
+				
+				
+			
+				
+				<h3 id="NewSyncLogger">func <a href="http://localhost:6060/src/github.com/go-kit/log/sync.go?s=2892:2932#L93">NewSyncLogger</a>
+					<a class="permalink" href="index.html#NewSyncLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSyncLogger(logger <a href="index.html#Logger">Logger</a>) <a href="index.html#Logger">Logger</a></pre>
+				<p>NewSyncLogger returns a logger that synchronizes concurrent use of the
+wrapped logger. When multiple goroutines use the SyncLogger concurrently
+only one goroutine will be allowed to log to the wrapped logger at a time.
+The other goroutines will block until the logger is available.
+
+				
+				
+			
+				
+				<h3 id="With">func <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=992:1047#L14">With</a>
+					<a class="permalink" href="index.html#With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func With(logger <a href="index.html#Logger">Logger</a>, keyvals ...interface{}) <a href="index.html#Logger">Logger</a></pre>
+				<p>With returns a new contextual logger with keyvals prepended to those passed
+to calls to Log. If logger is also a contextual logger created by With,
+WithPrefix, or WithSuffix, keyvals is appended to the existing context.
+<p>The returned Logger replaces all value elements (odd indexes) containing a
+Valuer with their generated value for each call to its Log method.
+
+				
+				
+			
+				
+				<h3 id="WithPrefix">func <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=2052:2113#L42">WithPrefix</a>
+					<a class="permalink" href="index.html#WithPrefix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithPrefix(logger <a href="index.html#Logger">Logger</a>, keyvals ...interface{}) <a href="index.html#Logger">Logger</a></pre>
+				<p>WithPrefix returns a new contextual logger with keyvals prepended to those
+passed to calls to Log. If logger is also a contextual logger created by
+With, WithPrefix, or WithSuffix, keyvals is prepended to the existing context.
+<p>The returned Logger replaces all value elements (odd indexes) containing a
+Valuer with their generated value for each call to its Log method.
+
+				
+				
+			
+				
+				<h3 id="WithSuffix">func <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=3227:3288#L76">WithSuffix</a>
+					<a class="permalink" href="index.html#WithSuffix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithSuffix(logger <a href="index.html#Logger">Logger</a>, keyvals ...interface{}) <a href="index.html#Logger">Logger</a></pre>
+				<p>WithSuffix returns a new contextual logger with keyvals appended to those
+passed to calls to Log. If logger is also a contextual logger created by
+With, WithPrefix, or WithSuffix, keyvals is appended to the existing context.
+<p>The returned Logger replaces all value elements (odd indexes) containing a
+Valuer with their generated value for each call to its Log method.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="LoggerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=6292:6334#L164">LoggerFunc</a>
+				<a class="permalink" href="index.html#LoggerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LoggerFunc is an adapter to allow use of ordinary functions as Loggers. If
+f is a function with the appropriate signature, LoggerFunc(f) is a Logger
+object that calls f.
+
+			<pre>type LoggerFunc func(...interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LoggerFunc.Log">func (LoggerFunc) <a href="http://localhost:6060/src/github.com/go-kit/log/log.go?s=6387:6440#L167">Log</a>
+					<a class="permalink" href="index.html#LoggerFunc.Log">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#LoggerFunc">LoggerFunc</a>) Log(keyvals ...interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Log implements Logger by calling f(keyvals...).
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StdlibAdapter">type <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=810:965#L18">StdlibAdapter</a>
+				<a class="permalink" href="index.html#StdlibAdapter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StdlibAdapter wraps a Logger and allows it to be passed to the stdlib
+logger&apos;s SetOutput. It will extract date/timestamps, filenames, and
+messages, and place them under relevant keys.
+
+			<pre>type StdlibAdapter struct {
+    <a href="index.html#Logger">Logger</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StdlibAdapter.Write">func (StdlibAdapter) <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=2544:2595#L70">Write</a>
+					<a class="permalink" href="index.html#StdlibAdapter.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#StdlibAdapter">StdlibAdapter</a>) Write(p []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StdlibAdapterOption">type <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=1030:1075#L28">StdlibAdapterOption</a>
+				<a class="permalink" href="index.html#StdlibAdapterOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StdlibAdapterOption sets a parameter for the StdlibAdapter.
+
+			<pre>type StdlibAdapterOption func(*<a href="index.html#StdlibAdapter">StdlibAdapter</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FileKey">func <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=1345:1389#L36">FileKey</a>
+					<a class="permalink" href="index.html#FileKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FileKey(key <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#StdlibAdapterOption">StdlibAdapterOption</a></pre>
+				<p>FileKey sets the key for the file and line field. By default, it&apos;s &quot;caller&quot;.
+
+				
+				
+			
+				
+				<h3 id="MessageKey">func <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=1525:1572#L41">MessageKey</a>
+					<a class="permalink" href="index.html#MessageKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MessageKey(key <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#StdlibAdapterOption">StdlibAdapterOption</a></pre>
+				<p>MessageKey sets the key for the actual log message. By default, it&apos;s &quot;msg&quot;.
+
+				
+				
+			
+				
+				<h3 id="Prefix">func <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=1987:2055#L51">Prefix</a>
+					<a class="permalink" href="index.html#Prefix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Prefix(prefix <a href="../../../builtin/index.html#string">string</a>, joinPrefixToMsg <a href="../../../builtin/index.html#bool">bool</a>) <a href="index.html#StdlibAdapterOption">StdlibAdapterOption</a></pre>
+				<p>Prefix configures the adapter to parse a prefix from stdlib log events. If
+you provide a non-empty prefix to the stdlib logger, then your should provide
+that same prefix to the adapter via this option.
+<p>By default, the prefix isn&apos;t included in the msg key. Set joinPrefixToMsg to
+true if you want to include the parsed prefix in the msg.
+
+				
+				
+			
+				
+				<h3 id="TimestampKey">func <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=1154:1203#L31">TimestampKey</a>
+					<a class="permalink" href="index.html#TimestampKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TimestampKey(key <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#StdlibAdapterOption">StdlibAdapterOption</a></pre>
+				<p>TimestampKey sets the key for the timestamp field. By default, it&apos;s &quot;ts&quot;.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StdlibWriter">type <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=441:467#L7">StdlibWriter</a>
+				<a class="permalink" href="index.html#StdlibWriter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StdlibWriter implements io.Writer by invoking the stdlib log.Print. It&apos;s
+designed to be passed to a Go kit logger as the writer, for cases where
+it&apos;s necessary to redirect all Go kit log output to the stdlib logger.
+<p>If you have any choice in the matter, you shouldn&apos;t use this. Prefer to
+redirect the stdlib log to the Go kit logger via NewStdlibAdapter.
+
+			<pre>type StdlibWriter struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StdlibWriter.Write">func (StdlibWriter) <a href="http://localhost:6060/src/github.com/go-kit/log/stdlib.go?s=500:550#L10">Write</a>
+					<a class="permalink" href="index.html#StdlibWriter.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="index.html#StdlibWriter">StdlibWriter</a>) Write(p []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Write implements io.Writer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SwapLogger">type <a href="http://localhost:6060/src/github.com/go-kit/log/sync.go?s=347:394#L5">SwapLogger</a>
+				<a class="permalink" href="index.html#SwapLogger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SwapLogger wraps another logger that may be safely replaced while other
+goroutines use the SwapLogger concurrently. The zero value for a SwapLogger
+will discard all log events without error.
+<p>SwapLogger serves well as a package global logger that can be changed by
+importers.
+
+			<pre>type SwapLogger struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SwapLogger.Log">func (*SwapLogger) <a href="http://localhost:6060/src/github.com/go-kit/log/sync.go?s=586:640#L15">Log</a>
+					<a class="permalink" href="index.html#SwapLogger.Log">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#SwapLogger">SwapLogger</a>) Log(keyvals ...interface{}) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Log implements the Logger interface by forwarding keyvals to the currently
+wrapped logger. It does not log anything if the wrapped logger is nil.
+
+				
+				
+				
+			
+				
+				<h3 id="SwapLogger.Swap">func (*SwapLogger) <a href="http://localhost:6060/src/github.com/go-kit/log/sync.go?s=893:933#L25">Swap</a>
+					<a class="permalink" href="index.html#SwapLogger.Swap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#SwapLogger">SwapLogger</a>) Swap(logger <a href="index.html#Logger">Logger</a>)</pre>
+				<p>Swap replaces the currently wrapped logger with logger. Swap may be called
+concurrently with calls to Log from other goroutines.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Valuer">type <a href="http://localhost:6060/src/github.com/go-kit/log/value.go?s=261:291#L3">Valuer</a>
+				<a class="permalink" href="index.html#Valuer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A Valuer generates a log value. When passed to With, WithPrefix, or
+WithSuffix in a value element (odd indexes), it represents a dynamic
+value which is re-evaluated with each log event.
+
+			<pre>type Valuer func() interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Caller">func <a href="http://localhost:6060/src/github.com/go-kit/log/value.go?s=2492:2521#L74">Caller</a>
+					<a class="permalink" href="index.html#Caller">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Caller(depth <a href="../../../builtin/index.html#int">int</a>) <a href="index.html#Valuer">Valuer</a></pre>
+				<p>Caller returns a Valuer that returns a file and line from a specified depth
+in the callstack. Users will probably want to use DefaultCaller.
+
+				
+				
+			
+				
+				<h3 id="Timestamp">func <a href="http://localhost:6060/src/github.com/go-kit/log/value.go?s=1094:1135#L31">Timestamp</a>
+					<a class="permalink" href="index.html#Timestamp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Timestamp(t func() <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="index.html#Valuer">Valuer</a></pre>
+				<p>Timestamp returns a timestamp Valuer. It invokes the t function to get the
+time; unless you are doing something tricky, pass time.Now.
+<p>Most users will want to use DefaultTimestamp or DefaultTimestampUTC, which
+are TimestampFormats that use the RFC3339Nano format.
+
+				
+				
+			
+				
+				<h3 id="TimestampFormat">func <a href="http://localhost:6060/src/github.com/go-kit/log/value.go?s=1554:1616#L42">TimestampFormat</a>
+					<a class="permalink" href="index.html#TimestampFormat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TimestampFormat(t func() <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, layout <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#Valuer">Valuer</a></pre>
+				<p>TimestampFormat returns a timestamp Valuer with a custom time format. It
+invokes the t function to get the time to format; unless you are doing
+something tricky, pass time.Now. The layout string is passed to
+Time.Format.
+<p>Most users will want to use DefaultTimestamp or DefaultTimestampUTC, which
+are TimestampFormats that use the RFC3339Nano format.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/go-kit/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="level/index.html">level</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package level implements leveled logging on top of Go kit&#39;s log package.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="syslog/index.html">syslog</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package syslog provides a Logger that writes to syslog.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="term/index.html">term</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package term provides tools for logging to a terminal.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

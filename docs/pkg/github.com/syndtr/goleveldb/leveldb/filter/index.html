@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>filter - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package filter
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/syndtr/goleveldb/leveldb/filter"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package filter provides interface and implementation of probabilistic
+data structure.
+<p>The filter is resposible for creating small filter from a set of keys.
+These filter will then used to test whether a key is a member of the set.
+In many cases, a filter can cut down the number of disk seeks from a
+handful to a single disk seek per DB.Get call.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Buffer">type Buffer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Filter">type Filter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBloomFilter">func NewBloomFilter(bitsPerKey int) Filter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FilterGenerator">type FilterGenerator</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/bloom.go">bloom.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/filter.go">filter.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Buffer">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/filter.go?s=659:956#L7">Buffer</a>
+				<a class="permalink" href="index.html#Buffer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Buffer is the interface that wraps basic Alloc, Write and WriteByte methods.
+
+			<pre>type Buffer interface {
+    <span class="comment">// Alloc allocs n bytes of slice from the buffer. This also advancing</span>
+    <span class="comment">// write offset.</span>
+    Alloc(n <a href="../../../../../builtin/index.html#int">int</a>) []<a href="../../../../../builtin/index.html#byte">byte</a>
+
+    <span class="comment">// Write appends the contents of p to the buffer.</span>
+    Write(p []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// WriteByte appends the byte c to the buffer.</span>
+    WriteByte(c <a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Filter">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/filter.go?s=983:1519#L20">Filter</a>
+				<a class="permalink" href="index.html#Filter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Filter is the filter.
+
+			<pre>type Filter interface {
+    <span class="comment">// Name returns the name of this policy.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Note that if the filter encoding changes in an incompatible way,</span>
+    <span class="comment">// the name returned by this method must be changed. Otherwise, old</span>
+    <span class="comment">// incompatible filters may be passed to methods of this type.</span>
+    Name() <a href="../../../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// NewGenerator creates a new filter generator.</span>
+    NewGenerator() <a href="index.html#FilterGenerator">FilterGenerator</a>
+
+    <span class="comment">// Contains returns true if the filter contains the given key.</span>
+    <span class="comment">//</span>
+    <span class="comment">// The filter are filters generated by the filter generator.</span>
+    Contains(filter, key []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBloomFilter">func <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/bloom.go?s=2869:2911#L104">NewBloomFilter</a>
+					<a class="permalink" href="index.html#NewBloomFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBloomFilter(bitsPerKey <a href="../../../../../builtin/index.html#int">int</a>) <a href="index.html#Filter">Filter</a></pre>
+				<p>NewBloomFilter creates a new initialized bloom filter for given
+bitsPerKey.
+<p>Since bitsPerKey is persisted individually for each bloom filter
+serialization, bloom filters are backwards compatible with respect to
+changing bitsPerKey. This means that no big performance penalty will
+be experienced when changing the parameter. See documentation for
+opt.Options.Filter for more information.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="FilterGenerator">type <a href="http://localhost:6060/src/github.com/syndtr/goleveldb/leveldb/filter/filter.go?s=1565:2067#L38">FilterGenerator</a>
+				<a class="permalink" href="index.html#FilterGenerator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterGenerator is the filter generator.
+
+			<pre>type FilterGenerator interface {
+    <span class="comment">// Add adds a key to the filter generator.</span>
+    <span class="comment">//</span>
+    <span class="comment">// The key may become invalid after call to this method end, therefor</span>
+    <span class="comment">// key must be copied if implementation require keeping key for later</span>
+    <span class="comment">// use. The key should not modified directly, doing so may cause</span>
+    <span class="comment">// undefined results.</span>
+    Add(key []<a href="../../../../../builtin/index.html#byte">byte</a>)
+
+    <span class="comment">// Generate generates filters based on keys passed so far. After call</span>
+    <span class="comment">// to Generate the filter generator maybe resetted, depends on implementation.</span>
+    Generate(b <a href="index.html#Buffer">Buffer</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

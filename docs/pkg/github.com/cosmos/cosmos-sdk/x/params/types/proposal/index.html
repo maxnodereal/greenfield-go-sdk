@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>proposal - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package proposal
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/x/params/types/proposal"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package proposal is a reverse proxy.
+<p>It translates gRPC into RESTful JSON APIs.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#RegisterInterfaces">func RegisterInterfaces(registry types.InterfaceRegistry)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterLegacyAminoCodec">func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterQueryHandler">func RegisterQueryHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterQueryHandlerClient">func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, client QueryClient) error</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterQueryHandlerFromEndpoint">func RegisterQueryHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterQueryHandlerServer">func RegisterQueryHandlerServer(ctx context.Context, mux *runtime.ServeMux, server QueryServer) error</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterQueryServer">func RegisterQueryServer(s grpc1.Server, srv QueryServer)</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateChanges">func ValidateChanges(changes []ParamChange) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ParamChange">type ParamChange</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewParamChange">func NewParamChange(subspace, key, value string) ParamChange</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Descriptor">func (*ParamChange) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Equal">func (this *ParamChange) Equal(that interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.GetKey">func (m *ParamChange) GetKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.GetSubspace">func (m *ParamChange) GetSubspace() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.GetValue">func (m *ParamChange) GetValue() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Marshal">func (m *ParamChange) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.MarshalTo">func (m *ParamChange) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.MarshalToSizedBuffer">func (m *ParamChange) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.ProtoMessage">func (*ParamChange) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Reset">func (m *ParamChange) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Size">func (m *ParamChange) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.String">func (pc ParamChange) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.Unmarshal">func (m *ParamChange) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.XXX_DiscardUnknown">func (m *ParamChange) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.XXX_Marshal">func (m *ParamChange) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.XXX_Merge">func (m *ParamChange) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.XXX_Size">func (m *ParamChange) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParamChange.XXX_Unmarshal">func (m *ParamChange) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ParameterChangeProposal">type ParameterChangeProposal</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewParameterChangeProposal">func NewParameterChangeProposal(title, description string, changes []ParamChange) *ParameterChangeProposal</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Descriptor">func (*ParameterChangeProposal) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Equal">func (this *ParameterChangeProposal) Equal(that interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.GetDescription">func (pcp *ParameterChangeProposal) GetDescription() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.GetTitle">func (pcp *ParameterChangeProposal) GetTitle() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Marshal">func (m *ParameterChangeProposal) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.MarshalTo">func (m *ParameterChangeProposal) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.MarshalToSizedBuffer">func (m *ParameterChangeProposal) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.ProposalRoute">func (pcp *ParameterChangeProposal) ProposalRoute() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.ProposalType">func (pcp *ParameterChangeProposal) ProposalType() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.ProtoMessage">func (*ParameterChangeProposal) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Reset">func (m *ParameterChangeProposal) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Size">func (m *ParameterChangeProposal) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.String">func (pcp ParameterChangeProposal) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.Unmarshal">func (m *ParameterChangeProposal) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.ValidateBasic">func (pcp *ParameterChangeProposal) ValidateBasic() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.XXX_DiscardUnknown">func (m *ParameterChangeProposal) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.XXX_Marshal">func (m *ParameterChangeProposal) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.XXX_Merge">func (m *ParameterChangeProposal) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.XXX_Size">func (m *ParameterChangeProposal) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ParameterChangeProposal.XXX_Unmarshal">func (m *ParameterChangeProposal) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#QueryClient">type QueryClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewQueryClient">func NewQueryClient(cc grpc1.ClientConn) QueryClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#QueryParamsRequest">type QueryParamsRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.Descriptor">func (*QueryParamsRequest) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.GetKey">func (m *QueryParamsRequest) GetKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.GetSubspace">func (m *QueryParamsRequest) GetSubspace() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.Marshal">func (m *QueryParamsRequest) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.MarshalTo">func (m *QueryParamsRequest) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.MarshalToSizedBuffer">func (m *QueryParamsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.ProtoMessage">func (*QueryParamsRequest) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.Reset">func (m *QueryParamsRequest) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.Size">func (m *QueryParamsRequest) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.String">func (m *QueryParamsRequest) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.Unmarshal">func (m *QueryParamsRequest) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.XXX_DiscardUnknown">func (m *QueryParamsRequest) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.XXX_Marshal">func (m *QueryParamsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.XXX_Merge">func (m *QueryParamsRequest) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.XXX_Size">func (m *QueryParamsRequest) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsRequest.XXX_Unmarshal">func (m *QueryParamsRequest) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#QueryParamsResponse">type QueryParamsResponse</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.Descriptor">func (*QueryParamsResponse) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.GetParam">func (m *QueryParamsResponse) GetParam() ParamChange</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.Marshal">func (m *QueryParamsResponse) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.MarshalTo">func (m *QueryParamsResponse) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.MarshalToSizedBuffer">func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.ProtoMessage">func (*QueryParamsResponse) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.Reset">func (m *QueryParamsResponse) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.Size">func (m *QueryParamsResponse) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.String">func (m *QueryParamsResponse) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.Unmarshal">func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.XXX_DiscardUnknown">func (m *QueryParamsResponse) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.XXX_Marshal">func (m *QueryParamsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.XXX_Merge">func (m *QueryParamsResponse) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.XXX_Size">func (m *QueryParamsResponse) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryParamsResponse.XXX_Unmarshal">func (m *QueryParamsResponse) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#QueryServer">type QueryServer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#QuerySubspacesRequest">type QuerySubspacesRequest</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.Descriptor">func (*QuerySubspacesRequest) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.Marshal">func (m *QuerySubspacesRequest) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.MarshalTo">func (m *QuerySubspacesRequest) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.MarshalToSizedBuffer">func (m *QuerySubspacesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.ProtoMessage">func (*QuerySubspacesRequest) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.Reset">func (m *QuerySubspacesRequest) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.Size">func (m *QuerySubspacesRequest) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.String">func (m *QuerySubspacesRequest) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.Unmarshal">func (m *QuerySubspacesRequest) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.XXX_DiscardUnknown">func (m *QuerySubspacesRequest) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.XXX_Marshal">func (m *QuerySubspacesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.XXX_Merge">func (m *QuerySubspacesRequest) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.XXX_Size">func (m *QuerySubspacesRequest) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesRequest.XXX_Unmarshal">func (m *QuerySubspacesRequest) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#QuerySubspacesResponse">type QuerySubspacesResponse</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.Descriptor">func (*QuerySubspacesResponse) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.GetSubspaces">func (m *QuerySubspacesResponse) GetSubspaces() []*Subspace</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.Marshal">func (m *QuerySubspacesResponse) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.MarshalTo">func (m *QuerySubspacesResponse) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.MarshalToSizedBuffer">func (m *QuerySubspacesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.ProtoMessage">func (*QuerySubspacesResponse) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.Reset">func (m *QuerySubspacesResponse) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.Size">func (m *QuerySubspacesResponse) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.String">func (m *QuerySubspacesResponse) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.Unmarshal">func (m *QuerySubspacesResponse) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.XXX_DiscardUnknown">func (m *QuerySubspacesResponse) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.XXX_Marshal">func (m *QuerySubspacesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.XXX_Merge">func (m *QuerySubspacesResponse) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.XXX_Size">func (m *QuerySubspacesResponse) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QuerySubspacesResponse.XXX_Unmarshal">func (m *QuerySubspacesResponse) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Subspace">type Subspace</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.Descriptor">func (*Subspace) Descriptor() ([]byte, []int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.GetKeys">func (m *Subspace) GetKeys() []string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.GetSubspace">func (m *Subspace) GetSubspace() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.Marshal">func (m *Subspace) Marshal() (dAtA []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.MarshalTo">func (m *Subspace) MarshalTo(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.MarshalToSizedBuffer">func (m *Subspace) MarshalToSizedBuffer(dAtA []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.ProtoMessage">func (*Subspace) ProtoMessage()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.Reset">func (m *Subspace) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.Size">func (m *Subspace) Size() (n int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.String">func (m *Subspace) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.Unmarshal">func (m *Subspace) Unmarshal(dAtA []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.XXX_DiscardUnknown">func (m *Subspace) XXX_DiscardUnknown()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.XXX_Marshal">func (m *Subspace) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.XXX_Merge">func (m *Subspace) XXX_Merge(src proto.Message)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.XXX_Size">func (m *Subspace) XXX_Size() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subspace.XXX_Unmarshal">func (m *Subspace) XXX_Unmarshal(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UnimplementedQueryServer">type UnimplementedQueryServer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedQueryServer.Params">func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedQueryServer.Subspaces">func (*UnimplementedQueryServer) Subspaces(ctx context.Context, req *QuerySubspacesRequest) (*QuerySubspacesResponse, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/codec.go">codec.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/keys.go">keys.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go">params.pb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go">proposal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go">query.pb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.gw.go">query.pb.gw.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ModuleName defines the name of the module</span>
+    <span id="ModuleName">ModuleName</span> = &#34;params&#34;
+
+    <span class="comment">// RouterKey defines the routing key for a ParameterChangeProposal</span>
+    <span id="RouterKey">RouterKey</span> = &#34;params&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// ProposalTypeChange defines the type for a ParameterChangeProposal</span>
+    <span id="ProposalTypeChange">ProposalTypeChange</span> = &#34;ParameterChange&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>x/params module sentinel errors
+
+				<pre>var (
+    <span id="ErrUnknownSubspace">ErrUnknownSubspace</span>  = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 2, &#34;unknown subspace&#34;)
+    <span id="ErrSettingParameter">ErrSettingParameter</span> = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 3, &#34;failed to set parameter&#34;)
+    <span id="ErrEmptyChanges">ErrEmptyChanges</span>     = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 4, &#34;submitted parameter changes are empty&#34;)
+    <span id="ErrEmptySubspace">ErrEmptySubspace</span>    = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 5, &#34;parameter subspace is empty&#34;)
+    <span id="ErrEmptyKey">ErrEmptyKey</span>         = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 6, &#34;parameter key is empty&#34;)
+    <span id="ErrEmptyValue">ErrEmptyValue</span>       = <a href="../../../../types/errors/index.html">sdkerrors</a>.<a href="../../../../types/errors/index.html#Register">Register</a>(<a href="index.html#ModuleName">ModuleName</a>, 7, &#34;parameter value is empty&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidLengthParams">ErrInvalidLengthParams</span>        = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: negative length found during unmarshaling&#34;)
+    <span id="ErrIntOverflowParams">ErrIntOverflowParams</span>          = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: integer overflow&#34;)
+    <span id="ErrUnexpectedEndOfGroupParams">ErrUnexpectedEndOfGroupParams</span> = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: unexpected end of group&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidLengthQuery">ErrInvalidLengthQuery</span>        = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: negative length found during unmarshaling&#34;)
+    <span id="ErrIntOverflowQuery">ErrIntOverflowQuery</span>          = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: integer overflow&#34;)
+    <span id="ErrUnexpectedEndOfGroupQuery">ErrUnexpectedEndOfGroupQuery</span> = <a href="../../../../../../../fmt/index.html">fmt</a>.<a href="../../../../../../../fmt/index.html#Errorf">Errorf</a>(&#34;proto: unexpected end of group&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="RegisterInterfaces">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/codec.go?s=428:485#L4">RegisterInterfaces</a>
+				<a class="permalink" href="index.html#RegisterInterfaces">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterInterfaces(registry <a href="../../../../codec/types/index.html">types</a>.<a href="../../../../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterLegacyAminoCodec">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/codec.go?s=276:329#L1">RegisterLegacyAminoCodec</a>
+				<a class="permalink" href="index.html#RegisterLegacyAminoCodec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterLegacyAminoCodec(cdc *<a href="../../../../codec/index.html">codec</a>.<a href="../../../../codec/index.html#LegacyAmino">LegacyAmino</a>)</pre>
+			<p>RegisterLegacyAminoCodec registers all necessary param module types with a given LegacyAmino codec.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterQueryHandler">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.gw.go?s=6437:6535#L162">RegisterQueryHandler</a>
+				<a class="permalink" href="index.html#RegisterQueryHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterQueryHandler(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, mux *<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>, conn *<a href="../../../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../../../google.golang.org/grpc/index.html#ClientConn">ClientConn</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+			<p>RegisterQueryHandler registers the http handlers for service Query to &quot;mux&quot;.
+The handlers forward requests to the grpc endpoint over &quot;conn&quot;.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterQueryHandlerClient">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.gw.go?s=7062:7163#L171">RegisterQueryHandlerClient</a>
+				<a class="permalink" href="index.html#RegisterQueryHandlerClient">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterQueryHandlerClient(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, mux *<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>, client <a href="index.html#QueryClient">QueryClient</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+			<p>RegisterQueryHandlerClient registers the http handlers for service Query
+to &quot;mux&quot;. The handlers forward requests to the grpc endpoint over the given implementation of &quot;QueryClient&quot;.
+Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in &quot;QueryClient&quot;
+doesn&apos;t go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+&quot;QueryClient&quot; to call the correct interceptors.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterQueryHandlerFromEndpoint">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.gw.go?s=5709:5843#L137">RegisterQueryHandlerFromEndpoint</a>
+				<a class="permalink" href="index.html#RegisterQueryHandlerFromEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterQueryHandlerFromEndpoint(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, mux *<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>, endpoint <a href="../../../../../../../builtin/index.html#string">string</a>, opts []<a href="../../../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../../../google.golang.org/grpc/index.html#DialOption">DialOption</a>) (err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>RegisterQueryHandlerFromEndpoint is same as RegisterQueryHandler but
+automatically dials to &quot;endpoint&quot; and closes the connection when &quot;ctx&quot; gets done.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterQueryHandlerServer">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.gw.go?s=3411:3512#L84">RegisterQueryHandlerServer</a>
+				<a class="permalink" href="index.html#RegisterQueryHandlerServer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterQueryHandlerServer(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, mux *<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>, server <a href="index.html#QueryServer">QueryServer</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+			<p>RegisterQueryHandlerServer registers the http handlers for service Query to &quot;mux&quot;.
+UnaryRPC     :call QueryServer directly.
+StreamingRPC :currently unsupported pending <a href="https://github.com/grpc/grpc-go/issues/906">https://github.com/grpc/grpc-go/issues/906</a>.
+Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterQueryHandlerFromEndpoint instead.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterQueryServer">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=14325:14382#L378">RegisterQueryServer</a>
+				<a class="permalink" href="index.html#RegisterQueryServer">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterQueryServer(s <a href="../../../../../gogoproto/grpc/index.html">grpc1</a>.<a href="../../../../../gogoproto/grpc/index.html#Server">Server</a>, srv <a href="index.html#QueryServer">QueryServer</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateChanges">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=2274:2323#L73">ValidateChanges</a>
+				<a class="permalink" href="index.html#ValidateChanges">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateChanges(changes []<a href="index.html#ParamChange">ParamChange</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+			<p>ValidateChanges performs basic validation checks over a set of ParamChange. It
+returns an error if any ParamChange is invalid.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ParamChange">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2354:2632#L59">ParamChange</a>
+				<a class="permalink" href="index.html#ParamChange">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ParamChange defines an individual parameter change, for use in
+ParameterChangeProposal.
+
+			<pre>type ParamChange struct {
+<span id="ParamChange.Subspace"></span>    Subspace <a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,1,opt,name=subspace,proto3&#34; json:&#34;subspace,omitempty&#34;`
+<span id="ParamChange.Key"></span>    Key      <a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,2,opt,name=key,proto3&#34; json:&#34;key,omitempty&#34;`
+<span id="ParamChange.Value"></span>    Value    <a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,3,opt,name=value,proto3&#34; json:&#34;value,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewParamChange">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=1897:1957#L61">NewParamChange</a>
+					<a class="permalink" href="index.html#NewParamChange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewParamChange(subspace, key, value <a href="../../../../../../../builtin/index.html#string">string</a>) <a href="index.html#ParamChange">ParamChange</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="ParamChange.Descriptor">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2730:2778#L67">Descriptor</a>
+					<a class="permalink" href="index.html#ParamChange.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#ParamChange">ParamChange</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.Equal">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=7044:7097#L189">Equal</a>
+					<a class="permalink" href="index.html#ParamChange.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this *<a href="index.html#ParamChange">ParamChange</a>) Equal(that interface{}) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.GetKey">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3618:3655#L104">GetKey</a>
+					<a class="permalink" href="index.html#ParamChange.GetKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) GetKey() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.GetSubspace">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3521:3563#L97">GetSubspace</a>
+					<a class="permalink" href="index.html#ParamChange.GetSubspace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) GetSubspace() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.GetValue">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3705:3744#L111">GetValue</a>
+					<a class="permalink" href="index.html#ParamChange.GetValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) GetValue() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.Marshal">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=8673:8729#L270">Marshal</a>
+					<a class="permalink" href="index.html#ParamChange.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.MarshalTo">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=8887:8944#L280">MarshalTo</a>
+					<a class="permalink" href="index.html#ParamChange.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.MarshalToSizedBuffer">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=9012:9080#L285">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#ParamChange.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.ProtoMessage">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2692:2726#L66">ProtoMessage</a>
+					<a class="permalink" href="index.html#ParamChange.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#ParamChange">ParamChange</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.Reset">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2634:2663#L65">Reset</a>
+					<a class="permalink" href="index.html#ParamChange.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.Size">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=10206:10242#L348">Size</a>
+					<a class="permalink" href="index.html#ParamChange.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.String">func (ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=2050:2087#L66">String</a>
+					<a class="permalink" href="index.html#ParamChange.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pc <a href="index.html#ParamChange">ParamChange</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>String implements the Stringer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.Unmarshal">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=14017:14067#L523">Unmarshal</a>
+					<a class="permalink" href="index.html#ParamChange.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.XXX_DiscardUnknown">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3367:3409#L91">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#ParamChange.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.XXX_Marshal">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2912:2991#L73">XXX_Marshal</a>
+					<a class="permalink" href="index.html#ParamChange.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.XXX_Merge">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3211:3261#L85">XXX_Merge</a>
+					<a class="permalink" href="index.html#ParamChange.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.XXX_Size">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=3309:3345#L88">XXX_Size</a>
+					<a class="permalink" href="index.html#ParamChange.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParamChange.XXX_Unmarshal">func (*ParamChange) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2833:2884#L70">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#ParamChange.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParamChange">ParamChange</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ParameterChangeProposal">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=891:1215#L19">ParameterChangeProposal</a>
+				<a class="permalink" href="index.html#ParameterChangeProposal">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ParameterChangeProposal defines a proposal to change one or more parameters.
+
+			<pre>type ParameterChangeProposal struct {
+<span id="ParameterChangeProposal.Title"></span>    Title       <a href="../../../../../../../builtin/index.html#string">string</a>        `protobuf:&#34;bytes,1,opt,name=title,proto3&#34; json:&#34;title,omitempty&#34;`
+<span id="ParameterChangeProposal.Description"></span>    Description <a href="../../../../../../../builtin/index.html#string">string</a>        `protobuf:&#34;bytes,2,opt,name=description,proto3&#34; json:&#34;description,omitempty&#34;`
+<span id="ParameterChangeProposal.Changes"></span>    Changes     []<a href="index.html#ParamChange">ParamChange</a> `protobuf:&#34;bytes,3,rep,name=changes,proto3&#34; json:&#34;changes&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewParameterChangeProposal">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=451:557#L14">NewParameterChangeProposal</a>
+					<a class="permalink" href="index.html#NewParameterChangeProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewParameterChangeProposal(title, description <a href="../../../../../../../builtin/index.html#string">string</a>, changes []<a href="index.html#ParamChange">ParamChange</a>) *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="ParameterChangeProposal.Descriptor">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1349:1409#L27">Descriptor</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.Equal">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=6392:6457#L154">Equal</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (this *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Equal(that interface{}) <a href="../../../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.GetDescription">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=837:896#L22">GetDescription</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.GetDescription">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) GetDescription() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>GetDescription returns the description of a parameter change proposal.
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.GetTitle">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=687:740#L19">GetTitle</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.GetTitle">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) GetTitle() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>GetTitle returns the title of a parameter change proposal.
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.Marshal">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=7533:7601#L219">Marshal</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.MarshalTo">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=7759:7828#L229">MarshalTo</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.MarshalToSizedBuffer">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=7896:7976#L234">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.ProposalRoute">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=998:1056#L25">ProposalRoute</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.ProposalRoute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) ProposalRoute() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>ProposalRoute returns the routing key of a parameter change proposal.
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.ProposalType">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=1144:1201#L28">ProposalType</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.ProposalType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) ProposalType() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>ProposalType returns the type of a parameter change proposal.
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.ProtoMessage">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1299:1345#L26">ProtoMessage</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.Reset">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1217:1258#L25">Reset</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.Size">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=9834:9882#L325">Size</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.String">func (ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=1508:1558#L41">String</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp <a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				<p>String implements the Stringer interface.
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.Unmarshal">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=10689:10751#L375">Unmarshal</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.ValidateBasic">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/proposal.go?s=1290:1347#L31">ValidateBasic</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.ValidateBasic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pcp *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) ValidateBasic() <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBasic validates the parameter change proposal
+
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.XXX_DiscardUnknown">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2070:2124#L51">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.XXX_Marshal">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1555:1646#L33">XXX_Marshal</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.XXX_Merge">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1878:1940#L45">XXX_Merge</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.XXX_Size">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=2000:2048#L48">XXX_Size</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ParameterChangeProposal.XXX_Unmarshal">func (*ParameterChangeProposal) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/params.pb.go?s=1464:1527#L30">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#ParameterChangeProposal.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#ParameterChangeProposal">ParameterChangeProposal</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="QueryClient">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=12130:12581#L320">QueryClient</a>
+				<a class="permalink" href="index.html#QueryClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryClient is the client API for Query service.
+<p>For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://godoc.org/google.golang.org/grpc#ClientConn.NewStream">https://godoc.org/google.golang.org/grpc#ClientConn.NewStream</a>.
+
+			<pre>type QueryClient interface {
+    <span class="comment">// Params queries a specific parameter of a module, given its subspace and</span>
+    <span class="comment">// key.</span>
+    Params(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, in *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>, opts ...<a href="../../../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../../../google.golang.org/grpc/index.html#CallOption">CallOption</a>) (*<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Subspaces queries for all registered subspaces and all keys for a subspace.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Since: cosmos-sdk 0.46</span>
+    Subspaces(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, in *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>, opts ...<a href="../../../../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../../../../google.golang.org/grpc/index.html#CallOption">CallOption</a>) (*<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewQueryClient">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=12633:12685#L334">NewQueryClient</a>
+					<a class="permalink" href="index.html#NewQueryClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewQueryClient(cc <a href="../../../../../gogoproto/grpc/index.html">grpc1</a>.<a href="../../../../../gogoproto/grpc/index.html#ClientConn">ClientConn</a>) <a href="index.html#QueryClient">QueryClient</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="QueryParamsRequest">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1074:1389#L24">QueryParamsRequest</a>
+				<a class="permalink" href="index.html#QueryParamsRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryParamsRequest is request type for the Query/Params RPC method.
+
+			<pre>type QueryParamsRequest struct {
+    <span class="comment">// subspace defines the module to query the parameter for.</span>
+<span id="QueryParamsRequest.Subspace"></span>    Subspace <a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,1,opt,name=subspace,proto3&#34; json:&#34;subspace,omitempty&#34;`
+    <span class="comment">// key defines the key of the parameter in the subspace.</span>
+<span id="QueryParamsRequest.Key"></span>    Key <a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,2,opt,name=key,proto3&#34; json:&#34;key,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="QueryParamsRequest.Descriptor">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1597:1652#L34">Descriptor</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.GetKey">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2562:2606#L71">GetKey</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.GetKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) GetKey() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.GetSubspace">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2458:2507#L64">GetSubspace</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.GetSubspace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) GetSubspace() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.Marshal">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=16070:16133#L435">Marshal</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.MarshalTo">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=16291:16355#L445">MarshalTo</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.MarshalToSizedBuffer">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=16423:16498#L450">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.ProtoMessage">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1549:1590#L33">ProtoMessage</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.Reset">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1391:1427#L31">Reset</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.Size">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=19970:20013#L615">Size</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.String">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1466:1510#L32">String</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.Unmarshal">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=21161:21218#L692">Unmarshal</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.XXX_DiscardUnknown">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2283:2332#L58">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.XXX_Marshal">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1793:1879#L40">XXX_Marshal</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.XXX_Merge">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2106:2163#L52">XXX_Merge</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.XXX_Size">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2218:2261#L55">XXX_Size</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsRequest.XXX_Unmarshal">func (*QueryParamsRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=1707:1765#L37">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#QueryParamsRequest.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="QueryParamsResponse">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2729:2880#L79">QueryParamsResponse</a>
+				<a class="permalink" href="index.html#QueryParamsResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryParamsResponse is response type for the Query/Params RPC method.
+
+			<pre>type QueryParamsResponse struct {
+    <span class="comment">// param defines the queried parameter.</span>
+<span id="QueryParamsResponse.Param"></span>    Param <a href="index.html#ParamChange">ParamChange</a> `protobuf:&#34;bytes,1,opt,name=param,proto3&#34; json:&#34;param&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="QueryParamsResponse.Descriptor">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3092:3148#L87">Descriptor</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.GetParam">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3963:4015#L117">GetParam</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.GetParam">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) GetParam() <a href="index.html#ParamChange">ParamChange</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.Marshal">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=16875:16939#L472">Marshal</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.MarshalTo">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=17097:17162#L482">MarshalTo</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.MarshalToSizedBuffer">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=17230:17306#L487">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.ProtoMessage">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3043:3085#L86">ProtoMessage</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.Reset">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2882:2919#L84">Reset</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.Size">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=20213:20257#L632">Size</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.String">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=2959:3004#L85">String</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.Unmarshal">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=23669:23727#L806">Unmarshal</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.XXX_DiscardUnknown">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3785:3835#L111">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.XXX_Marshal">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3290:3377#L93">XXX_Marshal</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.XXX_Merge">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3605:3663#L105">XXX_Merge</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.XXX_Size">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3719:3763#L108">XXX_Size</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QueryParamsResponse.XXX_Unmarshal">func (*QueryParamsResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=3203:3262#L90">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#QueryParamsResponse.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="QueryServer">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=13391:13778#L357">QueryServer</a>
+				<a class="permalink" href="index.html#QueryServer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryServer is the server API for Query service.
+
+			<pre>type QueryServer interface {
+    <span class="comment">// Params queries a specific parameter of a module, given its subspace and</span>
+    <span class="comment">// key.</span>
+    Params(<a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) (*<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Subspaces queries for all registered subspaces and all keys for a subspace.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Since: cosmos-sdk 0.46</span>
+    Subspaces(<a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) (*<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="QuerySubspacesRequest">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4229:4266#L128">QuerySubspacesRequest</a>
+				<a class="permalink" href="index.html#QuerySubspacesRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QuerySubspacesRequest defines a request type for querying for all registered
+subspaces and all keys for a subspace.
+<p>Since: cosmos-sdk 0.46
+
+			<pre>type QuerySubspacesRequest struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="QuerySubspacesRequest.Descriptor">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4486:4544#L134">Descriptor</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.Marshal">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=17558:17624#L505">Marshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.MarshalTo">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=17782:17849#L515">MarshalTo</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.MarshalToSizedBuffer">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=17917:17995#L520">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.ProtoMessage">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4435:4479#L133">ProtoMessage</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.Reset">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4268:4307#L131">Reset</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.Size">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=20374:20420#L643">Size</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.String">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4349:4396#L132">String</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.Unmarshal">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=25439:25499#L889">Unmarshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.XXX_DiscardUnknown">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5193:5245#L158">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.XXX_Marshal">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4688:4777#L140">XXX_Marshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.XXX_Merge">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5007:5067#L152">XXX_Merge</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.XXX_Size">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5125:5171#L155">XXX_Size</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesRequest.XXX_Unmarshal">func (*QuerySubspacesRequest) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=4599:4660#L137">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesRequest.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="QuerySubspacesResponse">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5533:5668#L168">QuerySubspacesResponse</a>
+				<a class="permalink" href="index.html#QuerySubspacesResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QuerySubspacesResponse defines the response types for querying for all
+registered subspaces and all keys for a subspace.
+<p>Since: cosmos-sdk 0.46
+
+			<pre>type QuerySubspacesResponse struct {
+<span id="QuerySubspacesResponse.Subspaces"></span>    Subspaces []*<a href="index.html#Subspace">Subspace</a> `protobuf:&#34;bytes,1,rep,name=subspaces,proto3&#34; json:&#34;subspaces,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="QuerySubspacesResponse.Descriptor">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5892:5951#L175">Descriptor</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.GetSubspaces">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6793:6852#L205">GetSubspaces</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.GetSubspaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) GetSubspaces() []*<a href="index.html#Subspace">Subspace</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.Marshal">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=18069:18136#L528">Marshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.MarshalTo">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=18294:18362#L538">MarshalTo</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.MarshalToSizedBuffer">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=18430:18509#L543">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.ProtoMessage">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5840:5885#L174">ProtoMessage</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.Reset">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5670:5710#L172">Reset</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.Size">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=20483:20530#L652">Size</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.String">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=5753:5801#L173">String</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.Unmarshal">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=26502:26563#L939">Unmarshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.XXX_DiscardUnknown">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6606:6659#L199">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.XXX_Marshal">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6096:6186#L181">XXX_Marshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.XXX_Merge">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6417:6478#L193">XXX_Merge</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.XXX_Size">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6537:6584#L196">XXX_Size</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="QuerySubspacesResponse.XXX_Unmarshal">func (*QuerySubspacesResponse) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=6006:6068#L178">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#QuerySubspacesResponse.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Subspace">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7033:7231#L216">Subspace</a>
+				<a class="permalink" href="index.html#Subspace">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Subspace defines a parameter subspace name and all the keys that exist for
+the subspace.
+<p>Since: cosmos-sdk 0.46
+
+			<pre>type Subspace struct {
+<span id="Subspace.Subspace"></span>    Subspace <a href="../../../../../../../builtin/index.html#string">string</a>   `protobuf:&#34;bytes,1,opt,name=subspace,proto3&#34; json:&#34;subspace,omitempty&#34;`
+<span id="Subspace.Keys"></span>    Keys     []<a href="../../../../../../../builtin/index.html#string">string</a> `protobuf:&#34;bytes,2,rep,name=keys,proto3&#34; json:&#34;keys,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Subspace.Descriptor">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7399:7444#L224">Descriptor</a>
+					<a class="permalink" href="index.html#Subspace.Descriptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Subspace">Subspace</a>) Descriptor() ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.GetKeys">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=8254:8291#L261">GetKeys</a>
+					<a class="permalink" href="index.html#Subspace.GetKeys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) GetKeys() []<a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.GetSubspace">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=8160:8199#L254">GetSubspace</a>
+					<a class="permalink" href="index.html#Subspace.GetSubspace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) GetSubspace() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.Marshal">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=18885:18938#L565">Marshal</a>
+					<a class="permalink" href="index.html#Subspace.Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) Marshal() (dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>, err <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.MarshalTo">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=19096:19150#L575">MarshalTo</a>
+					<a class="permalink" href="index.html#Subspace.MarshalTo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) MarshalTo(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.MarshalToSizedBuffer">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=19218:19283#L580">MarshalToSizedBuffer</a>
+					<a class="permalink" href="index.html#Subspace.MarshalToSizedBuffer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) MarshalToSizedBuffer(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.ProtoMessage">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7361:7392#L223">ProtoMessage</a>
+					<a class="permalink" href="index.html#Subspace.ProtoMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#Subspace">Subspace</a>) ProtoMessage()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.Reset">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7233:7259#L221">Reset</a>
+					<a class="permalink" href="index.html#Subspace.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) Reset()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.Size">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=20713:20746#L667">Size</a>
+					<a class="permalink" href="index.html#Subspace.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) Size() (n <a href="../../../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.String">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7288:7322#L222">String</a>
+					<a class="permalink" href="index.html#Subspace.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) String() <a href="../../../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.Unmarshal">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=28359:28406#L1023">Unmarshal</a>
+					<a class="permalink" href="index.html#Subspace.Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) Unmarshal(dAtA []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.XXX_DiscardUnknown">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=8015:8054#L248">XXX_DiscardUnknown</a>
+					<a class="permalink" href="index.html#Subspace.XXX_DiscardUnknown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) XXX_DiscardUnknown()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.XXX_Marshal">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7575:7651#L230">XXX_Marshal</a>
+					<a class="permalink" href="index.html#Subspace.XXX_Marshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) XXX_Marshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>, deterministic <a href="../../../../../../../builtin/index.html#bool">bool</a>) ([]<a href="../../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.XXX_Merge">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7868:7915#L242">XXX_Merge</a>
+					<a class="permalink" href="index.html#Subspace.XXX_Merge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) XXX_Merge(src <a href="../../../../../gogoproto/proto/index.html">proto</a>.<a href="../../../../../gogoproto/proto/index.html#Message">Message</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.XXX_Size">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7960:7993#L245">XXX_Size</a>
+					<a class="permalink" href="index.html#Subspace.XXX_Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) XXX_Size() <a href="../../../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Subspace.XXX_Unmarshal">func (*Subspace) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=7499:7547#L227">XXX_Unmarshal</a>
+					<a class="permalink" href="index.html#Subspace.XXX_Unmarshal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Subspace">Subspace</a>) XXX_Unmarshal(b []<a href="../../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnimplementedQueryServer">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=13868:13908#L368">UnimplementedQueryServer</a>
+				<a class="permalink" href="index.html#UnimplementedQueryServer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UnimplementedQueryServer can be embedded to have forward compatible implementations.
+
+			<pre>type UnimplementedQueryServer struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UnimplementedQueryServer.Params">func (*UnimplementedQueryServer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=13910:14025#L371">Params</a>
+					<a class="permalink" href="index.html#UnimplementedQueryServer.Params">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#UnimplementedQueryServer">UnimplementedQueryServer</a>) Params(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, req *<a href="index.html#QueryParamsRequest">QueryParamsRequest</a>) (*<a href="index.html#QueryParamsResponse">QueryParamsResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnimplementedQueryServer.Subspaces">func (*UnimplementedQueryServer) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/x/params/types/proposal/query.pb.go?s=14111:14235#L374">Subspaces</a>
+					<a class="permalink" href="index.html#UnimplementedQueryServer.Subspaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#UnimplementedQueryServer">UnimplementedQueryServer</a>) Subspaces(ctx <a href="../../../../../../../context/index.html">context</a>.<a href="../../../../../../../context/index.html#Context">Context</a>, req *<a href="index.html#QuerySubspacesRequest">QuerySubspacesRequest</a>) (*<a href="index.html#QuerySubspacesResponse">QuerySubspacesResponse</a>, <a href="../../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

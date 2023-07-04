@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>db - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package db
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft-db"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#FileExists">func FileExists(filePath string) bool</a></dd>
+			
+				
+				<dd><a href="index.html#IsKeyInDomain">func IsKeyInDomain(key, start, end []byte) bool</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BackendType">type BackendType</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Batch">type Batch</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DB">type DB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDB">func NewDB(name string, backend BackendType, dir string) (DB, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GoLevelDB">type GoLevelDB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGoLevelDB">func NewGoLevelDB(name string, dir string) (*GoLevelDB, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGoLevelDBWithOpts">func NewGoLevelDBWithOpts(name string, dir string, o *opt.Options) (*GoLevelDB, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Close">func (db *GoLevelDB) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.DB">func (db *GoLevelDB) DB() *leveldb.DB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Delete">func (db *GoLevelDB) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.DeleteSync">func (db *GoLevelDB) DeleteSync(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Get">func (db *GoLevelDB) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Has">func (db *GoLevelDB) Has(key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Iterator">func (db *GoLevelDB) Iterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.NewBatch">func (db *GoLevelDB) NewBatch() Batch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Print">func (db *GoLevelDB) Print() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.ReverseIterator">func (db *GoLevelDB) ReverseIterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Set">func (db *GoLevelDB) Set(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.SetSync">func (db *GoLevelDB) SetSync(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GoLevelDB.Stats">func (db *GoLevelDB) Stats() map[string]string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IteratePrefix">func IteratePrefix(db DB, prefix []byte) (Iterator, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MemDB">type MemDB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemDB">func NewMemDB() *MemDB</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Close">func (db *MemDB) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Delete">func (db *MemDB) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.DeleteSync">func (db *MemDB) DeleteSync(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Get">func (db *MemDB) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Has">func (db *MemDB) Has(key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Iterator">func (db *MemDB) Iterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.IteratorNoMtx">func (db *MemDB) IteratorNoMtx(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.NewBatch">func (db *MemDB) NewBatch() Batch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Print">func (db *MemDB) Print() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.ReverseIterator">func (db *MemDB) ReverseIterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.ReverseIteratorNoMtx">func (db *MemDB) ReverseIteratorNoMtx(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Set">func (db *MemDB) Set(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.SetSync">func (db *MemDB) SetSync(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemDB.Stats">func (db *MemDB) Stats() map[string]string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PrefixDB">type PrefixDB</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPrefixDB">func NewPrefixDB(db DB, prefix []byte) *PrefixDB</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Close">func (pdb *PrefixDB) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Delete">func (pdb *PrefixDB) Delete(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.DeleteSync">func (pdb *PrefixDB) DeleteSync(key []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Get">func (pdb *PrefixDB) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Has">func (pdb *PrefixDB) Has(key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Iterator">func (pdb *PrefixDB) Iterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.NewBatch">func (pdb *PrefixDB) NewBatch() Batch</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Print">func (pdb *PrefixDB) Print() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.ReverseIterator">func (pdb *PrefixDB) ReverseIterator(start, end []byte) (Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Set">func (pdb *PrefixDB) Set(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.SetSync">func (pdb *PrefixDB) SetSync(key []byte, value []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrefixDB.Stats">func (pdb *PrefixDB) Stats() map[string]string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/db.go">db.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go">goleveldb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb_batch.go">goleveldb_batch.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb_iterator.go">goleveldb_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go">memdb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb_batch.go">memdb_batch.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb_iterator.go">memdb_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go">prefixdb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb_batch.go">prefixdb_batch.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb_iterator.go">prefixdb_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/test_helpers.go">test_helpers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/types.go">types.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="FileExists">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/util.go?s=836:873#L38">FileExists</a>
+				<a class="permalink" href="index.html#FileExists">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FileExists(filePath <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsKeyInDomain">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/util.go?s=649:696#L28">IsKeyInDomain</a>
+				<a class="permalink" href="index.html#IsKeyInDomain">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsKeyInDomain(key, start, end []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+			<p>See DB interface documentation for more information.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BackendType">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/db.go?s=42:65#L1">BackendType</a>
+				<a class="permalink" href="index.html#BackendType">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BackendType <a href="../../../builtin/index.html#string">string</a></pre>
+
+			
+				<p>These are valid backend types.
+
+				<pre>const (
+    <span class="comment">// GoLevelDBBackend represents goleveldb (github.com/syndtr/goleveldb - most</span>
+    <span class="comment">// popular implementation)</span>
+    <span class="comment">//   - pure go</span>
+    <span class="comment">//   - stable</span>
+    <span id="GoLevelDBBackend">GoLevelDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;goleveldb&#34;
+    <span class="comment">// CLevelDBBackend represents cleveldb (uses levigo wrapper)</span>
+    <span class="comment">//   - fast</span>
+    <span class="comment">//   - requires gcc</span>
+    <span class="comment">//   - use cleveldb build tag (go build -tags cleveldb)</span>
+    <span id="CLevelDBBackend">CLevelDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;cleveldb&#34;
+    <span class="comment">// MemDBBackend represents in-memory key value store, which is mostly used</span>
+    <span class="comment">// for testing.</span>
+    <span id="MemDBBackend">MemDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;memdb&#34;
+    <span class="comment">// BoltDBBackend represents bolt (uses etcd&#39;s fork of bolt -</span>
+    <span class="comment">// github.com/etcd-io/bbolt)</span>
+    <span class="comment">//   - EXPERIMENTAL</span>
+    <span class="comment">//   - may be faster is some use-cases (random reads - indexer)</span>
+    <span class="comment">//   - use boltdb build tag (go build -tags boltdb)</span>
+    <span id="BoltDBBackend">BoltDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;boltdb&#34;
+    <span class="comment">// RocksDBBackend represents rocksdb (uses github.com/tecbot/gorocksdb)</span>
+    <span class="comment">//   - EXPERIMENTAL</span>
+    <span class="comment">//   - requires gcc</span>
+    <span class="comment">//   - use rocksdb build tag (go build -tags rocksdb)</span>
+    <span id="RocksDBBackend">RocksDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;rocksdb&#34;
+
+    <span id="BadgerDBBackend">BadgerDBBackend</span> <a href="index.html#BackendType">BackendType</a> = &#34;badgerdb&#34;
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Batch">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/types.go?s=3095:3713#L68">Batch</a>
+				<a class="permalink" href="index.html#Batch">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Batch represents a group of writes. They may or may not be written atomically depending on the
+backend. Callers must call Close on the batch when done.
+<p>As with DB, given keys and values should be considered read-only, and must not be modified after
+passing them to the batch.
+
+			<pre>type Batch interface {
+    <span class="comment">// Set sets a key/value pair.</span>
+    <span class="comment">// CONTRACT: key, value readonly []byte</span>
+    Set(key, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Delete deletes a key/value pair.</span>
+    <span class="comment">// CONTRACT: key readonly []byte</span>
+    Delete(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Write writes the batch, possibly without flushing to disk. Only Close() can be called after,</span>
+    <span class="comment">// other methods will error.</span>
+    Write() <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// WriteSync writes the batch and flushes it to disk. Only Close() can be called after, other</span>
+    <span class="comment">// methods will error.</span>
+    WriteSync() <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Close closes the batch. It is idempotent, but calls to other methods afterwards will error.</span>
+    Close() <a href="../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DB">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/types.go?s=739:2802#L11">DB</a>
+				<a class="permalink" href="index.html#DB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DB is the main interface for all database backends. DBs are concurrency-safe. Callers must call
+Close on the database when done.
+<p>Keys cannot be nil or empty, while values cannot be nil. Keys and values should be considered
+read-only, both when returned and when given, and must be copied before they are modified.
+
+			<pre>type DB interface {
+    <span class="comment">// Get fetches the value of the given key, or nil if it does not exist.</span>
+    <span class="comment">// CONTRACT: key, value readonly []byte</span>
+    Get([]<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Has checks if a key exists.</span>
+    <span class="comment">// CONTRACT: key, value readonly []byte</span>
+    Has(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Set sets the value for the given key, replacing it if it already exists.</span>
+    <span class="comment">// CONTRACT: key, value readonly []byte</span>
+    Set([]<a href="../../../builtin/index.html#byte">byte</a>, []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// SetSync sets the value for the given key, and flushes it to storage before returning.</span>
+    SetSync([]<a href="../../../builtin/index.html#byte">byte</a>, []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Delete deletes the key, or does nothing if the key does not exist.</span>
+    <span class="comment">// CONTRACT: key readonly []byte</span>
+    Delete([]<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// DeleteSync deletes the key, and flushes the delete to storage before returning.</span>
+    DeleteSync([]<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Iterator returns an iterator over a domain of keys, in ascending order. The caller must call</span>
+    <span class="comment">// Close when done. End is exclusive, and start must be less than end. A nil start iterates</span>
+    <span class="comment">// from the first key, and a nil end iterates to the last key (inclusive). Empty keys are not</span>
+    <span class="comment">// valid.</span>
+    <span class="comment">// CONTRACT: No writes may happen within a domain while an iterator exists over it.</span>
+    <span class="comment">// CONTRACT: start, end readonly []byte</span>
+    Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// ReverseIterator returns an iterator over a domain of keys, in descending order. The caller</span>
+    <span class="comment">// must call Close when done. End is exclusive, and start must be less than end. A nil end</span>
+    <span class="comment">// iterates from the last key (inclusive), and a nil start iterates to the first key (inclusive).</span>
+    <span class="comment">// Empty keys are not valid.</span>
+    <span class="comment">// CONTRACT: No writes may happen within a domain while an iterator exists over it.</span>
+    <span class="comment">// CONTRACT: start, end readonly []byte</span>
+    ReverseIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Close closes the database connection.</span>
+    Close() <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// NewBatch creates a batch for atomic updates. The caller must call Batch.Close.</span>
+    NewBatch() <a href="index.html#Batch">Batch</a>
+
+    <span class="comment">// Print is used for debugging.</span>
+    Print() <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Stats returns a map of property values for all keys and the size of the cache.</span>
+    Stats() map[<a href="../../../builtin/index.html#string">string</a>]<a href="../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDB">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/db.go?s=1478:1546#L43">NewDB</a>
+					<a class="permalink" href="index.html#NewDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDB(name <a href="../../../builtin/index.html#string">string</a>, backend <a href="index.html#BackendType">BackendType</a>, dir <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#DB">DB</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewDB creates a new database of type backend with the given name.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="GoLevelDB">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=387:428#L10">GoLevelDB</a>
+				<a class="permalink" href="index.html#GoLevelDB">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type GoLevelDB struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGoLevelDB">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=460:522#L16">NewGoLevelDB</a>
+					<a class="permalink" href="index.html#NewGoLevelDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGoLevelDB(name <a href="../../../builtin/index.html#string">string</a>, dir <a href="../../../builtin/index.html#string">string</a>) (*<a href="index.html#GoLevelDB">GoLevelDB</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="NewGoLevelDBWithOpts">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=573:659#L20">NewGoLevelDBWithOpts</a>
+					<a class="permalink" href="index.html#NewGoLevelDBWithOpts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGoLevelDBWithOpts(name <a href="../../../builtin/index.html#string">string</a>, dir <a href="../../../builtin/index.html#string">string</a>, o *<a href="../../syndtr/goleveldb/leveldb/opt/index.html">opt</a>.<a href="../../syndtr/goleveldb/leveldb/opt/index.html#Options">Options</a>) (*<a href="index.html#GoLevelDB">GoLevelDB</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="GoLevelDB.Close">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=2332:2366#L112">Close</a>
+					<a class="permalink" href="index.html#GoLevelDB.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.DB">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=2251:2288#L107">DB</a>
+					<a class="permalink" href="index.html#GoLevelDB.DB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) DB() *<a href="../../syndtr/goleveldb/leveldb/index.html">leveldb</a>.<a href="../../syndtr/goleveldb/leveldb/index.html#DB">DB</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Delete">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=1850:1895#L85">Delete</a>
+					<a class="permalink" href="index.html#GoLevelDB.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Delete(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Delete implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.DeleteSync">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=2050:2099#L96">DeleteSync</a>
+					<a class="permalink" href="index.html#GoLevelDB.DeleteSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) DeleteSync(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Get">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=867:919#L33">Get</a>
+					<a class="permalink" href="index.html#GoLevelDB.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Get(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Has">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=1140:1190#L48">Has</a>
+					<a class="permalink" href="index.html#GoLevelDB.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Has(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Iterator">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=3345:3411#L165">Iterator</a>
+					<a class="permalink" href="index.html#GoLevelDB.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterator implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.NewBatch">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=3245:3282#L160">NewBatch</a>
+					<a class="permalink" href="index.html#GoLevelDB.NewBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) NewBatch() <a href="index.html#Batch">Batch</a></pre>
+				<p>NewBatch implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Print">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=2463:2497#L120">Print</a>
+					<a class="permalink" href="index.html#GoLevelDB.Print">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Print() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Print implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.ReverseIterator">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=3681:3754#L174">ReverseIterator</a>
+					<a class="permalink" href="index.html#GoLevelDB.ReverseIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) ReverseIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReverseIterator implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Set">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=1311:1367#L57">Set</a>
+					<a class="permalink" href="index.html#GoLevelDB.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Set(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Set implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.SetSync">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=1566:1626#L71">SetSync</a>
+					<a class="permalink" href="index.html#GoLevelDB.SetSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) SetSync(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>SetSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="GoLevelDB.Stats">func (*GoLevelDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/goleveldb.go?s=2787:2833#L137">Stats</a>
+					<a class="permalink" href="index.html#GoLevelDB.Stats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#GoLevelDB">GoLevelDB</a>) Stats() map[<a href="../../../builtin/index.html#string">string</a>]<a href="../../../builtin/index.html#string">string</a></pre>
+				<p>Stats implements DB.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/types.go?s=4486:5415#L112">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator represents an iterator over a domain of keys. Callers must call Close when done.
+No writes can happen to a domain while there exists an iterator over it, some backends may take
+out database locks to ensure this will not happen.
+<p>Callers must make sure the iterator is valid before calling any methods on it, otherwise
+these methods will panic. This is in part caused by most backend databases using this convention.
+<p>As with DB, keys and values should be considered read-only, and must be copied before they are
+modified.
+<p>Typical usage:
+<p>var itr Iterator = ...
+defer itr.Close()
+<pre>for ; itr.Valid(); itr.Next() {
+  k, v := itr.Key(); itr.Value()
+  ...
+}
+
+if err := itr.Error(); err != nil {
+  ...
+}
+</pre>
+
+			<pre>type Iterator interface {
+    <span class="comment">// Domain returns the start (inclusive) and end (exclusive) limits of the iterator.</span>
+    <span class="comment">// CONTRACT: start, end readonly []byte</span>
+    Domain() (start []<a href="../../../builtin/index.html#byte">byte</a>, end []<a href="../../../builtin/index.html#byte">byte</a>)
+
+    <span class="comment">// Valid returns whether the current iterator is valid. Once invalid, the Iterator remains</span>
+    <span class="comment">// invalid forever.</span>
+    Valid() <a href="../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// Next moves the iterator to the next key in the database, as defined by order of iteration.</span>
+    <span class="comment">// If Valid returns false, this method will panic.</span>
+    Next()
+
+    <span class="comment">// Key returns the key at the current position. Panics if the iterator is invalid.</span>
+    <span class="comment">// CONTRACT: key readonly []byte</span>
+    Key() (key []<a href="../../../builtin/index.html#byte">byte</a>)
+
+    <span class="comment">// Value returns the value at the current position. Panics if the iterator is invalid.</span>
+    <span class="comment">// CONTRACT: value readonly []byte</span>
+    Value() (value []<a href="../../../builtin/index.html#byte">byte</a>)
+
+    <span class="comment">// Error returns the last error encountered by the iterator, if any.</span>
+    Error() <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Close closes the iterator, relasing any allocated resources.</span>
+    Close() <a href="../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="IteratePrefix">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb_iterator.go?s=140:198#L1">IteratePrefix</a>
+					<a class="permalink" href="index.html#IteratePrefix">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func IteratePrefix(db <a href="index.html#DB">DB</a>, prefix []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>IteratePrefix is a convenience function for iterating over a key domain
+restricted by prefix.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MemDB">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=1273:1334#L41">MemDB</a>
+				<a class="permalink" href="index.html#MemDB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MemDB is an in-memory database backend using a B-tree for storage.
+<p>For performance reasons, all given and returned keys and values are pointers to the in-memory
+database, so modifying them will cause the stored values to be modified as well. All DB methods
+already specify that keys and values should be considered read-only, but this is especially
+important with MemDB.
+
+			<pre>type MemDB struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMemDB">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=1408:1430#L49">NewMemDB</a>
+					<a class="permalink" href="index.html#NewMemDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMemDB() *<a href="index.html#MemDB">MemDB</a></pre>
+				<p>NewMemDB creates a new in-memory database.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MemDB.Close">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=2909:2939#L130">Close</a>
+					<a class="permalink" href="index.html#MemDB.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Delete">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=2502:2543#L108">Delete</a>
+					<a class="permalink" href="index.html#MemDB.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Delete(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Delete implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.DeleteSync">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=2811:2856#L125">DeleteSync</a>
+					<a class="permalink" href="index.html#MemDB.DeleteSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) DeleteSync(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Get">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=1532:1580#L57">Get</a>
+					<a class="permalink" href="index.html#MemDB.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Get(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Has">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=1795:1841#L72">Has</a>
+					<a class="permalink" href="index.html#MemDB.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Has(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Iterator">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=3804:3866#L167">Iterator</a>
+					<a class="permalink" href="index.html#MemDB.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterator implements DB.
+Takes out a read-lock on the database until the iterator is closed.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.IteratorNoMtx">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=4411:4478#L184">IteratorNoMtx</a>
+					<a class="permalink" href="index.html#MemDB.IteratorNoMtx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) IteratorNoMtx(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>IteratorNoMtx makes an iterator with no mutex.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.NewBatch">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=3641:3674#L161">NewBatch</a>
+					<a class="permalink" href="index.html#MemDB.NewBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) NewBatch() <a href="index.html#Batch">Batch</a></pre>
+				<p>NewBatch implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Print">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=3137:3167#L137">Print</a>
+					<a class="permalink" href="index.html#MemDB.Print">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Print() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Print implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.ReverseIterator">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=4132:4201#L176">ReverseIterator</a>
+					<a class="permalink" href="index.html#MemDB.ReverseIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) ReverseIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReverseIterator implements DB.
+Takes out a read-lock on the database until the iterator is closed.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.ReverseIteratorNoMtx">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=4712:4786#L192">ReverseIteratorNoMtx</a>
+					<a class="permalink" href="index.html#MemDB.ReverseIteratorNoMtx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) ReverseIteratorNoMtx(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReverseIteratorNoMtx makes an iterator with no mutex.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Set">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=2000:2052#L83">Set</a>
+					<a class="permalink" href="index.html#MemDB.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Set(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Set implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.SetSync">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=2388:2444#L103">SetSync</a>
+					<a class="permalink" href="index.html#MemDB.SetSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) SetSync(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>SetSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="MemDB.Stats">func (*MemDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/memdb.go?s=3383:3425#L150">Stats</a>
+					<a class="permalink" href="index.html#MemDB.Stats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (db *<a href="index.html#MemDB">MemDB</a>) Stats() map[<a href="../../../builtin/index.html#string">string</a>]<a href="../../../builtin/index.html#string">string</a></pre>
+				<p>Stats implements DB.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PrefixDB">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=112:181#L1">PrefixDB</a>
+				<a class="permalink" href="index.html#PrefixDB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PrefixDB wraps a namespace of another database as a logical database.
+
+			<pre>type PrefixDB struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPrefixDB">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=279:327#L8">NewPrefixDB</a>
+					<a class="permalink" href="index.html#NewPrefixDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrefixDB(db <a href="index.html#DB">DB</a>, prefix []<a href="../../../builtin/index.html#byte">byte</a>) *<a href="index.html#PrefixDB">PrefixDB</a></pre>
+				<p>NewPrefixDB lets you namespace multiple DBs within a single DB.
+
+				
+				
+			
+
+			
+				
+				<h3 id="PrefixDB.Close">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=3242:3276#L156">Close</a>
+					<a class="permalink" href="index.html#PrefixDB.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Delete">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=1549:1594#L80">Delete</a>
+					<a class="permalink" href="index.html#PrefixDB.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Delete(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Delete implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.DeleteSync">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=1755:1804#L91">DeleteSync</a>
+					<a class="permalink" href="index.html#PrefixDB.DeleteSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) DeleteSync(key []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Get">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=409:461#L16">Get</a>
+					<a class="permalink" href="index.html#PrefixDB.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Get(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Has">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=695:745#L32">Has</a>
+					<a class="permalink" href="index.html#PrefixDB.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Has(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Iterator">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=1967:2033#L102">Iterator</a>
+					<a class="permalink" href="index.html#PrefixDB.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterator implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.NewBatch">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=3080:3117#L148">NewBatch</a>
+					<a class="permalink" href="index.html#PrefixDB.NewBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) NewBatch() <a href="index.html#Batch">Batch</a></pre>
+				<p>NewBatch implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Print">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=3370:3404#L164">Print</a>
+					<a class="permalink" href="index.html#PrefixDB.Print">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Print() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Print implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.ReverseIterator">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=2519:2592#L125">ReverseIterator</a>
+					<a class="permalink" href="index.html#PrefixDB.ReverseIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) ReverseIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReverseIterator implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Set">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=961:1017#L48">Set</a>
+					<a class="permalink" href="index.html#PrefixDB.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Set(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Set implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.SetSync">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=1281:1341#L66">SetSync</a>
+					<a class="permalink" href="index.html#PrefixDB.SetSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) SetSync(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>SetSync implements DB.
+
+				
+				
+				
+			
+				
+				<h3 id="PrefixDB.Stats">func (*PrefixDB) <a href="http://localhost:6060/src/github.com/cometbft/cometbft-db/prefixdb.go?s=3695:3741#L181">Stats</a>
+					<a class="permalink" href="index.html#PrefixDB.Stats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pdb *<a href="index.html#PrefixDB">PrefixDB</a>) Stats() map[<a href="../../../builtin/index.html#string">string</a>]<a href="../../../builtin/index.html#string">string</a></pre>
+				<p>Stats implements DB.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/cometbft/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="remotedb/index.html">remotedb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						remotedb is a package for connecting to distributed Tendermint db.DB instances.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="remotedb/grpcdb/index.html">grpcdb</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						grpcdb is the distribution of Tendermint&#39;s db.DB instances using the gRPC transport to decouple local db.DB usages from applications, to using them over a network in a highly performant manner.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="remotedb/proto/index.html">proto</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

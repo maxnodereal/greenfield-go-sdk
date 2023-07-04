@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>rapid - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package rapid
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "pgregory.net/rapid"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package rapid implements utilities for property-based testing.
+<p>Rapid checks that properties you define hold for a large number
+of automatically generated test cases. If a failure is found, rapid
+fails the current test and presents an automatically minimized
+version of the failing test case.
+<p>Here is what a trivial test using rapid looks like:
+<pre>package rapid_test
+
+import (
+	&quot;net&quot;
+	&quot;testing&quot;
+
+	&quot;pgregory.net/rapid&quot;
+)
+
+func TestParseValidIPv4(t *testing.T) {
+	const ipv4re = `(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])` +
+		`\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])` +
+		`\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])` +
+		`\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])`
+
+	rapid.Check(t, func(t *rapid.T) {
+		addr := rapid.StringMatching(ipv4re).Draw(t, &quot;addr&quot;)
+		ip := net.ParseIP(addr)
+		if ip == nil || ip.String() != addr {
+			t.Fatalf(&quot;parsed %q into %v&quot;, addr, ip)
+		}
+	})
+}
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#Check">func Check(t *testing.T, prop func(*T))</a></dd>
+			
+				
+				<dd><a href="index.html#ID">func ID[V any](v V) V</a></dd>
+			
+				
+				<dd><a href="index.html#MakeCheck">func MakeCheck(prop func(*T)) func(*testing.T)</a></dd>
+			
+				
+				<dd><a href="index.html#MakeFuzz">func MakeFuzz(prop func(*T)) func(*testing.T, []byte)</a></dd>
+			
+				
+				<dd><a href="index.html#Run">func Run[M StateMachine]() func(*T)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Generator">type Generator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bool">func Bool() *Generator[bool]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Byte">func Byte() *Generator[byte]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByteMax">func ByteMax(max byte) *Generator[byte]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByteMin">func ByteMin(min byte) *Generator[byte]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByteRange">func ByteRange(min byte, max byte) *Generator[byte]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Custom">func Custom[V any](fn func(*T) V) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Deferred">func Deferred[V any](fn func() *Generator[V]) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float32">func Float32() *Generator[float32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float32Max">func Float32Max(max float32) *Generator[float32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float32Min">func Float32Min(min float32) *Generator[float32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float32Range">func Float32Range(min float32, max float32) *Generator[float32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float64">func Float64() *Generator[float64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float64Max">func Float64Max(max float64) *Generator[float64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float64Min">func Float64Min(min float64) *Generator[float64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Float64Range">func Float64Range(min float64, max float64) *Generator[float64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int">func Int() *Generator[int]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int16">func Int16() *Generator[int16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int16Max">func Int16Max(max int16) *Generator[int16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int16Min">func Int16Min(min int16) *Generator[int16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int16Range">func Int16Range(min int16, max int16) *Generator[int16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int32">func Int32() *Generator[int32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int32Max">func Int32Max(max int32) *Generator[int32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int32Min">func Int32Min(min int32) *Generator[int32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int32Range">func Int32Range(min int32, max int32) *Generator[int32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int64">func Int64() *Generator[int64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int64Max">func Int64Max(max int64) *Generator[int64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int64Min">func Int64Min(min int64) *Generator[int64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int64Range">func Int64Range(min int64, max int64) *Generator[int64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int8">func Int8() *Generator[int8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int8Max">func Int8Max(max int8) *Generator[int8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int8Min">func Int8Min(min int8) *Generator[int8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Int8Range">func Int8Range(min int8, max int8) *Generator[int8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IntMax">func IntMax(max int) *Generator[int]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IntMin">func IntMin(min int) *Generator[int]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IntRange">func IntRange(min int, max int) *Generator[int]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Just">func Just[V any](val V) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Make">func Make[V any]() *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Map">func Map[U any, V any](g *Generator[U], fn func(U) V) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MapOf">func MapOf[K comparable, V any](key *Generator[K], val *Generator[V]) *Generator[map[K]V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MapOfN">func MapOfN[K comparable, V any](key *Generator[K], val *Generator[V], minLen int, maxLen int) *Generator[map[K]V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MapOfNValues">func MapOfNValues[K comparable, V any](val *Generator[V], minLen int, maxLen int, keyFn func(V) K) *Generator[map[K]V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MapOfValues">func MapOfValues[K comparable, V any](val *Generator[V], keyFn func(V) K) *Generator[map[K]V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OneOf">func OneOf[V any](gens ...*Generator[V]) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Permutation">func Permutation[S ~[]E, E any](slice S) *Generator[S]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ptr">func Ptr[E any](elem *Generator[E], allowNil bool) *Generator[*E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Rune">func Rune() *Generator[rune]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RuneFrom">func RuneFrom(runes []rune, tables ...*unicode.RangeTable) *Generator[rune]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SampledFrom">func SampledFrom[S ~[]E, E any](slice S) *Generator[E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SliceOf">func SliceOf[E any](elem *Generator[E]) *Generator[[]E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SliceOfBytesMatching">func SliceOfBytesMatching(expr string) *Generator[[]byte]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SliceOfDistinct">func SliceOfDistinct[E any, K comparable](elem *Generator[E], keyFn func(E) K) *Generator[[]E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SliceOfN">func SliceOfN[E any](elem *Generator[E], minLen int, maxLen int) *Generator[[]E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SliceOfNDistinct">func SliceOfNDistinct[E any, K comparable](elem *Generator[E], minLen int, maxLen int, keyFn func(E) K) *Generator[[]E]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#String">func String() *Generator[string]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringMatching">func StringMatching(expr string) *Generator[string]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringN">func StringN(minRunes int, maxRunes int, maxLen int) *Generator[string]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringOf">func StringOf(elem *Generator[rune]) *Generator[string]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringOfN">func StringOfN(elem *Generator[rune], minRunes int, maxRunes int, maxLen int) *Generator[string]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint">func Uint() *Generator[uint]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint16">func Uint16() *Generator[uint16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint16Max">func Uint16Max(max uint16) *Generator[uint16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint16Min">func Uint16Min(min uint16) *Generator[uint16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint16Range">func Uint16Range(min uint16, max uint16) *Generator[uint16]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint32">func Uint32() *Generator[uint32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint32Max">func Uint32Max(max uint32) *Generator[uint32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint32Min">func Uint32Min(min uint32) *Generator[uint32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint32Range">func Uint32Range(min uint32, max uint32) *Generator[uint32]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint64">func Uint64() *Generator[uint64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint64Max">func Uint64Max(max uint64) *Generator[uint64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint64Min">func Uint64Min(min uint64) *Generator[uint64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint64Range">func Uint64Range(min uint64, max uint64) *Generator[uint64]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint8">func Uint8() *Generator[uint8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint8Max">func Uint8Max(max uint8) *Generator[uint8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint8Min">func Uint8Min(min uint8) *Generator[uint8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uint8Range">func Uint8Range(min uint8, max uint8) *Generator[uint8]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintMax">func UintMax(max uint) *Generator[uint]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintMin">func UintMin(min uint) *Generator[uint]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintRange">func UintRange(min uint, max uint) *Generator[uint]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Uintptr">func Uintptr() *Generator[uintptr]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintptrMax">func UintptrMax(max uintptr) *Generator[uintptr]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintptrMin">func UintptrMin(min uintptr) *Generator[uintptr]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UintptrRange">func UintptrRange(min uintptr, max uintptr) *Generator[uintptr]</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Generator.AsAny">func (g *Generator[V]) AsAny() *Generator[any]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Generator.Draw">func (g *Generator[V]) Draw(t *T, label string) V</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Generator.Example">func (g *Generator[V]) Example(seed ...int) V</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Generator.Filter">func (g *Generator[V]) Filter(fn func(V) bool) *Generator[V]</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Generator.String">func (g *Generator[V]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateMachine">type StateMachine</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#T">type T</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Error">func (t *T) Error(args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Errorf">func (t *T) Errorf(format string, args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Fail">func (t *T) Fail()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.FailNow">func (t *T) FailNow()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Failed">func (t *T) Failed() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Fatal">func (t *T) Fatal(args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Fatalf">func (t *T) Fatalf(format string, args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Log">func (t *T) Log(args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Logf">func (t *T) Logf(format string, args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Skip">func (t *T) Skip(args ...any)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.SkipNow">func (t *T) SkipNow()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#T.Skipf">func (t *T) Skipf(format string, args ...any)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TB">type TB</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Check_parseDate">Check (ParseDate)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Custom">Custom</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Deferred">Deferred</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Just">Just</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Make">Make</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Make_tree">Make (Tree)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Map">Map</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_MapOf">MapOf</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_MapOfN">MapOfN</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_MapOfNValues">MapOfNValues</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_MapOfValues">MapOfValues</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_OneOf">OneOf</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Permutation">Permutation</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Ptr">Ptr</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Run_queue">Run (Queue)</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_Rune">Rune</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_RuneFrom">RuneFrom</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SampledFrom">SampledFrom</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SliceOf">SliceOf</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SliceOfBytesMatching">SliceOfBytesMatching</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SliceOfDistinct">SliceOfDistinct</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SliceOfN">SliceOfN</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_SliceOfNDistinct">SliceOfNDistinct</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_String">String</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_StringMatching">StringMatching</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_StringN">StringN</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_StringOf">StringOf</a></dd>
+			
+			<dd><a class="exampleLink" href="index.html#example_StringOfN">StringOfN</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/collections.go">collections.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go">combinators.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/data.go">data.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/engine.go">engine.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/floats.go">floats.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/generator.go">generator.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/integers.go">integers.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/make.go">make.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/persist.go">persist.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/shrink.go">shrink.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/statemachine.go">statemachine.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/strings.go">strings.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/utils.go">utils.go</a>
+			
+				<a href="http://localhost:6060/src/pgregory.net/rapid/vis.go">vis.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="Check">func <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=2554:2593#L81">Check</a>
+				<a class="permalink" href="index.html#Check">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Check(t *<a href="../../testing/index.html">testing</a>.<a href="../../testing/index.html#T">T</a>, prop func(*<a href="index.html#T">T</a>))</pre>
+			<p>Check fails the current test if rapid can find a test case which falsifies prop.
+<p>Property is falsified in case of a panic or a call to
+<a href="index.html#T.Fatalf">*T.Fatalf</a>, <a href="index.html#T.Fatal">*T.Fatal</a>, <a href="index.html#T.Errorf">*T.Errorf</a>, <a href="index.html#T.Error">*T.Error</a>, <a href="index.html#T.FailNow">*T.FailNow</a> or <a href="index.html#T.Fail">*T.Fail</a>.
+
+			<div id="example_Check_parseDate" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (ParseDate)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (ParseDate)</span></p>
+		<p>Rename to TestParseDate(t *testing.T) to make an actual (failing) test.
+</p>
+		
+		
+			<p>Code:</p>
+			<pre class="code">package rapid_test
+
+import (
+    &#34;fmt&#34;
+    &#34;strconv&#34;
+    &#34;testing&#34;
+
+    &#34;pgregory.net/rapid&#34;
+)
+
+<span class="comment">// ParseDate parses dates in the YYYY-MM-DD format.</span>
+func ParseDate(s string) (int, int, int, error) {
+    if len(s) != 10 {
+        return 0, 0, 0, fmt.Errorf(&#34;%q has wrong length: %v instead of 10&#34;, s, len(s))
+    }
+
+    if s[4] != &#39;-&#39; || s[7] != &#39;-&#39; {
+        return 0, 0, 0, fmt.Errorf(&#34;&#39;-&#39; separators expected in %q&#34;, s)
+    }
+
+    y, err := strconv.Atoi(s[0:4])
+    if err != nil {
+        return 0, 0, 0, fmt.Errorf(&#34;failed to parse year: %v&#34;, err)
+    }
+
+    m, err := strconv.Atoi(s[6:7])
+    if err != nil {
+        return 0, 0, 0, fmt.Errorf(&#34;failed to parse month: %v&#34;, err)
+    }
+
+    d, err := strconv.Atoi(s[8:10])
+    if err != nil {
+        return 0, 0, 0, fmt.Errorf(&#34;failed to parse day: %v&#34;, err)
+    }
+
+    return y, m, d, nil
+}
+
+func testParseDate(t *rapid.T) {
+    y := rapid.IntRange(0, 9999).Draw(t, &#34;y&#34;)
+    m := rapid.IntRange(1, 12).Draw(t, &#34;m&#34;)
+    d := rapid.IntRange(1, 31).Draw(t, &#34;d&#34;)
+
+    s := fmt.Sprintf(&#34;%04d-%02d-%02d&#34;, y, m, d)
+
+    y_, m_, d_, err := ParseDate(s)
+    if err != nil {
+        t.Fatalf(&#34;failed to parse date %q: %v&#34;, s, err)
+    }
+
+    if y_ != y || m_ != m || d_ != d {
+        t.Fatalf(&#34;got back wrong date: (%d, %d, %d)&#34;, y_, m_, d_)
+    }
+}
+
+<span class="comment">// Rename to TestParseDate(t *testing.T) to make an actual (failing) test.</span>
+func ExampleCheck_parseDate() {
+    var t *testing.T
+    rapid.Check(t, testParseDate)
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+
+		
+			
+			
+			<h2 id="ID">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=405:426#L2">ID</a>
+				<a class="permalink" href="index.html#ID">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ID[V <a href="../../builtin/index.html#any">any</a>](v V) V</pre>
+			<p>ID returns its argument as is. ID is a helper for use with <a href="index.html#SliceOfDistinct">SliceOfDistinct</a> and similar functions.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeCheck">func <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=2996:3042#L100">MakeCheck</a>
+				<a class="permalink" href="index.html#MakeCheck">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeCheck(prop func(*<a href="index.html#T">T</a>)) func(*<a href="../../testing/index.html">testing</a>.<a href="../../testing/index.html#T">T</a>)</pre>
+			<p>MakeCheck is a convenience function for defining subtests suitable for
+<a href="http://localhost:6060/testing#T.Run">*testing.T.Run</a>. It allows you to write this:
+<pre>t.Run(&quot;subtest name&quot;, rapid.MakeCheck(func(t *rapid.T) {
+    // test code
+}))
+</pre>
+<p>instead of this:
+<pre>t.Run(&quot;subtest name&quot;, func(t *testing.T) {
+    rapid.Check(t, func(t *rapid.T) {
+        // test code
+    })
+})
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeFuzz">func <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=3292:3345#L114">MakeFuzz</a>
+				<a class="permalink" href="index.html#MakeFuzz">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeFuzz(prop func(*<a href="index.html#T">T</a>)) func(*<a href="../../testing/index.html">testing</a>.<a href="../../testing/index.html#T">T</a>, []<a href="../../builtin/index.html#byte">byte</a>)</pre>
+			<p>MakeFuzz creates a fuzz target for <a href="http://localhost:6060/testing#F.Fuzz">*testing.F.Fuzz</a>:
+<pre>func FuzzFoo(f *testing.F) {
+    f.Fuzz(rapid.MakeFuzz(func(t *rapid.T) {
+        // test code
+    }))
+}
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Run">func <a href="http://localhost:6060/src/pgregory.net/rapid/statemachine.go?s=1574:1609#L47">Run</a>
+				<a class="permalink" href="index.html#Run">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Run[M <a href="index.html#StateMachine">StateMachine</a>]() func(*<a href="index.html#T">T</a>)</pre>
+			<p>Run is a convenience function for defining &quot;state machine&quot; tests,
+to be run by <a href="index.html#Check">Check</a> or <a href="index.html#MakeCheck">MakeCheck</a>.
+<p>State machine test is a pattern for testing stateful systems that looks
+like this:
+<pre>m := new(StateMachineType)
+m.Init(t)          // optional
+defer m.Cleanup()  // optional
+m.Check(t)
+for {
+    m.RandomAction(t)
+    m.Check(t)
+}
+</pre>
+<p>Run synthesizes such test from the M type, which must be a pointer,
+using reflection.
+
+			<div id="example_Run_queue" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Queue)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Queue)</span></p>
+		<p>Rename to TestQueue(t *testing.T) to make an actual (failing) test.
+</p>
+		
+		
+			<p>Code:</p>
+			<pre class="code">package rapid_test
+
+import (
+    &#34;testing&#34;
+
+    &#34;pgregory.net/rapid&#34;
+)
+
+<span class="comment">// Queue implements integer queue with a fixed maximum size.</span>
+type Queue struct {
+    buf []int
+    in  int
+    out int
+}
+
+func NewQueue(n int) *Queue {
+    return &amp;Queue{
+        buf: make([]int, n+1),
+    }
+}
+
+<span class="comment">// Precondition: Size() &gt; 0.</span>
+func (q *Queue) Get() int {
+    i := q.buf[q.out]
+    q.out = (q.out + 1) % len(q.buf)
+    return i
+}
+
+<span class="comment">// Precondition: Size() &lt; n.</span>
+func (q *Queue) Put(i int) {
+    q.buf[q.in] = i
+    q.in = (q.in + 1) % len(q.buf)
+}
+
+func (q *Queue) Size() int {
+    return (q.in - q.out) % len(q.buf)
+}
+
+<span class="comment">// queueMachine is a description of a rapid state machine for testing Queue</span>
+type queueMachine struct {
+    q     *Queue <span class="comment">// queue being tested</span>
+    n     int    <span class="comment">// maximum queue size</span>
+    state []int  <span class="comment">// model of the queue</span>
+}
+
+<span class="comment">// Init is an action for initializing  a queueMachine instance.</span>
+func (m *queueMachine) Init(t *rapid.T) {
+    n := rapid.IntRange(1, 1000).Draw(t, &#34;n&#34;)
+    m.q = NewQueue(n)
+    m.n = n
+}
+
+<span class="comment">// Get is a conditional action which removes an item from the queue.</span>
+func (m *queueMachine) Get(t *rapid.T) {
+    if m.q.Size() == 0 {
+        t.Skip(&#34;queue empty&#34;)
+    }
+
+    i := m.q.Get()
+    if i != m.state[0] {
+        t.Fatalf(&#34;got invalid value: %v vs expected %v&#34;, i, m.state[0])
+    }
+    m.state = m.state[1:]
+}
+
+<span class="comment">// Put is a conditional action which adds an items to the queue.</span>
+func (m *queueMachine) Put(t *rapid.T) {
+    if m.q.Size() == m.n {
+        t.Skip(&#34;queue full&#34;)
+    }
+
+    i := rapid.Int().Draw(t, &#34;i&#34;)
+    m.q.Put(i)
+    m.state = append(m.state, i)
+}
+
+<span class="comment">// Check runs after every action and verifies that all required invariants hold.</span>
+func (m *queueMachine) Check(t *rapid.T) {
+    if m.q.Size() != len(m.state) {
+        t.Fatalf(&#34;queue size mismatch: %v vs expected %v&#34;, m.q.Size(), len(m.state))
+    }
+}
+
+<span class="comment">// Rename to TestQueue(t *testing.T) to make an actual (failing) test.</span>
+func ExampleRun_queue() {
+    var t *testing.T
+    rapid.Check(t, rapid.Run[*queueMachine]())
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+
+		
+		
+			
+			
+			<h2 id="Generator">type <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=455:548#L11">Generator</a>
+				<a class="permalink" href="index.html#Generator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Generator describes a generator of values of type V.
+
+			<pre>type Generator[V <a href="../../builtin/index.html#any">any</a>] struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Bool">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=1837:1865#L57">Bool</a>
+					<a class="permalink" href="index.html#Bool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Bool() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#bool">bool</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Byte">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2037:2065#L61">Byte</a>
+					<a class="permalink" href="index.html#Byte">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Byte() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#byte">byte</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="ByteMax">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4178:4217#L89">ByteMax</a>
+					<a class="permalink" href="index.html#ByteMax">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ByteMax(max <a href="../../builtin/index.html#byte">byte</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#byte">byte</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="ByteMin">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2974:3013#L74">ByteMin</a>
+					<a class="permalink" href="index.html#ByteMin">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ByteMin(min <a href="../../builtin/index.html#byte">byte</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#byte">byte</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="ByteRange">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5382:5433#L104">ByteRange</a>
+					<a class="permalink" href="index.html#ByteRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ByteRange(min <a href="../../builtin/index.html#byte">byte</a>, max <a href="../../builtin/index.html#byte">byte</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#byte">byte</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Custom">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=623:670#L10">Custom</a>
+					<a class="permalink" href="index.html#Custom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Custom[V <a href="../../builtin/index.html#any">any</a>](fn func(*<a href="index.html#T">T</a>) V) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Custom creates a generator which produces results of calling fn. In fn, values should be generated
+by calling other generators; it is invalid to return a value from fn without using any other generator.
+Custom is a primary way of creating user-defined generators.
+
+				<div id="example_Custom" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">type point struct {
+    x int
+    y int
+}
+
+gen := rapid.Custom(func(t *rapid.T) point {
+    return point{
+        x: rapid.IntRange(-100, 100).Draw(t, &#34;x&#34;),
+        y: rapid.IntRange(-100, 100).Draw(t, &#34;y&#34;),
+    }
+})
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">{-1 23}
+{-3 -50}
+{0 94}
+{-2 -50}
+{11 -57}
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Deferred">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=1318:1377#L45">Deferred</a>
+					<a class="permalink" href="index.html#Deferred">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Deferred[V <a href="../../builtin/index.html#any">any</a>](fn func() *<a href="index.html#Generator">Generator</a>[V]) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Deferred creates a generator which defers calling fn until attempting to produce a value. This allows
+to define recursive generators.
+
+				<div id="example_Deferred" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := recursive()
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[[[[false] false]]]
+false
+[[true [[[true]]]]]
+true
+true
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Float32">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=586:620#L17">Float32</a>
+					<a class="permalink" href="index.html#Float32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float32() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float32">float32</a>]</pre>
+				<p>Float32 is a shorthand for <a href="index.html#Float32Range">Float32Range</a>(-<a href="http://localhost:6060/math#MaxFloat32">math.MaxFloat32</a>, <a href="http://localhost:6060/math#MaxFloat32">math.MaxFloat32</a>).
+
+				
+				
+			
+				
+				<h3 id="Float32Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=926:974#L27">Float32Max</a>
+					<a class="permalink" href="index.html#Float32Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float32Max(max <a href="../../builtin/index.html#float32">float32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float32">float32</a>]</pre>
+				<p>Float32Max is a shorthand for <a href="index.html#Float32Range">Float32Range</a>(-<a href="http://localhost:6060/math#MaxFloat32">math.MaxFloat32</a>, max).
+
+				
+				
+			
+				
+				<h3 id="Float32Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=755:803#L22">Float32Min</a>
+					<a class="permalink" href="index.html#Float32Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float32Min(min <a href="../../builtin/index.html#float32">float32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float32">float32</a>]</pre>
+				<p>Float32Min is a shorthand for <a href="index.html#Float32Range">Float32Range</a>(min, <a href="http://localhost:6060/math#MaxFloat32">math.MaxFloat32</a>).
+
+				
+				
+			
+				
+				<h3 id="Float32Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=1151:1214#L33">Float32Range</a>
+					<a class="permalink" href="index.html#Float32Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float32Range(min <a href="../../builtin/index.html#float32">float32</a>, max <a href="../../builtin/index.html#float32">float32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float32">float32</a>]</pre>
+				<p>Float32Range creates a generator of 32-bit floating-point numbers in range [min, max].
+Both min and max can be infinite.
+
+				
+				
+			
+				
+				<h3 id="Float64">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=1630:1664#L49">Float64</a>
+					<a class="permalink" href="index.html#Float64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float64() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float64">float64</a>]</pre>
+				<p>Float64 is a shorthand for <a href="index.html#Float64Range">Float64Range</a>(-<a href="http://localhost:6060/math#MaxFloat64">math.MaxFloat64</a>, <a href="http://localhost:6060/math#MaxFloat64">math.MaxFloat64</a>).
+
+				
+				
+			
+				
+				<h3 id="Float64Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=1970:2018#L59">Float64Max</a>
+					<a class="permalink" href="index.html#Float64Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float64Max(max <a href="../../builtin/index.html#float64">float64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float64">float64</a>]</pre>
+				<p>Float64Max is a shorthand for <a href="index.html#Float64Range">Float64Range</a>(-<a href="http://localhost:6060/math#MaxFloat64">math.MaxFloat64</a>, max).
+
+				
+				
+			
+				
+				<h3 id="Float64Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=1799:1847#L54">Float64Min</a>
+					<a class="permalink" href="index.html#Float64Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float64Min(min <a href="../../builtin/index.html#float64">float64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float64">float64</a>]</pre>
+				<p>Float64Min is a shorthand for <a href="index.html#Float64Range">Float64Range</a>(min, <a href="http://localhost:6060/math#MaxFloat64">math.MaxFloat64</a>).
+
+				
+				
+			
+				
+				<h3 id="Float64Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/floats.go?s=2195:2258#L65">Float64Range</a>
+					<a class="permalink" href="index.html#Float64Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Float64Range(min <a href="../../builtin/index.html#float64">float64</a>, max <a href="../../builtin/index.html#float64">float64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#float64">float64</a>]</pre>
+				<p>Float64Range creates a generator of 64-bit floating-point numbers in range [min, max].
+Both min and max can be infinite.
+
+				
+				
+			
+				
+				<h3 id="Int">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2113:2139#L62">Int</a>
+					<a class="permalink" href="index.html#Int">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int">int</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int16">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2263:2293#L64">Int16</a>
+					<a class="permalink" href="index.html#Int16">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int16() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int16">int16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int16Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4472:4514#L92">Int16Max</a>
+					<a class="permalink" href="index.html#Int16Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int16Max(max <a href="../../builtin/index.html#int16">int16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int16">int16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int16Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3268:3310#L77">Int16Min</a>
+					<a class="permalink" href="index.html#Int16Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int16Min(min <a href="../../builtin/index.html#int16">int16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int16">int16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int16Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5736:5791#L113">Int16Range</a>
+					<a class="permalink" href="index.html#Int16Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int16Range(min <a href="../../builtin/index.html#int16">int16</a>, max <a href="../../builtin/index.html#int16">int16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int16">int16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int32">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2341:2371#L65">Int32</a>
+					<a class="permalink" href="index.html#Int32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int32() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int32">int32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int32Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4572:4614#L93">Int32Max</a>
+					<a class="permalink" href="index.html#Int32Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int32Max(max <a href="../../builtin/index.html#int32">int32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int32">int32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int32Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3368:3410#L78">Int32Min</a>
+					<a class="permalink" href="index.html#Int32Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int32Min(min <a href="../../builtin/index.html#int32">int32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int32">int32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int32Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5861:5916#L116">Int32Range</a>
+					<a class="permalink" href="index.html#Int32Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int32Range(min <a href="../../builtin/index.html#int32">int32</a>, max <a href="../../builtin/index.html#int32">int32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int32">int32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int64">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2419:2449#L66">Int64</a>
+					<a class="permalink" href="index.html#Int64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int64() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int64">int64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int64Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4672:4714#L94">Int64Max</a>
+					<a class="permalink" href="index.html#Int64Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int64Max(max <a href="../../builtin/index.html#int64">int64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int64">int64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int64Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3468:3510#L79">Int64Min</a>
+					<a class="permalink" href="index.html#Int64Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int64Min(min <a href="../../builtin/index.html#int64">int64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int64">int64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int64Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5986:6041#L119">Int64Range</a>
+					<a class="permalink" href="index.html#Int64Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int64Range(min <a href="../../builtin/index.html#int64">int64</a>, max <a href="../../builtin/index.html#int64">int64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int64">int64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int8">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2187:2215#L63">Int8</a>
+					<a class="permalink" href="index.html#Int8">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int8() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int8">int8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int8Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4374:4413#L91">Int8Max</a>
+					<a class="permalink" href="index.html#Int8Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int8Max(max <a href="../../builtin/index.html#int8">int8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int8">int8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int8Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3170:3209#L76">Int8Min</a>
+					<a class="permalink" href="index.html#Int8Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int8Min(min <a href="../../builtin/index.html#int8">int8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int8">int8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Int8Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5617:5668#L110">Int8Range</a>
+					<a class="permalink" href="index.html#Int8Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Int8Range(min <a href="../../builtin/index.html#int8">int8</a>, max <a href="../../builtin/index.html#int8">int8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int8">int8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="IntMax">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4278:4314#L90">IntMax</a>
+					<a class="permalink" href="index.html#IntMax">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func IntMax(max <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int">int</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="IntMin">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3074:3110#L75">IntMin</a>
+					<a class="permalink" href="index.html#IntMin">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func IntMin(min <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int">int</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="IntRange">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5504:5551#L107">IntRange</a>
+					<a class="permalink" href="index.html#IntRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func IntRange(min <a href="../../builtin/index.html#int">int</a>, max <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#int">int</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Just">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=3101:3138#L134">Just</a>
+					<a class="permalink" href="index.html#Just">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Just[V <a href="../../builtin/index.html#any">any</a>](val V) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Just creates a generator which always produces the given value.
+Just(val) is a shorthand for <a href="index.html#SampledFrom">SampledFrom</a>([]V{val}).
+
+				<div id="example_Just" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Just(42)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">42
+42
+42
+42
+42
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Make">func <a href="http://localhost:6060/src/pgregory.net/rapid/make.go?s=417:449#L5">Make</a>
+					<a class="permalink" href="index.html#Make">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Make[V <a href="../../builtin/index.html#any">any</a>]() *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Make creates a generator of values of type V, using reflection to infer the required structure.
+
+				<div id="example_Make" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Make[map[int]bool]()
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">map[-433:true -261:false -53:false -23:false 1:true 184:false]
+map[-3:true 0:true]
+map[4:true]
+map[-359:true -154:true -71:true -17:false -1:false 590:false 22973756520:true]
+map[]
+</pre>
+			
+		
+	</div>
+</div>
+<div id="example_Make_tree" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example (Tree)</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example (Tree)</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Make[*tree]()
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">(nil 1 (nil 184 nil))
+(((nil -1 (((((nil -485 ((nil -2 ((((nil -5 nil) -9898554875447 nil) -34709387 ((nil 50440 nil) 113 (((((nil -442 nil) -66090341586 nil) 179745 nil) 494 (((nil -2 nil) 543360606020 nil) 15261837 nil)) -1778 nil))) -21034573818 nil)) -5 nil)) 15606609 nil) 882666 (nil 3 nil)) -12 (nil -2 ((nil 1 nil) -2 (((nil 11 nil) -187307 ((nil -198 (nil -6895 nil)) 12027 (nil -539313 nil))) 1532 (nil 6 nil))))) 1745354 nil)) -2 nil) -3 nil)
+nil
+(((nil -15 (nil 6598 nil)) -131 (nil 317121006373596 ((nil 14 ((nil -9223372036854775808 nil) 1 nil)) 14668 nil))) 590 nil)
+nil
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Map">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=2601:2668#L112">Map</a>
+					<a class="permalink" href="index.html#Map">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Map[U <a href="../../builtin/index.html#any">any</a>, V <a href="../../builtin/index.html#any">any</a>](g *<a href="index.html#Generator">Generator</a>[U], fn func(U) V) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Map creates a generator producing fn(u) for each u produced by g.
+
+				<div id="example_Map" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Map(rapid.Int(), strconv.Itoa)
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%#v\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;-3&#34;
+&#34;-186981&#34;
+&#34;4&#34;
+&#34;-2&#34;
+&#34;43&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="MapOf">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=3090:3179#L95">MapOf</a>
+					<a class="permalink" href="index.html#MapOf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MapOf[K <a href="../../builtin/index.html#comparable">comparable</a>, V <a href="../../builtin/index.html#any">any</a>](key *<a href="index.html#Generator">Generator</a>[K], val *<a href="index.html#Generator">Generator</a>[V]) *<a href="index.html#Generator">Generator</a>[map[K]V]</pre>
+				<p>MapOf is a shorthand for <a href="index.html#MapOfN">MapOfN</a>(key, val, -1, -1).
+
+				<div id="example_MapOf" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.MapOf(rapid.Int(), rapid.StringMatching(`[a-z]+`))
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">map[1:nhlgqwasbggbaociac 561860:r]
+map[-3752:pizpv -3:bacuabp 0:bi]
+map[-33086515648293:gewf -264276:b -1313:a -258:v -4:b -2:fdhbzcz 4:ubfsdbowrja 1775:tcozav 8334:lvcprss 376914:braigey]
+map[-350:h 590:coaaamcasnapgaad]
+map[]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="MapOfN">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=3437:3551#L102">MapOfN</a>
+					<a class="permalink" href="index.html#MapOfN">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MapOfN[K <a href="../../builtin/index.html#comparable">comparable</a>, V <a href="../../builtin/index.html#any">any</a>](key *<a href="index.html#Generator">Generator</a>[K], val *<a href="index.html#Generator">Generator</a>[V], minLen <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[map[K]V]</pre>
+				<p>MapOfN creates a map[K]V generator. If minLen &gt;= 0, generated maps have minimum length of minLen.
+If maxLen &gt;= 0, generated maps have maximum length of maxLen. MapOfN panics if maxLen &gt;= 0
+and minLen &gt; maxLen.
+
+				<div id="example_MapOfN" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.MapOfN(rapid.Int(), rapid.StringMatching(`[a-z]+`), 5, 5)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">map[-130450326583:bd -2983:bbdbcs 1:nhlgqwasbggbaociac 31:kmdnpmcbuagzr 561860:r]
+map[-82024404:d -3752:pizpv -3:bacuabp 0:bi 179745:rzkneb]
+map[-33086515648293:gewf -258:v 4:ubfsdbowrja 1775:tcozav 8334:lvcprss]
+map[-4280678227:j -25651:aafmd -3308:o -350:h 590:coaaamcasnapgaad]
+map[-9614404661322:gsb -378:y 2:paai 4629136912:otg 1476419818092:qign]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="MapOfNValues">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=4202:4320#L121">MapOfNValues</a>
+					<a class="permalink" href="index.html#MapOfNValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MapOfNValues[K <a href="../../builtin/index.html#comparable">comparable</a>, V <a href="../../builtin/index.html#any">any</a>](val *<a href="index.html#Generator">Generator</a>[V], minLen <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>, keyFn func(V) K) *<a href="index.html#Generator">Generator</a>[map[K]V]</pre>
+				<p>MapOfNValues creates a map[K]V generator, where keys are generated by applying keyFn to values.
+If minLen &gt;= 0, generated maps have minimum length of minLen. If maxLen &gt;= 0, generated maps
+have maximum length of maxLen. MapOfNValues panics if maxLen &gt;= 0 and minLen &gt; maxLen.
+
+				<div id="example_MapOfNValues" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.MapOfNValues(rapid.StringMatching(`[a-z]+`), 5, 5, func(s string) int { return len(s) })
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">map[1:s 2:dr 3:anc 7:xguehfc 11:sbggbaociac]
+map[1:b 2:bp 4:ydag 5:jarxz 6:ebzkwa]
+map[1:j 3:gjl 5:eeeqa 7:stcozav 9:fxmcadagf]
+map[2:ub 8:waraafmd 10:bfiqcaxazu 16:rjgqimcasnapgaad 17:gckfbljafcedhcvfc]
+map[1:k 2:ay 3:wzb 4:dign 7:faabhcb]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="MapOfValues">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=3777:3870#L114">MapOfValues</a>
+					<a class="permalink" href="index.html#MapOfValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MapOfValues[K <a href="../../builtin/index.html#comparable">comparable</a>, V <a href="../../builtin/index.html#any">any</a>](val *<a href="index.html#Generator">Generator</a>[V], keyFn func(V) K) *<a href="index.html#Generator">Generator</a>[map[K]V]</pre>
+				<p>MapOfValues is a shorthand for <a href="index.html#MapOfNValues">MapOfNValues</a>(val, -1, -1, keyFn).
+
+				<div id="example_MapOfValues" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.MapOfValues(rapid.StringMatching(`[a-z]+`), func(s string) int { return len(s) })
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">map[2:dr 7:xguehfc 11:sbggbaociac]
+map[2:bp 5:jarxz 6:ebzkwa]
+map[1:j 2:aj 3:gjl 4:vayt 5:eeeqa 6:riacaa 7:stcozav 8:mfdhbzcz 9:fxmcadagf 10:bgsbraigey 15:gxongygnxqlovib]
+map[2:ub 8:waraafmd 10:bfiqcaxazu 16:rjgqimcasnapgaad 17:gckfbljafcedhcvfc]
+map[]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="OneOf">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=4750:4804#L202">OneOf</a>
+					<a class="permalink" href="index.html#OneOf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func OneOf[V <a href="../../builtin/index.html#any">any</a>](gens ...*<a href="index.html#Generator">Generator</a>[V]) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>OneOf creates a generator which produces each value by selecting one of gens and producing a value from it.
+OneOf panics if gens is empty.
+
+				<div id="example_OneOf" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.OneOf(rapid.Int32Range(1, 10).AsAny(), rapid.Float32Range(100, 1000).AsAny())
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">997.0737
+10
+475.3125
+2
+9
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Permutation">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=3897:3951#L167">Permutation</a>
+					<a class="permalink" href="index.html#Permutation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Permutation[S ~[]E, E <a href="../../builtin/index.html#any">any</a>](slice S) *<a href="index.html#Generator">Generator</a>[S]</pre>
+				<p>Permutation creates a generator which produces permutations of the given slice.
+
+				<div id="example_Permutation" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Permutation([]int{1, 2, 3})
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[2 3 1]
+[3 2 1]
+[2 1 3]
+[3 2 1]
+[1 2 3]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Ptr">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=5375:5440#L230">Ptr</a>
+					<a class="permalink" href="index.html#Ptr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Ptr[E <a href="../../builtin/index.html#any">any</a>](elem *<a href="index.html#Generator">Generator</a>[E], allowNil <a href="../../builtin/index.html#bool">bool</a>) *<a href="index.html#Generator">Generator</a>[*E]</pre>
+				<p>Ptr creates a *E generator. If allowNil is true, Ptr can return nil pointers.
+
+				<div id="example_Ptr" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Ptr(rapid.Int(), true)
+
+for i := 0; i &lt; 5; i++ {
+    v := gen.Example(i)
+    if v == nil {
+        fmt.Println(&#34;&lt;nil&gt;&#34;)
+    } else {
+        fmt.Println(&#34;(*int)&#34;, *v)
+    }
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">(*int) 1
+(*int) -3
+&lt;nil&gt;
+(*int) 590
+&lt;nil&gt;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Rune">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=2476:2504#L64">Rune</a>
+					<a class="permalink" href="index.html#Rune">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Rune() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#rune">rune</a>]</pre>
+				<p>Rune creates a rune generator. Rune is equivalent to <a href="index.html#RuneFrom">RuneFrom</a> with default set of runes and tables.
+
+				<div id="example_Rune" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.Rune()
+
+for i := 0; i &lt; 25; i++ {
+    if i%5 == 0 {
+        fmt.Println()
+    } else {
+        fmt.Print(&#34; &#34;)
+    }
+    fmt.Printf(&#34;%q&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#39;\n&#39; &#39;\x1b&#39; &#39;A&#39; &#39;a&#39; &#39;*&#39;
+&#39;0&#39; &#39;@&#39; &#39;?&#39; &#39;\&#39;&#39; &#39;\ue05d&#39;
+&#39;&lt;&#39; &#39;%&#39; &#39;!&#39; &#39;\u0604&#39; &#39;A&#39;
+&#39;%&#39; &#39;╷&#39; &#39;~&#39; &#39;!&#39; &#39;/&#39;
+&#39;\u00ad&#39; &#39;𝪪&#39; &#39;@&#39; &#39;҈&#39; &#39; &#39;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="RuneFrom">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=2740:2815#L70">RuneFrom</a>
+					<a class="permalink" href="index.html#RuneFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func RuneFrom(runes []<a href="../../builtin/index.html#rune">rune</a>, tables ...*<a href="../../unicode/index.html">unicode</a>.<a href="../../unicode/index.html#RangeTable">RangeTable</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#rune">rune</a>]</pre>
+				<p>RuneFrom creates a rune generator from provided runes and tables.
+RuneFrom panics if both runes and tables are empty. RuneFrom panics if tables contain an empty table.
+
+				<div id="example_RuneFrom" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gens := []*rapid.Generator[rune]{
+    rapid.RuneFrom([]rune{&#39;A&#39;, &#39;B&#39;, &#39;C&#39;}),
+    rapid.RuneFrom(nil, unicode.Cyrillic, unicode.Greek),
+    rapid.RuneFrom([]rune{&#39;⌘&#39;}, &amp;unicode.RangeTable{
+        R32: []unicode.Range32{{0x1F600, 0x1F64F, 1}},
+    }),
+}
+
+for _, gen := range gens {
+    for i := 0; i &lt; 5; i++ {
+        if i &gt; 0 {
+            fmt.Print(&#34; &#34;)
+        }
+        fmt.Printf(&#34;%q&#34;, gen.Example(i))
+    }
+    fmt.Println()
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#39;A&#39; &#39;A&#39; &#39;A&#39; &#39;B&#39; &#39;A&#39;
+&#39;Ͱ&#39; &#39;Ѥ&#39; &#39;Ͱ&#39; &#39;ͱ&#39; &#39;Ϳ&#39;
+&#39;😀&#39; &#39;⌘&#39; &#39;😀&#39; &#39;😁&#39; &#39;😋&#39;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SampledFrom">func <a href="http://localhost:6060/src/pgregory.net/rapid/combinators.go?s=3294:3348#L140">SampledFrom</a>
+					<a class="permalink" href="index.html#SampledFrom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SampledFrom[S ~[]E, E <a href="../../builtin/index.html#any">any</a>](slice S) *<a href="index.html#Generator">Generator</a>[E]</pre>
+				<p>SampledFrom creates a generator which produces values from the given slice.
+SampledFrom panics if slice is empty.
+
+				<div id="example_SampledFrom" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SampledFrom([]int{1, 2, 3})
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">2
+3
+2
+3
+1
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SliceOf">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=498:553#L7">SliceOf</a>
+					<a class="permalink" href="index.html#SliceOf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SliceOf[E <a href="../../builtin/index.html#any">any</a>](elem *<a href="index.html#Generator">Generator</a>[E]) *<a href="index.html#Generator">Generator</a>[[]E]</pre>
+				<p>SliceOf is a shorthand for <a href="index.html#SliceOfN">SliceOfN</a>(elem, -1, -1).
+
+				<div id="example_SliceOf" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SliceOf(rapid.Int())
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[1 -1902 7 -236 14 -433 -1572631 -1 4219826 -50 1414 -3890044391133 -9223372036854775808 5755498240 -10 680558 10 -80458281 0 -27]
+[-3 -2 -1 -3 -2172865589 -5 -2 -2503553836720]
+[4 308 -2 21 -5843 3 1 78 6129321692 -59]
+[590 -131 -15 -769 16 -1 14668 14 -1 -58784]
+[]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SliceOfBytesMatching">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=6873:6930#L228">SliceOfBytesMatching</a>
+					<a class="permalink" href="index.html#SliceOfBytesMatching">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SliceOfBytesMatching(expr <a href="../../builtin/index.html#string">string</a>) *<a href="index.html#Generator">Generator</a>[[]<a href="../../builtin/index.html#byte">byte</a>]</pre>
+				<p>SliceOfBytesMatching creates a UTF-8 byte slice generator matching the provided <a href="http://localhost:6060/regexp/syntax#Perl">syntax.Perl</a> regular expression.
+
+				<div id="example_SliceOfBytesMatching" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SliceOfBytesMatching(`[CAGT]+`)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;CCTTGAGAGCGATACGGAAG&#34;
+&#34;GCAGAACT&#34;
+&#34;AACCGTCGAG&#34;
+&#34;GGGAAAAGAT&#34;
+&#34;AGTG&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SliceOfDistinct">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=1119:1213#L25">SliceOfDistinct</a>
+					<a class="permalink" href="index.html#SliceOfDistinct">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SliceOfDistinct[E <a href="../../builtin/index.html#any">any</a>, K <a href="../../builtin/index.html#comparable">comparable</a>](elem *<a href="index.html#Generator">Generator</a>[E], keyFn func(E) K) *<a href="index.html#Generator">Generator</a>[[]E]</pre>
+				<p>SliceOfDistinct is a shorthand for <a href="index.html#SliceOfNDistinct">SliceOfNDistinct</a>(elem, -1, -1, keyFn).
+
+				<div id="example_SliceOfDistinct" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SliceOfDistinct(rapid.IntMin(0), func(i int) int { return i % 2 })
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[1]
+[2 1]
+[4 1]
+[590]
+[]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SliceOfN">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=813:893#L14">SliceOfN</a>
+					<a class="permalink" href="index.html#SliceOfN">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SliceOfN[E <a href="../../builtin/index.html#any">any</a>](elem *<a href="index.html#Generator">Generator</a>[E], minLen <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[[]E]</pre>
+				<p>SliceOfN creates a []E generator. If minLen &gt;= 0, generated slices have minimum length of minLen.
+If maxLen &gt;= 0, generated slices have maximum length of maxLen. SliceOfN panics if maxLen &gt;= 0
+and minLen &gt; maxLen.
+
+				<div id="example_SliceOfN" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SliceOfN(rapid.Int(), 5, 5)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[1 -1902 7 -236 14]
+[-3 -2 -1 -3 -2172865589]
+[4 308 -2 21 -5843]
+[590 -131 -15 -769 16]
+[4629136912 270 141395 -129322425838843911 -7]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="SliceOfNDistinct">func <a href="http://localhost:6060/src/pgregory.net/rapid/collections.go?s=1658:1777#L33">SliceOfNDistinct</a>
+					<a class="permalink" href="index.html#SliceOfNDistinct">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SliceOfNDistinct[E <a href="../../builtin/index.html#any">any</a>, K <a href="../../builtin/index.html#comparable">comparable</a>](elem *<a href="index.html#Generator">Generator</a>[E], minLen <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>, keyFn func(E) K) *<a href="index.html#Generator">Generator</a>[[]E]</pre>
+				<p>SliceOfNDistinct creates a []E generator. Elements of each generated slice are distinct according to keyFn.
+If minLen &gt;= 0, generated slices have minimum length of minLen. If maxLen &gt;= 0, generated slices
+have maximum length of maxLen. SliceOfNDistinct panics if maxLen &gt;= 0 and minLen &gt; maxLen.
+<a href="index.html#ID">ID</a> helper can be used as keyFn to generate slices of distinct comparable elements.
+
+				<div id="example_SliceOfNDistinct" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.SliceOfNDistinct(rapid.IntMin(0), 2, 2, func(i int) int { return i % 2 })
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Println(gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">[4219826 49]
+[2 1]
+[4 1]
+[0 58783]
+[4629136912 141395]
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="String">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=4164:4196#L133">String</a>
+					<a class="permalink" href="index.html#String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func String() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#string">string</a>]</pre>
+				<p>String is a shorthand for <a href="index.html#StringOf">StringOf</a>(<a href="index.html#Rune">Rune</a>()).
+
+				<div id="example_String" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.String()
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;\n߾⃝?\rA�֍&#34;
+&#34;\u2006𑰼&#34;
+&#34;A￠\u0603ᾢ&#34;
+&#34;+^#.[#৲&#34;
+&#34;&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="StringMatching">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=6499:6550#L214">StringMatching</a>
+					<a class="permalink" href="index.html#StringMatching">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StringMatching(expr <a href="../../builtin/index.html#string">string</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#string">string</a>]</pre>
+				<p>StringMatching creates a UTF-8 string generator matching the provided <a href="http://localhost:6060/regexp/syntax#Perl">syntax.Perl</a> regular expression.
+
+				<div id="example_StringMatching" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.StringMatching(`\(?([0-9]{3})\)?([ .-]?)([0-9]{3})([ .-]?)([0-9]{4})`)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;(532) 649-9610&#34;
+&#34;901)-5783983&#34;
+&#34;914.444.1575&#34;
+&#34;(316 696.3584&#34;
+&#34;816)0861080&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="StringN">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=4312:4383#L138">StringN</a>
+					<a class="permalink" href="index.html#StringN">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StringN(minRunes <a href="../../builtin/index.html#int">int</a>, maxRunes <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#string">string</a>]</pre>
+				<p>StringN is a shorthand for <a href="index.html#StringOfN">StringOfN</a>(<a href="index.html#Rune">Rune</a>(), minRunes, maxRunes, maxLen).
+
+				<div id="example_StringN" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.StringN(5, 5, -1)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;\n߾⃝?\r&#34;
+&#34;\u2006𑰼#`\x1b&#34;
+&#34;A￠\u0603ᾢÉ&#34;
+&#34;+^#.[&#34;
+&#34;.A&lt;a¤&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="StringOf">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=4509:4564#L143">StringOf</a>
+					<a class="permalink" href="index.html#StringOf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StringOf(elem *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#rune">rune</a>]) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#string">string</a>]</pre>
+				<p>StringOf is a shorthand for <a href="index.html#StringOfN">StringOfN</a>(elem, -1, -1, -1).
+
+				<div id="example_StringOf" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.StringOf(rapid.RuneFrom(nil, unicode.Tibetan))
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;༁༭༇ཬ༆༐༖ༀྸ༁༆༎ༀ༁ཱི༂༨ༀ༂&#34;
+&#34;༂༁ༀ༂༴ༀ༁ྵ&#34;
+&#34;ༀ༴༁༅ན༃༁༎ྼ༄༽&#34;
+&#34;༎༂༎ༀༀༀཌྷ༂ༀྥ&#34;
+&#34;&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="StringOfN">func <a href="http://localhost:6060/src/pgregory.net/rapid/strings.go?s=4977:5073#L153">StringOfN</a>
+					<a class="permalink" href="index.html#StringOfN">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StringOfN(elem *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#rune">rune</a>], minRunes <a href="../../builtin/index.html#int">int</a>, maxRunes <a href="../../builtin/index.html#int">int</a>, maxLen <a href="../../builtin/index.html#int">int</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#string">string</a>]</pre>
+				<p>StringOfN creates a UTF-8 string generator.
+If minRunes &gt;= 0, generated strings have minimum minRunes runes.
+If maxRunes &gt;= 0, generated strings have maximum maxRunes runes.
+If maxLen &gt;= 0, generates strings have maximum length of maxLen.
+StringOfN panics if maxRunes &gt;= 0 and minRunes &gt; maxRunes.
+StringOfN panics if maxLen &gt;= 0 and maxLen &lt; maxRunes.
+
+				<div id="example_StringOfN" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">gen := rapid.StringOfN(rapid.RuneFrom(nil, unicode.ASCII_Hex_Digit), 6, 6, -1)
+
+for i := 0; i &lt; 5; i++ {
+    fmt.Printf(&#34;%q\n&#34;, gen.Example(i))
+}
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">&#34;1D7B6a&#34;
+&#34;2102e0&#34;
+&#34;0e15c3&#34;
+&#34;E2E000&#34;
+&#34;aEd623&#34;
+</pre>
+			
+		
+	</div>
+</div>
+
+				
+			
+				
+				<h3 id="Uint">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2497:2525#L67">Uint</a>
+					<a class="permalink" href="index.html#Uint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint">uint</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint16">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2651:2683#L69">Uint16</a>
+					<a class="permalink" href="index.html#Uint16">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint16() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint16">uint16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint16Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4967:5012#L97">Uint16Max</a>
+					<a class="permalink" href="index.html#Uint16Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint16Max(max <a href="../../builtin/index.html#uint16">uint16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint16">uint16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint16Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3763:3808#L82">Uint16Min</a>
+					<a class="permalink" href="index.html#Uint16Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint16Min(min <a href="../../builtin/index.html#uint16">uint16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint16">uint16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint16Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6347:6406#L128">Uint16Range</a>
+					<a class="permalink" href="index.html#Uint16Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint16Range(min <a href="../../builtin/index.html#uint16">uint16</a>, max <a href="../../builtin/index.html#uint16">uint16</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint16">uint16</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint32">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2731:2763#L70">Uint32</a>
+					<a class="permalink" href="index.html#Uint32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint32() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint32">uint32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint32Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5071:5116#L98">Uint32Max</a>
+					<a class="permalink" href="index.html#Uint32Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint32Max(max <a href="../../builtin/index.html#uint32">uint32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint32">uint32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint32Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3867:3912#L83">Uint32Min</a>
+					<a class="permalink" href="index.html#Uint32Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint32Min(min <a href="../../builtin/index.html#uint32">uint32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint32">uint32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint32Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6481:6540#L131">Uint32Range</a>
+					<a class="permalink" href="index.html#Uint32Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint32Range(min <a href="../../builtin/index.html#uint32">uint32</a>, max <a href="../../builtin/index.html#uint32">uint32</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint32">uint32</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint64">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2811:2843#L71">Uint64</a>
+					<a class="permalink" href="index.html#Uint64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint64() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint64">uint64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint64Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5175:5220#L99">Uint64Max</a>
+					<a class="permalink" href="index.html#Uint64Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint64Max(max <a href="../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint64">uint64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint64Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3971:4016#L84">Uint64Min</a>
+					<a class="permalink" href="index.html#Uint64Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint64Min(min <a href="../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint64">uint64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint64Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6615:6674#L134">Uint64Range</a>
+					<a class="permalink" href="index.html#Uint64Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint64Range(min <a href="../../builtin/index.html#uint64">uint64</a>, max <a href="../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint64">uint64</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint8">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2573:2603#L68">Uint8</a>
+					<a class="permalink" href="index.html#Uint8">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint8() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint8">uint8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint8Max">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4865:4907#L96">Uint8Max</a>
+					<a class="permalink" href="index.html#Uint8Max">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint8Max(max <a href="../../builtin/index.html#uint8">uint8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint8">uint8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint8Min">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3661:3703#L81">Uint8Min</a>
+					<a class="permalink" href="index.html#Uint8Min">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint8Min(min <a href="../../builtin/index.html#uint8">uint8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint8">uint8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uint8Range">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6219:6274#L125">Uint8Range</a>
+					<a class="permalink" href="index.html#Uint8Range">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uint8Range(min <a href="../../builtin/index.html#uint8">uint8</a>, max <a href="../../builtin/index.html#uint8">uint8</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint8">uint8</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintMax">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4765:4804#L95">UintMax</a>
+					<a class="permalink" href="index.html#UintMax">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintMax(max <a href="../../builtin/index.html#uint">uint</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint">uint</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintMin">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=3561:3600#L80">UintMin</a>
+					<a class="permalink" href="index.html#UintMin">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintMin(min <a href="../../builtin/index.html#uint">uint</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint">uint</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintRange">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6097:6148#L122">UintRange</a>
+					<a class="permalink" href="index.html#UintRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintRange(min <a href="../../builtin/index.html#uint">uint</a>, max <a href="../../builtin/index.html#uint">uint</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uint">uint</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="Uintptr">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=2891:2925#L72">Uintptr</a>
+					<a class="permalink" href="index.html#Uintptr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Uintptr() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uintptr">uintptr</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintptrMax">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=5271:5319#L100">UintptrMax</a>
+					<a class="permalink" href="index.html#UintptrMax">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintptrMax(max <a href="../../builtin/index.html#uintptr">uintptr</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uintptr">uintptr</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintptrMin">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=4067:4115#L85">UintptrMin</a>
+					<a class="permalink" href="index.html#UintptrMin">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintptrMin(min <a href="../../builtin/index.html#uintptr">uintptr</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uintptr">uintptr</a>]</pre>
+				
+				
+				
+			
+				
+				<h3 id="UintptrRange">func <a href="http://localhost:6060/src/pgregory.net/rapid/integers.go?s=6733:6796#L137">UintptrRange</a>
+					<a class="permalink" href="index.html#UintptrRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func UintptrRange(min <a href="../../builtin/index.html#uintptr">uintptr</a>, max <a href="../../builtin/index.html#uintptr">uintptr</a>) *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#uintptr">uintptr</a>]</pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Generator.AsAny">func (*Generator[V]) <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=2211:2257#L89">AsAny</a>
+					<a class="permalink" href="index.html#Generator.AsAny">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Generator">Generator</a>[V]) AsAny() *<a href="index.html#Generator">Generator</a>[<a href="../../builtin/index.html#any">any</a>]</pre>
+				<p>AsAny creates a generator producing values from g converted to any.
+
+				
+				
+				
+			
+				
+				<h3 id="Generator.Draw">func (*Generator[V]) <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=814:863#L32">Draw</a>
+					<a class="permalink" href="index.html#Generator.Draw">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Generator">Generator</a>[V]) Draw(t *<a href="index.html#T">T</a>, label <a href="../../builtin/index.html#string">string</a>) V</pre>
+				<p>Draw produces a value from the generator.
+
+				
+				
+				
+			
+				
+				<h3 id="Generator.Example">func (*Generator[V]) <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=1679:1724#L71">Example</a>
+					<a class="permalink" href="index.html#Generator.Example">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Generator">Generator</a>[V]) Example(seed ...<a href="../../builtin/index.html#int">int</a>) V</pre>
+				<p>Example produces an example value from the generator. If seed is provided, value is produced deterministically
+based on seed. Example should only be used for examples; always use *Generator.Draw in property-based tests.
+
+				
+				
+				
+			
+				
+				<h3 id="Generator.Filter">func (*Generator[V]) <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=2052:2112#L84">Filter</a>
+					<a class="permalink" href="index.html#Generator.Filter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Generator">Generator</a>[V]) Filter(fn func(V) <a href="../../builtin/index.html#bool">bool</a>) *<a href="index.html#Generator">Generator</a>[V]</pre>
+				<p>Filter creates a generator producing only values from g for which fn returns true.
+
+				
+				
+				
+			
+				
+				<h3 id="Generator.String">func (*Generator[V]) <a href="http://localhost:6060/src/pgregory.net/rapid/generator.go?s=657:695#L23">String</a>
+					<a class="permalink" href="index.html#Generator.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (g *<a href="index.html#Generator">Generator</a>[V]) String() <a href="../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateMachine">type <a href="http://localhost:6060/src/pgregory.net/rapid/statemachine.go?s=583:1104#L17">StateMachine</a>
+				<a class="permalink" href="index.html#StateMachine">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type StateMachine interface {
+    <span class="comment">// Check is ran after every action and should contain invariant checks.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Other public methods are treated as follows:</span>
+    <span class="comment">// - Init(t *rapid.T), if present, is ran at the beginning of each test case</span>
+    <span class="comment">//   to initialize the state machine instance;</span>
+    <span class="comment">// - Cleanup(), if present, is called at the end of each test case;</span>
+    <span class="comment">// - All other public methods should have a form ActionName(t *rapid.T)</span>
+    <span class="comment">//   and are used as possible actions. At least one action has to be specified.</span>
+    <span class="comment">//</span>
+    Check(*<a href="index.html#T">T</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="T">type <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=11769:11972#L442">T</a>
+				<a class="permalink" href="index.html#T">&#xb6;</a>
+				
+				
+			</h2>
+			<p>T is similar to <a href="http://localhost:6060/testing#T">testing.T</a>, but with extra bookkeeping for property-based tests.
+<p>For tests to be reproducible, they should generally run in a single goroutine.
+If concurrency is unavoidable, methods on *T, such as <a href="http://localhost:6060/testing#T.Helper">*testing.T.Helper</a> and <a href="index.html#T.Errorf">*T.Errorf</a>,
+are safe for concurrent calls, but *Generator.Draw from a given *T is not.
+
+			<pre>type T struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="T.Error">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=13928:13958#L535">Error</a>
+					<a class="permalink" href="index.html#T.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Error(args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Error is equivalent to <a href="index.html#T.Log">T.Log</a> followed by <a href="index.html#T.Fail">T.Fail</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="T.Errorf">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=13702:13748#L526">Errorf</a>
+					<a class="permalink" href="index.html#T.Errorf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Errorf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Errorf is equivalent to <a href="index.html#T.Logf">T.Logf</a> followed by <a href="index.html#T.Fail">T.Fail</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="T.Fail">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=14554:14572#L565">Fail</a>
+					<a class="permalink" href="index.html#T.Fail">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Fail()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="T.FailNow">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=14488:14509#L561">FailNow</a>
+					<a class="permalink" href="index.html#T.FailNow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) FailNow()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="T.Failed">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=14615:14640#L569">Failed</a>
+					<a class="permalink" href="index.html#T.Failed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Failed() <a href="../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="T.Fatal">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=14353:14383#L553">Fatal</a>
+					<a class="permalink" href="index.html#T.Fatal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Fatal(args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Fatal is equivalent to <a href="index.html#T.Log">T.Log</a> followed by <a href="index.html#T.FailNow">T.FailNow</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="T.Fatalf">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=14125:14171#L544">Fatalf</a>
+					<a class="permalink" href="index.html#T.Fatalf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Fatalf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Fatalf is equivalent to <a href="index.html#T.Logf">T.Logf</a> followed by <a href="index.html#T.FailNow">T.FailNow</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="T.Log">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=12631:12659#L487">Log</a>
+					<a class="permalink" href="index.html#T.Log">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Log(args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="T.Logf">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=12440:12484#L478">Logf</a>
+					<a class="permalink" href="index.html#T.Logf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Logf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="T.Skip">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=13068:13097#L506">Skip</a>
+					<a class="permalink" href="index.html#T.Skip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Skip(args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Skip is equivalent to <a href="index.html#T.Log">T.Log</a> followed by <a href="index.html#T.SkipNow">T.SkipNow</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="T.SkipNow">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=13584:13605#L521">SkipNow</a>
+					<a class="permalink" href="index.html#T.SkipNow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) SkipNow()</pre>
+				<p>SkipNow marks the current test case as invalid (except state machine
+tests, where it marks current action as non-applicable instead).
+If too many test cases are skipped, rapid will mark the test as failing
+due to inability to generate enough valid test cases.
+<p>Prefer *Generator.Filter to SkipNow, and prefer generators that always produce
+valid test cases to Filter.
+
+				
+				
+				
+			
+				
+				<h3 id="T.Skipf">func (*T) <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=12848:12893#L497">Skipf</a>
+					<a class="permalink" href="index.html#T.Skipf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#T">T</a>) Skipf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)</pre>
+				<p>Skipf is equivalent to <a href="index.html#T.Logf">T.Logf</a> followed by <a href="index.html#T.SkipNow">T.SkipNow</a>.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TB">type <a href="http://localhost:6060/src/pgregory.net/rapid/engine.go?s=10737:11046#L402">TB</a>
+				<a class="permalink" href="index.html#TB">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TB is a common interface between <a href="http://localhost:6060/testing#T">*testing.T</a>, <a href="http://localhost:6060/testing#B">*testing.B</a> and <a href="index.html#T">*T</a>.
+
+			<pre>type TB interface {
+    Helper()
+    Name() <a href="../../builtin/index.html#string">string</a>
+    Logf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)
+    Log(args ...<a href="../../builtin/index.html#any">any</a>)
+    Skipf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)
+    Skip(args ...<a href="../../builtin/index.html#any">any</a>)
+    SkipNow()
+    Errorf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)
+    Error(args ...<a href="../../builtin/index.html#any">any</a>)
+    Fatalf(format <a href="../../builtin/index.html#string">string</a>, args ...<a href="../../builtin/index.html#any">any</a>)
+    Fatal(args ...<a href="../../builtin/index.html#any">any</a>)
+    FailNow()
+    Fail()
+    Failed() <a href="../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

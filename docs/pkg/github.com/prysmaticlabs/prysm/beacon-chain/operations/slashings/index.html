@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>slashings - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package slashings
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package slashings defines an in-memory pool of received
+slashing events by the beacon node, handling their lifecycle
+and performing integrity checks before serving them as objects
+for validators to include in blocks.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#PendingAttesterSlashing">type PendingAttesterSlashing</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Pool">type Pool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPool">func NewPool() *Pool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.InsertAttesterSlashing">func (p *Pool) InsertAttesterSlashing(ctx context.Context, state state.ReadOnlyBeaconState, slashing *ethpb.AttesterSlashing) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.InsertProposerSlashing">func (p *Pool) InsertProposerSlashing(ctx context.Context, state state.ReadOnlyBeaconState, slashing *ethpb.ProposerSlashing) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.MarkIncludedAttesterSlashing">func (p *Pool) MarkIncludedAttesterSlashing(as *ethpb.AttesterSlashing)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.MarkIncludedProposerSlashing">func (p *Pool) MarkIncludedProposerSlashing(ps *ethpb.ProposerSlashing)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.PendingAttesterSlashings">func (p *Pool) PendingAttesterSlashings(ctx context.Context, state state.ReadOnlyBeaconState, noLimit bool) []*ethpb.AttesterSlashing</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Pool.PendingProposerSlashings">func (p *Pool) PendingProposerSlashings(ctx context.Context, state state.ReadOnlyBeaconState, noLimit bool) []*ethpb.ProposerSlashing</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PoolInserter">type PoolInserter</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PoolManager">type PoolManager</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PoolMock">type PoolMock</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.InsertAttesterSlashing">func (m *PoolMock) InsertAttesterSlashing(_ context.Context, _ state.ReadOnlyBeaconState, slashing *ethpb.AttesterSlashing) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.InsertProposerSlashing">func (m *PoolMock) InsertProposerSlashing(_ context.Context, _ state.ReadOnlyBeaconState, slashing *ethpb.ProposerSlashing) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.MarkIncludedAttesterSlashing">func (*PoolMock) MarkIncludedAttesterSlashing(_ *ethpb.AttesterSlashing)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.MarkIncludedProposerSlashing">func (*PoolMock) MarkIncludedProposerSlashing(_ *ethpb.ProposerSlashing)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.PendingAttesterSlashings">func (m *PoolMock) PendingAttesterSlashings(_ context.Context, _ state.ReadOnlyBeaconState, _ bool) []*ethpb.AttesterSlashing</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PoolMock.PendingProposerSlashings">func (m *PoolMock) PendingProposerSlashings(_ context.Context, _ state.ReadOnlyBeaconState, _ bool) []*ethpb.ProposerSlashing</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go">mock.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go">service.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/types.go">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="PendingAttesterSlashing">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/types.go?s=1572:1692#L36">PendingAttesterSlashing</a>
+				<a class="permalink" href="index.html#PendingAttesterSlashing">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PendingAttesterSlashing represents an attester slashing in the operation pool.
+Allows for easy binary searching of included validator indexes.
+
+			<pre>type PendingAttesterSlashing struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Pool">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/types.go?s=1205:1421#L27">Pool</a>
+				<a class="permalink" href="index.html#Pool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Pool is a concrete implementation of PoolManager.
+
+			<pre>type Pool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPool">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=664:684#L12">NewPool</a>
+					<a class="permalink" href="index.html#NewPool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPool() *<a href="index.html#Pool">Pool</a></pre>
+				<p>NewPool returns an initialized attester slashing and proposer slashing pool.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Pool.InsertAttesterSlashing">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=4495:4632#L108">InsertAttesterSlashing</a>
+					<a class="permalink" href="index.html#Pool.InsertAttesterSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) InsertAttesterSlashing(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>,
+    slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InsertAttesterSlashing into the pool. This method is a no-op if the attester slashing already exists in the pool,
+has been included into a block recently, or the validator is already exited.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.InsertProposerSlashing">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=7093:7230#L173">InsertProposerSlashing</a>
+					<a class="permalink" href="index.html#Pool.InsertProposerSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) InsertProposerSlashing(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>,
+    slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>,
+) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InsertProposerSlashing into the pool. This method is a no-op if the pending slashing already exists,
+has been included recently, the validator is already exited, or the validator was already slashed.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.MarkIncludedAttesterSlashing">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=9075:9146#L222">MarkIncludedAttesterSlashing</a>
+					<a class="permalink" href="index.html#Pool.MarkIncludedAttesterSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) MarkIncludedAttesterSlashing(as *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>)</pre>
+				<p>MarkIncludedAttesterSlashing is used when an attester slashing has been included in a beacon block.
+Every block seen by this node that contains proposer slashings should call this method to include
+the proposer slashings.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.MarkIncludedProposerSlashing">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=10014:10085#L241">MarkIncludedProposerSlashing</a>
+					<a class="permalink" href="index.html#Pool.MarkIncludedProposerSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) MarkIncludedProposerSlashing(ps *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>)</pre>
+				<p>MarkIncludedProposerSlashing is used when an proposer slashing has been included in a beacon block.
+Every block seen by this node that contains proposer slashings should call this method to include
+the proposer slashings.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.PendingAttesterSlashings">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=1180:1313#L23">PendingAttesterSlashings</a>
+					<a class="permalink" href="index.html#Pool.PendingAttesterSlashings">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) PendingAttesterSlashings(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, noLimit <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a></pre>
+				<p>PendingAttesterSlashings returns attester slashings that are able to be included into a block.
+This method will return the amount of pending attester slashings for a block transition unless parameter `noLimit` is true
+to indicate the request is for noLimit pending items.
+
+				
+				
+				
+			
+				
+				<h3 id="Pool.PendingProposerSlashings">func (*Pool) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/service.go?s=3054:3187#L70">PendingProposerSlashings</a>
+					<a class="permalink" href="index.html#Pool.PendingProposerSlashings">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (p *<a href="index.html#Pool">Pool</a>) PendingProposerSlashings(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, noLimit <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a></pre>
+				<p>PendingProposerSlashings returns proposer slashings that are able to be included into a block.
+This method will return the amount of pending proposer slashings for a block transition unless the `noLimit` parameter
+is set to true to indicate the request is for noLimit pending items.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PoolInserter">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/types.go?s=297:584#L3">PoolInserter</a>
+				<a class="permalink" href="index.html#PoolInserter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PoolInserter is capable of inserting new slashing objects into the operations pool.
+
+			<pre>type PoolInserter interface {
+    InsertAttesterSlashing(
+        ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+        state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>,
+        slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>,
+    ) <a href="../../../../../../builtin/index.html#error">error</a>
+    InsertProposerSlashing(
+        ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+        state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>,
+        slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>,
+    ) <a href="../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PoolManager">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/types.go?s=750:1150#L18">PoolManager</a>
+				<a class="permalink" href="index.html#PoolManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PoolManager maintains a pool of pending and recently included attester and proposer slashings.
+This pool is used by proposers to insert data into new blocks.
+
+			<pre>type PoolManager interface {
+    <a href="index.html#PoolInserter">PoolInserter</a>
+    PendingAttesterSlashings(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, noLimit <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>
+    PendingProposerSlashings(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, noLimit <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>
+    MarkIncludedAttesterSlashing(as *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>)
+    MarkIncludedProposerSlashing(ps *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PoolMock">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=210:330#L1">PoolMock</a>
+				<a class="permalink" href="index.html#PoolMock">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PoolMock is a fake implementation of PoolManager.
+
+			<pre>type PoolMock struct {
+<span id="PoolMock.PendingAttSlashings"></span>    PendingAttSlashings  []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>
+<span id="PoolMock.PendingPropSlashings"></span>    PendingPropSlashings []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PoolMock.InsertAttesterSlashing">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=746:875#L17">InsertAttesterSlashing</a>
+					<a class="permalink" href="index.html#PoolMock.InsertAttesterSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) InsertAttesterSlashing(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InsertAttesterSlashing --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.InsertProposerSlashing">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=987:1116#L23">InsertProposerSlashing</a>
+					<a class="permalink" href="index.html#PoolMock.InsertProposerSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) InsertProposerSlashing(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, slashing *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InsertProposerSlashing --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.MarkIncludedAttesterSlashing">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=1236:1308#L29">MarkIncludedAttesterSlashing</a>
+					<a class="permalink" href="index.html#PoolMock.MarkIncludedAttesterSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) MarkIncludedAttesterSlashing(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a>)</pre>
+				<p>MarkIncludedAttesterSlashing --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.MarkIncludedProposerSlashing">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=1372:1444#L34">MarkIncludedProposerSlashing</a>
+					<a class="permalink" href="index.html#PoolMock.MarkIncludedProposerSlashing">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#PoolMock">PoolMock</a>) MarkIncludedProposerSlashing(_ *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a>)</pre>
+				<p>MarkIncludedProposerSlashing --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.PendingAttesterSlashings">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=363:488#L7">PendingAttesterSlashings</a>
+					<a class="permalink" href="index.html#PoolMock.PendingAttesterSlashings">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) PendingAttesterSlashings(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, _ <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#AttesterSlashing">AttesterSlashing</a></pre>
+				<p>PendingAttesterSlashings --
+
+				
+				
+				
+			
+				
+				<h3 id="PoolMock.PendingProposerSlashings">func (*PoolMock) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/operations/slashings/mock.go?s=555:680#L12">PendingProposerSlashings</a>
+					<a class="permalink" href="index.html#PoolMock.PendingProposerSlashings">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#PoolMock">PoolMock</a>) PendingProposerSlashings(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../../state/index.html">state</a>.<a href="../../state/index.html#ReadOnlyBeaconState">ReadOnlyBeaconState</a>, _ <a href="../../../../../../builtin/index.html#bool">bool</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#ProposerSlashing">ProposerSlashing</a></pre>
+				<p>PendingProposerSlashings --
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

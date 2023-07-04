@@ -1,0 +1,2891 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>iavl - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package iavl
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/iavl"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package iavl implements a versioned, snapshottable (immutable) AVL+ tree
+for persisting key-value pairs.
+<p>The tree is not safe for concurrent use, and must be guarded by a Mutex
+or RWLock as appropriate - the exception is immutable trees returned by
+MutableTree.GetImmutable() which are safe for concurrent use as long as
+the version is not deleted via DeleteVersion().
+<p>Basic usage of MutableTree:
+<pre>import &quot;github.com/cosmos/iavl&quot;
+import &quot;github.com/cometbft/cometbft-db&quot;
+...
+
+tree := iavl.NewMutableTree(db.NewMemDB(), 128)
+
+tree.IsEmpty() // true
+
+tree.Set([]byte(&quot;alice&quot;), []byte(&quot;abc&quot;))
+tree.SaveVersion(1)
+
+tree.Set([]byte(&quot;alice&quot;), []byte(&quot;xyz&quot;))
+tree.Set([]byte(&quot;bob&quot;), []byte(&quot;xyz&quot;))
+tree.SaveVersion(2)
+
+tree.LatestVersion() // 2
+
+tree.GetVersioned([]byte(&quot;alice&quot;), 1) // &quot;abc&quot;
+tree.GetVersioned([]byte(&quot;alice&quot;), 2) // &quot;xyz&quot;
+</pre>
+<p>Proof of existence:
+<pre>root := tree.Hash()
+val, proof, err := tree.GetVersionedWithProof([]byte(&quot;bob&quot;), 2) // &quot;xyz&quot;, RangeProof, nil
+proof.Verify([]byte(&quot;bob&quot;), val, root) // nil
+</pre>
+<p>Proof of absence:
+<pre>_, proof, err = tree.GetVersionedWithProof([]byte(&quot;tom&quot;), 2) // nil, RangeProof, nil
+proof.Verify([]byte(&quot;tom&quot;), nil, root) // nil
+</pre>
+<p>Now we delete an old version:
+<pre>tree.DeleteVersion(1)
+tree.VersionExists(1) // false
+tree.Get([]byte(&quot;alice&quot;)) // &quot;xyz&quot;
+tree.GetVersioned([]byte(&quot;alice&quot;), 1) // nil
+</pre>
+<p>Can&apos;t create a proof of absence for a version we no longer have:
+<pre>_, proof, err = tree.GetVersionedWithProof([]byte(&quot;tom&quot;), 1) // nil, nil, error
+</pre>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Blue">func Blue(args ...interface{}) string</a></dd>
+			
+				
+				<dd><a href="index.html#ColoredBytes">func ColoredBytes(data []byte, textColor, bytesColor func(...interface{}) string) string</a></dd>
+			
+				
+				<dd><a href="index.html#Cyan">func Cyan(args ...interface{}) string</a></dd>
+			
+				
+				<dd><a href="index.html#Green">func Green(args ...interface{}) string</a></dd>
+			
+				
+				<dd><a href="index.html#NewIterator">func NewIterator(start, end []byte, ascending bool, tree *ImmutableTree) dbm.Iterator</a></dd>
+			
+				
+				<dd><a href="index.html#PrintTree">func PrintTree(tree *ImmutableTree)</a></dd>
+			
+				
+				<dd><a href="index.html#WriteDOTGraph">func WriteDOTGraph(w io.Writer, tree *ImmutableTree, paths []PathToLeaf)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ExportNode">type ExportNode</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Exporter">type Exporter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Exporter.Close">func (e *Exporter) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Exporter.Next">func (e *Exporter) Next() (*ExportNode, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FastIterator">type FastIterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFastIterator">func NewFastIterator(start, end []byte, ascending bool, ndb *nodeDB) *FastIterator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Close">func (iter *FastIterator) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Domain">func (iter *FastIterator) Domain() ([]byte, []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Error">func (iter *FastIterator) Error() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Key">func (iter *FastIterator) Key() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Next">func (iter *FastIterator) Next()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Valid">func (iter *FastIterator) Valid() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FastIterator.Value">func (iter *FastIterator) Value() []byte</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ImmutableTree">type ImmutableTree</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewImmutableTree">func NewImmutableTree(db dbm.DB, cacheSize int, skipFastStorageUpgrade bool) *ImmutableTree</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewImmutableTreeWithOpts">func NewImmutableTreeWithOpts(db dbm.DB, cacheSize int, opts *Options, skipFastStorageUpgrade bool) *ImmutableTree</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Export">func (t *ImmutableTree) Export() (*Exporter, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Get">func (t *ImmutableTree) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.GetByIndex">func (t *ImmutableTree) GetByIndex(index int64) (key []byte, value []byte, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.GetMembershipProof">func (t *ImmutableTree) GetMembershipProof(key []byte) (*ics23.CommitmentProof, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.GetNonMembershipProof">func (t *ImmutableTree) GetNonMembershipProof(key []byte) (*ics23.CommitmentProof, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.GetProof">func (t *ImmutableTree) GetProof(key []byte) (*ics23.CommitmentProof, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.GetWithIndex">func (t *ImmutableTree) GetWithIndex(key []byte) (int64, []byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Has">func (t *ImmutableTree) Has(key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Hash">func (t *ImmutableTree) Hash() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Height">func (t *ImmutableTree) Height() int8</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.IsFastCacheEnabled">func (t *ImmutableTree) IsFastCacheEnabled() (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Iterate">func (t *ImmutableTree) Iterate(fn func(key []byte, value []byte) bool) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.IterateRange">func (t *ImmutableTree) IterateRange(start, end []byte, ascending bool, fn func(key []byte, value []byte) bool) (stopped bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.IterateRangeInclusive">func (t *ImmutableTree) IterateRangeInclusive(start, end []byte, ascending bool, fn func(key, value []byte, version int64) bool) (stopped bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Iterator">func (t *ImmutableTree) Iterator(start, end []byte, ascending bool) (dbm.Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.RenderShape">func (t *ImmutableTree) RenderShape(indent string, encoder NodeEncoder) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Size">func (t *ImmutableTree) Size() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.String">func (t *ImmutableTree) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.VerifyMembership">func (t *ImmutableTree) VerifyMembership(proof *ics23.CommitmentProof, key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.VerifyNonMembership">func (t *ImmutableTree) VerifyNonMembership(proof *ics23.CommitmentProof, key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.VerifyProof">func (t *ImmutableTree) VerifyProof(proof *ics23.CommitmentProof, key []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ImmutableTree.Version">func (t *ImmutableTree) Version() int64</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Importer">type Importer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Importer.Add">func (i *Importer) Add(exportNode *ExportNode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Importer.Close">func (i *Importer) Close()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Importer.Commit">func (i *Importer) Commit() error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Close">func (iter *Iterator) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Domain">func (iter *Iterator) Domain() ([]byte, []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Error">func (iter *Iterator) Error() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.IsFast">func (iter *Iterator) IsFast() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Key">func (iter *Iterator) Key() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Next">func (iter *Iterator) Next()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Valid">func (iter *Iterator) Valid() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Iterator.Value">func (iter *Iterator) Value() []byte</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MutableTree">type MutableTree</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMutableTree">func NewMutableTree(db dbm.DB, cacheSize int, skipFastStorageUpgrade bool) (*MutableTree, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMutableTreeWithOpts">func NewMutableTreeWithOpts(db dbm.DB, cacheSize int, opts *Options, skipFastStorageUpgrade bool) (*MutableTree, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.AvailableVersions">func (tree *MutableTree) AvailableVersions() []int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.DeleteVersion">func (tree *MutableTree) DeleteVersion(version int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.DeleteVersions">func (tree *MutableTree) DeleteVersions(versions ...int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.DeleteVersionsRange">func (tree *MutableTree) DeleteVersionsRange(fromVersion, toVersion int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Get">func (tree *MutableTree) Get(key []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.GetImmutable">func (tree *MutableTree) GetImmutable(version int64) (*ImmutableTree, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.GetVersioned">func (tree *MutableTree) GetVersioned(key []byte, version int64) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.GetVersionedProof">func (tree *MutableTree) GetVersionedProof(key []byte, version int64) (*ics23.CommitmentProof, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Hash">func (tree *MutableTree) Hash() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Import">func (tree *MutableTree) Import(version int64) (*Importer, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.IsEmpty">func (tree *MutableTree) IsEmpty() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.IsUpgradeable">func (tree *MutableTree) IsUpgradeable() (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Iterate">func (tree *MutableTree) Iterate(fn func(key []byte, value []byte) bool) (stopped bool, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Iterator">func (tree *MutableTree) Iterator(start, end []byte, ascending bool) (dbm.Iterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.LazyLoadVersion">func (tree *MutableTree) LazyLoadVersion(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.LazyLoadVersionForOverwriting">func (tree *MutableTree) LazyLoadVersionForOverwriting(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Load">func (tree *MutableTree) Load() (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.LoadVersion">func (tree *MutableTree) LoadVersion(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.LoadVersionForOverwriting">func (tree *MutableTree) LoadVersionForOverwriting(targetVersion int64) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Remove">func (tree *MutableTree) Remove(key []byte) ([]byte, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Rollback">func (tree *MutableTree) Rollback()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.SaveVersion">func (tree *MutableTree) SaveVersion() ([]byte, int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.Set">func (tree *MutableTree) Set(key, value []byte) (updated bool, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.SetInitialVersion">func (tree *MutableTree) SetInitialVersion(version uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.String">func (tree *MutableTree) String() (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.VersionExists">func (tree *MutableTree) VersionExists(version int64) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MutableTree.WorkingHash">func (tree *MutableTree) WorkingHash() ([]byte, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Node">type Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MakeNode">func MakeNode(buf []byte) (*Node, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNode">func NewNode(key []byte, value []byte, version int64) *Node</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.GetKey">func (node *Node) GetKey() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.PathToLeaf">func (node *Node) PathToLeaf(t *ImmutableTree, key []byte) (PathToLeaf, *Node, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.String">func (node *Node) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NodeEncoder">type NodeEncoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Options">type Options</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultOptions">func DefaultOptions() Options</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PathToLeaf">type PathToLeaf</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PathToLeaf.Index">func (pl PathToLeaf) Index() (idx int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PathToLeaf.String">func (pl PathToLeaf) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ProofInnerNode">type ProofInnerNode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProofInnerNode.Hash">func (pin ProofInnerNode) Hash(childHash []byte) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProofInnerNode.String">func (pin ProofInnerNode) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ProofLeafNode">type ProofLeafNode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProofLeafNode.Hash">func (pln ProofLeafNode) Hash() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ProofLeafNode.String">func (pln ProofLeafNode) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Statistics">type Statistics</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.GetCacheHitCnt">func (stat *Statistics) GetCacheHitCnt() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.GetCacheMissCnt">func (stat *Statistics) GetCacheMissCnt() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.GetFastCacheHitCnt">func (stat *Statistics) GetFastCacheHitCnt() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.GetFastCacheMissCnt">func (stat *Statistics) GetFastCacheMissCnt() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.IncCacheHitCnt">func (stat *Statistics) IncCacheHitCnt()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.IncCacheMissCnt">func (stat *Statistics) IncCacheMissCnt()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.IncFastCacheHitCnt">func (stat *Statistics) IncFastCacheHitCnt()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.IncFastCacheMissCnt">func (stat *Statistics) IncFastCacheMissCnt()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Statistics.Reset">func (stat *Statistics) Reset()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UnsavedFastIterator">type UnsavedFastIterator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewUnsavedFastIterator">func NewUnsavedFastIterator(start, end []byte, ascending bool, ndb *nodeDB, unsavedFastNodeAdditions map[string]*fastnode.Node, unsavedFastNodeRemovals map[string]interface{}) *UnsavedFastIterator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Close">func (iter *UnsavedFastIterator) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Domain">func (iter *UnsavedFastIterator) Domain() ([]byte, []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Error">func (iter *UnsavedFastIterator) Error() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Key">func (iter *UnsavedFastIterator) Key() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Next">func (iter *UnsavedFastIterator) Next()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Valid">func (iter *UnsavedFastIterator) Valid() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnsavedFastIterator.Value">func (iter *UnsavedFastIterator) Value() []byte</a></dd>
+				
+			
+				
+				<dd><a href="index.html#VersionInfo">type VersionInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetVersionInfo">func GetVersionInfo() VersionInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VersionInfo.String">func (v VersionInfo) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_Importer">Importer</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/export.go">export.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go">fast_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go">immutable_tree.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/import.go">import.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go">mutable_tree.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go">node.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/nodedb.go">nodedb.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go">options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go">proof.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go">proof_ics23.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_path.go">proof_path.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/tree_dotgraph.go">tree_dotgraph.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go">unsaved_fast_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go">util.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/iavl/version.go">version.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="ANSIReset">ANSIReset</span>  = &#34;\x1b[0m&#34;
+    <span id="ANSIBright">ANSIBright</span> = &#34;\x1b[1m&#34;
+
+    <span id="ANSIFgGreen">ANSIFgGreen</span> = &#34;\x1b[32m&#34;
+    <span id="ANSIFgBlue">ANSIFgBlue</span>  = &#34;\x1b[34m&#34;
+    <span id="ANSIFgCyan">ANSIFgCyan</span>  = &#34;\x1b[36m&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrCloneLeafNode">ErrCloneLeafNode</span>  = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;attempt to copy a leaf node&#34;)
+    <span id="ErrEmptyChildHash">ErrEmptyChildHash</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;found an empty child hash&#34;)
+    <span id="ErrLeftHashIsNil">ErrLeftHashIsNil</span>  = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;node.leftHash was nil in writeBytes&#34;)
+    <span id="ErrRightHashIsNil">ErrRightHashIsNil</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;node.rightHash was nil in writeBytes&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrNodeMissingHash">ErrNodeMissingHash</span>      = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;node does not have a hash&#34;)
+    <span id="ErrNodeAlreadyPersisted">ErrNodeAlreadyPersisted</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;shouldn&#39;t be calling save on an already persisted node&#34;)
+    <span id="ErrRootMissingHash">ErrRootMissingHash</span>      = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;root hash must not be empty&#34;)
+)</pre>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrInvalidProof is returned by Verify when a proof cannot be validated.</span>
+    <span id="ErrInvalidProof">ErrInvalidProof</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;invalid proof&#34;)
+
+    <span class="comment">// ErrInvalidInputs is returned when the inputs passed to the function are invalid.</span>
+    <span id="ErrInvalidInputs">ErrInvalidInputs</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;invalid inputs&#34;)
+
+    <span class="comment">// ErrInvalidRoot is returned when the root passed in does not match the proof&#39;s.</span>
+    <span id="ErrInvalidRoot">ErrInvalidRoot</span> = <a href="../../../fmt/index.html">fmt</a>.<a href="../../../fmt/index.html#Errorf">Errorf</a>(&#34;invalid root&#34;)
+)</pre>
+			
+				<p>Version of iavl. Fill in fields with build flags
+
+				<pre>var (
+    <span id="Version">Version</span> = &#34;&#34;
+    <span id="Commit">Commit</span>  = &#34;&#34;
+    <span id="Branch">Branch</span>  = &#34;&#34;
+)</pre>
+			
+				<p>ErrNoImport is returned when calling methods on a closed importer
+
+				<pre>var <span id="ErrNoImport">ErrNoImport</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;no import in progress&#34;)</pre>
+			
+				<p>ErrNotInitalizedTree when chains introduce a store without initializing data
+
+				<pre>var <span id="ErrNotInitalizedTree">ErrNotInitalizedTree</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;iavl/export newExporter failed to create&#34;)</pre>
+			
+				<p>ErrVersionDoesNotExist is returned if a requested version does not exist.
+
+				<pre>var <span id="ErrVersionDoesNotExist">ErrVersionDoesNotExist</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;version does not exist&#34;)</pre>
+			
+				<p>ErrorExportDone is returned by Exporter.Next() when all items have been exported.
+
+				<pre>var <span id="ErrorExportDone">ErrorExportDone</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;export is complete&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Blue">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go?s=2024:2061#L92">Blue</a>
+				<a class="permalink" href="index.html#Blue">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Blue(args ...interface{}) <a href="../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ColoredBytes">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go?s=2466:2554#L103">ColoredBytes</a>
+				<a class="permalink" href="index.html#ColoredBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ColoredBytes(data []<a href="../../../builtin/index.html#byte">byte</a>, textColor, bytesColor func(...interface{}) <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+			<p>ColoredBytes takes in the byte that you would like to show as a string and byte
+and will display them in a human readable format.
+If the environment variable TENDERMINT_IAVL_COLORS_ON is set to a non-empty string then different colors will be used for bytes and strings.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Cyan">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go?s=2105:2142#L96">Cyan</a>
+				<a class="permalink" href="index.html#Cyan">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Cyan(args ...interface{}) <a href="../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="Green">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go?s=1941:1979#L88">Green</a>
+				<a class="permalink" href="index.html#Green">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Green(args ...interface{}) <a href="../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewIterator">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=6490:6575#L177">NewIterator</a>
+				<a class="permalink" href="index.html#NewIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>, tree *<a href="index.html#ImmutableTree">ImmutableTree</a>) <a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#Iterator">Iterator</a></pre>
+			<p>Returns a new iterator over the immutable tree. If the tree is nil, the iterator will be invalid.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PrintTree">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/util.go?s=106:141#L1">PrintTree</a>
+				<a class="permalink" href="index.html#PrintTree">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PrintTree(tree *<a href="index.html#ImmutableTree">ImmutableTree</a>)</pre>
+			<p>PrintTree prints the whole tree in an indented form.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteDOTGraph">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/tree_dotgraph.go?s=740:812#L36">WriteDOTGraph</a>
+				<a class="permalink" href="index.html#WriteDOTGraph">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteDOTGraph(w <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>, tree *<a href="index.html#ImmutableTree">ImmutableTree</a>, paths []<a href="index.html#PathToLeaf">PathToLeaf</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ExportNode">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/export.go?s=716:803#L11">ExportNode</a>
+				<a class="permalink" href="index.html#ExportNode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ExportNode contains exported node data.
+
+			<pre>type ExportNode struct {
+<span id="ExportNode.Key"></span>    Key     []<a href="../../../builtin/index.html#byte">byte</a>
+<span id="ExportNode.Value"></span>    Value   []<a href="../../../builtin/index.html#byte">byte</a>
+<span id="ExportNode.Version"></span>    Version <a href="../../../builtin/index.html#int64">int64</a>
+<span id="ExportNode.Height"></span>    Height  <a href="../../../builtin/index.html#int8">int8</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Exporter">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/export.go?s=1123:1222#L23">Exporter</a>
+				<a class="permalink" href="index.html#Exporter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Exporter exports nodes from an ImmutableTree. It is created by ImmutableTree.Export().
+<p>Exported nodes can be imported into an empty tree with MutableTree.Import(). Nodes are exported
+depth-first post-order (LRN), this order must be preserved when importing in order to recreate
+the same tree structure.
+
+			<pre>type Exporter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Exporter.Close">func (*Exporter) <a href="http://localhost:6060/src/github.com/cosmos/iavl/export.go?s=2540:2566#L81">Close</a>
+					<a class="permalink" href="index.html#Exporter.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#Exporter">Exporter</a>) Close()</pre>
+				<p>Close closes the exporter. It is safe to call multiple times.
+
+				
+				
+				
+			
+				
+				<h3 id="Exporter.Next">func (*Exporter) <a href="http://localhost:6060/src/github.com/cosmos/iavl/export.go?s=2331:2377#L73">Next</a>
+					<a class="permalink" href="index.html#Exporter.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#Exporter">Exporter</a>) Next() (*<a href="index.html#ExportNode">ExportNode</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Next fetches the next exported node, or returns ExportDone when done.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FastIterator">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=406:567#L6">FastIterator</a>
+				<a class="permalink" href="index.html#FastIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FastIterator is a dbm.Iterator for ImmutableTree
+it iterates over the latest state via fast nodes,
+taking advantage of keys being located in sequence in the underlying database.
+
+			<pre>type FastIterator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFastIterator">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=612:694#L24">NewFastIterator</a>
+					<a class="permalink" href="index.html#NewFastIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFastIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>, ndb *nodeDB) *<a href="index.html#FastIterator">FastIterator</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="FastIterator.Close">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=2524:2563#L113">Close</a>
+					<a class="permalink" href="index.html#FastIterator.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Domain">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=1065:1116#L41">Domain</a>
+					<a class="permalink" href="index.html#FastIterator.Domain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Domain() ([]<a href="../../../builtin/index.html#byte">byte</a>, []<a href="../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Domain implements dbm.Iterator.
+Maps the underlying nodedb iterator domain, to the &apos;logical&apos; keys involved.
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Error">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=2737:2776#L123">Error</a>
+					<a class="permalink" href="index.html#FastIterator.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Error() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Error implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Key">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=1594:1632#L71">Key</a>
+					<a class="permalink" href="index.html#FastIterator.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Key() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Key implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Next">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=1887:1919#L87">Next</a>
+					<a class="permalink" href="index.html#FastIterator.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Next()</pre>
+				<p>Next implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Valid">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=1443:1481#L66">Valid</a>
+					<a class="permalink" href="index.html#FastIterator.Valid">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Valid() <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Valid implements dbm.Iterator.
+
+				
+				
+				
+			
+				
+				<h3 id="FastIterator.Value">func (*FastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/fast_iterator.go?s=1739:1779#L79">Value</a>
+					<a class="permalink" href="index.html#FastIterator.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#FastIterator">FastIterator</a>) Value() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Value implements dbm.Iterator
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ImmutableTree">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=511:661#L6">ImmutableTree</a>
+				<a class="permalink" href="index.html#ImmutableTree">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ImmutableTree contains the immutable tree at a given version. It is typically created by calling
+MutableTree.GetImmutable(), in which case the returned tree is safe for concurrent access as
+long as the version is not deleted via DeleteVersion() or the tree&apos;s pruning settings.
+<p>Returned key/value byte slices must not be modified, since they may point to data located inside
+IAVL which would also be modified.
+
+			<pre>type ImmutableTree struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewImmutableTree">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=731:822#L14">NewImmutableTree</a>
+					<a class="permalink" href="index.html#NewImmutableTree">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewImmutableTree(db <a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#DB">DB</a>, cacheSize <a href="../../../builtin/index.html#int">int</a>, skipFastStorageUpgrade <a href="../../../builtin/index.html#bool">bool</a>) *<a href="index.html#ImmutableTree">ImmutableTree</a></pre>
+				<p>NewImmutableTree creates both in-memory and persistent instances
+
+				
+				
+			
+				
+				<h3 id="NewImmutableTreeWithOpts">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=1130:1244#L27">NewImmutableTreeWithOpts</a>
+					<a class="permalink" href="index.html#NewImmutableTreeWithOpts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewImmutableTreeWithOpts(db <a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#DB">DB</a>, cacheSize <a href="../../../builtin/index.html#int">int</a>, opts *<a href="index.html#Options">Options</a>, skipFastStorageUpgrade <a href="../../../builtin/index.html#bool">bool</a>) *<a href="index.html#ImmutableTree">ImmutableTree</a></pre>
+				<p>NewImmutableTreeWithOpts creates an ImmutableTree with the given options.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ImmutableTree.Export">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=4473:4524#L148">Export</a>
+					<a class="permalink" href="index.html#ImmutableTree.Export">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Export() (*<a href="index.html#Exporter">Exporter</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Export returns an iterator that exports tree nodes as ExportNodes. These nodes can be
+imported with MutableTree.Import() to recreate an identical tree.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Get">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=5418:5473#L169">Get</a>
+					<a class="permalink" href="index.html#ImmutableTree.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Get(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get returns the value of the specified key if it exists, or nil.
+The returned value must not be modified, since it may point to data stored within IAVL.
+Get potentially employs a more performant strategy than GetWithIndex for retrieving the value.
+If tree.skipFastStorageUpgrade is true, this will work almost the same as GetWithIndex.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.GetByIndex">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=6569:6654#L208">GetByIndex</a>
+					<a class="permalink" href="index.html#ImmutableTree.GetByIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) GetByIndex(index <a href="../../../builtin/index.html#int64">int64</a>) (key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetByIndex gets the key and value at the specified index.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.GetMembershipProof">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=274:360#L4">GetMembershipProof</a>
+					<a class="permalink" href="index.html#ImmutableTree.GetMembershipProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) GetMembershipProof(key []<a href="../../../builtin/index.html#byte">byte</a>) (*<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetMembershipProof will produce a CommitmentProof that the given key (and queries value) exists in the iavl tree.
+If the key doesn&apos;t exist in the tree, this will return an error.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.GetNonMembershipProof">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=1120:1209#L35">GetNonMembershipProof</a>
+					<a class="permalink" href="index.html#ImmutableTree.GetNonMembershipProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) GetNonMembershipProof(key []<a href="../../../builtin/index.html#byte">byte</a>) (*<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetNonMembershipProof will produce a CommitmentProof that the given key doesn&apos;t exist in the iavl tree.
+If the key exists in the tree, this will return an error.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.GetProof">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=4969:5045#L173">GetProof</a>
+					<a class="permalink" href="index.html#ImmutableTree.GetProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) GetProof(key []<a href="../../../builtin/index.html#byte">byte</a>) (*<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetProof gets the proof for the given key.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.GetWithIndex">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=4922:4993#L158">GetWithIndex</a>
+					<a class="permalink" href="index.html#ImmutableTree.GetWithIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) GetWithIndex(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int64">int64</a>, []<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetWithIndex returns the index and value of the specified key if it exists, or nil and the next index
+otherwise. The returned value must not be modified, since it may point to data stored within
+IAVL.
+<p>The index is the index in the list of leaf nodes sorted lexicographically by key. The leftmost leaf has index 0.
+It&apos;s neighbor has index 1 and so on.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Has">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=4045:4098#L133">Has</a>
+					<a class="permalink" href="index.html#ImmutableTree.Has">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Has(key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Has returns whether or not a key exists.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Hash">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=4205:4251#L141">Hash</a>
+					<a class="permalink" href="index.html#ImmutableTree.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Hash() ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Hash returns the root hash.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Height">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=3895:3932#L125">Height</a>
+					<a class="permalink" href="index.html#ImmutableTree.Height">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Height() <a href="../../../builtin/index.html#int8">int8</a></pre>
+				<p>Height returns the height of the tree.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.IsFastCacheEnabled">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=9250:9308#L286">IsFastCacheEnabled</a>
+					<a class="permalink" href="index.html#ImmutableTree.IsFastCacheEnabled">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) IsFastCacheEnabled() (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>IsFastCacheEnabled returns true if fast cache is enabled, false otherwise.
+For fast cache to be enabled, the following 2 conditions must be met:
+1. The tree is of the latest version.
+2. The underlying storage has been upgraded to fast cache
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Iterate">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=6937:7022#L218">Iterate</a>
+					<a class="permalink" href="index.html#ImmutableTree.Iterate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Iterate(fn func(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterate iterates over all keys of the tree. The keys and values must not be modified,
+since they may point to data stored within IAVL. Returns true if stopped by callback, false otherwise
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.IterateRange">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=7981:8107#L255">IterateRange</a>
+					<a class="permalink" href="index.html#ImmutableTree.IterateRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) IterateRange(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>, fn func(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a>) (stopped <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>IterateRange makes a callback for all nodes with key between start and end non-inclusive.
+If either are nil, then it is open on that side (nil, nil is the same as Iterate). The keys and
+values must not be modified, since they may point to data stored within IAVL.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.IterateRangeInclusive">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=8613:8756#L270">IterateRangeInclusive</a>
+					<a class="permalink" href="index.html#ImmutableTree.IterateRangeInclusive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) IterateRangeInclusive(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>, fn func(key, value []<a href="../../../builtin/index.html#byte">byte</a>, version <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#bool">bool</a>) (stopped <a href="../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>IterateRangeInclusive makes a callback for all nodes with key between start and end inclusive.
+If either are nil, then it is open on that side (nil, nil is the same as Iterate). The keys and
+values must not be modified, since they may point to data stored within IAVL.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Iterator">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=7342:7431#L238">Iterator</a>
+					<a class="permalink" href="index.html#ImmutableTree.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>) (<a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterator returns an iterator over the immutable tree.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.RenderShape">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=1892:1981#L47">RenderShape</a>
+					<a class="permalink" href="index.html#ImmutableTree.RenderShape">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) RenderShape(indent <a href="../../../builtin/index.html#string">string</a>, encoder <a href="index.html#NodeEncoder">NodeEncoder</a>) ([]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>RenderShape provides a nested tree shape, ident is prepended in each level
+Returns an array of strings, one per line, to join with &quot;\n&quot; or display otherwise
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Size">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=3650:3686#L112">Size</a>
+					<a class="permalink" href="index.html#ImmutableTree.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Size() <a href="../../../builtin/index.html#int64">int64</a></pre>
+				<p>Size returns the number of leaf nodes in the tree.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.String">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=1461:1500#L36">String</a>
+					<a class="permalink" href="index.html#ImmutableTree.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of Tree.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.VerifyMembership">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=647:743#L18">VerifyMembership</a>
+					<a class="permalink" href="index.html#ImmutableTree.VerifyMembership">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) VerifyMembership(proof *<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>VerifyMembership returns true iff proof is an ExistenceProof for the given key.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.VerifyNonMembership">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=2180:2279#L85">VerifyNonMembership</a>
+					<a class="permalink" href="index.html#ImmutableTree.VerifyNonMembership">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) VerifyNonMembership(proof *<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>VerifyNonMembership returns true iff proof is a NonExistenceProof for the given key.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.VerifyProof">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=5360:5451#L190">VerifyProof</a>
+					<a class="permalink" href="index.html#ImmutableTree.VerifyProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) VerifyProof(proof *<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>VerifyProof checks if the proof is correct for the given key.
+
+				
+				
+				
+			
+				
+				<h3 id="ImmutableTree.Version">func (*ImmutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=3790:3829#L120">Version</a>
+					<a class="permalink" href="index.html#ImmutableTree.Version">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#ImmutableTree">ImmutableTree</a>) Version() <a href="../../../builtin/index.html#int64">int64</a></pre>
+				<p>Version returns the version of the tree.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Importer">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/import.go?s=708:830#L14">Importer</a>
+				<a class="permalink" href="index.html#Importer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Importer imports data into an empty MutableTree. It is created by MutableTree.Import(). Users
+must call Close() when done.
+<p>ExportNodes must be imported in the order returned by Exporter, i.e. depth-first post-order (LRN).
+<p>Importer is not concurrency-safe, it is the caller&apos;s responsibility to ensure the tree is not
+modified while performing an import.
+
+			<pre>type Importer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			<div id="example_Importer" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">
+tree, err := NewMutableTree(db.NewMemDB(), 0, false)
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+
+_, err = tree.Set([]byte(&#34;a&#34;), []byte{1})
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+
+_, err = tree.Set([]byte(&#34;b&#34;), []byte{2})
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+_, err = tree.Set([]byte(&#34;c&#34;), []byte{3})
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+_, version, err := tree.SaveVersion()
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+
+itree, err := tree.GetImmutable(version)
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+exporter, err := itree.Export()
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+defer exporter.Close()
+exported := []*ExportNode{}
+for {
+    var node *ExportNode
+    node, err = exporter.Next()
+    if err == ErrorExportDone {
+        break
+    } else if err != nil {
+        <span class="comment">// handle err</span>
+    }
+    exported = append(exported, node)
+}
+
+newTree, err := NewMutableTree(db.NewMemDB(), 0, false)
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+importer, err := newTree.Import(version)
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+defer importer.Close()
+for _, node := range exported {
+    err = importer.Add(node)
+    if err != nil {
+        <span class="comment">// handle err</span>
+    }
+}
+err = importer.Commit()
+if err != nil {
+    <span class="comment">// handle err</span>
+}
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+			
+
+			
+
+			
+				
+				<h3 id="Importer.Add">func (*Importer) <a href="http://localhost:6060/src/github.com/cosmos/iavl/import.go?s=2066:2118#L58">Add</a>
+					<a class="permalink" href="index.html#Importer.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#Importer">Importer</a>) Add(exportNode *<a href="index.html#ExportNode">ExportNode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Add adds an ExportNode to the import. ExportNodes must be added in the order returned by
+Exporter, i.e. depth-first post-order (LRN). Nodes are periodically flushed to the database,
+but the imported version is not visible until Commit() is called.
+
+				
+				
+				
+			
+				
+				<h3 id="Importer.Close">func (*Importer) <a href="http://localhost:6060/src/github.com/cosmos/iavl/import.go?s=1706:1732#L47">Close</a>
+					<a class="permalink" href="index.html#Importer.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#Importer">Importer</a>) Close()</pre>
+				<p>Close frees all resources. It is safe to call multiple times. Uncommitted nodes may already have
+been flushed to the database, but will not be visible.
+
+				
+				
+				
+			
+				
+				<h3 id="Importer.Commit">func (*Importer) <a href="http://localhost:6060/src/github.com/cosmos/iavl/import.go?s=5009:5042#L158">Commit</a>
+					<a class="permalink" href="index.html#Importer.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (i *<a href="index.html#Importer">Importer</a>) Commit() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Commit finalizes the import by flushing any outstanding nodes to the database, making the
+version visible, and updating the tree metadata. It can only be called once, and calls Close()
+internally.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=6245:6348#L162">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator is a dbm.Iterator for ImmutableTree
+
+			<pre>type Iterator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Iterator.Close">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7665:7700#L237">Close</a>
+					<a class="permalink" href="index.html#Iterator.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Domain">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=6906:6953#L195">Domain</a>
+					<a class="permalink" href="index.html#Iterator.Domain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Domain() ([]<a href="../../../builtin/index.html#byte">byte</a>, []<a href="../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Domain implements dbm.Iterator.
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Error">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7790:7825#L244">Error</a>
+					<a class="permalink" href="index.html#Iterator.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Error() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Error implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.IsFast">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7903:7938#L249">IsFast</a>
+					<a class="permalink" href="index.html#Iterator.IsFast">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) IsFast() <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsFast returnts true if iterator uses fast strategy
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Key">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7112:7146#L205">Key</a>
+					<a class="permalink" href="index.html#Iterator.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Key() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Key implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Next">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7295:7323#L215">Next</a>
+					<a class="permalink" href="index.html#Iterator.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Next()</pre>
+				<p>Next implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Valid">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7022:7056#L200">Valid</a>
+					<a class="permalink" href="index.html#Iterator.Valid">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Valid() <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Valid implements dbm.Iterator.
+
+				
+				
+				
+			
+				
+				<h3 id="Iterator.Value">func (*Iterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/iterator.go?s=7202:7238#L210">Value</a>
+					<a class="permalink" href="index.html#Iterator.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#Iterator">Iterator</a>) Value() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Value implements dbm.Iterator
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MutableTree">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=999:1876#L22">MutableTree</a>
+				<a class="permalink" href="index.html#MutableTree">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MutableTree is a persistent tree which keeps track of versions. It is not safe for concurrent
+use, and should be guarded by a Mutex or RWLock as appropriate. An immutable tree at a given
+version can be returned via GetImmutable, which is safe for concurrent access.
+<p>Given and returned key/value byte slices must not be modified, since they may point to data
+located inside IAVL which would also be modified.
+<p>The inner ImmutableTree should not be used directly by callers.
+
+			<pre>type MutableTree struct {
+    *<a href="index.html#ImmutableTree">ImmutableTree</a> <span class="comment">// The current, working tree.</span>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMutableTree">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=1960:2056#L37">NewMutableTree</a>
+					<a class="permalink" href="index.html#NewMutableTree">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMutableTree(db <a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#DB">DB</a>, cacheSize <a href="../../../builtin/index.html#int">int</a>, skipFastStorageUpgrade <a href="../../../builtin/index.html#bool">bool</a>) (*<a href="index.html#MutableTree">MutableTree</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewMutableTree returns a new tree with the specified cache size and datastore.
+
+				
+				
+			
+				
+				<h3 id="NewMutableTreeWithOpts">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=2210:2329#L42">NewMutableTreeWithOpts</a>
+					<a class="permalink" href="index.html#NewMutableTreeWithOpts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMutableTreeWithOpts(db <a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#DB">DB</a>, cacheSize <a href="../../../builtin/index.html#int">int</a>, opts *<a href="index.html#Options">Options</a>, skipFastStorageUpgrade <a href="../../../builtin/index.html#bool">bool</a>) (*<a href="index.html#MutableTree">MutableTree</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewMutableTreeWithOpts returns a new tree with the specified options.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MutableTree.AvailableVersions">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=3519:3569#L84">AvailableVersions</a>
+					<a class="permalink" href="index.html#MutableTree.AvailableVersions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) AvailableVersions() []<a href="../../../builtin/index.html#int">int</a></pre>
+				<p>AvailableVersions returns all available versions in ascending order
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.DeleteVersion">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=32458:32517#L1082">DeleteVersion</a>
+					<a class="permalink" href="index.html#MutableTree.DeleteVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) DeleteVersion(version <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteVersion deletes a tree version from disk. The version can then no
+longer be accessed.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.DeleteVersions">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=31065:31129#L1029">DeleteVersions</a>
+					<a class="permalink" href="index.html#MutableTree.DeleteVersions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) DeleteVersions(versions ...<a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteVersions deletes a series of versions from the MutableTree.
+Deprecated: please use DeleteVersionsRange instead.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.DeleteVersionsRange">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=31966:32046#L1062">DeleteVersionsRange</a>
+					<a class="permalink" href="index.html#MutableTree.DeleteVersionsRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) DeleteVersionsRange(fromVersion, toVersion <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>DeleteVersionsRange removes versions from an interval from the MutableTree (not inclusive).
+An error is returned if any single version has active readers.
+All writes happen in a single batch with a single commit.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Get">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=5245:5301#L139">Get</a>
+					<a class="permalink" href="index.html#MutableTree.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Get(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Get returns the value of the specified key if it exists, or nil otherwise.
+The returned value must not be modified, since it may point to data stored within IAVL.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.GetImmutable">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=23485:23561#L762">GetImmutable</a>
+					<a class="permalink" href="index.html#MutableTree.GetImmutable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) GetImmutable(version <a href="../../../builtin/index.html#int64">int64</a>) (*<a href="index.html#ImmutableTree">ImmutableTree</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetImmutable loads an ImmutableTree at a given version for querying. The returned tree is
+safe for concurrent access, provided the version is not deleted, e.g. via `DeleteVersion()`.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.GetVersioned">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=25022:25102#L816">GetVersioned</a>
+					<a class="permalink" href="index.html#MutableTree.GetVersioned">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) GetVersioned(key []<a href="../../../builtin/index.html#byte">byte</a>, version <a href="../../../builtin/index.html#int64">int64</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetVersioned gets the value at the specified key and version. The returned value must not be
+modified, since it may point to data stored within IAVL.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.GetVersionedProof">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_ics23.go?s=5652:5753#L198">GetVersionedProof</a>
+					<a class="permalink" href="index.html#MutableTree.GetVersionedProof">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) GetVersionedProof(key []<a href="../../../builtin/index.html#byte">byte</a>, version <a href="../../../builtin/index.html#int64">int64</a>) (*<a href="../../confio/ics23/go/index.html">ics23</a>.<a href="../../confio/ics23/go/index.html#CommitmentProof">CommitmentProof</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetVersionedProof gets the proof for the given key at the specified version.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Hash">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=3916:3963#L100">Hash</a>
+					<a class="permalink" href="index.html#MutableTree.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Hash() ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Hash returns the hash of the latest saved version of the tree, as returned
+by SaveVersion. If no versions have been saved, Hash returns nil.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Import">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=6166:6231#L165">Import</a>
+					<a class="permalink" href="index.html#MutableTree.Import">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Import(version <a href="../../../builtin/index.html#int64">int64</a>) (*<a href="index.html#Importer">Importer</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Import returns an importer for tree nodes previously exported by ImmutableTree.Export(),
+producing an identical IAVL tree. The caller must call Close() on the importer when done.
+<p>version should correspond to the version that was initially exported. It must be greater than
+or equal to the highest ExportNode version number given.
+<p>Import can only be called on an empty tree. It is the callers responsibility that no other
+modifications are made to the tree while importing.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.IsEmpty">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=3000:3039#L61">IsEmpty</a>
+					<a class="permalink" href="index.html#MutableTree.IsEmpty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) IsEmpty() <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsEmpty returns whether or not the tree has any keys. Only trees that are
+not empty can be saved.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.IsUpgradeable">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=20874:20928#L677">IsUpgradeable</a>
+					<a class="permalink" href="index.html#MutableTree.IsUpgradeable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) IsUpgradeable() (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Returns true if the tree may be auto-upgraded, false otherwise
+An example of when an upgrade may be performed is when we are enaling fast storage for the first time or
+need to overwrite fast nodes due to mismatch with live state.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Iterate">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=6466:6564#L171">Iterate</a>
+					<a class="permalink" href="index.html#MutableTree.Iterate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Iterate(fn func(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>) <a href="../../../builtin/index.html#bool">bool</a>) (stopped <a href="../../../builtin/index.html#bool">bool</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterate iterates over all keys of the tree. The keys and values must not be modified,
+since they may point to data stored within IAVL. Returns true if stopped by callnack, false otherwise
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Iterator">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=7238:7328#L200">Iterator</a>
+					<a class="permalink" href="index.html#MutableTree.Iterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Iterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>) (<a href="../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../cometbft/cometbft-db/index.html#Iterator">Iterator</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Iterator returns an iterator over the mutable tree.
+CONTRACT: no updates are made to the tree while an iterator is active.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.LazyLoadVersion">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=14757:14833#L459">LazyLoadVersion</a>
+					<a class="permalink" href="index.html#MutableTree.LazyLoadVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) LazyLoadVersion(targetVersion <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>LazyLoadVersion attempts to lazy load only the specified target version
+without loading previous roots/versions. If the targetVersion is non-positive, the latest version
+will be loaded by default. If the latest version is non-positive, this method
+performs a no-op. Otherwise, if the root does not exist, an error will be
+returned.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.LazyLoadVersionForOverwriting">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=20479:20569#L670">LazyLoadVersionForOverwriting</a>
+					<a class="permalink" href="index.html#MutableTree.LazyLoadVersionForOverwriting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) LazyLoadVersionForOverwriting(targetVersion <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>LazyLoadVersionForOverwriting is the lazy version of `LoadVersionForOverwriting`.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Load">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=14323:14369#L450">Load</a>
+					<a class="permalink" href="index.html#MutableTree.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Load() (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Load the latest versioned tree from disk.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.LoadVersion">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=16909:16981#L540">LoadVersion</a>
+					<a class="permalink" href="index.html#MutableTree.LoadVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) LoadVersion(targetVersion <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Returns the version number of the latest version found
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.LoadVersionForOverwriting">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=20241:20327#L665">LoadVersionForOverwriting</a>
+					<a class="permalink" href="index.html#MutableTree.LoadVersionForOverwriting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) LoadVersionForOverwriting(targetVersion <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadVersionForOverwriting attempts to load a tree at a previously committed
+version, or the latest version below it. Any versions greater than targetVersion will be deleted.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Remove">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=10419:10484#L313">Remove</a>
+					<a class="permalink" href="index.html#MutableTree.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Remove(key []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Remove removes a key from the working tree. The given key byte slice should not be modified
+after this call, since it may point to data stored inside IAVL.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Rollback">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=24384:24419#L797">Rollback</a>
+					<a class="permalink" href="index.html#MutableTree.Rollback">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Rollback()</pre>
+				<p>Rollback resets the working tree to the latest saved version, discarding
+any unsaved modifications.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.SaveVersion">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=25888:25949#L850">SaveVersion</a>
+					<a class="permalink" href="index.html#MutableTree.SaveVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) SaveVersion() ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>SaveVersion saves a new tree version to disk, based on the current state of
+the tree. Returns the hash and new version number.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.Set">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=4792:4865#L124">Set</a>
+					<a class="permalink" href="index.html#MutableTree.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) Set(key, value []<a href="../../../builtin/index.html#byte">byte</a>) (updated <a href="../../../builtin/index.html#bool">bool</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Set sets a key in the working tree. Nil values are invalid. The given
+key/value byte slices must not be modified after this call, since they point
+to slices stored within IAVL. It returns true when an existing value was
+updated, while false means it was a new key.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.SetInitialVersion">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=30837:30895#L1023">SetInitialVersion</a>
+					<a class="permalink" href="index.html#MutableTree.SetInitialVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) SetInitialVersion(version <a href="../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetInitialVersion sets the initial version of the tree, replacing Options.InitialVersion.
+It is only used during the initial SaveVersion() call for a tree with no other versions,
+and is otherwise ignored.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.String">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=4209:4258#L110">String</a>
+					<a class="permalink" href="index.html#MutableTree.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) String() (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>String returns a string representation of the tree.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.VersionExists">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=3142:3200#L66">VersionExists</a>
+					<a class="permalink" href="index.html#MutableTree.VersionExists">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) VersionExists(version <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>VersionExists returns whether or not a version exists.
+
+				
+				
+				
+			
+				
+				<h3 id="MutableTree.WorkingHash">func (*MutableTree) <a href="http://localhost:6060/src/github.com/cosmos/iavl/mutable_tree.go?s=4060:4114#L105">WorkingHash</a>
+					<a class="permalink" href="index.html#MutableTree.WorkingHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tree *<a href="index.html#MutableTree">MutableTree</a>) WorkingHash() ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>WorkingHash returns the hash of the current working tree.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Node">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go?s=330:584#L10">Node</a>
+				<a class="permalink" href="index.html#Node">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Node represents a node in a Tree.
+
+			<pre>type Node struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MakeNode">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go?s=1028:1068#L41">MakeNode</a>
+					<a class="permalink" href="index.html#MakeNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MakeNode(buf []<a href="../../../builtin/index.html#byte">byte</a>) (*<a href="index.html#Node">Node</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>MakeNode constructs an *Node from an encoded byte slice.
+<p>The new node doesn&apos;t have its hash saved or set. The caller must set it
+afterwards.
+
+				
+				
+			
+				
+				<h3 id="NewNode">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go?s=680:739#L27">NewNode</a>
+					<a class="permalink" href="index.html#NewNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNode(key []<a href="../../../builtin/index.html#byte">byte</a>, value []<a href="../../../builtin/index.html#byte">byte</a>, version <a href="../../../builtin/index.html#int64">int64</a>) *<a href="index.html#Node">Node</a></pre>
+				<p>NewNode returns a new node from a key, value and version.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Node.GetKey">func (*Node) <a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go?s=2528:2561#L102">GetKey</a>
+					<a class="permalink" href="index.html#Node.GetKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#Node">Node</a>) GetKey() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Node.PathToLeaf">func (*Node) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=3754:3839#L159">PathToLeaf</a>
+					<a class="permalink" href="index.html#Node.PathToLeaf">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#Node">Node</a>) PathToLeaf(t *<a href="index.html#ImmutableTree">ImmutableTree</a>, key []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="index.html#PathToLeaf">PathToLeaf</a>, *<a href="index.html#Node">Node</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>If the key does not exist, returns the path to the next leaf left of key (w/
+path), except when key is less than the least item, in which case it returns
+a path to the least item.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.String">func (*Node) <a href="http://localhost:6060/src/github.com/cosmos/iavl/node.go?s=2640:2673#L107">String</a>
+					<a class="permalink" href="index.html#Node.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (node *<a href="index.html#Node">Node</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				<p>String returns a string representation of the node.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NodeEncoder">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/immutable_tree.go?s=2274:2337#L57">NodeEncoder</a>
+				<a class="permalink" href="index.html#NodeEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NodeEncoder will take an id (hash, or key for leaf nodes), the depth of the node,
+and whether or not this is a leaf node.
+It returns the string we wish to print, for iaviwer
+
+			<pre>type NodeEncoder func(id []<a href="../../../builtin/index.html#byte">byte</a>, depth <a href="../../../builtin/index.html#int">int</a>, isLeaf <a href="../../../builtin/index.html#bool">bool</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Options">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=1528:2044#L62">Options</a>
+				<a class="permalink" href="index.html#Options">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Options define tree options.
+
+			<pre>type Options struct {
+<span id="Options.Sync"></span>    <span class="comment">// Sync synchronously flushes all writes to storage, using e.g. the fsync syscall.</span>
+    <span class="comment">// Disabling this significantly improves performance, but can lose data on e.g. power loss.</span>
+    Sync <a href="../../../builtin/index.html#bool">bool</a>
+
+<span id="Options.InitialVersion"></span>    <span class="comment">// InitialVersion specifies the initial version number. If any versions already exist below</span>
+    <span class="comment">// this, an error is returned when loading the tree. Only used for the initial SaveVersion()</span>
+    <span class="comment">// call.</span>
+    InitialVersion <a href="../../../builtin/index.html#uint64">uint64</a>
+
+    <span class="comment">// When Stat is not nil, statistical logic needs to be executed</span>
+<span id="Options.Stat"></span>    Stat *<a href="index.html#Statistics">Statistics</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultOptions">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=2102:2131#L77">DefaultOptions</a>
+					<a class="permalink" href="index.html#DefaultOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultOptions() <a href="index.html#Options">Options</a></pre>
+				<p>DefaultOptions returns the default options for IAVL.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PathToLeaf">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_path.go?s=240:272#L3">PathToLeaf</a>
+				<a class="permalink" href="index.html#PathToLeaf">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PathToLeaf represents an inner path to a leaf node.
+Note that the nodes are ordered such that the last one is closest
+to the root of the tree.
+
+			<pre>type PathToLeaf []<a href="index.html#ProofInnerNode">ProofInnerNode</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PathToLeaf.Index">func (PathToLeaf) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_path.go?s=825:865#L29">Index</a>
+					<a class="permalink" href="index.html#PathToLeaf.Index">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pl <a href="index.html#PathToLeaf">PathToLeaf</a>) Index() (idx <a href="../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>returns -1 if invalid.
+
+				
+				
+				
+			
+				
+				<h3 id="PathToLeaf.String">func (PathToLeaf) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof_path.go?s=274:310#L5">String</a>
+					<a class="permalink" href="index.html#PathToLeaf.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pl <a href="index.html#PathToLeaf">PathToLeaf</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProofInnerNode">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=805:991#L25">ProofInnerNode</a>
+				<a class="permalink" href="index.html#ProofInnerNode">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ProofInnerNode struct {
+<span id="ProofInnerNode.Height"></span>    Height  <a href="../../../builtin/index.html#int8">int8</a>   `json:&#34;height&#34;`
+<span id="ProofInnerNode.Size"></span>    Size    <a href="../../../builtin/index.html#int64">int64</a>  `json:&#34;size&#34;`
+<span id="ProofInnerNode.Version"></span>    Version <a href="../../../builtin/index.html#int64">int64</a>  `json:&#34;version&#34;`
+<span id="ProofInnerNode.Left"></span>    Left    []<a href="../../../builtin/index.html#byte">byte</a> `json:&#34;left&#34;`
+<span id="ProofInnerNode.Right"></span>    Right   []<a href="../../../builtin/index.html#byte">byte</a> `json:&#34;right&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ProofInnerNode.Hash">func (ProofInnerNode) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=1378:1442#L53">Hash</a>
+					<a class="permalink" href="index.html#ProofInnerNode.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pin <a href="index.html#ProofInnerNode">ProofInnerNode</a>) Hash(childHash []<a href="../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ProofInnerNode.String">func (ProofInnerNode) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=993:1034#L33">String</a>
+					<a class="permalink" href="index.html#ProofInnerNode.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pin <a href="index.html#ProofInnerNode">ProofInnerNode</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProofLeafNode">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=2401:2562#L101">ProofLeafNode</a>
+				<a class="permalink" href="index.html#ProofLeafNode">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ProofLeafNode struct {
+<span id="ProofLeafNode.Key"></span>    Key       <a href="internal/bytes/index.html">hexbytes</a>.<a href="internal/bytes/index.html#HexBytes">HexBytes</a> `json:&#34;key&#34;`
+<span id="ProofLeafNode.ValueHash"></span>    ValueHash <a href="internal/bytes/index.html">hexbytes</a>.<a href="internal/bytes/index.html#HexBytes">HexBytes</a> `json:&#34;value&#34;`
+<span id="ProofLeafNode.Version"></span>    Version   <a href="../../../builtin/index.html#int64">int64</a>             `json:&#34;version&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ProofLeafNode.Hash">func (ProofLeafNode) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=2881:2928#L123">Hash</a>
+					<a class="permalink" href="index.html#ProofLeafNode.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pln <a href="index.html#ProofLeafNode">ProofLeafNode</a>) Hash() ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ProofLeafNode.String">func (ProofLeafNode) <a href="http://localhost:6060/src/github.com/cosmos/iavl/proof.go?s=2564:2604#L107">String</a>
+					<a class="permalink" href="index.html#ProofLeafNode.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pln <a href="index.html#ProofLeafNode">ProofLeafNode</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Statistics">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=70:383#L1">Statistics</a>
+				<a class="permalink" href="index.html#Statistics">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Statisc about db runtime state
+
+			<pre>type Statistics struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Statistics.GetCacheHitCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=869:916#L38">GetCacheHitCnt</a>
+					<a class="permalink" href="index.html#Statistics.GetCacheHitCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) GetCacheHitCnt() <a href="../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.GetCacheMissCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=967:1015#L42">GetCacheMissCnt</a>
+					<a class="permalink" href="index.html#Statistics.GetCacheMissCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) GetCacheMissCnt() <a href="../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.GetFastCacheHitCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=1067:1118#L46">GetFastCacheHitCnt</a>
+					<a class="permalink" href="index.html#Statistics.GetFastCacheHitCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) GetFastCacheHitCnt() <a href="../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.GetFastCacheMissCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=1173:1225#L50">GetFastCacheMissCnt</a>
+					<a class="permalink" href="index.html#Statistics.GetFastCacheMissCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) GetFastCacheMissCnt() <a href="../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.IncCacheHitCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=385:425#L10">IncCacheHitCnt</a>
+					<a class="permalink" href="index.html#Statistics.IncCacheHitCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) IncCacheHitCnt()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.IncCacheMissCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=501:542#L17">IncCacheMissCnt</a>
+					<a class="permalink" href="index.html#Statistics.IncCacheMissCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) IncCacheMissCnt()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.IncFastCacheHitCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=619:663#L24">IncFastCacheHitCnt</a>
+					<a class="permalink" href="index.html#Statistics.IncFastCacheHitCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) IncFastCacheHitCnt()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.IncFastCacheMissCnt">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=743:788#L31">IncFastCacheMissCnt</a>
+					<a class="permalink" href="index.html#Statistics.IncFastCacheMissCnt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) IncFastCacheMissCnt()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Statistics.Reset">func (*Statistics) <a href="http://localhost:6060/src/github.com/cosmos/iavl/options.go?s=1281:1312#L54">Reset</a>
+					<a class="permalink" href="index.html#Statistics.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (stat *<a href="index.html#Statistics">Statistics</a>) Reset()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnsavedFastIterator">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=650:1022#L12">UnsavedFastIterator</a>
+				<a class="permalink" href="index.html#UnsavedFastIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UnsavedFastIterator is a dbm.Iterator for ImmutableTree
+it iterates over the latest state via fast nodes,
+taking advantage of keys being located in sequence in the underlying database.
+
+			<pre>type UnsavedFastIterator struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUnsavedFastIterator">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=1074:1270#L30">NewUnsavedFastIterator</a>
+					<a class="permalink" href="index.html#NewUnsavedFastIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewUnsavedFastIterator(start, end []<a href="../../../builtin/index.html#byte">byte</a>, ascending <a href="../../../builtin/index.html#bool">bool</a>, ndb *nodeDB, unsavedFastNodeAdditions map[<a href="../../../builtin/index.html#string">string</a>]*<a href="fastnode/index.html">fastnode</a>.<a href="fastnode/index.html#Node">Node</a>, unsavedFastNodeRemovals map[<a href="../../../builtin/index.html#string">string</a>]interface{}) *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="UnsavedFastIterator.Close">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=6060:6106#L202">Close</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Close implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Domain">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=3110:3168#L92">Domain</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Domain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Domain() ([]<a href="../../../builtin/index.html#byte">byte</a>, []<a href="../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Domain implements dbm.Iterator.
+Maps the underlying nodedb iterator domain, to the &apos;logical&apos; keys involved.
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Error">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=6199:6245#L208">Error</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Error() <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Error implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Key">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=3578:3623#L108">Key</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Key() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Key implements dbm.Iterator
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Next">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=3963:4002#L120">Next</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Next">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Next()</pre>
+				<p>Next implements dbm.Iterator
+Its effectively running the constant space overhead algorithm for streaming through sorted lists:
+the sorted lists being underlying fast nodes &amp; unsavedFastNodeChanges
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Valid">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=3237:3282#L97">Valid</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Valid">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Valid() <a href="../../../builtin/index.html#bool">bool</a></pre>
+				<p>Valid implements dbm.Iterator.
+
+				
+				
+				
+			
+				
+				<h3 id="UnsavedFastIterator.Value">func (*UnsavedFastIterator) <a href="http://localhost:6060/src/github.com/cosmos/iavl/unsaved_fast_iterator.go?s=3683:3730#L113">Value</a>
+					<a class="permalink" href="index.html#UnsavedFastIterator.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iter *<a href="index.html#UnsavedFastIterator">UnsavedFastIterator</a>) Value() []<a href="../../../builtin/index.html#byte">byte</a></pre>
+				<p>Value implements dbm.Iterator
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="VersionInfo">type <a href="http://localhost:6060/src/github.com/cosmos/iavl/version.go?s=211:368#L6">VersionInfo</a>
+				<a class="permalink" href="index.html#VersionInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VersionInfo contains useful versioning information in struct
+
+			<pre>type VersionInfo struct {
+<span id="VersionInfo.IAVL"></span>    IAVL      <a href="../../../builtin/index.html#string">string</a> `json:&#34;iavl&#34;`
+<span id="VersionInfo.GitCommit"></span>    GitCommit <a href="../../../builtin/index.html#string">string</a> `json:&#34;commit&#34;`
+<span id="VersionInfo.Branch"></span>    Branch    <a href="../../../builtin/index.html#string">string</a> `json:&#34;branch&#34;`
+<span id="VersionInfo.GoVersion"></span>    GoVersion <a href="../../../builtin/index.html#string">string</a> `json:&#34;go&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetVersionInfo">func <a href="http://localhost:6060/src/github.com/cosmos/iavl/version.go?s=571:604#L21">GetVersionInfo</a>
+					<a class="permalink" href="index.html#GetVersionInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetVersionInfo() <a href="index.html#VersionInfo">VersionInfo</a></pre>
+				<p>Returns VersionInfo with global vars filled in
+
+				
+				
+			
+
+			
+				
+				<h3 id="VersionInfo.String">func (VersionInfo) <a href="http://localhost:6060/src/github.com/cosmos/iavl/version.go?s=370:406#L13">String</a>
+					<a class="permalink" href="index.html#VersionInfo.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="index.html#VersionInfo">VersionInfo</a>) String() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/cosmos/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="benchmarks/index.html">benchmarks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="benchmarks/cosmos-exim/index.html">cosmos-exim</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="cache/index.html">cache</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="cmd/index.html">cmd</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="cmd/iaviewer/index.html">iaviewer</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="fastnode/index.html">fastnode</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="keyformat/index.html">keyformat</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mock/index.html">mock</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package mock is a generated GoMock package.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="tools/index.html">tools</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						This file uses the recommended method for tracking developer tools in a Go module.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

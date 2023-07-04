@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>snapshot - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package snapshot
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/core/state/snapshot"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package snapshot implements a journalled, dynamic state dump.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CheckDanglingStorage">func CheckDanglingStorage(chaindb ethdb.KeyValueStore) error</a></dd>
+			
+				
+				<dd><a href="index.html#CheckJournalAccount">func CheckJournalAccount(db ethdb.KeyValueStore, hash common.Hash) error</a></dd>
+			
+				
+				<dd><a href="index.html#FullAccountRLP">func FullAccountRLP(data []byte) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenerateAccountTrieRoot">func GenerateAccountTrieRoot(it AccountIterator) (common.Hash, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenerateStorageTrieRoot">func GenerateStorageTrieRoot(account common.Hash, it StorageIterator) (common.Hash, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GenerateTrie">func GenerateTrie(snaptree *Tree, root common.Hash, src ethdb.Database, dst ethdb.KeyValueWriter) error</a></dd>
+			
+				
+				<dd><a href="index.html#ParseGeneratorStatus">func ParseGeneratorStatus(generatorBlob []byte) string</a></dd>
+			
+				
+				<dd><a href="index.html#SlimAccountRLP">func SlimAccountRLP(nonce uint64, balance *big.Int, root common.Hash, codehash []byte) []byte</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Account">type Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FullAccount">func FullAccount(data []byte) (Account, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SlimAccount">func SlimAccount(nonce uint64, balance *big.Int, root common.Hash, codehash []byte) Account</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AccountIterator">type AccountIterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Iterator">type Iterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Snapshot">type Snapshot</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StorageIterator">type StorageIterator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Tree">type Tree</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(diskdb ethdb.KeyValueStore, triedb *trie.Database, cache int, root common.Hash, async bool, rebuild bool, recovery bool) (*Tree, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.AccountIterator">func (t *Tree) AccountIterator(root common.Hash, seek common.Hash) (AccountIterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Cap">func (t *Tree) Cap(root common.Hash, layers int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Disable">func (t *Tree) Disable()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.DiskRoot">func (t *Tree) DiskRoot() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Journal">func (t *Tree) Journal(root common.Hash) (common.Hash, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Rebuild">func (t *Tree) Rebuild(root common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Snapshot">func (t *Tree) Snapshot(blockRoot common.Hash) Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Snapshots">func (t *Tree) Snapshots(root common.Hash, limits int, nodisk bool) []Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.StorageIterator">func (t *Tree) StorageIterator(root common.Hash, account common.Hash, seek common.Hash) (StorageIterator, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Update">func (t *Tree) Update(blockRoot common.Hash, parentRoot common.Hash, destructs map[common.Hash]struct{}, accounts map[common.Hash][]byte, storage map[common.Hash]map[common.Hash][]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Tree.Verify">func (t *Tree) Verify(root common.Hash) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go">account.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/context.go">context.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/conversion.go">conversion.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/difflayer.go">difflayer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/disklayer.go">disklayer.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/generate.go">generate.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/holdable_iterator.go">holdable_iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator.go">iterator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator_binary.go">iterator_binary.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator_fast.go">iterator_fast.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/journal.go">journal.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go">snapshot.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/sort.go">sort.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/utils.go">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+
+    <span class="comment">// ErrSnapshotStale is returned from data accessors if the underlying snapshot</span>
+    <span class="comment">// layer had been invalidated due to the chain progressing forward far enough</span>
+    <span class="comment">// to not maintain the layer&#39;s original state.</span>
+    <span id="ErrSnapshotStale">ErrSnapshotStale</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;snapshot stale&#34;)
+
+    <span class="comment">// ErrNotCoveredYet is returned from data accessors if the underlying snapshot</span>
+    <span class="comment">// is being generated currently and the requested data item is not yet in the</span>
+    <span class="comment">// range of accounts covered.</span>
+    <span id="ErrNotCoveredYet">ErrNotCoveredYet</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;not covered yet&#34;)
+
+    <span class="comment">// ErrNotConstructed is returned if the callers want to iterate the snapshot</span>
+    <span class="comment">// while the generation is not finished yet.</span>
+    <span id="ErrNotConstructed">ErrNotConstructed</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;snapshot is not constructed&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="CheckDanglingStorage">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/utils.go?s=1181:1241#L23">CheckDanglingStorage</a>
+				<a class="permalink" href="index.html#CheckDanglingStorage">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CheckDanglingStorage(chaindb <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#KeyValueStore">KeyValueStore</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>CheckDanglingStorage iterates the snap storage data, and verifies that all
+storage also has corresponding account data.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckJournalAccount">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/utils.go?s=3624:3696#L86">CheckJournalAccount</a>
+				<a class="permalink" href="index.html#CheckJournalAccount">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CheckJournalAccount(db <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#KeyValueStore">KeyValueStore</a>, hash <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>CheckJournalAccount shows information about an account, from the disk layer and
+up through the diff layers.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FullAccountRLP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go?s=2455:2503#L70">FullAccountRLP</a>
+				<a class="permalink" href="index.html#FullAccountRLP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FullAccountRLP(data []<a href="../../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>FullAccountRLP converts data on the &apos;slim RLP&apos; format into the full RLP-format.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateAccountTrieRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/conversion.go?s=1828:1897#L44">GenerateAccountTrieRoot</a>
+				<a class="permalink" href="index.html#GenerateAccountTrieRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateAccountTrieRoot(it <a href="index.html#AccountIterator">AccountIterator</a>) (<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenerateAccountTrieRoot takes an account iterator and reproduces the root hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateStorageTrieRoot">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/conversion.go?s=2084:2174#L49">GenerateStorageTrieRoot</a>
+				<a class="permalink" href="index.html#GenerateStorageTrieRoot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateStorageTrieRoot(account <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, it <a href="index.html#StorageIterator">StorageIterator</a>) (<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GenerateStorageTrieRoot takes a storage iterator and reproduces the root hash.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateTrie">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/conversion.go?s=2471:2574#L56">GenerateTrie</a>
+				<a class="permalink" href="index.html#GenerateTrie">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateTrie(snaptree *<a href="index.html#Tree">Tree</a>, root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, src <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#Database">Database</a>, dst <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#KeyValueWriter">KeyValueWriter</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+			<p>GenerateTrie takes the whole snapshot tree as the input, traverses all the
+accounts as well as the corresponding storages and regenerate the whole state
+(account trie + all storage tries).
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseGeneratorStatus">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/journal.go?s=2037:2091#L59">ParseGeneratorStatus</a>
+				<a class="permalink" href="index.html#ParseGeneratorStatus">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ParseGeneratorStatus(generatorBlob []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SlimAccountRLP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go?s=1739:1832#L45">SlimAccountRLP</a>
+				<a class="permalink" href="index.html#SlimAccountRLP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SlimAccountRLP(nonce <a href="../../../../../../builtin/index.html#uint64">uint64</a>, balance *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>, root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, codehash []<a href="../../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>SlimAccountRLP converts a state.Account content into a slim snapshot
+version RLP encoded.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Account">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go?s=1180:1273#L21">Account</a>
+				<a class="permalink" href="index.html#Account">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Account is a modified version of a state.Account, where the root is replaced
+with a byte slice. This format can be used to represent full-consensus format
+or slim-snapshot format which replaces the empty root and code hash as nil
+byte slice.
+
+			<pre>type Account struct {
+<span id="Account.Nonce"></span>    Nonce    <a href="../../../../../../builtin/index.html#uint64">uint64</a>
+<span id="Account.Balance"></span>    Balance  *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>
+<span id="Account.Root"></span>    Root     []<a href="../../../../../../builtin/index.html#byte">byte</a>
+<span id="Account.CodeHash"></span>    CodeHash []<a href="../../../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FullAccount">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go?s=2062:2108#L55">FullAccount</a>
+					<a class="permalink" href="index.html#FullAccount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FullAccount(data []<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="index.html#Account">Account</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FullAccount decodes the data on the &apos;slim RLP&apos; format and return
+the consensus format account.
+
+				
+				
+			
+				
+				<h3 id="SlimAccount">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/account.go?s=1352:1443#L29">SlimAccount</a>
+					<a class="permalink" href="index.html#SlimAccount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SlimAccount(nonce <a href="../../../../../../builtin/index.html#uint64">uint64</a>, balance *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>, root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, codehash []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Account">Account</a></pre>
+				<p>SlimAccount converts a state.Account content into a slim snapshot account
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="AccountIterator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator.go?s=1932:2136#L42">AccountIterator</a>
+				<a class="permalink" href="index.html#AccountIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccountIterator is an iterator to step over all the accounts in a snapshot,
+which may or may not be composed of multiple layers.
+
+			<pre>type AccountIterator interface {
+    <a href="index.html#Iterator">Iterator</a>
+
+    <span class="comment">// Account returns the RLP encoded slim account the iterator is currently at.</span>
+    <span class="comment">// An error will be returned if the iterator becomes invalid</span>
+    Account() []<a href="../../../../../../builtin/index.html#byte">byte</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Iterator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator.go?s=1128:1795#L21">Iterator</a>
+				<a class="permalink" href="index.html#Iterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Iterator is an iterator to step over all the accounts or the specific
+storage in a snapshot which may or may not be composed of multiple layers.
+
+			<pre>type Iterator interface {
+    <span class="comment">// Next steps the iterator forward one element, returning false if exhausted,</span>
+    <span class="comment">// or an error if iteration failed for some reason (e.g. root being iterated</span>
+    <span class="comment">// becomes stale and garbage collected).</span>
+    Next() <a href="../../../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// Error returns any failure that occurred during iteration, which might have</span>
+    <span class="comment">// caused a premature iteration exit (e.g. snapshot stack becoming stale).</span>
+    Error() <a href="../../../../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Hash returns the hash of the account or storage slot the iterator is</span>
+    <span class="comment">// currently at.</span>
+    Hash() <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>
+
+    <span class="comment">// Release releases associated resources. Release should always succeed and</span>
+    <span class="comment">// can be called multiple times without causing error.</span>
+    Release()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Snapshot">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=5801:6423#L90">Snapshot</a>
+				<a class="permalink" href="index.html#Snapshot">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Snapshot represents the functionality supported by a snapshot storage layer.
+
+			<pre>type Snapshot interface {
+    <span class="comment">// Root returns the root hash for which this snapshot was made.</span>
+    Root() <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>
+
+    <span class="comment">// Account directly retrieves the account associated with a particular hash in</span>
+    <span class="comment">// the snapshot slim data format.</span>
+    Account(hash <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) (*<a href="index.html#Account">Account</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// AccountRLP directly retrieves the account RLP associated with a particular</span>
+    <span class="comment">// hash in the snapshot slim data format.</span>
+    AccountRLP(hash <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Storage directly retrieves the storage data associated with a particular hash,</span>
+    <span class="comment">// within a particular account.</span>
+    Storage(accountHash, storageHash <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StorageIterator">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/iterator.go?s=2277:2463#L52">StorageIterator</a>
+				<a class="permalink" href="index.html#StorageIterator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StorageIterator is an iterator to step over the specific storage in a snapshot,
+which may or may not be composed of multiple layers.
+
+			<pre>type StorageIterator interface {
+    <a href="index.html#Iterator">Iterator</a>
+
+    <span class="comment">// Slot returns the storage slot the iterator is currently at. An error will</span>
+    <span class="comment">// be returned if the iterator becomes invalid</span>
+    Slot() []<a href="../../../../../../builtin/index.html#byte">byte</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Tree">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=8448:8889#L150">Tree</a>
+				<a class="permalink" href="index.html#Tree">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Tree is an Ethereum state snapshot tree. It consists of one persistent base
+layer backed by a key-value store, on top of which arbitrarily many in-memory
+diff layers are topped. The memory diffs can form a tree with branching, but
+the disk layer is singleton and common to all. If a reorg goes deeper than the
+disk layer, everything needs to be deleted.
+<p>The goal of a state snapshot is twofold: to allow direct access to account and
+storage data to avoid expensive multi-level trie lookups; and to allow sorted,
+cheap iteration of the account/storage tries for sync aid.
+
+			<pre>type Tree struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=9710:9854#L176">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(diskdb <a href="../../../ethdb/index.html">ethdb</a>.<a href="../../../ethdb/index.html#KeyValueStore">KeyValueStore</a>, triedb *<a href="../../../trie/index.html">trie</a>.<a href="../../../trie/index.html#Database">Database</a>, cache <a href="../../../../../../builtin/index.html#int">int</a>, root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, async <a href="../../../../../../builtin/index.html#bool">bool</a>, rebuild <a href="../../../../../../builtin/index.html#bool">bool</a>, recovery <a href="../../../../../../builtin/index.html#bool">bool</a>) (*<a href="index.html#Tree">Tree</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New attempts to load an already existing snapshot from a persistent key-value
+store (with a number of memory layers from a journal), ensuring that the head
+of the snapshot matches the expected one.
+<p>If the snapshot is missing or the disk layer is broken, the snapshot will be
+reconstructed using both the existing data and the state trie.
+The repair happens on a background thread.
+<p>If the memory layers in the journal do not match the disk layer (e.g. there is
+a gap) or the journal is missing, there are two repair cases:
+<ul>
+<li>if the &apos;recovery&apos; parameter is true, all memory diff-layers will be discarded.
+This case happens when the snapshot is &apos;ahead&apos; of the state trie.
+<li>otherwise, the entire snapshot is considered invalid and will be recreated on
+a background thread.
+</ul>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Tree.AccountIterator">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=27845:27936#L726">AccountIterator</a>
+					<a class="permalink" href="index.html#Tree.AccountIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) AccountIterator(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, seek <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) (<a href="index.html#AccountIterator">AccountIterator</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AccountIterator creates a new account iterator for the specified root hash and
+seeks to a starting account hash.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Cap">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=15192:15246#L357">Cap</a>
+					<a class="permalink" href="index.html#Tree.Cap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Cap(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, layers <a href="../../../../../../builtin/index.html#int">int</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Cap traverses downwards the snapshot tree from a head block hash until the
+number of allowed layers are crossed. All layers beyond the permitted number
+are flattened downwards.
+<p>Note, the final diff layer count in general will be one more than the amount
+requested. This happens because the bottom-most diff layer is the accumulator
+which may or may not overflow and cascade to disk. Since this last layer&apos;s
+survival is only known *after* capping, we need to omit it from the count if
+we want to ensure that *at least* the requested number of diff layers remain.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Disable">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=11357:11381#L233">Disable</a>
+					<a class="permalink" href="index.html#Tree.Disable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Disable()</pre>
+				<p>Disable interrupts any pending snapshot generator, deletes all the snapshot
+layers in memory and marks snapshots disabled globally. In order to resume
+the snapshot functionality, the caller must invoke Rebuild.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.DiskRoot">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=30718:30755#L829">DiskRoot</a>
+					<a class="permalink" href="index.html#Tree.DiskRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) DiskRoot() <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a></pre>
+				<p>diskRoot is a external helper function to return the disk layer root.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Journal">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=25206:25267#L645">Journal</a>
+					<a class="permalink" href="index.html#Tree.Journal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Journal(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) (<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Journal commits an entire diff hierarchy to disk into a single journal entry.
+This is meant to be used during shutdown to persist the snapshot without
+flattening everything down (bad for reorgs).
+<p>The method returns the root hash of the base layer that needs to be persisted
+to disk as a trie too to allow continuing any pending generation op.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Rebuild">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=26462:26502#L682">Rebuild</a>
+					<a class="permalink" href="index.html#Tree.Rebuild">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Rebuild(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>)</pre>
+				<p>Rebuild wipes all available snapshot data from the persistent database and
+discard all caches and diff layers. Afterwards, it starts a new snapshot
+generator with the given root hash.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Snapshot">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=12652:12707#L281">Snapshot</a>
+					<a class="permalink" href="index.html#Tree.Snapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Snapshot(blockRoot <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) <a href="index.html#Snapshot">Snapshot</a></pre>
+				<p>Snapshot retrieves a snapshot belonging to the given block root, or nil if no
+snapshot is maintained for that block.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Snapshots">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=12990:13068#L291">Snapshots</a>
+					<a class="permalink" href="index.html#Tree.Snapshots">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Snapshots(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, limits <a href="../../../../../../builtin/index.html#int">int</a>, nodisk <a href="../../../../../../builtin/index.html#bool">bool</a>) []<a href="index.html#Snapshot">Snapshot</a></pre>
+				<p>Snapshots returns all visited layers from the topmost layer with specific
+root and traverses downward. The layer amount is limited by the given number.
+If nodisk is set, then disk layer is excluded.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.StorageIterator">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=28249:28361#L739">StorageIterator</a>
+					<a class="permalink" href="index.html#Tree.StorageIterator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) StorageIterator(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, account <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, seek <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) (<a href="index.html#StorageIterator">StorageIterator</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StorageIterator creates a new storage iterator for the specified root hash and
+account. The iterator will be move to the specific start position.
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Update">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=13630:13821#L323">Update</a>
+					<a class="permalink" href="index.html#Tree.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Update(blockRoot <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, parentRoot <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>, destructs map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>]struct{}, accounts map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>][]<a href="../../../../../../builtin/index.html#byte">byte</a>, storage map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>]map[<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>][]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Update adds a new snapshot into the tree, if that can be linked to an existing
+old parent. It is disallowed to insert a disk layer (the origin of all).
+
+				
+				
+				
+			
+				
+				<h3 id="Tree.Verify">func (*Tree) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/state/snapshot/snapshot.go?s=28705:28750#L752">Verify</a>
+					<a class="permalink" href="index.html#Tree.Verify">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Tree">Tree</a>) Verify(root <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Verify iterates the whole state(all the accounts as well as the corresponding storages)
+with the specific root and compares the re-computed hash with the original one.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

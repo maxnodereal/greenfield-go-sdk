@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>ethash - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package ethash
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/consensus/ethash"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package ethash implements the ethash proof-of-work consensus engine.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CalcDifficulty">func CalcDifficulty(config *params.ChainConfig, time uint64, parent *types.Header) *big.Int</a></dd>
+			
+				
+				<dd><a href="index.html#CalcDifficultyFrontierU256">func CalcDifficultyFrontierU256(time uint64, parent *types.Header) *big.Int</a></dd>
+			
+				
+				<dd><a href="index.html#CalcDifficultyHomesteadU256">func CalcDifficultyHomesteadU256(time uint64, parent *types.Header) *big.Int</a></dd>
+			
+				
+				<dd><a href="index.html#MakeCache">func MakeCache(block uint64, dir string)</a></dd>
+			
+				
+				<dd><a href="index.html#MakeDataset">func MakeDataset(block uint64, dir string)</a></dd>
+			
+				
+				<dd><a href="index.html#MakeDifficultyCalculatorU256">func MakeDifficultyCalculatorU256(bombDelay *big.Int) func(time uint64, parent *types.Header) *big.Int</a></dd>
+			
+				
+				<dd><a href="index.html#SeedHash">func SeedHash(block uint64) []byte</a></dd>
+			
+			
+				
+				<dd><a href="index.html#API">type API</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.GetHashrate">func (api *API) GetHashrate() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.GetWork">func (api *API) GetWork() ([4]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.SubmitHashrate">func (api *API) SubmitHashrate(rate hexutil.Uint64, id common.Hash) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#API.SubmitWork">func (api *API) SubmitWork(nonce types.BlockNonce, hash, digest common.Hash) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Ethash">type Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(config Config, notify []string, noverify bool) *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFakeDelayer">func NewFakeDelayer(delay time.Duration) *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFakeFailer">func NewFakeFailer(fail uint64) *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFaker">func NewFaker() *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFullFaker">func NewFullFaker() *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewShared">func NewShared() *Ethash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTester">func NewTester(notify []string, noverify bool) *Ethash</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.APIs">func (ethash *Ethash) APIs(chain consensus.ChainHeaderReader) []rpc.API</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Author">func (ethash *Ethash) Author(header *types.Header) (common.Address, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.CalcDifficulty">func (ethash *Ethash) CalcDifficulty(chain consensus.ChainHeaderReader, time uint64, parent *types.Header) *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Close">func (ethash *Ethash) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Finalize">func (ethash *Ethash) Finalize(chain consensus.ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, uncles []*types.Header)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.FinalizeAndAssemble">func (ethash *Ethash) FinalizeAndAssemble(chain consensus.ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, uncles []*types.Header, receipts []*types.Receipt) (*types.Block, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Hashrate">func (ethash *Ethash) Hashrate() float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Prepare">func (ethash *Ethash) Prepare(chain consensus.ChainHeaderReader, header *types.Header) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Seal">func (ethash *Ethash) Seal(chain consensus.ChainHeaderReader, block *types.Block, results chan&lt;- *types.Block, stop &lt;-chan struct{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.SealHash">func (ethash *Ethash) SealHash(header *types.Header) (hash common.Hash)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.SetThreads">func (ethash *Ethash) SetThreads(threads int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.StopRemoteSealer">func (ethash *Ethash) StopRemoteSealer() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.Threads">func (ethash *Ethash) Threads() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.VerifyHeader">func (ethash *Ethash) VerifyHeader(chain consensus.ChainHeaderReader, header *types.Header, seal bool) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.VerifyHeaders">func (ethash *Ethash) VerifyHeaders(chain consensus.ChainHeaderReader, headers []*types.Header, seals []bool) (chan&lt;- struct{}, &lt;-chan error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Ethash.VerifyUncles">func (ethash *Ethash) VerifyUncles(chain consensus.ChainReader, block *types.Block) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Mode">type Mode</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/algorithm.go">algorithm.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go">api.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go">consensus.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/difficulty.go">difficulty.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go">ethash.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/mmap_help_other.go">mmap_help_other.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/sealer.go">sealer.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>Ethash proof-of-work protocol constants.
+
+				<pre>var (
+    <span id="FrontierBlockReward">FrontierBlockReward</span>       = <a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#NewInt">NewInt</a>(5e+18) <span class="comment">// Block reward in wei for successfully mining a block</span>
+    <span id="ByzantiumBlockReward">ByzantiumBlockReward</span>      = <a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#NewInt">NewInt</a>(3e+18) <span class="comment">// Block reward in wei for successfully mining a block upward from Byzantium</span>
+    <span id="ConstantinopleBlockReward">ConstantinopleBlockReward</span> = <a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#NewInt">NewInt</a>(2e+18) <span class="comment">// Block reward in wei for successfully mining a block upward from Constantinople</span>
+
+)</pre>
+			
+				
+				<pre>var <span id="DynamicDifficultyCalculator">DynamicDifficultyCalculator</span> = makeDifficultyCalculator</pre>
+			
+				
+				<pre>var <span id="ErrInvalidDumpMagic">ErrInvalidDumpMagic</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;invalid dump magic&#34;)</pre>
+			
+				<p>Exported for fuzzing
+
+				<pre>var <span id="FrontierDifficultyCalculator">FrontierDifficultyCalculator</span> = calcDifficultyFrontier</pre>
+			
+				
+				<pre>var <span id="HomesteadDifficultyCalculator">HomesteadDifficultyCalculator</span> = calcDifficultyHomestead</pre>
+			
+		
+		
+			
+			
+			<h2 id="CalcDifficulty">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=13145:13236#L329">CalcDifficulty</a>
+				<a class="permalink" href="index.html#CalcDifficulty">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalcDifficulty(config *<a href="../../params/index.html">params</a>.<a href="../../params/index.html#ChainConfig">ChainConfig</a>, time <a href="../../../../../builtin/index.html#uint64">uint64</a>, parent *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+			<p>CalcDifficulty is the difficulty adjustment algorithm. It returns
+the difficulty that a new block should have when created at time
+given the parent block&apos;s time and difficulty.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalcDifficultyFrontierU256">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/difficulty.go?s=1698:1773#L33">CalcDifficultyFrontierU256</a>
+				<a class="permalink" href="index.html#CalcDifficultyFrontierU256">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalcDifficultyFrontierU256(time <a href="../../../../../builtin/index.html#uint64">uint64</a>, parent *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+			<p>CalcDifficultyFrontierU256 is the difficulty adjustment algorithm. It returns the
+difficulty that a new block should have when created at time given the parent
+block&apos;s time and difficulty. The calculation uses the Frontier rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalcDifficultyHomesteadU256">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/difficulty.go?s=2982:3058#L72">CalcDifficultyHomesteadU256</a>
+				<a class="permalink" href="index.html#CalcDifficultyHomesteadU256">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalcDifficultyHomesteadU256(time <a href="../../../../../builtin/index.html#uint64">uint64</a>, parent *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+			<p>CalcDifficultyHomesteadU256 is the difficulty adjustment algorithm. It returns
+the difficulty that a new block should have when created at time given the
+parent block&apos;s time and difficulty. The calculation uses the Homestead rules.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeCache">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=12545:12585#L386">MakeCache</a>
+				<a class="permalink" href="index.html#MakeCache">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeCache(block <a href="../../../../../builtin/index.html#uint64">uint64</a>, dir <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+			<p>MakeCache generates a new ethash cache and optionally stores it to disk.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeDataset">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=12757:12799#L392">MakeDataset</a>
+				<a class="permalink" href="index.html#MakeDataset">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeDataset(block <a href="../../../../../builtin/index.html#uint64">uint64</a>, dir <a href="../../../../../builtin/index.html#string">string</a>)</pre>
+			<p>MakeDataset generates a new ethash dataset and optionally stores it to disk.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeDifficultyCalculatorU256">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/difficulty.go?s=4732:4834#L124">MakeDifficultyCalculatorU256</a>
+				<a class="permalink" href="index.html#MakeDifficultyCalculatorU256">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeDifficultyCalculatorU256(bombDelay *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) func(time <a href="../../../../../builtin/index.html#uint64">uint64</a>, parent *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+			<p>MakeDifficultyCalculatorU256 creates a difficultyCalculator with the given bomb-delay.
+the difficulty is calculated with Byzantium rules, which differs from Homestead in
+how uncles affect the calculation
+
+			
+			
+
+		
+			
+			
+			<h2 id="SeedHash">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=22461:22495#L685">SeedHash</a>
+				<a class="permalink" href="index.html#SeedHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SeedHash(block <a href="../../../../../builtin/index.html#uint64">uint64</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>SeedHash is the seed to use for generating a verification cache and the mining
+dataset.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="API">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go?s=1084:1119#L20">API</a>
+				<a class="permalink" href="index.html#API">&#xb6;</a>
+				
+				
+			</h2>
+			<p>API exposes ethash related methods for the RPC interface.
+
+			<pre>type API struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="API.GetHashrate">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go?s=3321:3357#L100">GetHashrate</a>
+					<a class="permalink" href="index.html#API.GetHashrate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) GetHashrate() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>GetHashrate returns the current hashrate for local CPU miner and remote miner.
+
+				
+				
+				
+			
+				
+				<h3 id="API.GetWork">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go?s=1478:1522#L31">GetWork</a>
+					<a class="permalink" href="index.html#API.GetWork">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) GetWork() ([4]<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetWork returns a work package for external miner.
+<p>The work package consists of 3 strings:
+<pre>result[0] - 32 bytes hex encoded current block header pow-hash
+result[1] - 32 bytes hex encoded seed hash used for DAG
+result[2] - 32 bytes hex encoded boundary condition (&quot;target&quot;), 2^256/difficulty
+result[3] - hex encoded block number
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="API.SubmitHashrate">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go?s=2851:2923#L82">SubmitHashrate</a>
+					<a class="permalink" href="index.html#API.SubmitHashrate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) SubmitHashrate(rate <a href="../../common/hexutil/index.html">hexutil</a>.<a href="../../common/hexutil/index.html#Uint64">Uint64</a>, id <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>SubmitHashrate can be used for remote miners to submit their hash rate.
+This enables the node to report the combined hash rate of all miners
+which submit work through this node.
+<p>It accepts the miner hash rate and an identifier which must be unique
+between nodes.
+
+				
+				
+				
+			
+				
+				<h3 id="API.SubmitWork">func (*API) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/api.go?s=2169:2250#L56">SubmitWork</a>
+					<a class="permalink" href="index.html#API.SubmitWork">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#API">API</a>) SubmitWork(nonce <a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#BlockNonce">BlockNonce</a>, hash, digest <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>SubmitWork can be used by external miner to submit their POW solution.
+It returns an indication if the work was accepted.
+Note either an invalid solution, a stale work a non-existent work will return false.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=13128:13527#L409">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config are the configuration parameters of the ethash.
+
+			<pre>type Config struct {
+<span id="Config.CacheDir"></span>    CacheDir         <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.CachesInMem"></span>    CachesInMem      <a href="../../../../../builtin/index.html#int">int</a>
+<span id="Config.CachesOnDisk"></span>    CachesOnDisk     <a href="../../../../../builtin/index.html#int">int</a>
+<span id="Config.CachesLockMmap"></span>    CachesLockMmap   <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Config.DatasetDir"></span>    DatasetDir       <a href="../../../../../builtin/index.html#string">string</a>
+<span id="Config.DatasetsInMem"></span>    DatasetsInMem    <a href="../../../../../builtin/index.html#int">int</a>
+<span id="Config.DatasetsOnDisk"></span>    DatasetsOnDisk   <a href="../../../../../builtin/index.html#int">int</a>
+<span id="Config.DatasetsLockMmap"></span>    DatasetsLockMmap <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Config.PowMode"></span>    PowMode          <a href="index.html#Mode">Mode</a>
+
+    <span class="comment">// When set, notifications sent by the remote sealer will</span>
+    <span class="comment">// be block header JSON objects instead of work package arrays.</span>
+<span id="Config.NotifyFull"></span>    NotifyFull <a href="../../../../../builtin/index.html#bool">bool</a>
+
+<span id="Config.Log"></span>    Log <a href="../../log/index.html">log</a>.<a href="../../log/index.html#Logger">Logger</a> `toml:&#34;-&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Ethash">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=13622:14565#L429">Ethash</a>
+				<a class="permalink" href="index.html#Ethash">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Ethash is a consensus engine based on proof-of-work implementing the ethash
+algorithm.
+
+			<pre>type Ethash struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=14744:14807#L454">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(config <a href="index.html#Config">Config</a>, notify []<a href="../../../../../builtin/index.html#string">string</a>, noverify <a href="../../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>New creates a full sized ethash PoW scheme and starts a background thread for
+remote mining, also optionally notifying a batch of remote services of new work
+packages.
+
+				
+				
+			
+				
+				<h3 id="NewFakeDelayer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=16850:16898#L516">NewFakeDelayer</a>
+					<a class="permalink" href="index.html#NewFakeDelayer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFakeDelayer(delay <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>) *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewFakeDelayer creates a ethash consensus engine with a fake PoW scheme that
+accepts all blocks as valid, but delays verifications by some time, though
+they still have to conform to the Ethereum consensus rules.
+
+				
+				
+			
+				
+				<h3 id="NewFakeFailer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=16477:16516#L503">NewFakeFailer</a>
+					<a class="permalink" href="index.html#NewFakeFailer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFakeFailer(fail <a href="../../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewFakeFailer creates a ethash consensus engine with a fake PoW scheme that
+accepts all blocks as valid apart from the single one specified, though they
+still have to conform to the Ethereum consensus rules.
+
+				
+				
+			
+				
+				<h3 id="NewFaker">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=16142:16165#L491">NewFaker</a>
+					<a class="permalink" href="index.html#NewFaker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFaker() *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewFaker creates a ethash consensus engine with a fake PoW scheme that accepts
+all blocks&apos; seal as valid, though they still have to conform to the Ethereum
+consensus rules.
+
+				
+				
+			
+				
+				<h3 id="NewFullFaker">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=17174:17201#L528">NewFullFaker</a>
+					<a class="permalink" href="index.html#NewFullFaker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFullFaker() *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewFullFaker creates an ethash consensus engine with a full fake scheme that
+accepts all blocks as valid, without checking any consensus rules whatsoever.
+
+				
+				
+			
+				
+				<h3 id="NewShared">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=17407:17431#L539">NewShared</a>
+					<a class="permalink" href="index.html#NewShared">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewShared() *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewShared creates a full sized ethash PoW shared between all requesters running
+in the same process.
+
+				
+				
+			
+				
+				<h3 id="NewTester">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=15843:15897#L484">NewTester</a>
+					<a class="permalink" href="index.html#NewTester">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTester(notify []<a href="../../../../../builtin/index.html#string">string</a>, noverify <a href="../../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#Ethash">Ethash</a></pre>
+				<p>NewTester creates a small sized ethash PoW scheme useful only for testing
+purposes.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Ethash.APIs">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=22036:22107#L668">APIs</a>
+					<a class="permalink" href="index.html#Ethash.APIs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) APIs(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>) []<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#API">API</a></pre>
+				<p>APIs implements consensus.Engine, returning the user facing RPC APIs.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Author">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=4881:4955#L89">Author</a>
+					<a class="permalink" href="index.html#Ethash.Author">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Author(header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Author implements consensus.Engine, returning the header&apos;s coinbase as the
+proof-of-work verified author of the block.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.CalcDifficulty">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=12785:12900#L322">CalcDifficulty</a>
+					<a class="permalink" href="index.html#Ethash.CalcDifficulty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) CalcDifficulty(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, time <a href="../../../../../builtin/index.html#uint64">uint64</a>, parent *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>CalcDifficulty is the difficulty adjustment algorithm. It returns
+the difficulty that a new block should have when created at time
+given the parent block&apos;s time and difficulty.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Close">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=17547:17582#L544">Close</a>
+					<a class="permalink" href="index.html#Ethash.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Close closes the exit channel to notify all backend threads exiting.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Finalize">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=22523:22682#L590">Finalize</a>
+					<a class="permalink" href="index.html#Ethash.Finalize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Finalize(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, state *<a href="../../core/state/index.html">state</a>.<a href="../../core/state/index.html#StateDB">StateDB</a>, txs []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, uncles []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>)</pre>
+				<p>Finalize implements consensus.Engine, accumulating the block and uncle rewards,
+setting the final state on the header
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.FinalizeAndAssemble">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=23046:23265#L598">FinalizeAndAssemble</a>
+					<a class="permalink" href="index.html#Ethash.FinalizeAndAssemble">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) FinalizeAndAssemble(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, state *<a href="../../core/state/index.html">state</a>.<a href="../../core/state/index.html#StateDB">StateDB</a>, txs []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Transaction">Transaction</a>, uncles []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, receipts []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Receipt">Receipt</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FinalizeAndAssemble implements consensus.Engine, accumulating the block and
+uncle rewards, setting the final state and assembling the block.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Hashrate">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=21429:21469#L649">Hashrate</a>
+					<a class="permalink" href="index.html#Ethash.Hashrate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Hashrate() <a href="../../../../../builtin/index.html#float64">float64</a></pre>
+				<p>Hashrate implements PoW, returning the measured rate of the search invocations
+per second over the last minute.
+Note the returned hashrate includes local hashrate, but also includes the total
+hashrate of all remote miner.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Prepare">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=22085:22177#L579">Prepare</a>
+					<a class="permalink" href="index.html#Ethash.Prepare">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Prepare(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Prepare implements consensus.Engine, initializing the difficulty field of a
+header to conform to the ethash protocol. The changes are done inline.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Seal">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/sealer.go?s=1540:1678#L41">Seal</a>
+					<a class="permalink" href="index.html#Ethash.Seal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Seal(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, block *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, results chan&lt;- *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, stop &lt;-chan struct{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Seal implements consensus.Engine, attempting to find a nonce that satisfies
+the block&apos;s difficulty requirements.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.SealHash">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=23552:23623#L607">SealHash</a>
+					<a class="permalink" href="index.html#Ethash.SealHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) SealHash(header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) (hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>)</pre>
+				<p>SealHash returns the hash of a block prior to it being sealed.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.SetThreads">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=20792:20837#L628">SetThreads</a>
+					<a class="permalink" href="index.html#Ethash.SetThreads">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) SetThreads(threads <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				<p>SetThreads updates the number of mining threads currently enabled. Calling
+this method does not start mining, only sets the thread count. If zero is
+specified, the miner will use all cores of the machine. Setting a thread
+count below zero is allowed and will cause the miner to idle, without any
+work being done.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.StopRemoteSealer">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=17666:17712#L549">StopRemoteSealer</a>
+					<a class="permalink" href="index.html#Ethash.StopRemoteSealer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) StopRemoteSealer() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>StopRemoteSealer stops the remote sealer
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.Threads">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=20351:20386#L616">Threads</a>
+					<a class="permalink" href="index.html#Ethash.Threads">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) Threads() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Threads returns the number of mining threads currently enabled. This doesn&apos;t
+necessarily mean that mining is running!
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.VerifyHeader">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=5102:5210#L95">VerifyHeader</a>
+					<a class="permalink" href="index.html#Ethash.VerifyHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) VerifyHeader(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, header *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, seal <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>VerifyHeader checks whether a header conforms to the consensus rules of the
+stock Ethereum ethash engine.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.VerifyHeaders">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=5972:6113#L116">VerifyHeaders</a>
+					<a class="permalink" href="index.html#Ethash.VerifyHeaders">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) VerifyHeaders(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainHeaderReader">ChainHeaderReader</a>, headers []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, seals []<a href="../../../../../builtin/index.html#bool">bool</a>) (chan&lt;- struct{}, &lt;-chan <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>VerifyHeaders is similar to VerifyHeader, but verifies a batch of headers
+concurrently. The method returns a quit channel to abort the operations and
+a results channel to retrieve the async verifications.
+
+				
+				
+				
+			
+				
+				<h3 id="Ethash.VerifyUncles">func (*Ethash) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/consensus.go?s=8178:8267#L194">VerifyUncles</a>
+					<a class="permalink" href="index.html#Ethash.VerifyUncles">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ethash *<a href="index.html#Ethash">Ethash</a>) VerifyUncles(chain <a href="../index.html">consensus</a>.<a href="../index.html#ChainReader">ChainReader</a>, block *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>VerifyUncles verifies that the given block&apos;s uncles conform to the consensus
+rules of the stock Ethereum ethash engine.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Mode">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/consensus/ethash/ethash.go?s=12973:12987#L398">Mode</a>
+				<a class="permalink" href="index.html#Mode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Mode defines the type and amount of PoW verification an ethash engine makes.
+
+			<pre>type Mode <a href="../../../../../builtin/index.html#uint">uint</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="ModeNormal">ModeNormal</span> <a href="index.html#Mode">Mode</a> = <a href="../../../../../builtin/index.html#iota">iota</a>
+    <span id="ModeShared">ModeShared</span>
+    <span id="ModeTest">ModeTest</span>
+    <span id="ModeFake">ModeFake</span>
+    <span id="ModeFullFake">ModeFullFake</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

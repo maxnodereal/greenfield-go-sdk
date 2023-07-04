@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>powchain - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package powchain
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/powchain"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package powchain defines a runtime service which is tasked with
+communicating with an eth1 endpoint, processing logs from a deposit
+contract, and the latest eth1 data headers for usage in the beacon node.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DepositContractAddress">func DepositContractAddress() (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#HttpEndpoint">func HttpEndpoint(eth1Provider string) network.Endpoint</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BeaconNodeStatsUpdater">type BeaconNodeStatsUpdater</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Chain">type Chain</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChainInfoFetcher">type ChainInfoFetcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ChainStartFetcher">type ChainStartFetcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#NopBeaconNodeStatsUpdater">type NopBeaconNodeStatsUpdater</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopBeaconNodeStatsUpdater.Update">func (_ *NopBeaconNodeStatsUpdater) Update(_ clientstats.BeaconNodeStats)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithBeaconNodeStatsUpdater">func WithBeaconNodeStatsUpdater(updater BeaconNodeStatsUpdater) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithDatabase">func WithDatabase(database db.HeadAccessDatabase) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithDepositCache">func WithDepositCache(cache *depositcache.DepositCache) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithDepositContractAddress">func WithDepositContractAddress(addr common.Address) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithEth1HeaderRequestLimit">func WithEth1HeaderRequestLimit(limit uint64) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithFinalizedStateAtStartup">func WithFinalizedStateAtStartup(st state.BeaconState) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithHttpEndpoints">func WithHttpEndpoints(endpointStrings []string) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithStateGen">func WithStateGen(gen *stategen.State) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WithStateNotifier">func WithStateNotifier(notifier statefeed.Notifier) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#POWBlockFetcher">type POWBlockFetcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PowchainCollector">type PowchainCollector</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewPowchainCollector">func NewPowchainCollector(ctx context.Context) (*PowchainCollector, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PowchainCollector.Collect">func (pc *PowchainCollector) Collect(ch chan&lt;- prometheus.Metric)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PowchainCollector.Describe">func (pc *PowchainCollector) Describe(ch chan&lt;- *prometheus.Desc)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PowchainCollector.Update">func (pc *PowchainCollector) Update(update clientstats.BeaconNodeStats)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RPCClient">type RPCClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RPCDataFetcher">type RPCDataFetcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Service">type Service</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewService">func NewService(ctx context.Context, opts ...Option) (*Service, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.AreAllDepositsProcessed">func (s *Service) AreAllDepositsProcessed() (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BlockByTimestamp">func (s *Service) BlockByTimestamp(ctx context.Context, time uint64) (*types.HeaderInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BlockExists">func (s *Service) BlockExists(ctx context.Context, hash common.Hash) (bool, *big.Int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BlockExistsWithCache">func (s *Service) BlockExistsWithCache(ctx context.Context, hash common.Hash) (bool, *big.Int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BlockHashByHeight">func (s *Service) BlockHashByHeight(ctx context.Context, height *big.Int) (common.Hash, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.BlockTimeByHeight">func (s *Service) BlockTimeByHeight(ctx context.Context, height *big.Int) (uint64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ChainStartDeposits">func (s *Service) ChainStartDeposits() []*ethpb.Deposit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ChainStartEth1Data">func (s *Service) ChainStartEth1Data() *ethpb.Eth1Data</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ClearPreGenesisData">func (s *Service) ClearPreGenesisData()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.CurrentETH1ConnectionError">func (s *Service) CurrentETH1ConnectionError() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.CurrentETH1Endpoint">func (s *Service) CurrentETH1Endpoint() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.DepositRoot">func (s *Service) DepositRoot() [32]byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.DepositTrie">func (s *Service) DepositTrie() *trie.SparseMerkleTrie</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ETH1ConnectionErrors">func (s *Service) ETH1ConnectionErrors() []error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ETH1Endpoints">func (s *Service) ETH1Endpoints() []string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Eth2GenesisPowchainInfo">func (s *Service) Eth2GenesisPowchainInfo() (uint64, *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.IsConnectedToETH1">func (s *Service) IsConnectedToETH1() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.LatestBlockHash">func (s *Service) LatestBlockHash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.LatestBlockHeight">func (s *Service) LatestBlockHeight() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.PreGenesisState">func (s *Service) PreGenesisState() state.BeaconState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ProcessChainStart">func (s *Service) ProcessChainStart(genesisTime uint64, eth1BlockHash [32]byte, blockNumber *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ProcessDepositLog">func (s *Service) ProcessDepositLog(ctx context.Context, depositLog gethTypes.Log) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ProcessETH1Block">func (s *Service) ProcessETH1Block(ctx context.Context, blkNum *big.Int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.ProcessLog">func (s *Service) ProcessLog(ctx context.Context, depositLog gethTypes.Log) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Start">func (s *Service) Start()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Status">func (s *Service) Status() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Service.Stop">func (s *Service) Stop() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_cache.go">block_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go">block_reader.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/deposit.go">deposit.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go">log_processing.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go">options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go">prometheus.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/provider.go">provider.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go">service.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNotAHeaderInfo will be returned when a cache object is not a pointer to</span>
+    <span class="comment">// a headerInfo struct.</span>
+    <span id="ErrNotAHeaderInfo">ErrNotAHeaderInfo</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;object is not a header info&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DepositContractAddress">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/deposit.go?s=361:406#L4">DepositContractAddress</a>
+				<a class="permalink" href="index.html#DepositContractAddress">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DepositContractAddress() (<a href="../../../../../builtin/index.html#string">string</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DepositContractAddress returns the deposit contract address for the given chain.
+
+			
+			
+
+		
+			
+			
+			<h2 id="HttpEndpoint">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/provider.go?s=235:290#L2">HttpEndpoint</a>
+				<a class="permalink" href="index.html#HttpEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HttpEndpoint(eth1Provider <a href="../../../../../builtin/index.html#string">string</a>) <a href="../../network/index.html">network</a>.<a href="../../network/index.html#Endpoint">Endpoint</a></pre>
+			<p>HttpEndpoint extracts an httputils.Endpoint from the provider parameter.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BeaconNodeStatsUpdater">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=157:241#L1">BeaconNodeStatsUpdater</a>
+				<a class="permalink" href="index.html#BeaconNodeStatsUpdater">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BeaconNodeStatsUpdater interface {
+    Update(stats <a href="../../monitoring/clientstats/index.html">clientstats</a>.<a href="../../monitoring/clientstats/index.html#BeaconNodeStats">BeaconNodeStats</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Chain">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=4259:4337#L97">Chain</a>
+				<a class="permalink" href="index.html#Chain">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Chain defines a standard interface for the powchain service in Prysm.
+
+			<pre>type Chain interface {
+    <a href="index.html#ChainStartFetcher">ChainStartFetcher</a>
+    <a href="index.html#ChainInfoFetcher">ChainInfoFetcher</a>
+    <a href="index.html#POWBlockFetcher">POWBlockFetcher</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ChainInfoFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=3454:3685#L78">ChainInfoFetcher</a>
+				<a class="permalink" href="index.html#ChainInfoFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChainInfoFetcher retrieves information about eth1 metadata at the Ethereum consensus genesis time.
+
+			<pre>type ChainInfoFetcher interface {
+    Eth2GenesisPowchainInfo() (<a href="../../../../../builtin/index.html#uint64">uint64</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)
+    IsConnectedToETH1() <a href="../../../../../builtin/index.html#bool">bool</a>
+    CurrentETH1Endpoint() <a href="../../../../../builtin/index.html#string">string</a>
+    CurrentETH1ConnectionError() <a href="../../../../../builtin/index.html#error">error</a>
+    ETH1Endpoints() []<a href="../../../../../builtin/index.html#string">string</a>
+    ETH1ConnectionErrors() []<a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ChainStartFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=3177:3350#L70">ChainStartFetcher</a>
+				<a class="permalink" href="index.html#ChainStartFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ChainStartFetcher retrieves information pertaining to the chain start event
+of the beacon chain for usage across various services.
+
+			<pre>type ChainStartFetcher interface {
+    ChainStartDeposits() []*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>
+    ChainStartEth1Data() *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Eth1Data">Eth1Data</a>
+    PreGenesisState() <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>
+    ClearPreGenesisData()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="NopBeaconNodeStatsUpdater">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=4276:4315#L139">NopBeaconNodeStatsUpdater</a>
+				<a class="permalink" href="index.html#NopBeaconNodeStatsUpdater">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type NopBeaconNodeStatsUpdater struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NopBeaconNodeStatsUpdater.Update">func (*NopBeaconNodeStatsUpdater) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=4317:4390#L141">Update</a>
+					<a class="permalink" href="index.html#NopBeaconNodeStatsUpdater.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#NopBeaconNodeStatsUpdater">NopBeaconNodeStatsUpdater</a>) Update(_ <a href="../../monitoring/clientstats/index.html">clientstats</a>.<a href="../../monitoring/clientstats/index.html#BeaconNodeStats">BeaconNodeStats</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=418:452#L3">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Option func(s *<a href="index.html#Service">Service</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WithBeaconNodeStatsUpdater">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=2392:2462#L74">WithBeaconNodeStatsUpdater</a>
+					<a class="permalink" href="index.html#WithBeaconNodeStatsUpdater">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithBeaconNodeStatsUpdater(updater <a href="index.html#BeaconNodeStatsUpdater">BeaconNodeStatsUpdater</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithBeaconNodeStatsUpdater to set the beacon node stats updater.
+
+				
+				
+			
+				
+				<h3 id="WithDatabase">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=1391:1447#L34">WithDatabase</a>
+					<a class="permalink" href="index.html#WithDatabase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithDatabase(database <a href="../db/index.html">db</a>.<a href="../db/index.html#HeadAccessDatabase">HeadAccessDatabase</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithDatabase for the beacon chain database.
+
+				
+				
+			
+				
+				<h3 id="WithDepositCache">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=1572:1634#L42">WithDepositCache</a>
+					<a class="permalink" href="index.html#WithDepositCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithDepositCache(cache *<a href="../cache/depositcache/index.html">depositcache</a>.<a href="../cache/depositcache/index.html#DepositCache">DepositCache</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithDepositCache for caching deposits.
+
+				
+				
+			
+				
+				<h3 id="WithDepositContractAddress">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=1195:1254#L26">WithDepositContractAddress</a>
+					<a class="permalink" href="index.html#WithDepositContractAddress">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithDepositContractAddress(addr <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Address">Address</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithDepositContractAddress for the deposit contract.
+
+				
+				
+			
+				
+				<h3 id="WithEth1HeaderRequestLimit">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=2182:2234#L66">WithEth1HeaderRequestLimit</a>
+					<a class="permalink" href="index.html#WithEth1HeaderRequestLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithEth1HeaderRequestLimit(limit <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithEth1HeaderRequestLimit to set the upper limit of eth1 header requests.
+
+				
+				
+			
+				
+				<h3 id="WithFinalizedStateAtStartup">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=2642:2703#L82">WithFinalizedStateAtStartup</a>
+					<a class="permalink" href="index.html#WithFinalizedStateAtStartup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithFinalizedStateAtStartup(st <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithFinalizedStateAtStartup to set the beacon node&apos;s finalized state at startup.
+
+				
+				
+			
+				
+				<h3 id="WithHttpEndpoints">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=607:662#L7">WithHttpEndpoints</a>
+					<a class="permalink" href="index.html#WithHttpEndpoints">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithHttpEndpoints(endpointStrings []<a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithHttpEndpoints deduplicates and parses http endpoints for the powchain service to use,
+and sets the &quot;current&quot; endpoint that will be used first.
+
+				
+				
+			
+				
+				<h3 id="WithStateGen">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=1981:2026#L58">WithStateGen</a>
+					<a class="permalink" href="index.html#WithStateGen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithStateGen(gen *<a href="../state/stategen/index.html">stategen</a>.<a href="../state/stategen/index.html#State">State</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithStateGen to regenerate beacon states from checkpoints.
+
+				
+				
+			
+				
+				<h3 id="WithStateNotifier">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/options.go?s=1773:1831#L50">WithStateNotifier</a>
+					<a class="permalink" href="index.html#WithStateNotifier">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WithStateNotifier(notifier <a href="../core/feed/state/index.html">statefeed</a>.<a href="../core/feed/state/index.html#Notifier">Notifier</a>) <a href="index.html#Option">Option</a></pre>
+				<p>WithStateNotifier for subscribing to state changes.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="POWBlockFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=3759:4184#L88">POWBlockFetcher</a>
+				<a class="permalink" href="index.html#POWBlockFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>POWBlockFetcher defines a struct that can retrieve mainchain blocks.
+
+			<pre>type POWBlockFetcher interface {
+    BlockTimeByHeight(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockByTimestamp(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, time <a href="../../../../../builtin/index.html#uint64">uint64</a>) (*<a href="types/index.html">types</a>.<a href="types/index.html#HeaderInfo">HeaderInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockHashByHeight(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockExists(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    BlockExistsWithCache(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PowchainCollector">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=243:645#L5">PowchainCollector</a>
+				<a class="permalink" href="index.html#PowchainCollector">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PowchainCollector struct {
+<span id="PowchainCollector.SyncEth1Connected"></span>    SyncEth1Connected          *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#Desc">Desc</a>
+<span id="PowchainCollector.SyncEth1FallbackConnected"></span>    SyncEth1FallbackConnected  *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#Desc">Desc</a>
+<span id="PowchainCollector.SyncEth1FallbackConfigured"></span>    SyncEth1FallbackConfigured *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#Desc">Desc</a> <span class="comment">// true if flag specified: --fallback-web3provider</span>
+
+    <a href="../../../../../sync/index.html">sync</a>.<a href="../../../../../sync/index.html#Mutex">Mutex</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPowchainCollector">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=3241:3315#L109">NewPowchainCollector</a>
+					<a class="permalink" href="index.html#NewPowchainCollector">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPowchainCollector(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="index.html#PowchainCollector">PowchainCollector</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="PowchainCollector.Collect">func (*PowchainCollector) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=1795:1860#L44">Collect</a>
+					<a class="permalink" href="index.html#PowchainCollector.Collect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pc *<a href="index.html#PowchainCollector">PowchainCollector</a>) Collect(ch chan&lt;- <a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#Metric">Metric</a>)</pre>
+				<p>Collect is invoked by the prometheus collection loop.
+It returns a set of Metrics representing the observation
+for the current collection period. In the case of this
+collector, we use values from the latest BeaconNodeStats
+value sent by the powchain Service, which updates this value
+whenever an internal event could change the state of one of
+the metrics.
+Describe and Collect together satisfy the
+prometheus.Collector interface.
+
+				
+				
+				
+			
+				
+				<h3 id="PowchainCollector.Describe">func (*PowchainCollector) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=1165:1230#L29">Describe</a>
+					<a class="permalink" href="index.html#PowchainCollector.Describe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pc *<a href="index.html#PowchainCollector">PowchainCollector</a>) Describe(ch chan&lt;- *<a href="../../../../prometheus/client_golang/prometheus/index.html">prometheus</a>.<a href="../../../../prometheus/client_golang/prometheus/index.html#Desc">Desc</a>)</pre>
+				<p>Describe is invoked by the prometheus collection loop.
+It returns a set of metric Descriptor references which
+are also used in Collect to group collected metrics into
+a family. Describe and Collect together satisfy the
+prometheus.Collector interface.
+
+				
+				
+				
+			
+				
+				<h3 id="PowchainCollector.Update">func (*PowchainCollector) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/prometheus.go?s=797:868#L20">Update</a>
+					<a class="permalink" href="index.html#PowchainCollector.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pc *<a href="index.html#PowchainCollector">PowchainCollector</a>) Update(update <a href="../../monitoring/clientstats/index.html">clientstats</a>.<a href="../../monitoring/clientstats/index.html#BeaconNodeStats">BeaconNodeStats</a>)</pre>
+				<p>Update satisfies the BeaconNodeStatsUpdater
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RPCClient">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=4805:4873#L112">RPCClient</a>
+				<a class="permalink" href="index.html#RPCClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RPCClient defines the rpc methods required to interact with the eth1 node.
+
+			<pre>type RPCClient interface {
+    BatchCall(b []<a href="../../../../ethereum/go-ethereum/rpc/index.html">gethRPC</a>.<a href="../../../../ethereum/go-ethereum/rpc/index.html#BatchElem">BatchElem</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RPCDataFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=4464:4725#L105">RPCDataFetcher</a>
+				<a class="permalink" href="index.html#RPCDataFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RPCDataFetcher defines a subset of methods conformed to by ETH1.0 RPC clients for
+fetching eth1 data from the clients.
+
+			<pre>type RPCDataFetcher interface {
+    HeaderByNumber(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, number *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (*<a href="../../../../ethereum/go-ethereum/core/types/index.html">gethTypes</a>.<a href="../../../../ethereum/go-ethereum/core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    HeaderByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>) (*<a href="../../../../ethereum/go-ethereum/core/types/index.html">gethTypes</a>.<a href="../../../../ethereum/go-ethereum/core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    SyncProgress(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*ethereum.<a href="index.html#SyncProgress">SyncProgress</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Service">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=5790:6638#L136">Service</a>
+				<a class="permalink" href="index.html#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service fetches important information about the canonical
+Ethereum ETH1.0 chain via a web3 endpoint using an ethclient. The Random
+Beacon Chain requires synchronization with the ETH1.0 chain&apos;s current
+blockhash, block number, and access to logs within the
+Validator Registration Contract on the ETH1.0 chain to kick off the beacon
+chain&apos;s validator registration process.
+
+			<pre>type Service struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewService">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=6749:6819#L158">NewService</a>
+					<a class="permalink" href="index.html#NewService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewService(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, opts ...<a href="index.html#Option">Option</a>) (*<a href="index.html#Service">Service</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewService sets up a new instance with an ethclient when given a web3 endpoint as a string in the config.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Service.AreAllDepositsProcessed">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=13062:13119#L380">AreAllDepositsProcessed</a>
+					<a class="permalink" href="index.html#Service.AreAllDepositsProcessed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) AreAllDepositsProcessed() (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AreAllDepositsProcessed determines if all the logs from the deposit contract
+are processed.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BlockByTimestamp">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go?s=4031:4126#L103">BlockByTimestamp</a>
+					<a class="permalink" href="index.html#Service.BlockByTimestamp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BlockByTimestamp(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, time <a href="../../../../../builtin/index.html#uint64">uint64</a>) (*<a href="types/index.html">types</a>.<a href="types/index.html#HeaderInfo">HeaderInfo</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockByTimestamp returns the most recent block number up to a given timestamp.
+This is an optimized version with the worst case being O(2*repeatedSearches) number of calls
+while in best case search for the block is performed in O(1).
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BlockExists">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go?s=708:800#L14">BlockExists</a>
+					<a class="permalink" href="index.html#Service.BlockExists">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BlockExists(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockExists returns true if the block exists, its height and any possible error encountered.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BlockExistsWithCache">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go?s=1634:1735#L39">BlockExistsWithCache</a>
+					<a class="permalink" href="index.html#Service.BlockExistsWithCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BlockExistsWithCache(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, hash <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockExistsWithCache returns true if the block exists in cache, its height and any possible error encountered.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BlockHashByHeight">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go?s=2248:2342#L54">BlockHashByHeight</a>
+					<a class="permalink" href="index.html#Service.BlockHashByHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BlockHashByHeight(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockHashByHeight returns the block hash of the block at the given height.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.BlockTimeByHeight">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/block_reader.go?s=3259:3348#L84">BlockTimeByHeight</a>
+					<a class="permalink" href="index.html#Service.BlockTimeByHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) BlockTimeByHeight(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, height *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>BlockTimeByHeight fetches an eth1.0 block timestamp by its height.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ChainStartDeposits">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=9628:9683#L257">ChainStartDeposits</a>
+					<a class="permalink" href="index.html#Service.ChainStartDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ChainStartDeposits() []*<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a></pre>
+				<p>ChainStartDeposits returns a slice of validator deposit data processed
+by the deposit contract and cached in the powchain service.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ChainStartEth1Data">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=10017:10071#L268">ChainStartEth1Data</a>
+					<a class="permalink" href="index.html#Service.ChainStartEth1Data">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ChainStartEth1Data() *<a href="../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../proto/prysm/v1alpha1/index.html#Eth1Data">Eth1Data</a></pre>
+				<p>ChainStartEth1Data returns the eth1 data at chainstart.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ClearPreGenesisData">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=9816:9855#L262">ClearPreGenesisData</a>
+					<a class="permalink" href="index.html#Service.ClearPreGenesisData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ClearPreGenesisData()</pre>
+				<p>ClearPreGenesisData clears out the stored chainstart deposits and beacon state.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.CurrentETH1ConnectionError">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=11494:11546#L327">CurrentETH1ConnectionError</a>
+					<a class="permalink" href="index.html#Service.CurrentETH1ConnectionError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) CurrentETH1ConnectionError() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>CurrentETH1ConnectionError returns the error (if any) of the current connection.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.CurrentETH1Endpoint">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=11323:11369#L322">CurrentETH1Endpoint</a>
+					<a class="permalink" href="index.html#Service.CurrentETH1Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) CurrentETH1Endpoint() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>CurrentETH1Endpoint returns the URL of the current ETH1 endpoint.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.DepositRoot">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=12391:12431#L358">DepositRoot</a>
+					<a class="permalink" href="index.html#Service.DepositRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) DepositRoot() [32]<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>DepositRoot returns the Merkle root of the latest deposit trie
+from the ETH1.0 deposit contract.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.DepositTrie">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=12583:12637#L364">DepositTrie</a>
+					<a class="permalink" href="index.html#Service.DepositTrie">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) DepositTrie() *<a href="../../container/trie/index.html">trie</a>.<a href="../../container/trie/index.html#SparseMerkleTrie">SparseMerkleTrie</a></pre>
+				<p>DepositTrie returns the sparse Merkle trie used for storing
+deposits from the ETH1.0 deposit contract.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ETH1ConnectionErrors">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=12038:12086#L345">ETH1ConnectionErrors</a>
+					<a class="permalink" href="index.html#Service.ETH1ConnectionErrors">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ETH1ConnectionErrors() []<a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ETH1ConnectionErrors returns a slice of errors for each HTTP endpoint. An error
+of nil means the connection was successful.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ETH1Endpoints">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=11757:11799#L335">ETH1Endpoints</a>
+					<a class="permalink" href="index.html#Service.ETH1Endpoints">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ETH1Endpoints() []<a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>ETH1Endpoints returns the slice of HTTP endpoint URLs (default is 0th element).
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Eth2GenesisPowchainInfo">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go?s=1642:1704#L37">Eth2GenesisPowchainInfo</a>
+					<a class="permalink" href="index.html#Service.Eth2GenesisPowchainInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Eth2GenesisPowchainInfo() (<a href="../../../../../builtin/index.html#uint64">uint64</a>, *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>Eth2GenesisPowchainInfo retrieves the genesis time and eth1 block number of the beacon chain
+from the deposit contract.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.IsConnectedToETH1">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=11182:11224#L317">IsConnectedToETH1</a>
+					<a class="permalink" href="index.html#Service.IsConnectedToETH1">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) IsConnectedToETH1() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsConnectedToETH1 checks if the beacon node is connected to a ETH1 Node.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.LatestBlockHash">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=12855:12902#L374">LatestBlockHash</a>
+					<a class="permalink" href="index.html#Service.LatestBlockHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) LatestBlockHash() <a href="../../../../ethereum/go-ethereum/common/index.html">common</a>.<a href="../../../../ethereum/go-ethereum/common/index.html#Hash">Hash</a></pre>
+				<p>LatestBlockHash in the ETH1.0 chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.LatestBlockHeight">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=12707:12753#L369">LatestBlockHeight</a>
+					<a class="permalink" href="index.html#Service.LatestBlockHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) LatestBlockHeight() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>LatestBlockHeight in the ETH1.0 chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.PreGenesisState">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=10188:10241#L274">PreGenesisState</a>
+					<a class="permalink" href="index.html#Service.PreGenesisState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) PreGenesisState() <a href="../state/index.html">state</a>.<a href="../state/index.html#BeaconState">BeaconState</a></pre>
+				<p>PreGenesisState returns a state that contains
+pre-chainstart deposits.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ProcessChainStart">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go?s=7523:7624#L200">ProcessChainStart</a>
+					<a class="permalink" href="index.html#Service.ProcessChainStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ProcessChainStart(genesisTime <a href="../../../../../builtin/index.html#uint64">uint64</a>, eth1BlockHash [32]<a href="../../../../../builtin/index.html#byte">byte</a>, blockNumber *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>ProcessChainStart processes the log which had been received from
+the ETH1.0 chain by trying to determine when to start the beacon chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ProcessDepositLog">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go?s=3483:3571#L93">ProcessDepositLog</a>
+					<a class="permalink" href="index.html#Service.ProcessDepositLog">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ProcessDepositLog(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, depositLog <a href="../../../../ethereum/go-ethereum/core/types/index.html">gethTypes</a>.<a href="../../../../ethereum/go-ethereum/core/types/index.html#Log">Log</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ProcessDepositLog processes the log which had been received from
+the ETH1.0 chain by trying to ascertain which participant deposited
+in the contract.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ProcessETH1Block">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go?s=1865:1943#L42">ProcessETH1Block</a>
+					<a class="permalink" href="index.html#Service.ProcessETH1Block">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ProcessETH1Block(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blkNum *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ProcessETH1Block processes the logs from the provided eth1Block.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.ProcessLog">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/log_processing.go?s=2711:2792#L73">ProcessLog</a>
+					<a class="permalink" href="index.html#Service.ProcessLog">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) ProcessLog(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, depositLog <a href="../../../../ethereum/go-ethereum/core/types/index.html">gethTypes</a>.<a href="../../../../ethereum/go-ethereum/core/types/index.html#Log">Log</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ProcessLog is the main method which handles the processing of all
+logs from the deposit contract on the ETH1.0 chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Start">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=8466:8491#L216">Start</a>
+					<a class="permalink" href="index.html#Service.Start">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Start()</pre>
+				<p>Start a web3 service&apos;s main event loop.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Status">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=10330:10362#L279">Status</a>
+					<a class="permalink" href="index.html#Service.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Status() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Status is service health checks. Return nil or error.
+
+				
+				
+				
+			
+				
+				<h3 id="Service.Stop">func (*Service) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/powchain/service.go?s=9381:9411#L247">Stop</a>
+					<a class="permalink" href="index.html#Service.Stop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#Service">Service</a>) Stop() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Stop the web3 service&apos;s main event loop and associated goroutines.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testing/index.html">testing</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package testing provides useful mocks for an eth1 powchain service as needed by unit tests for the beacon node.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

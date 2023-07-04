@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>jsonrpc - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package jsonrpc
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/http/jsonrpc"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package jsonrpc provides a JSON RPC (v2.0) binding for endpoints.
+See <a href="http://www.jsonrpc.org/specification">http://www.jsonrpc.org/specification</a>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultErrorEncoder">func DefaultErrorEncoder(ctx context.Context, err error, w http.ResponseWriter)</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultRequestEncoder">func DefaultRequestEncoder(_ context.Context, req interface{}) (json.RawMessage, error)</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultResponseDecoder">func DefaultResponseDecoder(_ context.Context, res Response) (interface{}, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ErrorMessage">func ErrorMessage(code int) string</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(tgt *url.URL, method string, options ...ClientOption) *Client</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Endpoint">func (c Client) Endpoint() endpoint.Endpoint</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ClientFinalizerFunc">type ClientFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientOption">type ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BufferedStream">func BufferedStream(buffered bool) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientAfter">func ClientAfter(after ...httptransport.ClientResponseFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientBefore">func ClientBefore(before ...httptransport.RequestFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientFinalizer">func ClientFinalizer(f httptransport.ClientFinalizerFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientRequestEncoder">func ClientRequestEncoder(enc EncodeRequestFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientRequestIDGenerator">func ClientRequestIDGenerator(g RequestIDGenerator) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientResponseDecoder">func ClientResponseDecoder(dec DecodeResponseFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetClient">func SetClient(client httptransport.HTTPClient) ClientOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeResponseFunc">type DecodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeRequestFunc">type EncodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EndpointCodec">type EndpointCodec</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EndpointCodecMap">type EndpointCodecMap</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Error">type Error</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Error.Error">func (e Error) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Error.ErrorCode">func (e Error) ErrorCode() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrorCoder">type ErrorCoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Request">type Request</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestFunc">type RequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestID">type RequestID</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestID.Float32">func (id *RequestID) Float32() (float32, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestID.Int">func (id *RequestID) Int() (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestID.MarshalJSON">func (id *RequestID) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestID.String">func (id *RequestID) String() (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RequestID.UnmarshalJSON">func (id *RequestID) UnmarshalJSON(b []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RequestIDGenerator">type RequestIDGenerator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAutoIncrementID">func NewAutoIncrementID(init uint64) RequestIDGenerator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Response">type Response</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer(ecm EndpointCodecMap, options ...ServerOption) *Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeHTTP">func (s Server) ServeHTTP(w http.ResponseWriter, r *http.Request)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerOption">type ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerAfter">func ServerAfter(after ...httptransport.ServerResponseFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerBefore">func ServerBefore(before ...httptransport.RequestFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerBeforeCodec">func ServerBeforeCodec(beforeCodec ...RequestFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorEncoder">func ServerErrorEncoder(ee httptransport.ErrorEncoder) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorLogger">func ServerErrorLogger(logger log.Logger) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerFinalizer">func ServerFinalizer(f httptransport.ServerFinalizerFunc) ServerOption</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/error.go">error.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go">request_response_types.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go">server.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ParseError defines invalid JSON was received by the server.</span>
+    <span class="comment">// An error occurred on the server while parsing the JSON text.</span>
+    <span id="ParseError">ParseError</span> <a href="../../../../../../builtin/index.html#int">int</a> = -32700
+
+    <span class="comment">// InvalidRequestError defines the JSON sent is not a valid Request object.</span>
+    <span id="InvalidRequestError">InvalidRequestError</span> <a href="../../../../../../builtin/index.html#int">int</a> = -32600
+
+    <span class="comment">// MethodNotFoundError defines the method does not exist / is not available.</span>
+    <span id="MethodNotFoundError">MethodNotFoundError</span> <a href="../../../../../../builtin/index.html#int">int</a> = -32601
+
+    <span class="comment">// InvalidParamsError defines invalid method parameter(s).</span>
+    <span id="InvalidParamsError">InvalidParamsError</span> <a href="../../../../../../builtin/index.html#int">int</a> = -32602
+
+    <span class="comment">// InternalError defines a server error</span>
+    <span id="InternalError">InternalError</span> <a href="../../../../../../builtin/index.html#int">int</a> = -32603
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// Version defines the version of the JSON RPC implementation</span>
+    <span id="Version">Version</span> <a href="../../../../../../builtin/index.html#string">string</a> = &#34;2.0&#34;
+
+    <span class="comment">// ContentType defines the content type to be served.</span>
+    <span id="ContentType">ContentType</span> <a href="../../../../../../builtin/index.html#string">string</a> = &#34;application/json; charset=utf-8&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span id="ContextKeyRequestMethod">ContextKeyRequestMethod</span> contextKey = <a href="../../../../../../builtin/index.html#iota">iota</a>
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="DefaultErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=5339:5418#L173">DefaultErrorEncoder</a>
+				<a class="permalink" href="index.html#DefaultErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultErrorEncoder(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../../builtin/index.html#error">error</a>, w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>)</pre>
+			<p>DefaultErrorEncoder writes the error to the ResponseWriter,
+as a json-rpc error response, with an InternalError status code.
+The Error() string of the error will be used as the response error message.
+If the error implements ErrorCoder, the provided code will be set on the
+response error.
+If the error implements Headerer, the given headers will be set.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultRequestEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=1535:1622#L56">DefaultRequestEncoder</a>
+				<a class="permalink" href="index.html#DefaultRequestEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultRequestEncoder(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, req interface{}) (<a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultRequestEncoder marshals the given request to JSON.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultResponseDecoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=1752:1833#L62">DefaultResponseDecoder</a>
+				<a class="permalink" href="index.html#DefaultResponseDecoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultResponseDecoder(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, res <a href="index.html#Response">Response</a>) (interface{}, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultResponseDecoder unmarshals the result to interface{}, or returns an
+error, if found.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ErrorMessage">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/error.go?s=1596:1630#L43">ErrorMessage</a>
+				<a class="permalink" href="index.html#ErrorMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ErrorMessage(code <a href="../../../../../../builtin/index.html#int">int</a>) <a href="../../../../../../builtin/index.html#string">string</a></pre>
+			<p>ErrorMessage returns a message for the JSON RPC error code. It returns the empty
+string if the code is unknown.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=297:706#L7">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client wraps a JSON RPC method and provides a method that implements endpoint.Endpoint.
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=968:1050#L33">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(
+    tgt *<a href="../../../../../../net/url/index.html">url</a>.<a href="../../../../../../net/url/index.html#URL">URL</a>,
+    method <a href="../../../../../../builtin/index.html#string">string</a>,
+    options ...<a href="index.html#ClientOption">ClientOption</a>,
+) *<a href="index.html#Client">Client</a></pre>
+				<p>NewClient constructs a usable Client for a single remote method.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.Endpoint">func (Client) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=4345:4389#L133">Endpoint</a>
+					<a class="permalink" href="index.html#Client.Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="index.html#Client">Client</a>) Endpoint() <a href="../../../endpoint/index.html">endpoint</a>.<a href="../../../endpoint/index.html#Endpoint">Endpoint</a></pre>
+				<p>Endpoint returns a usable endpoint that invokes the remote endpoint.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ClientFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=6398:6459#L217">ClientFinalizerFunc</a>
+				<a class="permalink" href="index.html#ClientFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientFinalizerFunc can be used to perform work at the end of a client HTTP
+request, after the response is returned. The principal
+intended use is for error logging. Additional response parameters are
+provided in the context under keys with the ContextKeyResponse prefix.
+Note: err may be nil. There maybe also no additional response parameters
+depending on when an error occurs.
+
+			<pre>type ClientFinalizerFunc func(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=2072:2103#L75">ClientOption</a>
+				<a class="permalink" href="index.html#ClientOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientOption sets an optional parameter for clients.
+
+			<pre>type ClientOption func(*<a href="index.html#Client">Client</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BufferedStream">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=4164:4211#L128">BufferedStream</a>
+					<a class="permalink" href="index.html#BufferedStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BufferedStream(buffered <a href="../../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>BufferedStream sets whether the Response.Body is left open, allowing it
+to be read from later. Useful for transporting a file as a buffered stream.
+
+				
+				
+			
+				
+				<h3 id="ClientAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=2790:2862#L92">ClientAfter</a>
+					<a class="permalink" href="index.html#ClientAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientAfter(after ...<a href="../index.html">httptransport</a>.<a href="../index.html#ClientResponseFunc">ClientResponseFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientAfter sets the ClientResponseFuncs applied to the server&apos;s HTTP
+response prior to it being decoded. This is useful for obtaining anything
+from the response and adding onto the context prior to decoding.
+
+				
+				
+			
+				
+				<h3 id="ClientBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=2432:2499#L85">ClientBefore</a>
+					<a class="permalink" href="index.html#ClientBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientBefore(before ...<a href="../index.html">httptransport</a>.<a href="../index.html#RequestFunc">RequestFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientBefore sets the RequestFuncs that are applied to the outgoing HTTP
+request before it&apos;s invoked.
+
+				
+				
+			
+				
+				<h3 id="ClientFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=3040:3110#L98">ClientFinalizer</a>
+					<a class="permalink" href="index.html#ClientFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientFinalizer(f <a href="../index.html">httptransport</a>.<a href="../index.html#ClientFinalizerFunc">ClientFinalizerFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientFinalizer is executed at the end of every HTTP request.
+By default, no finalizer is registered.
+
+				
+				
+			
+				
+				<h3 id="ClientRequestEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=3287:3348#L104">ClientRequestEncoder</a>
+					<a class="permalink" href="index.html#ClientRequestEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientRequestEncoder(enc <a href="index.html#EncodeRequestFunc">EncodeRequestFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientRequestEncoder sets the func used to encode the request params to JSON.
+If not set, DefaultRequestEncoder is used.
+
+				
+				
+			
+				
+				<h3 id="ClientRequestIDGenerator">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=3896:3960#L122">ClientRequestIDGenerator</a>
+					<a class="permalink" href="index.html#ClientRequestIDGenerator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientRequestIDGenerator(g <a href="index.html#RequestIDGenerator">RequestIDGenerator</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientRequestIDGenerator is executed before each request to generate an ID
+for the request.
+By default, AutoIncrementRequestID is used.
+
+				
+				
+			
+				
+				<h3 id="ClientResponseDecoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=3526:3589#L110">ClientResponseDecoder</a>
+					<a class="permalink" href="index.html#ClientResponseDecoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientResponseDecoder(dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientResponseDecoder sets the func used to decode the response params from
+JSON. If not set, DefaultResponseDecoder is used.
+
+				
+				
+			
+				
+				<h3 id="SetClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=2212:2272#L79">SetClient</a>
+					<a class="permalink" href="index.html#SetClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetClient(client <a href="../index.html">httptransport</a>.<a href="../index.html#HTTPClient">HTTPClient</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>SetClient sets the underlying HTTP client used for requests.
+By default, http.DefaultClient is used.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=705:799#L17">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from raw JSON
+It&apos;s designed to be used in JSON RPC servers, for server-side endpoints.
+One straightforward DecodeRequestFunc could be something that unmarshals
+JSON from the request body to the concrete request type.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, <a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) (request interface{}, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=1843:1932#L38">DecodeResponseFunc</a>
+				<a class="permalink" href="index.html#DecodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeResponseFunc extracts a user-domain response object from an JSON RPC
+response object. It&apos;s designed to be used in JSON RPC clients, for
+client-side endpoints. It is the responsibility of this function to decide
+whether any error present in the JSON RPC response should be surfaced to the
+client endpoint.
+
+			<pre>type DecodeResponseFunc func(<a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, <a href="index.html#Response">Response</a>) (response interface{}, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=1421:1515#L31">EncodeRequestFunc</a>
+				<a class="permalink" href="index.html#EncodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeRequestFunc encodes the given request object to raw JSON.
+It&apos;s designed to be used in JSON RPC clients, for client-side
+endpoints. One straightforward EncodeResponseFunc could be something that
+JSON encodes the object directly.
+
+			<pre>type EncodeRequestFunc func(<a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, interface{}) (request <a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=1055:1151#L23">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object to a JSON RPC result.
+It&apos;s designed to be used in HTTP servers, for server-side endpoints.
+One straightforward EncodeResponseFunc could be something that JSON encodes
+the object directly.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, interface{}) (response <a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EndpointCodec">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=184:298#L4">EndpointCodec</a>
+				<a class="permalink" href="index.html#EndpointCodec">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointCodec defines a server Endpoint and its associated codecs
+
+			<pre>type EndpointCodec struct {
+<span id="EndpointCodec.Endpoint"></span>    Endpoint <a href="../../../endpoint/index.html">endpoint</a>.<a href="../../../endpoint/index.html#Endpoint">Endpoint</a>
+<span id="EndpointCodec.Decode"></span>    Decode   <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>
+<span id="EndpointCodec.Encode"></span>    Encode   <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EndpointCodecMap">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/encode_decode.go?s=372:418#L11">EndpointCodecMap</a>
+				<a class="permalink" href="index.html#EndpointCodecMap">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndpointCodecMap maps the Request.Method to the proper EndpointCodec
+
+			<pre>type EndpointCodecMap map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="index.html#EndpointCodec">EndpointCodec</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Error">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/error.go?s=156:295#L1">Error</a>
+				<a class="permalink" href="index.html#Error">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Error defines a JSON RPC error that can be returned
+in a Response from the spec
+<a href="http://www.jsonrpc.org/specification#error_object">http://www.jsonrpc.org/specification#error_object</a>
+
+			<pre>type Error struct {
+<span id="Error.Code"></span>    Code    <a href="../../../../../../builtin/index.html#int">int</a>         `json:&#34;code&#34;`
+<span id="Error.Message"></span>    Message <a href="../../../../../../builtin/index.html#string">string</a>      `json:&#34;message&#34;`
+<span id="Error.Data"></span>    Data    interface{} `json:&#34;data,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Error.Error">func (Error) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/error.go?s=324:353#L3">Error</a>
+					<a class="permalink" href="index.html#Error.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#Error">Error</a>) Error() <a href="../../../../../../builtin/index.html#string">string</a></pre>
+				<p>Error implements error.
+
+				
+				
+				
+			
+				
+				<h3 id="Error.ErrorCode">func (Error) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/error.go?s=504:534#L11">ErrorCode</a>
+					<a class="permalink" href="index.html#Error.ErrorCode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#Error">Error</a>) ErrorCode() <a href="../../../../../../builtin/index.html#int">int</a></pre>
+				<p>ErrorCode returns the JSON RPC error code associated with the error.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrorCoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=6231:6277#L207">ErrorCoder</a>
+				<a class="permalink" href="index.html#ErrorCoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorCoder is checked by DefaultErrorEncoder. If an error value implements
+ErrorCoder, the integer result of ErrorCode() will be used as the JSONRPC
+error code when encoding the error.
+<p>By default, InternalError (-32603) is used.
+
+			<pre>type ErrorCoder interface {
+    ErrorCode() <a href="../../../../../../builtin/index.html#int">int</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Request">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=176:360#L1">Request</a>
+				<a class="permalink" href="index.html#Request">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Request defines a JSON RPC request from the spec
+<a href="http://www.jsonrpc.org/specification#request_object">http://www.jsonrpc.org/specification#request_object</a>
+
+			<pre>type Request struct {
+<span id="Request.JSONRPC"></span>    JSONRPC <a href="../../../../../../builtin/index.html#string">string</a>          `json:&#34;jsonrpc&#34;`
+<span id="Request.Method"></span>    Method  <a href="../../../../../../builtin/index.html#string">string</a>          `json:&#34;method&#34;`
+<span id="Request.Params"></span>    Params  <a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a> `json:&#34;params&#34;`
+<span id="Request.ID"></span>    ID      *<a href="index.html#RequestID">RequestID</a>      `json:&#34;id&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=1024:1102#L26">RequestFunc</a>
+				<a class="permalink" href="index.html#RequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestFunc may take information from decoded json body and place in
+request context. In Servers, RequestFuncs are executed after json is parsed
+but prior to invoking the codec
+
+			<pre>type RequestFunc func(<a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>, <a href="index.html#Request">Request</a>) <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestID">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=696:836#L14">RequestID</a>
+				<a class="permalink" href="index.html#RequestID">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestID defines a request ID that can be string, number, or null.
+An identifier established by the Client that MUST contain a String,
+Number, or NULL value if included.
+If it is not included it is assumed to be a notification.
+The value SHOULD normally not be Null and
+Numbers SHOULD NOT contain fractional parts.
+
+			<pre>type RequestID struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RequestID.Float32">func (*RequestID) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=1897:1944#L55">Float32</a>
+					<a class="permalink" href="index.html#RequestID.Float32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#RequestID">RequestID</a>) Float32() (<a href="../../../../../../builtin/index.html#float32">float32</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Float32 returns the ID as a float value.
+An error is returned if the ID can&apos;t be treated as an float.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestID.Int">func (*RequestID) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=1711:1750#L49">Int</a>
+					<a class="permalink" href="index.html#RequestID.Int">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#RequestID">RequestID</a>) Int() (<a href="../../../../../../builtin/index.html#int">int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Int returns the ID as an integer value.
+An error is returned if the ID can&apos;t be treated as an int.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestID.MarshalJSON">func (*RequestID) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=1368:1418#L37">MarshalJSON</a>
+					<a class="permalink" href="index.html#RequestID.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#RequestID">RequestID</a>) MarshalJSON() ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RequestID.String">func (*RequestID) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=2096:2141#L61">String</a>
+					<a class="permalink" href="index.html#RequestID.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#RequestID">RequestID</a>) String() (<a href="../../../../../../builtin/index.html#string">string</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>String returns the ID as a string value.
+An error is returned if the ID can&apos;t be treated as an string.
+
+				
+				
+				
+			
+				
+				<h3 id="RequestID.UnmarshalJSON">func (*RequestID) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=1148:1198#L29">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#RequestID.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (id *<a href="index.html#RequestID">RequestID</a>) UnmarshalJSON(b []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON satisfies json.Unmarshaler
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RequestIDGenerator">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=3688:3749#L115">RequestIDGenerator</a>
+				<a class="permalink" href="index.html#RequestIDGenerator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestIDGenerator returns an ID for the request.
+
+			<pre>type RequestIDGenerator interface {
+    Generate() interface{}
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAutoIncrementID">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/client.go?s=6707:6762#L227">NewAutoIncrementID</a>
+					<a class="permalink" href="index.html#NewAutoIncrementID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAutoIncrementID(init <a href="../../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#RequestIDGenerator">RequestIDGenerator</a></pre>
+				<p>NewAutoIncrementID returns an auto-incrementing request ID generator,
+initialised with the given value.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Response">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/request_response_types.go?s=2296:2500#L67">Response</a>
+				<a class="permalink" href="index.html#Response">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Response defines a JSON RPC response from the spec
+<a href="http://www.jsonrpc.org/specification#response_object">http://www.jsonrpc.org/specification#response_object</a>
+
+			<pre>type Response struct {
+<span id="Response.JSONRPC"></span>    JSONRPC <a href="../../../../../../builtin/index.html#string">string</a>          `json:&#34;jsonrpc&#34;`
+<span id="Response.Result"></span>    Result  <a href="../../../../../../encoding/json/index.html">json</a>.<a href="../../../../../../encoding/json/index.html#RawMessage">RawMessage</a> `json:&#34;result,omitempty&#34;`
+<span id="Response.Error"></span>    Error   *<a href="index.html#Error">Error</a>          `json:&#34;error,omitempty&#34;`
+<span id="Response.ID"></span>    ID      *<a href="index.html#RequestID">RequestID</a>      `json:&#34;id&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=286:572#L9">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server wraps an endpoint and implements http.Handler.
+
+			<pre>type Server struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=642:716#L20">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer(
+    ecm <a href="index.html#EndpointCodecMap">EndpointCodecMap</a>,
+    options ...<a href="index.html#ServerOption">ServerOption</a>,
+) *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer constructs a new server, which implements http.Server.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.ServeHTTP">func (Server) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=3035:3100#L82">ServeHTTP</a>
+					<a class="permalink" href="index.html#Server.ServeHTTP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Server">Server</a>) ServeHTTP(w <a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, r *<a href="../../../../../../net/http/index.html">http</a>.<a href="../../../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>ServeHTTP implements http.Handler.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=949:980#L36">ServerOption</a>
+				<a class="permalink" href="index.html#ServerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerOption sets an optional parameter for servers.
+
+			<pre>type ServerOption func(*<a href="index.html#Server">Server</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ServerAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=1782:1854#L54">ServerAfter</a>
+					<a class="permalink" href="index.html#ServerAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerAfter(after ...<a href="../index.html">httptransport</a>.<a href="../index.html#ServerResponseFunc">ServerResponseFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerAfter functions are executed on the HTTP response writer after the
+endpoint is invoked, but before anything is written to the client.
+
+				
+				
+			
+				
+				<h3 id="ServerBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=1082:1149#L40">ServerBefore</a>
+					<a class="permalink" href="index.html#ServerBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerBefore(before ...<a href="../index.html">httptransport</a>.<a href="../index.html#RequestFunc">RequestFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerBefore functions are executed on the HTTP request object before the
+request is decoded.
+
+				
+				
+			
+				
+				<h3 id="ServerBeforeCodec">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=1485:1548#L48">ServerBeforeCodec</a>
+					<a class="permalink" href="index.html#ServerBeforeCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerBeforeCodec(beforeCodec ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerBeforeCodec functions are executed after the JSON request body has been
+decoded, but before the method&apos;s decoder is called. This provides an opportunity
+for middleware to inspect the contents of the rpc request before being passed
+to the codec.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=2209:2276#L62">ServerErrorEncoder</a>
+					<a class="permalink" href="index.html#ServerErrorEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorEncoder(ee <a href="../index.html">httptransport</a>.<a href="../index.html#ErrorEncoder">ErrorEncoder</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorEncoder is used to encode errors to the http.ResponseWriter
+whenever they&apos;re encountered in the processing of a request. Clients can
+use this to provide custom error formatting and response codes. By default,
+errors will be written with the DefaultErrorEncoder.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=2663:2717#L71">ServerErrorLogger</a>
+					<a class="permalink" href="index.html#ServerErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorLogger(logger <a href="../../../../log/index.html">log</a>.<a href="../../../../log/index.html#Logger">Logger</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorLogger is used to log non-terminal errors. By default, no errors
+are logged. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom ServerErrorEncoder or ServerFinalizer, both of which have access to
+the context.
+
+				
+				
+			
+				
+				<h3 id="ServerFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/jsonrpc/server.go?s=2877:2947#L77">ServerFinalizer</a>
+					<a class="permalink" href="index.html#ServerFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerFinalizer(f <a href="../index.html">httptransport</a>.<a href="../index.html#ServerFinalizerFunc">ServerFinalizerFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerFinalizer is executed at the end of every HTTP request.
+By default, no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

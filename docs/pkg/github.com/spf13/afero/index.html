@@ -1,0 +1,4306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>afero - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package afero
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/spf13/afero"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DirExists">func DirExists(fs Fs, path string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#Exists">func Exists(fs Fs, path string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#FileContainsAnyBytes">func FileContainsAnyBytes(fs Fs, filename string, subslices [][]byte) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#FileContainsBytes">func FileContainsBytes(fs Fs, filename string, subslice []byte) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#FullBaseFsPath">func FullBaseFsPath(basePathFs *BasePathFs, relativePath string) string</a></dd>
+			
+				
+				<dd><a href="index.html#GetTempDir">func GetTempDir(fs Fs, subPath string) string</a></dd>
+			
+				
+				<dd><a href="index.html#Glob">func Glob(fs Fs, pattern string) (matches []string, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#IsDir">func IsDir(fs Fs, path string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#IsEmpty">func IsEmpty(fs Fs, path string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NeuterAccents">func NeuterAccents(s string) string</a></dd>
+			
+				
+				<dd><a href="index.html#ReadAll">func ReadAll(r io.Reader) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadDir">func ReadDir(fs Fs, dirname string) ([]os.FileInfo, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadFile">func ReadFile(fs Fs, filename string) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#SafeWriteReader">func SafeWriteReader(fs Fs, path string, r io.Reader) (err error)</a></dd>
+			
+				
+				<dd><a href="index.html#TempDir">func TempDir(fs Fs, dir, prefix string) (name string, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#UnicodeSanitize">func UnicodeSanitize(s string) string</a></dd>
+			
+				
+				<dd><a href="index.html#Walk">func Walk(fs Fs, root string, walkFn filepath.WalkFunc) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteFile">func WriteFile(fs Fs, filename string, data []byte, perm os.FileMode) error</a></dd>
+			
+				
+				<dd><a href="index.html#WriteReader">func WriteReader(fs Fs, path string, r io.Reader) (err error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Afero">type Afero</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.DirExists">func (a Afero) DirExists(path string) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.Exists">func (a Afero) Exists(path string) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.FileContainsAnyBytes">func (a Afero) FileContainsAnyBytes(filename string, subslices [][]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.FileContainsBytes">func (a Afero) FileContainsBytes(filename string, subslice []byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.GetTempDir">func (a Afero) GetTempDir(subPath string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.IsDir">func (a Afero) IsDir(path string) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.IsEmpty">func (a Afero) IsEmpty(path string) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.ReadDir">func (a Afero) ReadDir(dirname string) ([]os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.ReadFile">func (a Afero) ReadFile(filename string) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.SafeWriteReader">func (a Afero) SafeWriteReader(path string, r io.Reader) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.TempDir">func (a Afero) TempDir(dir, prefix string) (name string, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.TempFile">func (a Afero) TempFile(dir, pattern string) (f File, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.Walk">func (a Afero) Walk(root string, walkFn filepath.WalkFunc) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.WriteFile">func (a Afero) WriteFile(filename string, data []byte, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Afero.WriteReader">func (a Afero) WriteReader(path string, r io.Reader) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BasePathFile">type BasePathFile</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFile.Name">func (f *BasePathFile) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFile.ReadDir">func (f *BasePathFile) ReadDir(n int) ([]fs.DirEntry, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BasePathFs">type BasePathFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Chmod">func (b *BasePathFs) Chmod(name string, mode os.FileMode) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Chown">func (b *BasePathFs) Chown(name string, uid, gid int) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Chtimes">func (b *BasePathFs) Chtimes(name string, atime, mtime time.Time) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Create">func (b *BasePathFs) Create(name string) (f File, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.LstatIfPossible">func (b *BasePathFs) LstatIfPossible(name string) (os.FileInfo, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Mkdir">func (b *BasePathFs) Mkdir(name string, mode os.FileMode) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.MkdirAll">func (b *BasePathFs) MkdirAll(name string, mode os.FileMode) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Name">func (b *BasePathFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Open">func (b *BasePathFs) Open(name string) (f File, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.OpenFile">func (b *BasePathFs) OpenFile(name string, flag int, mode os.FileMode) (f File, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.ReadlinkIfPossible">func (b *BasePathFs) ReadlinkIfPossible(name string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.RealPath">func (b *BasePathFs) RealPath(name string) (path string, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Remove">func (b *BasePathFs) Remove(name string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.RemoveAll">func (b *BasePathFs) RemoveAll(name string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Rename">func (b *BasePathFs) Rename(oldname, newname string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.Stat">func (b *BasePathFs) Stat(name string) (fi os.FileInfo, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasePathFs.SymlinkIfPossible">func (b *BasePathFs) SymlinkIfPossible(oldname, newname string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CacheOnReadFs">type CacheOnReadFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Chmod">func (u *CacheOnReadFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Chown">func (u *CacheOnReadFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Chtimes">func (u *CacheOnReadFs) Chtimes(name string, atime, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Create">func (u *CacheOnReadFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Mkdir">func (u *CacheOnReadFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.MkdirAll">func (u *CacheOnReadFs) MkdirAll(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Name">func (u *CacheOnReadFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Open">func (u *CacheOnReadFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.OpenFile">func (u *CacheOnReadFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Remove">func (u *CacheOnReadFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.RemoveAll">func (u *CacheOnReadFs) RemoveAll(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Rename">func (u *CacheOnReadFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheOnReadFs.Stat">func (u *CacheOnReadFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CopyOnWriteFs">type CopyOnWriteFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Chmod">func (u *CopyOnWriteFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Chown">func (u *CopyOnWriteFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Chtimes">func (u *CopyOnWriteFs) Chtimes(name string, atime, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Create">func (u *CopyOnWriteFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.LstatIfPossible">func (u *CopyOnWriteFs) LstatIfPossible(name string) (os.FileInfo, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Mkdir">func (u *CopyOnWriteFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.MkdirAll">func (u *CopyOnWriteFs) MkdirAll(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Name">func (u *CopyOnWriteFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Open">func (u *CopyOnWriteFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.OpenFile">func (u *CopyOnWriteFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.ReadlinkIfPossible">func (u *CopyOnWriteFs) ReadlinkIfPossible(name string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Remove">func (u *CopyOnWriteFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.RemoveAll">func (u *CopyOnWriteFs) RemoveAll(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Rename">func (u *CopyOnWriteFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.Stat">func (u *CopyOnWriteFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyOnWriteFs.SymlinkIfPossible">func (u *CopyOnWriteFs) SymlinkIfPossible(oldname, newname string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DirsMerger">type DirsMerger</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#File">type File</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TempFile">func TempFile(fs Fs, dir, pattern string) (f File, err error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FromIOFS">type FromIOFS</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Chmod">func (f FromIOFS) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Chown">func (f FromIOFS) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Chtimes">func (f FromIOFS) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Create">func (f FromIOFS) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Mkdir">func (f FromIOFS) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.MkdirAll">func (f FromIOFS) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Name">func (f FromIOFS) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Open">func (f FromIOFS) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.OpenFile">func (f FromIOFS) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Remove">func (f FromIOFS) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.RemoveAll">func (f FromIOFS) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Rename">func (f FromIOFS) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromIOFS.Stat">func (f FromIOFS) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Fs">type Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBasePathFs">func NewBasePathFs(source Fs, path string) Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCacheOnReadFs">func NewCacheOnReadFs(base Fs, layer Fs, cacheTime time.Duration) Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCopyOnWriteFs">func NewCopyOnWriteFs(base Fs, layer Fs) Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemMapFs">func NewMemMapFs() Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewOsFs">func NewOsFs() Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReadOnlyFs">func NewReadOnlyFs(source Fs) Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewRegexpFs">func NewRegexpFs(source Fs, re *regexp.Regexp) Fs</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HttpFs">type HttpFs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewHttpFs">func NewHttpFs(source Fs) *HttpFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Chmod">func (h HttpFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Chown">func (h HttpFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Chtimes">func (h HttpFs) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Create">func (h HttpFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Dir">func (h HttpFs) Dir(s string) *httpDir</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Mkdir">func (h HttpFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.MkdirAll">func (h HttpFs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Name">func (h HttpFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Open">func (h HttpFs) Open(name string) (http.File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.OpenFile">func (h HttpFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Remove">func (h HttpFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.RemoveAll">func (h HttpFs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Rename">func (h HttpFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HttpFs.Stat">func (h HttpFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IOFS">type IOFS</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewIOFS">func NewIOFS(fs Fs) IOFS</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IOFS.Glob">func (iofs IOFS) Glob(pattern string) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IOFS.Open">func (iofs IOFS) Open(name string) (fs.File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IOFS.ReadDir">func (iofs IOFS) ReadDir(name string) ([]fs.DirEntry, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IOFS.ReadFile">func (iofs IOFS) ReadFile(name string) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IOFS.Sub">func (iofs IOFS) Sub(dir string) (fs.FS, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LinkReader">type LinkReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Linker">type Linker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Lstater">type Lstater</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MemMapFs">type MemMapFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Chmod">func (m *MemMapFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Chown">func (m *MemMapFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Chtimes">func (m *MemMapFs) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Create">func (m *MemMapFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.List">func (m *MemMapFs) List()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.LstatIfPossible">func (m *MemMapFs) LstatIfPossible(name string) (os.FileInfo, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Mkdir">func (m *MemMapFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.MkdirAll">func (m *MemMapFs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Name">func (*MemMapFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Open">func (m *MemMapFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.OpenFile">func (m *MemMapFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Remove">func (m *MemMapFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.RemoveAll">func (m *MemMapFs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Rename">func (m *MemMapFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemMapFs.Stat">func (m *MemMapFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#OsFs">type OsFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Chmod">func (OsFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Chown">func (OsFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Chtimes">func (OsFs) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Create">func (OsFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.LstatIfPossible">func (OsFs) LstatIfPossible(name string) (os.FileInfo, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Mkdir">func (OsFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.MkdirAll">func (OsFs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Name">func (OsFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Open">func (OsFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.OpenFile">func (OsFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.ReadlinkIfPossible">func (OsFs) ReadlinkIfPossible(name string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Remove">func (OsFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.RemoveAll">func (OsFs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Rename">func (OsFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.Stat">func (OsFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#OsFs.SymlinkIfPossible">func (OsFs) SymlinkIfPossible(oldname, newname string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ReadOnlyFs">type ReadOnlyFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Chmod">func (r *ReadOnlyFs) Chmod(n string, m os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Chown">func (r *ReadOnlyFs) Chown(n string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Chtimes">func (r *ReadOnlyFs) Chtimes(n string, a, m time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Create">func (r *ReadOnlyFs) Create(n string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.LstatIfPossible">func (r *ReadOnlyFs) LstatIfPossible(name string) (os.FileInfo, bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Mkdir">func (r *ReadOnlyFs) Mkdir(n string, p os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.MkdirAll">func (r *ReadOnlyFs) MkdirAll(n string, p os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Name">func (r *ReadOnlyFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Open">func (r *ReadOnlyFs) Open(n string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.OpenFile">func (r *ReadOnlyFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.ReadDir">func (r *ReadOnlyFs) ReadDir(name string) ([]os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.ReadlinkIfPossible">func (r *ReadOnlyFs) ReadlinkIfPossible(name string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Remove">func (r *ReadOnlyFs) Remove(n string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.RemoveAll">func (r *ReadOnlyFs) RemoveAll(p string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Rename">func (r *ReadOnlyFs) Rename(o, n string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.Stat">func (r *ReadOnlyFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReadOnlyFs.SymlinkIfPossible">func (r *ReadOnlyFs) SymlinkIfPossible(oldname, newname string) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RegexpFile">type RegexpFile</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Close">func (f *RegexpFile) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Name">func (f *RegexpFile) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Read">func (f *RegexpFile) Read(s []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.ReadAt">func (f *RegexpFile) ReadAt(s []byte, o int64) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Readdir">func (f *RegexpFile) Readdir(c int) (fi []os.FileInfo, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Readdirnames">func (f *RegexpFile) Readdirnames(c int) (n []string, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Seek">func (f *RegexpFile) Seek(o int64, w int) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Stat">func (f *RegexpFile) Stat() (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Sync">func (f *RegexpFile) Sync() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Truncate">func (f *RegexpFile) Truncate(s int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.Write">func (f *RegexpFile) Write(s []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.WriteAt">func (f *RegexpFile) WriteAt(s []byte, o int64) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFile.WriteString">func (f *RegexpFile) WriteString(s string) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RegexpFs">type RegexpFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Chmod">func (r *RegexpFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Chown">func (r *RegexpFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Chtimes">func (r *RegexpFs) Chtimes(name string, a, m time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Create">func (r *RegexpFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Mkdir">func (r *RegexpFs) Mkdir(n string, p os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.MkdirAll">func (r *RegexpFs) MkdirAll(n string, p os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Name">func (r *RegexpFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Open">func (r *RegexpFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.OpenFile">func (r *RegexpFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Remove">func (r *RegexpFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.RemoveAll">func (r *RegexpFs) RemoveAll(p string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Rename">func (r *RegexpFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#RegexpFs.Stat">func (r *RegexpFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Symlinker">type Symlinker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#UnionFile">type UnionFile</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Close">func (f *UnionFile) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Name">func (f *UnionFile) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Read">func (f *UnionFile) Read(s []byte) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.ReadAt">func (f *UnionFile) ReadAt(s []byte, o int64) (int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Readdir">func (f *UnionFile) Readdir(c int) (ofi []os.FileInfo, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Readdirnames">func (f *UnionFile) Readdirnames(c int) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Seek">func (f *UnionFile) Seek(o int64, w int) (pos int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Stat">func (f *UnionFile) Stat() (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Sync">func (f *UnionFile) Sync() (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Truncate">func (f *UnionFile) Truncate(s int64) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.Write">func (f *UnionFile) Write(s []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.WriteAt">func (f *UnionFile) WriteAt(s []byte, o int64) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#UnionFile.WriteString">func (f *UnionFile) WriteString(s string) (n int, err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/afero.go">afero.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go">basepath.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go">cacheOnReadFs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/const_bsds.go">const_bsds.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go">copyOnWriteFs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go">httpFs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go">iofs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go">ioutil.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/lstater.go">lstater.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/match.go">match.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go">memmap.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/os.go">os.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/path.go">path.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go">readonlyfs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go">regexpfs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/symlink.go">symlink.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go">unionFile.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const <span id="BADFD">BADFD</span> = <a href="../../../syscall/index.html">syscall</a>.<a href="../../../syscall/index.html#EBADF">EBADF</a></pre>
+			
+				<p>Filepath separator defined by os.Separator.
+
+				<pre>const <span id="FilePathSeparator">FilePathSeparator</span> = <a href="../../../builtin/index.html#string">string</a>(<a href="../../../path/filepath/index.html">filepath</a>.<a href="../../../path/filepath/index.html#Separator">Separator</a>)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrFileClosed">ErrFileClosed</span>        = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;File is closed&#34;)
+    <span id="ErrOutOfRange">ErrOutOfRange</span>        = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;out of range&#34;)
+    <span id="ErrTooLarge">ErrTooLarge</span>          = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;too large&#34;)
+    <span id="ErrFileNotFound">ErrFileNotFound</span>      = <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#ErrNotExist">ErrNotExist</a>
+    <span id="ErrFileExists">ErrFileExists</span>        = <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#ErrExist">ErrExist</a>
+    <span id="ErrDestinationExists">ErrDestinationExists</span> = <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#ErrExist">ErrExist</a>
+)</pre>
+			
+				<p>ErrNoReadlink is the error that will be wrapped in an os.Path if a file system
+does not support the readlink operation either directly or through its delegated filesystem.
+As expressed by support for the LinkReader interface.
+
+				<pre>var <span id="ErrNoReadlink">ErrNoReadlink</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;readlink not supported&#34;)</pre>
+			
+				<p>ErrNoSymlink is the error that will be wrapped in an os.LinkError if a file system
+does not support Symlink&apos;s either directly or through its delegated filesystem.
+As expressed by support for the Linker interface.
+
+				<pre>var <span id="ErrNoSymlink">ErrNoSymlink</span> = <a href="../../../errors/index.html">errors</a>.<a href="../../../errors/index.html#New">New</a>(&#34;symlink not supported&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DirExists">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=5707:5755#L245">DirExists</a>
+				<a class="permalink" href="index.html#DirExists">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DirExists(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>DirExists checks if a path exists and is a directory.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Exists">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=6886:6931#L302">Exists</a>
+				<a class="permalink" href="index.html#Exists">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Exists(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>Check if a file or directory exists.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileContainsAnyBytes">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=4457:4540#L178">FileContainsAnyBytes</a>
+				<a class="permalink" href="index.html#FileContainsAnyBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FileContainsAnyBytes(fs <a href="index.html#Fs">Fs</a>, filename <a href="../../../builtin/index.html#string">string</a>, subslices [][]<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>Check if a file contains any of the specified byte slices.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileContainsBytes">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=4033:4110#L163">FileContainsBytes</a>
+				<a class="permalink" href="index.html#FileContainsBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FileContainsBytes(fs <a href="index.html#Fs">Fs</a>, filename <a href="../../../builtin/index.html#string">string</a>, subslice []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>Check if a file contains a specified byte slice.
+
+			
+			
+
+		
+			
+			
+			<h2 id="FullBaseFsPath">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=7068:7139#L313">FullBaseFsPath</a>
+				<a class="permalink" href="index.html#FullBaseFsPath">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FullBaseFsPath(basePathFs *<a href="index.html#BasePathFs">BasePathFs</a>, relativePath <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetTempDir">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=2495:2540#L94">GetTempDir</a>
+				<a class="permalink" href="index.html#GetTempDir">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetTempDir(fs <a href="index.html#Fs">Fs</a>, subPath <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+			<p>GetTempDir returns the default temp directory with trailing slash
+if subPath is not empty then it will be created recursively with mode 777 rwx rwx rwx
+
+			
+			
+
+		
+			
+			
+			<h2 id="Glob">func <a href="http://localhost:6060/src/github.com/spf13/afero/match.go?s=1246:1308#L24">Glob</a>
+				<a class="permalink" href="index.html#Glob">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Glob(fs <a href="index.html#Fs">Fs</a>, pattern <a href="../../../builtin/index.html#string">string</a>) (matches []<a href="../../../builtin/index.html#string">string</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>Glob returns the names of all files matching pattern or nil
+if there is no matching file. The syntax of patterns is the same
+as in Match. The pattern may describe hierarchical names such as
+/usr/*/bin/ed (assuming the Separator is &apos;/&apos;).
+<p>Glob ignores file system errors such as I/O errors reading directories.
+The only possible returned error is ErrBadPattern, when pattern
+is malformed.
+<p>This was adapted from (<a href="http://golang.org/pkg/path/filepath">http://golang.org/pkg/path/filepath</a>) and uses several
+built-ins from that package.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsDir">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=6034:6078#L261">IsDir</a>
+				<a class="permalink" href="index.html#IsDir">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsDir(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>IsDir checks if a given path is a directory.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsEmpty">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=6314:6360#L274">IsEmpty</a>
+				<a class="permalink" href="index.html#IsEmpty">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsEmpty(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>IsEmpty checks if a given file or directory is empty.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NeuterAccents">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=3660:3695#L151">NeuterAccents</a>
+				<a class="permalink" href="index.html#NeuterAccents">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NeuterAccents(s <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+			<p>Transform characters with accents into plain forms.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadAll">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=3536:3577#L104">ReadAll</a>
+				<a class="permalink" href="index.html#ReadAll">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadAll(r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			<p>ReadAll reads from r until an error or EOF and returns the data it read.
+A successful call returns err == nil, not err == EOF. Because ReadAll is
+defined to read from src until EOF, it does not treat an EOF from Read
+as an error to be reported.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadDir">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=1208:1266#L33">ReadDir</a>
+				<a class="permalink" href="index.html#ReadDir">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadDir(fs <a href="index.html#Fs">Fs</a>, dirname <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ReadFile">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=1789:1842#L55">ReadFile</a>
+				<a class="permalink" href="index.html#ReadFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadFile(fs <a href="index.html#Fs">Fs</a>, filename <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SafeWriteReader">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=1766:1831#L59">SafeWriteReader</a>
+				<a class="permalink" href="index.html#SafeWriteReader">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SafeWriteReader(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>, r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="TempDir">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=6696:6760#L207">TempDir</a>
+				<a class="permalink" href="index.html#TempDir">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TempDir(fs <a href="index.html#Fs">Fs</a>, dir, prefix <a href="../../../builtin/index.html#string">string</a>) (name <a href="../../../builtin/index.html#string">string</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="UnicodeSanitize">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=3214:3251#L127">UnicodeSanitize</a>
+				<a class="permalink" href="index.html#UnicodeSanitize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UnicodeSanitize(s <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+			<p>Rewrite string to remove non-standard path characters
+
+			
+			
+
+		
+			
+			
+			<h2 id="Walk">func <a href="http://localhost:6060/src/github.com/spf13/afero/path.go?s=2733:2794#L90">Walk</a>
+				<a class="permalink" href="index.html#Walk">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Walk(fs <a href="index.html#Fs">Fs</a>, root <a href="../../../builtin/index.html#string">string</a>, walkFn <a href="../../../path/filepath/index.html">filepath</a>.<a href="../../../path/filepath/index.html#WalkFunc">WalkFunc</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="WriteFile">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=3928:4003#L115">WriteFile</a>
+				<a class="permalink" href="index.html#WriteFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteFile(fs <a href="index.html#Fs">Fs</a>, filename <a href="../../../builtin/index.html#string">string</a>, data []<a href="../../../builtin/index.html#byte">byte</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="WriteReader">func <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=1188:1249#L31">WriteReader</a>
+				<a class="permalink" href="index.html#WriteReader">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WriteReader(fs <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>, r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Afero">type <a href="http://localhost:6060/src/github.com/spf13/afero/afero.go?s=1099:1124#L22">Afero</a>
+				<a class="permalink" href="index.html#Afero">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Afero struct {
+    <a href="index.html#Fs">Fs</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Afero.DirExists">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=5563:5614#L240">DirExists</a>
+					<a class="permalink" href="index.html#Afero.DirExists">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) DirExists(path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.Exists">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=6765:6813#L297">Exists</a>
+					<a class="permalink" href="index.html#Afero.Exists">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) Exists(path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.FileContainsAnyBytes">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=4247:4333#L173">FileContainsAnyBytes</a>
+					<a class="permalink" href="index.html#Afero.FileContainsAnyBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) FileContainsAnyBytes(filename <a href="../../../builtin/index.html#string">string</a>, subslices [][]<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.FileContainsBytes">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=3843:3923#L158">FileContainsBytes</a>
+					<a class="permalink" href="index.html#Afero.FileContainsBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) FileContainsBytes(filename <a href="../../../builtin/index.html#string">string</a>, subslice []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.GetTempDir">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=2249:2297#L88">GetTempDir</a>
+					<a class="permalink" href="index.html#Afero.GetTempDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) GetTempDir(subPath <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.IsDir">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=5907:5954#L256">IsDir</a>
+					<a class="permalink" href="index.html#Afero.IsDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) IsDir(path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.IsEmpty">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=6174:6223#L269">IsEmpty</a>
+					<a class="permalink" href="index.html#Afero.IsEmpty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) IsEmpty(path <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.ReadDir">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=1110:1171#L29">ReadDir</a>
+					<a class="permalink" href="index.html#Afero.ReadDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) ReadDir(dirname <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadDir reads the directory named by dirname and returns
+a list of sorted directory entries.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.ReadFile">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=1694:1750#L51">ReadFile</a>
+					<a class="permalink" href="index.html#Afero.ReadFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) ReadFile(filename <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReadFile reads the file named by filename and returns the contents.
+A successful call returns err == nil, not err == EOF. Because ReadFile
+reads the whole file, it does not treat an EOF from Read as an error
+to be reported.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.SafeWriteReader">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=1653:1721#L55">SafeWriteReader</a>
+					<a class="permalink" href="index.html#Afero.SafeWriteReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) SafeWriteReader(path <a href="../../../builtin/index.html#string">string</a>, r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Same as WriteReader but checks to see if file/directory already exists.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.TempDir">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=6589:6656#L204">TempDir</a>
+					<a class="permalink" href="index.html#Afero.TempDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) TempDir(dir, prefix <a href="../../../builtin/index.html#string">string</a>) (name <a href="../../../builtin/index.html#string">string</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>TempDir creates a new temporary directory in the directory dir
+with a name beginning with prefix and returns the path of the
+new directory.  If dir is the empty string, TempDir uses the
+default directory for temporary files (see os.TempDir).
+Multiple programs calling TempDir simultaneously
+will not choose the same directory.  It is the caller&apos;s responsibility
+to remove the directory when no longer needed.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.TempFile">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=5447:5511#L164">TempFile</a>
+					<a class="permalink" href="index.html#Afero.TempFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) TempFile(dir, pattern <a href="../../../builtin/index.html#string">string</a>) (f <a href="index.html#File">File</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>TempFile creates a new temporary file in the directory dir,
+opens the file for reading and writing, and returns the resulting *os.File.
+The filename is generated by taking pattern and adding a random
+string to the end. If pattern includes a &quot;*&quot;, the random string
+replaces the last &quot;*&quot;.
+If dir is the empty string, TempFile uses the default directory
+for temporary files (see os.TempDir).
+Multiple programs calling TempFile simultaneously
+will not choose the same file. The caller can use f.Name()
+to find the pathname of the file. It is the caller&apos;s responsibility
+to remove the file when no longer needed.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.Walk">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/path.go?s=2630:2694#L86">Walk</a>
+					<a class="permalink" href="index.html#Afero.Walk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) Walk(root <a href="../../../builtin/index.html#string">string</a>, walkFn <a href="../../../path/filepath/index.html">filepath</a>.<a href="../../../path/filepath/index.html#WalkFunc">WalkFunc</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Afero.WriteFile">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=3798:3876#L111">WriteFile</a>
+					<a class="permalink" href="index.html#Afero.WriteFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) WriteFile(filename <a href="../../../builtin/index.html#string">string</a>, data []<a href="../../../builtin/index.html#byte">byte</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>WriteFile writes data to a file named by filename.
+If the file does not exist, WriteFile creates it with permissions perm;
+otherwise WriteFile truncates it before writing.
+
+				
+				
+				
+			
+				
+				<h3 id="Afero.WriteReader">func (Afero) <a href="http://localhost:6060/src/github.com/spf13/afero/util.go?s=1083:1147#L27">WriteReader</a>
+					<a class="permalink" href="index.html#Afero.WriteReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#Afero">Afero</a>) WriteReader(path <a href="../../../builtin/index.html#string">string</a>, r <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Takes a reader and a path and writes the content
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BasePathFile">type <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=641:688#L20">BasePathFile</a>
+				<a class="permalink" href="index.html#BasePathFile">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BasePathFile struct {
+    <a href="index.html#File">File</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BasePathFile.Name">func (*BasePathFile) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=690:726#L25">Name</a>
+					<a class="permalink" href="index.html#BasePathFile.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BasePathFile">BasePathFile</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFile.ReadDir">func (*BasePathFile) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=824:884#L30">ReadDir</a>
+					<a class="permalink" href="index.html#BasePathFile.ReadDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#BasePathFile">BasePathFile</a>) ReadDir(n <a href="../../../builtin/index.html#int">int</a>) ([]<a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#DirEntry">DirEntry</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BasePathFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=587:639#L15">BasePathFs</a>
+				<a class="permalink" href="index.html#BasePathFs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>The BasePathFs restricts all operations to a given path within an Fs.
+The given file name to the operations on this Fs will be prepended with
+the base path before calling the base Fs.
+Any file name (after filepath.Clean()) outside this base path will be
+treated as non existing file.
+<p>Note that it does not clean the error messages on return, so you may
+reveal the real path on errors.
+
+			<pre>type BasePathFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="BasePathFs.Chmod">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=2187:2256#L81">Chmod</a>
+					<a class="permalink" href="index.html#BasePathFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Chown">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=2405:2470#L88">Chown</a>
+					<a class="permalink" href="index.html#BasePathFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Chtimes">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=1949:2026#L74">Chtimes</a>
+					<a class="permalink" href="index.html#BasePathFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Create">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=4744:4804#L166">Create</a>
+					<a class="permalink" href="index.html#BasePathFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (f <a href="index.html#File">File</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.LstatIfPossible">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=5057:5133#L177">LstatIfPossible</a>
+					<a class="permalink" href="index.html#BasePathFs.LstatIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Mkdir">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=4302:4371#L152">Mkdir</a>
+					<a class="permalink" href="index.html#BasePathFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.MkdirAll">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=4520:4592#L159">MkdirAll</a>
+					<a class="permalink" href="index.html#BasePathFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) MkdirAll(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Name">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=2623:2657#L95">Name</a>
+					<a class="permalink" href="index.html#BasePathFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Open">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=3995:4053#L141">Open</a>
+					<a class="permalink" href="index.html#BasePathFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (f <a href="index.html#File">File</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.OpenFile">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=3648:3738#L130">OpenFile</a>
+					<a class="permalink" href="index.html#BasePathFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (f <a href="index.html#File">File</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.ReadlinkIfPossible">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=5922:5990#L204">ReadlinkIfPossible</a>
+					<a class="permalink" href="index.html#BasePathFs.ReadlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) ReadlinkIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.RealPath">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=1233:1300#L44">RealPath</a>
+					<a class="permalink" href="index.html#BasePathFs.RealPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) RealPath(name <a href="../../../builtin/index.html#string">string</a>) (path <a href="../../../builtin/index.html#string">string</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>on a file outside the base path it returns the given file name and an error,
+else the given file with the base path prepended
+
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Remove">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=3451:3503#L123">Remove</a>
+					<a class="permalink" href="index.html#BasePathFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.RemoveAll">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=3244:3299#L116">RemoveAll</a>
+					<a class="permalink" href="index.html#BasePathFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) RemoveAll(name <a href="../../../builtin/index.html#string">string</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Rename">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=2896:2960#L106">Rename</a>
+					<a class="permalink" href="index.html#BasePathFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.Stat">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=2684:2750#L99">Stat</a>
+					<a class="permalink" href="index.html#BasePathFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (fi <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BasePathFs.SymlinkIfPossible">func (*BasePathFs) <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=5401:5470#L189">SymlinkIfPossible</a>
+					<a class="permalink" href="index.html#BasePathFs.SymlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#BasePathFs">BasePathFs</a>) SymlinkIfPossible(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CacheOnReadFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=825:907#L12">CacheOnReadFs</a>
+				<a class="permalink" href="index.html#CacheOnReadFs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>If the cache duration is 0, cache time will be unlimited, i.e. once
+a file is in the layer, the base will never be read again for this file.
+<p>For cache times greater than 0, the modification time of a file is
+checked. Note that a lot of file system implementations only allow a
+resolution of a second for timestamps... or as the godoc for os.Chtimes()
+states: &quot;The underlying filesystem may truncate or round the values to a
+less precise time unit.&quot;
+<p>This caching union will forward all write calls also to the base file
+system first. To prevent writing to the base Fs, wrap it in a read-only
+filter - Note: this will also make the overlay read-only, for writing files
+in the overlay, use the overlay Fs directly, not via the union Fs.
+
+			<pre>type CacheOnReadFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="CacheOnReadFs.Chmod">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=2842:2908#L93">Chmod</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Chown">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=3258:3320#L114">Chown</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Chtimes">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=2388:2462#L72">Chtimes</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Create">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=7103:7160#L292">Create</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Mkdir">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=6620:6686#L272">Mkdir</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.MkdirAll">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=6922:6991#L284">MkdirAll</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) MkdirAll(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Name">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=6855:6892#L280">Name</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Open">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=5747:5802#L228">Open</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.OpenFile">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=5000:5087#L201">OpenFile</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Remove">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=4419:4468#L169">Remove</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.RemoveAll">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=4705:4757#L185">RemoveAll</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) RemoveAll(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Rename">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=3981:4042#L148">Rename</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CacheOnReadFs.Stat">func (*CacheOnReadFs) <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=3682:3744#L135">Stat</a>
+					<a class="permalink" href="index.html#CacheOnReadFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CacheOnReadFs">CacheOnReadFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CopyOnWriteFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=570:619#L10">CopyOnWriteFs</a>
+				<a class="permalink" href="index.html#CopyOnWriteFs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>The CopyOnWriteFs is a union filesystem: a read only base file system with
+a possibly writeable layer on top. Changes to the file system will only
+be made in the overlay: Changing an existing file in the base layer which
+is not present in the overlay will copy the file to the overlay (&quot;changing&quot;
+includes also calls to e.g. Chtimes(), Chmod() and Chown()).
+<p>Reading directories is currently only supported via Open(), not OpenFile().
+
+			<pre>type CopyOnWriteFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="CopyOnWriteFs.Chmod">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=1562:1628#L55">Chmod</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Chown">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=1806:1868#L68">Chown</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Chtimes">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=1300:1374#L42">Chtimes</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Create">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=7633:7690#L314">Create</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.LstatIfPossible">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=2287:2366#L93">LstatIfPossible</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.LstatIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Mkdir">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=7050:7116#L287">Mkdir</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.MkdirAll">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=7353:7422#L302">MkdirAll</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) MkdirAll(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Name">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=7286:7323#L298">Name</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Open">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=5781:5836#L242">Open</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>This function handles the 9 different possibilities caused
+by the union which are the intersection of the following...
+<pre>layer: doesn&apos;t exist, exists as a file, and exists as a directory
+base:  doesn&apos;t exist, exists as a file, and exists as a directory
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.OpenFile">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=4538:4625#L196">OpenFile</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.ReadlinkIfPossible">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=3055:3126#L131">ReadlinkIfPossible</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.ReadlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) ReadlinkIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Remove">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=4042:4091#L168">Remove</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Removing files present only in the base layer is not permitted. If
+a file is present in the base layer and the overlay, only the overlay
+will be removed.
+
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.RemoveAll">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=4287:4339#L182">RemoveAll</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) RemoveAll(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Rename">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=3671:3732#L154">Rename</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				<p>Renaming files present only in the base layer is not permitted
+
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.Stat">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=2050:2112#L81">Stat</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CopyOnWriteFs.SymlinkIfPossible">func (*CopyOnWriteFs) <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=2796:2868#L123">SymlinkIfPossible</a>
+					<a class="permalink" href="index.html#CopyOnWriteFs.SymlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (u *<a href="index.html#CopyOnWriteFs">CopyOnWriteFs</a>) SymlinkIfPossible(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DirsMerger">type <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=3222:3291#L120">DirsMerger</a>
+				<a class="permalink" href="index.html#DirsMerger">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DirsMerger is how UnionFile weaves two directories together.
+It takes the FileInfo slices from the layer and the base and returns a
+single view.
+
+			<pre>type DirsMerger func(lofi, bofi []<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>) ([]<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="File">type <a href="http://localhost:6060/src/github.com/spf13/afero/afero.go?s=1171:1477#L27">File</a>
+				<a class="permalink" href="index.html#File">&#xb6;</a>
+				
+				
+			</h2>
+			<p>File represents a file in the filesystem.
+
+			<pre>type File interface {
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Closer">Closer</a>
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Reader">Reader</a>
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#ReaderAt">ReaderAt</a>
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Seeker">Seeker</a>
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#Writer">Writer</a>
+    <a href="../../../io/index.html">io</a>.<a href="../../../io/index.html#WriterAt">WriterAt</a>
+
+    Name() <a href="../../../builtin/index.html#string">string</a>
+    Readdir(count <a href="../../../builtin/index.html#int">int</a>) ([]<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)
+    Readdirnames(n <a href="../../../builtin/index.html#int">int</a>) ([]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)
+    Stat() (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)
+    Sync() <a href="../../../builtin/index.html#error">error</a>
+    Truncate(size <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#error">error</a>
+    WriteString(s <a href="../../../builtin/index.html#string">string</a>) (ret <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="TempFile">func <a href="http://localhost:6060/src/github.com/spf13/afero/ioutil.go?s=5554:5615#L168">TempFile</a>
+					<a class="permalink" href="index.html#TempFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TempFile(fs <a href="index.html#Fs">Fs</a>, dir, pattern <a href="../../../builtin/index.html#string">string</a>) (f <a href="index.html#File">File</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="FromIOFS">type <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3252:3283#L146">FromIOFS</a>
+				<a class="permalink" href="index.html#FromIOFS">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FromIOFS adopts io/fs.FS to use it as afero.Fs
+Note that io/fs.FS is read-only so all mutating methods will return fs.PathError with fs.ErrPermission
+To store modifications you may use afero.CopyOnWriteFs
+
+			<pre>type FromIOFS struct {
+    <a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#FS">FS</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FromIOFS.Chmod">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4332:4392#L189">Chmod</a>
+					<a class="permalink" href="index.html#FromIOFS.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Chown">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4436:4492#L193">Chown</a>
+					<a class="permalink" href="index.html#FromIOFS.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Chtimes">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4536:4614#L197">Chtimes</a>
+					<a class="permalink" href="index.html#FromIOFS.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Create">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3308:3359#L152">Create</a>
+					<a class="permalink" href="index.html#FromIOFS.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Mkdir">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3408:3468#L154">Mkdir</a>
+					<a class="permalink" href="index.html#FromIOFS.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.MkdirAll">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3511:3574#L156">MkdirAll</a>
+					<a class="permalink" href="index.html#FromIOFS.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) MkdirAll(path <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Name">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4277:4308#L187">Name</a>
+					<a class="permalink" href="index.html#FromIOFS.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Open">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3621:3670#L160">Open</a>
+					<a class="permalink" href="index.html#FromIOFS.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.OpenFile">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3795:3876#L169">OpenFile</a>
+					<a class="permalink" href="index.html#FromIOFS.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Remove">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3903:3946#L173">Remove</a>
+					<a class="permalink" href="index.html#FromIOFS.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.RemoveAll">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=3991:4037#L177">RemoveAll</a>
+					<a class="permalink" href="index.html#FromIOFS.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) RemoveAll(path <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Rename">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4085:4140#L181">Rename</a>
+					<a class="permalink" href="index.html#FromIOFS.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FromIOFS.Stat">func (FromIOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=4188:4244#L185">Stat</a>
+					<a class="permalink" href="index.html#FromIOFS.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#FromIOFS">FromIOFS</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Fs">type <a href="http://localhost:6060/src/github.com/spf13/afero/afero.go?s=1586:3081#L47">Fs</a>
+				<a class="permalink" href="index.html#Fs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Fs is the filesystem interface.
+<p>Any simulated or real filesystem should implement this interface.
+
+			<pre>type Fs interface {
+    <span class="comment">// Create creates a file in the filesystem, returning the file and an</span>
+    <span class="comment">// error, if any happens.</span>
+    Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Mkdir creates a directory in the filesystem, return an error if any</span>
+    <span class="comment">// happens.</span>
+    Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// MkdirAll creates a directory path and all parents that does not exist</span>
+    <span class="comment">// yet.</span>
+    MkdirAll(path <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Open opens a file, returning it or an error, if any happens.</span>
+    Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// OpenFile opens a file using the given flags and the given mode.</span>
+    OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// Remove removes a file identified by name, returning an error, if any</span>
+    <span class="comment">// happens.</span>
+    Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// RemoveAll removes a directory path and any children it contains. It</span>
+    <span class="comment">// does not fail if the path does not exist (return nil).</span>
+    RemoveAll(path <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Rename renames a file.</span>
+    Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Stat returns a FileInfo describing the named file, or an error, if any</span>
+    <span class="comment">// happens.</span>
+    Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// The name of this FileSystem</span>
+    Name() <a href="../../../builtin/index.html#string">string</a>
+
+    <span class="comment">// Chmod changes the mode of the named file to mode.</span>
+    Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">// Chown changes the uid and gid of the named file.</span>
+    Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a>
+
+    <span class="comment">//Chtimes changes the access and modification times of the named file</span>
+    Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBasePathFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/basepath.go?s=1002:1047#L38">NewBasePathFs</a>
+					<a class="permalink" href="index.html#NewBasePathFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBasePathFs(source <a href="index.html#Fs">Fs</a>, path <a href="../../../builtin/index.html#string">string</a>) <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewCacheOnReadFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/cacheOnReadFs.go?s=909:977#L18">NewCacheOnReadFs</a>
+					<a class="permalink" href="index.html#NewCacheOnReadFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCacheOnReadFs(base <a href="index.html#Fs">Fs</a>, layer <a href="index.html#Fs">Fs</a>, cacheTime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Duration">Duration</a>) <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewCopyOnWriteFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/copyOnWriteFs.go?s=621:664#L15">NewCopyOnWriteFs</a>
+					<a class="permalink" href="index.html#NewCopyOnWriteFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCopyOnWriteFs(base <a href="index.html#Fs">Fs</a>, layer <a href="index.html#Fs">Fs</a>) <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewMemMapFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=977:998#L26">NewMemMapFs</a>
+					<a class="permalink" href="index.html#NewMemMapFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMemMapFs() <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewOsFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=935:952#L20">NewOsFs</a>
+					<a class="permalink" href="index.html#NewOsFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewOsFs() <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewReadOnlyFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=127:159#L5">NewReadOnlyFs</a>
+					<a class="permalink" href="index.html#NewReadOnlyFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReadOnlyFs(source <a href="index.html#Fs">Fs</a>) <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewRegexpFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=318:367#L9">NewRegexpFs</a>
+					<a class="permalink" href="index.html#NewRegexpFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewRegexpFs(source <a href="index.html#Fs">Fs</a>, re *<a href="../../../regexp/index.html">regexp</a>.<a href="../../../regexp/index.html#Regexp">Regexp</a>) <a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="HttpFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1202:1235#L38">HttpFs</a>
+				<a class="permalink" href="index.html#HttpFs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type HttpFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewHttpFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1237:1270#L42">NewHttpFs</a>
+					<a class="permalink" href="index.html#NewHttpFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewHttpFs(source <a href="index.html#Fs">Fs</a>) *<a href="index.html#HttpFs">HttpFs</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="HttpFs.Chmod">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1527:1585#L56">Chmod</a>
+					<a class="permalink" href="index.html#HttpFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Chown">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1626:1680#L60">Chown</a>
+					<a class="permalink" href="index.html#HttpFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Chtimes">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1725:1801#L64">Chtimes</a>
+					<a class="permalink" href="index.html#HttpFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Create">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1442:1491#L52">Create</a>
+					<a class="permalink" href="index.html#HttpFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Dir">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1308:1346#L46">Dir</a>
+					<a class="permalink" href="index.html#HttpFs.Dir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Dir(s <a href="../../../builtin/index.html#string">string</a>) *httpDir</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Mkdir">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1852:1910#L68">Mkdir</a>
+					<a class="permalink" href="index.html#HttpFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.MkdirAll">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1951:2012#L72">MkdirAll</a>
+					<a class="permalink" href="index.html#HttpFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) MkdirAll(path <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Name">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=1389:1418#L50">Name</a>
+					<a class="permalink" href="index.html#HttpFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Open">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2056:2108#L76">Open</a>
+					<a class="permalink" href="index.html#HttpFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../net/http/index.html">http</a>.<a href="../../../net/http/index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.OpenFile">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2251:2330#L86">OpenFile</a>
+					<a class="permalink" href="index.html#HttpFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Remove">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2380:2421#L90">Remove</a>
+					<a class="permalink" href="index.html#HttpFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.RemoveAll">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2457:2501#L94">RemoveAll</a>
+					<a class="permalink" href="index.html#HttpFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) RemoveAll(path <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Rename">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2540:2593#L98">Rename</a>
+					<a class="permalink" href="index.html#HttpFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HttpFs.Stat">func (HttpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/httpFs.go?s=2641:2695#L102">Stat</a>
+					<a class="permalink" href="index.html#HttpFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#HttpFs">HttpFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IOFS">type <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=194:218#L8">IOFS</a>
+				<a class="permalink" href="index.html#IOFS">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IOFS adopts afero.Fs to stdlib io/fs.FS
+
+			<pre>type IOFS struct {
+    <a href="index.html#Fs">Fs</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewIOFS">func <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=220:244#L12">NewIOFS</a>
+					<a class="permalink" href="index.html#NewIOFS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewIOFS(fs <a href="index.html#Fs">Fs</a>) <a href="index.html#IOFS">IOFS</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="IOFS.Glob">func (IOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=900:955#L46">Glob</a>
+					<a class="permalink" href="index.html#IOFS.Glob">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iofs <a href="index.html#IOFS">IOFS</a>) Glob(pattern <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IOFS.Open">func (IOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=436:487#L25">Open</a>
+					<a class="permalink" href="index.html#IOFS.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iofs <a href="index.html#IOFS">IOFS</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IOFS.ReadDir">func (IOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=1290:1350#L62">ReadDir</a>
+					<a class="permalink" href="index.html#IOFS.ReadDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iofs <a href="index.html#IOFS">IOFS</a>) ReadDir(name <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#DirEntry">DirEntry</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IOFS.ReadFile">func (IOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=1999:2053#L93">ReadFile</a>
+					<a class="permalink" href="index.html#IOFS.ReadFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iofs <a href="index.html#IOFS">IOFS</a>) ReadFile(name <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../builtin/index.html#byte">byte</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IOFS.Sub">func (IOFS) <a href="http://localhost:6060/src/github.com/spf13/afero/iofs.go?s=2290:2337#L108">Sub</a>
+					<a class="permalink" href="index.html#IOFS.Sub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (iofs <a href="index.html#IOFS">IOFS</a>) Sub(dir <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#FS">FS</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LinkReader">type <a href="http://localhost:6060/src/github.com/spf13/afero/symlink.go?s=1668:1746#L38">LinkReader</a>
+				<a class="permalink" href="index.html#LinkReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LinkReader is an optional interface in Afero. It is only implemented by the
+filesystems saying so.
+
+			<pre>type LinkReader interface {
+    ReadlinkIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Linker">type <a href="http://localhost:6060/src/github.com/spf13/afero/symlink.go?s=1208:1283#L27">Linker</a>
+				<a class="permalink" href="index.html#Linker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Linker is an optional interface in Afero. It is only implemented by the
+filesystems saying so.
+It will call Symlink if the filesystem itself is, or it delegates to, the os filesystem,
+or the filesystem otherwise supports Symlink&apos;s.
+
+			<pre>type Linker interface {
+    SymlinkIfPossible(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Lstater">type <a href="http://localhost:6060/src/github.com/spf13/afero/lstater.go?s=952:1035#L15">Lstater</a>
+				<a class="permalink" href="index.html#Lstater">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Lstater is an optional interface in Afero. It is only implemented by the
+filesystems saying so.
+It will call Lstat if the filesystem iself is, or it delegates to, the os filesystem.
+Else it will call Stat.
+In addtion to the FileInfo, it will return a boolean telling whether Lstat was called or not.
+
+			<pre>type Lstater interface {
+    LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MemMapFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=885:975#L20">MemMapFs</a>
+				<a class="permalink" href="index.html#MemMapFs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type MemMapFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MemMapFs.Chmod">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=7498:7559#L329">Chmod</a>
+					<a class="permalink" href="index.html#MemMapFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Chown">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=8154:8211#L361">Chown</a>
+					<a class="permalink" href="index.html#MemMapFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Chtimes">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=8441:8520#L377">Chtimes</a>
+					<a class="permalink" href="index.html#MemMapFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Create">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=1402:1454#L44">Create</a>
+					<a class="permalink" href="index.html#MemMapFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.List">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=8766:8791#L394">List</a>
+					<a class="permalink" href="index.html#MemMapFs.List">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) List()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.LstatIfPossible">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=7172:7246#L315">LstatIfPossible</a>
+					<a class="permalink" href="index.html#MemMapFs.LstatIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Mkdir">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=3121:3182#L123">Mkdir</a>
+					<a class="permalink" href="index.html#MemMapFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.MkdirAll">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=3738:3802#L149">MkdirAll</a>
+					<a class="permalink" href="index.html#MemMapFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) MkdirAll(path <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Name">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=1348:1378#L42">Name</a>
+					<a class="permalink" href="index.html#MemMapFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (*<a href="index.html#MemMapFs">MemMapFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Open">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=4170:4220#L174">Open</a>
+					<a class="permalink" href="index.html#MemMapFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.OpenFile">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=4934:5016#L212">OpenFile</a>
+					<a class="permalink" href="index.html#MemMapFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Remove">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=5775:5819#L249">Remove</a>
+					<a class="permalink" href="index.html#MemMapFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.RemoveAll">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=6169:6216#L267">RemoveAll</a>
+					<a class="permalink" href="index.html#MemMapFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) RemoveAll(path <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Rename">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=6552:6608#L288">Rename</a>
+					<a class="permalink" href="index.html#MemMapFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MemMapFs.Stat">func (*MemMapFs) <a href="http://localhost:6060/src/github.com/spf13/afero/memmap.go?s=7312:7369#L320">Stat</a>
+					<a class="permalink" href="index.html#MemMapFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MemMapFs">MemMapFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OsFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=915:933#L18">OsFs</a>
+				<a class="permalink" href="index.html#OsFs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>OsFs is a Fs implementation that uses functions provided by the os package.
+<p>For details in any method, check the documentation of the os package
+(<a href="http://golang.org/pkg/os/">http://golang.org/pkg/os/</a>).
+
+			<pre>type OsFs struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="OsFs.Chmod">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2317:2371#L80">Chmod</a>
+					<a class="permalink" href="index.html#OsFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Chown">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2406:2456#L84">Chown</a>
+					<a class="permalink" href="index.html#OsFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Chtimes">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2495:2567#L88">Chtimes</a>
+					<a class="permalink" href="index.html#OsFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, atime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>, mtime <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Create">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=1019:1064#L26">Create</a>
+					<a class="permalink" href="index.html#OsFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.LstatIfPossible">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2612:2679#L92">LstatIfPossible</a>
+					<a class="permalink" href="index.html#OsFs.LstatIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Mkdir">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=1274:1328#L36">Mkdir</a>
+					<a class="permalink" href="index.html#OsFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Mkdir(name <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.MkdirAll">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=1363:1420#L40">MkdirAll</a>
+					<a class="permalink" href="index.html#OsFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) MkdirAll(path <a href="../../../builtin/index.html#string">string</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Name">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=974:999#L24">Name</a>
+					<a class="permalink" href="index.html#OsFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Open">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=1458:1501#L44">Open</a>
+					<a class="permalink" href="index.html#OsFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.OpenFile">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=1709:1784#L54">OpenFile</a>
+					<a class="permalink" href="index.html#OsFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.ReadlinkIfPossible">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2837:2896#L101">ReadlinkIfPossible</a>
+					<a class="permalink" href="index.html#OsFs.ReadlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) ReadlinkIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Remove">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2008:2045#L64">Remove</a>
+					<a class="permalink" href="index.html#OsFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.RemoveAll">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2075:2115#L68">RemoveAll</a>
+					<a class="permalink" href="index.html#OsFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) RemoveAll(path <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Rename">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2148:2197#L72">Rename</a>
+					<a class="permalink" href="index.html#OsFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.Stat">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2239:2289#L76">Stat</a>
+					<a class="permalink" href="index.html#OsFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OsFs.SymlinkIfPossible">func (OsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/os.go?s=2734:2794#L97">SymlinkIfPossible</a>
+					<a class="permalink" href="index.html#OsFs.SymlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#OsFs">OsFs</a>) SymlinkIfPossible(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ReadOnlyFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=88:125#L1">ReadOnlyFs</a>
+				<a class="permalink" href="index.html#ReadOnlyFs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ReadOnlyFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ReadOnlyFs.Chmod">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=391:448#L17">Chmod</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Chmod(n <a href="../../../builtin/index.html#string">string</a>, m <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Chown">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=476:532#L21">Chown</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Chown(n <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Chtimes">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=303:363#L13">Chtimes</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Chtimes(n <a href="../../../builtin/index.html#string">string</a>, a, m <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Create">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=2037:2088#L84">Create</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Create(n <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.LstatIfPossible">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=718:794#L33">LstatIfPossible</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.LstatIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) LstatIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#bool">bool</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Mkdir">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1864:1921#L76">Mkdir</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Mkdir(n <a href="../../../builtin/index.html#string">string</a>, p <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.MkdirAll">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1949:2009#L80">MkdirAll</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) MkdirAll(n <a href="../../../builtin/index.html#string">string</a>, p <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Name">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=560:594#L25">Name</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Open">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1784:1833#L72">Open</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Open(n <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.OpenFile">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1539:1623#L65">OpenFile</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.ReadDir">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=201:265#L9">ReadDir</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.ReadDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) ReadDir(name <a href="../../../builtin/index.html#string">string</a>) ([]<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.ReadlinkIfPossible">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1085:1153#L45">ReadlinkIfPossible</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.ReadlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) ReadlinkIfPossible(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Remove">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1468:1511#L61">Remove</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Remove(n <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.RemoveAll">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1394:1440#L57">RemoveAll</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) RemoveAll(p <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Rename">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=1320:1366#L53">Rename</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Rename(o, n <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.Stat">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=625:684#L29">Stat</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ReadOnlyFs.SymlinkIfPossible">func (*ReadOnlyFs) <a href="http://localhost:6060/src/github.com/spf13/afero/readonlyfs.go?s=926:995#L41">SymlinkIfPossible</a>
+					<a class="permalink" href="index.html#ReadOnlyFs.SymlinkIfPossible">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReadOnlyFs">ReadOnlyFs</a>) SymlinkIfPossible(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RegexpFile">type <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=415:469#L13">RegexpFile</a>
+				<a class="permalink" href="index.html#RegexpFile">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type RegexpFile struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RegexpFile.Close">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3067:3101#L147">Close</a>
+					<a class="permalink" href="index.html#RegexpFile.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Name">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3544:3578#L171">Name</a>
+					<a class="permalink" href="index.html#RegexpFile.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Read">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3127:3175#L151">Read</a>
+					<a class="permalink" href="index.html#RegexpFile.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Read(s []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.ReadAt">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3201:3260#L155">ReadAt</a>
+					<a class="permalink" href="index.html#RegexpFile.ReadAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) ReadAt(s []<a href="../../../builtin/index.html#byte">byte</a>, o <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Readdir">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3603:3668#L175">Readdir</a>
+					<a class="permalink" href="index.html#RegexpFile.Readdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Readdir(c <a href="../../../builtin/index.html#int">int</a>) (fi []<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Readdirnames">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3879:3943#L189">Readdirnames</a>
+					<a class="permalink" href="index.html#RegexpFile.Readdirnames">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Readdirnames(c <a href="../../../builtin/index.html#int">int</a>) (n []<a href="../../../builtin/index.html#string">string</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Seek">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3291:3347#L159">Seek</a>
+					<a class="permalink" href="index.html#RegexpFile.Seek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Seek(o <a href="../../../builtin/index.html#int64">int64</a>, w <a href="../../../builtin/index.html#int">int</a>) (<a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Stat">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=4080:4128#L200">Stat</a>
+					<a class="permalink" href="index.html#RegexpFile.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Stat() (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Sync">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=4153:4186#L204">Sync</a>
+					<a class="permalink" href="index.html#RegexpFile.Sync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Sync() <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Truncate">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=4211:4255#L208">Truncate</a>
+					<a class="permalink" href="index.html#RegexpFile.Truncate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Truncate(s <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.Write">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3376:3425#L163">Write</a>
+					<a class="permalink" href="index.html#RegexpFile.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) Write(s []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.WriteAt">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=3452:3512#L167">WriteAt</a>
+					<a class="permalink" href="index.html#RegexpFile.WriteAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) WriteAt(s []<a href="../../../builtin/index.html#byte">byte</a>, o <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFile.WriteString">func (*RegexpFile) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=4285:4340#L212">WriteString</a>
+					<a class="permalink" href="index.html#RegexpFile.WriteString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#RegexpFile">RegexpFile</a>) WriteString(s <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RegexpFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=258:316#L4">RegexpFs</a>
+				<a class="permalink" href="index.html#RegexpFs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>The RegexpFs filters files (not directories) by regular expression. Only
+files matching the given regexp will be allowed, all others get a ENOENT error (
+&quot;No such file or directory&quot;).
+
+			<pre>type RegexpFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="RegexpFs.Chmod">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=972:1033#L46">Chmod</a>
+					<a class="permalink" href="index.html#RegexpFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Chmod(name <a href="../../../builtin/index.html#string">string</a>, mode <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Chown">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=1136:1193#L53">Chown</a>
+					<a class="permalink" href="index.html#RegexpFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Chown(name <a href="../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../builtin/index.html#int">int</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Chtimes">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=806:867#L39">Chtimes</a>
+					<a class="permalink" href="index.html#RegexpFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Chtimes(name <a href="../../../builtin/index.html#string">string</a>, a, m <a href="../../../time/index.html">time</a>.<a href="../../../time/index.html#Time">Time</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Create">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2913:2965#L140">Create</a>
+					<a class="permalink" href="index.html#RegexpFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Create(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Mkdir">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2727:2782#L132">Mkdir</a>
+					<a class="permalink" href="index.html#RegexpFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Mkdir(n <a href="../../../builtin/index.html#string">string</a>, p <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.MkdirAll">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2817:2875#L136">MkdirAll</a>
+					<a class="permalink" href="index.html#RegexpFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) MkdirAll(n <a href="../../../builtin/index.html#string">string</a>, p <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Name">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=1300:1332#L60">Name</a>
+					<a class="permalink" href="index.html#RegexpFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Open">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2405:2455#L115">Open</a>
+					<a class="permalink" href="index.html#RegexpFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Open(name <a href="../../../builtin/index.html#string">string</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.OpenFile">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2206:2288#L108">OpenFile</a>
+					<a class="permalink" href="index.html#RegexpFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) OpenFile(name <a href="../../../builtin/index.html#string">string</a>, flag <a href="../../../builtin/index.html#int">int</a>, perm <a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileMode">FileMode</a>) (<a href="index.html#File">File</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Remove">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=2064:2108#L101">Remove</a>
+					<a class="permalink" href="index.html#RegexpFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Remove(name <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.RemoveAll">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=1844:1888#L88">RemoveAll</a>
+					<a class="permalink" href="index.html#RegexpFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) RemoveAll(p <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Rename">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=1515:1571#L71">Rename</a>
+					<a class="permalink" href="index.html#RegexpFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Rename(oldname, newname <a href="../../../builtin/index.html#string">string</a>) <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="RegexpFs.Stat">func (*RegexpFs) <a href="http://localhost:6060/src/github.com/spf13/afero/regexpfs.go?s=1357:1414#L64">Stat</a>
+					<a class="permalink" href="index.html#RegexpFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#RegexpFs">RegexpFs</a>) Stat(name <a href="../../../builtin/index.html#string">string</a>) (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Symlinker">type <a href="http://localhost:6060/src/github.com/spf13/afero/symlink.go?s=905:962#L17">Symlinker</a>
+				<a class="permalink" href="index.html#Symlinker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Symlinker is an optional interface in Afero. It is only implemented by the
+filesystems saying so.
+It indicates support for 3 symlink related interfaces that implement the
+behaviors of the os methods:
+<ul>
+<li>Lstat
+<li>Symlink, and
+<li>Readlink
+</ul>
+
+			<pre>type Symlinker interface {
+    <a href="index.html#Lstater">Lstater</a>
+    <a href="index.html#Linker">Linker</a>
+    <a href="index.html#LinkReader">LinkReader</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UnionFile">type <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=707:811#L13">UnionFile</a>
+				<a class="permalink" href="index.html#UnionFile">&#xb6;</a>
+				
+				
+			</h2>
+			<p>The UnionFile implements the afero.File interface and will be returned
+when reading a directory present at least in the overlay or opening a file
+for writing.
+<p>The calls to
+Readdir() and Readdirnames() merge the file os.FileInfo / names from the
+base and the overlay - for files present in both layers, only those
+from the overlay will be used.
+<p>When opening files for writing (Create() / OpenFile() with the right flags)
+the operations will be done in both layers, starting with the overlay. A
+successful read in the overlay will move the cursor position in the base layer
+by the number of bytes read.
+
+			<pre>type UnionFile struct {
+<span id="UnionFile.Base"></span>    Base   <a href="index.html#File">File</a>
+<span id="UnionFile.Layer"></span>    Layer  <a href="index.html#File">File</a>
+<span id="UnionFile.Merger"></span>    Merger <a href="index.html#DirsMerger">DirsMerger</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UnionFile.Close">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=813:846#L21">Close</a>
+					<a class="permalink" href="index.html#UnionFile.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Close() <a href="../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Name">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=2959:2992#L110">Name</a>
+					<a class="permalink" href="index.html#UnionFile.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Name() <a href="../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Read">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=1149:1196#L34">Read</a>
+					<a class="permalink" href="index.html#UnionFile.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Read(s []<a href="../../../builtin/index.html#byte">byte</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.ReadAt">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=1729:1787#L54">ReadAt</a>
+					<a class="permalink" href="index.html#UnionFile.ReadAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) ReadAt(s []<a href="../../../builtin/index.html#byte">byte</a>, o <a href="../../../builtin/index.html#int64">int64</a>) (<a href="../../../builtin/index.html#int">int</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Readdir">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=3881:3946#L150">Readdir</a>
+					<a class="permalink" href="index.html#UnionFile.Readdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Readdir(c <a href="../../../builtin/index.html#int">int</a>) (ofi []<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				<p>Readdir will weave the two directories together and
+return a single view of the overlayed directories.
+At the end of the directory view, the error is io.EOF if c &gt; 0.
+
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Readdirnames">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=4638:4695#L197">Readdirnames</a>
+					<a class="permalink" href="index.html#UnionFile.Readdirnames">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Readdirnames(c <a href="../../../builtin/index.html#int">int</a>) ([]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Seek">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=2043:2106#L68">Seek</a>
+					<a class="permalink" href="index.html#UnionFile.Seek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Seek(o <a href="../../../builtin/index.html#int64">int64</a>, w <a href="../../../builtin/index.html#int">int</a>) (pos <a href="../../../builtin/index.html#int64">int64</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Stat">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=4868:4915#L209">Stat</a>
+					<a class="permalink" href="index.html#UnionFile.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Stat() (<a href="../../../os/index.html">os</a>.<a href="../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Sync">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=5034:5072#L219">Sync</a>
+					<a class="permalink" href="index.html#UnionFile.Sync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Sync() (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Truncate">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=5260:5309#L233">Truncate</a>
+					<a class="permalink" href="index.html#UnionFile.Truncate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Truncate(s <a href="../../../builtin/index.html#int64">int64</a>) (err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.Write">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=2341:2395#L82">Write</a>
+					<a class="permalink" href="index.html#UnionFile.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) Write(s []<a href="../../../builtin/index.html#byte">byte</a>) (n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.WriteAt">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=2673:2738#L96">WriteAt</a>
+					<a class="permalink" href="index.html#UnionFile.WriteAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) WriteAt(s []<a href="../../../builtin/index.html#byte">byte</a>, o <a href="../../../builtin/index.html#int64">int64</a>) (n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UnionFile.WriteString">func (*UnionFile) <a href="http://localhost:6060/src/github.com/spf13/afero/unionFile.go?s=5512:5572#L247">WriteString</a>
+					<a class="permalink" href="index.html#UnionFile.WriteString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#UnionFile">UnionFile</a>) WriteString(s <a href="../../../builtin/index.html#string">string</a>) (n <a href="../../../builtin/index.html#int">int</a>, err <a href="../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="http://localhost:6060/pkg/github.com/spf13/">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="gcsfs/index.html">gcsfs</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mem/index.html">mem</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="sftpfs/index.html">sftpfs</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="tarfs/index.html">tarfs</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						package tarfs implements a read-only in-memory representation of a tar archive
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="zipfs/index.html">zipfs</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

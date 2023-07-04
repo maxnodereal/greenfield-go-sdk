@@ -1,0 +1,3055 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>baseapp - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package baseapp
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/baseapp"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Deprecated.
+<p>Legacy types are defined below to aid in the migration of Tendermint consensus
+parameters from use of the now deprecated x/params modules to a new dedicated
+x/consensus module.
+<p>Application developers should ensure that they implement their upgrade handler
+correctly such that app.ConsensusParamsKeeper.Set() is called with the values
+returned by GetConsensusParams().
+<p>Example:
+<pre>baseAppLegacySS := app.ParamsKeeper.Subspace(baseapp.Paramspace).WithKeyTable(paramstypes.ConsensusParamsKeyTable())
+
+app.UpgradeKeeper.SetUpgradeHandler(
+	UpgradeName,
+	func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		if cp := baseapp.GetConsensusParams(ctx, baseAppLegacySS); cp != nil {
+			app.ConsensusParamsKeeper.Set(ctx, cp)
+		} else {
+			ctx.Logger().Info(&quot;warning: consensus parameters are undefined; skipping migration&quot;, &quot;upgrade&quot;, UpgradeName)
+		}
+
+		return app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+	},
+)
+</pre>
+<p>Developers can also bypass the use of the legacy Params subspace and set the
+values to app.ConsensusParamsKeeper.Set() explicitly.
+<p>Note, for new chains this is not necessary as Tendermint&apos;s consensus parameters
+will automatically be set for you in InitChain.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DefaultStoreLoader">func DefaultStoreLoader(ms sdk.CommitMultiStore) error</a></dd>
+			
+				
+				<dd><a href="index.html#GetConsensusParams">func GetConsensusParams(ctx sdk.Context, paramStore LegacyParamStore) *tmproto.ConsensusParams</a></dd>
+			
+				
+				<dd><a href="index.html#MigrateParams">func MigrateParams(ctx sdk.Context, lps LegacyParamStore, ps ParamStore)</a></dd>
+			
+				
+				<dd><a href="index.html#NoOpPrepareProposal">func NoOpPrepareProposal() sdk.PrepareProposalHandler</a></dd>
+			
+				
+				<dd><a href="index.html#NoOpProcessProposal">func NoOpProcessProposal() sdk.ProcessProposalHandler</a></dd>
+			
+				
+				<dd><a href="index.html#SetChainID">func SetChainID(chainID string) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetHaltHeight">func SetHaltHeight(blockHeight uint64) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetHaltTime">func SetHaltTime(haltTime uint64) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetIAVLCacheSize">func SetIAVLCacheSize(size int) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetIAVLDisableFastNode">func SetIAVLDisableFastNode(disable bool) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetIAVLLazyLoading">func SetIAVLLazyLoading(lazyLoading bool) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetIndexEvents">func SetIndexEvents(ie []string) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetInterBlockCache">func SetInterBlockCache(cache sdk.MultiStorePersistentCache) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetMempool">func SetMempool(mempool mempool.Mempool) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetMinGasPrices">func SetMinGasPrices(gasPricesStr string) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetMinRetainBlocks">func SetMinRetainBlocks(minRetainBlocks uint64) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetPruning">func SetPruning(opts pruningtypes.PruningOptions) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetSnapshot">func SetSnapshot(snapshotStore *snapshots.Store, opts snapshottypes.SnapshotOptions) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SetTrace">func SetTrace(trace bool) func(*BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#SplitABCIQueryPath">func SplitABCIQueryPath(requestPath string) (path []string)</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateBlockParams">func ValidateBlockParams(i interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateEvidenceParams">func ValidateEvidenceParams(i interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#ValidateValidatorParams">func ValidateValidatorParams(i interface{}) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ABCIListener">type ABCIListener</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BaseApp">type BaseApp</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBaseApp">func NewBaseApp(name string, logger log.Logger, db dbm.DB, txDecoder sdk.TxDecoder, options ...func(*BaseApp)) *BaseApp</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.AddRunTxRecoveryHandler">func (app *BaseApp) AddRunTxRecoveryHandler(handlers ...RecoveryHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.AppVersion">func (app *BaseApp) AppVersion() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.ApplySnapshotChunk">func (app *BaseApp) ApplySnapshotChunk(req abci.RequestApplySnapshotChunk) abci.ResponseApplySnapshotChunk</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.BeginBlock">func (app *BaseApp) BeginBlock(req abci.RequestBeginBlock) (res abci.ResponseBeginBlock)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.ChainID">func (app *BaseApp) ChainID() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.CheckTx">func (app *BaseApp) CheckTx(req abci.RequestCheckTx) abci.ResponseCheckTx</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Close">func (app *BaseApp) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Commit">func (app *BaseApp) Commit() abci.ResponseCommit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.CommitMultiStore">func (app *BaseApp) CommitMultiStore() sdk.CommitMultiStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.CreateQueryContext">func (app *BaseApp) CreateQueryContext(height int64, prove bool) (sdk.Context, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.DeliverTx">func (app *BaseApp) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.EndBlock">func (app *BaseApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEndBlock)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.EthQuery">func (app *BaseApp) EthQuery(req abci.RequestEthQuery) (res abci.ResponseEthQuery)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.EthQueryRouter">func (app *BaseApp) EthQueryRouter() *EthQueryRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.FilterPeerByAddrPort">func (app *BaseApp) FilterPeerByAddrPort(info string) abci.ResponseQuery</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.FilterPeerByID">func (app *BaseApp) FilterPeerByID(info string) abci.ResponseQuery</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.GRPCQueryRouter">func (app *BaseApp) GRPCQueryRouter() *GRPCQueryRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.GetBlockRetentionHeight">func (app *BaseApp) GetBlockRetentionHeight(commitHeight int64) int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.GetConsensusParams">func (app *BaseApp) GetConsensusParams(ctx sdk.Context) *tmproto.ConsensusParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.GetContextForDeliverTx">func (app *BaseApp) GetContextForDeliverTx(txBytes []byte) sdk.Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.GetMaximumBlockGas">func (app *BaseApp) GetMaximumBlockGas(ctx sdk.Context) uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Info">func (app *BaseApp) Info(req abci.RequestInfo) abci.ResponseInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Init">func (app *BaseApp) Init() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.InitChain">func (app *BaseApp) InitChain(req abci.RequestInitChain) (res abci.ResponseInitChain)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.IsSealed">func (app *BaseApp) IsSealed() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.LastBlockHeight">func (app *BaseApp) LastBlockHeight() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.LastCommitID">func (app *BaseApp) LastCommitID() storetypes.CommitID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.ListSnapshots">func (app *BaseApp) ListSnapshots(req abci.RequestListSnapshots) abci.ResponseListSnapshots</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.LoadLatestVersion">func (app *BaseApp) LoadLatestVersion() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.LoadSnapshotChunk">func (app *BaseApp) LoadSnapshotChunk(req abci.RequestLoadSnapshotChunk) abci.ResponseLoadSnapshotChunk</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.LoadVersion">func (app *BaseApp) LoadVersion(version int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Logger">func (app *BaseApp) Logger() log.Logger</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MountKVStores">func (app *BaseApp) MountKVStores(keys map[string]*storetypes.KVStoreKey)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MountMemoryStores">func (app *BaseApp) MountMemoryStores(keys map[string]*storetypes.MemoryStoreKey)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MountStore">func (app *BaseApp) MountStore(key storetypes.StoreKey, typ storetypes.StoreType)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MountStores">func (app *BaseApp) MountStores(keys ...storetypes.StoreKey)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MountTransientStores">func (app *BaseApp) MountTransientStores(keys map[string]*storetypes.TransientStoreKey)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.MsgServiceRouter">func (app *BaseApp) MsgServiceRouter() *MsgServiceRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Name">func (app *BaseApp) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.NewContext">func (app *BaseApp) NewContext(isCheckTx bool, header tmproto.Header) sdk.Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.NewUncachedContext">func (app *BaseApp) NewUncachedContext(isCheckTx bool, header tmproto.Header) sdk.Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.OfferSnapshot">func (app *BaseApp) OfferSnapshot(req abci.RequestOfferSnapshot) abci.ResponseOfferSnapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.PrepareProposal">func (app *BaseApp) PrepareProposal(req abci.RequestPrepareProposal) (resp abci.ResponsePrepareProposal)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.PrepareProposalVerifyTx">func (app *BaseApp) PrepareProposalVerifyTx(tx sdk.Tx) ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.ProcessProposal">func (app *BaseApp) ProcessProposal(req abci.RequestProcessProposal) (resp abci.ResponseProcessProposal)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.ProcessProposalVerifyTx">func (app *BaseApp) ProcessProposalVerifyTx(txBz []byte) (sdk.Tx, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Query">func (app *BaseApp) Query(req abci.RequestQuery) (res abci.ResponseQuery)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.RegisterGRPCServer">func (app *BaseApp) RegisterGRPCServer(server gogogrpc.Server)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Seal">func (app *BaseApp) Seal()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetAddrPeerFilter">func (app *BaseApp) SetAddrPeerFilter(pf sdk.PeerFilter)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetAnteHandler">func (app *BaseApp) SetAnteHandler(ah sdk.AnteHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetBeginBlocker">func (app *BaseApp) SetBeginBlocker(beginBlocker sdk.BeginBlocker)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetCMS">func (app *BaseApp) SetCMS(cms store.CommitMultiStore)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetCircuitBreaker">func (app *BaseApp) SetCircuitBreaker(cb CircuitBreaker)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetCommitMultiStoreTracer">func (app *BaseApp) SetCommitMultiStoreTracer(w io.Writer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetDB">func (app *BaseApp) SetDB(db dbm.DB)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetEndBlocker">func (app *BaseApp) SetEndBlocker(endBlocker sdk.EndBlocker)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetEthQueryRouter">func (app *BaseApp) SetEthQueryRouter(ethQueryRouter *EthQueryRouter)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetFauxMerkleMode">func (app *BaseApp) SetFauxMerkleMode()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetIDPeerFilter">func (app *BaseApp) SetIDPeerFilter(pf sdk.PeerFilter)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetInitChainer">func (app *BaseApp) SetInitChainer(initChainer sdk.InitChainer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetInterfaceRegistry">func (app *BaseApp) SetInterfaceRegistry(registry types.InterfaceRegistry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetMempool">func (app *BaseApp) SetMempool(mempool mempool.Mempool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetMockBlockHeight">func (app *BaseApp) SetMockBlockHeight(height int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetMsgServiceRouter">func (app *BaseApp) SetMsgServiceRouter(msgServiceRouter *MsgServiceRouter)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetName">func (app *BaseApp) SetName(name string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetParamStore">func (app *BaseApp) SetParamStore(ps ParamStore)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetPostHandler">func (app *BaseApp) SetPostHandler(ph sdk.PostHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetPrepareProposal">func (app *BaseApp) SetPrepareProposal(handler sdk.PrepareProposalHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetProcessProposal">func (app *BaseApp) SetProcessProposal(handler sdk.ProcessProposalHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetProtocolVersion">func (app *BaseApp) SetProtocolVersion(v uint64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetQueryMultiStore">func (app *BaseApp) SetQueryMultiStore(ms sdk.MultiStore)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetSnapshot">func (app *BaseApp) SetSnapshot(snapshotStore *snapshots.Store, opts snapshottypes.SnapshotOptions)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetStoreLoader">func (app *BaseApp) SetStoreLoader(loader StoreLoader)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetStreamingService">func (app *BaseApp) SetStreamingService(s StreamingService)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetTxDecoder">func (app *BaseApp) SetTxDecoder(txDecoder sdk.TxDecoder)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetTxEncoder">func (app *BaseApp) SetTxEncoder(txEncoder sdk.TxEncoder)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetUpgradeChecker">func (app *BaseApp) SetUpgradeChecker(checker func(sdk.Context, string) bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SetVersion">func (app *BaseApp) SetVersion(v string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SimCheck">func (app *BaseApp) SimCheck(txEncoder sdk.TxEncoder, tx sdk.Tx) (sdk.GasInfo, *sdk.Result, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SimDeliver">func (app *BaseApp) SimDeliver(txEncoder sdk.TxEncoder, tx sdk.Tx) (sdk.GasInfo, *sdk.Result, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Simulate">func (app *BaseApp) Simulate(txBytes []byte) (sdk.GasInfo, *sdk.Result, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.SnapshotManager">func (app *BaseApp) SnapshotManager() *snapshots.Manager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.StoreConsensusParams">func (app *BaseApp) StoreConsensusParams(ctx sdk.Context, cp *tmproto.ConsensusParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Trace">func (app *BaseApp) Trace() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BaseApp.Version">func (app *BaseApp) Version() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CircuitBreaker">type CircuitBreaker</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DefaultProposalHandler">type DefaultProposalHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDefaultProposalHandler">func NewDefaultProposalHandler(mp mempool.Mempool, txVerifier ProposalTxVerifier) DefaultProposalHandler</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultProposalHandler.PrepareProposalHandler">func (h DefaultProposalHandler) PrepareProposalHandler() sdk.PrepareProposalHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultProposalHandler.ProcessProposalHandler">func (h DefaultProposalHandler) ProcessProposalHandler() sdk.ProcessProposalHandler</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EthQueryHandler">type EthQueryHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EthQueryRouter">type EthQueryRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEthQueryRouter">func NewEthQueryRouter() *EthQueryRouter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EthQueryRouter.AddRoute">func (e *EthQueryRouter) AddRoute(route string, h EthQueryHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EthQueryRouter.RegisterConstHandler">func (e *EthQueryRouter) RegisterConstHandler()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EthQueryRouter.RegisterEthQueryBalanceHandler">func (e *EthQueryRouter) RegisterEthQueryBalanceHandler(srv interface{}, handlerGen func(interface{}) EthQueryHandler)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EthQueryRouter.Route">func (e *EthQueryRouter) Route(path string) EthQueryHandler</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GRPCQueryHandler">type GRPCQueryHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GRPCQueryRouter">type GRPCQueryRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGRPCQueryRouter">func NewGRPCQueryRouter() *GRPCQueryRouter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GRPCQueryRouter.RegisterService">func (qrt *GRPCQueryRouter) RegisterService(sd *grpc.ServiceDesc, handler interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GRPCQueryRouter.Route">func (qrt *GRPCQueryRouter) Route(path string) GRPCQueryHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GRPCQueryRouter.SetInterfaceRegistry">func (qrt *GRPCQueryRouter) SetInterfaceRegistry(interfaceRegistry codectypes.InterfaceRegistry)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LegacyParamStore">type LegacyParamStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MsgServiceHandler">type MsgServiceHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MsgServiceRouter">type MsgServiceRouter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMsgServiceRouter">func NewMsgServiceRouter() *MsgServiceRouter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgServiceRouter.Handler">func (msr *MsgServiceRouter) Handler(msg sdk.Msg) MsgServiceHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgServiceRouter.HandlerByTypeURL">func (msr *MsgServiceRouter) HandlerByTypeURL(typeURL string) MsgServiceHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgServiceRouter.RegisterService">func (msr *MsgServiceRouter) RegisterService(sd *grpc.ServiceDesc, handler interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgServiceRouter.SetCircuit">func (msr *MsgServiceRouter) SetCircuit(cb CircuitBreaker)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MsgServiceRouter.SetInterfaceRegistry">func (msr *MsgServiceRouter) SetInterfaceRegistry(interfaceRegistry codectypes.InterfaceRegistry)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ParamStore">type ParamStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ProposalTxVerifier">type ProposalTxVerifier</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#QueryServiceTestHelper">type QueryServiceTestHelper</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewQueryServerTestHelper">func NewQueryServerTestHelper(ctx sdk.Context, interfaceRegistry types.InterfaceRegistry) *QueryServiceTestHelper</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryServiceTestHelper.Invoke">func (q *QueryServiceTestHelper) Invoke(_ gocontext.Context, method string, args, reply interface{}, _ ...grpc.CallOption) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#QueryServiceTestHelper.NewStream">func (q *QueryServiceTestHelper) NewStream(gocontext.Context, *grpc.StreamDesc, string, ...grpc.CallOption) (grpc.ClientStream, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#RecoveryHandler">type RecoveryHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StoreLoader">type StoreLoader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StreamingService">type StreamingService</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go">abci.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go">baseapp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/circuit.go">circuit.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go">ethrouter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go">grpcrouter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter_helpers.go">grpcrouter_helpers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcserver.go">grpcserver.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go">msg_service_router.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go">options.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params.go">params.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go">params_legacy.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/recovery.go">recovery.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/state.go">state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/streaming.go">streaming.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go">test_helpers.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>Supported ABCI Query prefixes
+
+				<pre>const (
+    <span id="QueryPathApp">QueryPathApp</span>    = &#34;app&#34;
+    <span id="QueryPathCustom">QueryPathCustom</span> = &#34;custom&#34;
+    <span id="QueryPathP2P">QueryPathP2P</span>    = &#34;p2p&#34;
+    <span id="QueryPathStore">QueryPathStore</span>  = &#34;store&#34;
+)</pre>
+			
+				<p>Supported EVM json-rpc requests
+
+				<pre>const (
+    <span id="EthBlockNumber">EthBlockNumber</span>      = &#34;eth_blockNumber&#34;
+    <span id="EthGetBlockByNumber">EthGetBlockByNumber</span> = &#34;eth_getBlockByNumber&#34;
+    <span id="EthGetBalance">EthGetBalance</span>       = &#34;eth_getBalance&#34;
+    <span id="EthChainID">EthChainID</span>          = &#34;eth_chainId&#34;
+    <span id="NetVersion">NetVersion</span>          = &#34;net_version&#34;
+    <span id="EthNetworkID">EthNetworkID</span>        = &#34;eth_networkId&#34;
+)</pre>
+			
+				
+				<pre>const <span id="Paramspace">Paramspace</span> = &#34;baseapp&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ParamStoreKeyBlockParams">ParamStoreKeyBlockParams</span>     = []<a href="../../../../builtin/index.html#byte">byte</a>(&#34;BlockParams&#34;)
+    <span id="ParamStoreKeyEvidenceParams">ParamStoreKeyEvidenceParams</span>  = []<a href="../../../../builtin/index.html#byte">byte</a>(&#34;EvidenceParams&#34;)
+    <span id="ParamStoreKeyValidatorParams">ParamStoreKeyValidatorParams</span> = []<a href="../../../../builtin/index.html#byte">byte</a>(&#34;ValidatorParams&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DefaultStoreLoader">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=11937:11991#L323">DefaultStoreLoader</a>
+				<a class="permalink" href="index.html#DefaultStoreLoader">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultStoreLoader(ms <a href="../types/index.html">sdk</a>.<a href="../types/index.html#CommitMultiStore">CommitMultiStore</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>DefaultStoreLoader will be used by default and loads the latest version
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetConsensusParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=2947:3041#L100">GetConsensusParams</a>
+				<a class="permalink" href="index.html#GetConsensusParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetConsensusParams(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, paramStore <a href="index.html#LegacyParamStore">LegacyParamStore</a>) *<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#ConsensusParams">ConsensusParams</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="MigrateParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=3632:3704#L131">MigrateParams</a>
+				<a class="permalink" href="index.html#MigrateParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MigrateParams(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, lps <a href="index.html#LegacyParamStore">LegacyParamStore</a>, ps <a href="index.html#ParamStore">ParamStore</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NoOpPrepareProposal">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=36072:36125#L1041">NoOpPrepareProposal</a>
+				<a class="permalink" href="index.html#NoOpPrepareProposal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NoOpPrepareProposal() <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PrepareProposalHandler">PrepareProposalHandler</a></pre>
+			<p>NoOpPrepareProposal defines a no-op PrepareProposal handler. It will always
+return the transactions sent by the client&apos;s request.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NoOpProcessProposal">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=36375:36428#L1049">NoOpProcessProposal</a>
+				<a class="permalink" href="index.html#NoOpProcessProposal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NoOpProcessProposal() <a href="../types/index.html">sdk</a>.<a href="../types/index.html#ProcessProposalHandler">ProcessProposalHandler</a></pre>
+			<p>NoOpProcessProposal defines a no-op ProcessProposal Handler. It will always
+return ACCEPT.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetChainID">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3429:3475#L85">SetChainID</a>
+				<a class="permalink" href="index.html#SetChainID">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetChainID(chainID <a href="../../../../builtin/index.html#string">string</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetChainID sets the chain ID in BaseApp.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetHaltHeight">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=1182:1235#L27">SetHaltHeight</a>
+				<a class="permalink" href="index.html#SetHaltHeight">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetHaltHeight(blockHeight <a href="../../../../builtin/index.html#uint64">uint64</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetHaltHeight returns a BaseApp option function that sets the halt block height.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetHaltTime">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=1385:1433#L32">SetHaltTime</a>
+				<a class="permalink" href="index.html#SetHaltTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetHaltTime(haltTime <a href="../../../../builtin/index.html#uint64">uint64</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetHaltTime returns a BaseApp option function that sets the halt block time.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetIAVLCacheSize">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=2232:2278#L54">SetIAVLCacheSize</a>
+				<a class="permalink" href="index.html#SetIAVLCacheSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetIAVLCacheSize(size <a href="../../../../builtin/index.html#int">int</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetIAVLCacheSize provides a BaseApp option function that sets the size of IAVL cache.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetIAVLDisableFastNode">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=2441:2497#L59">SetIAVLDisableFastNode</a>
+				<a class="permalink" href="index.html#SetIAVLDisableFastNode">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetIAVLDisableFastNode(disable <a href="../../../../builtin/index.html#bool">bool</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetIAVLDisableFastNode enables(false)/disables(true) fast node usage from the IAVL store.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetIAVLLazyLoading">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=2647:2703#L64">SetIAVLLazyLoading</a>
+				<a class="permalink" href="index.html#SetIAVLLazyLoading">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetIAVLLazyLoading(lazyLoading <a href="../../../../builtin/index.html#bool">bool</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetIAVLLazyLoading enables/disables lazy loading of the IAVL store.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetIndexEvents">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=2036:2083#L49">SetIndexEvents</a>
+				<a class="permalink" href="index.html#SetIndexEvents">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetIndexEvents(ie []<a href="../../../../builtin/index.html#string">string</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetIndexEvents provides a BaseApp option function that sets the events to index.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetInterBlockCache">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=2871:2946#L70">SetInterBlockCache</a>
+				<a class="permalink" href="index.html#SetInterBlockCache">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetInterBlockCache(cache <a href="../types/index.html">sdk</a>.<a href="../types/index.html#MultiStorePersistentCache">MultiStorePersistentCache</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetInterBlockCache provides a BaseApp option function that sets the
+inter-block cache.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMempool">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3269:3324#L80">SetMempool</a>
+				<a class="permalink" href="index.html#SetMempool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMempool(mempool <a href="../types/mempool/index.html">mempool</a>.<a href="../types/mempool/index.html#Mempool">Mempool</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetMempool sets the mempool on BaseApp.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMinGasPrices">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=840:896#L17">SetMinGasPrices</a>
+				<a class="permalink" href="index.html#SetMinGasPrices">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMinGasPrices(gasPricesStr <a href="../../../../builtin/index.html#string">string</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetMinGasPrices returns an option that sets the minimum gas prices on the app.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetMinRetainBlocks">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=1671:1733#L39">SetMinRetainBlocks</a>
+				<a class="permalink" href="index.html#SetMinRetainBlocks">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetMinRetainBlocks(minRetainBlocks <a href="../../../../builtin/index.html#uint64">uint64</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetMinRetainBlocks returns a BaseApp option function that sets the minimum
+block retention height value when determining which heights to prune during
+ABCI Commit.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetPruning">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=630:694#L12">SetPruning</a>
+				<a class="permalink" href="index.html#SetPruning">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetPruning(opts <a href="../store/pruning/types/index.html">pruningtypes</a>.<a href="../store/pruning/types/index.html#PruningOptions">PruningOptions</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetPruning sets a pruning option on the multistore associated with the app
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetSnapshot">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3053:3152#L75">SetSnapshot</a>
+				<a class="permalink" href="index.html#SetSnapshot">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetSnapshot(snapshotStore *<a href="../snapshots/index.html">snapshots</a>.<a href="../snapshots/index.html#Store">Store</a>, opts <a href="../snapshots/types/index.html">snapshottypes</a>.<a href="../snapshots/types/index.html#SnapshotOptions">SnapshotOptions</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetSnapshot sets the snapshot store.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetTrace">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=1855:1895#L44">SetTrace</a>
+				<a class="permalink" href="index.html#SetTrace">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetTrace(trace <a href="../../../../builtin/index.html#bool">bool</a>) func(*<a href="index.html#BaseApp">BaseApp</a>)</pre>
+			<p>SetTrace will turn on or off trace flag
+
+			
+			
+
+		
+			
+			
+			<h2 id="SplitABCIQueryPath">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=34579:34638#L1039">SplitABCIQueryPath</a>
+				<a class="permalink" href="index.html#SplitABCIQueryPath">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SplitABCIQueryPath(requestPath <a href="../../../../builtin/index.html#string">string</a>) (path []<a href="../../../../builtin/index.html#string">string</a>)</pre>
+			<p>SplitABCIQueryPath splits a string path using the delimiter &apos;/&apos;.
+<p>e.g. &quot;this/is/funny&quot; becomes []string{&quot;this&quot;, &quot;is&quot;, &quot;funny&quot;}
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateBlockParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=1754:1799#L49">ValidateBlockParams</a>
+				<a class="permalink" href="index.html#ValidateBlockParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateBlockParams(i interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateEvidenceParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=2135:2183#L66">ValidateEvidenceParams</a>
+				<a class="permalink" href="index.html#ValidateEvidenceParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateEvidenceParams(i interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateValidatorParams">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=2669:2718#L87">ValidateValidatorParams</a>
+				<a class="permalink" href="index.html#ValidateValidatorParams">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateValidatorParams(i interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ABCIListener">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/streaming.go?s=416:1138#L6">ABCIListener</a>
+				<a class="permalink" href="index.html#ABCIListener">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ABCIListener interface used to hook into the ABCI message processing of the BaseApp.
+the error results are propagated to consensus state machine,
+if you don&apos;t want to affect consensus, handle the errors internally and always return `nil` in these APIs.
+
+			<pre>type ABCIListener interface {
+    <span class="comment">// ListenBeginBlock updates the streaming service with the latest BeginBlock messages</span>
+    ListenBeginBlock(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>, res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseBeginBlock">ResponseBeginBlock</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// ListenEndBlock updates the steaming service with the latest EndBlock messages</span>
+    ListenEndBlock(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>, res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEndBlock">ResponseEndBlock</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// ListenDeliverTx updates the steaming service with the latest DeliverTx messages</span>
+    ListenDeliverTx(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestDeliverTx">RequestDeliverTx</a>, res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// ListenCommit updates the steaming service with the latest Commit event</span>
+    ListenCommit(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseCommit">ResponseCommit</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BaseApp">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=1683:6459#L39">BaseApp</a>
+				<a class="permalink" href="index.html#BaseApp">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BaseApp reflects the ABCI application implementation.
+
+			<pre>type BaseApp struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBaseApp">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=6697:6820#L148">NewBaseApp</a>
+					<a class="permalink" href="index.html#NewBaseApp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBaseApp(
+    name <a href="../../../../builtin/index.html#string">string</a>, logger <a href="../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>, db <a href="../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../cometbft/cometbft-db/index.html#DB">DB</a>, txDecoder <a href="../types/index.html">sdk</a>.<a href="../types/index.html#TxDecoder">TxDecoder</a>, options ...func(*<a href="index.html#BaseApp">BaseApp</a>),
+) *<a href="index.html#BaseApp">BaseApp</a></pre>
+				<p>NewBaseApp returns a reference to an initialized BaseApp. It accepts a
+variadic number of option functions, which act on the BaseApp to set
+configuration choices.
+<p>NOTE: The db is used to store the version number for now.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BaseApp.AddRunTxRecoveryHandler">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=16857:16929#L482">AddRunTxRecoveryHandler</a>
+					<a class="permalink" href="index.html#BaseApp.AddRunTxRecoveryHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) AddRunTxRecoveryHandler(handlers ...<a href="index.html#RecoveryHandler">RecoveryHandler</a>)</pre>
+				<p>AddRunTxRecoveryHandler adds custom app.runTx method panic handlers.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.AppVersion">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8019:8058#L202">AppVersion</a>
+					<a class="permalink" href="index.html#BaseApp.AppVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) AppVersion() <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>AppVersion returns the application&apos;s protocol version.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.ApplySnapshotChunk">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=23826:23932#L682">ApplySnapshotChunk</a>
+					<a class="permalink" href="index.html#BaseApp.ApplySnapshotChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) ApplySnapshotChunk(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestApplySnapshotChunk">RequestApplySnapshotChunk</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseApplySnapshotChunk">ResponseApplySnapshotChunk</a></pre>
+				<p>ApplySnapshotChunk implements the ABCI interface. It delegates to app.snapshotManager if set.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.BeginBlock">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=4983:5071#L159">BeginBlock</a>
+					<a class="permalink" href="index.html#BaseApp.BeginBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) BeginBlock(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseBeginBlock">ResponseBeginBlock</a>)</pre>
+				<p>BeginBlock implements the ABCI application interface.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.ChainID">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=7802:7838#L192">ChainID</a>
+					<a class="permalink" href="index.html#BaseApp.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) ChainID() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>ChainID returns the chain id.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.CheckTx">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=12975:13048#L361">CheckTx</a>
+					<a class="permalink" href="index.html#BaseApp.CheckTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) CheckTx(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestCheckTx">RequestCheckTx</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseCheckTx">ResponseCheckTx</a></pre>
+				<p>CheckTx implements the ABCI interface and executes a tx in CheckTx mode. In
+CheckTx mode, messages are not executed. This means messages are only validated
+and only the AnteHandler is executed. State is persisted to the BaseApp&apos;s
+internal CheckTx state if the AnteHandler passes. Otherwise, the ResponseCheckTx
+will contain relevant error information. Regardless of tx execution outcome,
+the ResponseCheckTx will contain relevant gas execution context.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Close">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=36675:36708#L1056">Close</a>
+					<a class="permalink" href="index.html#BaseApp.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Close is called in start cmd to gracefully cleanup resources.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Commit">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=15879:15927#L436">Commit</a>
+					<a class="permalink" href="index.html#BaseApp.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Commit() <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseCommit">ResponseCommit</a></pre>
+				<p>Commit implements the ABCI interface. It will commit all state that exists in
+the deliver state&apos;s multi-store and includes the resulting commit ID in the
+returned abci.ResponseCommit. Commit will set the check state based on the
+latest header and reset the deliver state. Also, if a non-zero halt height is
+defined in config, Commit will execute a deferred function call to check
+against that height and gracefully halt if it matches the latest committed
+height.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.CommitMultiStore">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=12187:12246#L330">CommitMultiStore</a>
+					<a class="permalink" href="index.html#BaseApp.CommitMultiStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) CommitMultiStore() <a href="../types/index.html">sdk</a>.<a href="../types/index.html#CommitMultiStore">CommitMultiStore</a></pre>
+				<p>CommitMultiStore returns the root multi-store.
+App constructor can use this to access the `cms`.
+UNSAFE: must not be used during the abci life cycle.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.CreateQueryContext">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=27298:27383#L796">CreateQueryContext</a>
+					<a class="permalink" href="index.html#BaseApp.CreateQueryContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) CreateQueryContext(height <a href="../../../../builtin/index.html#int64">int64</a>, prove <a href="../../../../builtin/index.html#bool">bool</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>createQueryContext creates a new sdk.Context for a query, taking as args
+the block height and whether the query needs a proof or not.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.DeliverTx">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=14183:14268#L395">DeliverTx</a>
+					<a class="permalink" href="index.html#BaseApp.DeliverTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) DeliverTx(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestDeliverTx">RequestDeliverTx</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a>)</pre>
+				<p>DeliverTx implements the ABCI interface and executes a tx in DeliverTx mode.
+State only gets persisted if all messages are valid and get executed successfully.
+Otherwise, the ResponseDeliverTx will contain relevant error information.
+Regardless of tx execution outcome, the ResponseDeliverTx will contain relevant
+gas execution context.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.EndBlock">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=6973:7055#L218">EndBlock</a>
+					<a class="permalink" href="index.html#BaseApp.EndBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) EndBlock(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEndBlock">ResponseEndBlock</a>)</pre>
+				<p>EndBlock implements the ABCI interface.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.EthQuery">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=20091:20173#L569">EthQuery</a>
+					<a class="permalink" href="index.html#BaseApp.EthQuery">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) EthQuery(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestEthQuery">RequestEthQuery</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEthQuery">ResponseEthQuery</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.EthQueryRouter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8831:8883#L230">EthQueryRouter</a>
+					<a class="permalink" href="index.html#BaseApp.EthQueryRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) EthQueryRouter() *<a href="index.html#EthQueryRouter">EthQueryRouter</a></pre>
+				<p>EthQueryRouter returns the EthQueryRouter of a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.FilterPeerByAddrPort">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=4538:4610#L141">FilterPeerByAddrPort</a>
+					<a class="permalink" href="index.html#BaseApp.FilterPeerByAddrPort">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) FilterPeerByAddrPort(info <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseQuery">ResponseQuery</a></pre>
+				<p>FilterPeerByAddrPort filters peers by address/port.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.FilterPeerByID">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=4759:4825#L150">FilterPeerByID</a>
+					<a class="permalink" href="index.html#BaseApp.FilterPeerByID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) FilterPeerByID(info <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseQuery">ResponseQuery</a></pre>
+				<p>FilterPeerByID filters peers by node ID.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.GRPCQueryRouter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcserver.go?s=568:622#L11">GRPCQueryRouter</a>
+					<a class="permalink" href="index.html#BaseApp.GRPCQueryRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) GRPCQueryRouter() *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a></pre>
+				<p>GRPCQueryRouter returns the GRPCQueryRouter of a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.GetBlockRetentionHeight">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=30196:30265#L881">GetBlockRetentionHeight</a>
+					<a class="permalink" href="index.html#BaseApp.GetBlockRetentionHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) GetBlockRetentionHeight(commitHeight <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>GetBlockRetentionHeight returns the height for which all blocks below this height
+are pruned from Tendermint. Given a commitment height and a non-zero local
+minRetainBlocks configuration, the retentionHeight is the smallest height that
+satisfies:
+<p>- Unbonding (safety threshold) time: The block interval in which validators
+can be economically punished for misbehavior. Blocks in this interval must be
+auditable e.g. by the light client.
+<p>- Logical store snapshot interval: The block interval at which the underlying
+logical store database is persisted to disk, e.g. every 10000 heights. Blocks
+since the last IAVL snapshot must be available for replay on application restart.
+<p>- State sync snapshots: Blocks since the oldest available snapshot must be
+available for state sync nodes to catch up (oldest because a node may be
+restoring an old snapshot while a new snapshot was taken).
+<p>- Local (minRetainBlocks) config: Archive nodes may want to retain more or
+all blocks, e.g. via a local config option min-retain-blocks. There may also
+be a need to vary retention for other nodes, e.g. sentry nodes which do not
+need historical blocks.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.GetConsensusParams">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=16088:16168#L453">GetConsensusParams</a>
+					<a class="permalink" href="index.html#BaseApp.GetConsensusParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) GetConsensusParams(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>) *<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#ConsensusParams">ConsensusParams</a></pre>
+				<p>GetConsensusParams returns the current consensus parameters from the BaseApp&apos;s
+ParamStore. If the BaseApp has no ParamStore defined, nil is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.GetContextForDeliverTx">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=1996:2066#L43">GetContextForDeliverTx</a>
+					<a class="permalink" href="index.html#BaseApp.GetContextForDeliverTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) GetContextForDeliverTx(txBytes []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.GetMaximumBlockGas">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=17221:17283#L491">GetMaximumBlockGas</a>
+					<a class="permalink" href="index.html#BaseApp.GetMaximumBlockGas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) GetMaximumBlockGas(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>) <a href="../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>GetMaximumBlockGas gets the maximum gas from the consensus params. It panics
+if maximum block gas is less than negative one and returns zero if negative
+one.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Info">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=4162:4226#L128">Info</a>
+					<a class="permalink" href="index.html#BaseApp.Info">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Info(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestInfo">RequestInfo</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseInfo">ResponseInfo</a></pre>
+				<p>Info implements the ABCI interface.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Init">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=13467:13499#L366">Init</a>
+					<a class="permalink" href="index.html#BaseApp.Init">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Init() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Init initializes the app. It seals the app, preventing any
+further modifications. In addition, it validates the app against
+the earlier provided settings. Returns an error if validation fails.
+nil otherwise. Panics if the app is already sealed.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.InitChain">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=1337:1422#L42">InitChain</a>
+					<a class="permalink" href="index.html#BaseApp.InitChain">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) InitChain(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestInitChain">RequestInitChain</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseInitChain">ResponseInitChain</a>)</pre>
+				<p>InitChain implements the ABCI interface. It runs the initialization logic
+directly on the CommitMultiStore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.IsSealed">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=14809:14844#L420">IsSealed</a>
+					<a class="permalink" href="index.html#BaseApp.IsSealed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) IsSealed() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsSealed returns true if the BaseApp is sealed and false otherwise.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.LastBlockHeight">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=13122:13165#L358">LastBlockHeight</a>
+					<a class="permalink" href="index.html#BaseApp.LastBlockHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) LastBlockHeight() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>LastBlockHeight returns the last committed block height.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.LastCommitID">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=12971:13025#L353">LastCommitID</a>
+					<a class="permalink" href="index.html#BaseApp.LastCommitID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) LastCommitID() <a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#CommitID">CommitID</a></pre>
+				<p>LastCommitID returns the last CommitID of the multistore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.ListSnapshots">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=20799:20890#L589">ListSnapshots</a>
+					<a class="permalink" href="index.html#BaseApp.ListSnapshots">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) ListSnapshots(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestListSnapshots">RequestListSnapshots</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseListSnapshots">ResponseListSnapshots</a></pre>
+				<p>ListSnapshots implements the ABCI interface. It delegates to app.snapshotManager if set.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.LoadLatestVersion">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=11676:11721#L313">LoadLatestVersion</a>
+					<a class="permalink" href="index.html#BaseApp.LoadLatestVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) LoadLatestVersion() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>LoadLatestVersion loads the latest application version. It will panic if
+called more than once on a running BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.LoadSnapshotChunk">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=21500:21603#L614">LoadSnapshotChunk</a>
+					<a class="permalink" href="index.html#BaseApp.LoadSnapshotChunk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) LoadSnapshotChunk(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestLoadSnapshotChunk">RequestLoadSnapshotChunk</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseLoadSnapshotChunk">ResponseLoadSnapshotChunk</a></pre>
+				<p>LoadSnapshotChunk implements the ABCI interface. It delegates to app.snapshotManager if set.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.LoadVersion">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=12591:12643#L342">LoadVersion</a>
+					<a class="permalink" href="index.html#BaseApp.LoadVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) LoadVersion(version <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>LoadVersion loads the BaseApp application version. It will panic if called
+more than once on a running baseapp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Logger">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8247:8286#L212">Logger</a>
+					<a class="permalink" href="index.html#BaseApp.Logger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Logger() <a href="../../../cometbft/cometbft/libs/log/index.html">log</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a></pre>
+				<p>Logger returns the logger of the BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MountKVStores">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=10326:10399#L274">MountKVStores</a>
+					<a class="permalink" href="index.html#BaseApp.MountKVStores">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MountKVStores(keys map[<a href="../../../../builtin/index.html#string">string</a>]*<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#KVStoreKey">KVStoreKey</a>)</pre>
+				<p>MountKVStores mounts all IAVL or DB stores to the provided keys in the
+BaseApp multistore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MountMemoryStores">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=11083:11164#L296">MountMemoryStores</a>
+					<a class="permalink" href="index.html#BaseApp.MountMemoryStores">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MountMemoryStores(keys map[<a href="../../../../builtin/index.html#string">string</a>]*<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#MemoryStoreKey">MemoryStoreKey</a>)</pre>
+				<p>MountMemoryStores mounts all in-memory KVStores with the BaseApp&apos;s internal
+commit multi-store.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MountStore">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=11425:11506#L307">MountStore</a>
+					<a class="permalink" href="index.html#BaseApp.MountStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MountStore(key <a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#StoreKey">StoreKey</a>, typ <a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#StoreType">StoreType</a>)</pre>
+				<p>MountStore mounts a store to the provided key in the BaseApp multistore,
+using the default DB.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MountStores">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=9549:9609#L248">MountStores</a>
+					<a class="permalink" href="index.html#BaseApp.MountStores">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MountStores(keys ...<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#StoreKey">StoreKey</a>)</pre>
+				<p>MountStores mounts all IAVL or DB stores to the provided keys in the BaseApp
+multistore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MountTransientStores">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=10804:10891#L288">MountTransientStores</a>
+					<a class="permalink" href="index.html#BaseApp.MountTransientStores">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MountTransientStores(keys map[<a href="../../../../builtin/index.html#string">string</a>]*<a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#TransientStoreKey">TransientStoreKey</a>)</pre>
+				<p>MountTransientStores mounts all transient stores to the provided keys in
+the BaseApp multistore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.MsgServiceRouter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8497:8553#L222">MsgServiceRouter</a>
+					<a class="permalink" href="index.html#BaseApp.MsgServiceRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) MsgServiceRouter() *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a></pre>
+				<p>MsgServiceRouter returns the MsgServiceRouter of a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Name">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=7905:7938#L197">Name</a>
+					<a class="permalink" href="index.html#BaseApp.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Name() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Name returns the name of the BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.NewContext">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=1492:1573#L30">NewContext</a>
+					<a class="permalink" href="index.html#BaseApp.NewContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) NewContext(isCheckTx <a href="../../../../builtin/index.html#bool">bool</a>, header <a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#Header">Header</a>) <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a></pre>
+				<p>Context with current {check, deliver}State of the app used by tests.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.NewUncachedContext">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=1818:1907#L39">NewUncachedContext</a>
+					<a class="permalink" href="index.html#BaseApp.NewUncachedContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) NewUncachedContext(isCheckTx <a href="../../../../builtin/index.html#bool">bool</a>, header <a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#Header">Header</a>) <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.OfferSnapshot">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=22122:22213#L633">OfferSnapshot</a>
+					<a class="permalink" href="index.html#BaseApp.OfferSnapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) OfferSnapshot(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestOfferSnapshot">RequestOfferSnapshot</a>) <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseOfferSnapshot">ResponseOfferSnapshot</a></pre>
+				<p>OfferSnapshot implements the ABCI interface. It delegates to app.snapshotManager if set.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.PrepareProposal">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=8599:8703#L255">PrepareProposal</a>
+					<a class="permalink" href="index.html#BaseApp.PrepareProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) PrepareProposal(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestPrepareProposal">RequestPrepareProposal</a>) (resp <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponsePrepareProposal">ResponsePrepareProposal</a>)</pre>
+				<p>PrepareProposal implements the PrepareProposal ABCI method and returns a
+ResponsePrepareProposal object to the client. The PrepareProposal method is
+responsible for allowing the block proposer to perform application-dependent
+work in a block before proposing it.
+<p>Transactions can be modified, removed, or added by the application. Since the
+application maintains its own local mempool, it will ignore the transactions
+provided to it in RequestPrepareProposal. Instead, it will determine which
+transactions to return based on the mempool&apos;s semantics and the MaxTxBytes
+provided by the client&apos;s request.
+<p>Ref: <a href="https://github.com/cosmos/cosmos-sdk/blob/main/docs/architecture/adr-060-abci-1.0.md">https://github.com/cosmos/cosmos-sdk/blob/main/docs/architecture/adr-060-abci-1.0.md</a>
+Ref: <a href="https://github.com/tendermint/tendermint/blob/main/spec/abci/abci%2B%2B_basic_concepts.md">https://github.com/tendermint/tendermint/blob/main/spec/abci/abci%2B%2B_basic_concepts.md</a>
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.PrepareProposalVerifyTx">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=30602:30672#L884">PrepareProposalVerifyTx</a>
+					<a class="permalink" href="index.html#BaseApp.PrepareProposalVerifyTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) PrepareProposalVerifyTx(tx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>PrepareProposalVerifyTx performs transaction verification when a proposer is
+creating a block proposal during PrepareProposal. Any state committed to the
+PrepareProposal state internally will be discarded. &lt;nil, err&gt; will be
+returned if the transaction cannot be encoded. &lt;bz, nil&gt; will be returned if
+the transaction is valid, otherwise &lt;bz, err&gt; will be returned.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.ProcessProposal">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=10994:11098#L312">ProcessProposal</a>
+					<a class="permalink" href="index.html#BaseApp.ProcessProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) ProcessProposal(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestProcessProposal">RequestProcessProposal</a>) (resp <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseProcessProposal">ResponseProcessProposal</a>)</pre>
+				<p>ProcessProposal implements the ProcessProposal ABCI method and returns a
+ResponseProcessProposal object to the client. The ProcessProposal method is
+responsible for allowing execution of application-dependent work in a proposed
+block. Note, the application defines the exact implementation details of
+ProcessProposal. In general, the application must at the very least ensure
+that all transactions are valid. If all transactions are valid, then we inform
+Tendermint that the Status is ACCEPT. However, the application is also able
+to implement optimizations such as executing the entire proposed block
+immediately.
+<p>If a panic is detected during execution of an application&apos;s ProcessProposal
+handler, it will be recovered and we will reject the proposal.
+<p>Ref: <a href="https://github.com/cosmos/cosmos-sdk/blob/main/docs/architecture/adr-060-abci-1.0.md">https://github.com/cosmos/cosmos-sdk/blob/main/docs/architecture/adr-060-abci-1.0.md</a>
+Ref: <a href="https://github.com/tendermint/tendermint/blob/main/spec/abci/abci%2B%2B_basic_concepts.md">https://github.com/tendermint/tendermint/blob/main/spec/abci/abci%2B%2B_basic_concepts.md</a>
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.ProcessProposalVerifyTx">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=31242:31314#L903">ProcessProposalVerifyTx</a>
+					<a class="permalink" href="index.html#BaseApp.ProcessProposalVerifyTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) ProcessProposalVerifyTx(txBz []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ProcessProposalVerifyTx performs transaction verification when receiving a
+block proposal during ProcessProposal. Any state committed to the
+ProcessProposal state internally will be discarded. &lt;nil, err&gt; will be
+returned if the transaction cannot be decoded. &lt;Tx, nil&gt; will be returned if
+the transaction is valid, otherwise &lt;Tx, err&gt; will be returned.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Query">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=18517:18590#L521">Query</a>
+					<a class="permalink" href="index.html#BaseApp.Query">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Query(req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestQuery">RequestQuery</a>) (res <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseQuery">ResponseQuery</a>)</pre>
+				<p>Query implements the ABCI interface. It delegates to CommitMultiStore if it
+implements Queryable.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.RegisterGRPCServer">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcserver.go?s=732:794#L14">RegisterGRPCServer</a>
+					<a class="permalink" href="index.html#BaseApp.RegisterGRPCServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) RegisterGRPCServer(server <a href="../../gogoproto/grpc/index.html">gogogrpc</a>.<a href="../../gogoproto/grpc/index.html#Server">Server</a>)</pre>
+				<p>RegisterGRPCServer registers gRPC services directly with the gRPC server.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Seal">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=14688:14714#L417">Seal</a>
+					<a class="permalink" href="index.html#BaseApp.Seal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Seal()</pre>
+				<p>Seal seals a BaseApp. It prohibits any further modifications to a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetAddrPeerFilter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5221:5277#L175">SetAddrPeerFilter</a>
+					<a class="permalink" href="index.html#BaseApp.SetAddrPeerFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetAddrPeerFilter(pf <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PeerFilter">PeerFilter</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetAnteHandler">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4923:4977#L159">SetAnteHandler</a>
+					<a class="permalink" href="index.html#BaseApp.SetAnteHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetAnteHandler(ah <a href="../types/index.html">sdk</a>.<a href="../types/index.html#AnteHandler">AnteHandler</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetBeginBlocker">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4589:4655#L143">SetBeginBlocker</a>
+					<a class="permalink" href="index.html#BaseApp.SetBeginBlocker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetBeginBlocker(beginBlocker <a href="../types/index.html">sdk</a>.<a href="../types/index.html#BeginBlocker">BeginBlocker</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetCMS">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4281:4335#L127">SetCMS</a>
+					<a class="permalink" href="index.html#BaseApp.SetCMS">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetCMS(cms <a href="../store/index.html">store</a>.<a href="../store/index.html#CommitMultiStore">CommitMultiStore</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetCircuitBreaker">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=9264:9320#L239">SetCircuitBreaker</a>
+					<a class="permalink" href="index.html#BaseApp.SetCircuitBreaker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetCircuitBreaker(cb <a href="index.html#CircuitBreaker">CircuitBreaker</a>)</pre>
+				<p>SetCircuitBreaker sets the circuit breaker for the BaseApp.
+The circuit breaker is checked on every message execution to verify if a transaction should be executed or not.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetCommitMultiStoreTracer">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5771:5829#L201">SetCommitMultiStoreTracer</a>
+					<a class="permalink" href="index.html#BaseApp.SetCommitMultiStoreTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetCommitMultiStoreTracer(w <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Writer">Writer</a>)</pre>
+				<p>SetCommitMultiStoreTracer sets the store tracer on the BaseApp&apos;s underlying
+CommitMultiStore.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetDB">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4168:4204#L119">SetDB</a>
+					<a class="permalink" href="index.html#BaseApp.SetDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetDB(db <a href="../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../cometbft/cometbft-db/index.html#DB">DB</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetEndBlocker">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4762:4822#L151">SetEndBlocker</a>
+					<a class="permalink" href="index.html#BaseApp.SetEndBlocker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetEndBlocker(endBlocker <a href="../types/index.html">sdk</a>.<a href="../types/index.html#EndBlocker">EndBlocker</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetEthQueryRouter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8974:9043#L233">SetEthQueryRouter</a>
+					<a class="permalink" href="index.html#BaseApp.SetEthQueryRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetEthQueryRouter(ethQueryRouter *<a href="index.html#EthQueryRouter">EthQueryRouter</a>)</pre>
+				<p>SetEthQueryRouter sets the EthQueryRouter of a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetFauxMerkleMode">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5529:5568#L191">SetFauxMerkleMode</a>
+					<a class="permalink" href="index.html#BaseApp.SetFauxMerkleMode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetFauxMerkleMode()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetIDPeerFilter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5378:5432#L183">SetIDPeerFilter</a>
+					<a class="permalink" href="index.html#BaseApp.SetIDPeerFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetIDPeerFilter(pf <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PeerFilter">PeerFilter</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetInitChainer">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4422:4485#L135">SetInitChainer</a>
+					<a class="permalink" href="index.html#BaseApp.SetInitChainer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetInitChainer(initChainer <a href="../types/index.html">sdk</a>.<a href="../types/index.html#InitChainer">InitChainer</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetInterfaceRegistry">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=6560:6634#L228">SetInterfaceRegistry</a>
+					<a class="permalink" href="index.html#BaseApp.SetInterfaceRegistry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetInterfaceRegistry(registry <a href="../codec/types/index.html">types</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+				<p>SetInterfaceRegistry sets the InterfaceRegistry.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetMempool">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=7995:8050#L263">SetMempool</a>
+					<a class="permalink" href="index.html#BaseApp.SetMempool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetMempool(mempool <a href="../types/mempool/index.html">mempool</a>.<a href="../types/mempool/index.html#Mempool">Mempool</a>)</pre>
+				<p>SetMempool sets the mempool for the BaseApp and is required for the app to start up.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetMockBlockHeight">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/abci.go?s=31772:31824#L934">SetMockBlockHeight</a>
+					<a class="permalink" href="index.html#BaseApp.SetMockBlockHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetMockBlockHeight(height <a href="../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetMockBlockHeight is only used for testing.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetMsgServiceRouter">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8650:8725#L225">SetMsgServiceRouter</a>
+					<a class="permalink" href="index.html#BaseApp.SetMsgServiceRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetMsgServiceRouter(msgServiceRouter *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>)</pre>
+				<p>SetMsgServiceRouter sets the MsgServiceRouter of a BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetName">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3534:3574#L89">SetName</a>
+					<a class="permalink" href="index.html#BaseApp.SetName">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetName(name <a href="../../../../builtin/index.html#string">string</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetParamStore">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3713:3761#L98">SetParamStore</a>
+					<a class="permalink" href="index.html#BaseApp.SetParamStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetParamStore(ps <a href="index.html#ParamStore">ParamStore</a>)</pre>
+				<p>SetParamStore sets a parameter store on the BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetPostHandler">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5072:5126#L167">SetPostHandler</a>
+					<a class="permalink" href="index.html#BaseApp.SetPostHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetPostHandler(ph <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PostHandler">PostHandler</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetPrepareProposal">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=8470:8544#L279">SetPrepareProposal</a>
+					<a class="permalink" href="index.html#BaseApp.SetPrepareProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetPrepareProposal(handler <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PrepareProposalHandler">PrepareProposalHandler</a>)</pre>
+				<p>SetPrepareProposal sets the prepare proposal function for the BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetProcessProposal">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=8215:8289#L271">SetProcessProposal</a>
+					<a class="permalink" href="index.html#BaseApp.SetProcessProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetProcessProposal(handler <a href="../types/index.html">sdk</a>.<a href="../types/index.html#ProcessProposalHandler">ProcessProposalHandler</a>)</pre>
+				<p>SetProcessProposal sets the process proposal function for the BaseApp.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetProtocolVersion">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=4094:4142#L115">SetProtocolVersion</a>
+					<a class="permalink" href="index.html#BaseApp.SetProtocolVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetProtocolVersion(v <a href="../../../../builtin/index.html#uint64">uint64</a>)</pre>
+				<p>SetProtocolVersion sets the application&apos;s protocol version
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetQueryMultiStore">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=7830:7887#L258">SetQueryMultiStore</a>
+					<a class="permalink" href="index.html#BaseApp.SetQueryMultiStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetQueryMultiStore(ms <a href="../types/index.html">sdk</a>.<a href="../types/index.html#MultiStore">MultiStore</a>)</pre>
+				<p>SetQueryMultiStore set a alternative MultiStore implementation to support grpc query service.
+<p>Ref: <a href="https://github.com/cosmos/cosmos-sdk/issues/13317">https://github.com/cosmos/cosmos-sdk/issues/13317</a>
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetSnapshot">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=6138:6237#L215">SetSnapshot</a>
+					<a class="permalink" href="index.html#BaseApp.SetSnapshot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetSnapshot(snapshotStore *<a href="../snapshots/index.html">snapshots</a>.<a href="../snapshots/index.html#Store">Store</a>, opts <a href="../snapshots/types/index.html">snapshottypes</a>.<a href="../snapshots/types/index.html#SnapshotOptions">SnapshotOptions</a>)</pre>
+				<p>SetSnapshot sets the snapshot store and options.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetStoreLoader">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=5933:5987#L206">SetStoreLoader</a>
+					<a class="permalink" href="index.html#BaseApp.SetStoreLoader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetStoreLoader(loader <a href="index.html#StoreLoader">StoreLoader</a>)</pre>
+				<p>SetStoreLoader allows us to customize the rootMultiStore initialization.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetStreamingService">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=6903:6962#L235">SetStreamingService</a>
+					<a class="permalink" href="index.html#BaseApp.SetStreamingService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetStreamingService(s <a href="index.html#StreamingService">StreamingService</a>)</pre>
+				<p>SetStreamingService is used to set a streaming service into the BaseApp hooks and load the listeners into the multistore
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetTxDecoder">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=7407:7464#L246">SetTxDecoder</a>
+					<a class="permalink" href="index.html#BaseApp.SetTxDecoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetTxDecoder(txDecoder <a href="../types/index.html">sdk</a>.<a href="../types/index.html#TxDecoder">TxDecoder</a>)</pre>
+				<p>SetTxDecoder sets the TxDecoder if it wasn&apos;t provided in the BaseApp constructor.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetTxEncoder">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=7582:7639#L251">SetTxEncoder</a>
+					<a class="permalink" href="index.html#BaseApp.SetTxEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetTxEncoder(txEncoder <a href="../types/index.html">sdk</a>.<a href="../types/index.html#TxEncoder">TxEncoder</a>)</pre>
+				<p>SetTxEncoder sets the TxEncoder if it wasn&apos;t provided in the BaseApp constructor.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetUpgradeChecker">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=8730:8807#L288">SetUpgradeChecker</a>
+					<a class="permalink" href="index.html#BaseApp.SetUpgradeChecker">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetUpgradeChecker(checker func(<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#bool">bool</a>)</pre>
+				<p>SetUpgradeChecker is used to set a upgrade checker from the upgrade module
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SetVersion">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/options.go?s=3907:3947#L107">SetVersion</a>
+					<a class="permalink" href="index.html#BaseApp.SetVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SetVersion(v <a href="../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetVersion sets the application&apos;s version string.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SimCheck">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=272:370#L1">SimCheck</a>
+					<a class="permalink" href="index.html#BaseApp.SimCheck">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SimCheck(txEncoder <a href="../types/index.html">sdk</a>.<a href="../types/index.html#TxEncoder">TxEncoder</a>, tx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#GasInfo">GasInfo</a>, *<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Result">Result</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SimCheck defines a CheckTx helper function that used in tests and simulations.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SimDeliver">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=1062:1162#L19">SimDeliver</a>
+					<a class="permalink" href="index.html#BaseApp.SimDeliver">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SimDeliver(txEncoder <a href="../types/index.html">sdk</a>.<a href="../types/index.html#TxEncoder">TxEncoder</a>, tx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#GasInfo">GasInfo</a>, *<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Result">Result</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Simulate">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/test_helpers.go?s=880:958#L14">Simulate</a>
+					<a class="permalink" href="index.html#BaseApp.Simulate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Simulate(txBytes []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#GasInfo">GasInfo</a>, *<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Result">Result</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Simulate executes a tx in simulate mode to get result and gas info.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.SnapshotManager">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=12383:12439#L336">SnapshotManager</a>
+					<a class="permalink" href="index.html#BaseApp.SnapshotManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) SnapshotManager() *<a href="../snapshots/index.html">snapshots</a>.<a href="../snapshots/index.html#Manager">Manager</a></pre>
+				<p>SnapshotManager returns the snapshot manager.
+application use this to register extra extension snapshotters.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.StoreConsensusParams">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=16384:16470#L467">StoreConsensusParams</a>
+					<a class="permalink" href="index.html#BaseApp.StoreConsensusParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) StoreConsensusParams(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, cp *<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#ConsensusParams">ConsensusParams</a>)</pre>
+				<p>StoreConsensusParams sets the consensus parameters to the baseapp&apos;s param store.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Trace">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8378:8410#L217">Trace</a>
+					<a class="permalink" href="index.html#BaseApp.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Trace() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Trace returns the boolean value for logging error stack traces.
+
+				
+				
+				
+			
+				
+				<h3 id="BaseApp.Version">func (*BaseApp) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=8140:8176#L207">Version</a>
+					<a class="permalink" href="index.html#BaseApp.Version">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (app *<a href="index.html#BaseApp">BaseApp</a>) Version() <a href="../../../../builtin/index.html#string">string</a></pre>
+				<p>Version returns the application&apos;s version string.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CircuitBreaker">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/circuit.go?s=117:212#L1">CircuitBreaker</a>
+				<a class="permalink" href="index.html#CircuitBreaker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CircuitBreaker is an interface that defines the methods for a circuit breaker.
+
+			<pre>type CircuitBreaker interface {
+    IsAllowed(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, typeURL <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DefaultProposalHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=31957:32052#L928">DefaultProposalHandler</a>
+				<a class="permalink" href="index.html#DefaultProposalHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DefaultProposalHandler defines the default ABCI PrepareProposal and
+ProcessProposal handlers.
+
+			<pre>type DefaultProposalHandler struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDefaultProposalHandler">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=32056:32160#L934">NewDefaultProposalHandler</a>
+					<a class="permalink" href="index.html#NewDefaultProposalHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDefaultProposalHandler(mp <a href="../types/mempool/index.html">mempool</a>.<a href="../types/mempool/index.html#Mempool">Mempool</a>, txVerifier <a href="index.html#ProposalTxVerifier">ProposalTxVerifier</a>) <a href="index.html#DefaultProposalHandler">DefaultProposalHandler</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DefaultProposalHandler.PrepareProposalHandler">func (DefaultProposalHandler) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=33128:33211#L961">PrepareProposalHandler</a>
+					<a class="permalink" href="index.html#DefaultProposalHandler.PrepareProposalHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#DefaultProposalHandler">DefaultProposalHandler</a>) PrepareProposalHandler() <a href="../types/index.html">sdk</a>.<a href="../types/index.html#PrepareProposalHandler">PrepareProposalHandler</a></pre>
+				<p>PrepareProposalHandler returns the default implementation for processing an
+ABCI proposal. The application&apos;s mempool is enumerated and all valid
+transactions are added to the proposal. Transactions are valid if they:
+<p>1) Successfully encode to bytes.
+2) Are valid (i.e. pass runTx, AnteHandler only).
+<p>Enumeration is halted once RequestPrepareProposal.MaxBytes of transactions is
+reached or the mempool is exhausted.
+<p>Note:
+<p>- Step (2) is identical to the validation step performed in
+DefaultProcessProposal. It is very important that the same validation logic
+is used in both steps, and applications must ensure that this is the case in
+non-default handlers.
+<p>- If no mempool is set or if the mempool is a no-op mempool, the transactions
+requested from Tendermint will simply be returned, which, by default, are in
+FIFO order.
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultProposalHandler.ProcessProposalHandler">func (DefaultProposalHandler) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=35205:35288#L1019">ProcessProposalHandler</a>
+					<a class="permalink" href="index.html#DefaultProposalHandler.ProcessProposalHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#DefaultProposalHandler">DefaultProposalHandler</a>) ProcessProposalHandler() <a href="../types/index.html">sdk</a>.<a href="../types/index.html#ProcessProposalHandler">ProcessProposalHandler</a></pre>
+				<p>ProcessProposalHandler returns the default implementation for processing an
+ABCI proposal. Every transaction in the proposal must pass 2 conditions:
+<p>1. The transaction bytes must decode to a valid transaction.
+2. The transaction must be valid (i.e. pass runTx, AnteHandler only)
+<p>If any transaction fails to pass either condition, the proposal is rejected.
+Note that step (2) is identical to the validation step performed in
+DefaultPrepareProposal. It is very important that the same validation logic
+is used in both steps, and applications must ensure that this is the case in
+non-default handlers.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EthQueryHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=369:472#L6">EthQueryHandler</a>
+				<a class="permalink" href="index.html#EthQueryHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EthQueryHandler defines a function type which handles EVM json-rpc requests
+
+			<pre>type EthQueryHandler = func(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/rpc/jsonrpc/types/index.html">cmtrpctypes</a>.<a href="../../../cometbft/cometbft/rpc/jsonrpc/types/index.html#RPCRequest">RPCRequest</a>) (<a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseEthQuery">ResponseEthQuery</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EthQueryRouter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=530:595#L9">EthQueryRouter</a>
+				<a class="permalink" href="index.html#EthQueryRouter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EthQueryRouter routes eth Query requests to handlers
+
+			<pre>type EthQueryRouter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEthQueryRouter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=647:687#L14">NewEthQueryRouter</a>
+					<a class="permalink" href="index.html#NewEthQueryRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEthQueryRouter() *<a href="index.html#EthQueryRouter">EthQueryRouter</a></pre>
+				<p>NewEthQueryRouter creates a new EthQueryRouter
+
+				
+				
+			
+
+			
+				
+				<h3 id="EthQueryRouter.AddRoute">func (*EthQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=1140:1206#L32">AddRoute</a>
+					<a class="permalink" href="index.html#EthQueryRouter.AddRoute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#EthQueryRouter">EthQueryRouter</a>) AddRoute(route <a href="../../../../builtin/index.html#string">string</a>, h <a href="index.html#EthQueryHandler">EthQueryHandler</a>)</pre>
+				<p>AddRoute adds a query path to the router with a given Querier. It will panic
+if a duplicate route is given. The route must be alphanumeric.
+
+				
+				
+				
+			
+				
+				<h3 id="EthQueryRouter.RegisterConstHandler">func (*EthQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=1861:1908#L51">RegisterConstHandler</a>
+					<a class="permalink" href="index.html#EthQueryRouter.RegisterConstHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#EthQueryRouter">EthQueryRouter</a>) RegisterConstHandler()</pre>
+				<p>RegisterConstHandler adds router for constant eth query.
+
+				
+				
+				
+			
+				
+				<h3 id="EthQueryRouter.RegisterEthQueryBalanceHandler">func (*EthQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=1515:1633#L42">RegisterEthQueryBalanceHandler</a>
+					<a class="permalink" href="index.html#EthQueryRouter.RegisterEthQueryBalanceHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#EthQueryRouter">EthQueryRouter</a>) RegisterEthQueryBalanceHandler(srv interface{}, handlerGen func(interface{}) <a href="index.html#EthQueryHandler">EthQueryHandler</a>)</pre>
+				<p>RegisterEthQueryBalanceHandler adds router for EthGetBalance with a given handlerGen and server. It will panic
+if a duplicate route is given. The route must be alphanumeric.
+
+				
+				
+				
+			
+				
+				<h3 id="EthQueryRouter.Route">func (*EthQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/ethrouter.go?s=850:909#L22">Route</a>
+					<a class="permalink" href="index.html#EthQueryRouter.Route">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="index.html#EthQueryRouter">EthQueryRouter</a>) Route(path <a href="../../../../builtin/index.html#string">string</a>) <a href="index.html#EthQueryHandler">EthQueryHandler</a></pre>
+				<p>Route returns the EthQueryHandler for a given query route path or nil
+if not found
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GRPCQueryHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=1031:1127#L31">GRPCQueryHandler</a>
+				<a class="permalink" href="index.html#GRPCQueryHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GRPCQueryHandler defines a function type which handles ABCI Query requests
+using gRPC
+
+			<pre>type GRPCQueryHandler = func(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#RequestQuery">RequestQuery</a>) (<a href="../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../cometbft/cometbft/abci/types/index.html#ResponseQuery">ResponseQuery</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GRPCQueryRouter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=445:572#L8">GRPCQueryRouter</a>
+				<a class="permalink" href="index.html#GRPCQueryRouter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GRPCQueryRouter routes ABCI Query requests to GRPC handlers
+
+			<pre>type GRPCQueryRouter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGRPCQueryRouter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=821:863#L23">NewGRPCQueryRouter</a>
+					<a class="permalink" href="index.html#NewGRPCQueryRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGRPCQueryRouter() *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a></pre>
+				<p>NewGRPCQueryRouter creates a new GRPCQueryRouter
+
+				
+				
+			
+
+			
+				
+				<h3 id="GRPCQueryRouter.RegisterService">func (*GRPCQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=1610:1696#L48">RegisterService</a>
+					<a class="permalink" href="index.html#GRPCQueryRouter.RegisterService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (qrt *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a>) RegisterService(sd *<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#ServiceDesc">ServiceDesc</a>, handler interface{})</pre>
+				<p>RegisterService implements the gRPC Server.RegisterService method. sd is a gRPC
+service description, handler is an object which implements that gRPC service/
+<p>This functions PANICS:
+- if a protobuf service is registered twice.
+
+				
+				
+				
+			
+				
+				<h3 id="GRPCQueryRouter.Route">func (*GRPCQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=1219:1282#L35">Route</a>
+					<a class="permalink" href="index.html#GRPCQueryRouter.Route">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (qrt *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a>) Route(path <a href="../../../../builtin/index.html#string">string</a>) <a href="index.html#GRPCQueryHandler">GRPCQueryHandler</a></pre>
+				<p>Route returns the GRPCQueryHandler for a given query route path or nil
+if not found
+
+				
+				
+				
+			
+				
+				<h3 id="GRPCQueryRouter.SetInterfaceRegistry">func (*GRPCQueryRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter.go?s=3480:3576#L102">SetInterfaceRegistry</a>
+					<a class="permalink" href="index.html#GRPCQueryRouter.SetInterfaceRegistry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (qrt *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a>) SetInterfaceRegistry(interfaceRegistry <a href="../codec/types/index.html">codectypes</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+				<p>SetInterfaceRegistry sets the interface registry for the router. This will
+also register the interface reflection gRPC service.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LegacyParamStore">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params_legacy.go?s=1627:1752#L44">LegacyParamStore</a>
+				<a class="permalink" href="index.html#LegacyParamStore">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type LegacyParamStore interface {
+    Get(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, key []<a href="../../../../builtin/index.html#byte">byte</a>, ptr interface{})
+    Has(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, key []<a href="../../../../builtin/index.html#byte">byte</a>) <a href="../../../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MsgServiceHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=856:936#L23">MsgServiceHandler</a>
+				<a class="permalink" href="index.html#MsgServiceHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MsgServiceHandler defines a function type which handles Msg service message.
+
+			<pre>type MsgServiceHandler = func(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, req <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Msg">Msg</a>) (*<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Result">Result</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MsgServiceRouter">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=390:552#L7">MsgServiceRouter</a>
+				<a class="permalink" href="index.html#MsgServiceRouter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MsgServiceRouter routes fully-qualified Msg service methods to their handler.
+
+			<pre>type MsgServiceRouter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMsgServiceRouter">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=654:698#L16">NewMsgServiceRouter</a>
+					<a class="permalink" href="index.html#NewMsgServiceRouter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMsgServiceRouter() *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a></pre>
+				<p>NewMsgServiceRouter creates a new MsgServiceRouter.
+
+				
+				
+			
+
+			
+				
+				<h3 id="MsgServiceRouter.Handler">func (*MsgServiceRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=1105:1172#L30">Handler</a>
+					<a class="permalink" href="index.html#MsgServiceRouter.Handler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msr *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>) Handler(msg <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Msg">Msg</a>) <a href="index.html#MsgServiceHandler">MsgServiceHandler</a></pre>
+				<p>Handler returns the MsgServiceHandler for a given msg or nil if not found.
+
+				
+				
+				
+			
+				
+				<h3 id="MsgServiceRouter.HandlerByTypeURL">func (*MsgServiceRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=1321:1400#L36">HandlerByTypeURL</a>
+					<a class="permalink" href="index.html#MsgServiceRouter.HandlerByTypeURL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msr *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>) HandlerByTypeURL(typeURL <a href="../../../../builtin/index.html#string">string</a>) <a href="index.html#MsgServiceHandler">MsgServiceHandler</a></pre>
+				<p>HandlerByTypeURL returns the MsgServiceHandler for a given query route path or nil
+if not found.
+
+				
+				
+				
+			
+				
+				<h3 id="MsgServiceRouter.RegisterService">func (*MsgServiceRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=1779:1866#L47">RegisterService</a>
+					<a class="permalink" href="index.html#MsgServiceRouter.RegisterService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msr *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>) RegisterService(sd *<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#ServiceDesc">ServiceDesc</a>, handler interface{})</pre>
+				<p>RegisterService implements the gRPC Server.RegisterService method. sd is a gRPC
+service description, handler is an object which implements that gRPC service.
+<p>This function PANICs:
+<ul>
+<li>if it is called before the service `Msg`s have been registered using
+RegisterInterfaces,
+<li>or if a service is being registered twice.
+</ul>
+
+				
+				
+				
+			
+				
+				<h3 id="MsgServiceRouter.SetCircuit">func (*MsgServiceRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=938:996#L25">SetCircuit</a>
+					<a class="permalink" href="index.html#MsgServiceRouter.SetCircuit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msr *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>) SetCircuit(cb <a href="index.html#CircuitBreaker">CircuitBreaker</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MsgServiceRouter.SetInterfaceRegistry">func (*MsgServiceRouter) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/msg_service_router.go?s=5735:5832#L145">SetInterfaceRegistry</a>
+					<a class="permalink" href="index.html#MsgServiceRouter.SetInterfaceRegistry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (msr *<a href="index.html#MsgServiceRouter">MsgServiceRouter</a>) SetInterfaceRegistry(interfaceRegistry <a href="../codec/types/index.html">codectypes</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+				<p>SetInterfaceRegistry sets the interface registry for the router.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ParamStore">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/params.go?s=228:391#L1">ParamStore</a>
+				<a class="permalink" href="index.html#ParamStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ParamStore defines the interface the parameter store used by the BaseApp must
+fulfill.
+
+			<pre>type ParamStore interface {
+    Get(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>) (*<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#ConsensusParams">ConsensusParams</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    Has(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>) <a href="../../../../builtin/index.html#bool">bool</a>
+    Set(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, cp *<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html">tmproto</a>.<a href="../../../cometbft/cometbft/proto/tendermint/types/index.html#ConsensusParams">ConsensusParams</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ProposalTxVerifier">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=31711:31852#L921">ProposalTxVerifier</a>
+				<a class="permalink" href="index.html#ProposalTxVerifier">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProposalTxVerifier defines the interface that is implemented by BaseApp,
+that any custom ABCI PrepareProposal and ProcessProposal handler can use
+to verify a transaction.
+
+			<pre>type ProposalTxVerifier interface {
+    PrepareProposalVerifyTx(tx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    ProcessProposalVerifyTx(txBz []<a href="../../../../builtin/index.html#byte">byte</a>) (<a href="../types/index.html">sdk</a>.<a href="../types/index.html#Tx">Tx</a>, <a href="../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="QueryServiceTestHelper">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter_helpers.go?s=510:583#L9">QueryServiceTestHelper</a>
+				<a class="permalink" href="index.html#QueryServiceTestHelper">&#xb6;</a>
+				
+				
+			</h2>
+			<p>QueryServiceTestHelper provides a helper for making grpc query service
+rpc calls in unit tests. It implements both the grpc Server and ClientConn
+interfaces needed to register a query service server and create a query
+service client.
+
+			<pre>type QueryServiceTestHelper struct {
+    *<a href="index.html#GRPCQueryRouter">GRPCQueryRouter</a>
+<span id="QueryServiceTestHelper.Ctx"></span>    Ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewQueryServerTestHelper">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter_helpers.go?s=800:913#L21">NewQueryServerTestHelper</a>
+					<a class="permalink" href="index.html#NewQueryServerTestHelper">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewQueryServerTestHelper(ctx <a href="../types/index.html">sdk</a>.<a href="../types/index.html#Context">Context</a>, interfaceRegistry <a href="../codec/types/index.html">types</a>.<a href="../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>) *<a href="index.html#QueryServiceTestHelper">QueryServiceTestHelper</a></pre>
+				<p>NewQueryServerTestHelper creates a new QueryServiceTestHelper that wraps
+the provided sdk.Context
+
+				
+				
+			
+
+			
+				
+				<h3 id="QueryServiceTestHelper.Invoke">func (*QueryServiceTestHelper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter_helpers.go?s=1112:1240#L28">Invoke</a>
+					<a class="permalink" href="index.html#QueryServiceTestHelper.Invoke">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryServiceTestHelper">QueryServiceTestHelper</a>) Invoke(_ <a href="../../../../context/index.html">gocontext</a>.<a href="../../../../context/index.html#Context">Context</a>, method <a href="../../../../builtin/index.html#string">string</a>, args, reply interface{}, _ ...<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#CallOption">CallOption</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>Invoke implements the grpc ClientConn.Invoke method
+
+				
+				
+				
+			
+				
+				<h3 id="QueryServiceTestHelper.NewStream">func (*QueryServiceTestHelper) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/grpcrouter_helpers.go?s=1665:1799#L52">NewStream</a>
+					<a class="permalink" href="index.html#QueryServiceTestHelper.NewStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (q *<a href="index.html#QueryServiceTestHelper">QueryServiceTestHelper</a>) NewStream(<a href="../../../../context/index.html">gocontext</a>.<a href="../../../../context/index.html#Context">Context</a>, *<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#StreamDesc">StreamDesc</a>, <a href="../../../../builtin/index.html#string">string</a>, ...<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#CallOption">CallOption</a>) (<a href="../../../../google.golang.org/grpc/index.html">grpc</a>.<a href="../../../../google.golang.org/grpc/index.html#ClientStream">ClientStream</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewStream implements the grpc ClientConn.NewStream method
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RecoveryHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/recovery.go?s=301:357#L4">RecoveryHandler</a>
+				<a class="permalink" href="index.html#RecoveryHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RecoveryHandler handles recovery() object.
+Return a non-nil error if recoveryObj was processed.
+Return nil if recoveryObj was not processed.
+
+			<pre>type RecoveryHandler func(recoveryObj interface{}) <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StoreLoader">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/baseapp.go?s=1095:1149#L24">StoreLoader</a>
+				<a class="permalink" href="index.html#StoreLoader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StoreLoader defines a customizable function to control how we load the CommitMultiStore
+from disk. This is useful for state migration, when loading a datastore written with
+an older version of the software. In particular, if a module changed the substore key name
+(or removed a substore) between two versions of the software.
+
+			<pre>type StoreLoader func(ms <a href="../store/types/index.html">storetypes</a>.<a href="../store/types/index.html#CommitMultiStore">CommitMultiStore</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StreamingService">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/baseapp/streaming.go?s=1282:1730#L18">StreamingService</a>
+				<a class="permalink" href="index.html#StreamingService">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StreamingService interface for registering WriteListeners with the BaseApp and updating the service with the ABCI messages using the hooks
+
+			<pre>type StreamingService interface {
+    <span class="comment">// Stream is the streaming service loop, awaits kv pairs and writes them to some destination stream or file</span>
+    Stream(wg *<a href="../../../../sync/index.html">sync</a>.<a href="../../../../sync/index.html#WaitGroup">WaitGroup</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Listeners returns the streaming service&#39;s listeners for the BaseApp to register</span>
+    Listeners() map[<a href="../store/types/index.html">store</a>.<a href="../store/types/index.html#StoreKey">StoreKey</a>][]<a href="../store/types/index.html">store</a>.<a href="../store/types/index.html#WriteListener">WriteListener</a>
+    <span class="comment">// ABCIListener interface for hooking into the ABCI messages from inside the BaseApp</span>
+    <a href="index.html#ABCIListener">ABCIListener</a>
+    <span class="comment">// Closer interface</span>
+    <a href="../../../../io/index.html">io</a>.<a href="../../../../io/index.html#Closer">Closer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testutil/index.html">testutil</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

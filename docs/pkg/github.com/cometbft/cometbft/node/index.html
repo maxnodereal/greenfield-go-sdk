@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>node - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package node
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/node"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package node is the main entry point, where the Node struct, which
+represents a full node, is defined.
+<p>Adding new p2p.Reactor(s)
+<p>To add a new p2p.Reactor, use the CustomReactors option:
+<pre>node, err := NewNode(
+		config,
+		privVal,
+		nodeKey,
+		clientCreator,
+		genesisDocProvider,
+		dbProvider,
+		metricsProvider,
+		logger,
+		CustomReactors(map[string]p2p.Reactor{&quot;CUSTOM&quot;: customReactor}),
+)
+</pre>
+<p>Replacing existing p2p.Reactor(s)
+<p>To replace the built-in p2p.Reactor, use the CustomReactors option:
+<pre>node, err := NewNode(
+		config,
+		privVal,
+		nodeKey,
+		clientCreator,
+		genesisDocProvider,
+		dbProvider,
+		metricsProvider,
+		logger,
+		CustomReactors(map[string]p2p.Reactor{&quot;BLOCKCHAIN&quot;: customBlockchainReactor}),
+)
+</pre>
+<p>The list of existing reactors can be found in CustomReactors documentation.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultDBProvider">func DefaultDBProvider(ctx *DBContext) (dbm.DB, error)</a></dd>
+			
+				
+				<dd><a href="index.html#LoadStateFromDBOrGenesisDocProvider">func LoadStateFromDBOrGenesisDocProvider(stateDB dbm.DB, genesisDocProvider GenesisDocProvider) (sm.State, *types.GenesisDoc, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#DBContext">type DBContext</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DBProvider">type DBProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GenesisDocProvider">type GenesisDocProvider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultGenesisDocProviderFunc">func DefaultGenesisDocProviderFunc(config *cfg.Config) GenesisDocProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Greeting">type Greeting</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ID">type ID</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MetricsProvider">type MetricsProvider</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultMetricsProvider">func DefaultMetricsProvider(config *cfg.InstrumentationConfig) MetricsProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Node">type Node</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultNewNode">func DefaultNewNode(config *cfg.Config, logger log.Logger) (*Node, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNode">func NewNode(config *cfg.Config, privValidator types.PrivValidator, nodeKey *p2p.NodeKey, clientCreator proxy.ClientCreator, genesisDocProvider GenesisDocProvider, dbProvider DBProvider, metricsProvider MetricsProvider, logger log.Logger, options ...Option) (*Node, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.BlockStore">func (n *Node) BlockStore() *store.BlockStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Config">func (n *Node) Config() *cfg.Config</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ConfigureRPC">func (n *Node) ConfigureRPC() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ConsensusReactor">func (n *Node) ConsensusReactor() *cs.Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ConsensusState">func (n *Node) ConsensusState() *cs.State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.EventBus">func (n *Node) EventBus() *types.EventBus</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.EvidencePool">func (n *Node) EvidencePool() *evidence.Pool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.GenesisDoc">func (n *Node) GenesisDoc() *types.GenesisDoc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.IsListening">func (n *Node) IsListening() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Listeners">func (n *Node) Listeners() []string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Mempool">func (n *Node) Mempool() mempl.Mempool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.MempoolReactor">func (n *Node) MempoolReactor() p2p.Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.NodeInfo">func (n *Node) NodeInfo() p2p.NodeInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.OnStart">func (n *Node) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.OnStop">func (n *Node) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.PEXReactor">func (n *Node) PEXReactor() *pex.Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.PrivValidator">func (n *Node) PrivValidator() types.PrivValidator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.ProxyApp">func (n *Node) ProxyApp() proxy.AppConns</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Node.Switch">func (n *Node) Switch() *p2p.Switch</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Option">type Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CustomReactors">func CustomReactors(reactors map[string]p2p.Reactor) Option</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateProvider">func StateProvider(stateProvider statesync.StateProvider) Option</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PrivNodeID">type PrivNodeID</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrivNodeID.SignGreeting">func (pnid *PrivNodeID) SignGreeting() *SignedNodeGreeting</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Provider">type Provider</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignedNodeGreeting">type SignedNodeGreeting</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go">id.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go">node.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="DefaultDBProvider">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=2617:2671#L65">DefaultDBProvider</a>
+				<a class="permalink" href="index.html#DefaultDBProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultDBProvider(ctx *<a href="index.html#DBContext">DBContext</a>) (<a href="../../cometbft-db/index.html">dbm</a>.<a href="../../cometbft-db/index.html#DB">DB</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>DefaultDBProvider returns a database using the DBBackend and DBDir
+specified in the ctx.Config.
+
+			
+			
+
+		
+			
+			
+			<h2 id="LoadStateFromDBOrGenesisDocProvider">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=44651:44788#L1411">LoadStateFromDBOrGenesisDocProvider</a>
+				<a class="permalink" href="index.html#LoadStateFromDBOrGenesisDocProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func LoadStateFromDBOrGenesisDocProvider(
+    stateDB <a href="../../cometbft-db/index.html">dbm</a>.<a href="../../cometbft-db/index.html#DB">DB</a>,
+    genesisDocProvider <a href="index.html#GenesisDocProvider">GenesisDocProvider</a>,
+) (<a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>, *<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>LoadStateFromDBOrGenesisDocProvider attempts to load the state from the
+database, or creates one using the given genesisDocProvider. On success this also
+returns the genesis doc loaded through the given provider.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DBContext">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=2295:2355#L53">DBContext</a>
+				<a class="permalink" href="index.html#DBContext">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DBContext specifies config information for loading a new DB.
+
+			<pre>type DBContext struct {
+<span id="DBContext.ID"></span>    ID     <a href="../../../../builtin/index.html#string">string</a>
+<span id="DBContext.Config"></span>    Config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DBProvider">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=2421:2469#L59">DBProvider</a>
+				<a class="permalink" href="index.html#DBProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DBProvider takes a DBContext and returns an instantiated DB.
+
+			<pre>type DBProvider func(*<a href="index.html#DBContext">DBContext</a>) (<a href="../../cometbft-db/index.html">dbm</a>.<a href="../../cometbft-db/index.html#DB">DB</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GenesisDocProvider">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=2965:3022#L73">GenesisDocProvider</a>
+				<a class="permalink" href="index.html#GenesisDocProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GenesisDocProvider returns a GenesisDoc.
+It allows the GenesisDoc to be pulled from sources other than the
+filesystem, for instance from a distributed key-value store cluster.
+
+			<pre>type GenesisDocProvider func() (*<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultGenesisDocProviderFunc">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=3164:3237#L77">DefaultGenesisDocProviderFunc</a>
+					<a class="permalink" href="index.html#DefaultGenesisDocProviderFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultGenesisDocProviderFunc(config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a>) <a href="index.html#GenesisDocProvider">GenesisDocProvider</a></pre>
+				<p>DefaultGenesisDocProviderFunc returns a GenesisDocProvider that loads
+the GenesisDoc from the config.GenesisFile() on the filesystem.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Greeting">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go?s=187:282#L9">Greeting</a>
+				<a class="permalink" href="index.html#Greeting">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Greeting struct {
+    <a href="index.html#ID">ID</a>
+<span id="Greeting.Version"></span>    Version <a href="../../../../builtin/index.html#string">string</a>
+<span id="Greeting.ChainID"></span>    ChainID <a href="../../../../builtin/index.html#string">string</a>
+<span id="Greeting.Message"></span>    Message <a href="../../../../builtin/index.html#string">string</a>
+<span id="Greeting.Time"></span>    Time    <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ID">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go?s=74:129#L1">ID</a>
+				<a class="permalink" href="index.html#ID">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ID struct {
+<span id="ID.Name"></span>    Name   <a href="../../../../builtin/index.html#string">string</a>
+<span id="ID.PubKey"></span>    PubKey <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PubKey">PubKey</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MetricsProvider">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=4287:4401#L107">MetricsProvider</a>
+				<a class="permalink" href="index.html#MetricsProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MetricsProvider returns a consensus, p2p and mempool Metrics.
+
+			<pre>type MetricsProvider func(chainID <a href="../../../../builtin/index.html#string">string</a>) (*<a href="../consensus/index.html">cs</a>.<a href="../consensus/index.html#Metrics">Metrics</a>, *<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Metrics">Metrics</a>, *<a href="../mempool/index.html">mempl</a>.<a href="../mempool/index.html#Metrics">Metrics</a>, *<a href="../state/index.html">sm</a>.<a href="../state/index.html#Metrics">Metrics</a>, *<a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#Metrics">Metrics</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultMetricsProvider">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=4549:4627#L111">DefaultMetricsProvider</a>
+					<a class="permalink" href="index.html#DefaultMetricsProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultMetricsProvider(config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#InstrumentationConfig">InstrumentationConfig</a>) <a href="index.html#MetricsProvider">MetricsProvider</a></pre>
+				<p>DefaultMetricsProvider returns Metrics build using Prometheus client library
+if Prometheus is enabled. Otherwise, it returns no-op Metrics.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Node">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=7435:9248#L186">Node</a>
+				<a class="permalink" href="index.html#Node">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Node is the highest level interface to a full CometBFT node.
+It includes all configuration information and running services.
+
+			<pre>type Node struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultNewNode">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=3642:3715#L89">DefaultNewNode</a>
+					<a class="permalink" href="index.html#DefaultNewNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultNewNode(config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a>, logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>) (*<a href="index.html#Node">Node</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DefaultNewNode returns a CometBFT node with default settings for the
+PrivValidator, ClientCreator, GenesisDoc, and DBProvider.
+It implements NodeProvider.
+
+				
+				
+			
+				
+				<h3 id="NewNode">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=23750:24032#L725">NewNode</a>
+					<a class="permalink" href="index.html#NewNode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNode(config *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a>,
+    privValidator <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a>,
+    nodeKey *<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#NodeKey">NodeKey</a>,
+    clientCreator <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#ClientCreator">ClientCreator</a>,
+    genesisDocProvider <a href="index.html#GenesisDocProvider">GenesisDocProvider</a>,
+    dbProvider <a href="index.html#DBProvider">DBProvider</a>,
+    metricsProvider <a href="index.html#MetricsProvider">MetricsProvider</a>,
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+    options ...<a href="index.html#Option">Option</a>,
+) (*<a href="index.html#Node">Node</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewNode returns a new, ready to go, CometBFT Node.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Node.BlockStore">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41216:41261#L1275">BlockStore</a>
+					<a class="permalink" href="index.html#Node.BlockStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) BlockStore() *<a href="../store/index.html">store</a>.<a href="../store/index.html#BlockStore">BlockStore</a></pre>
+				<p>BlockStore returns the Node&apos;s BlockStore.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Config">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42628:42663#L1331">Config</a>
+					<a class="permalink" href="index.html#Node.Config">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Config() *<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a></pre>
+				<p>Config returns the Node&apos;s config.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ConfigureRPC">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=35761:35796#L1091">ConfigureRPC</a>
+					<a class="permalink" href="index.html#Node.ConfigureRPC">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ConfigureRPC() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ConfigureRPC makes sure RPC has all the objects it needs to operate.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ConsensusReactor">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41470:41515#L1285">ConsensusReactor</a>
+					<a class="permalink" href="index.html#Node.ConsensusReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ConsensusReactor() *<a href="../consensus/index.html">cs</a>.<a href="../consensus/index.html#Reactor">Reactor</a></pre>
+				<p>ConsensusReactor returns the Node&apos;s ConsensusReactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ConsensusState">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41341:41382#L1280">ConsensusState</a>
+					<a class="permalink" href="index.html#Node.ConsensusState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ConsensusState() *<a href="../consensus/index.html">cs</a>.<a href="../consensus/index.html#State">State</a></pre>
+				<p>ConsensusState returns the Node&apos;s ConsensusState.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.EventBus">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42087:42128#L1310">EventBus</a>
+					<a class="permalink" href="index.html#Node.EventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) EventBus() *<a href="../types/index.html">types</a>.<a href="../types/index.html#EventBus">EventBus</a></pre>
+				<p>EventBus returns the Node&apos;s EventBus.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.EvidencePool">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41973:42017#L1305">EvidencePool</a>
+					<a class="permalink" href="index.html#Node.EvidencePool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) EvidencePool() *<a href="../evidence/index.html">evidence</a>.<a href="../evidence/index.html#Pool">Pool</a></pre>
+				<p>EvidencePool returns the Node&apos;s EvidencePool.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.GenesisDoc">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42359:42404#L1321">GenesisDoc</a>
+					<a class="permalink" href="index.html#Node.GenesisDoc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) GenesisDoc() *<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a></pre>
+				<p>GenesisDoc returns the Node&apos;s GenesisDoc.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.IsListening">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42893:42926#L1343">IsListening</a>
+					<a class="permalink" href="index.html#Node.IsListening">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) IsListening() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Node.Listeners">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42769:42804#L1337">Listeners</a>
+					<a class="permalink" href="index.html#Node.Listeners">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Listeners() []<a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Node.Mempool">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41715:41753#L1295">Mempool</a>
+					<a class="permalink" href="index.html#Node.Mempool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Mempool() <a href="../mempool/index.html">mempl</a>.<a href="../mempool/index.html#Mempool">Mempool</a></pre>
+				<p>Mempool returns the Node&apos;s mempool.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.MempoolReactor">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41602:41645#L1290">MempoolReactor</a>
+					<a class="permalink" href="index.html#Node.MempoolReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) MempoolReactor() <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Reactor">Reactor</a></pre>
+				<p>MempoolReactor returns the Node&apos;s mempool reactor.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.NodeInfo">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=43007:43045#L1348">NodeInfo</a>
+					<a class="permalink" href="index.html#Node.NodeInfo">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) NodeInfo() <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#NodeInfo">NodeInfo</a></pre>
+				<p>NodeInfo returns the Node&apos;s Info from the Switch.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.OnStart">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=32235:32265#L968">OnStart</a>
+					<a class="permalink" href="index.html#Node.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart starts the Node. It implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.OnStop">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=34164:34187#L1034">OnStop</a>
+					<a class="permalink" href="index.html#Node.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) OnStop()</pre>
+				<p>OnStop stops the Node. It implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.PEXReactor">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41857:41897#L1300">PEXReactor</a>
+					<a class="permalink" href="index.html#Node.PEXReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) PEXReactor() *<a href="../p2p/pex/index.html">pex</a>.<a href="../p2p/pex/index.html#Reactor">Reactor</a></pre>
+				<p>PEXReactor returns the Node&apos;s PEXReactor. It returns nil if PEX is disabled.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.PrivValidator">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42234:42284#L1316">PrivValidator</a>
+					<a class="permalink" href="index.html#Node.PrivValidator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) PrivValidator() <a href="../types/index.html">types</a>.<a href="../types/index.html#PrivValidator">PrivValidator</a></pre>
+				<p>PrivValidator returns the Node&apos;s PrivValidator.
+XXX: for convenience only!
+
+				
+				
+				
+			
+				
+				<h3 id="Node.ProxyApp">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=42526:42566#L1326">ProxyApp</a>
+					<a class="permalink" href="index.html#Node.ProxyApp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) ProxyApp() <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConns">AppConns</a></pre>
+				<p>ProxyApp returns the Node&apos;s AppConns, representing its connections to the ABCI application.
+
+				
+				
+				
+			
+				
+				<h3 id="Node.Switch">func (*Node) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=41117:41152#L1270">Switch</a>
+					<a class="permalink" href="index.html#Node.Switch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#Node">Node</a>) Switch() *<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Switch">Switch</a></pre>
+				<p>Switch returns the Node&apos;s Switch.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Option">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=5247:5270#L125">Option</a>
+				<a class="permalink" href="index.html#Option">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Option sets a parameter for the node.
+
+			<pre>type Option func(*<a href="index.html#Node">Node</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CustomReactors">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=5821:5880#L145">CustomReactors</a>
+					<a class="permalink" href="index.html#CustomReactors">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CustomReactors(reactors map[<a href="../../../../builtin/index.html#string">string</a>]<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Reactor">Reactor</a>) <a href="index.html#Option">Option</a></pre>
+				<p>CustomReactors allows you to add custom reactors (name -&gt; p2p.Reactor) to
+the node&apos;s Switch.
+<p>WARNING: using any name from the below list of the existing reactors will
+result in replacing it with the custom one.
+<ul>
+<li>MEMPOOL
+<li>BLOCKCHAIN
+<li>CONSENSUS
+<li>EVIDENCE
+<li>PEX
+<li>STATESYNC
+</ul>
+
+				
+				
+			
+				
+				<h3 id="StateProvider">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=7086:7150#L176">StateProvider</a>
+					<a class="permalink" href="index.html#StateProvider">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func StateProvider(stateProvider <a href="../statesync/index.html">statesync</a>.<a href="../statesync/index.html#StateProvider">StateProvider</a>) <a href="index.html#Option">Option</a></pre>
+				<p>StateProvider overrides the state provider used by state sync to retrieve trusted app hashes and
+build a State object for bootstrapping the node.
+WARNING: this interface is considered unstable and subject to change.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PrivNodeID">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go?s=131:185#L4">PrivNodeID</a>
+				<a class="permalink" href="index.html#PrivNodeID">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PrivNodeID struct {
+    <a href="index.html#ID">ID</a>
+<span id="PrivNodeID.PrivKey"></span>    PrivKey <a href="../crypto/index.html">crypto</a>.<a href="../crypto/index.html#PrivKey">PrivKey</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PrivNodeID.SignGreeting">func (*PrivNodeID) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go?s=348:406#L22">SignGreeting</a>
+					<a class="permalink" href="index.html#PrivNodeID.SignGreeting">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pnid *<a href="index.html#PrivNodeID">PrivNodeID</a>) SignGreeting() *<a href="index.html#SignedNodeGreeting">SignedNodeGreeting</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Provider">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/node.go?s=3418:3476#L84">Provider</a>
+				<a class="permalink" href="index.html#Provider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Provider takes a config and a logger and returns a ready to go Node.
+
+			<pre>type Provider func(*<a href="../config/index.html">cfg</a>.<a href="../config/index.html#Config">Config</a>, <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>) (*<a href="index.html#Node">Node</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SignedNodeGreeting">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/node/id.go?s=284:346#L17">SignedNodeGreeting</a>
+				<a class="permalink" href="index.html#SignedNodeGreeting">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SignedNodeGreeting struct {
+    <a href="index.html#Greeting">Greeting</a>
+<span id="SignedNodeGreeting.Signature"></span>    Signature []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

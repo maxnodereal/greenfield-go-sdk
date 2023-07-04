@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>module - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package module
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/types/module"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package module contains application module patterns and associated &quot;manager&quot; functionality.
+The module pattern has been broken down by:
+<ul>
+<li>independent module functionality (AppModuleBasic)
+<li>inter-dependent module genesis functionality (AppModuleGenesis)
+<li>inter-dependent module simulation functionality (AppModuleSimulation)
+<li>inter-dependent module full functionality (AppModule)
+</ul>
+<p>inter-dependent module functionality is module functionality which somehow
+depends on other modules, typically through the module keeper.  Many of the
+module keepers are dependent on each other, thus in order to access the full
+set of module functionality we need to define all the keepers/params-store/keys
+etc. This full set of advanced functionality is defined by the AppModule interface.
+<p>Independent module functions are separated to allow for the construction of the
+basic application structures required early on in the application definition
+and used to enable the definition of full module functionality later in the
+process. This separation is necessary, however we still want to allow for a
+high level pattern for modules to follow - for instance, such that we don&apos;t
+have to manually register all of the codecs for all the modules. This basic
+procedure as well as other basic patterns are handled through the use of
+BasicManager.
+<p>Lastly the interface for genesis functionality (AppModuleGenesis) has been
+separated out from full module functionality (AppModule) so that modules which
+are only used for genesis can take advantage of the Module patterns without
+needlessly defining many placeholder functions
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultMigrationsOrder">func DefaultMigrationsOrder(modules []string) []string</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AppModule">type AppModule</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AppModuleBasic">type AppModuleBasic</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AppModuleGenesis">type AppModuleGenesis</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AppModuleSimulation">type AppModuleSimulation</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BasicManager">type BasicManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBasicManager">func NewBasicManager(modules ...AppModuleBasic) BasicManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.AddQueryCommands">func (bm BasicManager) AddQueryCommands(rootQueryCmd *cobra.Command)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.AddTxCommands">func (bm BasicManager) AddTxCommands(rootTxCmd *cobra.Command)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.DefaultGenesis">func (bm BasicManager) DefaultGenesis(cdc codec.JSONCodec) map[string]json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.RegisterGRPCGatewayRoutes">func (bm BasicManager) RegisterGRPCGatewayRoutes(clientCtx client.Context, rtr *runtime.ServeMux)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.RegisterInterfaces">func (bm BasicManager) RegisterInterfaces(registry codectypes.InterfaceRegistry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.RegisterLegacyAminoCodec">func (bm BasicManager) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BasicManager.ValidateGenesis">func (bm BasicManager) ValidateGenesis(cdc codec.JSONCodec, txEncCfg client.TxEncodingConfig, genesis map[string]json.RawMessage) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BeginBlockAppModule">type BeginBlockAppModule</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Configurator">type Configurator</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewConfigurator">func NewConfigurator(cdc codec.Codec, msgServer grpc.Server, queryServer grpc.Server) Configurator</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EndBlockAppModule">type EndBlockAppModule</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#GenesisOnlyAppModule">type GenesisOnlyAppModule</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGenesisOnlyAppModule">func NewGenesisOnlyAppModule(amg AppModuleGenesis) GenesisOnlyAppModule</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.BeginBlock">func (gam GenesisOnlyAppModule) BeginBlock(ctx sdk.Context, req abci.RequestBeginBlock)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.ConsensusVersion">func (gam GenesisOnlyAppModule) ConsensusVersion() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.EndBlock">func (GenesisOnlyAppModule) EndBlock(_ sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.IsAppModule">func (GenesisOnlyAppModule) IsAppModule()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.IsOnePerModuleType">func (GenesisOnlyAppModule) IsOnePerModuleType()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.QuerierRoute">func (GenesisOnlyAppModule) QuerierRoute() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.RegisterInvariants">func (GenesisOnlyAppModule) RegisterInvariants(_ sdk.InvariantRegistry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GenesisOnlyAppModule.RegisterServices">func (gam GenesisOnlyAppModule) RegisterServices(Configurator)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HasConsensusVersion">type HasConsensusVersion</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasGenesis">type HasGenesis</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasGenesisBasics">type HasGenesisBasics</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasInvariants">type HasInvariants</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasName">type HasName</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasProposalContents">type HasProposalContents</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasProposalMsgs">type HasProposalMsgs</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HasServices">type HasServices</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Manager">type Manager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewManager">func NewManager(modules ...AppModule) *Manager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewManagerFromMap">func NewManagerFromMap(moduleMap map[string]appmodule.AppModule) *Manager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.BeginBlock">func (m *Manager) BeginBlock(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.EndBlock">func (m *Manager) EndBlock(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.ExportGenesis">func (m *Manager) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) map[string]json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.ExportGenesisForModules">func (m *Manager) ExportGenesisForModules(ctx sdk.Context, cdc codec.JSONCodec, modulesToExport []string) map[string]json.RawMessage</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.GetVersionMap">func (m *Manager) GetVersionMap() VersionMap</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.InitGenesis">func (m *Manager) InitGenesis(ctx sdk.Context, cdc codec.JSONCodec, genesisData map[string]json.RawMessage) abci.ResponseInitChain</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.ModuleNames">func (m *Manager) ModuleNames() []string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RegisterInvariants">func (m *Manager) RegisterInvariants(ir sdk.InvariantRegistry)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RegisterServices">func (m *Manager) RegisterServices(cfg Configurator)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.RunMigrations">func (m Manager) RunMigrations(ctx sdk.Context, cfg Configurator, fromVM VersionMap) (VersionMap, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SetOrderBeginBlockers">func (m *Manager) SetOrderBeginBlockers(moduleNames ...string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SetOrderEndBlockers">func (m *Manager) SetOrderEndBlockers(moduleNames ...string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SetOrderExportGenesis">func (m *Manager) SetOrderExportGenesis(moduleNames ...string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SetOrderInitGenesis">func (m *Manager) SetOrderInitGenesis(moduleNames ...string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Manager.SetOrderMigrations">func (m *Manager) SetOrderMigrations(moduleNames ...string)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MigrationHandler">type MigrationHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SimulationManager">type SimulationManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSimulationManager">func NewSimulationManager(modules ...AppModuleSimulation) *SimulationManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewSimulationManagerFromAppModules">func NewSimulationManagerFromAppModules(modules map[string]interface{}, overrideModules map[string]AppModuleSimulation) *SimulationManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulationManager.GenerateGenesisStates">func (sm *SimulationManager) GenerateGenesisStates(simState *SimulationState)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulationManager.GetProposalContents">func (sm *SimulationManager) GetProposalContents(simState SimulationState) []simulation.WeightedProposalContent</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulationManager.GetProposalMsgs">func (sm *SimulationManager) GetProposalMsgs(simState SimulationState) []simulation.WeightedProposalMsg</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulationManager.RegisterStoreDecoders">func (sm *SimulationManager) RegisterStoreDecoders()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SimulationManager.WeightedOperations">func (sm *SimulationManager) WeightedOperations(simState SimulationState) []simulation.WeightedOperation</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SimulationState">type SimulationState</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#VersionMap">type VersionMap</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/configurator.go">configurator.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go">module.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go">simulation.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="DefaultMigrationsOrder">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=22272:22326#L615">DefaultMigrationsOrder</a>
+				<a class="permalink" href="index.html#DefaultMigrationsOrder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultMigrationsOrder(modules []<a href="../../../../../builtin/index.html#string">string</a>) []<a href="../../../../../builtin/index.html#string">string</a></pre>
+			<p>DefaultMigrationsOrder returns a default migrations order: ascending alphabetical by module name,
+except x/auth which will run last, see:
+<a href="https://github.com/cosmos/cosmos-sdk/issues/10591">https://github.com/cosmos/cosmos-sdk/issues/10591</a>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AppModule">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=5851:5895#L161">AppModule</a>
+				<a class="permalink" href="index.html#AppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModule is the form for an application module. Most of
+its functionality has been moved to extension interfaces.
+
+			<pre>type AppModule interface {
+    <a href="index.html#AppModuleBasic">AppModuleBasic</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AppModuleBasic">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=2185:2468#L40">AppModuleBasic</a>
+				<a class="permalink" href="index.html#AppModuleBasic">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModuleBasic is the standard form for basic non-dependant elements of an application module.
+
+			<pre>type AppModuleBasic interface {
+    <a href="index.html#HasName">HasName</a>
+    RegisterLegacyAminoCodec(*<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a>)
+    RegisterInterfaces(<a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)
+
+    <span class="comment">// client functionality</span>
+    RegisterGRPCGatewayRoutes(<a href="../../client/index.html">client</a>.<a href="../../client/index.html#Context">Context</a>, *<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>)
+    GetTxCmd() *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>
+    GetQueryCmd() *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AppModuleGenesis">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=5401:5464#L147">AppModuleGenesis</a>
+				<a class="permalink" href="index.html#AppModuleGenesis">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModuleGenesis is the standard form for an application module genesis functions
+
+			<pre>type AppModuleGenesis interface {
+    <a href="index.html#AppModuleBasic">AppModuleBasic</a>
+    <a href="index.html#HasGenesis">HasGenesis</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AppModuleSimulation">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=356:760#L8">AppModuleSimulation</a>
+				<a class="permalink" href="index.html#AppModuleSimulation">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AppModuleSimulation defines the standard functions that every module should expose
+for the SDK blockchain simulator
+
+			<pre>type AppModuleSimulation interface {
+    <span class="comment">// randomized genesis states</span>
+    GenerateGenesisState(input *<a href="index.html#SimulationState">SimulationState</a>)
+
+    <span class="comment">// register a func to decode the each module&#39;s defined types from their corresponding store key</span>
+    RegisterStoreDecoder(<a href="../index.html">sdk</a>.<a href="../index.html#StoreDecoderRegistry">StoreDecoderRegistry</a>)
+
+    <span class="comment">// simulation operations (i.e msgs) with their respective weight</span>
+    WeightedOperations(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedOperation">WeightedOperation</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BasicManager">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=2976:3019#L65">BasicManager</a>
+				<a class="permalink" href="index.html#BasicManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BasicManager is a collection of AppModuleBasic
+
+			<pre>type BasicManager map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="index.html#AppModuleBasic">AppModuleBasic</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBasicManager">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=3074:3134#L68">NewBasicManager</a>
+					<a class="permalink" href="index.html#NewBasicManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBasicManager(modules ...<a href="index.html#AppModuleBasic">AppModuleBasic</a>) <a href="index.html#BasicManager">BasicManager</a></pre>
+				<p>NewBasicManager creates a new BasicManager object
+
+				
+				
+			
+
+			
+				
+				<h3 id="BasicManager.AddQueryCommands">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=5137:5205#L138">AddQueryCommands</a>
+					<a class="permalink" href="index.html#BasicManager.AddQueryCommands">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) AddQueryCommands(rootQueryCmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>)</pre>
+				<p>AddQueryCommands adds all query commands to the rootQueryCmd.
+<p>TODO: Remove clientCtx argument.
+REF: <a href="https://github.com/cosmos/cosmos-sdk/issues/6571">https://github.com/cosmos/cosmos-sdk/issues/6571</a>
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.AddTxCommands">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=4809:4871#L126">AddTxCommands</a>
+					<a class="permalink" href="index.html#BasicManager.AddTxCommands">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) AddTxCommands(rootTxCmd *<a href="../../../../spf13/cobra/index.html">cobra</a>.<a href="../../../../spf13/cobra/index.html#Command">Command</a>)</pre>
+				<p>AddTxCommands adds all tx commands to the rootTxCmd.
+<p>TODO: Remove clientCtx argument.
+REF: <a href="https://github.com/cosmos/cosmos-sdk/issues/6571">https://github.com/cosmos/cosmos-sdk/issues/6571</a>
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.DefaultGenesis">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=3747:3832#L91">DefaultGenesis</a>
+					<a class="permalink" href="index.html#BasicManager.DefaultGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) DefaultGenesis(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>DefaultGenesis provides default genesis information for all modules
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.RegisterGRPCGatewayRoutes">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=4481:4578#L116">RegisterGRPCGatewayRoutes</a>
+					<a class="permalink" href="index.html#BasicManager.RegisterGRPCGatewayRoutes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) RegisterGRPCGatewayRoutes(clientCtx <a href="../../client/index.html">client</a>.<a href="../../client/index.html#Context">Context</a>, rtr *<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html">runtime</a>.<a href="../../../../grpc-ecosystem/grpc-gateway/runtime/index.html#ServeMux">ServeMux</a>)</pre>
+				<p>RegisterGRPCGatewayRoutes registers all module rest routes
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.RegisterInterfaces">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=3530:3610#L84">RegisterInterfaces</a>
+					<a class="permalink" href="index.html#BasicManager.RegisterInterfaces">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) RegisterInterfaces(registry <a href="../../codec/types/index.html">codectypes</a>.<a href="../../codec/types/index.html#InterfaceRegistry">InterfaceRegistry</a>)</pre>
+				<p>RegisterInterfaces registers all module interface types
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.RegisterLegacyAminoCodec">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=3333:3404#L77">RegisterLegacyAminoCodec</a>
+					<a class="permalink" href="index.html#BasicManager.RegisterLegacyAminoCodec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) RegisterLegacyAminoCodec(cdc *<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#LegacyAmino">LegacyAmino</a>)</pre>
+				<p>RegisterLegacyAminoCodec registers all module codecs
+
+				
+				
+				
+			
+				
+				<h3 id="BasicManager.ValidateGenesis">func (BasicManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=4090:4225#L103">ValidateGenesis</a>
+					<a class="permalink" href="index.html#BasicManager.ValidateGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bm <a href="index.html#BasicManager">BasicManager</a>) ValidateGenesis(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, txEncCfg <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>, genesis map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateGenesis performs genesis state validation for all modules
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BeginBlockAppModule">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=6788:6886#L187">BeginBlockAppModule</a>
+				<a class="permalink" href="index.html#BeginBlockAppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BeginBlockAppModule is an extension interface that contains information about the AppModule and BeginBlock.
+
+			<pre>type BeginBlockAppModule interface {
+    <a href="index.html#AppModule">AppModule</a>
+    BeginBlock(<a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Configurator">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/configurator.go?s=481:1564#L7">Configurator</a>
+				<a class="permalink" href="index.html#Configurator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Configurator provides the hooks to allow modules to configure and register
+their services in the RegisterServices method. It is designed to eventually
+support module object capabilities isolation as described in
+<a href="https://github.com/cosmos/cosmos-sdk/issues/7093">https://github.com/cosmos/cosmos-sdk/issues/7093</a>
+
+			<pre>type Configurator interface {
+    <span class="comment">// MsgServer returns a grpc.Server instance which allows registering services</span>
+    <span class="comment">// that will handle TxBody.messages in transactions. These Msg&#39;s WILL NOT</span>
+    <span class="comment">// be exposed as gRPC services.</span>
+    MsgServer() <a href="../../../gogoproto/grpc/index.html">grpc</a>.<a href="../../../gogoproto/grpc/index.html#Server">Server</a>
+
+    <span class="comment">// QueryServer returns a grpc.Server instance which allows registering services</span>
+    <span class="comment">// that will be exposed as gRPC services as well as ABCI query handlers.</span>
+    QueryServer() <a href="../../../gogoproto/grpc/index.html">grpc</a>.<a href="../../../gogoproto/grpc/index.html#Server">Server</a>
+
+    <span class="comment">// RegisterMigration registers an in-place store migration for a module. The</span>
+    <span class="comment">// handler is a migration script to perform in-place migrations from version</span>
+    <span class="comment">// `fromVersion` to version `fromVersion+1`.</span>
+    <span class="comment">//</span>
+    <span class="comment">// EACH TIME a module&#39;s ConsensusVersion increments, a new migration MUST</span>
+    <span class="comment">// be registered using this function. If a migration handler is missing for</span>
+    <span class="comment">// a particular function, the upgrade logic (see RunMigrations function)</span>
+    <span class="comment">// will panic. If the ConsensusVersion bump does not introduce any store</span>
+    <span class="comment">// changes, then a no-op function must be registered here.</span>
+    RegisterMigration(moduleName <a href="../../../../../builtin/index.html#string">string</a>, fromVersion <a href="../../../../../builtin/index.html#uint64">uint64</a>, handler <a href="index.html#MigrationHandler">MigrationHandler</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewConfigurator">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/configurator.go?s=1859:1957#L39">NewConfigurator</a>
+					<a class="permalink" href="index.html#NewConfigurator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewConfigurator(cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#Codec">Codec</a>, msgServer <a href="../../../gogoproto/grpc/index.html">grpc</a>.<a href="../../../gogoproto/grpc/index.html#Server">Server</a>, queryServer <a href="../../../gogoproto/grpc/index.html">grpc</a>.<a href="../../../gogoproto/grpc/index.html#Server">Server</a>) <a href="index.html#Configurator">Configurator</a></pre>
+				<p>NewConfigurator returns a new Configurator instance
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="EndBlockAppModule">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=6995:7110#L193">EndBlockAppModule</a>
+				<a class="permalink" href="index.html#EndBlockAppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EndBlockAppModule is an extension interface that contains information about the AppModule and EndBlock.
+
+			<pre>type EndBlockAppModule interface {
+    <a href="index.html#AppModule">AppModule</a>
+    EndBlock(<a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) []<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GenesisOnlyAppModule">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7194:7248#L199">GenesisOnlyAppModule</a>
+				<a class="permalink" href="index.html#GenesisOnlyAppModule">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GenesisOnlyAppModule is an AppModule that only has import/export functionality
+
+			<pre>type GenesisOnlyAppModule struct {
+    <a href="index.html#AppModuleGenesis">AppModuleGenesis</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGenesisOnlyAppModule">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7319:7390#L204">NewGenesisOnlyAppModule</a>
+					<a class="permalink" href="index.html#NewGenesisOnlyAppModule">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGenesisOnlyAppModule(amg <a href="index.html#AppModuleGenesis">AppModuleGenesis</a>) <a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a></pre>
+				<p>NewGenesisOnlyAppModule creates a new GenesisOnlyAppModule object
+
+				
+				
+			
+
+			
+				
+				<h3 id="GenesisOnlyAppModule.BeginBlock">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=8247:8334#L229">BeginBlock</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.BeginBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gam <a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) BeginBlock(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, req <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>)</pre>
+				<p>BeginBlock returns an empty module begin-block
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.ConsensusVersion">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=8125:8182#L226">ConsensusVersion</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.ConsensusVersion">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gam <a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) ConsensusVersion() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>ConsensusVersion implements AppModule/ConsensusVersion.
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.EndBlock">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=8385:8483#L232">EndBlock</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.EndBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) EndBlock(_ <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, _ <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) []<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a></pre>
+				<p>EndBlock returns an empty module end-block
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.IsAppModule">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7643:7684#L214">IsAppModule</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.IsAppModule">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) IsAppModule()</pre>
+				<p>IsAppModule implements the appmodule.AppModule interface.
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.IsOnePerModuleType">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7529:7577#L211">IsOnePerModuleType</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.IsOnePerModuleType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) IsOnePerModuleType()</pre>
+				<p>IsOnePerModuleType implements the depinject.OnePerModuleType interface.
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.QuerierRoute">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7890:7939#L220">QuerierRoute</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.QuerierRoute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) QuerierRoute() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>QuerierRoute returns an empty module querier route
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.RegisterInvariants">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7760:7831#L217">RegisterInvariants</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.RegisterInvariants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) RegisterInvariants(_ <a href="../index.html">sdk</a>.<a href="../index.html#InvariantRegistry">InvariantRegistry</a>)</pre>
+				<p>RegisterInvariants is a placeholder function register no invariants
+
+				
+				
+				
+			
+				
+				<h3 id="GenesisOnlyAppModule.RegisterServices">func (GenesisOnlyAppModule) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=7999:8061#L223">RegisterServices</a>
+					<a class="permalink" href="index.html#GenesisOnlyAppModule.RegisterServices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (gam <a href="index.html#GenesisOnlyAppModule">GenesisOnlyAppModule</a>) RegisterServices(<a href="index.html#Configurator">Configurator</a>)</pre>
+				<p>RegisterServices registers all services.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HasConsensusVersion">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=6359:6675#L178">HasConsensusVersion</a>
+				<a class="permalink" href="index.html#HasConsensusVersion">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasConsensusVersion is the interface for declaring a module consensus version.
+
+			<pre>type HasConsensusVersion interface {
+    <span class="comment">// ConsensusVersion is a sequence number for state-breaking change of the</span>
+    <span class="comment">// module. It should be incremented on each consensus-breaking change</span>
+    <span class="comment">// introduced by the module. To avoid wrong/empty versions, the initial version</span>
+    <span class="comment">// should be set to 1.</span>
+    ConsensusVersion() <a href="../../../../../builtin/index.html#uint64">uint64</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasGenesis">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=5537:5728#L153">HasGenesis</a>
+				<a class="permalink" href="index.html#HasGenesis">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasGenesis is the extension interface for stateful genesis methods.
+
+			<pre>type HasGenesis interface {
+    <a href="index.html#HasGenesisBasics">HasGenesisBasics</a>
+    InitGenesis(<a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) []<a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ValidatorUpdate">ValidatorUpdate</a>
+    ExportGenesis(<a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasGenesisBasics">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=2758:2924#L59">HasGenesisBasics</a>
+				<a class="permalink" href="index.html#HasGenesisBasics">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasGenesisBasics is the legacy interface for stateless genesis methods.
+
+			<pre>type HasGenesisBasics interface {
+    DefaultGenesis(<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>
+    ValidateGenesis(<a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, <a href="../../client/index.html">client</a>.<a href="../../client/index.html#TxEncodingConfig">TxEncodingConfig</a>, <a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) <a href="../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasInvariants">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=5959:6086#L166">HasInvariants</a>
+				<a class="permalink" href="index.html#HasInvariants">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasInvariants is the interface for registering invariants.
+
+			<pre>type HasInvariants interface {
+    <span class="comment">// RegisterInvariants registers module invariants.</span>
+    RegisterInvariants(<a href="../index.html">sdk</a>.<a href="../index.html#InvariantRegistry">InvariantRegistry</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasName">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=2640:2681#L54">HasName</a>
+				<a class="permalink" href="index.html#HasName">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasName allows the module to provide its own name for legacy purposes.
+Newer apps should specify the name for their modules using a map
+using NewManagerFromMap.
+
+			<pre>type HasName interface {
+    Name() <a href="../../../../../builtin/index.html#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasProposalContents">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=1133:1333#L26">HasProposalContents</a>
+				<a class="permalink" href="index.html#HasProposalContents">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasProposalContents defines the contents that can be used to simulate legacy governance (v1beta1) proposals
+
+			<pre>type HasProposalContents interface {
+    <span class="comment">// content functions used to simulate governance proposals</span>
+    ProposalContents(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalContent">WeightedProposalContent</a> <span class="comment">//nolint:staticcheck</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasProposalMsgs">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=857:1020#L20">HasProposalMsgs</a>
+				<a class="permalink" href="index.html#HasProposalMsgs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasProposalMsgs defines the messages that can be used to simulate governance (v1) proposals
+
+			<pre>type HasProposalMsgs interface {
+    <span class="comment">// msg functions used to simulate governance proposals</span>
+    ProposalMsgs(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalMsg">WeightedProposalMsg</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HasServices">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=6154:6275#L172">HasServices</a>
+				<a class="permalink" href="index.html#HasServices">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HasServices is the interface for modules to register services.
+
+			<pre>type HasServices interface {
+    <span class="comment">// RegisterServices allows a module to register services.</span>
+    RegisterServices(<a href="index.html#Configurator">Configurator</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Manager">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=8659:8970#L238">Manager</a>
+				<a class="permalink" href="index.html#Manager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Manager defines a module manager that provides the high level utility for managing and executing
+operations for a group of modules
+
+			<pre>type Manager struct {
+<span id="Manager.Modules"></span>    Modules            map[<a href="../../../../../builtin/index.html#string">string</a>]interface{} <span class="comment">// interface{} is used now to support the legacy AppModule as well as new core appmodule.AppModule.</span>
+<span id="Manager.OrderInitGenesis"></span>    OrderInitGenesis   []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Manager.OrderExportGenesis"></span>    OrderExportGenesis []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Manager.OrderBeginBlockers"></span>    OrderBeginBlockers []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Manager.OrderEndBlockers"></span>    OrderEndBlockers   []<a href="../../../../../builtin/index.html#string">string</a>
+<span id="Manager.OrderMigrations"></span>    OrderMigrations    []<a href="../../../../../builtin/index.html#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewManager">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=9016:9062#L248">NewManager</a>
+					<a class="permalink" href="index.html#NewManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewManager(modules ...<a href="index.html#AppModule">AppModule</a>) *<a href="index.html#Manager">Manager</a></pre>
+				<p>NewManager creates a new Manager object.
+
+				
+				
+			
+				
+				<h3 id="NewManagerFromMap">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=9696:9769#L267">NewManagerFromMap</a>
+					<a class="permalink" href="index.html#NewManagerFromMap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewManagerFromMap(moduleMap map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../cosmossdk.io/core/appmodule/index.html">appmodule</a>.<a href="../../../../../cosmossdk.io/core/appmodule/index.html#AppModule">AppModule</a>) *<a href="index.html#Manager">Manager</a></pre>
+				<p>NewManagerFromMap creates a new Manager object from a map of module names to module implementations.
+This method should be used for apps and modules which have migrated to the cosmossdk.io/core.appmodule.AppModule API.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Manager.BeginBlock">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=20211:20308#L546">BeginBlock</a>
+					<a class="permalink" href="index.html#Manager.BeginBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) BeginBlock(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, req <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestBeginBlock">RequestBeginBlock</a>) <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ResponseBeginBlock">ResponseBeginBlock</a></pre>
+				<p>BeginBlock performs begin block functionality for all modules. It creates a
+child context with an event manager to aggregate events emitted from all
+modules.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.EndBlock">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=20768:20859#L564">EndBlock</a>
+					<a class="permalink" href="index.html#Manager.EndBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) EndBlock(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, req <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#RequestEndBlock">RequestEndBlock</a>) <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ResponseEndBlock">ResponseEndBlock</a></pre>
+				<p>EndBlock performs end block functionality for all modules. It creates a
+child context with an event manager to aggregate events emitted from all
+modules.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.ExportGenesis">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=13428:13524#L371">ExportGenesis</a>
+					<a class="permalink" href="index.html#Manager.ExportGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) ExportGenesis(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>) map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>ExportGenesis performs export genesis functionality for modules
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.ExportGenesisForModules">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=13663:13795#L376">ExportGenesisForModules</a>
+					<a class="permalink" href="index.html#Manager.ExportGenesisForModules">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) ExportGenesisForModules(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, modulesToExport []<a href="../../../../../builtin/index.html#string">string</a>) map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a></pre>
+				<p>ExportGenesisForModules performs export genesis functionality for modules
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.GetVersionMap">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=21645:21689#L593">GetVersionMap</a>
+					<a class="permalink" href="index.html#Manager.GetVersionMap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) GetVersionMap() <a href="index.html#VersionMap">VersionMap</a></pre>
+				<p>GetVersionMap gets consensus version from all modules
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.InitGenesis">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=12073:12203#L336">InitGenesis</a>
+					<a class="permalink" href="index.html#Manager.InitGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) InitGenesis(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, cdc <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>, genesisData map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>) <a href="../../../../cometbft/cometbft/abci/types/index.html">abci</a>.<a href="../../../../cometbft/cometbft/abci/types/index.html#ResponseInitChain">ResponseInitChain</a></pre>
+				<p>InitGenesis performs init genesis functionality for modules. Exactly one
+module must return a non-empty validator set update to correctly initialize
+the chain.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.ModuleNames">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=22000:22040#L608">ModuleNames</a>
+					<a class="permalink" href="index.html#Manager.ModuleNames">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) ModuleNames() []<a href="../../../../../builtin/index.html#string">string</a></pre>
+				<p>ModuleNames returns list of all module names, without any particular order.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RegisterInvariants">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=11483:11545#L316">RegisterInvariants</a>
+					<a class="permalink" href="index.html#Manager.RegisterInvariants">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) RegisterInvariants(ir <a href="../index.html">sdk</a>.<a href="../index.html#InvariantRegistry">InvariantRegistry</a>)</pre>
+				<p>RegisterInvariants registers all module invariants
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RegisterServices">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=11725:11777#L325">RegisterServices</a>
+					<a class="permalink" href="index.html#Manager.RegisterServices">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) RegisterServices(cfg <a href="index.html#Configurator">Configurator</a>)</pre>
+				<p>RegisterServices registers all module services
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.RunMigrations">func (Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=18277:18381#L493">RunMigrations</a>
+					<a class="permalink" href="index.html#Manager.RunMigrations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Manager">Manager</a>) RunMigrations(ctx <a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>, cfg <a href="index.html#Configurator">Configurator</a>, fromVM <a href="index.html#VersionMap">VersionMap</a>) (<a href="index.html#VersionMap">VersionMap</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RunMigrations performs in-place store migrations for all modules. This
+function MUST be called insde an x/upgrade UpgradeHandler.
+<p>Recall that in an upgrade handler, the `fromVM` VersionMap is retrieved from
+x/upgrade&apos;s store, and the function needs to return the target VersionMap
+that will in turn be persisted to the x/upgrade&apos;s store. In general,
+returning RunMigrations should be enough:
+<p>Example:
+<pre>cfg := module.NewConfigurator(...)
+app.UpgradeKeeper.SetUpgradeHandler(&quot;my-plan&quot;, func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+    return app.mm.RunMigrations(ctx, cfg, fromVM)
+})
+</pre>
+<p>Internally, RunMigrations will perform the following steps:
+- create an `updatedVM` VersionMap of module with their latest ConsensusVersion
+- make a diff of `fromVM` and `udpatedVM`, and for each module:
+<ul>
+<li>if the module&apos;s `fromVM` version is less than its `updatedVM` version,
+then run in-place store migrations for that module between those versions.
+<li>if the module does not exist in the `fromVM` (which means that it&apos;s a new module,
+because it was not in the previous x/upgrade&apos;s store), then run
+`InitGenesis` on that module.
+</ul>
+<p>- return the `updatedVM` to be persisted in the x/upgrade&apos;s store.
+<p>Migrations are run in an order defined by `Manager.OrderMigrations` or (if not set) defined by
+`DefaultMigrationsOrder` function.
+<p>As an app developer, if you wish to skip running InitGenesis for your new
+module &quot;foo&quot;, you need to manually pass a `fromVM` argument to this function
+foo&apos;s module version set to its latest ConsensusVersion. That way, the diff
+between the function&apos;s `fromVM` and `udpatedVM` will be empty, hence not
+running anything for foo.
+<p>Example:
+<pre>cfg := module.NewConfigurator(...)
+app.UpgradeKeeper.SetUpgradeHandler(&quot;my-plan&quot;, func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+    // Assume &quot;foo&quot; is a new module.
+    // `fromVM` is fetched from existing x/upgrade store. Since foo didn&apos;t exist
+    // before this upgrade, `v, exists := fromVM[&quot;foo&quot;]; exists == false`, and RunMigration will by default
+    // run InitGenesis on foo.
+    // To skip running foo&apos;s InitGenesis, you need set `fromVM`&apos;s foo to its latest
+    // consensus version:
+    fromVM[&quot;foo&quot;] = foo.AppModule{}.ConsensusVersion()
+
+    return app.mm.RunMigrations(ctx, cfg, fromVM)
+})
+</pre>
+<p>Please also refer to docs/core/upgrade.md for more information.
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SetOrderBeginBlockers">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=10716:10778#L297">SetOrderBeginBlockers</a>
+					<a class="permalink" href="index.html#Manager.SetOrderBeginBlockers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SetOrderBeginBlockers(moduleNames ...<a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetOrderBeginBlockers sets the order of set begin-blocker calls
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SetOrderEndBlockers">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=10949:11009#L303">SetOrderEndBlockers</a>
+					<a class="permalink" href="index.html#Manager.SetOrderEndBlockers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SetOrderEndBlockers(moduleNames ...<a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetOrderEndBlockers sets the order of set end-blocker calls
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SetOrderExportGenesis">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=10479:10541#L291">SetOrderExportGenesis</a>
+					<a class="permalink" href="index.html#Manager.SetOrderExportGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SetOrderExportGenesis(moduleNames ...<a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetOrderExportGenesis sets the order of export genesis calls
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SetOrderInitGenesis">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=10251:10311#L285">SetOrderInitGenesis</a>
+					<a class="permalink" href="index.html#Manager.SetOrderInitGenesis">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SetOrderInitGenesis(moduleNames ...<a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetOrderInitGenesis sets the order of init genesis calls
+
+				
+				
+				
+			
+				
+				<h3 id="Manager.SetOrderMigrations">func (*Manager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=11268:11327#L310">SetOrderMigrations</a>
+					<a class="permalink" href="index.html#Manager.SetOrderMigrations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#Manager">Manager</a>) SetOrderMigrations(moduleNames ...<a href="../../../../../builtin/index.html#string">string</a>)</pre>
+				<p>SetOrderMigrations sets the order of migrations to be run. If not set
+then migrations will be run with an order defined in `DefaultMigrationsOrder`.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MigrationHandler">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=15557:15602#L437">MigrationHandler</a>
+				<a class="permalink" href="index.html#MigrationHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MigrationHandler is the migration function that each module registers.
+
+			<pre>type MigrationHandler func(<a href="../index.html">sdk</a>.<a href="../index.html#Context">Context</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SimulationManager">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=1502:1759#L33">SimulationManager</a>
+				<a class="permalink" href="index.html#SimulationManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SimulationManager defines a simulation manager that provides the high level utility
+for managing and executing simulation functionalities for a group of modules
+
+			<pre>type SimulationManager struct {
+<span id="SimulationManager.Modules"></span>    Modules       []<a href="index.html#AppModuleSimulation">AppModuleSimulation</a>    <span class="comment">// array of app modules; we use an array for deterministic simulation tests</span>
+<span id="SimulationManager.StoreDecoders"></span>    StoreDecoders <a href="../index.html">sdk</a>.<a href="../index.html#StoreDecoderRegistry">StoreDecoderRegistry</a> <span class="comment">// functions to decode the key-value pairs from each module&#39;s store</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSimulationManager">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=1911:1987#L41">NewSimulationManager</a>
+					<a class="permalink" href="index.html#NewSimulationManager">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSimulationManager(modules ...<a href="index.html#AppModuleSimulation">AppModuleSimulation</a>) *<a href="index.html#SimulationManager">SimulationManager</a></pre>
+				<p>NewSimulationManager creates a new SimulationManager object
+<p>CONTRACT: All the modules provided must be also registered on the module Manager
+
+				
+				
+			
+				
+				<h3 id="NewSimulationManagerFromAppModules">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=2449:2587#L54">NewSimulationManagerFromAppModules</a>
+					<a class="permalink" href="index.html#NewSimulationManagerFromAppModules">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewSimulationManagerFromAppModules(modules map[<a href="../../../../../builtin/index.html#string">string</a>]interface{}, overrideModules map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="index.html#AppModuleSimulation">AppModuleSimulation</a>) *<a href="index.html#SimulationManager">SimulationManager</a></pre>
+				<p>NewSimulationManagerFromAppModules creates a new SimulationManager object.
+<p>First it sets any SimulationModule provided by overrideModules, and ignores any AppModule
+with the same moduleName.
+Then it attempts to cast every provided AppModule into an AppModuleSimulation.
+If the cast succeeds, its included, otherwise it is excluded.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SimulationManager.GenerateGenesisStates">func (*SimulationManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=4772:4849#L116">GenerateGenesisStates</a>
+					<a class="permalink" href="index.html#SimulationManager.GenerateGenesisStates">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sm *<a href="index.html#SimulationManager">SimulationManager</a>) GenerateGenesisStates(simState *<a href="index.html#SimulationState">SimulationState</a>)</pre>
+				<p>GenerateGenesisStates generates a randomized GenesisState for each of the
+registered modules
+
+				
+				
+				
+			
+				
+				<h3 id="SimulationManager.GetProposalContents">func (*SimulationManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=3580:3691#L83">GetProposalContents</a>
+					<a class="permalink" href="index.html#SimulationManager.GetProposalContents">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sm *<a href="index.html#SimulationManager">SimulationManager</a>) GetProposalContents(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalContent">WeightedProposalContent</a></pre>
+				<p>Deprecated: Use GetProposalMsgs instead.
+GetProposalContents returns each module&apos;s proposal content generator function
+with their default operation weight and key.
+
+				
+				
+				
+			
+				
+				<h3 id="SimulationManager.GetProposalMsgs">func (*SimulationManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=4083:4186#L96">GetProposalMsgs</a>
+					<a class="permalink" href="index.html#SimulationManager.GetProposalMsgs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sm *<a href="index.html#SimulationManager">SimulationManager</a>) GetProposalMsgs(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalMsg">WeightedProposalMsg</a></pre>
+				<p>GetProposalMsgs returns each module&apos;s proposal msg generator function
+with their default operation weight and key.
+
+				
+				
+				
+			
+				
+				<h3 id="SimulationManager.RegisterStoreDecoders">func (*SimulationManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=4527:4579#L108">RegisterStoreDecoders</a>
+					<a class="permalink" href="index.html#SimulationManager.RegisterStoreDecoders">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sm *<a href="index.html#SimulationManager">SimulationManager</a>) RegisterStoreDecoders()</pre>
+				<p>RegisterStoreDecoders registers each of the modules&apos; store decoders into a map
+
+				
+				
+				
+			
+				
+				<h3 id="SimulationManager.WeightedOperations">func (*SimulationManager) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=5020:5124#L123">WeightedOperations</a>
+					<a class="permalink" href="index.html#SimulationManager.WeightedOperations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sm *<a href="index.html#SimulationManager">SimulationManager</a>) WeightedOperations(simState <a href="index.html#SimulationState">SimulationState</a>) []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedOperation">WeightedOperation</a></pre>
+				<p>WeightedOperations returns all the modules&apos; weighted operations of an application
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SimulationState">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/simulation.go?s=5430:6629#L134">SimulationState</a>
+				<a class="permalink" href="index.html#SimulationState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SimulationState is the input parameters used on each of the module&apos;s randomized
+GenesisState generator function
+
+			<pre>type SimulationState struct {
+<span id="SimulationState.AppParams"></span>    AppParams         <a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#AppParams">AppParams</a>
+<span id="SimulationState.Cdc"></span>    Cdc               <a href="../../codec/index.html">codec</a>.<a href="../../codec/index.html#JSONCodec">JSONCodec</a>                <span class="comment">// application codec</span>
+<span id="SimulationState.Rand"></span>    Rand              *<a href="../../../../../math/rand/index.html">rand</a>.<a href="../../../../../math/rand/index.html#Rand">Rand</a>                     <span class="comment">// random number</span>
+<span id="SimulationState.GenState"></span>    GenState          map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../encoding/json/index.html">json</a>.<a href="../../../../../encoding/json/index.html#RawMessage">RawMessage</a>     <span class="comment">// genesis state</span>
+<span id="SimulationState.Accounts"></span>    Accounts          []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#Account">Account</a>           <span class="comment">// simulation accounts</span>
+<span id="SimulationState.InitialStake"></span>    InitialStake      <a href="../../../../../cosmossdk.io/math/index.html">sdkmath</a>.<a href="../../../../../cosmossdk.io/math/index.html#Int">Int</a>                    <span class="comment">// initial coins per account</span>
+<span id="SimulationState.NumBonded"></span>    NumBonded         <a href="../../../../../builtin/index.html#int64">int64</a>                          <span class="comment">// number of initially bonded accounts</span>
+<span id="SimulationState.BondDenom"></span>    BondDenom         <a href="../../../../../builtin/index.html#string">string</a>                         <span class="comment">// denom to be used as default</span>
+<span id="SimulationState.GenTimestamp"></span>    GenTimestamp      <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>                      <span class="comment">// genesis timestamp</span>
+<span id="SimulationState.UnbondTime"></span>    UnbondTime        <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>                  <span class="comment">// staking unbond time stored to use it as the slashing maximum evidence duration</span>
+<span id="SimulationState.LegacyParamChange"></span>    LegacyParamChange []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#LegacyParamChange">LegacyParamChange</a> <span class="comment">// simulated parameter changes from modules</span>
+    <span class="comment">//nolint:staticcheck</span>
+<span id="SimulationState.LegacyProposalContents"></span>    LegacyProposalContents []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalContent">WeightedProposalContent</a> <span class="comment">// proposal content generator functions with their default weight and app sim key</span>
+<span id="SimulationState.ProposalMsgs"></span>    ProposalMsgs           []<a href="../simulation/index.html">simulation</a>.<a href="../simulation/index.html#WeightedProposalMsg">WeightedProposalMsg</a>     <span class="comment">// proposal msg generator functions with their default weight and app sim key</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="VersionMap">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/types/module/module.go?s=15652:15685#L440">VersionMap</a>
+				<a class="permalink" href="index.html#VersionMap">&#xb6;</a>
+				
+				
+			</h2>
+			<p>VersionMap is a map of moduleName -&gt; version
+
+			<pre>type VersionMap map[<a href="../../../../../builtin/index.html#string">string</a>]<a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testutil/index.html">testutil</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

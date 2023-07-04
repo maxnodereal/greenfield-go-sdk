@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>gcsfs - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package gcsfs
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/spf13/afero/gcsfs"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NewGcsFS">func NewGcsFS(ctx context.Context, opts ...option.ClientOption) (afero.Fs, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NewGcsFSFromClient">func NewGcsFSFromClient(ctx context.Context, client *storage.Client) (afero.Fs, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NewGcsFSFromClientWithSeparator">func NewGcsFSFromClientWithSeparator(ctx context.Context, client *storage.Client, folderSeparator string) (afero.Fs, error)</a></dd>
+			
+				
+				<dd><a href="index.html#NewGcsFSWithSeparator">func NewGcsFSWithSeparator(ctx context.Context, folderSeparator string, opts ...option.ClientOption) (afero.Fs, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ByName">type ByName</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByName.Len">func (a ByName) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByName.Less">func (a ByName) Less(i, j int) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ByName.Swap">func (a ByName) Swap(i, j int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FileInfo">type FileInfo</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.IsDir">func (fi *FileInfo) IsDir() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.ModTime">func (fi *FileInfo) ModTime() time.Time</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.Mode">func (fi *FileInfo) Mode() os.FileMode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.Name">func (fi *FileInfo) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.Size">func (fi *FileInfo) Size() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileInfo.Sys">func (fi *FileInfo) Sys() interface{}</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Fs">type Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGcsFs">func NewGcsFs(ctx context.Context, client stiface.Client) *Fs</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGcsFsWithSeparator">func NewGcsFsWithSeparator(ctx context.Context, client stiface.Client, folderSep string) *Fs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Chmod">func (fs *Fs) Chmod(_ string, _ os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Chown">func (fs *Fs) Chown(_ string, _, _ int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Chtimes">func (fs *Fs) Chtimes(_ string, _, _ time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Create">func (fs *Fs) Create(name string) (*GcsFile, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Mkdir">func (fs *Fs) Mkdir(name string, _ os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.MkdirAll">func (fs *Fs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Name">func (fs *Fs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Open">func (fs *Fs) Open(name string) (*GcsFile, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.OpenFile">func (fs *Fs) OpenFile(name string, flag int, fileMode os.FileMode) (*GcsFile, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Remove">func (fs *Fs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.RemoveAll">func (fs *Fs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Rename">func (fs *Fs) Rename(oldName, newName string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Fs.Stat">func (fs *Fs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GcsFile">type GcsFile</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGcsFile">func NewGcsFile(ctx context.Context, fs *Fs, obj stiface.ObjectHandle, openFlags int, fileMode os.FileMode, name string) *GcsFile</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGcsFileFromOldFH">func NewGcsFileFromOldFH(openFlags int, fileMode os.FileMode, oldFile *gcsFileResource) *GcsFile</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Close">func (o *GcsFile) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Name">func (o *GcsFile) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Read">func (o *GcsFile) Read(p []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.ReadAt">func (o *GcsFile) ReadAt(p []byte, off int64) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Readdir">func (o *GcsFile) Readdir(count int) ([]os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Readdirnames">func (o *GcsFile) Readdirnames(n int) ([]string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Seek">func (o *GcsFile) Seek(newOffset int64, whence int) (int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Stat">func (o *GcsFile) Stat() (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Sync">func (o *GcsFile) Sync() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Truncate">func (o *GcsFile) Truncate(wantedSize int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.Write">func (o *GcsFile) Write(p []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.WriteAt">func (o *GcsFile) WriteAt(b []byte, off int64) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFile.WriteString">func (o *GcsFile) WriteString(s string) (ret int, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GcsFs">type GcsFs</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Chmod">func (fs *GcsFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Chown">func (fs *GcsFs) Chown(name string, uid, gid int) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Chtimes">func (fs *GcsFs) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Create">func (fs *GcsFs) Create(name string) (afero.File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Mkdir">func (fs *GcsFs) Mkdir(name string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.MkdirAll">func (fs *GcsFs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Name">func (fs *GcsFs) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Open">func (fs *GcsFs) Open(name string) (afero.File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.OpenFile">func (fs *GcsFs) OpenFile(name string, flag int, perm os.FileMode) (afero.File, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Remove">func (fs *GcsFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.RemoveAll">func (fs *GcsFs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Rename">func (fs *GcsFs) Rename(oldname, newname string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GcsFs.Stat">func (fs *GcsFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go">file.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go">file_info.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_resource.go">file_resource.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go">fs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go">gcs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs_mocks.go">gcs_mocks.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrNoBucketInName">ErrNoBucketInName</span>     = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;no bucket name found in the name&#34;)
+    <span id="ErrFileClosed">ErrFileClosed</span>         = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;file is closed&#34;)
+    <span id="ErrOutOfRange">ErrOutOfRange</span>         = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;out of range&#34;)
+    <span id="ErrObjectDoesNotExist">ErrObjectDoesNotExist</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;storage: object doesn&#39;t exist&#34;)
+    <span id="ErrEmptyObjectName">ErrEmptyObjectName</span>    = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;storage: object name is empty&#34;)
+    <span id="ErrFileNotFound">ErrFileNotFound</span>       = <a href="../../../../syscall/index.html">syscall</a>.<a href="../../../../syscall/index.html#ENOENT">ENOENT</a>
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewGcsFS">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=1216:1297#L28">NewGcsFS</a>
+				<a class="permalink" href="index.html#NewGcsFS">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGcsFS(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, opts ...<a href="http://localhost:6060/pkg/google.golang.org/api/option/">option</a>.<a href="http://localhost:6060/pkg/google.golang.org/api/option/#ClientOption">ClientOption</a>) (<a href="../index.html">afero</a>.<a href="../index.html#Fs">Fs</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewGcsFS creates a GCS file system, automatically instantiating and decorating the storage client.
+You can provide additional options to be passed to the client creation, as per
+cloud.google.com/go/storage documentation
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGcsFSFromClient">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2040:2126#L51">NewGcsFSFromClient</a>
+				<a class="permalink" href="index.html#NewGcsFSFromClient">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGcsFSFromClient(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, client *<a href="http://localhost:6060/pkg/cloud.google.com/go/storage/">storage</a>.<a href="http://localhost:6060/pkg/cloud.google.com/go/storage/#Client">Client</a>) (<a href="../index.html">afero</a>.<a href="../index.html#Fs">Fs</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewGcsFSFromClient creates a GCS file system from a given storage client
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGcsFSFromClientWithSeparator">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2335:2458#L58">NewGcsFSFromClientWithSeparator</a>
+				<a class="permalink" href="index.html#NewGcsFSFromClientWithSeparator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGcsFSFromClientWithSeparator(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, client *<a href="http://localhost:6060/pkg/cloud.google.com/go/storage/">storage</a>.<a href="http://localhost:6060/pkg/cloud.google.com/go/storage/#Client">Client</a>, folderSeparator <a href="../../../../builtin/index.html#string">string</a>) (<a href="../index.html">afero</a>.<a href="../index.html#Fs">Fs</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewGcsFSFromClientWithSeparator is the same as NewGcsFSFromClient, but the file system will use the provided folder separator.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGcsFSWithSeparator">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=1683:1801#L41">NewGcsFSWithSeparator</a>
+				<a class="permalink" href="index.html#NewGcsFSWithSeparator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGcsFSWithSeparator(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, folderSeparator <a href="../../../../builtin/index.html#string">string</a>, opts ...<a href="http://localhost:6060/pkg/google.golang.org/api/option/">option</a>.<a href="http://localhost:6060/pkg/google.golang.org/api/option/#ClientOption">ClientOption</a>) (<a href="../index.html">afero</a>.<a href="../index.html#Fs">Fs</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NewGcsFSWithSeparator is the same as NewGcsFS, but the files system will use the provided folder separator.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ByName">type <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=3091:3114#L122">ByName</a>
+				<a class="permalink" href="index.html#ByName">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ByName []*<a href="index.html#FileInfo">FileInfo</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ByName.Len">func (ByName) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=3116:3141#L124">Len</a>
+					<a class="permalink" href="index.html#ByName.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#ByName">ByName</a>) Len() <a href="../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ByName.Less">func (ByName) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=3391:3426#L131">Less</a>
+					<a class="permalink" href="index.html#ByName.Less">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#ByName">ByName</a>) Less(i, j <a href="../../../../builtin/index.html#int">int</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ByName.Swap">func (ByName) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=3160:3190#L125">Swap</a>
+					<a class="permalink" href="index.html#ByName.Swap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#ByName">ByName</a>) Swap(i, j <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FileInfo">type <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=873:987#L22">FileInfo</a>
+				<a class="permalink" href="index.html#FileInfo">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FileInfo struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FileInfo.IsDir">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=2981:3013#L114">IsDir</a>
+					<a class="permalink" href="index.html#FileInfo.IsDir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) IsDir() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileInfo.ModTime">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=2917:2956#L110">ModTime</a>
+					<a class="permalink" href="index.html#FileInfo.ModTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) ModTime() <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileInfo.Mode">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=2799:2837#L103">Mode</a>
+					<a class="permalink" href="index.html#FileInfo.Mode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) Mode() <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileInfo.Name">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=2656:2689#L96">Name</a>
+					<a class="permalink" href="index.html#FileInfo.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) Name() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileInfo.Size">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=2746:2778#L100">Size</a>
+					<a class="permalink" href="index.html#FileInfo.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) Size() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileInfo.Sys">func (*FileInfo) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file_info.go?s=3036:3073#L118">Sys</a>
+					<a class="permalink" href="index.html#FileInfo.Sys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fi *<a href="index.html#FileInfo">FileInfo</a>) Sys() interface{}</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Fs">type <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=1055:1321#L27">Fs</a>
+				<a class="permalink" href="index.html#Fs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Fs is a Fs implementation that uses functions provided by google cloud storage
+
+			<pre>type Fs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGcsFs">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=1323:1384#L38">NewGcsFs</a>
+					<a class="permalink" href="index.html#NewGcsFs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGcsFs(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, client <a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/">stiface</a>.<a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/#Client">Client</a>) *<a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewGcsFsWithSeparator">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=1438:1530#L42">NewGcsFsWithSeparator</a>
+					<a class="permalink" href="index.html#NewGcsFsWithSeparator">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGcsFsWithSeparator(ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>, client <a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/">stiface</a>.<a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/#Client">Client</a>, folderSep <a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Fs">Fs</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Fs.Chmod">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=9318:9368#L391">Chmod</a>
+					<a class="permalink" href="index.html#Fs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Chmod(_ <a href="../../../../builtin/index.html#string">string</a>, _ <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Chown">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=9628:9673#L399">Chown</a>
+					<a class="permalink" href="index.html#Fs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Chown(_ <a href="../../../../builtin/index.html#string">string</a>, _, _ <a href="../../../../builtin/index.html#int">int</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Chtimes">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=9435:9488#L395">Chtimes</a>
+					<a class="permalink" href="index.html#Fs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Chtimes(_ <a href="../../../../builtin/index.html#string">string</a>, _, _ <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Create">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=3226:3277#L118">Create</a>
+					<a class="permalink" href="index.html#Fs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Create(name <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#GcsFile">GcsFile</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Mkdir">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=3923:3976#L149">Mkdir</a>
+					<a class="permalink" href="index.html#Fs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Mkdir(name <a href="../../../../builtin/index.html#string">string</a>, _ <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.MkdirAll">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=4581:4640#L172">MkdirAll</a>
+					<a class="permalink" href="index.html#Fs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) MkdirAll(path <a href="../../../../builtin/index.html#string">string</a>, perm <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Name">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=3178:3205#L116">Name</a>
+					<a class="permalink" href="index.html#Fs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Name() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Open">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=5605:5654#L209">Open</a>
+					<a class="permalink" href="index.html#Fs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Open(name <a href="../../../../builtin/index.html#string">string</a>) (*<a href="index.html#GcsFile">GcsFile</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.OpenFile">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=5702:5787#L213">OpenFile</a>
+					<a class="permalink" href="index.html#Fs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) OpenFile(name <a href="../../../../builtin/index.html#string">string</a>, flag <a href="../../../../builtin/index.html#int">int</a>, fileMode <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) (*<a href="index.html#GcsFile">GcsFile</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Remove">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=6806:6845#L270">Remove</a>
+					<a class="permalink" href="index.html#Fs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Remove(name <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.RemoveAll">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=7687:7729#L314">RemoveAll</a>
+					<a class="permalink" href="index.html#Fs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) RemoveAll(path <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Rename">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=8451:8502#L355">Rename</a>
+					<a class="permalink" href="index.html#Fs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Rename(oldName, newName <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Fs.Stat">func (*Fs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/fs.go?s=9070:9122#L382">Stat</a>
+					<a class="permalink" href="index.html#Fs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#Fs">Fs</a>) Stat(name <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GcsFile">type <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=1023:1186#L27">GcsFile</a>
+				<a class="permalink" href="index.html#GcsFile">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GcsFs is the Afero version adapted for GCS
+
+			<pre>type GcsFile struct {
+<span id="GcsFile.ReadDirIt"></span>    ReadDirIt <a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/">stiface</a>.<a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/#ObjectIterator">ObjectIterator</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGcsFile">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=1188:1437#L35">NewGcsFile</a>
+					<a class="permalink" href="index.html#NewGcsFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGcsFile(
+    ctx <a href="../../../../context/index.html">context</a>.<a href="../../../../context/index.html#Context">Context</a>,
+    fs *<a href="index.html#Fs">Fs</a>,
+    obj <a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/">stiface</a>.<a href="http://localhost:6060/pkg/github.com/googleapis/google-cloud-go-testing/storage/stiface/#ObjectHandle">ObjectHandle</a>,
+    openFlags <a href="../../../../builtin/index.html#int">int</a>,
+
+    fileMode <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>,
+    name <a href="../../../../builtin/index.html#string">string</a>,
+) *<a href="index.html#GcsFile">GcsFile</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewGcsFileFromOldFH">func <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=1733:1835#L66">NewGcsFileFromOldFH</a>
+					<a class="permalink" href="index.html#NewGcsFileFromOldFH">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGcsFileFromOldFH(
+    openFlags <a href="../../../../builtin/index.html#int">int</a>,
+    fileMode <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>,
+    oldFile *gcsFileResource,
+) *<a href="index.html#GcsFile">GcsFile</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="GcsFile.Close">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=2009:2040#L84">Close</a>
+					<a class="permalink" href="index.html#GcsFile.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Close() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Name">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=3899:3930#L168">Name</a>
+					<a class="permalink" href="index.html#GcsFile.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Name() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Read">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=2955:3006#L125">Read</a>
+					<a class="permalink" href="index.html#GcsFile.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Read(p []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.ReadAt">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=3044:3108#L129">ReadAt</a>
+					<a class="permalink" href="index.html#GcsFile.ReadAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) ReadAt(p []<a href="../../../../builtin/index.html#byte">byte</a>, off <a href="../../../../builtin/index.html#int64">int64</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Readdir">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=5614:5673#L242">Readdir</a>
+					<a class="permalink" href="index.html#GcsFile.Readdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Readdir(count <a href="../../../../builtin/index.html#int">int</a>) ([]<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Readdirnames">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=5886:5941#L259">Readdirnames</a>
+					<a class="permalink" href="index.html#GcsFile.Readdirnames">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Readdirnames(n <a href="../../../../builtin/index.html#int">int</a>) ([]<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Seek">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=2213:2279#L93">Seek</a>
+					<a class="permalink" href="index.html#GcsFile.Seek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Seek(newOffset <a href="../../../../builtin/index.html#int64">int64</a>, whence <a href="../../../../builtin/index.html#int">int</a>) (<a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Stat">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=6130:6175#L272">Stat</a>
+					<a class="permalink" href="index.html#GcsFile.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Stat() (<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Sync">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=6310:6340#L281">Sync</a>
+					<a class="permalink" href="index.html#GcsFile.Sync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Sync() <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Truncate">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=6380:6430#L285">Truncate</a>
+					<a class="permalink" href="index.html#GcsFile.Truncate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Truncate(wantedSize <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.Write">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=3244:3296#L139">Write</a>
+					<a class="permalink" href="index.html#GcsFile.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) Write(p []<a href="../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.WriteAt">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=3335:3400#L143">WriteAt</a>
+					<a class="permalink" href="index.html#GcsFile.WriteAt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) WriteAt(b []<a href="../../../../builtin/index.html#byte">byte</a>, off <a href="../../../../builtin/index.html#int64">int64</a>) (n <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFile.WriteString">func (*GcsFile) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/file.go?s=6605:6665#L295">WriteString</a>
+					<a class="permalink" href="index.html#GcsFile.WriteString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="index.html#GcsFile">GcsFile</a>) WriteString(s <a href="../../../../builtin/index.html#string">string</a>) (ret <a href="../../../../builtin/index.html#int">int</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GcsFs">type <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=952:985#L21">GcsFs</a>
+				<a class="permalink" href="index.html#GcsFs">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type GcsFs struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="GcsFs.Chmod">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3573:3632#L96">Chmod</a>
+					<a class="permalink" href="index.html#GcsFs.Chmod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Chmod(name <a href="../../../../builtin/index.html#string">string</a>, mode <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Chown">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3801:3856#L102">Chown</a>
+					<a class="permalink" href="index.html#GcsFs.Chown">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Chown(name <a href="../../../../builtin/index.html#string">string</a>, uid, gid <a href="../../../../builtin/index.html#int">int</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Chtimes">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3673:3750#L99">Chtimes</a>
+					<a class="permalink" href="index.html#GcsFs.Chtimes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Chtimes(name <a href="../../../../builtin/index.html#string">string</a>, atime <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>, mtime <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Create">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2698:2754#L69">Create</a>
+					<a class="permalink" href="index.html#GcsFs.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Create(name <a href="../../../../builtin/index.html#string">string</a>) (<a href="../index.html">afero</a>.<a href="../index.html#File">File</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Mkdir">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2790:2849#L72">Mkdir</a>
+					<a class="permalink" href="index.html#GcsFs.Mkdir">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Mkdir(name <a href="../../../../builtin/index.html#string">string</a>, perm <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.MkdirAll">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2890:2952#L75">MkdirAll</a>
+					<a class="permalink" href="index.html#GcsFs.MkdirAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) MkdirAll(path <a href="../../../../builtin/index.html#string">string</a>, perm <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Name">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2638:2668#L66">Name</a>
+					<a class="permalink" href="index.html#GcsFs.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Name() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Open">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=2996:3050#L78">Open</a>
+					<a class="permalink" href="index.html#GcsFs.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Open(name <a href="../../../../builtin/index.html#string">string</a>) (<a href="../index.html">afero</a>.<a href="../index.html#File">File</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.OpenFile">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3084:3170#L81">OpenFile</a>
+					<a class="permalink" href="index.html#GcsFs.OpenFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) OpenFile(name <a href="../../../../builtin/index.html#string">string</a>, flag <a href="../../../../builtin/index.html#int">int</a>, perm <a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileMode">FileMode</a>) (<a href="../index.html">afero</a>.<a href="../index.html#File">File</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Remove">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3220:3262#L84">Remove</a>
+					<a class="permalink" href="index.html#GcsFs.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Remove(name <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.RemoveAll">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3298:3343#L87">RemoveAll</a>
+					<a class="permalink" href="index.html#GcsFs.RemoveAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) RemoveAll(path <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Rename">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3382:3436#L90">Rename</a>
+					<a class="permalink" href="index.html#GcsFs.Rename">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Rename(oldname, newname <a href="../../../../builtin/index.html#string">string</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GcsFs.Stat">func (*GcsFs) <a href="http://localhost:6060/src/github.com/spf13/afero/gcsfs/gcs.go?s=3484:3539#L93">Stat</a>
+					<a class="permalink" href="index.html#GcsFs.Stat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs *<a href="index.html#GcsFs">GcsFs</a>) Stat(name <a href="../../../../builtin/index.html#string">string</a>) (<a href="../../../../os/index.html">os</a>.<a href="../../../../os/index.html#FileInfo">FileInfo</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

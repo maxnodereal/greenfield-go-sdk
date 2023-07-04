@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>conn - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package conn
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/p2p/conn"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NetPipe">func NetPipe() (net.Conn, net.Conn)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Channel">type Channel</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Channel.SetLogger">func (ch *Channel) SetLogger(l log.Logger)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ChannelDescriptor">type ChannelDescriptor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ChannelDescriptor.FillDefaults">func (chDesc ChannelDescriptor) FillDefaults() (filled ChannelDescriptor)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ChannelStatus">type ChannelStatus</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ConnectionStatus">type ConnectionStatus</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MConnConfig">type MConnConfig</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DefaultMConnConfig">func DefaultMConnConfig() MConnConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MConnection">type MConnection</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMConnection">func NewMConnection(conn net.Conn, chDescs []*ChannelDescriptor, onReceive receiveCbFunc, onError errorCbFunc) *MConnection</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMConnectionWithConfig">func NewMConnectionWithConfig(conn net.Conn, chDescs []*ChannelDescriptor, onReceive receiveCbFunc, onError errorCbFunc, config MConnConfig) *MConnection</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.CanSend">func (c *MConnection) CanSend(chID byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.FlushStop">func (c *MConnection) FlushStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.OnStart">func (c *MConnection) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.OnStop">func (c *MConnection) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.Send">func (c *MConnection) Send(chID byte, msgBytes []byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.SetLogger">func (c *MConnection) SetLogger(l log.Logger)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.Status">func (c *MConnection) Status() ConnectionStatus</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.String">func (c *MConnection) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MConnection.TrySend">func (c *MConnection) TrySend(chID byte, msgBytes []byte) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SecretConnection">type SecretConnection</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MakeSecretConnection">func MakeSecretConnection(conn io.ReadWriteCloser, locPrivKey crypto.PrivKey) (*SecretConnection, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.Close">func (sc *SecretConnection) Close() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.LocalAddr">func (sc *SecretConnection) LocalAddr() net.Addr</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.Read">func (sc *SecretConnection) Read(data []byte) (n int, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.RemoteAddr">func (sc *SecretConnection) RemoteAddr() net.Addr</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.RemotePubKey">func (sc *SecretConnection) RemotePubKey() crypto.PubKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.SetDeadline">func (sc *SecretConnection) SetDeadline(t time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.SetReadDeadline">func (sc *SecretConnection) SetReadDeadline(t time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.SetWriteDeadline">func (sc *SecretConnection) SetWriteDeadline(t time.Time) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SecretConnection.Write">func (sc *SecretConnection) Write(data []byte) (n int, err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/conn_go110.go">conn_go110.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go">connection.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go">secret_connection.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrSmallOrderRemotePubKey">ErrSmallOrderRemotePubKey</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;detected low order point from remote peer&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NetPipe">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/conn_go110.go?s=337:372#L4">NetPipe</a>
+				<a class="permalink" href="index.html#NetPipe">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NetPipe() (<a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Conn">Conn</a>, <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Conn">Conn</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Channel">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=20004:20292#L736">Channel</a>
+				<a class="permalink" href="index.html#Channel">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TODO: lowercase.
+NOTE: not goroutine-safe.
+
+			<pre>type Channel struct {
+<span id="Channel.Logger"></span>    Logger <a href="../../libs/log/index.html">log</a>.<a href="../../libs/log/index.html#Logger">Logger</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Channel.SetLogger">func (*Channel) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=20776:20818#L764">SetLogger</a>
+					<a class="permalink" href="index.html#Channel.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ch *<a href="index.html#Channel">Channel</a>) SetLogger(l <a href="../../libs/log/index.html">log</a>.<a href="../../libs/log/index.html#Logger">Logger</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChannelDescriptor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=19367:19561#L711">ChannelDescriptor</a>
+				<a class="permalink" href="index.html#ChannelDescriptor">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ChannelDescriptor struct {
+<span id="ChannelDescriptor.ID"></span>    ID                  <a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="ChannelDescriptor.Priority"></span>    Priority            <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelDescriptor.SendQueueCapacity"></span>    SendQueueCapacity   <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelDescriptor.RecvBufferCapacity"></span>    RecvBufferCapacity  <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelDescriptor.RecvMessageCapacity"></span>    RecvMessageCapacity <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelDescriptor.MessageType"></span>    MessageType         <a href="../../../../cosmos/gogoproto/proto/index.html">proto</a>.<a href="../../../../cosmos/gogoproto/proto/index.html#Message">Message</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ChannelDescriptor.FillDefaults">func (ChannelDescriptor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=19563:19636#L720">FillDefaults</a>
+					<a class="permalink" href="index.html#ChannelDescriptor.FillDefaults">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (chDesc <a href="index.html#ChannelDescriptor">ChannelDescriptor</a>) FillDefaults() (filled <a href="index.html#ChannelDescriptor">ChannelDescriptor</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChannelStatus">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=18506:18653#L683">ChannelStatus</a>
+				<a class="permalink" href="index.html#ChannelStatus">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ChannelStatus struct {
+<span id="ChannelStatus.ID"></span>    ID                <a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="ChannelStatus.SendQueueCapacity"></span>    SendQueueCapacity <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelStatus.SendQueueSize"></span>    SendQueueSize     <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelStatus.Priority"></span>    Priority          <a href="../../../../../builtin/index.html#int">int</a>
+<span id="ChannelStatus.RecentlySent"></span>    RecentlySent      <a href="../../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConnectionStatus">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=18366:18504#L676">ConnectionStatus</a>
+				<a class="permalink" href="index.html#ConnectionStatus">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ConnectionStatus struct {
+<span id="ConnectionStatus.Duration"></span>    Duration    <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+<span id="ConnectionStatus.SendMonitor"></span>    SendMonitor <a href="../../libs/flowrate/index.html">flow</a>.<a href="../../libs/flowrate/index.html#Status">Status</a>
+<span id="ConnectionStatus.RecvMonitor"></span>    RecvMonitor <a href="../../libs/flowrate/index.html">flow</a>.<a href="../../libs/flowrate/index.html#Status">Status</a>
+<span id="ConnectionStatus.Channels"></span>    Channels    []<a href="index.html#ChannelStatus">ChannelStatus</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MConnConfig">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=3675:4168#L112">MConnConfig</a>
+				<a class="permalink" href="index.html#MConnConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MConnConfig is a MConnection configuration.
+
+			<pre>type MConnConfig struct {
+<span id="MConnConfig.SendRate"></span>    SendRate <a href="../../../../../builtin/index.html#int64">int64</a> `mapstructure:&#34;send_rate&#34;`
+<span id="MConnConfig.RecvRate"></span>    RecvRate <a href="../../../../../builtin/index.html#int64">int64</a> `mapstructure:&#34;recv_rate&#34;`
+
+    <span class="comment">// Maximum payload size</span>
+<span id="MConnConfig.MaxPacketMsgPayloadSize"></span>    MaxPacketMsgPayloadSize <a href="../../../../../builtin/index.html#int">int</a> `mapstructure:&#34;max_packet_msg_payload_size&#34;`
+
+    <span class="comment">// Interval to flush writes (throttled)</span>
+<span id="MConnConfig.FlushThrottle"></span>    FlushThrottle <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> `mapstructure:&#34;flush_throttle&#34;`
+
+    <span class="comment">// Interval to send pings</span>
+<span id="MConnConfig.PingInterval"></span>    PingInterval <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> `mapstructure:&#34;ping_interval&#34;`
+
+    <span class="comment">// Maximum wait time for pongs</span>
+<span id="MConnConfig.PongTimeout"></span>    PongTimeout <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> `mapstructure:&#34;pong_timeout&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DefaultMConnConfig">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=4220:4257#L130">DefaultMConnConfig</a>
+					<a class="permalink" href="index.html#DefaultMConnConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DefaultMConnConfig() <a href="index.html#MConnConfig">MConnConfig</a></pre>
+				<p>DefaultMConnConfig returns the default config.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MConnection">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=2388:3626#L68">MConnection</a>
+				<a class="permalink" href="index.html#MConnection">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Each peer has one `MConnection` (multiplex connection) instance.
+<p>__multiplex__ *noun* a system or signal involving simultaneous transmission of
+several messages along a single channel of communication.
+<p>Each `MConnection` handles message transmission on multiple abstract communication
+`Channel`s.  Each channel has a globally unique byte id.
+The byte id and the relative priorities of each `Channel` are configured upon
+initialization of the connection.
+<p>There are two methods for sending messages:
+<pre>func (m MConnection) Send(chID byte, msgBytes []byte) bool {}
+func (m MConnection) TrySend(chID byte, msgBytes []byte}) bool {}
+</pre>
+<p>`Send(chID, msgBytes)` is a blocking call that waits until `msg` is
+successfully queued for the channel with the given id byte `chID`, or until the
+request times out.  The message `msg` is serialized using Protobuf.
+<p>`TrySend(chID, msgBytes)` is a nonblocking call that returns false if the
+channel&apos;s queue is full.
+<p>Inbound message bytes are handled with an onReceive callback function.
+
+			<pre>type MConnection struct {
+    <a href="../../libs/service/index.html">service</a>.<a href="../../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMConnection">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=4644:4774#L142">NewMConnection</a>
+					<a class="permalink" href="index.html#NewMConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMConnection(
+    conn <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Conn">Conn</a>,
+    chDescs []*<a href="index.html#ChannelDescriptor">ChannelDescriptor</a>,
+    onReceive receiveCbFunc,
+    onError errorCbFunc,
+) *<a href="index.html#MConnection">MConnection</a></pre>
+				<p>NewMConnection wraps net.Conn and creates multiplex connection
+
+				
+				
+			
+				
+				<h3 id="NewMConnectionWithConfig">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=4971:5132#L157">NewMConnectionWithConfig</a>
+					<a class="permalink" href="index.html#NewMConnectionWithConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMConnectionWithConfig(
+    conn <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Conn">Conn</a>,
+    chDescs []*<a href="index.html#ChannelDescriptor">ChannelDescriptor</a>,
+    onReceive receiveCbFunc,
+    onError errorCbFunc,
+    config <a href="index.html#MConnConfig">MConnConfig</a>,
+) *<a href="index.html#MConnection">MConnection</a></pre>
+				<p>NewMConnectionWithConfig wraps net.Conn and creates multiplex connection with a config
+
+				
+				
+			
+
+			
+				
+				<h3 id="MConnection.CanSend">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=10992:11037#L398">CanSend</a>
+					<a class="permalink" href="index.html#MConnection.CanSend">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) CanSend(chID <a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>CanSend returns true if you can send more data onto the chID, false
+otherwise. Use only as a heuristic.
+
+				
+				
+				
+			
+				
+				<h3 id="MConnection.FlushStop">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=7786:7819#L262">FlushStop</a>
+					<a class="permalink" href="index.html#MConnection.FlushStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) FlushStop()</pre>
+				<p>FlushStop replicates the logic of OnStop.
+It additionally ensures that all successful
+.Send() calls will get flushed before closing
+the connection.
+
+				
+				
+				
+			
+				
+				<h3 id="MConnection.OnStart">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=6390:6427#L210">OnStart</a>
+					<a class="permalink" href="index.html#MConnection.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) OnStart() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements BaseService
+
+				
+				
+				
+			
+				
+				<h3 id="MConnection.OnStop">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=8492:8522#L296">OnStop</a>
+					<a class="permalink" href="index.html#MConnection.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) OnStop()</pre>
+				<p>OnStop implements BaseService
+
+				
+				
+				
+			
+				
+				<h3 id="MConnection.Send">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=9597:9656#L341">Send</a>
+					<a class="permalink" href="index.html#MConnection.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) Send(chID <a href="../../../../../builtin/index.html#byte">byte</a>, msgBytes []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Queues a message to be sent to channel.
+
+				
+				
+				
+			
+				
+				<h3 id="MConnection.SetLogger">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=6223:6268#L202">SetLogger</a>
+					<a class="permalink" href="index.html#MConnection.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) SetLogger(l <a href="../../libs/log/index.html">log</a>.<a href="../../libs/log/index.html#Logger">Logger</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MConnection.Status">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=18655:18702#L691">Status</a>
+					<a class="permalink" href="index.html#MConnection.Status">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) Status() <a href="index.html#ConnectionStatus">ConnectionStatus</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MConnection.String">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=8758:8795#L309">String</a>
+					<a class="permalink" href="index.html#MConnection.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) String() <a href="../../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MConnection.TrySend">func (*MConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/connection.go?s=10345:10407#L370">TrySend</a>
+					<a class="permalink" href="index.html#MConnection.TrySend">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MConnection">MConnection</a>) TrySend(chID <a href="../../../../../builtin/index.html#byte">byte</a>, msgBytes []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Queues a message to be sent to channel.
+Nonblocking, returns true if successful.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SecretConnection">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=1951:2514#L53">SecretConnection</a>
+				<a class="permalink" href="index.html#SecretConnection">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SecretConnection implements net.Conn.
+It is an implementation of the STS protocol.
+See <a href="https://github.com/cometbft/cometbft/blob/0.1/docs/sts-final.pdf">https://github.com/cometbft/cometbft/blob/0.1/docs/sts-final.pdf</a> for
+details on the protocol.
+<p>Consumers of the SecretConnection are responsible for authenticating
+the remote peer&apos;s pubkey against known information, like a nodeID.
+Otherwise they are vulnerable to MITM.
+(TODO(ismail): see also <a href="https://github.com/tendermint/tendermint/issues/3010">https://github.com/tendermint/tendermint/issues/3010</a>)
+
+			<pre>type SecretConnection struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MakeSecretConnection">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=2745:2849#L82">MakeSecretConnection</a>
+					<a class="permalink" href="index.html#MakeSecretConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MakeSecretConnection(conn <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#ReadWriteCloser">ReadWriteCloser</a>, locPrivKey <a href="../../crypto/index.html">crypto</a>.<a href="../../crypto/index.html#PrivKey">PrivKey</a>) (*<a href="index.html#SecretConnection">SecretConnection</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MakeSecretConnection performs handshake and returns a new authenticated
+SecretConnection.
+Returns nil if there is an error in handshake.
+Caller should call conn.Close()
+See docs/sts-final.pdf for more information.
+
+				
+				
+			
+
+			
+				
+				<h3 id="SecretConnection.Close">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8090:8131#L268">Close</a>
+					<a class="permalink" href="index.html#SecretConnection.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) Close() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Implements net.Conn
+
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.LocalAddr">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8176:8224#L269">LocalAddr</a>
+					<a class="permalink" href="index.html#SecretConnection.LocalAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) LocalAddr() <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Addr">Addr</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.Read">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=6817:6881#L222">Read</a>
+					<a class="permalink" href="index.html#SecretConnection.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) Read(data []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CONTRACT: data smaller than dataMaxSize is read atomically.
+
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.RemoteAddr">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8277:8326#L270">RemoteAddr</a>
+					<a class="permalink" href="index.html#SecretConnection.RemoteAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) RemoteAddr() <a href="../../../../../net/index.html">net</a>.<a href="../../../../../net/index.html#Addr">Addr</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.RemotePubKey">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=5598:5654#L173">RemotePubKey</a>
+					<a class="permalink" href="index.html#SecretConnection.RemotePubKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) RemotePubKey() <a href="../../crypto/index.html">crypto</a>.<a href="../../crypto/index.html#PubKey">PubKey</a></pre>
+				<p>RemotePubKey returns authenticated remote pubkey
+
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.SetDeadline">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8379:8437#L271">SetDeadline</a>
+					<a class="permalink" href="index.html#SecretConnection.SetDeadline">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) SetDeadline(t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.SetReadDeadline">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8483:8545#L272">SetReadDeadline</a>
+					<a class="permalink" href="index.html#SecretConnection.SetReadDeadline">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) SetReadDeadline(t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.SetWriteDeadline">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=8596:8659#L275">SetWriteDeadline</a>
+					<a class="permalink" href="index.html#SecretConnection.SetWriteDeadline">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) SetWriteDeadline(t <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SecretConnection.Write">func (*SecretConnection) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/p2p/conn/secret_connection.go?s=5814:5879#L179">Write</a>
+					<a class="permalink" href="index.html#SecretConnection.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc *<a href="index.html#SecretConnection">SecretConnection</a>) Write(data []<a href="../../../../../builtin/index.html#byte">byte</a>) (n <a href="../../../../../builtin/index.html#int">int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Writes encrypted frames of `totalFrameSize + aeadSizeOverhead`.
+CONTRACT: data smaller than dataMaxSize is written atomically.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

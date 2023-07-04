@@ -1,0 +1,4079 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>types - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package types
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/core/types"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package types contains data types related to Ethereum consensus.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Bloom9">func Bloom9(data []byte) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#BloomLookup">func BloomLookup(bin Bloom, topic bytesBacked) bool</a></dd>
+			
+				
+				<dd><a href="index.html#CalcUncleHash">func CalcUncleHash(uncles []*Header) common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#ConvertLegacyStoredReceipts">func ConvertLegacyStoredReceipts(raw []byte) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#DeriveSha">func DeriveSha(list DerivableList, hasher TrieHasher) common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#HashDifference">func HashDifference(a, b []common.Hash) []common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#HeaderParentHashFromRLP">func HeaderParentHashFromRLP(header []byte) common.Hash</a></dd>
+			
+				
+				<dd><a href="index.html#IsLegacyStoredReceipts">func IsLegacyStoredReceipts(raw []byte) (bool, error)</a></dd>
+			
+				
+				<dd><a href="index.html#LogsBloom">func LogsBloom(logs []*Log) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#Sender">func Sender(signer Signer, tx *Transaction) (common.Address, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#AccessList">type AccessList</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessList.StorageKeys">func (al AccessList) StorageKeys() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#AccessListTx">type AccessListTx</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#AccessTuple">type AccessTuple</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessTuple.MarshalJSON">func (a AccessTuple) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AccessTuple.UnmarshalJSON">func (a *AccessTuple) UnmarshalJSON(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Block">type Block</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBlock">func NewBlock(header *Header, txs []*Transaction, uncles []*Header, receipts []*Receipt, hasher TrieHasher) *Block</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBlockWithHeader">func NewBlockWithHeader(header *Header) *Block</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.BaseFee">func (b *Block) BaseFee() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Bloom">func (b *Block) Bloom() Bloom</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Body">func (b *Block) Body() *Body</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Coinbase">func (b *Block) Coinbase() common.Address</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.DecodeRLP">func (b *Block) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Difficulty">func (b *Block) Difficulty() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.EncodeRLP">func (b *Block) EncodeRLP(w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Extra">func (b *Block) Extra() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.GasLimit">func (b *Block) GasLimit() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.GasUsed">func (b *Block) GasUsed() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Hash">func (b *Block) Hash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Header">func (b *Block) Header() *Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.MixDigest">func (b *Block) MixDigest() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Nonce">func (b *Block) Nonce() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Number">func (b *Block) Number() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.NumberU64">func (b *Block) NumberU64() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.ParentHash">func (b *Block) ParentHash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.ReceiptHash">func (b *Block) ReceiptHash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Root">func (b *Block) Root() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.SanityCheck">func (b *Block) SanityCheck() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Size">func (b *Block) Size() common.StorageSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Time">func (b *Block) Time() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Transaction">func (b *Block) Transaction(hash common.Hash) *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Transactions">func (b *Block) Transactions() Transactions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.TxHash">func (b *Block) TxHash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.UncleHash">func (b *Block) UncleHash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.Uncles">func (b *Block) Uncles() []*Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.WithBody">func (b *Block) WithBody(transactions []*Transaction, uncles []*Header) *Block</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Block.WithSeal">func (b *Block) WithSeal(header *Header) *Block</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BlockNonce">type BlockNonce</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EncodeNonce">func EncodeNonce(i uint64) BlockNonce</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNonce.MarshalText">func (n BlockNonce) MarshalText() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNonce.Uint64">func (n BlockNonce) Uint64() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockNonce.UnmarshalText">func (n *BlockNonce) UnmarshalText(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Blocks">type Blocks</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Bloom">type Bloom</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BytesToBloom">func BytesToBloom(b []byte) Bloom</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CreateBloom">func CreateBloom(receipts Receipts) Bloom</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.Add">func (b *Bloom) Add(d []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.Big">func (b Bloom) Big() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.Bytes">func (b Bloom) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.MarshalText">func (b Bloom) MarshalText() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.SetBytes">func (b *Bloom) SetBytes(d []byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.Test">func (b Bloom) Test(topic []byte) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Bloom.UnmarshalText">func (b *Bloom) UnmarshalText(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Body">type Body</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DerivableList">type DerivableList</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DynamicFeeTx">type DynamicFeeTx</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EIP155Signer">type EIP155Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEIP155Signer">func NewEIP155Signer(chainId *big.Int) EIP155Signer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EIP155Signer.ChainID">func (s EIP155Signer) ChainID() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EIP155Signer.Equal">func (s EIP155Signer) Equal(s2 Signer) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EIP155Signer.Hash">func (s EIP155Signer) Hash(tx *Transaction) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EIP155Signer.Sender">func (s EIP155Signer) Sender(tx *Transaction) (common.Address, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EIP155Signer.SignatureValues">func (s EIP155Signer) SignatureValues(tx *Transaction, sig []byte) (R, S, V *big.Int, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FrontierSigner">type FrontierSigner</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FrontierSigner.ChainID">func (s FrontierSigner) ChainID() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FrontierSigner.Equal">func (s FrontierSigner) Equal(s2 Signer) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FrontierSigner.Hash">func (fs FrontierSigner) Hash(tx *Transaction) common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FrontierSigner.Sender">func (fs FrontierSigner) Sender(tx *Transaction) (common.Address, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FrontierSigner.SignatureValues">func (fs FrontierSigner) SignatureValues(tx *Transaction, sig []byte) (r, s, v *big.Int, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Header">type Header</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CopyHeader">func CopyHeader(h *Header) *Header</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.EmptyBody">func (h *Header) EmptyBody() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.EmptyReceipts">func (h *Header) EmptyReceipts() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.EncodeRLP">func (obj *Header) EncodeRLP(_w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.Hash">func (h *Header) Hash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.MarshalJSON">func (h Header) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.SanityCheck">func (h *Header) SanityCheck() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.Size">func (h *Header) Size() common.StorageSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Header.UnmarshalJSON">func (h *Header) UnmarshalJSON(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#HomesteadSigner">type HomesteadSigner</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HomesteadSigner.ChainID">func (s HomesteadSigner) ChainID() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HomesteadSigner.Equal">func (s HomesteadSigner) Equal(s2 Signer) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HomesteadSigner.Sender">func (hs HomesteadSigner) Sender(tx *Transaction) (common.Address, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#HomesteadSigner.SignatureValues">func (hs HomesteadSigner) SignatureValues(tx *Transaction, sig []byte) (r, s, v *big.Int, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LegacyTx">type LegacyTx</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Log">type Log</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Log.DecodeRLP">func (l *Log) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Log.EncodeRLP">func (l *Log) EncodeRLP(w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Log.MarshalJSON">func (l Log) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Log.UnmarshalJSON">func (l *Log) UnmarshalJSON(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#LogForStorage">type LogForStorage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogForStorage.DecodeRLP">func (l *LogForStorage) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogForStorage.EncodeRLP">func (l *LogForStorage) EncodeRLP(w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Message">type Message</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMessage">func NewMessage(from common.Address, to *common.Address, nonce uint64, amount *big.Int, gasLimit uint64, gasPrice, gasFeeCap, gasTipCap *big.Int, data []byte, accessList AccessList, isFake bool) Message</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.AccessList">func (m Message) AccessList() AccessList</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Data">func (m Message) Data() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.From">func (m Message) From() common.Address</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Gas">func (m Message) Gas() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.GasFeeCap">func (m Message) GasFeeCap() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.GasPrice">func (m Message) GasPrice() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.GasTipCap">func (m Message) GasTipCap() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.IsFake">func (m Message) IsFake() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Nonce">func (m Message) Nonce() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.To">func (m Message) To() *common.Address</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Message.Value">func (m Message) Value() *big.Int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Receipt">type Receipt</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReceipt">func NewReceipt(root []byte, failed bool, cumulativeGasUsed uint64) *Receipt</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.DecodeRLP">func (r *Receipt) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.EncodeRLP">func (r *Receipt) EncodeRLP(w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.MarshalBinary">func (r *Receipt) MarshalBinary() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.MarshalJSON">func (r Receipt) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.Size">func (r *Receipt) Size() common.StorageSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.UnmarshalBinary">func (r *Receipt) UnmarshalBinary(b []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipt.UnmarshalJSON">func (r *Receipt) UnmarshalJSON(input []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ReceiptForStorage">type ReceiptForStorage</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReceiptForStorage.DecodeRLP">func (r *ReceiptForStorage) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ReceiptForStorage.EncodeRLP">func (r *ReceiptForStorage) EncodeRLP(_w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Receipts">type Receipts</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipts.DeriveFields">func (rs Receipts) DeriveFields(config *params.ChainConfig, hash common.Hash, number uint64, txs Transactions) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipts.EncodeIndex">func (rs Receipts) EncodeIndex(i int, w *bytes.Buffer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Receipts.Len">func (rs Receipts) Len() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Signer">type Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LatestSigner">func LatestSigner(config *params.ChainConfig) Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LatestSignerForChainID">func LatestSignerForChainID(chainID *big.Int) Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MakeSigner">func MakeSigner(config *params.ChainConfig, blockNumber *big.Int) Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEIP2930Signer">func NewEIP2930Signer(chainId *big.Int) Signer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLondonSigner">func NewLondonSigner(chainId *big.Int) Signer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StateAccount">type StateAccount</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateAccount.EncodeRLP">func (obj *StateAccount) EncodeRLP(_w io.Writer) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Transaction">type Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MustSignNewTx">func MustSignNewTx(prv *ecdsa.PrivateKey, s Signer, txdata TxData) *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewContractCreation">func NewContractCreation(nonce uint64, amount *big.Int, gasLimit uint64, gasPrice *big.Int, data []byte) *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTransaction">func NewTransaction(nonce uint64, to common.Address, amount *big.Int, gasLimit uint64, gasPrice *big.Int, data []byte) *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTx">func NewTx(inner TxData) *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignNewTx">func SignNewTx(prv *ecdsa.PrivateKey, s Signer, txdata TxData) (*Transaction, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SignTx">func SignTx(tx *Transaction, s Signer, prv *ecdsa.PrivateKey) (*Transaction, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.AccessList">func (tx *Transaction) AccessList() AccessList</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.AsMessage">func (tx *Transaction) AsMessage(s Signer, baseFee *big.Int) (Message, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.ChainId">func (tx *Transaction) ChainId() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Cost">func (tx *Transaction) Cost() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Data">func (tx *Transaction) Data() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.DecodeRLP">func (tx *Transaction) DecodeRLP(s *rlp.Stream) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.EffectiveGasTip">func (tx *Transaction) EffectiveGasTip(baseFee *big.Int) (*big.Int, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.EffectiveGasTipCmp">func (tx *Transaction) EffectiveGasTipCmp(other *Transaction, baseFee *big.Int) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.EffectiveGasTipIntCmp">func (tx *Transaction) EffectiveGasTipIntCmp(other *big.Int, baseFee *big.Int) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.EffectiveGasTipValue">func (tx *Transaction) EffectiveGasTipValue(baseFee *big.Int) *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.EncodeRLP">func (tx *Transaction) EncodeRLP(w io.Writer) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Gas">func (tx *Transaction) Gas() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasFeeCap">func (tx *Transaction) GasFeeCap() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasFeeCapCmp">func (tx *Transaction) GasFeeCapCmp(other *Transaction) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasFeeCapIntCmp">func (tx *Transaction) GasFeeCapIntCmp(other *big.Int) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasPrice">func (tx *Transaction) GasPrice() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasTipCap">func (tx *Transaction) GasTipCap() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasTipCapCmp">func (tx *Transaction) GasTipCapCmp(other *Transaction) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.GasTipCapIntCmp">func (tx *Transaction) GasTipCapIntCmp(other *big.Int) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Hash">func (tx *Transaction) Hash() common.Hash</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.MarshalBinary">func (tx *Transaction) MarshalBinary() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.MarshalJSON">func (t *Transaction) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Nonce">func (tx *Transaction) Nonce() uint64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Protected">func (tx *Transaction) Protected() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.RawSignatureValues">func (tx *Transaction) RawSignatureValues() (v, r, s *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Size">func (tx *Transaction) Size() common.StorageSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.To">func (tx *Transaction) To() *common.Address</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Type">func (tx *Transaction) Type() uint8</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.UnmarshalBinary">func (tx *Transaction) UnmarshalBinary(b []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.UnmarshalJSON">func (t *Transaction) UnmarshalJSON(input []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.Value">func (tx *Transaction) Value() *big.Int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transaction.WithSignature">func (tx *Transaction) WithSignature(signer Signer, sig []byte) (*Transaction, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Transactions">type Transactions</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxDifference">func TxDifference(a, b Transactions) Transactions</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transactions.EncodeIndex">func (s Transactions) EncodeIndex(i int, w *bytes.Buffer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Transactions.Len">func (s Transactions) Len() int</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TransactionsByPriceAndNonce">type TransactionsByPriceAndNonce</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTransactionsByPriceAndNonce">func NewTransactionsByPriceAndNonce(signer Signer, txs map[common.Address]Transactions, baseFee *big.Int) *TransactionsByPriceAndNonce</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TransactionsByPriceAndNonce.Peek">func (t *TransactionsByPriceAndNonce) Peek() *Transaction</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TransactionsByPriceAndNonce.Pop">func (t *TransactionsByPriceAndNonce) Pop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TransactionsByPriceAndNonce.Shift">func (t *TransactionsByPriceAndNonce) Shift()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TrieHasher">type TrieHasher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxByNonce">type TxByNonce</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByNonce.Len">func (s TxByNonce) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByNonce.Less">func (s TxByNonce) Less(i, j int) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByNonce.Swap">func (s TxByNonce) Swap(i, j int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TxByPriceAndTime">type TxByPriceAndTime</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByPriceAndTime.Len">func (s TxByPriceAndTime) Len() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByPriceAndTime.Less">func (s TxByPriceAndTime) Less(i, j int) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByPriceAndTime.Pop">func (s *TxByPriceAndTime) Pop() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByPriceAndTime.Push">func (s *TxByPriceAndTime) Push(x interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TxByPriceAndTime.Swap">func (s TxByPriceAndTime) Swap(i, j int)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TxData">type TxData</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TxWithMinerFee">type TxWithMinerFee</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTxWithMinerFee">func NewTxWithMinerFee(tx *Transaction, baseFee *big.Int) (*TxWithMinerFee, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/access_list_tx.go">access_list_tx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go">block.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go">bloom9.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/dynamic_fee_tx.go">dynamic_fee_tx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_access_tuple.go">gen_access_tuple.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_account_rlp.go">gen_account_rlp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_header_json.go">gen_header_json.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_header_rlp.go">gen_header_rlp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_log_json.go">gen_log_json.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_log_rlp.go">gen_log_rlp.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_receipt_json.go">gen_receipt_json.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/hashing.go">hashing.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy.go">legacy.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy_tx.go">legacy_tx.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go">receipt.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/state_account.go">state_account.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go">transaction.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_marshalling.go">transaction_marshalling.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go">transaction_signing.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// BloomByteLength represents the number of bytes used in a header log bloom.</span>
+    <span id="BloomByteLength">BloomByteLength</span> = 256
+
+    <span class="comment">// BloomBitLength represents the number of bits used in a header log bloom.</span>
+    <span id="BloomBitLength">BloomBitLength</span> = 8 * <a href="index.html#BloomByteLength">BloomByteLength</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// ReceiptStatusFailed is the status code of a transaction if execution failed.</span>
+    <span id="ReceiptStatusFailed">ReceiptStatusFailed</span> = <a href="../../../../../builtin/index.html#uint64">uint64</a>(0)
+
+    <span class="comment">// ReceiptStatusSuccessful is the status code of a transaction if execution succeeded.</span>
+    <span id="ReceiptStatusSuccessful">ReceiptStatusSuccessful</span> = <a href="../../../../../builtin/index.html#uint64">uint64</a>(1)
+)</pre>
+			
+				<p>Transaction types.
+
+				<pre>const (
+    <span id="LegacyTxType">LegacyTxType</span> = <a href="../../../../../builtin/index.html#iota">iota</a>
+    <span id="AccessListTxType">AccessListTxType</span>
+    <span id="DynamicFeeTxType">DynamicFeeTxType</span>
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="EmptyRootHash">EmptyRootHash</span>  = <a href="../../common/index.html">common</a>.<a href="../../common/index.html#HexToHash">HexToHash</a>(&#34;56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&#34;)
+    <span id="EmptyUncleHash">EmptyUncleHash</span> = rlpHash([]*<a href="index.html#Header">Header</a>(<a href="../../../../../builtin/index.html#nil">nil</a>))
+)</pre>
+			
+				
+				<pre>var (
+    <span id="ErrInvalidSig">ErrInvalidSig</span>           = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;invalid transaction v, r, s values&#34;)
+    <span id="ErrUnexpectedProtection">ErrUnexpectedProtection</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;transaction type does not supported EIP-155 protected signatures&#34;)
+    <span id="ErrInvalidTxType">ErrInvalidTxType</span>        = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;transaction type not valid in this context&#34;)
+    <span id="ErrTxTypeNotSupported">ErrTxTypeNotSupported</span>   = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;transaction type not supported&#34;)
+    <span id="ErrGasFeeCapTooLow">ErrGasFeeCapTooLow</span>      = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;fee cap less than base fee&#34;)
+)</pre>
+			
+				
+				<pre>var <span id="ErrInvalidChainId">ErrInvalidChainId</span> = <a href="../../../../../errors/index.html">errors</a>.<a href="../../../../../errors/index.html#New">New</a>(&#34;invalid chain id for signer&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Bloom9">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=3713:3744#L122">Bloom9</a>
+				<a class="permalink" href="index.html#Bloom9">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Bloom9(data []<a href="../../../../../builtin/index.html#byte">byte</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>Bloom9 returns the bloom filter for the given data
+
+			
+			
+
+		
+			
+			
+			<h2 id="BloomLookup">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=4614:4665#L148">BloomLookup</a>
+				<a class="permalink" href="index.html#BloomLookup">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BloomLookup(bin <a href="index.html#Bloom">Bloom</a>, topic bytesBacked) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+			<p>BloomLookup is a convenience-method to check presence in the bloom filter
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalcUncleHash">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=11446:11494#L334">CalcUncleHash</a>
+				<a class="permalink" href="index.html#CalcUncleHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalcUncleHash(uncles []*<a href="index.html#Header">Header</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertLegacyStoredReceipts">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy.go?s=1651:1711#L37">ConvertLegacyStoredReceipts</a>
+				<a class="permalink" href="index.html#ConvertLegacyStoredReceipts">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConvertLegacyStoredReceipts(raw []<a href="../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ConvertLegacyStoredReceipts takes the RLP encoding of an array of legacy
+stored receipts and returns a fresh RLP-encoded stored receipt.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeriveSha">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/hashing.go?s=2725:2790#L77">DeriveSha</a>
+				<a class="permalink" href="index.html#DeriveSha">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeriveSha(list <a href="index.html#DerivableList">DerivableList</a>, hasher <a href="index.html#TrieHasher">TrieHasher</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+			<p>DeriveSha creates the tree hashes of transactions and receipts in a block header.
+
+			
+			
+
+		
+			
+			
+			<h2 id="HashDifference">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13092:13145#L426">HashDifference</a>
+				<a class="permalink" href="index.html#HashDifference">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HashDifference(a, b []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+			<p>HashDifference returns a new set which is the difference between a and b.
+
+			
+			
+
+		
+			
+			
+			<h2 id="HeaderParentHashFromRLP">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=12721:12776#L382">HeaderParentHashFromRLP</a>
+				<a class="permalink" href="index.html#HeaderParentHashFromRLP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func HeaderParentHashFromRLP(header []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+			<p>HeaderParentHashFromRLP returns the parentHash of an RLP-encoded
+header. If &apos;header&apos; is invalid, the zero hash is returned.
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsLegacyStoredReceipts">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy.go?s=1033:1086#L18">IsLegacyStoredReceipts</a>
+				<a class="permalink" href="index.html#IsLegacyStoredReceipts">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func IsLegacyStoredReceipts(raw []<a href="../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>IsLegacyStoredReceipts tries to parse the RLP-encoded blob
+first as an array of v3 stored receipt, then v4 stored receipt and
+returns true if successful.
+
+			
+			
+
+		
+			
+			
+			<h2 id="LogsBloom">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=3439:3473#L109">LogsBloom</a>
+				<a class="permalink" href="index.html#LogsBloom">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func LogsBloom(logs []*<a href="index.html#Log">Log</a>) []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+			<p>LogsBloom returns the bloom bytes for the given logs
+
+			
+			
+
+		
+			
+			
+			<h2 id="Sender">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=4400:4467#L121">Sender</a>
+				<a class="permalink" href="index.html#Sender">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Sender(signer <a href="index.html#Signer">Signer</a>, tx *<a href="index.html#Transaction">Transaction</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Sender returns the address derived from the signature (V, R, S) using secp256k1
+elliptic curve and an error if it failed deriving or upon an incorrect
+signature.
+<p>Sender may cache the address, allowing it to be used regardless of
+signing method. The cache is invalidated if the cached signer does
+not match the signer used in the current call.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AccessList">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/access_list_tx.go?s=1006:1035#L18">AccessList</a>
+				<a class="permalink" href="index.html#AccessList">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccessList is an EIP-2930 access list.
+
+			<pre>type AccessList []<a href="index.html#AccessTuple">AccessTuple</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AccessList.StorageKeys">func (AccessList) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/access_list_tx.go?s=1340:1378#L27">StorageKeys</a>
+					<a class="permalink" href="index.html#AccessList.StorageKeys">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (al <a href="index.html#AccessList">AccessList</a>) StorageKeys() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>StorageKeys returns the total number of storage keys in the access list.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="AccessListTx">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/access_list_tx.go?s=1535:2029#L36">AccessListTx</a>
+				<a class="permalink" href="index.html#AccessListTx">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccessListTx is the data of EIP-2930 access list transactions.
+
+			<pre>type AccessListTx struct {
+<span id="AccessListTx.ChainID"></span>    ChainID    *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// destination chain ID</span>
+<span id="AccessListTx.Nonce"></span>    Nonce      <a href="../../../../../builtin/index.html#uint64">uint64</a>          <span class="comment">// nonce of sender account</span>
+<span id="AccessListTx.GasPrice"></span>    GasPrice   *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// wei per gas</span>
+<span id="AccessListTx.Gas"></span>    Gas        <a href="../../../../../builtin/index.html#uint64">uint64</a>          <span class="comment">// gas limit</span>
+<span id="AccessListTx.To"></span>    To         *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `rlp:&#34;nil&#34;` <span class="comment">// nil means contract creation</span>
+<span id="AccessListTx.Value"></span>    Value      *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// wei amount</span>
+<span id="AccessListTx.Data"></span>    Data       []<a href="../../../../../builtin/index.html#byte">byte</a>          <span class="comment">// contract invocation input data</span>
+<span id="AccessListTx.AccessList"></span>    AccessList <a href="index.html#AccessList">AccessList</a>      <span class="comment">// EIP-2930 access list</span>
+<span id="AccessListTx.V"></span>    V, R, S    *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// signature values</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="AccessTuple">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/access_list_tx.go?s=1091:1262#L21">AccessTuple</a>
+				<a class="permalink" href="index.html#AccessTuple">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AccessTuple is the element type of an access list.
+
+			<pre>type AccessTuple struct {
+<span id="AccessTuple.Address"></span>    Address     <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `json:&#34;address&#34;        gencodec:&#34;required&#34;`
+<span id="AccessTuple.StorageKeys"></span>    StorageKeys []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>  `json:&#34;storageKeys&#34;    gencodec:&#34;required&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AccessTuple.MarshalJSON">func (AccessTuple) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_access_tuple.go?s=190:240#L3">MarshalJSON</a>
+					<a class="permalink" href="index.html#AccessTuple.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="index.html#AccessTuple">AccessTuple</a>) MarshalJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="AccessTuple.UnmarshalJSON">func (*AccessTuple) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_access_tuple.go?s=567:622#L15">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#AccessTuple.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="index.html#AccessTuple">AccessTuple</a>) UnmarshalJSON(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Block">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=6040:6313#L156">Block</a>
+				<a class="permalink" href="index.html#Block">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Block represents an entire block in the Ethereum blockchain.
+
+			<pre>type Block struct {
+
+    <span class="comment">// These fields are used by package eth to track</span>
+    <span class="comment">// inter-peer block relay.</span>
+<span id="Block.ReceivedAt"></span>    ReceivedAt   <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Time">Time</a>
+<span id="Block.ReceivedFrom"></span>    ReceivedFrom interface{}
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBlock">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=6746:6860#L185">NewBlock</a>
+					<a class="permalink" href="index.html#NewBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBlock(header *<a href="index.html#Header">Header</a>, txs []*<a href="index.html#Transaction">Transaction</a>, uncles []*<a href="index.html#Header">Header</a>, receipts []*<a href="index.html#Receipt">Receipt</a>, hasher <a href="index.html#TrieHasher">TrieHasher</a>) *<a href="index.html#Block">Block</a></pre>
+				<p>NewBlock creates a new block. The input data is copied,
+changes to header and to the field values will not affect the
+block.
+<p>The values of TxHash, UncleHash, ReceiptHash and Bloom in header
+are ignored and set to values derived from the given txs, uncles
+and receipts.
+
+				
+				
+			
+				
+				<h3 id="NewBlockWithHeader">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=7745:7791#L220">NewBlockWithHeader</a>
+					<a class="permalink" href="index.html#NewBlockWithHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBlockWithHeader(header *<a href="index.html#Header">Header</a>) *<a href="index.html#Block">Block</a></pre>
+				<p>NewBlockWithHeader creates a block with the given header data. The
+header data is copied, changes to header and to the field values
+will not affect the block.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Block.BaseFee">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10415:10449#L297">BaseFee</a>
+					<a class="permalink" href="index.html#Block.BaseFee">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) BaseFee() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Bloom">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9834:9863#L288">Bloom</a>
+					<a class="permalink" href="index.html#Block.Bloom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Bloom() <a href="index.html#Bloom">Bloom</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Body">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10663:10691#L307">Body</a>
+					<a class="permalink" href="index.html#Block.Body">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Body() *<a href="index.html#Body">Body</a></pre>
+				<p>Body returns the non-header content of the block.
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Coinbase">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9902:9943#L289">Coinbase</a>
+					<a class="permalink" href="index.html#Block.Coinbase">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Coinbase() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.DecodeRLP">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=8389:8435#L245">DecodeRLP</a>
+					<a class="permalink" href="index.html#Block.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP decodes the Ethereum
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Difficulty">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9437:9474#L282">Difficulty</a>
+					<a class="permalink" href="index.html#Block.Difficulty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Difficulty() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.EncodeRLP">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=8732:8776#L257">EncodeRLP</a>
+					<a class="permalink" href="index.html#Block.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP serializes b into the Ethereum RLP block format.
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Extra">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10328:10358#L295">Extra</a>
+					<a class="permalink" href="index.html#Block.Extra">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Extra() []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.GasLimit">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9304:9337#L280">GasLimit</a>
+					<a class="permalink" href="index.html#Block.GasLimit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) GasLimit() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.GasUsed">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9371:9403#L281">GasUsed</a>
+					<a class="permalink" href="index.html#Block.GasUsed">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) GasUsed() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Hash">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=12408:12442#L369">Hash</a>
+					<a class="permalink" href="index.html#Block.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Hash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>Hash returns the keccak256 hash of b&apos;s header.
+The hash is computed on the first call and cached thereafter.
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Header">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10544:10576#L304">Header</a>
+					<a class="permalink" href="index.html#Block.Header">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Header() *<a href="index.html#Header">Header</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.MixDigest">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9666:9705#L286">MixDigest</a>
+					<a class="permalink" href="index.html#Block.MixDigest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) MixDigest() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Nonce">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9738:9768#L287">Nonce</a>
+					<a class="permalink" href="index.html#Block.Nonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Nonce() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Number">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9221:9254#L279">Number</a>
+					<a class="permalink" href="index.html#Block.Number">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Number() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.NumberU64">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9588:9622#L285">NumberU64</a>
+					<a class="permalink" href="index.html#Block.NumberU64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) NumberU64() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.ParentHash">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10040:10080#L291">ParentHash</a>
+					<a class="permalink" href="index.html#Block.ParentHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) ParentHash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.ReceiptHash">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10182:10223#L293">ReceiptHash</a>
+					<a class="permalink" href="index.html#Block.ReceiptHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) ReceiptHash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Root">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9973:10007#L290">Root</a>
+					<a class="permalink" href="index.html#Block.Root">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Root() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.SanityCheck">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=11231:11266#L323">SanityCheck</a>
+					<a class="permalink" href="index.html#Block.SanityCheck">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) SanityCheck() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SanityCheck can be used to prevent that unbounded fields are
+stuffed with junk data to add processing overhead
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Size">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10880:10921#L311">Size</a>
+					<a class="permalink" href="index.html#Block.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Size() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#StorageSize">StorageSize</a></pre>
+				<p>Size returns the true RLP encoded storage size of the block, either by encoding
+and returning it, or returning a previously cached value.
+
+				
+				
+				
+			
+				
+				<h3 id="Block.Time">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9524:9553#L283">Time</a>
+					<a class="permalink" href="index.html#Block.Time">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Time() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Transaction">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=9036:9094#L270">Transaction</a>
+					<a class="permalink" href="index.html#Block.Transaction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Transaction(hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="index.html#Transaction">Transaction</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Transactions">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=8965:9008#L268">Transactions</a>
+					<a class="permalink" href="index.html#Block.Transactions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Transactions() <a href="index.html#Transactions">Transactions</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.TxHash">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10113:10149#L292">TxHash</a>
+					<a class="permalink" href="index.html#Block.TxHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) TxHash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.UncleHash">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=10256:10295#L294">UncleHash</a>
+					<a class="permalink" href="index.html#Block.UncleHash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) UncleHash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.Uncles">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=8901:8935#L267">Uncles</a>
+					<a class="permalink" href="index.html#Block.Uncles">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) Uncles() []*<a href="index.html#Header">Header</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Block.WithBody">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=11923:12001#L354">WithBody</a>
+					<a class="permalink" href="index.html#Block.WithBody">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) WithBody(transactions []*<a href="index.html#Transaction">Transaction</a>, uncles []*<a href="index.html#Header">Header</a>) *<a href="index.html#Block">Block</a></pre>
+				<p>WithBody returns a new block with the given transaction and uncle contents.
+
+				
+				
+				
+			
+				
+				<h3 id="Block.WithSeal">func (*Block) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=11675:11722#L343">WithSeal</a>
+					<a class="permalink" href="index.html#Block.WithSeal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Block">Block</a>) WithSeal(header *<a href="index.html#Header">Header</a>) *<a href="index.html#Block">Block</a></pre>
+				<p>WithSeal returns a new block with the data from b but the header replaced with
+the sealed one.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BlockNonce">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=1406:1429#L32">BlockNonce</a>
+				<a class="permalink" href="index.html#BlockNonce">&#xb6;</a>
+				
+				
+			</h2>
+			<p>A BlockNonce is a 64-bit hash which proves (combined with the
+mix-hash) that a sufficient amount of computation has been carried
+out on a block.
+
+			<pre>type BlockNonce [8]<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="EncodeNonce">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=1491:1528#L35">EncodeNonce</a>
+					<a class="permalink" href="index.html#EncodeNonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EncodeNonce(i <a href="../../../../../builtin/index.html#uint64">uint64</a>) <a href="index.html#BlockNonce">BlockNonce</a></pre>
+				<p>EncodeNonce converts the given integer to a block nonce.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BlockNonce.MarshalText">func (BlockNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=1789:1838#L47">MarshalText</a>
+					<a class="permalink" href="index.html#BlockNonce.MarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="index.html#BlockNonce">BlockNonce</a>) MarshalText() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalText encodes n as a hex string with 0x prefix.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockNonce.Uint64">func (BlockNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=1653:1688#L42">Uint64</a>
+					<a class="permalink" href="index.html#BlockNonce.Uint64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="index.html#BlockNonce">BlockNonce</a>) Uint64() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Uint64 returns the integer value of a block nonce.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockNonce.UnmarshalText">func (*BlockNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=1940:1994#L52">UnmarshalText</a>
+					<a class="permalink" href="index.html#BlockNonce.UnmarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (n *<a href="index.html#BlockNonce">BlockNonce</a>) UnmarshalText(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalText implements encoding.TextUnmarshaler.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Blocks">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=12569:12589#L378">Blocks</a>
+				<a class="permalink" href="index.html#Blocks">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Blocks []*<a href="index.html#Block">Block</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Bloom">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=1273:1305#L31">Bloom</a>
+				<a class="permalink" href="index.html#Bloom">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Bloom represents a 2048 bit bloom filter.
+
+			<pre>type Bloom [<a href="index.html#BloomByteLength">BloomByteLength</a>]<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BytesToBloom">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=1407:1440#L35">BytesToBloom</a>
+					<a class="permalink" href="index.html#BytesToBloom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BytesToBloom(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="index.html#Bloom">Bloom</a></pre>
+				<p>BytesToBloom converts a byte slice to a bloom filter.
+It panics if b is not of suitable size.
+
+				
+				
+			
+				
+				<h3 id="CreateBloom">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=3106:3147#L94">CreateBloom</a>
+					<a class="permalink" href="index.html#CreateBloom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CreateBloom(receipts <a href="index.html#Receipts">Receipts</a>) <a href="index.html#Bloom">Bloom</a></pre>
+				<p>CreateBloom creates a bloom filter out of the give Receipts (+Logs)
+
+				
+				
+			
+
+			
+				
+				<h3 id="Bloom.Add">func (*Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=1832:1861#L51">Add</a>
+					<a class="permalink" href="index.html#Bloom.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Bloom">Bloom</a>) Add(d []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>Add adds d to the filter. Future calls of Test(d) will return true.
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.Big">func (Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=2316:2345#L66">Big</a>
+					<a class="permalink" href="index.html#Bloom.Big">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#Bloom">Bloom</a>) Big() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>Big converts b to a big integer.
+Note: Converting a bloom filter to a big.Int and then calling GetBytes
+does not return the same bytes, since big.Int will trim leading zeroes
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.Bytes">func (Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=2440:2469#L71">Bytes</a>
+					<a class="permalink" href="index.html#Bloom.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#Bloom">Bloom</a>) Bytes() []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Bytes returns the backing byte slice of the bloom
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.MarshalText">func (Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=2780:2824#L84">MarshalText</a>
+					<a class="permalink" href="index.html#Bloom.MarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#Bloom">Bloom</a>) MarshalText() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalText encodes b as a hex string with 0x prefix.
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.SetBytes">func (*Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=1593:1627#L43">SetBytes</a>
+					<a class="permalink" href="index.html#Bloom.SetBytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Bloom">Bloom</a>) SetBytes(d []<a href="../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>SetBytes sets the content of b to the given bytes.
+It panics if d is not of suitable size.
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.Test">func (Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=2553:2591#L76">Test</a>
+					<a class="permalink" href="index.html#Bloom.Test">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b <a href="index.html#Bloom">Bloom</a>) Test(topic []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Test checks if the given topic is present in the bloom filter
+
+				
+				
+				
+			
+				
+				<h3 id="Bloom.UnmarshalText">func (*Bloom) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/bloom9.go?s=2923:2972#L89">UnmarshalText</a>
+					<a class="permalink" href="index.html#Bloom.UnmarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="index.html#Bloom">Bloom</a>) UnmarshalText(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalText b as a hex string with 0x prefix.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Body">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=5901:5974#L150">Body</a>
+				<a class="permalink" href="index.html#Body">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Body is a simple (mutable, non-safe) data container for storing and moving
+a block&apos;s data contents (transactions and uncles) together.
+
+			<pre>type Body struct {
+<span id="Body.Transactions"></span>    Transactions []*<a href="index.html#Transaction">Transaction</a>
+<span id="Body.Uncles"></span>    Uncles       []*<a href="index.html#Header">Header</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DerivableList">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/hashing.go?s=2234:2310#L62">DerivableList</a>
+				<a class="permalink" href="index.html#DerivableList">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DerivableList is the input to DeriveSha.
+It is implemented by the &apos;Transactions&apos; and &apos;Receipts&apos; types.
+This is internal, do not use these methods.
+
+			<pre>type DerivableList interface {
+    Len() <a href="../../../../../builtin/index.html#int">int</a>
+    EncodeIndex(<a href="../../../../../builtin/index.html#int">int</a>, *<a href="../../../../../bytes/index.html">bytes</a>.<a href="../../../../../bytes/index.html#Buffer">Buffer</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DynamicFeeTx">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/dynamic_fee_tx.go?s=875:1343#L15">DynamicFeeTx</a>
+				<a class="permalink" href="index.html#DynamicFeeTx">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DynamicFeeTx struct {
+<span id="DynamicFeeTx.ChainID"></span>    ChainID    *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>
+<span id="DynamicFeeTx.Nonce"></span>    Nonce      <a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="DynamicFeeTx.GasTipCap"></span>    GasTipCap  *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> <span class="comment">// a.k.a. maxPriorityFeePerGas</span>
+<span id="DynamicFeeTx.GasFeeCap"></span>    GasFeeCap  *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> <span class="comment">// a.k.a. maxFeePerGas</span>
+<span id="DynamicFeeTx.Gas"></span>    Gas        <a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="DynamicFeeTx.To"></span>    To         *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `rlp:&#34;nil&#34;` <span class="comment">// nil means contract creation</span>
+<span id="DynamicFeeTx.Value"></span>    Value      *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>
+<span id="DynamicFeeTx.Data"></span>    Data       []<a href="../../../../../builtin/index.html#byte">byte</a>
+<span id="DynamicFeeTx.AccessList"></span>    AccessList <a href="index.html#AccessList">AccessList</a>
+
+    <span class="comment">// Signature values</span>
+<span id="DynamicFeeTx.V"></span>    V *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> `json:&#34;v&#34; gencodec:&#34;required&#34;`
+<span id="DynamicFeeTx.R"></span>    R *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> `json:&#34;r&#34; gencodec:&#34;required&#34;`
+<span id="DynamicFeeTx.S"></span>    S *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> `json:&#34;s&#34; gencodec:&#34;required&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EIP155Signer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=10622:10680#L324">EIP155Signer</a>
+				<a class="permalink" href="index.html#EIP155Signer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EIP155Signer implements Signer using the EIP-155 rules. This accepts transactions which
+are replay-protected as well as unprotected homestead transactions.
+
+			<pre>type EIP155Signer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEIP155Signer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=10682:10733#L328">NewEIP155Signer</a>
+					<a class="permalink" href="index.html#NewEIP155Signer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEIP155Signer(chainId *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="index.html#EIP155Signer">EIP155Signer</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="EIP155Signer.ChainID">func (EIP155Signer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=10892:10932#L338">ChainID</a>
+					<a class="permalink" href="index.html#EIP155Signer.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#EIP155Signer">EIP155Signer</a>) ChainID() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EIP155Signer.Equal">func (EIP155Signer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=10956:10999#L342">Equal</a>
+					<a class="permalink" href="index.html#EIP155Signer.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#EIP155Signer">EIP155Signer</a>) Equal(s2 <a href="index.html#Signer">Signer</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EIP155Signer.Hash">func (EIP155Signer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12116:12171#L381">Hash</a>
+					<a class="permalink" href="index.html#EIP155Signer.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#EIP155Signer">EIP155Signer</a>) Hash(tx *<a href="index.html#Transaction">Transaction</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>Hash returns the hash to be signed by the sender.
+It does not uniquely identify the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="EIP155Signer.Sender">func (EIP155Signer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=11113:11182#L349">Sender</a>
+					<a class="permalink" href="index.html#EIP155Signer.Sender">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#EIP155Signer">EIP155Signer</a>) Sender(tx *<a href="index.html#Transaction">Transaction</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EIP155Signer.SignatureValues">func (EIP155Signer) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=11683:11779#L367">SignatureValues</a>
+					<a class="permalink" href="index.html#EIP155Signer.SignatureValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#EIP155Signer">EIP155Signer</a>) SignatureValues(tx *<a href="index.html#Transaction">Transaction</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (R, S, V *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignatureValues returns signature values. This signature
+needs to be in the [R || S || V] format where V is 0 or 1.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FrontierSigner">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=13139:13167#L420">FrontierSigner</a>
+				<a class="permalink" href="index.html#FrontierSigner">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FrontierSigner struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FrontierSigner.ChainID">func (FrontierSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=13169:13211#L422">ChainID</a>
+					<a class="permalink" href="index.html#FrontierSigner.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#FrontierSigner">FrontierSigner</a>) ChainID() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FrontierSigner.Equal">func (FrontierSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=13229:13274#L426">Equal</a>
+					<a class="permalink" href="index.html#FrontierSigner.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#FrontierSigner">FrontierSigner</a>) Equal(s2 <a href="index.html#Signer">Signer</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FrontierSigner.Hash">func (FrontierSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=14033:14091#L451">Hash</a>
+					<a class="permalink" href="index.html#FrontierSigner.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs <a href="index.html#FrontierSigner">FrontierSigner</a>) Hash(tx *<a href="index.html#Transaction">Transaction</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>Hash returns the hash to be signed by the sender.
+It does not uniquely identify the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="FrontierSigner.Sender">func (FrontierSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=13321:13393#L431">Sender</a>
+					<a class="permalink" href="index.html#FrontierSigner.Sender">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs <a href="index.html#FrontierSigner">FrontierSigner</a>) Sender(tx *<a href="index.html#Transaction">Transaction</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FrontierSigner.SignatureValues">func (FrontierSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=13691:13790#L441">SignatureValues</a>
+					<a class="permalink" href="index.html#FrontierSigner.SignatureValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (fs <a href="index.html#FrontierSigner">FrontierSigner</a>) SignatureValues(tx *<a href="index.html#Transaction">Transaction</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (r, s, v *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignatureValues returns signature values. This signature
+needs to be in the [R || S || V] format where V is 0 or 1.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Header">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=2316:3677#L60">Header</a>
+				<a class="permalink" href="index.html#Header">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Header represents a block header in the Ethereum blockchain.
+
+			<pre>type Header struct {
+<span id="Header.ParentHash"></span>    ParentHash  <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;parentHash&#34;       gencodec:&#34;required&#34;`
+<span id="Header.UncleHash"></span>    UncleHash   <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;sha3Uncles&#34;       gencodec:&#34;required&#34;`
+<span id="Header.Coinbase"></span>    Coinbase    <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `json:&#34;miner&#34;`
+<span id="Header.Root"></span>    Root        <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;stateRoot&#34;        gencodec:&#34;required&#34;`
+<span id="Header.TxHash"></span>    TxHash      <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;transactionsRoot&#34; gencodec:&#34;required&#34;`
+<span id="Header.ReceiptHash"></span>    ReceiptHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;receiptsRoot&#34;     gencodec:&#34;required&#34;`
+<span id="Header.Bloom"></span>    Bloom       <a href="index.html#Bloom">Bloom</a>          `json:&#34;logsBloom&#34;        gencodec:&#34;required&#34;`
+<span id="Header.Difficulty"></span>    Difficulty  *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>       `json:&#34;difficulty&#34;       gencodec:&#34;required&#34;`
+<span id="Header.Number"></span>    Number      *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>       `json:&#34;number&#34;           gencodec:&#34;required&#34;`
+<span id="Header.GasLimit"></span>    GasLimit    <a href="../../../../../builtin/index.html#uint64">uint64</a>         `json:&#34;gasLimit&#34;         gencodec:&#34;required&#34;`
+<span id="Header.GasUsed"></span>    GasUsed     <a href="../../../../../builtin/index.html#uint64">uint64</a>         `json:&#34;gasUsed&#34;          gencodec:&#34;required&#34;`
+<span id="Header.Time"></span>    Time        <a href="../../../../../builtin/index.html#uint64">uint64</a>         `json:&#34;timestamp&#34;        gencodec:&#34;required&#34;`
+<span id="Header.Extra"></span>    Extra       []<a href="../../../../../builtin/index.html#byte">byte</a>         `json:&#34;extraData&#34;        gencodec:&#34;required&#34;`
+<span id="Header.MixDigest"></span>    MixDigest   <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;mixHash&#34;`
+<span id="Header.Nonce"></span>    Nonce       <a href="index.html#BlockNonce">BlockNonce</a>     `json:&#34;nonce&#34;`
+
+<span id="Header.BaseFee"></span>    <span class="comment">// BaseFee was added by EIP-1559 and is ignored in legacy headers.</span>
+    BaseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a> `json:&#34;baseFeePerGas&#34; rlp:&#34;optional&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CopyHeader">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=7953:7987#L226">CopyHeader</a>
+					<a class="permalink" href="index.html#CopyHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CopyHeader(h *<a href="index.html#Header">Header</a>) *<a href="index.html#Header">Header</a></pre>
+				<p>CopyHeader creates a deep copy of a block header to prevent side effects from
+modifying a header variable.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Header.EmptyBody">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=5494:5527#L139">EmptyBody</a>
+					<a class="permalink" href="index.html#Header.EmptyBody">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) EmptyBody() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>EmptyBody returns true if there is no additional &apos;body&apos; to complete the header
+that is: no transactions and no uncles.
+
+				
+				
+				
+			
+				
+				<h3 id="Header.EmptyReceipts">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=5678:5715#L144">EmptyReceipts</a>
+					<a class="permalink" href="index.html#Header.EmptyReceipts">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) EmptyReceipts() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>EmptyReceipts returns true if there are no receipts for this header/block.
+
+				
+				
+				
+			
+				
+				<h3 id="Header.EncodeRLP">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_header_rlp.go?s=158:206#L1">EncodeRLP</a>
+					<a class="permalink" href="index.html#Header.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (obj *<a href="index.html#Header">Header</a>) EncodeRLP(_w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Header.Hash">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=4113:4148#L101">Hash</a>
+					<a class="permalink" href="index.html#Header.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) Hash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>Hash returns the block hash of the header, which is simply the keccak256 hash of its
+RLP encoding.
+
+				
+				
+				
+			
+				
+				<h3 id="Header.MarshalJSON">func (Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_header_json.go?s=286:331#L7">MarshalJSON</a>
+					<a class="permalink" href="index.html#Header.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h <a href="index.html#Header">Header</a>) MarshalJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Header.SanityCheck">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=4782:4818#L117">SanityCheck</a>
+					<a class="permalink" href="index.html#Header.SanityCheck">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) SanityCheck() <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>SanityCheck checks a few basic things -- these checks are way beyond what
+any &apos;sane&apos; production values should hold, and can mainly be used to prevent
+that the unbounded fields are stuffed with junk data to add processing
+overhead
+
+				
+				
+				
+			
+				
+				<h3 id="Header.Size">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/block.go?s=4394:4436#L109">Size</a>
+					<a class="permalink" href="index.html#Header.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) Size() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#StorageSize">StorageSize</a></pre>
+				<p>Size returns the approximate memory used by all internal contents. It is used
+to approximate and limit the memory consumption of various caches.
+
+				
+				
+				
+			
+				
+				<h3 id="Header.UnmarshalJSON">func (*Header) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_header_json.go?s=2109:2159#L49">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#Header.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="index.html#Header">Header</a>) UnmarshalJSON(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HomesteadSigner">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12410:12455#L395">HomesteadSigner</a>
+				<a class="permalink" href="index.html#HomesteadSigner">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HomesteadTransaction implements TransactionInterface using the
+homestead rules.
+
+			<pre>type HomesteadSigner struct{ <a href="index.html#FrontierSigner">FrontierSigner</a> }
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="HomesteadSigner.ChainID">func (HomesteadSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12457:12500#L397">ChainID</a>
+					<a class="permalink" href="index.html#HomesteadSigner.ChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#HomesteadSigner">HomesteadSigner</a>) ChainID() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HomesteadSigner.Equal">func (HomesteadSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12518:12564#L401">Equal</a>
+					<a class="permalink" href="index.html#HomesteadSigner.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#HomesteadSigner">HomesteadSigner</a>) Equal(s2 <a href="index.html#Signer">Signer</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HomesteadSigner.Sender">func (HomesteadSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12891:12964#L412">Sender</a>
+					<a class="permalink" href="index.html#HomesteadSigner.Sender">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (hs <a href="index.html#HomesteadSigner">HomesteadSigner</a>) Sender(tx *<a href="index.html#Transaction">Transaction</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HomesteadSigner.SignatureValues">func (HomesteadSigner) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=12734:12834#L408">SignatureValues</a>
+					<a class="permalink" href="index.html#HomesteadSigner.SignatureValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (hs <a href="index.html#HomesteadSigner">HomesteadSigner</a>) SignatureValues(tx *<a href="index.html#Transaction">Transaction</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (r, s, v *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignatureValues returns signature values. This signature
+needs to be in the [R || S || V] format where V is 0 or 1.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LegacyTx">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy_tx.go?s=945:1317#L16">LegacyTx</a>
+				<a class="permalink" href="index.html#LegacyTx">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LegacyTx is the transaction data of regular Ethereum transactions.
+
+			<pre>type LegacyTx struct {
+<span id="LegacyTx.Nonce"></span>    Nonce    <a href="../../../../../builtin/index.html#uint64">uint64</a>          <span class="comment">// nonce of sender account</span>
+<span id="LegacyTx.GasPrice"></span>    GasPrice *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// wei per gas</span>
+<span id="LegacyTx.Gas"></span>    Gas      <a href="../../../../../builtin/index.html#uint64">uint64</a>          <span class="comment">// gas limit</span>
+<span id="LegacyTx.To"></span>    To       *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `rlp:&#34;nil&#34;` <span class="comment">// nil means contract creation</span>
+<span id="LegacyTx.Value"></span>    Value    *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// wei amount</span>
+<span id="LegacyTx.Data"></span>    Data     []<a href="../../../../../builtin/index.html#byte">byte</a>          <span class="comment">// contract invocation input data</span>
+<span id="LegacyTx.V"></span>    V, R, S  *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// signature values</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Log">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=1185:2267#L21">Log</a>
+				<a class="permalink" href="index.html#Log">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Log represents a contract log event. These events are generated by the LOG opcode and
+stored/indexed by the node.
+
+			<pre>type Log struct {
+    <span class="comment">// Consensus fields:</span>
+    <span class="comment">// address of the contract that generated the event</span>
+<span id="Log.Address"></span>    Address <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `json:&#34;address&#34; gencodec:&#34;required&#34;`
+    <span class="comment">// list of topics provided by the contract.</span>
+<span id="Log.Topics"></span>    Topics []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> `json:&#34;topics&#34; gencodec:&#34;required&#34;`
+    <span class="comment">// supplied by the contract, usually ABI-encoded</span>
+<span id="Log.Data"></span>    Data []<a href="../../../../../builtin/index.html#byte">byte</a> `json:&#34;data&#34; gencodec:&#34;required&#34;`
+
+    <span class="comment">// Derived fields. These fields are filled in by the node</span>
+    <span class="comment">// but not secured by consensus.</span>
+    <span class="comment">// block in which the transaction was included</span>
+<span id="Log.BlockNumber"></span>    BlockNumber <a href="../../../../../builtin/index.html#uint64">uint64</a> `json:&#34;blockNumber&#34;`
+    <span class="comment">// hash of the transaction</span>
+<span id="Log.TxHash"></span>    TxHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> `json:&#34;transactionHash&#34; gencodec:&#34;required&#34;`
+    <span class="comment">// index of the transaction in the block</span>
+<span id="Log.TxIndex"></span>    TxIndex <a href="../../../../../builtin/index.html#uint">uint</a> `json:&#34;transactionIndex&#34;`
+    <span class="comment">// hash of the block in which the transaction was included</span>
+<span id="Log.BlockHash"></span>    BlockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> `json:&#34;blockHash&#34;`
+    <span class="comment">// index of the log in the block</span>
+<span id="Log.Index"></span>    Index <a href="../../../../../builtin/index.html#uint">uint</a> `json:&#34;logIndex&#34;`
+
+    <span class="comment">// The Removed field is true if this log was reverted due to a chain reorganisation.</span>
+    <span class="comment">// You must pay attention to this field if you receive logs through a filter query.</span>
+<span id="Log.Removed"></span>    Removed <a href="../../../../../builtin/index.html#bool">bool</a> `json:&#34;removed&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Log.DecodeRLP">func (*Log) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=3097:3141#L82">DecodeRLP</a>
+					<a class="permalink" href="index.html#Log.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#Log">Log</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder.
+
+				
+				
+				
+			
+				
+				<h3 id="Log.EncodeRLP">func (*Log) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=2919:2961#L76">EncodeRLP</a>
+					<a class="permalink" href="index.html#Log.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#Log">Log</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder.
+
+				
+				
+				
+			
+				
+				<h3 id="Log.MarshalJSON">func (Log) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_log_json.go?s=271:313#L6">MarshalJSON</a>
+					<a class="permalink" href="index.html#Log.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l <a href="index.html#Log">Log</a>) MarshalJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Log.UnmarshalJSON">func (*Log) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_log_json.go?s=1201:1248#L32">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#Log.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#Log">Log</a>) UnmarshalJSON(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LogForStorage">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=3394:3416#L93">LogForStorage</a>
+				<a class="permalink" href="index.html#LogForStorage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LogForStorage is a wrapper around a Log that handles
+backward compatibility with prior storage formats.
+
+			<pre>type LogForStorage <a href="index.html#Log">Log</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LogForStorage.DecodeRLP">func (*LogForStorage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=3733:3787#L104">DecodeRLP</a>
+					<a class="permalink" href="index.html#LogForStorage.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#LogForStorage">LogForStorage</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder.
+<p>Note some redundant fields(e.g. block number, tx hash etc) will be assembled later.
+
+				
+				
+				
+			
+				
+				<h3 id="LogForStorage.EncodeRLP">func (*LogForStorage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/log.go?s=3455:3507#L96">EncodeRLP</a>
+					<a class="permalink" href="index.html#LogForStorage.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#LogForStorage">LogForStorage</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Message">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=17907:18166#L571">Message</a>
+				<a class="permalink" href="index.html#Message">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Message is a fully derived transaction and implements core.Message
+<p>NOTE: In a future PR this will be removed.
+
+			<pre>type Message struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMessage">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=18168:18370#L585">NewMessage</a>
+					<a class="permalink" href="index.html#NewMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMessage(from <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, to *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, nonce <a href="../../../../../builtin/index.html#uint64">uint64</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, gasLimit <a href="../../../../../builtin/index.html#uint64">uint64</a>, gasPrice, gasFeeCap, gasTipCap *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, data []<a href="../../../../../builtin/index.html#byte">byte</a>, accessList <a href="index.html#AccessList">AccessList</a>, isFake <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#Message">Message</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Message.AccessList">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19904:19944#L633">AccessList</a>
+					<a class="permalink" href="index.html#Message.AccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) AccessList() <a href="index.html#AccessList">AccessList</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.Data">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19845:19875#L632">Data</a>
+					<a class="permalink" href="index.html#Message.Data">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) Data() []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.From">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19354:19392#L624">From</a>
+					<a class="permalink" href="index.html#Message.From">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) From() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.Gas">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19722:19751#L630">Gas</a>
+					<a class="permalink" href="index.html#Message.Gas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) Gas() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.GasFeeCap">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19533:19570#L627">GasFeeCap</a>
+					<a class="permalink" href="index.html#Message.GasFeeCap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) GasFeeCap() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.GasPrice">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19470:19506#L626">GasPrice</a>
+					<a class="permalink" href="index.html#Message.GasPrice">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) GasPrice() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.GasTipCap">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19597:19634#L628">GasTipCap</a>
+					<a class="permalink" href="index.html#Message.GasTipCap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) GasTipCap() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.IsFake">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19969:19999#L634">IsFake</a>
+					<a class="permalink" href="index.html#Message.IsFake">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) IsFake() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.Nonce">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19785:19816#L631">Nonce</a>
+					<a class="permalink" href="index.html#Message.Nonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) Nonce() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.To">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19413:19450#L625">To</a>
+					<a class="permalink" href="index.html#Message.To">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) To() *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Message.Value">func (Message) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=19661:19694#L629">Value</a>
+					<a class="permalink" href="index.html#Message.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="index.html#Message">Message</a>) Value() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Receipt">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=1669:2757#L42">Receipt</a>
+				<a class="permalink" href="index.html#Receipt">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Receipt represents the results of a transaction.
+
+			<pre>type Receipt struct {
+    <span class="comment">// Consensus fields: These fields are defined by the Yellow Paper</span>
+<span id="Receipt.Type"></span>    Type              <a href="../../../../../builtin/index.html#uint8">uint8</a>  `json:&#34;type,omitempty&#34;`
+<span id="Receipt.PostState"></span>    PostState         []<a href="../../../../../builtin/index.html#byte">byte</a> `json:&#34;root&#34;`
+<span id="Receipt.Status"></span>    Status            <a href="../../../../../builtin/index.html#uint64">uint64</a> `json:&#34;status&#34;`
+<span id="Receipt.CumulativeGasUsed"></span>    CumulativeGasUsed <a href="../../../../../builtin/index.html#uint64">uint64</a> `json:&#34;cumulativeGasUsed&#34; gencodec:&#34;required&#34;`
+<span id="Receipt.Bloom"></span>    Bloom             <a href="index.html#Bloom">Bloom</a>  `json:&#34;logsBloom&#34;         gencodec:&#34;required&#34;`
+<span id="Receipt.Logs"></span>    Logs              []*<a href="index.html#Log">Log</a> `json:&#34;logs&#34;              gencodec:&#34;required&#34;`
+
+    <span class="comment">// Implementation fields: These fields are added by geth when processing a transaction.</span>
+    <span class="comment">// They are stored in the chain database.</span>
+<span id="Receipt.TxHash"></span>    TxHash          <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>    `json:&#34;transactionHash&#34; gencodec:&#34;required&#34;`
+<span id="Receipt.ContractAddress"></span>    ContractAddress <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a> `json:&#34;contractAddress&#34;`
+<span id="Receipt.GasUsed"></span>    GasUsed         <a href="../../../../../builtin/index.html#uint64">uint64</a>         `json:&#34;gasUsed&#34; gencodec:&#34;required&#34;`
+
+    <span class="comment">// Inclusion information: These fields provide information about the inclusion of the</span>
+    <span class="comment">// transaction corresponding to this receipt.</span>
+<span id="Receipt.BlockHash"></span>    BlockHash        <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> `json:&#34;blockHash,omitempty&#34;`
+<span id="Receipt.BlockNumber"></span>    BlockNumber      *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>    `json:&#34;blockNumber,omitempty&#34;`
+<span id="Receipt.TransactionIndex"></span>    TransactionIndex <a href="../../../../../builtin/index.html#uint">uint</a>        `json:&#34;transactionIndex&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReceipt">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=4179:4255#L112">NewReceipt</a>
+					<a class="permalink" href="index.html#NewReceipt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReceipt(root []<a href="../../../../../builtin/index.html#byte">byte</a>, failed <a href="../../../../../builtin/index.html#bool">bool</a>, cumulativeGasUsed <a href="../../../../../builtin/index.html#uint64">uint64</a>) *<a href="index.html#Receipt">Receipt</a></pre>
+				<p>NewReceipt creates a barebone transaction receipt, copying the init fields.
+Deprecated: create receipts using a struct literal instead.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Receipt.DecodeRLP">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=5695:5743#L161">DecodeRLP</a>
+					<a class="permalink" href="index.html#Receipt.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder, and loads the consensus fields of a receipt
+from an RLP stream.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.EncodeRLP">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=4669:4715#L128">EncodeRLP</a>
+					<a class="permalink" href="index.html#Receipt.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder, and flattens the consensus fields of a receipt
+into an RLP stream. If no post state is present, byzantium fork is assumed.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.MarshalBinary">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=5314:5363#L149">MarshalBinary</a>
+					<a class="permalink" href="index.html#Receipt.MarshalBinary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) MarshalBinary() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalBinary returns the consensus encoding of the receipt.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.MarshalJSON">func (Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_receipt_json.go?s=287:333#L7">MarshalJSON</a>
+					<a class="permalink" href="index.html#Receipt.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r <a href="index.html#Receipt">Receipt</a>) MarshalJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.Size">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=8023:8066#L251">Size</a>
+					<a class="permalink" href="index.html#Receipt.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) Size() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#StorageSize">StorageSize</a></pre>
+				<p>Size returns the approximate memory used by all internal contents. It is used
+to approximate and limit the memory consumption of various caches.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.UnmarshalBinary">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=6263:6312#L186">UnmarshalBinary</a>
+					<a class="permalink" href="index.html#Receipt.UnmarshalBinary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) UnmarshalBinary(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalBinary decodes the consensus encoding of receipts.
+It supports legacy RLP receipts and EIP-2718 typed receipts.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipt.UnmarshalJSON">func (*Receipt) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_receipt_json.go?s=1700:1751#L39">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#Receipt.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#Receipt">Receipt</a>) UnmarshalJSON(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ReceiptForStorage">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=8513:8543#L262">ReceiptForStorage</a>
+				<a class="permalink" href="index.html#ReceiptForStorage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReceiptForStorage is a wrapper around a Receipt with RLP serialization
+that omits the Bloom field and deserialization that re-computes it.
+
+			<pre>type ReceiptForStorage <a href="index.html#Receipt">Receipt</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ReceiptForStorage.DecodeRLP">func (*ReceiptForStorage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=9150:9208#L284">DecodeRLP</a>
+					<a class="permalink" href="index.html#ReceiptForStorage.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReceiptForStorage">ReceiptForStorage</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder, and loads both consensus and implementation
+fields of a receipt from an RLP stream.
+
+				
+				
+				
+			
+				
+				<h3 id="ReceiptForStorage.EncodeRLP">func (*ReceiptForStorage) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=8650:8707#L266">EncodeRLP</a>
+					<a class="permalink" href="index.html#ReceiptForStorage.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="index.html#ReceiptForStorage">ReceiptForStorage</a>) EncodeRLP(_w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder, and flattens all content fields of a receipt
+into an RLP stream.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Receipts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=11426:11450#L362">Receipts</a>
+				<a class="permalink" href="index.html#Receipts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Receipts implements DerivableList for receipts.
+
+			<pre>type Receipts []*<a href="index.html#Receipt">Receipt</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Receipts.DeriveFields">func (Receipts) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=12275:12391#L389">DeriveFields</a>
+					<a class="permalink" href="index.html#Receipts.DeriveFields">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rs <a href="index.html#Receipts">Receipts</a>) DeriveFields(config *<a href="../../params/index.html">params</a>.<a href="../../params/index.html#ChainConfig">ChainConfig</a>, hash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, number <a href="../../../../../builtin/index.html#uint64">uint64</a>, txs <a href="index.html#Transactions">Transactions</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DeriveFields fills the receipts with their computed fields based on consensus
+data and contextual infos like containing block and transactions.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipts.EncodeIndex">func (Receipts) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=11599:11653#L368">EncodeIndex</a>
+					<a class="permalink" href="index.html#Receipts.EncodeIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rs <a href="index.html#Receipts">Receipts</a>) EncodeIndex(i <a href="../../../../../builtin/index.html#int">int</a>, w *<a href="../../../../../bytes/index.html">bytes</a>.<a href="../../../../../bytes/index.html#Buffer">Buffer</a>)</pre>
+				<p>EncodeIndex encodes the i&apos;th receipt to w.
+
+				
+				
+				
+			
+				
+				<h3 id="Receipts.Len">func (Receipts) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/receipt.go?s=11504:11532#L365">Len</a>
+					<a class="permalink" href="index.html#Receipts.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (rs <a href="index.html#Receipts">Receipts</a>) Len() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the number of receipts in this list.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Signer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=5207:5812#L146">Signer</a>
+				<a class="permalink" href="index.html#Signer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Signer encapsulates transaction signature handling. The name of this type is slightly
+misleading because Signers don&apos;t actually sign, they&apos;re just for validating and
+processing of signatures.
+<p>Note that this interface is not a stable API and may change at any time to accommodate
+new protocol rules.
+
+			<pre>type Signer interface {
+    <span class="comment">// Sender returns the sender address of the transaction.</span>
+    Sender(tx *<a href="index.html#Transaction">Transaction</a>) (<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SignatureValues returns the raw R, S, V values corresponding to the</span>
+    <span class="comment">// given signature.</span>
+    SignatureValues(tx *<a href="index.html#Transaction">Transaction</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (r, s, v *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, err <a href="../../../../../builtin/index.html#error">error</a>)
+    ChainID() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>
+
+    <span class="comment">// Hash returns &#39;signature hash&#39;, i.e. the transaction hash that is signed by the</span>
+    <span class="comment">// private key. This hash does not uniquely identify the transaction.</span>
+    Hash(tx *<a href="index.html#Transaction">Transaction</a>) <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>
+
+    <span class="comment">// Equal returns true if the given signer is the same as the receiver.</span>
+    Equal(<a href="index.html#Signer">Signer</a>) <a href="../../../../../builtin/index.html#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="LatestSigner">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=2230:2282#L54">LatestSigner</a>
+					<a class="permalink" href="index.html#LatestSigner">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LatestSigner(config *<a href="../../params/index.html">params</a>.<a href="../../params/index.html#ChainConfig">ChainConfig</a>) <a href="index.html#Signer">Signer</a></pre>
+				<p>LatestSigner returns the &apos;most permissive&apos; Signer available for the given chain
+configuration. Specifically, this enables support of EIP-155 replay protection and
+EIP-2930 access list transactions when their respective forks are scheduled to occur at
+any block number in the chain config.
+<p>Use this in transaction-handling code where the current block number is unknown. If you
+have the current block number available, use MakeSigner instead.
+
+				
+				
+			
+				
+				<h3 id="LatestSignerForChainID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=3053:3105#L76">LatestSignerForChainID</a>
+					<a class="permalink" href="index.html#LatestSignerForChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func LatestSignerForChainID(chainID *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="index.html#Signer">Signer</a></pre>
+				<p>LatestSignerForChainID returns the &apos;most permissive&apos; Signer available. Specifically,
+this enables support for EIP-155 replay protection and all implemented EIP-2718
+transaction types if chainID is non-nil.
+<p>Use this in transaction-handling code where the current block number and fork
+configuration are unknown. If you have a ChainConfig, use LatestSigner instead.
+If you have a ChainConfig and know the current block number, use MakeSigner instead.
+
+				
+				
+			
+				
+				<h3 id="MakeSigner">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=1298:1370#L30">MakeSigner</a>
+					<a class="permalink" href="index.html#MakeSigner">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MakeSigner(config *<a href="../../params/index.html">params</a>.<a href="../../params/index.html#ChainConfig">ChainConfig</a>, blockNumber *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="index.html#Signer">Signer</a></pre>
+				<p>MakeSigner returns a Signer based on the given chain config and block number.
+
+				
+				
+			
+				
+				<h3 id="NewEIP2930Signer">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=8002:8048#L233">NewEIP2930Signer</a>
+					<a class="permalink" href="index.html#NewEIP2930Signer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEIP2930Signer(chainId *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="index.html#Signer">Signer</a></pre>
+				<p>NewEIP2930Signer returns a signer that accepts EIP-2930 access list transactions,
+EIP-155 replay protected transactions, and legacy Homestead transactions.
+
+				
+				
+			
+				
+				<h3 id="NewLondonSigner">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=6069:6114#L170">NewLondonSigner</a>
+					<a class="permalink" href="index.html#NewLondonSigner">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLondonSigner(chainId *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="index.html#Signer">Signer</a></pre>
+				<p>NewLondonSigner returns a signer that accepts
+- EIP-1559 dynamic fee transactions
+- EIP-2930 access list transactions,
+- EIP-155 replay protected transactions, and
+- legacy Homestead transactions.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StateAccount">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/state_account.go?s=1081:1219#L19">StateAccount</a>
+				<a class="permalink" href="index.html#StateAccount">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StateAccount is the Ethereum consensus representation of accounts.
+These objects are stored in the main account trie.
+
+			<pre>type StateAccount struct {
+<span id="StateAccount.Nonce"></span>    Nonce    <a href="../../../../../builtin/index.html#uint64">uint64</a>
+<span id="StateAccount.Balance"></span>    Balance  *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>
+<span id="StateAccount.Root"></span>    Root     <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a> <span class="comment">// merkle root of the storage trie</span>
+<span id="StateAccount.CodeHash"></span>    CodeHash []<a href="../../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="StateAccount.EncodeRLP">func (*StateAccount) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/gen_account_rlp.go?s=158:212#L1">EncodeRLP</a>
+					<a class="permalink" href="index.html#StateAccount.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (obj *<a href="index.html#StateAccount">StateAccount</a>) EncodeRLP(_w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Transaction">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=1686:1899#L41">Transaction</a>
+				<a class="permalink" href="index.html#Transaction">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Transaction is an Ethereum transaction.
+
+			<pre>type Transaction struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MustSignNewTx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=3869:3948#L106">MustSignNewTx</a>
+					<a class="permalink" href="index.html#MustSignNewTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MustSignNewTx(prv *<a href="../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>, s <a href="index.html#Signer">Signer</a>, txdata <a href="index.html#TxData">TxData</a>) *<a href="index.html#Transaction">Transaction</a></pre>
+				<p>MustSignNewTx creates a transaction and signs it.
+This panics if the transaction cannot be signed.
+
+				
+				
+			
+				
+				<h3 id="NewContractCreation">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy_tx.go?s=1792:1909#L41">NewContractCreation</a>
+					<a class="permalink" href="index.html#NewContractCreation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewContractCreation(nonce <a href="../../../../../builtin/index.html#uint64">uint64</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, gasLimit <a href="../../../../../builtin/index.html#uint64">uint64</a>, gasPrice *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, data []<a href="../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#Transaction">Transaction</a></pre>
+				<p>NewContractCreation creates an unsigned legacy transaction.
+Deprecated: use NewTx instead.
+
+				
+				
+			
+				
+				<h3 id="NewTransaction">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/legacy_tx.go?s=1411:1542#L28">NewTransaction</a>
+					<a class="permalink" href="index.html#NewTransaction">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTransaction(nonce <a href="../../../../../builtin/index.html#uint64">uint64</a>, to <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, amount *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, gasLimit <a href="../../../../../builtin/index.html#uint64">uint64</a>, gasPrice *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, data []<a href="../../../../../builtin/index.html#byte">byte</a>) *<a href="index.html#Transaction">Transaction</a></pre>
+				<p>NewTransaction creates an unsigned legacy transaction.
+Deprecated: use NewTx instead.
+
+				
+				
+			
+				
+				<h3 id="NewTx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=1937:1974#L52">NewTx</a>
+					<a class="permalink" href="index.html#NewTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTx(inner <a href="index.html#TxData">TxData</a>) *<a href="index.html#Transaction">Transaction</a></pre>
+				<p>NewTx creates a new transaction.
+
+				
+				
+			
+				
+				<h3 id="SignNewTx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=3529:3613#L94">SignNewTx</a>
+					<a class="permalink" href="index.html#SignNewTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignNewTx(prv *<a href="../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>, s <a href="index.html#Signer">Signer</a>, txdata <a href="index.html#TxData">TxData</a>) (*<a href="index.html#Transaction">Transaction</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignNewTx creates a transaction and signs it.
+
+				
+				
+			
+				
+				<h3 id="SignTx">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_signing.go?s=3267:3350#L84">SignTx</a>
+					<a class="permalink" href="index.html#SignTx">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SignTx(tx *<a href="index.html#Transaction">Transaction</a>, s <a href="index.html#Signer">Signer</a>, prv *<a href="../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>) (*<a href="index.html#Transaction">Transaction</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SignTx signs the transaction using the given signer and private key.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Transaction.AccessList">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7117:7163#L252">AccessList</a>
+					<a class="permalink" href="index.html#Transaction.AccessList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) AccessList() <a href="index.html#AccessList">AccessList</a></pre>
+				<p>AccessList returns the access list of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.AsMessage">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=18699:18776#L602">AsMessage</a>
+					<a class="permalink" href="index.html#Transaction.AsMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) AsMessage(s <a href="index.html#Signer">Signer</a>, baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (<a href="index.html#Message">Message</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>AsMessage returns the transaction as a core.Message.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.ChainId">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=6869:6910#L244">ChainId</a>
+					<a class="permalink" href="index.html#Transaction.ChainId">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) ChainId() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>ChainId returns the EIP155 chain ID of the transaction. The return value will always be
+non-nil. For legacy transactions which are not replay-protected, the return value is
+zero.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Cost">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=8279:8317#L279">Cost</a>
+					<a class="permalink" href="index.html#Transaction.Cost">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Cost() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>Cost returns gas * gasPrice + value.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Data">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=6994:7030#L249">Data</a>
+					<a class="permalink" href="index.html#Transaction.Data">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Data() []<a href="../../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Data returns the input data of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.DecodeRLP">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=3604:3657#L114">DecodeRLP</a>
+					<a class="permalink" href="index.html#Transaction.DecodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) DecodeRLP(s *<a href="../../rlp/index.html">rlp</a>.<a href="../../rlp/index.html#Stream">Stream</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>DecodeRLP implements rlp.Decoder
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.EffectiveGasTip">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=9651:9725#L314">EffectiveGasTip</a>
+					<a class="permalink" href="index.html#Transaction.EffectiveGasTip">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) EffectiveGasTip(baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (*<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>EffectiveGasTip returns the effective miner gasTipCap for the given base fee.
+Note: if the effective gasTipCap is negative, this method returns both error
+the actual negative value, _and_ ErrGasFeeCapTooLow
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.EffectiveGasTipCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=10351:10434#L334">EffectiveGasTipCmp</a>
+					<a class="permalink" href="index.html#Transaction.EffectiveGasTipCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) EffectiveGasTipCmp(other *<a href="index.html#Transaction">Transaction</a>, baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>EffectiveGasTipCmp compares the effective gasTipCap of two transactions assuming the given base fee.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.EffectiveGasTipIntCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=10677:10759#L342">EffectiveGasTipIntCmp</a>
+					<a class="permalink" href="index.html#Transaction.EffectiveGasTipIntCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) EffectiveGasTipIntCmp(other *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>, baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>EffectiveGasTipIntCmp compares the effective gasTipCap of a transaction to the given gasTipCap.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.EffectiveGasTipValue">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=10102:10172#L328">EffectiveGasTipValue</a>
+					<a class="permalink" href="index.html#Transaction.EffectiveGasTipValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) EffectiveGasTipValue(baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>EffectiveGasTipValue is identical to EffectiveGasTip, but does not return an
+error in case the effective gasTipCap is negative
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.EncodeRLP">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=2619:2670#L81">EncodeRLP</a>
+					<a class="permalink" href="index.html#Transaction.EncodeRLP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) EncodeRLP(w <a href="../../../../../io/index.html">io</a>.<a href="../../../../../io/index.html#Writer">Writer</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>EncodeRLP implements rlp.Encoder
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Gas">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7247:7282#L255">Gas</a>
+					<a class="permalink" href="index.html#Transaction.Gas">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Gas() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Gas returns the gas limit of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasFeeCap">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7676:7719#L264">GasFeeCap</a>
+					<a class="permalink" href="index.html#Transaction.GasFeeCap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasFeeCap() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GasFeeCap returns the fee cap per gas of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasFeeCapCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=8745:8804#L292">GasFeeCapCmp</a>
+					<a class="permalink" href="index.html#Transaction.GasFeeCapCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasFeeCapCmp(other *<a href="index.html#Transaction">Transaction</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>GasFeeCapCmp compares the fee cap of two transactions.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasFeeCapIntCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=8954:9012#L297">GasFeeCapIntCmp</a>
+					<a class="permalink" href="index.html#Transaction.GasFeeCapIntCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasFeeCapIntCmp(other *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>GasFeeCapIntCmp compares the fee cap of the transaction against the given fee cap.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasPrice">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7364:7406#L258">GasPrice</a>
+					<a class="permalink" href="index.html#Transaction.GasPrice">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasPrice() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GasPrice returns the gas price of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasTipCap">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7520:7563#L261">GasTipCap</a>
+					<a class="permalink" href="index.html#Transaction.GasTipCap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasTipCap() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>GasTipCap returns the gasTipCap per gas of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasTipCapCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=9118:9177#L302">GasTipCapCmp</a>
+					<a class="permalink" href="index.html#Transaction.GasTipCapCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasTipCapCmp(other *<a href="index.html#Transaction">Transaction</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>GasTipCapCmp compares the gasTipCap of two transactions.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.GasTipCapIntCmp">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=9331:9389#L307">GasTipCapIntCmp</a>
+					<a class="permalink" href="index.html#Transaction.GasTipCapIntCmp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) GasTipCapIntCmp(other *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>GasTipCapIntCmp compares the gasTipCap of the transaction against the given gasTipCap.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Hash">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=10914:10955#L350">Hash</a>
+					<a class="permalink" href="index.html#Transaction.Hash">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Hash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a></pre>
+				<p>Hash returns the transaction hash.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.MarshalBinary">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=3360:3414#L104">MarshalBinary</a>
+					<a class="permalink" href="index.html#Transaction.MarshalBinary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) MarshalBinary() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalBinary returns the canonical encoding of the transaction.
+For legacy transactions, it returns the RLP encoding. For EIP-2718 typed
+transactions, it returns the type and payload.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.MarshalJSON">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_marshalling.go?s=1938:1989#L44">MarshalJSON</a>
+					<a class="permalink" href="index.html#Transaction.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Transaction">Transaction</a>) MarshalJSON() ([]<a href="../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MarshalJSON marshals as JSON with a hash.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Nonce">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7974:8011#L270">Nonce</a>
+					<a class="permalink" href="index.html#Transaction.Nonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Nonce() <a href="../../../../../builtin/index.html#uint64">uint64</a></pre>
+				<p>Nonce returns the sender account nonce of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Protected">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=6412:6451#L227">Protected</a>
+					<a class="permalink" href="index.html#Transaction.Protected">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Protected() <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Protected says whether the transaction is replay-protected.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.RawSignatureValues">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=8581:8643#L287">RawSignatureValues</a>
+					<a class="permalink" href="index.html#Transaction.RawSignatureValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) RawSignatureValues() (v, r, s *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>RawSignatureValues returns the V, R, S signature values of the transaction.
+The return values should not be modified by the caller.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Size">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=11344:11392#L367">Size</a>
+					<a class="permalink" href="index.html#Transaction.Size">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Size() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#StorageSize">StorageSize</a></pre>
+				<p>Size returns the true RLP encoded storage size of the transaction, either by
+encoding and returning it, or returning a previously cached value.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.To">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=8152:8195#L274">To</a>
+					<a class="permalink" href="index.html#Transaction.To">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) To() *<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a></pre>
+				<p>To returns the recipient address of the transaction.
+For contract-creation transactions, To returns nil.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Type">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=6614:6649#L237">Type</a>
+					<a class="permalink" href="index.html#Transaction.Type">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Type() <a href="../../../../../builtin/index.html#uint8">uint8</a></pre>
+				<p>Type returns the transaction type.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.UnmarshalBinary">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=4285:4339#L143">UnmarshalBinary</a>
+					<a class="permalink" href="index.html#Transaction.UnmarshalBinary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) UnmarshalBinary(b []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalBinary decodes the canonical encoding of transactions.
+It supports legacy RLP transactions and EIP2718 typed transactions.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.UnmarshalJSON">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction_marshalling.go?s=3494:3549#L92">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#Transaction.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#Transaction">Transaction</a>) UnmarshalJSON(input []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON unmarshals from JSON.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.Value">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=7825:7864#L267">Value</a>
+					<a class="permalink" href="index.html#Transaction.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) Value() *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a></pre>
+				<p>Value returns the ether amount of the transaction.
+
+				
+				
+				
+			
+				
+				<h3 id="Transaction.WithSignature">func (*Transaction) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=11741:11826#L379">WithSignature</a>
+					<a class="permalink" href="index.html#Transaction.WithSignature">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (tx *<a href="index.html#Transaction">Transaction</a>) WithSignature(signer <a href="index.html#Signer">Signer</a>, sig []<a href="../../../../../builtin/index.html#byte">byte</a>) (*<a href="index.html#Transaction">Transaction</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WithSignature returns a new transaction with the given signature.
+This signature needs to be in the [R || S || V] format where V is 0 or 1.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Transactions">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=12106:12138#L390">Transactions</a>
+				<a class="permalink" href="index.html#Transactions">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Transactions implements DerivableList for transactions.
+
+			<pre>type Transactions []*<a href="index.html#Transaction">Transaction</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="TxDifference">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=12706:12755#L408">TxDifference</a>
+					<a class="permalink" href="index.html#TxDifference">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func TxDifference(a, b <a href="index.html#Transactions">Transactions</a>) <a href="index.html#Transactions">Transactions</a></pre>
+				<p>TxDifference returns a new set which is the difference between a and b.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Transactions.EncodeIndex">func (Transactions) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=12465:12522#L398">EncodeIndex</a>
+					<a class="permalink" href="index.html#Transactions.EncodeIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Transactions">Transactions</a>) EncodeIndex(i <a href="../../../../../builtin/index.html#int">int</a>, w *<a href="../../../../../bytes/index.html">bytes</a>.<a href="../../../../../bytes/index.html#Buffer">Buffer</a>)</pre>
+				<p>EncodeIndex encodes the i&apos;th transaction to w. Note that this does not check for errors
+because we assume that *Transaction will only ever contain valid txs that were either
+constructed by decoding or via public API in this package.
+
+				
+				
+				
+			
+				
+				<h3 id="Transactions.Len">func (Transactions) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=12172:12203#L393">Len</a>
+					<a class="permalink" href="index.html#Transactions.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Transactions">Transactions</a>) Len() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				<p>Len returns the length of s.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TransactionsByPriceAndNonce">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=15498:15869#L503">TransactionsByPriceAndNonce</a>
+				<a class="permalink" href="index.html#TransactionsByPriceAndNonce">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TransactionsByPriceAndNonce represents a set of transactions that can return
+transactions in a profit-maximizing sorted order, while supporting removing
+entire batches of transactions for non-executable accounts.
+
+			<pre>type TransactionsByPriceAndNonce struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTransactionsByPriceAndNonce">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=16134:16268#L515">NewTransactionsByPriceAndNonce</a>
+					<a class="permalink" href="index.html#NewTransactionsByPriceAndNonce">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTransactionsByPriceAndNonce(signer <a href="index.html#Signer">Signer</a>, txs map[<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>]<a href="index.html#Transactions">Transactions</a>, baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) *<a href="index.html#TransactionsByPriceAndNonce">TransactionsByPriceAndNonce</a></pre>
+				<p>NewTransactionsByPriceAndNonce creates a transaction set that can retrieve
+price sorted transactions in a nonce-honouring way.
+<p>Note, the input map is reowned so the caller should not interact any more with
+if after providing it to the constructor.
+
+				
+				
+			
+
+			
+				
+				<h3 id="TransactionsByPriceAndNonce.Peek">func (*TransactionsByPriceAndNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=16958:17015#L541">Peek</a>
+					<a class="permalink" href="index.html#TransactionsByPriceAndNonce.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#TransactionsByPriceAndNonce">TransactionsByPriceAndNonce</a>) Peek() *<a href="index.html#Transaction">Transaction</a></pre>
+				<p>Peek returns the next transaction by price.
+
+				
+				
+				
+			
+				
+				<h3 id="TransactionsByPriceAndNonce.Pop">func (*TransactionsByPriceAndNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=17719:17762#L564">Pop</a>
+					<a class="permalink" href="index.html#TransactionsByPriceAndNonce.Pop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#TransactionsByPriceAndNonce">TransactionsByPriceAndNonce</a>) Pop()</pre>
+				<p>Pop removes the best transaction, *not* replacing it with the next one from
+the same account. This should be used when a transaction cannot be executed
+and hence all subsequent ones should be discarded from the same account.
+
+				
+				
+				
+			
+				
+				<h3 id="TransactionsByPriceAndNonce.Shift">func (*TransactionsByPriceAndNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=17164:17209#L549">Shift</a>
+					<a class="permalink" href="index.html#TransactionsByPriceAndNonce.Shift">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (t *<a href="index.html#TransactionsByPriceAndNonce">TransactionsByPriceAndNonce</a>) Shift()</pre>
+				<p>Shift replaces the current best head with the next one from the same account.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TrieHasher">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/hashing.go?s=1994:2076#L53">TrieHasher</a>
+				<a class="permalink" href="index.html#TrieHasher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TrieHasher is the tool used to calculate the hash of derivable list.
+This is internal, do not use.
+
+			<pre>type TrieHasher interface {
+    Reset()
+    Update([]<a href="../../../../../builtin/index.html#byte">byte</a>, []<a href="../../../../../builtin/index.html#byte">byte</a>)
+    Hash() <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxByNonce">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13638:13665#L446">TxByNonce</a>
+				<a class="permalink" href="index.html#TxByNonce">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxByNonce implements the sort interface to allow sorting a list of transactions
+by their nonces. This is usually only useful for sorting transactions from a
+single account, otherwise a nonce comparison doesn&apos;t make much sense.
+
+			<pre>type TxByNonce <a href="index.html#Transactions">Transactions</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TxByNonce.Len">func (TxByNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13667:13695#L448">Len</a>
+					<a class="permalink" href="index.html#TxByNonce.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByNonce">TxByNonce</a>) Len() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByNonce.Less">func (TxByNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13724:13762#L449">Less</a>
+					<a class="permalink" href="index.html#TxByNonce.Less">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByNonce">TxByNonce</a>) Less(i, j <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByNonce.Swap">func (TxByNonce) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13802:13835#L450">Swap</a>
+					<a class="permalink" href="index.html#TxByNonce.Swap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByNonce">TxByNonce</a>) Swap(i, j <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TxByPriceAndTime">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=14630:14669#L474">TxByPriceAndTime</a>
+				<a class="permalink" href="index.html#TxByPriceAndTime">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxByPriceAndTime implements both the sort and the heap interface, making it useful
+for all at once sorting as well as individually adding and removing elements.
+
+			<pre>type TxByPriceAndTime []*<a href="index.html#TxWithMinerFee">TxWithMinerFee</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TxByPriceAndTime.Len">func (TxByPriceAndTime) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=14671:14706#L476">Len</a>
+					<a class="permalink" href="index.html#TxByPriceAndTime.Len">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByPriceAndTime">TxByPriceAndTime</a>) Len() <a href="../../../../../builtin/index.html#int">int</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByPriceAndTime.Less">func (TxByPriceAndTime) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=14725:14770#L477">Less</a>
+					<a class="permalink" href="index.html#TxByPriceAndTime.Less">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByPriceAndTime">TxByPriceAndTime</a>) Less(i, j <a href="../../../../../builtin/index.html#int">int</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByPriceAndTime.Pop">func (*TxByPriceAndTime) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=15156:15200#L492">Pop</a>
+					<a class="permalink" href="index.html#TxByPriceAndTime.Pop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#TxByPriceAndTime">TxByPriceAndTime</a>) Pop() interface{}</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByPriceAndTime.Push">func (*TxByPriceAndTime) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=15066:15112#L488">Push</a>
+					<a class="permalink" href="index.html#TxByPriceAndTime.Push">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#TxByPriceAndTime">TxByPriceAndTime</a>) Push(x interface{})</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TxByPriceAndTime.Swap">func (TxByPriceAndTime) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=14996:15036#L486">Swap</a>
+					<a class="permalink" href="index.html#TxByPriceAndTime.Swap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#TxByPriceAndTime">TxByPriceAndTime</a>) Swap(i, j <a href="../../../../../builtin/index.html#int">int</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TxData">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=2168:2581#L61">TxData</a>
+				<a class="permalink" href="index.html#TxData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxData is the underlying data of a transaction.
+<p>This is implemented by DynamicFeeTx, LegacyTx and AccessListTx.
+
+			<pre>type TxData interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TxWithMinerFee">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=13956:14028#L453">TxWithMinerFee</a>
+				<a class="permalink" href="index.html#TxWithMinerFee">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TxWithMinerFee wraps a transaction with its gas price or effective miner gasTipCap
+
+			<pre>type TxWithMinerFee struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTxWithMinerFee">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/core/types/transaction.go?s=14220:14302#L461">NewTxWithMinerFee</a>
+					<a class="permalink" href="index.html#NewTxWithMinerFee">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTxWithMinerFee(tx *<a href="index.html#Transaction">Transaction</a>, baseFee *<a href="../../../../../math/big/index.html">big</a>.<a href="../../../../../math/big/index.html#Int">Int</a>) (*<a href="index.html#TxWithMinerFee">TxWithMinerFee</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewTxWithMinerFee creates a wrapped transaction, calculating the effective
+miner gasTipCap if a base fee is provided.
+Returns error in case of a negative effective miner gasTipCap.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

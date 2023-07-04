@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>http - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package http
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/go-kit/kit/transport/http"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+				<dd><a href="index.html#pkg-examples" class="examplesLink">Examples</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package http provides a general purpose HTTP binding for endpoints.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#DefaultErrorEncoder">func DefaultErrorEncoder(_ context.Context, err error, w http.ResponseWriter)</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeJSONRequest">func EncodeJSONRequest(c context.Context, r *http.Request, request interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeJSONResponse">func EncodeJSONResponse(_ context.Context, w http.ResponseWriter, response interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#EncodeXMLRequest">func EncodeXMLRequest(c context.Context, r *http.Request, request interface{}) error</a></dd>
+			
+				
+				<dd><a href="index.html#NopRequestDecoder">func NopRequestDecoder(ctx context.Context, r *http.Request) (interface{}, error)</a></dd>
+			
+				
+				<dd><a href="index.html#PopulateRequestContext">func PopulateRequestContext(ctx context.Context, r *http.Request) context.Context</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Client">type Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClient">func NewClient(method string, tgt *url.URL, enc EncodeRequestFunc, dec DecodeResponseFunc, options ...ClientOption) *Client</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewExplicitClient">func NewExplicitClient(req CreateRequestFunc, dec DecodeResponseFunc, options ...ClientOption) *Client</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Client.Endpoint">func (c Client) Endpoint() endpoint.Endpoint</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ClientFinalizerFunc">type ClientFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientOption">type ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BufferedStream">func BufferedStream(buffered bool) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientAfter">func ClientAfter(after ...ClientResponseFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientBefore">func ClientBefore(before ...RequestFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ClientFinalizer">func ClientFinalizer(f ...ClientFinalizerFunc) ClientOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetClient">func SetClient(client HTTPClient) ClientOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ClientResponseFunc">type ClientResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#CreateRequestFunc">type CreateRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeRequestFunc">type DecodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DecodeResponseFunc">type DecodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeRequestFunc">type EncodeRequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EncodeResponseFunc">type EncodeResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorEncoder">type ErrorEncoder</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#HTTPClient">type HTTPClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Headerer">type Headerer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#RequestFunc">type RequestFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetRequestHeader">func SetRequestHeader(key, val string) RequestFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Server">type Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewServer">func NewServer(e endpoint.Endpoint, dec DecodeRequestFunc, enc EncodeResponseFunc, options ...ServerOption) *Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Server.ServeHTTP">func (s Server) ServeHTTP(w http.ResponseWriter, r *http.Request)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ServerFinalizerFunc">type ServerFinalizerFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerOption">type ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerAfter">func ServerAfter(after ...ServerResponseFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerBefore">func ServerBefore(before ...RequestFunc) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorEncoder">func ServerErrorEncoder(ee ErrorEncoder) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorHandler">func ServerErrorHandler(errorHandler transport.ErrorHandler) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerErrorLogger">func ServerErrorLogger(logger log.Logger) ServerOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ServerFinalizer">func ServerFinalizer(f ...ServerFinalizerFunc) ServerOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ServerResponseFunc">type ServerResponseFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetContentType">func SetContentType(contentType string) ServerResponseFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SetResponseHeader">func SetResponseHeader(key, val string) ServerResponseFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StatusCoder">type StatusCoder</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+		<div id="pkg-examples">
+			<h3>Examples</h3>
+			<div class="js-expandAll expandAll collapsed">(Expand All)</div>
+			<dl>
+			
+			<dd><a class="exampleLink" href="index.html#example_PopulateRequestContext">PopulateRequestContext</a></dd>
+			
+			</dl>
+		</div>
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go">client.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go">encode_decode.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go">request_response_funcs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go">server.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ContextKeyRequestMethod is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Method.</span>
+    <span id="ContextKeyRequestMethod">ContextKeyRequestMethod</span> contextKey = <a href="../../../../../builtin/index.html#iota">iota</a>
+
+    <span class="comment">// ContextKeyRequestURI is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.RequestURI.</span>
+    <span id="ContextKeyRequestURI">ContextKeyRequestURI</span>
+
+    <span class="comment">// ContextKeyRequestPath is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.URL.Path.</span>
+    <span id="ContextKeyRequestPath">ContextKeyRequestPath</span>
+
+    <span class="comment">// ContextKeyRequestProto is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Proto.</span>
+    <span id="ContextKeyRequestProto">ContextKeyRequestProto</span>
+
+    <span class="comment">// ContextKeyRequestHost is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Host.</span>
+    <span id="ContextKeyRequestHost">ContextKeyRequestHost</span>
+
+    <span class="comment">// ContextKeyRequestRemoteAddr is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.RemoteAddr.</span>
+    <span id="ContextKeyRequestRemoteAddr">ContextKeyRequestRemoteAddr</span>
+
+    <span class="comment">// ContextKeyRequestXForwardedFor is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;X-Forwarded-For&#34;).</span>
+    <span id="ContextKeyRequestXForwardedFor">ContextKeyRequestXForwardedFor</span>
+
+    <span class="comment">// ContextKeyRequestXForwardedProto is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;X-Forwarded-Proto&#34;).</span>
+    <span id="ContextKeyRequestXForwardedProto">ContextKeyRequestXForwardedProto</span>
+
+    <span class="comment">// ContextKeyRequestAuthorization is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;Authorization&#34;).</span>
+    <span id="ContextKeyRequestAuthorization">ContextKeyRequestAuthorization</span>
+
+    <span class="comment">// ContextKeyRequestReferer is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;Referer&#34;).</span>
+    <span id="ContextKeyRequestReferer">ContextKeyRequestReferer</span>
+
+    <span class="comment">// ContextKeyRequestUserAgent is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;User-Agent&#34;).</span>
+    <span id="ContextKeyRequestUserAgent">ContextKeyRequestUserAgent</span>
+
+    <span class="comment">// ContextKeyRequestXRequestID is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;X-Request-Id&#34;).</span>
+    <span id="ContextKeyRequestXRequestID">ContextKeyRequestXRequestID</span>
+
+    <span class="comment">// ContextKeyRequestAccept is populated in the context by</span>
+    <span class="comment">// PopulateRequestContext. Its value is r.Header.Get(&#34;Accept&#34;).</span>
+    <span id="ContextKeyRequestAccept">ContextKeyRequestAccept</span>
+
+    <span class="comment">// ContextKeyResponseHeaders is populated in the context whenever a</span>
+    <span class="comment">// ServerFinalizerFunc is specified. Its value is of type http.Header, and</span>
+    <span class="comment">// is captured only once the entire response has been written.</span>
+    <span id="ContextKeyResponseHeaders">ContextKeyResponseHeaders</span>
+
+    <span class="comment">// ContextKeyResponseSize is populated in the context whenever a</span>
+    <span class="comment">// ServerFinalizerFunc is specified. Its value is of type int64.</span>
+    <span id="ContextKeyResponseSize">ContextKeyResponseSize</span>
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="DefaultErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=6617:6694#L180">DefaultErrorEncoder</a>
+				<a class="permalink" href="index.html#DefaultErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultErrorEncoder(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>, w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>)</pre>
+			<p>DefaultErrorEncoder writes the error to the ResponseWriter, by default a
+content type of text/plain, a body of the plain text of the error, and a
+status code of 500. If the error implements Headerer, the provided headers
+will be applied to the response. If the error implements json.Marshaler, and
+the marshaling succeeds, a content type of application/json and the JSON
+encoded form of the error will be used. If the error implements StatusCoder,
+the provided StatusCode will be used instead of 500.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeJSONRequest">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=5293:5378#L165">EncodeJSONRequest</a>
+				<a class="permalink" href="index.html#EncodeJSONRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeJSONRequest(c <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>, request interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeJSONRequest is an EncodeRequestFunc that serializes the request as a
+JSON object to the Request body. Many JSON-over-HTTP services can use it as
+a sensible default. If the request implements Headerer, the provided headers
+will be applied to the request.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeJSONResponse">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=5560:5653#L153">EncodeJSONResponse</a>
+				<a class="permalink" href="index.html#EncodeJSONResponse">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeJSONResponse(_ <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, response interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeJSONResponse is a EncodeResponseFunc that serializes the response as a
+JSON object to the ResponseWriter. Many JSON-over-HTTP services can use it as
+a sensible default. If the response implements Headerer, the provided headers
+will be applied to the response. If the response implements StatusCoder, the
+provided StatusCode will be used instead of 200.
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncodeXMLRequest">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=5884:5968#L180">EncodeXMLRequest</a>
+				<a class="permalink" href="index.html#EncodeXMLRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncodeXMLRequest(c <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>, request interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+			<p>EncodeXMLRequest is an EncodeRequestFunc that serializes the request as a
+XML object to the Request body. If the request implements Headerer,
+the provided headers will be applied to the request.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NopRequestDecoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=5082:5163#L144">NopRequestDecoder</a>
+				<a class="permalink" href="index.html#NopRequestDecoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NopRequestDecoder(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>NopRequestDecoder is a DecodeRequestFunc that can be used for requests that do not
+need to be decoded, and simply returns nil, nil.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PopulateRequestContext">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=1943:2024#L39">PopulateRequestContext</a>
+				<a class="permalink" href="index.html#PopulateRequestContext">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PopulateRequestContext(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+			<p>PopulateRequestContext is a RequestFunc that populates several values into
+the context from the HTTP request. Those values may be extracted using the
+corresponding ContextKey type in this package.
+
+			<div id="example_PopulateRequestContext" class="toggle">
+	<div class="collapsed">
+		<p class="exampleHeading toggleButton">▹ <span class="text">Example</span></p>
+	</div>
+	<div class="expanded">
+		<p class="exampleHeading toggleButton">▾ <span class="text">Example</span></p>
+		
+		
+		
+			<p>Code:</p>
+			<pre class="code">handler := NewServer(
+    func(ctx context.Context, request interface{}) (response interface{}, err error) {
+        fmt.Println(&#34;Method&#34;, ctx.Value(ContextKeyRequestMethod).(string))
+        fmt.Println(&#34;RequestPath&#34;, ctx.Value(ContextKeyRequestPath).(string))
+        fmt.Println(&#34;RequestURI&#34;, ctx.Value(ContextKeyRequestURI).(string))
+        fmt.Println(&#34;X-Request-ID&#34;, ctx.Value(ContextKeyRequestXRequestID).(string))
+        return struct{}{}, nil
+    },
+    func(context.Context, *http.Request) (interface{}, error) { return struct{}{}, nil },
+    func(context.Context, http.ResponseWriter, interface{}) error { return nil },
+    ServerBefore(PopulateRequestContext),
+)
+
+server := httptest.NewServer(handler)
+defer server.Close()
+
+req, _ := http.NewRequest(&#34;PATCH&#34;, fmt.Sprintf(&#34;%s/search?q=sympatico&#34;, server.URL), nil)
+req.Header.Set(&#34;X-Request-Id&#34;, &#34;a1b2c3d4e5&#34;)
+http.DefaultClient.Do(req)
+
+<span class="comment"></pre>
+			
+			<p>Output:</p>
+			<pre class="output">Method PATCH
+RequestPath /search
+RequestURI /search?q=sympatico
+X-Request-ID a1b2c3d4e5
+</pre>
+			
+		
+	</div>
+</div>
+
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=369:613#L12">Client</a>
+				<a class="permalink" href="index.html#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client wraps a URL and provides a method that implements endpoint.Endpoint.
+
+			<pre>type Client struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=683:806#L23">NewClient</a>
+					<a class="permalink" href="index.html#NewClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClient(method <a href="../../../../../builtin/index.html#string">string</a>, tgt *<a href="../../../../../net/url/index.html">url</a>.<a href="../../../../../net/url/index.html#URL">URL</a>, enc <a href="index.html#EncodeRequestFunc">EncodeRequestFunc</a>, dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>, options ...<a href="index.html#ClientOption">ClientOption</a>) *<a href="index.html#Client">Client</a></pre>
+				<p>NewClient constructs a usable Client for a single remote method.
+
+				
+				
+			
+				
+				<h3 id="NewExplicitClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=1088:1190#L30">NewExplicitClient</a>
+					<a class="permalink" href="index.html#NewExplicitClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewExplicitClient(req <a href="index.html#CreateRequestFunc">CreateRequestFunc</a>, dec <a href="index.html#DecodeResponseFunc">DecodeResponseFunc</a>, options ...<a href="index.html#ClientOption">ClientOption</a>) *<a href="index.html#Client">Client</a></pre>
+				<p>NewExplicitClient is like NewClient but uses a CreateRequestFunc instead of a
+method, target URL, and EncodeRequestFunc, which allows for more control over
+the outgoing HTTP request.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.Endpoint">func (Client) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=3008:3052#L80">Endpoint</a>
+					<a class="permalink" href="index.html#Client.Endpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="index.html#Client">Client</a>) Endpoint() <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a></pre>
+				<p>Endpoint returns a usable Go kit endpoint that calls the remote HTTP endpoint.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ClientFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=4958:5019#L159">ClientFinalizerFunc</a>
+				<a class="permalink" href="index.html#ClientFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientFinalizerFunc can be used to perform work at the end of a client HTTP
+request, after the response is returned. The principal
+intended use is for error logging. Additional response parameters are
+provided in the context under keys with the ContextKeyResponse prefix.
+Note: err may be nil. There maybe also no additional response parameters
+depending on when an error occurs.
+
+			<pre>type ClientFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=1389:1420#L43">ClientOption</a>
+				<a class="permalink" href="index.html#ClientOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientOption sets an optional parameter for clients.
+
+			<pre>type ClientOption func(*<a href="index.html#Client">Client</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BufferedStream">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=2817:2864#L75">BufferedStream</a>
+					<a class="permalink" href="index.html#BufferedStream">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BufferedStream(buffered <a href="../../../../../builtin/index.html#bool">bool</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>BufferedStream sets whether the HTTP response body is left open, allowing it
+to be read from later. Useful for transporting a file as a buffered stream.
+That body has to be drained and closed to properly end the request.
+
+				
+				
+			
+				
+				<h3 id="ClientAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=2111:2169#L61">ClientAfter</a>
+					<a class="permalink" href="index.html#ClientAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientAfter(after ...<a href="index.html#ClientResponseFunc">ClientResponseFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientAfter adds one or more ClientResponseFuncs, which are applied to the
+incoming HTTP response prior to it being decoded. This is useful for
+obtaining anything off of the response and adding it into the context prior
+to decoding.
+
+				
+				
+			
+				
+				<h3 id="ClientBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=1740:1793#L53">ClientBefore</a>
+					<a class="permalink" href="index.html#ClientBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientBefore adds one or more RequestFuncs to be applied to the outgoing HTTP
+request before it&apos;s invoked.
+
+				
+				
+			
+				
+				<h3 id="ClientFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=2454:2513#L68">ClientFinalizer</a>
+					<a class="permalink" href="index.html#ClientFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ClientFinalizer(f ...<a href="index.html#ClientFinalizerFunc">ClientFinalizerFunc</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>ClientFinalizer adds one or more ClientFinalizerFuncs to be executed at the
+end of every HTTP request. Finalizers are executed in the order in which they
+were added. By default, no finalizer is registered.
+
+				
+				
+			
+				
+				<h3 id="SetClient">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=1529:1575#L47">SetClient</a>
+					<a class="permalink" href="index.html#SetClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetClient(client <a href="index.html#HTTPClient">HTTPClient</a>) <a href="index.html#ClientOption">ClientOption</a></pre>
+				<p>SetClient sets the underlying HTTP client used for requests.
+By default, http.DefaultClient is used.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=936:1013#L12">ClientResponseFunc</a>
+				<a class="permalink" href="index.html#ClientResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ClientResponseFunc may take information from an HTTP request and make the
+response available for consumption. ClientResponseFuncs are only executed in
+clients, after a request has been made, but prior to it being decoded.
+
+			<pre>type ClientResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Response">Response</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="CreateRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go?s=1092:1172#L14">CreateRequestFunc</a>
+				<a class="permalink" href="index.html#CreateRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CreateRequestFunc creates an outgoing HTTP request based on the passed
+request object. It&apos;s designed to be used in HTTP clients, for client-side
+endpoints. It&apos;s a more powerful version of EncodeRequestFunc, and can be used
+if more fine-grained control of the HTTP request is required.
+
+			<pre>type CreateRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, interface{}) (*<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go?s=342:434#L2">DecodeRequestFunc</a>
+				<a class="permalink" href="index.html#DecodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeRequestFunc extracts a user-domain request object from an HTTP
+request object. It&apos;s designed to be used in HTTP servers, for server-side
+endpoints. One straightforward DecodeRequestFunc could be something that
+JSON decodes from the request body to the concrete request type.
+
+			<pre>type DecodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) (request interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DecodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go?s=1842:1937#L26">DecodeResponseFunc</a>
+				<a class="permalink" href="index.html#DecodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DecodeResponseFunc extracts a user-domain response object from an HTTP
+response object. It&apos;s designed to be used in HTTP clients, for client-side
+endpoints. One straightforward DecodeResponseFunc could be something that
+JSON decodes from the response body to the concrete response type.
+
+			<pre>type DecodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Response">Response</a>) (response interface{}, err <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeRequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go?s=715:793#L8">EncodeRequestFunc</a>
+				<a class="permalink" href="index.html#EncodeRequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeRequestFunc encodes the passed request object into the HTTP request
+object. It&apos;s designed to be used in HTTP clients, for client-side
+endpoints. One straightforward EncodeRequestFunc could be something that JSON
+encodes the object directly to the request body.
+
+			<pre>type EncodeRequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EncodeResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/encode_decode.go?s=1456:1541#L20">EncodeResponseFunc</a>
+				<a class="permalink" href="index.html#EncodeResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EncodeResponseFunc encodes the passed response object to the HTTP response
+writer. It&apos;s designed to be used in HTTP servers, for server-side
+endpoints. One straightforward EncodeResponseFunc could be something that
+JSON encodes the object directly to the response body.
+
+			<pre>type EncodeResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, interface{}) <a href="../../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorEncoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=4415:4492#L133">ErrorEncoder</a>
+				<a class="permalink" href="index.html#ErrorEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorEncoder is responsible for encoding an error to the ResponseWriter.
+Users are encouraged to use custom ErrorEncoders to encode HTTP errors to
+their clients, and will likely want to pass and check for their own error
+types. See the example shipping/handling service.
+
+			<pre>type ErrorEncoder func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, err <a href="../../../../../builtin/index.html#error">error</a>, w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="HTTPClient">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/client.go?s=212:288#L7">HTTPClient</a>
+				<a class="permalink" href="index.html#HTTPClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>HTTPClient is an interface that models *http.Client.
+
+			<pre>type HTTPClient interface {
+    Do(req *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) (*<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Response">Response</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Headerer">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=7746:7796#L213">Headerer</a>
+				<a class="permalink" href="index.html#Headerer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Headerer is checked by DefaultErrorEncoder. If an error value implements
+Headerer, the provided headers will be applied to the response writer, after
+the Content-Type is set.
+
+			<pre>type Headerer interface {
+    Headers() <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Header">Header</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RequestFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=324:393#L2">RequestFunc</a>
+				<a class="permalink" href="index.html#RequestFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RequestFunc may take information from an HTTP request and put it into a
+request context. In Servers, RequestFuncs are executed prior to invoking the
+endpoint. In Clients, RequestFuncs are executed after creating the request
+but prior to invoking the HTTP client.
+
+			<pre>type RequestFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetRequestHeader">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=1571:1621#L29">SetRequestHeader</a>
+					<a class="permalink" href="index.html#SetRequestHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetRequestHeader(key, val <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#RequestFunc">RequestFunc</a></pre>
+				<p>SetRequestHeader returns a RequestFunc that sets the given header.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Server">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=218:500#L4">Server</a>
+				<a class="permalink" href="index.html#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server wraps an endpoint and implements http.Handler.
+
+			<pre>type Server struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=606:728#L17">NewServer</a>
+					<a class="permalink" href="index.html#NewServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewServer(
+    e <a href="../../endpoint/index.html">endpoint</a>.<a href="../../endpoint/index.html#Endpoint">Endpoint</a>,
+    dec <a href="index.html#DecodeRequestFunc">DecodeRequestFunc</a>,
+    enc <a href="index.html#EncodeResponseFunc">EncodeResponseFunc</a>,
+    options ...<a href="index.html#ServerOption">ServerOption</a>,
+) *<a href="index.html#Server">Server</a></pre>
+				<p>NewServer constructs a new server, which implements http.Handler and wraps
+the provided endpoint.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Server.ServeHTTP">func (Server) <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=3242:3307#L85">ServeHTTP</a>
+					<a class="permalink" href="index.html#Server.ServeHTTP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s <a href="index.html#Server">Server</a>) ServeHTTP(w <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>)</pre>
+				<p>ServeHTTP implements http.Handler.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerFinalizerFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=4865:4942#L140">ServerFinalizerFunc</a>
+				<a class="permalink" href="index.html#ServerFinalizerFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerFinalizerFunc can be used to perform work at the end of an HTTP
+request, after the response has been written to the client. The principal
+intended use is for request logging. In addition to the response code
+provided in the function signature, additional response parameters are
+provided in the context under keys with the ContextKeyResponse prefix.
+
+			<pre>type ServerFinalizerFunc func(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, code <a href="../../../../../builtin/index.html#int">int</a>, r *<a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#Request">Request</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerOption">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=1031:1062#L37">ServerOption</a>
+				<a class="permalink" href="index.html#ServerOption">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerOption sets an optional parameter for servers.
+
+			<pre>type ServerOption func(*<a href="index.html#Server">Server</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ServerAfter">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=1436:1494#L47">ServerAfter</a>
+					<a class="permalink" href="index.html#ServerAfter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerAfter(after ...<a href="index.html#ServerResponseFunc">ServerResponseFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerAfter functions are executed on the HTTP response writer after the
+endpoint is invoked, but before anything is written to the client.
+
+				
+				
+			
+				
+				<h3 id="ServerBefore">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=1164:1217#L41">ServerBefore</a>
+					<a class="permalink" href="index.html#ServerBefore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerBefore(before ...<a href="index.html#RequestFunc">RequestFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerBefore functions are executed on the HTTP request object before the
+request is decoded.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorEncoder">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=1849:1902#L55">ServerErrorEncoder</a>
+					<a class="permalink" href="index.html#ServerErrorEncoder">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorEncoder(ee <a href="index.html#ErrorEncoder">ErrorEncoder</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorEncoder is used to encode errors to the http.ResponseWriter
+whenever they&apos;re encountered in the processing of a request. Clients can
+use this to provide custom error formatting and response codes. By default,
+errors will be written with the DefaultErrorEncoder.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorHandler">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=2826:2899#L74">ServerErrorHandler</a>
+					<a class="permalink" href="index.html#ServerErrorHandler">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorHandler(errorHandler <a href="../index.html">transport</a>.<a href="../index.html#ErrorHandler">ErrorHandler</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorHandler is used to handle non-terminal errors. By default, non-terminal errors
+are ignored. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom ServerErrorEncoder or ServerFinalizer, both of which have access to
+the context.
+
+				
+				
+			
+				
+				<h3 id="ServerErrorLogger">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=2336:2390#L65">ServerErrorLogger</a>
+					<a class="permalink" href="index.html#ServerErrorLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerErrorLogger(logger <a href="../../../log/index.html">log</a>.<a href="../../../log/index.html#Logger">Logger</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerErrorLogger is used to log non-terminal errors. By default, no errors
+are logged. This is intended as a diagnostic measure. Finer-grained control
+of error handling, including logging in more detail, should be performed in a
+custom ServerErrorEncoder or ServerFinalizer, both of which have access to
+the context.
+Deprecated: Use ServerErrorHandler instead.
+
+				
+				
+			
+				
+				<h3 id="ServerFinalizer">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=3071:3130#L80">ServerFinalizer</a>
+					<a class="permalink" href="index.html#ServerFinalizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ServerFinalizer(f ...<a href="index.html#ServerFinalizerFunc">ServerFinalizerFunc</a>) <a href="index.html#ServerOption">ServerOption</a></pre>
+				<p>ServerFinalizer is executed at the end of every HTTP request.
+By default, no finalizer is registered.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ServerResponseFunc">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=621:703#L7">ServerResponseFunc</a>
+				<a class="permalink" href="index.html#ServerResponseFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerResponseFunc may take information from a request context and use it to
+manipulate a ResponseWriter. ServerResponseFuncs are only executed in
+servers, after invoking the endpoint but prior to writing a response.
+
+			<pre>type ServerResponseFunc func(<a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, <a href="../../../../../net/http/index.html">http</a>.<a href="../../../../../net/http/index.html#ResponseWriter">ResponseWriter</a>) <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="SetContentType">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=1122:1180#L16">SetContentType</a>
+					<a class="permalink" href="index.html#SetContentType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetContentType(contentType <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#ServerResponseFunc">ServerResponseFunc</a></pre>
+				<p>SetContentType returns a ServerResponseFunc that sets the Content-Type header
+to the provided value.
+
+				
+				
+			
+				
+				<h3 id="SetResponseHeader">func <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/request_response_funcs.go?s=1319:1377#L21">SetResponseHeader</a>
+					<a class="permalink" href="index.html#SetResponseHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func SetResponseHeader(key, val <a href="../../../../../builtin/index.html#string">string</a>) <a href="index.html#ServerResponseFunc">ServerResponseFunc</a></pre>
+				<p>SetResponseHeader returns a ServerResponseFunc that sets the given header.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StatusCoder">type <a href="http://localhost:6060/src/github.com/go-kit/kit/transport/http/server.go?s=7512:7560#L206">StatusCoder</a>
+				<a class="permalink" href="index.html#StatusCoder">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StatusCoder is checked by DefaultErrorEncoder. If an error value implements
+StatusCoder, the StatusCode will be used when encoding the error. By default,
+StatusInternalServerError (500) is used.
+
+			<pre>type StatusCoder interface {
+    StatusCode() <a href="../../../../../builtin/index.html#int">int</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="jsonrpc/index.html">jsonrpc</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package jsonrpc provides a JSON RPC (v2.0) binding for endpoints.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="proto/index.html">proto</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

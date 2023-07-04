@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>server - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package server
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cosmos/cosmos-sdk/server"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>The commands from the SDK are defined with `cobra` and configured with the
+`viper` package.
+<p>This takes place in the `InterceptConfigsPreRunHandler` function.
+Since the `viper` package is used for configuration the precedence is dictated
+by that package. That is
+<p>1. Command line switches
+2. Environment variables
+3. Files from configuration values
+4. Default values
+<p>The global configuration instance exposed by the `viper` package is not
+used by Cosmos SDK in this function. A new instance of `viper.Viper` is created
+and the following is performed. The environmental variable prefix is set
+to the current program name. Environmental variables consider the underscore
+to be equivalent to the `.` or `-` character. This means that an configuration
+value called `rpc.laddr` would be read from an environmental variable called
+`MYTOOL_RPC_LADDR` if the current program name is `mytool`.
+<p>Running the `InterceptConfigsPreRunHandler` also reads `app.toml`
+and `config.toml` from the home directory under the `config` directory.
+If `config.toml` or `app.toml` do not exist then those files are created
+and populated with default values. `InterceptConfigsPreRunHandler` takes
+two parameters to set/update a custom template to create custom `app.toml`.
+If these parameters are empty, the server then creates a default template
+provided by the SDK.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#AddCommands">func AddCommands(rootCmd *cobra.Command, defaultNodeHome string, appCreator types.AppCreator, appExport types.AppExporter, addStartFlags types.ModuleInitFlags)</a></dd>
+			
+				
+				<dd><a href="index.html#BootstrapStateCmd">func BootstrapStateCmd(appCreator types.AppCreator) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#DefaultBaseappOptions">func DefaultBaseappOptions(appOpts types.AppOptions) []func(*baseapp.BaseApp)</a></dd>
+			
+				
+				<dd><a href="index.html#ExportCmd">func ExportCmd(appExporter types.AppExporter, defaultNodeHome string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#ExternalIP">func ExternalIP() (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#FreeTCPAddr">func FreeTCPAddr() (addr, port string, err error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetAppDBBackend">func GetAppDBBackend(opts types.AppOptions) dbm.BackendType</a></dd>
+			
+				
+				<dd><a href="index.html#GetPruningOptionsFromFlags">func GetPruningOptionsFromFlags(appOpts types.AppOptions) (pruningtypes.PruningOptions, error)</a></dd>
+			
+				
+				<dd><a href="index.html#GetSnapshotStore">func GetSnapshotStore(appOpts types.AppOptions) (*snapshots.Store, error)</a></dd>
+			
+				
+				<dd><a href="index.html#InterceptConfigsPreRunHandler">func InterceptConfigsPreRunHandler(cmd *cobra.Command, customAppConfigTemplate string, customAppConfig interface{}, tmConfig *tmcfg.Config) error</a></dd>
+			
+				
+				<dd><a href="index.html#NewRollbackCmd">func NewRollbackCmd(appCreator types.AppCreator, defaultNodeHome string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#RegisterSwaggerAPI">func RegisterSwaggerAPI(_ client.Context, rtr *mux.Router, swaggerEnabled bool) error</a></dd>
+			
+				
+				<dd><a href="index.html#SetCmdServerContext">func SetCmdServerContext(cmd *cobra.Command, serverCtx *Context) error</a></dd>
+			
+				
+				<dd><a href="index.html#ShowAddressCmd">func ShowAddressCmd() *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#ShowNodeIDCmd">func ShowNodeIDCmd() *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#ShowValidatorCmd">func ShowValidatorCmd() *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#StartCmd">func StartCmd(appCreator types.AppCreator, defaultNodeHome string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="index.html#TrapSignal">func TrapSignal(cleanupFunc func())</a></dd>
+			
+				
+				<dd><a href="index.html#VersionCmd">func VersionCmd() *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Context">type Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GetServerContextFromCmd">func GetServerContextFromCmd(cmd *cobra.Command) *Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewContext">func NewContext(v *viper.Viper, config *tmcfg.Config, logger tmlog.Logger) *Context</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDefaultContext">func NewDefaultContext() *Context</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrorCode">type ErrorCode</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#WaitForQuitSignals">func WaitForQuitSignals() ErrorCode</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorCode.Error">func (e ErrorCode) Error() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/doc.go">doc.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/export.go">export.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/pruning.go">pruning.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/rollback.go">rollback.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/start.go">start.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/swagger.go">swagger.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/test_helpers.go">test_helpers.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go">tm_cmds.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="FlagHeight">FlagHeight</span>           = &#34;height&#34;
+    <span id="FlagForZeroHeight">FlagForZeroHeight</span>    = &#34;for-zero-height&#34;
+    <span id="FlagJailAllowedAddrs">FlagJailAllowedAddrs</span> = &#34;jail-allowed-addrs&#34;
+    <span id="FlagModulesToExport">FlagModulesToExport</span>  = &#34;modules-to-export&#34;
+    <span id="FlagOutputDocument">FlagOutputDocument</span>   = &#34;output-document&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span id="FlagMinGasPrices">FlagMinGasPrices</span>    = &#34;minimum-gas-prices&#34;
+    <span id="FlagHaltHeight">FlagHaltHeight</span>      = &#34;halt-height&#34;
+    <span id="FlagHaltTime">FlagHaltTime</span>        = &#34;halt-time&#34;
+    <span id="FlagInterBlockCache">FlagInterBlockCache</span> = &#34;inter-block-cache&#34;
+    <span id="FlagTrace">FlagTrace</span>           = &#34;trace&#34;
+    <span id="FlagInvCheckPeriod">FlagInvCheckPeriod</span>  = &#34;inv-check-period&#34;
+
+    <span id="FlagPruning">FlagPruning</span>             = &#34;pruning&#34;
+    <span id="FlagPruningKeepRecent">FlagPruningKeepRecent</span>   = &#34;pruning-keep-recent&#34;
+    <span id="FlagPruningInterval">FlagPruningInterval</span>     = &#34;pruning-interval&#34;
+    <span id="FlagIndexEvents">FlagIndexEvents</span>         = &#34;index-events&#34;
+    <span id="FlagMinRetainBlocks">FlagMinRetainBlocks</span>     = &#34;min-retain-blocks&#34;
+    <span id="FlagIAVLCacheSize">FlagIAVLCacheSize</span>       = &#34;iavl-cache-size&#34;
+    <span id="FlagDisableIAVLFastNode">FlagDisableIAVLFastNode</span> = &#34;iavl-disable-fastnode&#34;
+    <span id="FlagIAVLLazyLoading">FlagIAVLLazyLoading</span>     = &#34;iavl-lazy-loading&#34;
+
+    <span class="comment">// state sync-related flags</span>
+    <span id="FlagStateSyncSnapshotInterval">FlagStateSyncSnapshotInterval</span>   = &#34;state-sync.snapshot-interval&#34;
+    <span id="FlagStateSyncSnapshotKeepRecent">FlagStateSyncSnapshotKeepRecent</span> = &#34;state-sync.snapshot-keep-recent&#34;
+
+    <span class="comment">// api-related flags</span>
+    <span id="FlagAPIEnable">FlagAPIEnable</span>             = &#34;api.enable&#34;
+    <span id="FlagAPISwagger">FlagAPISwagger</span>            = &#34;api.swagger&#34;
+    <span id="FlagAPIAddress">FlagAPIAddress</span>            = &#34;api.address&#34;
+    <span id="FlagAPIMaxOpenConnections">FlagAPIMaxOpenConnections</span> = &#34;api.max-open-connections&#34;
+    <span id="FlagRPCReadTimeout">FlagRPCReadTimeout</span>        = &#34;api.rpc-read-timeout&#34;
+    <span id="FlagRPCWriteTimeout">FlagRPCWriteTimeout</span>       = &#34;api.rpc-write-timeout&#34;
+    <span id="FlagRPCMaxBodyBytes">FlagRPCMaxBodyBytes</span>       = &#34;api.rpc-max-body-bytes&#34;
+    <span id="FlagAPIEnableUnsafeCORS">FlagAPIEnableUnsafeCORS</span>   = &#34;api.enabled-unsafe-cors&#34;
+
+    <span class="comment">// mempool flags</span>
+    <span id="FlagMempoolMaxTxs">FlagMempoolMaxTxs</span> = &#34;mempool.max-txs&#34;
+)</pre>
+			
+				<p>ServerContextKey defines the context key used to retrieve a server.Context from
+a command&apos;s Context.
+
+				<pre>const <span id="ServerContextKey">ServerContextKey</span> = <a href="../types/index.html">sdk</a>.<a href="../types/index.html#ContextKey">ContextKey</a>(&#34;server.context&#34;)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AddCommands">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=9247:9406#L290">AddCommands</a>
+				<a class="permalink" href="index.html#AddCommands">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func AddCommands(rootCmd *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a>, defaultNodeHome <a href="../../../../builtin/index.html#string">string</a>, appCreator <a href="types/index.html">types</a>.<a href="types/index.html#AppCreator">AppCreator</a>, appExport <a href="types/index.html">types</a>.<a href="types/index.html#AppExporter">AppExporter</a>, addStartFlags <a href="types/index.html">types</a>.<a href="types/index.html#ModuleInitFlags">ModuleInitFlags</a>)</pre>
+			<p>add server commands
+
+			
+			
+
+		
+			
+			
+			<h2 id="BootstrapStateCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go?s=3397:3463#L120">BootstrapStateCmd</a>
+				<a class="permalink" href="index.html#BootstrapStateCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func BootstrapStateCmd(appCreator <a href="types/index.html">types</a>.<a href="types/index.html#AppCreator">AppCreator</a>) *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="DefaultBaseappOptions">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=12578:12655#L437">DefaultBaseappOptions</a>
+				<a class="permalink" href="index.html#DefaultBaseappOptions">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DefaultBaseappOptions(appOpts <a href="types/index.html">types</a>.<a href="types/index.html#AppOptions">AppOptions</a>) []func(*<a href="../baseapp/index.html">baseapp</a>.<a href="../baseapp/index.html#BaseApp">BaseApp</a>)</pre>
+			<p>DefaultBaseappOptions returns the default baseapp options provided by the Cosmos SDK
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExportCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/export.go?s=565:649#L17">ExportCmd</a>
+				<a class="permalink" href="index.html#ExportCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExportCmd(appExporter <a href="types/index.html">types</a>.<a href="types/index.html#AppExporter">AppExporter</a>, defaultNodeHome <a href="../../../../builtin/index.html#string">string</a>) *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>ExportCmd dumps app state to JSON.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExternalIP">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=10130:10163#L321">ExternalIP</a>
+				<a class="permalink" href="index.html#ExternalIP">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExternalIP() (<a href="../../../../builtin/index.html#string">string</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p><a href="https://stackoverflow.com/questions/23558425/how-do-i-get-the-local-ip-address-in-go">https://stackoverflow.com/questions/23558425/how-do-i-get-the-local-ip-address-in-go</a>
+TODO there must be a better way to get external IP
+
+			
+			
+
+		
+			
+			
+			<h2 id="FreeTCPAddr">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/test_helpers.go?s=186:235#L2">FreeTCPAddr</a>
+				<a class="permalink" href="index.html#FreeTCPAddr">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FreeTCPAddr() (addr, port <a href="../../../../builtin/index.html#string">string</a>, err <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Get a free address for a test tendermint server
+protocol is either tcp, http, etc
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAppDBBackend">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=11468:11527#L384">GetAppDBBackend</a>
+				<a class="permalink" href="index.html#GetAppDBBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetAppDBBackend(opts <a href="types/index.html">types</a>.<a href="types/index.html#AppOptions">AppOptions</a>) <a href="../../../cometbft/cometbft-db/index.html">dbm</a>.<a href="../../../cometbft/cometbft-db/index.html#BackendType">BackendType</a></pre>
+			<p>GetAppDBBackend gets the backend type to use for the application DBs.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetPruningOptionsFromFlags">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/pruning.go?s=411:505#L6">GetPruningOptionsFromFlags</a>
+				<a class="permalink" href="index.html#GetPruningOptionsFromFlags">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetPruningOptionsFromFlags(appOpts <a href="types/index.html">types</a>.<a href="types/index.html#AppOptions">AppOptions</a>) (<a href="../store/pruning/types/index.html">pruningtypes</a>.<a href="../store/pruning/types/index.html#PruningOptions">PruningOptions</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>GetPruningOptionsFromFlags parses command flags and returns the correct
+PruningOptions. If a pruning strategy is provided, that will be parsed and
+returned, otherwise, it is assumed custom pruning options are provided.
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSnapshotStore">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=14491:14564#L493">GetSnapshotStore</a>
+				<a class="permalink" href="index.html#GetSnapshotStore">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetSnapshotStore(appOpts <a href="types/index.html">types</a>.<a href="types/index.html#AppOptions">AppOptions</a>) (*<a href="../snapshots/index.html">snapshots</a>.<a href="../snapshots/index.html#Store">Store</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="InterceptConfigsPreRunHandler">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=3423:3568#L112">InterceptConfigsPreRunHandler</a>
+				<a class="permalink" href="index.html#InterceptConfigsPreRunHandler">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InterceptConfigsPreRunHandler(cmd *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a>, customAppConfigTemplate <a href="../../../../builtin/index.html#string">string</a>, customAppConfig interface{}, tmConfig *<a href="../../../cometbft/cometbft/config/index.html">tmcfg</a>.<a href="../../../cometbft/cometbft/config/index.html#Config">Config</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>InterceptConfigsPreRunHandler performs a pre-run function for the root daemon
+application command. It will create a Viper literal and a default server
+Context. The server Tendermint configuration will either be read and parsed
+or created and saved to disk, where the server Context is updated to reflect
+the Tendermint configuration. It takes custom app config template and config
+settings to create a custom Tendermint configuration. If the custom template
+is empty, it uses default-template provided by the server. The Viper literal
+is used to read and parse the application configuration. Command handlers can
+fetch the server Context to get the Tendermint configuration or to get access
+to Viper.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewRollbackCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/rollback.go?s=405:492#L6">NewRollbackCmd</a>
+				<a class="permalink" href="index.html#NewRollbackCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewRollbackCmd(appCreator <a href="types/index.html">types</a>.<a href="types/index.html#AppCreator">AppCreator</a>, defaultNodeHome <a href="../../../../builtin/index.html#string">string</a>) *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>NewRollbackCmd creates a command to rollback tendermint and multistore state by one height.
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterSwaggerAPI">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/swagger.go?s=293:378#L5">RegisterSwaggerAPI</a>
+				<a class="permalink" href="index.html#RegisterSwaggerAPI">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RegisterSwaggerAPI(_ <a href="../client/index.html">client</a>.<a href="../client/index.html#Context">Context</a>, rtr *<a href="../../../gorilla/mux/index.html">mux</a>.<a href="../../../gorilla/mux/index.html#Router">Router</a>, swaggerEnabled <a href="../../../../builtin/index.html#bool">bool</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>RegisterSwaggerAPI provides a common function which registers swagger route with API Server
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetCmdServerContext">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=6191:6261#L194">SetCmdServerContext</a>
+				<a class="permalink" href="index.html#SetCmdServerContext">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetCmdServerContext(cmd *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a>, serverCtx *<a href="index.html#Context">Context</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>SetCmdServerContext sets a command&apos;s Context value to the provided argument.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ShowAddressCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go?s=2127:2163#L73">ShowAddressCmd</a>
+				<a class="permalink" href="index.html#ShowAddressCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ShowAddressCmd() *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>ShowAddressCmd - show this node&apos;s validator address
+
+			
+			
+
+		
+			
+			
+			<h2 id="ShowNodeIDCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go?s=839:874#L19">ShowNodeIDCmd</a>
+				<a class="permalink" href="index.html#ShowNodeIDCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ShowNodeIDCmd() *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>ShowNodeIDCmd - ported from Tendermint, dump node ID to stdout
+
+			
+			
+
+		
+			
+			
+			<h2 id="ShowValidatorCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go?s=1313:1351#L39">ShowValidatorCmd</a>
+				<a class="permalink" href="index.html#ShowValidatorCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ShowValidatorCmd() *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>ShowValidatorCmd - ported from Tendermint, show this node&apos;s validator info
+
+			
+			
+
+		
+			
+			
+			<h2 id="StartCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/start.go?s=2894:2975#L80">StartCmd</a>
+				<a class="permalink" href="index.html#StartCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func StartCmd(appCreator <a href="types/index.html">types</a>.<a href="types/index.html#AppCreator">AppCreator</a>, defaultNodeHome <a href="../../../../builtin/index.html#string">string</a>) *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>StartCmd runs the service passed in, either stand-alone or in-process with
+Tendermint.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TrapSignal">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=10743:10778#L352">TrapSignal</a>
+				<a class="permalink" href="index.html#TrapSignal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TrapSignal(cleanupFunc func())</pre>
+			<p>TrapSignal traps SIGINT and SIGTERM and terminates the server correctly.
+
+			
+			
+
+		
+			
+			
+			<h2 id="VersionCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/tm_cmds.go?s=2704:2736#L93">VersionCmd</a>
+				<a class="permalink" href="index.html#VersionCmd">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func VersionCmd() *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a></pre>
+			<p>VersionCmd prints tendermint and ABCI version numbers.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Context">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=1275:1362#L41">Context</a>
+				<a class="permalink" href="index.html#Context">&#xb6;</a>
+				
+				
+			</h2>
+			<p>server context
+
+			<pre>type Context struct {
+<span id="Context.Viper"></span>    Viper  *<a href="../../../spf13/viper/index.html">viper</a>.<a href="../../../spf13/viper/index.html#Viper">Viper</a>
+<span id="Context.Config"></span>    Config *<a href="../../../cometbft/cometbft/config/index.html">tmcfg</a>.<a href="../../../cometbft/cometbft/config/index.html#Config">Config</a>
+<span id="Context.Logger"></span>    Logger <a href="../../../cometbft/cometbft/libs/log/index.html">tmlog</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetServerContextFromCmd">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=5904:5961#L184">GetServerContextFromCmd</a>
+					<a class="permalink" href="index.html#GetServerContextFromCmd">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetServerContextFromCmd(cmd *<a href="../../../spf13/cobra/index.html">cobra</a>.<a href="../../../spf13/cobra/index.html#Command">Command</a>) *<a href="index.html#Context">Context</a></pre>
+				<p>GetServerContextFromCmd returns a Context from a command or an empty Context
+if it has not been set.
+
+				
+				
+			
+				
+				<h3 id="NewContext">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=1677:1760#L64">NewContext</a>
+					<a class="permalink" href="index.html#NewContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewContext(v *<a href="../../../spf13/viper/index.html">viper</a>.<a href="../../../spf13/viper/index.html#Viper">Viper</a>, config *<a href="../../../cometbft/cometbft/config/index.html">tmcfg</a>.<a href="../../../cometbft/cometbft/config/index.html#Config">Config</a>, logger <a href="../../../cometbft/cometbft/libs/log/index.html">tmlog</a>.<a href="../../../cometbft/cometbft/libs/log/index.html#Logger">Logger</a>) *<a href="index.html#Context">Context</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewDefaultContext">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=1522:1555#L56">NewDefaultContext</a>
+					<a class="permalink" href="index.html#NewDefaultContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDefaultContext() *<a href="index.html#Context">Context</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ErrorCode">type <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=1417:1452#L48">ErrorCode</a>
+				<a class="permalink" href="index.html#ErrorCode">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ErrorCode contains the exit code for server exit.
+
+			<pre>type ErrorCode struct {
+<span id="ErrorCode.Code"></span>    Code <a href="../../../../builtin/index.html#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WaitForQuitSignals">func <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=11195:11230#L376">WaitForQuitSignals</a>
+					<a class="permalink" href="index.html#WaitForQuitSignals">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WaitForQuitSignals() <a href="index.html#ErrorCode">ErrorCode</a></pre>
+				<p>WaitForQuitSignals waits for SIGINT and SIGTERM and returns.
+
+				
+				
+			
+
+			
+				
+				<h3 id="ErrorCode.Error">func (ErrorCode) <a href="http://localhost:6060/src/github.com/cosmos/cosmos-sdk/server/util.go?s=1454:1487#L52">Error</a>
+					<a class="permalink" href="index.html#ErrorCode.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrorCode">ErrorCode</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="api/index.html">api</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="cmd/index.html">cmd</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="config/index.html">config</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="grpc/index.html">grpc</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="grpc/gogoreflection/index.html">gogoreflection</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package gogoreflection implements gRPC reflection for gogoproto consumers the normal reflection library does not work as it points to a different singleton registry.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="grpc/reflection/index.html">reflection</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="grpc/reflection/v2alpha1/index.html">v2alpha1</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package v2alpha1 is a reverse proxy.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="log/index.html">log</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mock/index.html">mock</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="types/index.html">types</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>state - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package state
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/state"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ABCIResponsesResultsHash">func ABCIResponsesResultsHash(ar *cmtstate.ABCIResponses) []byte</a></dd>
+			
+				
+				<dd><a href="index.html#ExecCommitBlock">func ExecCommitBlock(appConnConsensus proxy.AppConnConsensus, block *types.Block, logger log.Logger, store Store, initialHeight int64) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MakeGenesisDocFromFile">func MakeGenesisDocFromFile(genDocFile string) (*types.GenesisDoc, error)</a></dd>
+			
+				
+				<dd><a href="index.html#MedianTime">func MedianTime(commit *types.Commit, validators *types.ValidatorSet) time.Time</a></dd>
+			
+				
+				<dd><a href="index.html#Rollback">func Rollback(bs BlockStore, ss Store, removeBlock bool) (int64, []byte, error)</a></dd>
+			
+				
+				<dd><a href="index.html#TxPostCheck">func TxPostCheck(state State) mempl.PostCheckFunc</a></dd>
+			
+				
+				<dd><a href="index.html#TxPreCheck">func TxPreCheck(state State) mempl.PreCheckFunc</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BlockExecutor">type BlockExecutor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBlockExecutor">func NewBlockExecutor(stateStore Store, logger log.Logger, proxyApp proxy.AppConnConsensus, mempool mempool.Mempool, evpool EvidencePool, options ...BlockExecutorOption) *BlockExecutor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.ApplyBlock">func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, block *types.Block) (State, int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.Commit">func (blockExec *BlockExecutor) Commit(state State, block *types.Block, deliverTxResponses []*abci.ResponseDeliverTx) ([]byte, int64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.CreateProposalBlock">func (blockExec *BlockExecutor) CreateProposalBlock(height int64, state State, commit *types.Commit, randaoReveal []byte, proposerAddr []byte) (*types.Block, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.ProcessProposal">func (blockExec *BlockExecutor) ProcessProposal(block *types.Block, state State) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.SetEventBus">func (blockExec *BlockExecutor) SetEventBus(eventBus types.BlockEventPublisher)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.Store">func (blockExec *BlockExecutor) Store() Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutor.ValidateBlock">func (blockExec *BlockExecutor) ValidateBlock(state State, block *types.Block) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BlockExecutorOption">type BlockExecutorOption</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockExecutorWithMetrics">func BlockExecutorWithMetrics(metrics *Metrics) BlockExecutorOption</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#BlockStore">type BlockStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EmptyEvidencePool">type EmptyEvidencePool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyEvidencePool.AddEvidence">func (EmptyEvidencePool) AddEvidence(types.Evidence) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyEvidencePool.CheckEvidence">func (EmptyEvidencePool) CheckEvidence(evList types.EvidenceList) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyEvidencePool.PendingEvidence">func (EmptyEvidencePool) PendingEvidence(maxBytes int64) (ev []types.Evidence, size int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyEvidencePool.ReportConflictingVotes">func (EmptyEvidencePool) ReportConflictingVotes(voteA, voteB *types.Vote)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyEvidencePool.Update">func (EmptyEvidencePool) Update(State, types.EvidenceList)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrAppBlockHeightTooHigh">type ErrAppBlockHeightTooHigh</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrAppBlockHeightTooHigh.Error">func (e ErrAppBlockHeightTooHigh) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrAppBlockHeightTooLow">type ErrAppBlockHeightTooLow</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrAppBlockHeightTooLow.Error">func (e ErrAppBlockHeightTooLow) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrBlockHashMismatch">type ErrBlockHashMismatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrBlockHashMismatch.Error">func (e ErrBlockHashMismatch) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrInvalidBlock">type ErrInvalidBlock</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrLastStateMismatch">type ErrLastStateMismatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrLastStateMismatch.Error">func (e ErrLastStateMismatch) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrNoABCIResponsesForHeight">type ErrNoABCIResponsesForHeight</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNoABCIResponsesForHeight.Error">func (e ErrNoABCIResponsesForHeight) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrNoConsensusParamsForHeight">type ErrNoConsensusParamsForHeight</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNoConsensusParamsForHeight.Error">func (e ErrNoConsensusParamsForHeight) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrNoValSetForHeight">type ErrNoValSetForHeight</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrNoValSetForHeight.Error">func (e ErrNoValSetForHeight) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrProxyAppConn">type ErrProxyAppConn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ErrStateMismatch">type ErrStateMismatch</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrStateMismatch.Error">func (e ErrStateMismatch) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ErrUnknownBlock">type ErrUnknownBlock</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrUnknownBlock.Error">func (e ErrUnknownBlock) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#EvidencePool">type EvidencePool</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Metrics">type Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NopMetrics">func NopMetrics() *Metrics</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#PrometheusMetrics">func PrometheusMetrics(namespace string, labelsAndValues ...string) *Metrics</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#State">type State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FromProto">func FromProto(pb *cmtstate.State) (*State, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MakeGenesisState">func MakeGenesisState(genDoc *types.GenesisDoc) (State, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MakeGenesisStateFromFile">func MakeGenesisStateFromFile(genDocFile string) (State, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.Bytes">func (state State) Bytes() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.Copy">func (state State) Copy() State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.Equals">func (state State) Equals(state2 State) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.IsEmpty">func (state State) IsEmpty() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.MakeBlock">func (state State) MakeBlock(height int64, txs []types.Tx, lastCommit *types.Commit, evidence []types.Evidence, randaoReveal []byte, proposerAddress []byte) *types.Block</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.ToProto">func (state *State) ToProto() (*cmtstate.State, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Store">type Store</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStore">func NewStore(db dbm.DB, options StoreOptions) Store</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StoreOptions">type StoreOptions</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go">execution.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/metrics.gen.go">metrics.gen.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/rollback.go">rollback.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go">services.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go">state.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/store.go">store.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/tx_filter.go">tx_filter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/validation.go">validation.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// MetricsSubsystem is a subsystem shared by all metrics exposed by this</span>
+    <span class="comment">// package.</span>
+    <span id="MetricsSubsystem">MetricsSubsystem</span> = &#34;state&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="ErrABCIResponsesNotPersisted">ErrABCIResponsesNotPersisted</span> = <a href="../../../../errors/index.html">errors</a>.<a href="../../../../errors/index.html#New">New</a>(&#34;node is not persisting abci responses&#34;)</pre>
+			
+				<p>InitStateVersion sets the Consensus.Block and Software versions,
+but leaves the Consensus.App version blank.
+The Consensus.App version will be set during the Handshake, once
+we hear from the app what protocol version it is running.
+
+				<pre>var <span id="InitStateVersion">InitStateVersion</span> = <a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#Version">Version</a>{
+    <a href="../proto/tendermint/state/index.html#Version.Consensus">Consensus</a>: <a href="../proto/tendermint/version/index.html">cmtversion</a>.<a href="../proto/tendermint/version/index.html#Consensus">Consensus</a>{
+        <a href="../proto/tendermint/version/index.html#Consensus.Block">Block</a>: <a href="../version/index.html">version</a>.<a href="../version/index.html#BlockProtocol">BlockProtocol</a>,
+        <a href="../proto/tendermint/version/index.html#Consensus.App">App</a>:   0,
+    },
+    <a href="../proto/tendermint/state/index.html#Version.Software">Software</a>: <a href="../version/index.html">version</a>.<a href="../version/index.html#TMCoreSemVer">TMCoreSemVer</a>,
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="ABCIResponsesResultsHash">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/store.go?s=10831:10895#L362">ABCIResponsesResultsHash</a>
+				<a class="permalink" href="index.html#ABCIResponsesResultsHash">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ABCIResponsesResultsHash(ar *<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#ABCIResponses">ABCIResponses</a>) []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+			<p>ABCIResponsesResultsHash returns the root hash of a Merkle tree of
+ResponseDeliverTx responses (see ABCIResults.Hash)
+<p>See merkle.SimpleHashFromByteSlices
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExecCommitBlock">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=19707:19865#L597">ExecCommitBlock</a>
+				<a class="permalink" href="index.html#ExecCommitBlock">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ExecCommitBlock(
+    appConnConsensus <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConnConsensus">AppConnConsensus</a>,
+    block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>,
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+    store <a href="index.html#Store">Store</a>,
+    initialHeight <a href="../../../../builtin/index.html#int64">int64</a>,
+) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>ExecCommitBlock executes and commits a block on the proxyApp without validating or mutating the state.
+It returns the application root hash (result of abci.Commit).
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeGenesisDocFromFile">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=9646:9719#L315">MakeGenesisDocFromFile</a>
+				<a class="permalink" href="index.html#MakeGenesisDocFromFile">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MakeGenesisDocFromFile(genDocFile <a href="../../../../builtin/index.html#string">string</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>MakeGenesisDocFromFile reads and unmarshals genesis doc from the given file.
+
+			
+			
+
+		
+			
+			
+			<h2 id="MedianTime">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=8505:8584#L280">MedianTime</a>
+				<a class="permalink" href="index.html#MedianTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MedianTime(commit *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>, validators *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>) <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a></pre>
+			<p>MedianTime computes a median time for a given Commit (based on Timestamp field of votes messages) and the
+corresponding validator set. The computed time is always between timestamps of
+the votes sent by honest processes, i.e., a faulty processes can not arbitrarily increase or decrease the
+computed value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Rollback">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/rollback.go?s=395:474#L5">Rollback</a>
+				<a class="permalink" href="index.html#Rollback">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Rollback(bs <a href="index.html#BlockStore">BlockStore</a>, ss <a href="index.html#Store">Store</a>, removeBlock <a href="../../../../builtin/index.html#bool">bool</a>) (<a href="../../../../builtin/index.html#int64">int64</a>, []<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Rollback overwrites the current CometBFT state (height n) with the most
+recent previous state (height n - 1).
+Note that this function does not affect application state.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TxPostCheck">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/tx_filter.go?s=648:697#L10">TxPostCheck</a>
+				<a class="permalink" href="index.html#TxPostCheck">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TxPostCheck(state <a href="index.html#State">State</a>) <a href="../mempool/index.html">mempl</a>.<a href="../mempool/index.html#PostCheckFunc">PostCheckFunc</a></pre>
+			<p>TxPostCheck returns a function to filter transactions after processing.
+The function limits the gas wanted by a transaction to the block&apos;s maximum total gas.
+
+			
+			
+
+		
+			
+			
+			<h2 id="TxPreCheck">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/tx_filter.go?s=269:316#L1">TxPreCheck</a>
+				<a class="permalink" href="index.html#TxPreCheck">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func TxPreCheck(state <a href="index.html#State">State</a>) <a href="../mempool/index.html">mempl</a>.<a href="../mempool/index.html#PreCheckFunc">PreCheckFunc</a></pre>
+			<p>TxPreCheck returns a function to filter transactions before processing.
+The function limits the size of a transaction to the block&apos;s maximum data size.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BlockExecutor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=818:1223#L14">BlockExecutor</a>
+				<a class="permalink" href="index.html#BlockExecutor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockExecutor provides the context and accessories for properly executing a block.
+
+			<pre>type BlockExecutor struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBlockExecutor">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=1532:1725#L44">NewBlockExecutor</a>
+					<a class="permalink" href="index.html#NewBlockExecutor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBlockExecutor(
+    stateStore <a href="index.html#Store">Store</a>,
+    logger <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>,
+    proxyApp <a href="../proxy/index.html">proxy</a>.<a href="../proxy/index.html#AppConnConsensus">AppConnConsensus</a>,
+    mempool <a href="../mempool/index.html">mempool</a>.<a href="../mempool/index.html#Mempool">Mempool</a>,
+    evpool <a href="index.html#EvidencePool">EvidencePool</a>,
+    options ...<a href="index.html#BlockExecutorOption">BlockExecutorOption</a>,
+) *<a href="index.html#BlockExecutor">BlockExecutor</a></pre>
+				<p>NewBlockExecutor returns a new BlockExecutor with a NopEventBus.
+Call SetEventBus to provide one.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BlockExecutor.ApplyBlock">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=6354:6478#L179">ApplyBlock</a>
+					<a class="permalink" href="index.html#BlockExecutor.ApplyBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) ApplyBlock(
+    state <a href="index.html#State">State</a>, blockID <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockID">BlockID</a>, block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>,
+) (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ApplyBlock validates the block against the state, executes it against the app,
+fires the relevant events, commits the app, and saves the new state and responses.
+It returns the new state and the block height to retain (pruning older blocks).
+It&apos;s the only function that needs to be called
+from outside this package to process and commit an entire block.
+It takes a blockID to avoid recomputing the parts hash.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.Commit">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=9244:9390#L263">Commit</a>
+					<a class="permalink" href="index.html#BlockExecutor.Commit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) Commit(
+    state <a href="index.html#State">State</a>,
+    block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>,
+    deliverTxResponses []*<a href="../abci/types/index.html">abci</a>.<a href="../abci/types/index.html#ResponseDeliverTx">ResponseDeliverTx</a>,
+) ([]<a href="../../../../builtin/index.html#byte">byte</a>, <a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Commit locks the mempool, runs the ABCI Commit message, and updates the
+mempool.
+It returns the result of calling abci.Commit (the AppHash) and the height to retain (if any).
+The Mempool must be locked during commit and update because state is
+typically reset on Commit and old txs must be replayed against committed
+state before new txs are run in the mempool, lest they be invalid.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.CreateProposalBlock">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=2669:2841#L85">CreateProposalBlock</a>
+					<a class="permalink" href="index.html#BlockExecutor.CreateProposalBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) CreateProposalBlock(
+    height <a href="../../../../builtin/index.html#int64">int64</a>,
+    state <a href="index.html#State">State</a>,
+    commit *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>,
+    randaoReveal []<a href="../../../../builtin/index.html#byte">byte</a>,
+    proposerAddr []<a href="../../../../builtin/index.html#byte">byte</a>,
+) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>CreateProposalBlock calls state.MakeBlock with evidence from the evpool
+and txs from the mempool. The max bytes must be big enough to fit the commit.
+Up to 1/10th of the block space is allocated for maximum sized evidence.
+The rest is given to txs, up to the max gas.
+<p>Contract: application will not return more bytes than are sent over the wire.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.ProcessProposal">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=4629:4728#L137">ProcessProposal</a>
+					<a class="permalink" href="index.html#BlockExecutor.ProcessProposal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) ProcessProposal(
+    block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>,
+    state <a href="index.html#State">State</a>,
+) (<a href="../../../../builtin/index.html#bool">bool</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.SetEventBus">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=2189:2268#L75">SetEventBus</a>
+					<a class="permalink" href="index.html#BlockExecutor.SetEventBus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) SetEventBus(eventBus <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockEventPublisher">BlockEventPublisher</a>)</pre>
+				<p>SetEventBus - sets the event bus for publishing block related events.
+If not called, it defaults to types.NopEventBus.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.Store">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=1989:2034#L69">Store</a>
+					<a class="permalink" href="index.html#BlockExecutor.Store">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) Store() <a href="index.html#Store">Store</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="BlockExecutor.ValidateBlock">func (*BlockExecutor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=5703:5787#L165">ValidateBlock</a>
+					<a class="permalink" href="index.html#BlockExecutor.ValidateBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (blockExec *<a href="index.html#BlockExecutor">BlockExecutor</a>) ValidateBlock(state <a href="index.html#State">State</a>, block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>ValidateBlock validates the given block against the given state.
+If the block is invalid, it returns an error.
+Validation does not mutate state, but does require historical information from the stateDB,
+ie. to verify evidence from a validator at an old height.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BlockExecutorOption">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=1225:1279#L34">BlockExecutorOption</a>
+				<a class="permalink" href="index.html#BlockExecutorOption">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BlockExecutorOption func(executor *<a href="index.html#BlockExecutor">BlockExecutor</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="BlockExecutorWithMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/execution.go?s=1281:1348#L36">BlockExecutorWithMetrics</a>
+					<a class="permalink" href="index.html#BlockExecutorWithMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func BlockExecutorWithMetrics(metrics *<a href="index.html#Metrics">Metrics</a>) <a href="index.html#BlockExecutorOption">BlockExecutorOption</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="BlockStore">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=455:1040#L8">BlockStore</a>
+				<a class="permalink" href="index.html#BlockStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockStore defines the interface used by the ConsensusState.
+
+			<pre>type BlockStore interface {
+    Base() <a href="../../../../builtin/index.html#int64">int64</a>
+    Height() <a href="../../../../builtin/index.html#int64">int64</a>
+    Size() <a href="../../../../builtin/index.html#int64">int64</a>
+
+    LoadBaseMeta() *<a href="../types/index.html">types</a>.<a href="../types/index.html#BlockMeta">BlockMeta</a>
+    LoadBlockMeta(height <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#BlockMeta">BlockMeta</a>
+    LoadBlock(height <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>
+
+    SaveBlock(block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>, blockParts *<a href="../types/index.html">types</a>.<a href="../types/index.html#PartSet">PartSet</a>, seenCommit *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>)
+
+    PruneBlocks(height <a href="../../../../builtin/index.html#int64">int64</a>) (<a href="../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../builtin/index.html#error">error</a>)
+
+    LoadBlockByHash(hash []<a href="../../../../builtin/index.html#byte">byte</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>
+    LoadBlockMetaByHash(hash []<a href="../../../../builtin/index.html#byte">byte</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#BlockMeta">BlockMeta</a>
+    LoadBlockPart(height <a href="../../../../builtin/index.html#int64">int64</a>, index <a href="../../../../builtin/index.html#int">int</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Part">Part</a>
+
+    LoadBlockCommit(height <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>
+    LoadSeenCommit(height <a href="../../../../builtin/index.html#int64">int64</a>) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>
+
+    DeleteLatestBlock() <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EmptyEvidencePool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1622:1653#L46">EmptyEvidencePool</a>
+				<a class="permalink" href="index.html#EmptyEvidencePool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EmptyEvidencePool is an empty implementation of EvidencePool, useful for testing. It also complies
+to the consensus evidence pool interface
+
+			<pre>type EmptyEvidencePool struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="EmptyEvidencePool.AddEvidence">func (EmptyEvidencePool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1765:1823#L51">AddEvidence</a>
+					<a class="permalink" href="index.html#EmptyEvidencePool.AddEvidence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#EmptyEvidencePool">EmptyEvidencePool</a>) AddEvidence(<a href="../types/index.html">types</a>.<a href="../types/index.html#Evidence">Evidence</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EmptyEvidencePool.CheckEvidence">func (EmptyEvidencePool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1931:2002#L53">CheckEvidence</a>
+					<a class="permalink" href="index.html#EmptyEvidencePool.CheckEvidence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#EmptyEvidencePool">EmptyEvidencePool</a>) CheckEvidence(evList <a href="../types/index.html">types</a>.<a href="../types/index.html#EvidenceList">EvidenceList</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EmptyEvidencePool.PendingEvidence">func (EmptyEvidencePool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1655:1745#L48">PendingEvidence</a>
+					<a class="permalink" href="index.html#EmptyEvidencePool.PendingEvidence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#EmptyEvidencePool">EmptyEvidencePool</a>) PendingEvidence(maxBytes <a href="../../../../builtin/index.html#int64">int64</a>) (ev []<a href="../types/index.html">types</a>.<a href="../types/index.html#Evidence">Evidence</a>, size <a href="../../../../builtin/index.html#int64">int64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EmptyEvidencePool.ReportConflictingVotes">func (EmptyEvidencePool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=2020:2093#L54">ReportConflictingVotes</a>
+					<a class="permalink" href="index.html#EmptyEvidencePool.ReportConflictingVotes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#EmptyEvidencePool">EmptyEvidencePool</a>) ReportConflictingVotes(voteA, voteB *<a href="../types/index.html">types</a>.<a href="../types/index.html#Vote">Vote</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EmptyEvidencePool.Update">func (EmptyEvidencePool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1854:1912#L52">Update</a>
+					<a class="permalink" href="index.html#EmptyEvidencePool.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="index.html#EmptyEvidencePool">EmptyEvidencePool</a>) Update(<a href="index.html#State">State</a>, <a href="../types/index.html">types</a>.<a href="../types/index.html#EvidenceList">EvidenceList</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrAppBlockHeightTooHigh">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=232:306#L12">ErrAppBlockHeightTooHigh</a>
+				<a class="permalink" href="index.html#ErrAppBlockHeightTooHigh">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrAppBlockHeightTooHigh struct {
+<span id="ErrAppBlockHeightTooHigh.CoreHeight"></span>    CoreHeight <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrAppBlockHeightTooHigh.AppHeight"></span>    AppHeight  <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrAppBlockHeightTooHigh.Error">func (ErrAppBlockHeightTooHigh) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=990:1038#L59">Error</a>
+					<a class="permalink" href="index.html#ErrAppBlockHeightTooHigh.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrAppBlockHeightTooHigh">ErrAppBlockHeightTooHigh</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrAppBlockHeightTooLow">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=309:380#L17">ErrAppBlockHeightTooLow</a>
+				<a class="permalink" href="index.html#ErrAppBlockHeightTooLow">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrAppBlockHeightTooLow struct {
+<span id="ErrAppBlockHeightTooLow.AppHeight"></span>    AppHeight <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrAppBlockHeightTooLow.StoreBase"></span>    StoreBase <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrAppBlockHeightTooLow.Error">func (ErrAppBlockHeightTooLow) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1141:1188#L63">Error</a>
+					<a class="permalink" href="index.html#ErrAppBlockHeightTooLow.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrAppBlockHeightTooLow">ErrAppBlockHeightTooLow</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrBlockHashMismatch">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=144:229#L6">ErrBlockHashMismatch</a>
+				<a class="permalink" href="index.html#ErrBlockHashMismatch">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrBlockHashMismatch struct {
+<span id="ErrBlockHashMismatch.CoreHash"></span>    CoreHash []<a href="../../../../builtin/index.html#byte">byte</a>
+<span id="ErrBlockHashMismatch.AppHash"></span>    AppHash  []<a href="../../../../builtin/index.html#byte">byte</a>
+<span id="ErrBlockHashMismatch.Height"></span>    Height   <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrBlockHashMismatch.Error">func (ErrBlockHashMismatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=802:846#L50">Error</a>
+					<a class="permalink" href="index.html#ErrBlockHashMismatch.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrBlockHashMismatch">ErrBlockHashMismatch</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrInvalidBlock">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=52:73#L1">ErrInvalidBlock</a>
+				<a class="permalink" href="index.html#ErrInvalidBlock">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrInvalidBlock <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrLastStateMismatch">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=383:462#L22">ErrLastStateMismatch</a>
+				<a class="permalink" href="index.html#ErrLastStateMismatch">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrLastStateMismatch struct {
+<span id="ErrLastStateMismatch.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="ErrLastStateMismatch.Core"></span>    Core   []<a href="../../../../builtin/index.html#byte">byte</a>
+<span id="ErrLastStateMismatch.App"></span>    App    []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrLastStateMismatch.Error">func (ErrLastStateMismatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1304:1348#L67">Error</a>
+					<a class="permalink" href="index.html#ErrLastStateMismatch.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrLastStateMismatch">ErrLastStateMismatch</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrNoABCIResponsesForHeight">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=641:695#L41">ErrNoABCIResponsesForHeight</a>
+				<a class="permalink" href="index.html#ErrNoABCIResponsesForHeight">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrNoABCIResponsesForHeight struct {
+<span id="ErrNoABCIResponsesForHeight.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrNoABCIResponsesForHeight.Error">func (ErrNoABCIResponsesForHeight) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1937:1988#L92">Error</a>
+					<a class="permalink" href="index.html#ErrNoABCIResponsesForHeight.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrNoABCIResponsesForHeight">ErrNoABCIResponsesForHeight</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrNoConsensusParamsForHeight">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=582:638#L37">ErrNoConsensusParamsForHeight</a>
+				<a class="permalink" href="index.html#ErrNoConsensusParamsForHeight">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrNoConsensusParamsForHeight struct {
+<span id="ErrNoConsensusParamsForHeight.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrNoConsensusParamsForHeight.Error">func (ErrNoConsensusParamsForHeight) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1798:1851#L88">Error</a>
+					<a class="permalink" href="index.html#ErrNoConsensusParamsForHeight.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrNoConsensusParamsForHeight">ErrNoConsensusParamsForHeight</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrNoValSetForHeight">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=532:579#L33">ErrNoValSetForHeight</a>
+				<a class="permalink" href="index.html#ErrNoValSetForHeight">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrNoValSetForHeight struct {
+<span id="ErrNoValSetForHeight.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrNoValSetForHeight.Error">func (ErrNoValSetForHeight) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1671:1715#L84">Error</a>
+					<a class="permalink" href="index.html#ErrNoValSetForHeight.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrNoValSetForHeight">ErrNoValSetForHeight</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrProxyAppConn">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=75:96#L1">ErrProxyAppConn</a>
+				<a class="permalink" href="index.html#ErrProxyAppConn">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrProxyAppConn <a href="../../../../builtin/index.html#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ErrStateMismatch">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=465:529#L28">ErrStateMismatch</a>
+				<a class="permalink" href="index.html#ErrStateMismatch">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrStateMismatch struct {
+<span id="ErrStateMismatch.Got"></span>    Got      *<a href="index.html#State">State</a>
+<span id="ErrStateMismatch.Expected"></span>    Expected *<a href="index.html#State">State</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrStateMismatch.Error">func (ErrStateMismatch) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=1492:1532#L76">Error</a>
+					<a class="permalink" href="index.html#ErrStateMismatch.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrStateMismatch">ErrStateMismatch</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ErrUnknownBlock">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=99:141#L2">ErrUnknownBlock</a>
+				<a class="permalink" href="index.html#ErrUnknownBlock">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrUnknownBlock struct {
+<span id="ErrUnknownBlock.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrUnknownBlock.Error">func (ErrUnknownBlock) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/errors.go?s=699:738#L46">Error</a>
+					<a class="permalink" href="index.html#ErrUnknownBlock.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="index.html#ErrUnknownBlock">ErrUnknownBlock</a>) Error() <a href="../../../../builtin/index.html#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EvidencePool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/services.go?s=1265:1474#L37">EvidencePool</a>
+				<a class="permalink" href="index.html#EvidencePool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EvidencePool defines the EvidencePool interface used by State.
+
+			<pre>type EvidencePool interface {
+    PendingEvidence(maxBytes <a href="../../../../builtin/index.html#int64">int64</a>) (ev []<a href="../types/index.html">types</a>.<a href="../types/index.html#Evidence">Evidence</a>, size <a href="../../../../builtin/index.html#int64">int64</a>)
+    AddEvidence(<a href="../types/index.html">types</a>.<a href="../types/index.html#Evidence">Evidence</a>) <a href="../../../../builtin/index.html#error">error</a>
+    Update(<a href="index.html#State">State</a>, <a href="../types/index.html">types</a>.<a href="../types/index.html#EvidenceList">EvidenceList</a>)
+    CheckEvidence(<a href="../types/index.html">types</a>.<a href="../types/index.html#EvidenceList">EvidenceList</a>) <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Metrics">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/metrics.go?s=299:797#L6">Metrics</a>
+				<a class="permalink" href="index.html#Metrics">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Metrics contains metrics exposed by this package.
+
+			<pre>type Metrics struct {
+    <span class="comment">// Time between BeginBlock and EndBlock in ms.</span>
+<span id="Metrics.BlockProcessingTime"></span>    BlockProcessingTime <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Histogram">Histogram</a> `metrics_buckettype:&#34;lin&#34; metrics_bucketsizes:&#34;1, 10, 10&#34;`
+
+<span id="Metrics.ConsensusParamUpdates"></span>    <span class="comment">// ConsensusParamUpdates is the total number of times the application has</span>
+    <span class="comment">// udated the consensus params since process start.</span>
+    ConsensusParamUpdates <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+
+<span id="Metrics.ValidatorSetUpdates"></span>    <span class="comment">// ValidatorSetUpdates is the total number of times the application has</span>
+    <span class="comment">// udated the validator set since process start.</span>
+    ValidatorSetUpdates <a href="../../../go-kit/kit/metrics/index.html">metrics</a>.<a href="../../../go-kit/kit/metrics/index.html#Counter">Counter</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NopMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/metrics.gen.go?s=1480:1506#L30">NopMetrics</a>
+					<a class="permalink" href="index.html#NopMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NopMetrics() *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="PrometheusMetrics">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/metrics.gen.go?s=234:310#L1">PrometheusMetrics</a>
+					<a class="permalink" href="index.html#PrometheusMetrics">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PrometheusMetrics(namespace <a href="../../../../builtin/index.html#string">string</a>, labelsAndValues ...<a href="../../../../builtin/index.html#string">string</a>) *<a href="index.html#Metrics">Metrics</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="State">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=1447:2683#L39">State</a>
+				<a class="permalink" href="index.html#State">&#xb6;</a>
+				
+				
+			</h2>
+			<p>State is a short description of the latest committed block of the consensus protocol.
+It keeps all information necessary to validate new blocks,
+including the last validator set and the consensus params.
+All fields are exposed so the struct can be easily serialized,
+but none of them should be mutated directly.
+Instead, use state.Copy() or state.NextState(...).
+NOTE: not goroutine-safe.
+
+			<pre>type State struct {
+<span id="State.Version"></span>    Version <a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#Version">Version</a>
+
+    <span class="comment">// immutable</span>
+<span id="State.ChainID"></span>    ChainID       <a href="../../../../builtin/index.html#string">string</a>
+<span id="State.InitialHeight"></span>    InitialHeight <a href="../../../../builtin/index.html#int64">int64</a> <span class="comment">// should be 1, not 0, when starting from height 1</span>
+
+<span id="State.LastBlockHeight"></span>    <span class="comment">// LastBlockHeight=0 at genesis (ie. block(H=0) does not exist)</span>
+    LastBlockHeight <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="State.LastBlockID"></span>    LastBlockID     <a href="../types/index.html">types</a>.<a href="../types/index.html#BlockID">BlockID</a>
+<span id="State.LastBlockTime"></span>    LastBlockTime   <a href="../../../../time/index.html">time</a>.<a href="../../../../time/index.html#Time">Time</a>
+
+<span id="State.LastValidators"></span>    <span class="comment">// LastValidators is used to validate block.LastCommit.</span>
+<span id="State.Validators"></span>    <span class="comment">// Validators are persisted to the database separately every time they change,</span>
+    <span class="comment">// so we can query for historical validator sets.</span>
+    <span class="comment">// Note that if s.LastBlockHeight causes a valset change,</span>
+    <span class="comment">// we set s.LastHeightValidatorsChanged = s.LastBlockHeight + 1 + 1</span>
+    <span class="comment">// Extra +1 due to nextValSet delay.</span>
+<span id="State.NextValidators"></span>    NextValidators              *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>
+    Validators                  *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>
+    LastValidators              *<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>
+<span id="State.LastHeightValidatorsChanged"></span>    LastHeightValidatorsChanged <a href="../../../../builtin/index.html#int64">int64</a>
+
+    <span class="comment">// Consensus parameters used for validating blocks.</span>
+    <span class="comment">// Changes returned by EndBlock and updated after Commit.</span>
+<span id="State.ConsensusParams"></span>    ConsensusParams                  <a href="../types/index.html">types</a>.<a href="../types/index.html#ConsensusParams">ConsensusParams</a>
+<span id="State.LastHeightConsensusParamsChanged"></span>    LastHeightConsensusParamsChanged <a href="../../../../builtin/index.html#int64">int64</a>
+
+    <span class="comment">// Merkle root of the results from executing prev block</span>
+<span id="State.LastResultsHash"></span>    LastResultsHash []<a href="../../../../builtin/index.html#byte">byte</a>
+
+    <span class="comment">// the latest AppHash we&#39;ve received from calling abci.Commit()</span>
+<span id="State.AppHash"></span>    AppHash []<a href="../../../../builtin/index.html#byte">byte</a>
+
+<span id="State.LastRandaoMix"></span>    LastRandaoMix []<a href="../../../../builtin/index.html#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FromProto">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=5390:5440#L175">FromProto</a>
+					<a class="permalink" href="index.html#FromProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func FromProto(pb *<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#State">State</a>) (*<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FromProto takes a state proto message &amp; returns the local state type
+
+				
+				
+			
+				
+				<h3 id="MakeGenesisState">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=10068:10130#L328">MakeGenesisState</a>
+					<a class="permalink" href="index.html#MakeGenesisState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MakeGenesisState(genDoc *<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>) (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MakeGenesisState creates state from types.GenesisDoc.
+
+				
+				
+			
+				
+				<h3 id="MakeGenesisStateFromFile">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=9371:9434#L306">MakeGenesisStateFromFile</a>
+					<a class="permalink" href="index.html#MakeGenesisStateFromFile">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MakeGenesisStateFromFile(genDocFile <a href="../../../../builtin/index.html#string">string</a>) (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>MakeGenesisStateFromFile reads and unmarshals state from the given
+file.
+<p>Used during replay and in tests.
+
+				
+				
+			
+
+			
+				
+				<h3 id="State.Bytes">func (State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=3790:3823#L112">Bytes</a>
+					<a class="permalink" href="index.html#State.Bytes">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state <a href="index.html#State">State</a>) Bytes() []<a href="../../../../builtin/index.html#byte">byte</a></pre>
+				<p>Bytes serializes the State using protobuf.
+It panics if either casting to protobuf or serialization fails.
+
+				
+				
+				
+			
+				
+				<h3 id="State.Copy">func (State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=2733:2764#L77">Copy</a>
+					<a class="permalink" href="index.html#State.Copy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state <a href="index.html#State">State</a>) Copy() <a href="index.html#State">State</a></pre>
+				<p>Copy makes a copy of the State for mutating.
+
+				
+				
+				
+			
+				
+				<h3 id="State.Equals">func (State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=3552:3596#L105">Equals</a>
+					<a class="permalink" href="index.html#State.Equals">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state <a href="index.html#State">State</a>) Equals(state2 <a href="index.html#State">State</a>) <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>Equals returns true if the States are identical.
+
+				
+				
+				
+			
+				
+				<h3 id="State.IsEmpty">func (State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=4030:4063#L125">IsEmpty</a>
+					<a class="permalink" href="index.html#State.IsEmpty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state <a href="index.html#State">State</a>) IsEmpty() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsEmpty returns true if the State is equal to the empty State.
+
+				
+				
+				
+			
+				
+				<h3 id="State.MakeBlock">func (State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=7069:7247#L231">MakeBlock</a>
+					<a class="permalink" href="index.html#State.MakeBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state <a href="index.html#State">State</a>) MakeBlock(
+    height <a href="../../../../builtin/index.html#int64">int64</a>,
+    txs []<a href="../types/index.html">types</a>.<a href="../types/index.html#Tx">Tx</a>,
+    lastCommit *<a href="../types/index.html">types</a>.<a href="../types/index.html#Commit">Commit</a>,
+    evidence []<a href="../types/index.html">types</a>.<a href="../types/index.html#Evidence">Evidence</a>,
+    randaoReveal []<a href="../../../../builtin/index.html#byte">byte</a>,
+    proposerAddress []<a href="../../../../builtin/index.html#byte">byte</a>,
+) *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a></pre>
+				<p>MakeBlock builds a block from the current state with the given txs, commit,
+and evidence. Note it also takes a proposerAddress because the state does not
+track rounds, and hence does not know the correct proposer. TODO: fix this!
+
+				
+				
+				
+			
+				
+				<h3 id="State.ToProto">func (*State) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/state.go?s=4207:4261#L130">ToProto</a>
+					<a class="permalink" href="index.html#State.ToProto">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (state *<a href="index.html#State">State</a>) ToProto() (*<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ToProto takes the local state type and returns the equivalent proto type
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Store">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/store.go?s=1428:2920#L41">Store</a>
+				<a class="permalink" href="index.html#Store">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Store defines the state store interface
+<p>It is used to retrieve current state and save and load ABCI responses,
+validators and consensus parameters
+
+			<pre>type Store interface {
+    <span class="comment">// LoadFromDBOrGenesisFile loads the most recent state.</span>
+    <span class="comment">// If the chain is new it will use the genesis file from the provided genesis file path as the current state.</span>
+    LoadFromDBOrGenesisFile(<a href="../../../../builtin/index.html#string">string</a>) (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// LoadFromDBOrGenesisDoc loads the most recent state.</span>
+    <span class="comment">// If the chain is new it will use the genesis doc as the current state.</span>
+    LoadFromDBOrGenesisDoc(*<a href="../types/index.html">types</a>.<a href="../types/index.html#GenesisDoc">GenesisDoc</a>) (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Load loads the current state of the blockchain</span>
+    Load() (<a href="index.html#State">State</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// LoadValidators loads the validator set at a given height</span>
+    LoadValidators(<a href="../../../../builtin/index.html#int64">int64</a>) (*<a href="../types/index.html">types</a>.<a href="../types/index.html#ValidatorSet">ValidatorSet</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// LoadABCIResponses loads the abciResponse for a given height</span>
+    LoadABCIResponses(<a href="../../../../builtin/index.html#int64">int64</a>) (*<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#ABCIResponses">ABCIResponses</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// LoadLastABCIResponse loads the last abciResponse for a given height</span>
+    LoadLastABCIResponse(<a href="../../../../builtin/index.html#int64">int64</a>) (*<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#ABCIResponses">ABCIResponses</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// LoadConsensusParams loads the consensus params for a given height</span>
+    LoadConsensusParams(<a href="../../../../builtin/index.html#int64">int64</a>) (<a href="../types/index.html">types</a>.<a href="../types/index.html#ConsensusParams">ConsensusParams</a>, <a href="../../../../builtin/index.html#error">error</a>)
+    <span class="comment">// Save overwrites the previous state with the updated one</span>
+    Save(<a href="index.html#State">State</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// SaveABCIResponses saves ABCIResponses for a given height</span>
+    SaveABCIResponses(<a href="../../../../builtin/index.html#int64">int64</a>, *<a href="../proto/tendermint/state/index.html">cmtstate</a>.<a href="../proto/tendermint/state/index.html#ABCIResponses">ABCIResponses</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Bootstrap is used for bootstrapping state when not starting from a initial height.</span>
+    Bootstrap(<a href="index.html#State">State</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// PruneStates takes the height from which to start prning and which height stop at</span>
+    PruneStates(<a href="../../../../builtin/index.html#int64">int64</a>, <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../../../../builtin/index.html#error">error</a>
+    <span class="comment">// Close closes the connection with the database</span>
+    Close() <a href="../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStore">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/store.go?s=3376:3428#L88">NewStore</a>
+					<a class="permalink" href="index.html#NewStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStore(db <a href="../../cometbft-db/index.html">dbm</a>.<a href="../../cometbft-db/index.html#DB">DB</a>, options <a href="index.html#StoreOptions">StoreOptions</a>) <a href="index.html#Store">Store</a></pre>
+				<p>NewStore creates the dbStore of the state pkg.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StoreOptions">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/state/store.go?s=3029:3293#L77">StoreOptions</a>
+				<a class="permalink" href="index.html#StoreOptions">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type StoreOptions struct {
+<span id="StoreOptions.DiscardABCIResponses"></span>    <span class="comment">// DiscardABCIResponses determines whether or not the store</span>
+    <span class="comment">// retains all ABCIResponses. If DiscardABCiResponses is enabled,</span>
+    <span class="comment">// the store will maintain only the response object from the latest</span>
+    <span class="comment">// height.</span>
+    DiscardABCIResponses <a href="../../../../builtin/index.html#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="indexer/index.html">indexer</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="indexer/block/index.html">block</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="indexer/block/kv/index.html">kv</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="indexer/block/null/index.html">null</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="indexer/mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="indexer/sink/index.html">sink</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="indexer/sink/psql/index.html">psql</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package psql implements an event sink backed by a PostgreSQL database.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="txindex/index.html">txindex</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="txindex/kv/index.html">kv</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="txindex/mocks/index.html">mocks</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="txindex/null/index.html">null</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>blocksync - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package blocksync
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cometbft/cometbft/blocksync"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="index.html#ValidateMsg">func ValidateMsg(pb proto.Message) error</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BlockPool">type BlockPool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBlockPool">func NewBlockPool(start int64, requestsCh chan&lt;- BlockRequest, errorsCh chan&lt;- peerError) *BlockPool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.AddBlock">func (pool *BlockPool) AddBlock(peerID p2p.ID, block *types.Block, blockSize int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.GetStatus">func (pool *BlockPool) GetStatus() (height int64, numPending int32, lenRequesters int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.IsCaughtUp">func (pool *BlockPool) IsCaughtUp() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.MaxPeerHeight">func (pool *BlockPool) MaxPeerHeight() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.OnStart">func (pool *BlockPool) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.PeekTwoBlocks">func (pool *BlockPool) PeekTwoBlocks() (first *types.Block, second *types.Block)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.PopRequest">func (pool *BlockPool) PopRequest()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.RedoRequest">func (pool *BlockPool) RedoRequest(height int64) p2p.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.RemovePeer">func (pool *BlockPool) RemovePeer(peerID p2p.ID)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BlockPool.SetPeerRange">func (pool *BlockPool) SetPeerRange(peerID p2p.ID, base int64, height int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#BlockRequest">type BlockRequest</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Reactor">type Reactor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewReactor">func NewReactor(state sm.State, blockExec *sm.BlockExecutor, store *store.BlockStore, blockSync bool) *Reactor</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.AddPeer">func (bcR *Reactor) AddPeer(peer p2p.Peer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.BroadcastStatusRequest">func (bcR *Reactor) BroadcastStatusRequest()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.GetChannels">func (bcR *Reactor) GetChannels() []*p2p.ChannelDescriptor</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStart">func (bcR *Reactor) OnStart() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.OnStop">func (bcR *Reactor) OnStop()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.ReceiveEnvelope">func (bcR *Reactor) ReceiveEnvelope(e p2p.Envelope)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.RemovePeer">func (bcR *Reactor) RemovePeer(peer p2p.Peer, reason interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.SetLogger">func (bcR *Reactor) SetLogger(l log.Logger)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Reactor.SwitchToBlockSync">func (bcR *Reactor) SwitchToBlockSync(state sm.State) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/msgs.go">msgs.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go">pool.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go">reactor.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// NOTE: keep up to date with bcproto.BlockResponse</span>
+    <span id="BlockResponseMessagePrefixSize">BlockResponseMessagePrefixSize</span>   = 4
+    <span id="BlockResponseMessageFieldKeySize">BlockResponseMessageFieldKeySize</span> = 1
+    <span id="MaxMsgSize">MaxMsgSize</span>                       = <a href="../types/index.html">types</a>.<a href="../types/index.html#MaxBlockSizeBytes">MaxBlockSizeBytes</a> +
+        <a href="index.html#BlockResponseMessagePrefixSize">BlockResponseMessagePrefixSize</a> +
+        <a href="index.html#BlockResponseMessageFieldKeySize">BlockResponseMessageFieldKeySize</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// BlocksyncChannel is a channel for blocks and status updates (`BlockStore` height)</span>
+    <span id="BlocksyncChannel">BlocksyncChannel</span> = <a href="../../../../builtin/index.html#byte">byte</a>(0x40)
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="ValidateMsg">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/msgs.go?s=500:540#L13">ValidateMsg</a>
+				<a class="permalink" href="index.html#ValidateMsg">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ValidateMsg(pb <a href="../../../cosmos/gogoproto/proto/index.html">proto</a>.<a href="../../../cosmos/gogoproto/proto/index.html#Message">Message</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+			<p>ValidateMsg validates a message.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BlockPool">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=1834:2273#L53">BlockPool</a>
+				<a class="permalink" href="index.html#BlockPool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockPool keeps track of the block sync peers, block requests and block responses.
+
+			<pre>type BlockPool struct {
+    <a href="../libs/service/index.html">service</a>.<a href="../libs/service/index.html#BaseService">BaseService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewBlockPool">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=2429:2529#L74">NewBlockPool</a>
+					<a class="permalink" href="index.html#NewBlockPool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBlockPool(start <a href="../../../../builtin/index.html#int64">int64</a>, requestsCh chan&lt;- <a href="index.html#BlockRequest">BlockRequest</a>, errorsCh chan&lt;- peerError) *<a href="index.html#BlockPool">BlockPool</a></pre>
+				<p>NewBlockPool returns a new BlockPool with the height equal to start. Block
+requests and errors will be sent to requestsCh and errorsCh accordingly.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BlockPool.AddBlock">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=7383:7464#L236">AddBlock</a>
+					<a class="permalink" href="index.html#BlockPool.AddBlock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) AddBlock(peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>, block *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>, blockSize <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>AddBlock validates that the block comes from the peer it was expected from and calls the requester to store it.
+TODO: ensure that blocks come in order for each peer.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.GetStatus">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=4419:4505#L149">GetStatus</a>
+					<a class="permalink" href="index.html#BlockPool.GetStatus">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) GetStatus() (height <a href="../../../../builtin/index.html#int64">int64</a>, numPending <a href="../../../../builtin/index.html#int32">int32</a>, lenRequesters <a href="../../../../builtin/index.html#int">int</a>)</pre>
+				<p>GetStatus returns pool&apos;s height, numPending requests and the number of
+requesters.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.IsCaughtUp">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=4747:4787#L158">IsCaughtUp</a>
+					<a class="permalink" href="index.html#BlockPool.IsCaughtUp">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) IsCaughtUp() <a href="../../../../builtin/index.html#bool">bool</a></pre>
+				<p>IsCaughtUp returns true if this node is caught up, false - otherwise.
+TODO: relax conditions, prevent abuse.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.MaxPeerHeight">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=8356:8400#L273">MaxPeerHeight</a>
+					<a class="permalink" href="index.html#BlockPool.MaxPeerHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) MaxPeerHeight() <a href="../../../../builtin/index.html#int64">int64</a></pre>
+				<p>MaxPeerHeight returns the highest reported height.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.OnStart">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=2906:2944#L91">OnStart</a>
+					<a class="permalink" href="index.html#BlockPool.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service by spawning requesters routine and recording
+pool&apos;s start time.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.PeekTwoBlocks">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=5758:5838#L183">PeekTwoBlocks</a>
+					<a class="permalink" href="index.html#BlockPool.PeekTwoBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) PeekTwoBlocks() (first *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>, second *<a href="../types/index.html">types</a>.<a href="../types/index.html#Block">Block</a>)</pre>
+				<p>PeekTwoBlocks returns blocks at pool.height and pool.height+1.
+We need to see the second block&apos;s Commit to validate the first block.
+So we peek two blocks at a time.
+The caller will verify the commit.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.PopRequest">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=6173:6208#L198">PopRequest</a>
+					<a class="permalink" href="index.html#BlockPool.PopRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) PopRequest()</pre>
+				<p>PopRequest pops the first block at pool.height.
+It must have been validated by &apos;second&apos;.Commit from PeekTwoBlocks().
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.RedoRequest">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=6901:6956#L221">RedoRequest</a>
+					<a class="permalink" href="index.html#BlockPool.RedoRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) RedoRequest(height <a href="../../../../builtin/index.html#int64">int64</a>) <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a></pre>
+				<p>RedoRequest invalidates the block at pool.height,
+Remove the peer and redo request from others.
+Returns the ID of the removed peer.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.RemovePeer">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=9077:9125#L301">RemovePeer</a>
+					<a class="permalink" href="index.html#BlockPool.RemovePeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) RemovePeer(peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>)</pre>
+				<p>RemovePeer removes the peer with peerID from the pool. If there&apos;s no peer
+with peerID, function is a no-op.
+
+				
+				
+				
+			
+				
+				<h3 id="BlockPool.SetPeerRange">func (*BlockPool) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=8543:8619#L280">SetPeerRange</a>
+					<a class="permalink" href="index.html#BlockPool.SetPeerRange">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (pool *<a href="index.html#BlockPool">BlockPool</a>) SetPeerRange(peerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>, base <a href="../../../../builtin/index.html#int64">int64</a>, height <a href="../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>SetPeerRange sets the peer&apos;s alleged blockchain base and height.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BlockRequest">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/pool.go?s=16540:16597#L642">BlockRequest</a>
+				<a class="permalink" href="index.html#BlockRequest">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BlockRequest stores a block request identified by the block Height and the PeerID responsible for
+delivering the block
+
+			<pre>type BlockRequest struct {
+<span id="BlockRequest.Height"></span>    Height <a href="../../../../builtin/index.html#int64">int64</a>
+<span id="BlockRequest.PeerID"></span>    PeerID <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ID">ID</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Reactor">type <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=1140:1377#L38">Reactor</a>
+				<a class="permalink" href="index.html#Reactor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Reactor handles long-term catchup syncing.
+
+			<pre>type Reactor struct {
+    <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#BaseReactor">BaseReactor</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewReactor">func <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=1423:1534#L54">NewReactor</a>
+					<a class="permalink" href="index.html#NewReactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewReactor(state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>, blockExec *<a href="../state/index.html">sm</a>.<a href="../state/index.html#BlockExecutor">BlockExecutor</a>, store *<a href="../store/index.html">store</a>.<a href="../store/index.html#BlockStore">BlockStore</a>,
+    blockSync <a href="../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#Reactor">Reactor</a></pre>
+				<p>NewReactor returns new reactor instance.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Reactor.AddPeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=3691:3733#L142">AddPeer</a>
+					<a class="permalink" href="index.html#Reactor.AddPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) AddPeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>)</pre>
+				<p>AddPeer implements Reactor by sending our state to peer.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.BroadcastStatusRequest">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=11995:12039#L402">BroadcastStatusRequest</a>
+					<a class="permalink" href="index.html#Reactor.BroadcastStatusRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) BroadcastStatusRequest()</pre>
+				<p>BroadcastStatusRequest broadcasts `BlockStore` base and height.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.GetChannels">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=3307:3365#L128">GetChannels</a>
+					<a class="permalink" href="index.html#Reactor.GetChannels">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) GetChannels() []*<a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#ChannelDescriptor">ChannelDescriptor</a></pre>
+				<p>GetChannels implements Reactor
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStart">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=2569:2604#L93">OnStart</a>
+					<a class="permalink" href="index.html#Reactor.OnStart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) OnStart() <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>OnStart implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.OnStop">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=3115:3143#L119">OnStop</a>
+					<a class="permalink" href="index.html#Reactor.OnStop">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) OnStop()</pre>
+				<p>OnStop implements service.Service.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.ReceiveEnvelope">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=5126:5177#L188">ReceiveEnvelope</a>
+					<a class="permalink" href="index.html#Reactor.ReceiveEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) ReceiveEnvelope(e <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Envelope">Envelope</a>)</pre>
+				<p>Receive implements Reactor by handling 4 types of messages (look below).
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.RemovePeer">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=4156:4221#L157">RemovePeer</a>
+					<a class="permalink" href="index.html#Reactor.RemovePeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) RemovePeer(peer <a href="../p2p/index.html">p2p</a>.<a href="../p2p/index.html#Peer">Peer</a>, reason interface{})</pre>
+				<p>RemovePeer implements Reactor by removing peer from the pool.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.SetLogger">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=2432:2475#L87">SetLogger</a>
+					<a class="permalink" href="index.html#Reactor.SetLogger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) SetLogger(l <a href="../libs/log/index.html">log</a>.<a href="../libs/log/index.html#Logger">Logger</a>)</pre>
+				<p>SetLogger implements service.Service by setting the logger on reactor and pool.
+
+				
+				
+				
+			
+				
+				<h3 id="Reactor.SwitchToBlockSync">func (*Reactor) <a href="http://localhost:6060/src/github.com/cometbft/cometbft/blocksync/reactor.go?s=2822:2881#L105">SwitchToBlockSync</a>
+					<a class="permalink" href="index.html#Reactor.SwitchToBlockSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (bcR *<a href="index.html#Reactor">Reactor</a>) SwitchToBlockSync(state <a href="../state/index.html">sm</a>.<a href="../state/index.html#State">State</a>) <a href="../../../../builtin/index.html#error">error</a></pre>
+				<p>SwitchToBlockSync is called by the state sync reactor when switching to block sync.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

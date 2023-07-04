@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>bind - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package bind
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/accounts/abi/bind"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="index.html#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package bind generates Ethereum contract Go bindings.
+<p>Detailed usage document and tutorial available on the go-ethereum Wiki page:
+<a href="https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts">https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts</a>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Bind">func Bind(types []string, abis []string, bytecodes []string, fsigs []map[string]string, pkg string, lang Lang, libs map[string]string, aliases map[string]string) (string, error)</a></dd>
+			
+				
+				<dd><a href="index.html#WaitDeployed">func WaitDeployed(ctx context.Context, b DeployBackend, tx *types.Transaction) (common.Address, error)</a></dd>
+			
+				
+				<dd><a href="index.html#WaitMined">func WaitMined(ctx context.Context, b DeployBackend, tx *types.Transaction) (*types.Receipt, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#BoundContract">type BoundContract</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DeployContract">func DeployContract(opts *TransactOpts, abi abi.ABI, bytecode []byte, backend ContractBackend, params ...interface{}) (common.Address, *types.Transaction, *BoundContract, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewBoundContract">func NewBoundContract(address common.Address, abi abi.ABI, caller ContractCaller, transactor ContractTransactor, filterer ContractFilterer) *BoundContract</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.Call">func (c *BoundContract) Call(opts *CallOpts, results *[]interface{}, method string, params ...interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.FilterLogs">func (c *BoundContract) FilterLogs(opts *FilterOpts, name string, query ...[]interface{}) (chan types.Log, event.Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.RawTransact">func (c *BoundContract) RawTransact(opts *TransactOpts, calldata []byte) (*types.Transaction, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.Transact">func (c *BoundContract) Transact(opts *TransactOpts, method string, params ...interface{}) (*types.Transaction, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.Transfer">func (c *BoundContract) Transfer(opts *TransactOpts) (*types.Transaction, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.UnpackLog">func (c *BoundContract) UnpackLog(out interface{}, event string, log types.Log) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.UnpackLogIntoMap">func (c *BoundContract) UnpackLogIntoMap(out map[string]interface{}, event string, log types.Log) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#BoundContract.WatchLogs">func (c *BoundContract) WatchLogs(opts *WatchOpts, name string, query ...[]interface{}) (chan types.Log, event.Subscription, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CallOpts">type CallOpts</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ContractBackend">type ContractBackend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ContractCaller">type ContractCaller</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ContractFilterer">type ContractFilterer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ContractTransactor">type ContractTransactor</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#DeployBackend">type DeployBackend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FilterOpts">type FilterOpts</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Lang">type Lang</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MetaData">type MetaData</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MetaData.GetAbi">func (m *MetaData) GetAbi() (*abi.ABI, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#PendingContractCaller">type PendingContractCaller</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#SignerFn">type SignerFn</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TransactOpts">type TransactOpts</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewClefTransactor">func NewClefTransactor(clef *external.ExternalSigner, account accounts.Account) *TransactOpts</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeyStoreTransactor">func NewKeyStoreTransactor(keystore *keystore.KeyStore, account accounts.Account) (*TransactOpts, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeyStoreTransactorWithChainID">func NewKeyStoreTransactorWithChainID(keystore *keystore.KeyStore, account accounts.Account, chainID *big.Int) (*TransactOpts, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeyedTransactor">func NewKeyedTransactor(key *ecdsa.PrivateKey) *TransactOpts</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewKeyedTransactorWithChainID">func NewKeyedTransactorWithChainID(key *ecdsa.PrivateKey, chainID *big.Int) (*TransactOpts, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTransactor">func NewTransactor(keyin io.Reader, passphrase string) (*TransactOpts, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTransactorWithChainID">func NewTransactorWithChainID(keyin io.Reader, passphrase string, chainID *big.Int) (*TransactOpts, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#WatchOpts">type WatchOpts</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go">auth.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go">backend.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go">base.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/bind.go">bind.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/template.go">template.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/util.go">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ErrNoCode is returned by call and transact operations for which the requested</span>
+    <span class="comment">// recipient contract to operate on does not exist in the state db or does not</span>
+    <span class="comment">// have any code associated with it (i.e. suicided).</span>
+    <span id="ErrNoCode">ErrNoCode</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;no contract code at given address&#34;)
+
+    <span class="comment">// ErrNoPendingState is raised when attempting to perform a pending state action</span>
+    <span class="comment">// on a backend that doesn&#39;t implement PendingContractCaller.</span>
+    <span id="ErrNoPendingState">ErrNoPendingState</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;backend does not support pending state&#34;)
+
+    <span class="comment">// ErrNoCodeAfterDeploy is returned by WaitDeployed if contract creation leaves</span>
+    <span class="comment">// an empty contract behind.</span>
+    <span id="ErrNoCodeAfterDeploy">ErrNoCodeAfterDeploy</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;no contract code after deployment&#34;)
+)</pre>
+			
+				<p>ErrNoChainID is returned whenever the user failed to specify a chain id.
+
+				<pre>var <span id="ErrNoChainID">ErrNoChainID</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;no chain id specified&#34;)</pre>
+			
+				<p>ErrNotAuthorized is returned when an account is not properly unlocked.
+
+				<pre>var <span id="ErrNotAuthorized">ErrNotAuthorized</span> = <a href="../../../../../../errors/index.html">errors</a>.<a href="../../../../../../errors/index.html#New">New</a>(&#34;not authorized to sign this account&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="Bind">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/bind.go?s=2187:2364#L77">Bind</a>
+				<a class="permalink" href="index.html#Bind">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Bind(types []<a href="../../../../../../builtin/index.html#string">string</a>, abis []<a href="../../../../../../builtin/index.html#string">string</a>, bytecodes []<a href="../../../../../../builtin/index.html#string">string</a>, fsigs []map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#string">string</a>, pkg <a href="../../../../../../builtin/index.html#string">string</a>, lang <a href="index.html#Lang">Lang</a>, libs map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#string">string</a>, aliases map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#string">string</a>) (<a href="../../../../../../builtin/index.html#string">string</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>Bind generates a Go wrapper around a contract ABI. This wrapper isn&apos;t meant
+to be used as is in client code, but rather as an intermediate struct which
+enforces compile time type safety and naming convention opposed to having to
+manually maintain hard coded strings that break on runtime.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WaitDeployed">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/util.go?s=1878:1980#L50">WaitDeployed</a>
+				<a class="permalink" href="index.html#WaitDeployed">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WaitDeployed(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, b <a href="index.html#DeployBackend">DeployBackend</a>, tx *<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>) (<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>WaitDeployed waits for a contract deployment transaction and returns the on-chain
+contract address when it is mined. It stops waiting when ctx is canceled.
+
+			
+			
+
+		
+			
+			
+			<h2 id="WaitMined">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/util.go?s=1118:1217#L22">WaitMined</a>
+				<a class="permalink" href="index.html#WaitMined">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func WaitMined(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, b <a href="index.html#DeployBackend">DeployBackend</a>, tx *<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Receipt">Receipt</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+			<p>WaitMined waits for tx to be mined on the blockchain.
+It stops waiting when the context is canceled.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="BoundContract">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=4125:4586#L97">BoundContract</a>
+				<a class="permalink" href="index.html#BoundContract">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BoundContract is the base wrapper object that reflects a contract on the
+Ethereum network. It contains a collection of methods that are used by the
+higher level contract bindings to operate.
+
+			<pre>type BoundContract struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DeployContract">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=5130:5307#L119">DeployContract</a>
+					<a class="permalink" href="index.html#DeployContract">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func DeployContract(opts *<a href="index.html#TransactOpts">TransactOpts</a>, abi <a href="../index.html">abi</a>.<a href="../index.html#ABI">ABI</a>, bytecode []<a href="../../../../../../builtin/index.html#byte">byte</a>, backend <a href="index.html#ContractBackend">ContractBackend</a>, params ...interface{}) (<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, *<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>, *<a href="index.html#BoundContract">BoundContract</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>DeployContract deploys a contract onto the Ethereum blockchain and binds the
+deployment address with a Go wrapper.
+
+				
+				
+			
+				
+				<h3 id="NewBoundContract">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=4708:4862#L107">NewBoundContract</a>
+					<a class="permalink" href="index.html#NewBoundContract">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewBoundContract(address <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, abi <a href="../index.html">abi</a>.<a href="../index.html#ABI">ABI</a>, caller <a href="index.html#ContractCaller">ContractCaller</a>, transactor <a href="index.html#ContractTransactor">ContractTransactor</a>, filterer <a href="index.html#ContractFilterer">ContractFilterer</a>) *<a href="index.html#BoundContract">BoundContract</a></pre>
+				<p>NewBoundContract creates a low level contract interface through which calls
+and transactions may be made through.
+
+				
+				
+			
+
+			
+				
+				<h3 id="BoundContract.Call">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=5991:6103#L139">Call</a>
+					<a class="permalink" href="index.html#BoundContract.Call">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) Call(opts *<a href="index.html#CallOpts">CallOpts</a>, results *[]interface{}, method <a href="../../../../../../builtin/index.html#string">string</a>, params ...interface{}) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>Call invokes the (constant) contract method with params as input values and
+sets the output to result. The result type might be a single field for simple
+returns, a slice of interfaces for anonymous returns and a struct for named
+returns.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.FilterLogs">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=13757:13890#L397">FilterLogs</a>
+					<a class="permalink" href="index.html#BoundContract.FilterLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) FilterLogs(opts *<a href="index.html#FilterOpts">FilterOpts</a>, name <a href="../../../../../../builtin/index.html#string">string</a>, query ...[]interface{}) (chan <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>, <a href="../../../event/index.html">event</a>.<a href="../../../event/index.html#Subscription">Subscription</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>FilterLogs filters contract logs for past blocks, returning the necessary
+channels to construct a strongly typed bound iterator on top of them.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.RawTransact">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=8157:8257#L213">RawTransact</a>
+					<a class="permalink" href="index.html#BoundContract.RawTransact">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) RawTransact(opts *<a href="index.html#TransactOpts">TransactOpts</a>, calldata []<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RawTransact initiates a transaction with the given raw calldata as the input.
+It&apos;s usually used to initiate transactions for invoking **Fallback** function.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.Transact">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=7573:7691#L200">Transact</a>
+					<a class="permalink" href="index.html#BoundContract.Transact">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) Transact(opts *<a href="index.html#TransactOpts">TransactOpts</a>, method <a href="../../../../../../builtin/index.html#string">string</a>, params ...interface{}) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Transact invokes the (paid) contract method with params as input values.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.Transfer">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=8543:8623#L221">Transfer</a>
+					<a class="permalink" href="index.html#BoundContract.Transfer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) Transfer(opts *<a href="index.html#TransactOpts">TransactOpts</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Transfer initiates a plain transaction to move funds to the contract, calling
+its default method if one is available.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.UnpackLog">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=16129:16214#L476">UnpackLog</a>
+					<a class="permalink" href="index.html#BoundContract.UnpackLog">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) UnpackLog(out interface{}, event <a href="../../../../../../builtin/index.html#string">string</a>, log <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackLog unpacks a retrieved log into the provided output structure.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.UnpackLogIntoMap">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=16694:16797#L495">UnpackLogIntoMap</a>
+					<a class="permalink" href="index.html#BoundContract.UnpackLogIntoMap">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) UnpackLogIntoMap(out map[<a href="../../../../../../builtin/index.html#string">string</a>]interface{}, event <a href="../../../../../../builtin/index.html#string">string</a>, log <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnpackLogIntoMap unpacks a retrieved log into the provided map.
+
+				
+				
+				
+			
+				
+				<h3 id="BoundContract.WatchLogs">func (*BoundContract) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=15201:15332#L446">WatchLogs</a>
+					<a class="permalink" href="index.html#BoundContract.WatchLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#BoundContract">BoundContract</a>) WatchLogs(opts *<a href="index.html#WatchOpts">WatchOpts</a>, name <a href="../../../../../../builtin/index.html#string">string</a>, query ...[]interface{}) (chan <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>, <a href="../../../event/index.html">event</a>.<a href="../../../event/index.html#Subscription">Subscription</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>WatchLogs filters subscribes to contract logs for future blocks, returning a
+subscription object that can be used to tear down the watcher.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CallOpts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=1418:1833#L30">CallOpts</a>
+				<a class="permalink" href="index.html#CallOpts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>CallOpts is the collection of options to fine tune a contract call request.
+
+			<pre>type CallOpts struct {
+<span id="CallOpts.Pending"></span>    Pending     <a href="../../../../../../builtin/index.html#bool">bool</a>            <span class="comment">// Whether to operate on the pending state or the last known one</span>
+<span id="CallOpts.From"></span>    From        <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>  <span class="comment">// Optional the sender address, otherwise the first account is used</span>
+<span id="CallOpts.BlockNumber"></span>    BlockNumber *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>        <span class="comment">// Optional the block number on which the call should be performed</span>
+<span id="CallOpts.Context"></span>    Context     <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a> <span class="comment">// Network context to support cancellation and timeouts (nil = no timeout)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ContractBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=5773:5861#L112">ContractBackend</a>
+				<a class="permalink" href="index.html#ContractBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ContractBackend defines the methods needed to work with contracts on a read-write basis.
+
+			<pre>type ContractBackend interface {
+    <a href="index.html#ContractCaller">ContractCaller</a>
+    <a href="index.html#ContractTransactor">ContractTransactor</a>
+    <a href="index.html#ContractFilterer">ContractFilterer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ContractCaller">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=1771:2245#L36">ContractCaller</a>
+				<a class="permalink" href="index.html#ContractCaller">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ContractCaller defines the methods needed to allow operating with a contract on a read
+only basis.
+
+			<pre>type ContractCaller interface {
+    <span class="comment">// CodeAt returns the code of the given account. This is needed to differentiate</span>
+    <span class="comment">// between contract internal errors and the local chain being out of sync.</span>
+    CodeAt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, contract <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, blockNumber *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// CallContract executes an Ethereum contract call with the specified data as the</span>
+    <span class="comment">// input.</span>
+    CallContract(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, call ethereum.<a href="index.html#CallMsg">CallMsg</a>, blockNumber *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ContractFilterer">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=4787:5393#L93">ContractFilterer</a>
+				<a class="permalink" href="index.html#ContractFilterer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ContractFilterer defines the methods needed to access log events using one-off
+queries or continuous event subscriptions.
+
+			<pre>type ContractFilterer interface {
+    <span class="comment">// FilterLogs executes a log filter operation, blocking during execution and</span>
+    <span class="comment">// returning all the results in one batch.</span>
+    <span class="comment">//</span>
+    <span class="comment">// TODO(karalabe): Deprecate when the subscription one can return past data too.</span>
+    FilterLogs(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, query ethereum.<a href="index.html#FilterQuery">FilterQuery</a>) ([]<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SubscribeFilterLogs creates a background log filtering operation, returning</span>
+    <span class="comment">// a subscription immediately, which can be used to stream the found events.</span>
+    SubscribeFilterLogs(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, query ethereum.<a href="index.html#FilterQuery">FilterQuery</a>, ch chan&lt;- <a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Log">Log</a>) (ethereum.<a href="index.html#Subscription">Subscription</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ContractTransactor">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=3161:4657#L61">ContractTransactor</a>
+				<a class="permalink" href="index.html#ContractTransactor">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ContractTransactor defines the methods needed to allow operating with a contract
+on a write only basis. Besides the transacting method, the remainder are helpers
+used when the user does not provide some needed values, but rather leaves it up
+to the transactor to decide.
+
+			<pre>type ContractTransactor interface {
+    <span class="comment">// HeaderByNumber returns a block header from the current canonical chain. If</span>
+    <span class="comment">// number is nil, the latest known header is returned.</span>
+    HeaderByNumber(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, number *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Header">Header</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// PendingCodeAt returns the code of the given account in the pending state.</span>
+    PendingCodeAt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, account <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// PendingNonceAt retrieves the current pending nonce associated with an account.</span>
+    PendingNonceAt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, account <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>) (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SuggestGasPrice retrieves the currently suggested gas price to allow a timely</span>
+    <span class="comment">// execution of a transaction.</span>
+    SuggestGasPrice(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (*<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SuggestGasTipCap retrieves the currently suggested 1559 priority fee to allow</span>
+    <span class="comment">// a timely execution of a transaction.</span>
+    SuggestGasTipCap(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) (*<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// EstimateGas tries to estimate the gas needed to execute a specific</span>
+    <span class="comment">// transaction based on the current pending state of the backend blockchain.</span>
+    <span class="comment">// There is no guarantee that this is the true gas limit requirement as other</span>
+    <span class="comment">// transactions may be added or removed by miners, but it should provide a basis</span>
+    <span class="comment">// for setting a reasonable default.</span>
+    EstimateGas(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, call ethereum.<a href="index.html#CallMsg">CallMsg</a>) (gas <a href="../../../../../../builtin/index.html#uint64">uint64</a>, err <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// SendTransaction injects the transaction into the pending pool for execution.</span>
+    SendTransaction(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, tx *<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DeployBackend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=5471:5679#L106">DeployBackend</a>
+				<a class="permalink" href="index.html#DeployBackend">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DeployBackend wraps the operations needed by WaitMined and WaitDeployed.
+
+			<pre>type DeployBackend interface {
+    TransactionReceipt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, txHash <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Hash">Hash</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Receipt">Receipt</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    CodeAt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, account <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, blockNumber *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FilterOpts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=2975:3197#L57">FilterOpts</a>
+				<a class="permalink" href="index.html#FilterOpts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterOpts is the collection of options to fine tune filtering for events
+within a bound contract.
+
+			<pre>type FilterOpts struct {
+<span id="FilterOpts.Start"></span>    Start <a href="../../../../../../builtin/index.html#uint64">uint64</a>  <span class="comment">// Start of the queried range</span>
+<span id="FilterOpts.End"></span>    End   *<a href="../../../../../../builtin/index.html#uint64">uint64</a> <span class="comment">// End of the range (nil = latest)</span>
+
+<span id="FilterOpts.Context"></span>    Context <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a> <span class="comment">// Network context to support cancellation and timeouts (nil = no timeout)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Lang">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/bind.go?s=1307:1320#L28">Lang</a>
+				<a class="permalink" href="index.html#Lang">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Lang is a target programming language selector to generate bindings for.
+
+			<pre>type Lang <a href="../../../../../../builtin/index.html#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="LangGo">LangGo</span> <a href="index.html#Lang">Lang</a> = <a href="../../../../../../builtin/index.html#iota">iota</a>
+    <span id="LangJava">LangJava</span>
+    <span id="LangObjC">LangObjC</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MetaData">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=3558:3664#L72">MetaData</a>
+				<a class="permalink" href="index.html#MetaData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MetaData collects all metadata for a bound contract.
+
+			<pre>type MetaData struct {
+<span id="MetaData.Sigs"></span>    Sigs map[<a href="../../../../../../builtin/index.html#string">string</a>]<a href="../../../../../../builtin/index.html#string">string</a>
+<span id="MetaData.Bin"></span>    Bin  <a href="../../../../../../builtin/index.html#string">string</a>
+<span id="MetaData.ABI"></span>    ABI  <a href="../../../../../../builtin/index.html#string">string</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MetaData.GetAbi">func (*MetaData) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=3666:3711#L80">GetAbi</a>
+					<a class="permalink" href="index.html#MetaData.GetAbi">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MetaData">MetaData</a>) GetAbi() (*<a href="../index.html">abi</a>.<a href="../index.html#ABI">ABI</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PendingContractCaller">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/backend.go?s=2513:2876#L49">PendingContractCaller</a>
+				<a class="permalink" href="index.html#PendingContractCaller">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PendingContractCaller defines methods to perform contract calls on the pending state.
+Call will try to discover this interface when access to the pending state is requested.
+If the backend does not support the pending state, Call returns ErrNoPendingState.
+
+			<pre>type PendingContractCaller interface {
+    <span class="comment">// PendingCodeAt returns the code of the given account in the pending state.</span>
+    PendingCodeAt(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, contract <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+
+    <span class="comment">// PendingCallContract executes an Ethereum contract call against the pending state.</span>
+    PendingCallContract(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, call ethereum.<a href="index.html#CallMsg">CallMsg</a>) ([]<a href="../../../../../../builtin/index.html#byte">byte</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SignerFn">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=1255:1337#L27">SignerFn</a>
+				<a class="permalink" href="index.html#SignerFn">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SignerFn is a signer function callback when a contract requires a method to
+sign the transaction before submission.
+
+			<pre>type SignerFn func(<a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a>, *<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>) (*<a href="../../../core/types/index.html">types</a>.<a href="../../../core/types/index.html#Transaction">Transaction</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TransactOpts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=1943:2868#L39">TransactOpts</a>
+				<a class="permalink" href="index.html#TransactOpts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TransactOpts is the collection of authorization data required to create a
+valid Ethereum transaction.
+
+			<pre>type TransactOpts struct {
+<span id="TransactOpts.From"></span>    From   <a href="../../../common/index.html">common</a>.<a href="../../../common/index.html#Address">Address</a> <span class="comment">// Ethereum account to send the transaction from</span>
+<span id="TransactOpts.Nonce"></span>    Nonce  *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>       <span class="comment">// Nonce to use for the transaction execution (nil = use pending state)</span>
+<span id="TransactOpts.Signer"></span>    Signer <a href="index.html#SignerFn">SignerFn</a>       <span class="comment">// Method to use for signing the transaction (mandatory)</span>
+
+<span id="TransactOpts.Value"></span>    Value     *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a> <span class="comment">// Funds to transfer along the transaction (nil = 0 = no funds)</span>
+<span id="TransactOpts.GasPrice"></span>    GasPrice  *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a> <span class="comment">// Gas price to use for the transaction execution (nil = gas price oracle)</span>
+<span id="TransactOpts.GasFeeCap"></span>    GasFeeCap *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a> <span class="comment">// Gas fee cap to use for the 1559 transaction execution (nil = gas price oracle)</span>
+<span id="TransactOpts.GasTipCap"></span>    GasTipCap *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a> <span class="comment">// Gas priority fee cap to use for the 1559 transaction execution (nil = gas price oracle)</span>
+<span id="TransactOpts.GasLimit"></span>    GasLimit  <a href="../../../../../../builtin/index.html#uint64">uint64</a>   <span class="comment">// Gas limit to set for the transaction execution (0 = estimate)</span>
+
+<span id="TransactOpts.Context"></span>    Context <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a> <span class="comment">// Network context to support cancellation and timeouts (nil = no timeout)</span>
+
+<span id="TransactOpts.NoSend"></span>    NoSend <a href="../../../../../../builtin/index.html#bool">bool</a> <span class="comment">// Do all transact steps but do not send the transaction</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClefTransactor">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=5891:5984#L158">NewClefTransactor</a>
+					<a class="permalink" href="index.html#NewClefTransactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewClefTransactor(clef *<a href="../../external/index.html">external</a>.<a href="../../external/index.html#ExternalSigner">ExternalSigner</a>, account <a href="../../index.html">accounts</a>.<a href="../../index.html#Account">Account</a>) *<a href="index.html#TransactOpts">TransactOpts</a></pre>
+				<p>NewClefTransactor is a utility method to easily create a transaction signer
+with a clef backend.
+
+				
+				
+			
+				
+				<h3 id="NewKeyStoreTransactor">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=2246:2350#L52">NewKeyStoreTransactor</a>
+					<a class="permalink" href="index.html#NewKeyStoreTransactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeyStoreTransactor(keystore *<a href="../../keystore/index.html">keystore</a>.<a href="../../keystore/index.html#KeyStore">KeyStore</a>, account <a href="../../index.html">accounts</a>.<a href="../../index.html#Account">Account</a>) (*<a href="index.html#TransactOpts">TransactOpts</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKeyStoreTransactor is a utility method to easily create a transaction signer from
+an decrypted key from a keystore.
+<p>Deprecated: Use NewKeyStoreTransactorWithChainID instead.
+
+				
+				
+			
+				
+				<h3 id="NewKeyStoreTransactorWithChainID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=4356:4489#L111">NewKeyStoreTransactorWithChainID</a>
+					<a class="permalink" href="index.html#NewKeyStoreTransactorWithChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeyStoreTransactorWithChainID(keystore *<a href="../../keystore/index.html">keystore</a>.<a href="../../keystore/index.html#KeyStore">KeyStore</a>, account <a href="../../index.html">accounts</a>.<a href="../../index.html#Account">Account</a>, chainID *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (*<a href="index.html#TransactOpts">TransactOpts</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKeyStoreTransactorWithChainID is a utility method to easily create a transaction signer from
+an decrypted key from a keystore.
+
+				
+				
+			
+				
+				<h3 id="NewKeyedTransactor">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=3086:3146#L75">NewKeyedTransactor</a>
+					<a class="permalink" href="index.html#NewKeyedTransactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeyedTransactor(key *<a href="../../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>) *<a href="index.html#TransactOpts">TransactOpts</a></pre>
+				<p>NewKeyedTransactor is a utility method to easily create a transaction signer
+from a single private key.
+<p>Deprecated: Use NewKeyedTransactorWithChainID instead.
+
+				
+				
+			
+				
+				<h3 id="NewKeyedTransactorWithChainID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=5138:5236#L134">NewKeyedTransactorWithChainID</a>
+					<a class="permalink" href="index.html#NewKeyedTransactorWithChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewKeyedTransactorWithChainID(key *<a href="../../../../../../crypto/ecdsa/index.html">ecdsa</a>.<a href="../../../../../../crypto/ecdsa/index.html#PrivateKey">PrivateKey</a>, chainID *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (*<a href="index.html#TransactOpts">TransactOpts</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewKeyedTransactorWithChainID is a utility method to easily create a transaction signer
+from a single private key.
+
+				
+				
+			
+				
+				<h3 id="NewTransactor">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=1673:1750#L35">NewTransactor</a>
+					<a class="permalink" href="index.html#NewTransactor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTransactor(keyin <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>, passphrase <a href="../../../../../../builtin/index.html#string">string</a>) (*<a href="index.html#TransactOpts">TransactOpts</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewTransactor is a utility method to easily create a transaction signer from
+an encrypted json key stream and the associated passphrase.
+<p>Deprecated: Use NewTransactorWithChainID instead.
+
+				
+				
+			
+				
+				<h3 id="NewTransactorWithChainID">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/auth.go?s=3886:3992#L97">NewTransactorWithChainID</a>
+					<a class="permalink" href="index.html#NewTransactorWithChainID">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTransactorWithChainID(keyin <a href="../../../../../../io/index.html">io</a>.<a href="../../../../../../io/index.html#Reader">Reader</a>, passphrase <a href="../../../../../../builtin/index.html#string">string</a>, chainID *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (*<a href="index.html#TransactOpts">TransactOpts</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewTransactorWithChainID is a utility method to easily create a transaction signer from
+an encrypted json key stream and the associated passphrase.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WatchOpts">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go?s=3305:3500#L66">WatchOpts</a>
+				<a class="permalink" href="index.html#WatchOpts">&#xb6;</a>
+				
+				
+			</h2>
+			<p>WatchOpts is the collection of options to fine tune subscribing for events
+within a bound contract.
+
+			<pre>type WatchOpts struct {
+<span id="WatchOpts.Start"></span>    Start   *<a href="../../../../../../builtin/index.html#uint64">uint64</a>         <span class="comment">// Start of the queried range (nil = latest)</span>
+<span id="WatchOpts.Context"></span>    Context <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a> <span class="comment">// Network context to support cancellation and timeouts (nil = no timeout)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="../index.html">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="backends/index.html">backends</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

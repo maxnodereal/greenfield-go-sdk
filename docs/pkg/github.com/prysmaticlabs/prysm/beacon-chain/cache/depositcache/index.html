@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>depositcache - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package depositcache
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package depositcache is the source of validator deposits maintained
+in-memory by the beacon node – deposits processed from the
+eth1 powchain are then stored in this cache to be accessed by
+any other service during a beacon node&apos;s runtime.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#DepositCache">type DepositCache</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New() (*DepositCache, error)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.AllDepositContainers">func (dc *DepositCache) AllDepositContainers(ctx context.Context) []*ethpb.DepositContainer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.AllDeposits">func (dc *DepositCache) AllDeposits(ctx context.Context, untilBlk *big.Int) []*ethpb.Deposit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.DepositByPubkey">func (dc *DepositCache) DepositByPubkey(ctx context.Context, pubKey []byte) (*ethpb.Deposit, *big.Int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.DepositsNumberAndRootAtHeight">func (dc *DepositCache) DepositsNumberAndRootAtHeight(ctx context.Context, blockHeight *big.Int) (uint64, [32]byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.FinalizedDeposits">func (dc *DepositCache) FinalizedDeposits(ctx context.Context) *FinalizedDeposits</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.InsertDeposit">func (dc *DepositCache) InsertDeposit(ctx context.Context, d *ethpb.Deposit, blockNum uint64, index int64, depositRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.InsertDepositContainers">func (dc *DepositCache) InsertDepositContainers(ctx context.Context, ctrs []*ethpb.DepositContainer)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.InsertFinalizedDeposits">func (dc *DepositCache) InsertFinalizedDeposits(ctx context.Context, eth1DepositIndex int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.InsertPendingDeposit">func (dc *DepositCache) InsertPendingDeposit(ctx context.Context, d *ethpb.Deposit, blockNum uint64, index int64, depositRoot [32]byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.NonFinalizedDeposits">func (dc *DepositCache) NonFinalizedDeposits(ctx context.Context, untilBlk *big.Int) []*ethpb.Deposit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.PendingContainers">func (dc *DepositCache) PendingContainers(ctx context.Context, untilBlk *big.Int) []*ethpb.DepositContainer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.PendingDeposits">func (dc *DepositCache) PendingDeposits(ctx context.Context, untilBlk *big.Int) []*ethpb.Deposit</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.PrunePendingDeposits">func (dc *DepositCache) PrunePendingDeposits(ctx context.Context, merkleTreeIndex int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.PruneProofs">func (dc *DepositCache) PruneProofs(ctx context.Context, untilDepositIndex int64) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DepositCache.RemovePendingDeposit">func (dc *DepositCache) RemovePendingDeposit(ctx context.Context, d *ethpb.Deposit)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DepositFetcher">type DepositFetcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#FinalizedDeposits">type FinalizedDeposits</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#PendingDepositsFetcher">type PendingDepositsFetcher</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go">deposits_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go">pending_deposits.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="DepositCache">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=1873:2181#L41">DepositCache</a>
+				<a class="permalink" href="index.html#DepositCache">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DepositCache stores all in-memory deposit objects. This
+stores all the deposit related data that is required by the beacon-node.
+
+			<pre>type DepositCache struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=2223:2256#L51">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New() (*<a href="index.html#DepositCache">DepositCache</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>New instantiates a new deposit cache
+
+				
+				
+			
+
+			
+				
+				<h3 id="DepositCache.AllDepositContainers">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=6356:6447#L156">AllDepositContainers</a>
+					<a class="permalink" href="index.html#DepositCache.AllDepositContainers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) AllDepositContainers(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#DepositContainer">DepositContainer</a></pre>
+				<p>AllDepositContainers returns all historical deposit containers.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.AllDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=6794:6886#L167">AllDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.AllDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) AllDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a></pre>
+				<p>AllDeposits returns a list of historical deposits until the given block number
+(inclusive). If no block is specified then this method returns all historical deposits.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.DepositByPubkey">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=8183:8285#L200">DepositByPubkey</a>
+					<a class="permalink" href="index.html#DepositCache.DepositByPubkey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) DepositByPubkey(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, pubKey []<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>, *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)</pre>
+				<p>DepositByPubkey looks through historical deposits and finds one which contains
+a certain public key within its deposit data.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.DepositsNumberAndRootAtHeight">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=7394:7509#L184">DepositsNumberAndRootAtHeight</a>
+					<a class="permalink" href="index.html#DepositCache.DepositsNumberAndRootAtHeight">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) DepositsNumberAndRootAtHeight(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockHeight *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, [32]<a href="../../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>DepositsNumberAndRootAtHeight returns number of deposits made up to blockheight and the
+root that corresponds to the latest deposit at that blockheight.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.FinalizedDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=8883:8964#L221">FinalizedDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.FinalizedDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) FinalizedDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) *<a href="index.html#FinalizedDeposits">FinalizedDeposits</a></pre>
+				<p>FinalizedDeposits returns the finalized deposits trie.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.InsertDeposit">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=3007:3141#L69">InsertDeposit</a>
+					<a class="permalink" href="index.html#DepositCache.InsertDeposit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) InsertDeposit(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, d *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>, blockNum <a href="../../../../../../builtin/index.html#uint64">uint64</a>, index <a href="../../../../../../builtin/index.html#int64">int64</a>, depositRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>InsertDeposit into the database. If deposit or block number are nil
+then this method does nothing.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.InsertDepositContainers">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=4548:4648#L103">InsertDepositContainers</a>
+					<a class="permalink" href="index.html#DepositCache.InsertDepositContainers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) InsertDepositContainers(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, ctrs []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#DepositContainer">DepositContainer</a>)</pre>
+				<p>InsertDepositContainers inserts a set of deposit containers into our deposit cache.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.InsertFinalizedDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=5326:5418#L122">InsertFinalizedDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.InsertFinalizedDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) InsertFinalizedDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, eth1DepositIndex <a href="../../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>InsertFinalizedDeposits inserts deposits up to eth1DepositIndex (inclusive) into the finalized deposits cache.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.InsertPendingDeposit">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=903:1038#L21">InsertPendingDeposit</a>
+					<a class="permalink" href="index.html#DepositCache.InsertPendingDeposit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) InsertPendingDeposit(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, d *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>, blockNum <a href="../../../../../../builtin/index.html#uint64">uint64</a>, index <a href="../../../../../../builtin/index.html#int64">int64</a>, depositRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>InsertPendingDeposit into the database. If deposit or block number are nil
+then this method does nothing.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.NonFinalizedDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=9450:9551#L235">NonFinalizedDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.NonFinalizedDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) NonFinalizedDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a></pre>
+				<p>NonFinalizedDeposits returns the list of non-finalized deposits until the given block number (inclusive).
+If no block is specified then this method returns all non-finalized deposits.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.PendingContainers">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=2246:2353#L58">PendingContainers</a>
+					<a class="permalink" href="index.html#DepositCache.PendingContainers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) PendingContainers(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#DepositContainer">DepositContainer</a></pre>
+				<p>PendingContainers returns a list of deposit containers until the given block number
+(inclusive).
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.PendingDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=1769:1865#L42">PendingDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.PendingDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) PendingDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a></pre>
+				<p>PendingDeposits returns a list of deposits until the given block number
+(inclusive). If no block is specified then this method returns all pending
+deposits.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.PrunePendingDeposits">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=3980:4068#L120">PrunePendingDeposits</a>
+					<a class="permalink" href="index.html#DepositCache.PrunePendingDeposits">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) PrunePendingDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, merkleTreeIndex <a href="../../../../../../builtin/index.html#int64">int64</a>)</pre>
+				<p>PrunePendingDeposits removes any deposit which is older than the given deposit merkle tree index.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.PruneProofs">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=10191:10278#L257">PruneProofs</a>
+					<a class="permalink" href="index.html#DepositCache.PruneProofs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) PruneProofs(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilDepositIndex <a href="../../../../../../builtin/index.html#int64">int64</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>PruneProofs removes proofs from all deposits whose index is equal or less than untilDepositIndex.
+
+				
+				
+				
+			
+				
+				<h3 id="DepositCache.RemovePendingDeposit">func (*DepositCache) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=3092:3175#L82">RemovePendingDeposit</a>
+					<a class="permalink" href="index.html#DepositCache.RemovePendingDeposit">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (dc *<a href="index.html#DepositCache">DepositCache</a>) RemovePendingDeposit(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, d *<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>)</pre>
+				<p>RemovePendingDeposit from the database. The deposit is indexed by the
+Index. This method does nothing if deposit ptr is nil.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DepositFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=1089:1503#L24">DepositFetcher</a>
+				<a class="permalink" href="index.html#DepositFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DepositFetcher defines a struct which can retrieve deposit information from a store.
+
+			<pre>type DepositFetcher interface {
+    AllDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>
+    DepositByPubkey(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, pubKey []<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>, *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>)
+    DepositsNumberAndRootAtHeight(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockHeight *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) (<a href="../../../../../../builtin/index.html#uint64">uint64</a>, [32]<a href="../../../../../../builtin/index.html#byte">byte</a>)
+    FinalizedDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) *<a href="index.html#FinalizedDeposits">FinalizedDeposits</a>
+    NonFinalizedDeposits(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#Deposit">Deposit</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FinalizedDeposits">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/deposits_cache.go?s=1640:1736#L34">FinalizedDeposits</a>
+				<a class="permalink" href="index.html#FinalizedDeposits">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FinalizedDeposits stores the trie of deposits that have been included
+in the beacon state up to the latest finalized checkpoint.
+
+			<pre>type FinalizedDeposits struct {
+<span id="FinalizedDeposits.Deposits"></span>    Deposits        *<a href="../../../container/trie/index.html">trie</a>.<a href="../../../container/trie/index.html#SparseMerkleTrie">SparseMerkleTrie</a>
+<span id="FinalizedDeposits.MerkleTrieIndex"></span>    MerkleTrieIndex <a href="../../../../../../builtin/index.html#int64">int64</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PendingDepositsFetcher">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/cache/depositcache/pending_deposits.go?s=663:789#L15">PendingDepositsFetcher</a>
+				<a class="permalink" href="index.html#PendingDepositsFetcher">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PendingDepositsFetcher specifically outlines a struct that can retrieve deposits
+which have not yet been included in the chain.
+
+			<pre>type PendingDepositsFetcher interface {
+    PendingContainers(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, untilBlk *<a href="../../../../../../math/big/index.html">big</a>.<a href="../../../../../../math/big/index.html#Int">Int</a>) []*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#DepositContainer">DepositContainer</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

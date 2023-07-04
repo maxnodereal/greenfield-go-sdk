@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>promauto - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package promauto
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prometheus/client_golang/prometheus/promauto"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package promauto provides alternative constructors for the fundamental
+Prometheus metric types and their …Vec and …Func variants. The difference to
+their counterparts in the prometheus package is that the promauto
+constructors register the Collectors with a registry before returning them.
+There are two sets of constructors. The constructors in the first set are
+top-level functions, while the constructors in the other set are methods of
+the Factory type. The top-level function return Collectors registered with
+the global registry (prometheus.DefaultRegisterer), while the methods return
+Collectors registered with the registry the Factory was constructed with. All
+constructors panic if the registration fails.
+<p>The following example is a complete program to create a histogram of normally
+distributed random numbers from the math/rand package:
+<pre>package main
+
+import (
+	&quot;math/rand&quot;
+	&quot;net/http&quot;
+
+	&quot;github.com/prometheus/client_golang/prometheus&quot;
+	&quot;github.com/prometheus/client_golang/prometheus/promauto&quot;
+	&quot;github.com/prometheus/client_golang/prometheus/promhttp&quot;
+)
+
+var histogram = promauto.NewHistogram(prometheus.HistogramOpts{
+	Name:    &quot;random_numbers&quot;,
+	Help:    &quot;A histogram of normally distributed random numbers.&quot;,
+	Buckets: prometheus.LinearBuckets(-3, .1, 61),
+})
+
+func Random() {
+	for {
+		histogram.Observe(rand.NormFloat64())
+	}
+}
+
+func main() {
+	go Random()
+	http.Handle(&quot;/metrics&quot;, promhttp.Handler())
+	http.ListenAndServe(&quot;:1971&quot;, nil)
+}
+</pre>
+<p>Prometheus&apos;s version of a minimal hello-world program:
+<pre>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;net/http&quot;
+
+	&quot;github.com/prometheus/client_golang/prometheus&quot;
+	&quot;github.com/prometheus/client_golang/prometheus/promauto&quot;
+	&quot;github.com/prometheus/client_golang/prometheus/promhttp&quot;
+)
+
+func main() {
+	http.Handle(&quot;/&quot;, promhttp.InstrumentHandlerCounter(
+		promauto.NewCounterVec(
+			prometheus.CounterOpts{
+				Name: &quot;hello_requests_total&quot;,
+				Help: &quot;Total number of hello-world requests by HTTP code.&quot;,
+			},
+			[]string{&quot;code&quot;},
+		),
+		http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			fmt.Fprint(w, &quot;Hello, world!&quot;)
+		}),
+	))
+	http.Handle(&quot;/metrics&quot;, promhttp.Handler())
+	http.ListenAndServe(&quot;:1971&quot;, nil)
+}
+</pre>
+<p>A Factory is created with the With(prometheus.Registerer) function, which
+enables two usage pattern. With(prometheus.Registerer) can be called once per
+line:
+<pre>var (
+	reg           = prometheus.NewRegistry()
+	randomNumbers = promauto.With(reg).NewHistogram(prometheus.HistogramOpts{
+		Name:    &quot;random_numbers&quot;,
+		Help:    &quot;A histogram of normally distributed random numbers.&quot;,
+		Buckets: prometheus.LinearBuckets(-3, .1, 61),
+	})
+	requestCount = promauto.With(reg).NewCounterVec(
+		prometheus.CounterOpts{
+			Name: &quot;http_requests_total&quot;,
+			Help: &quot;Total number of HTTP requests by status code and method.&quot;,
+		},
+		[]string{&quot;code&quot;, &quot;method&quot;},
+	)
+)
+</pre>
+<p>Or it can be used to create a Factory once to be used multiple times:
+<pre>var (
+	reg           = prometheus.NewRegistry()
+	factory       = promauto.With(reg)
+	randomNumbers = factory.NewHistogram(prometheus.HistogramOpts{
+		Name:    &quot;random_numbers&quot;,
+		Help:    &quot;A histogram of normally distributed random numbers.&quot;,
+		Buckets: prometheus.LinearBuckets(-3, .1, 61),
+	})
+	requestCount = factory.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: &quot;http_requests_total&quot;,
+			Help: &quot;Total number of HTTP requests by status code and method.&quot;,
+		},
+		[]string{&quot;code&quot;, &quot;method&quot;},
+	)
+)
+</pre>
+<p>This appears very handy. So why are these constructors locked away in a
+separate package?
+<p>The main problem is that registration may fail, e.g. if a metric inconsistent
+with or equal to the newly to be registered one is already registered.
+Therefore, the Register method in the prometheus.Registerer interface returns
+an error, and the same is the case for the top-level prometheus.Register
+function that registers with the global registry. The prometheus package also
+provides MustRegister versions for both. They panic if the registration
+fails, and they clearly call this out by using the Must…  idiom. Panicking is
+problematic in this case because it doesn&apos;t just happen on input provided by
+the caller that is invalid on its own. Things are a bit more subtle here:
+Metric creation and registration tend to be spread widely over the
+codebase. It can easily happen that an incompatible metric is added to an
+unrelated part of the code, and suddenly code that used to work perfectly
+fine starts to panic (provided that the registration of the newly added
+metric happens before the registration of the previously existing
+metric). This may come as an even bigger surprise with the global registry,
+where simply importing another package can trigger a panic (if the newly
+imported package registers metrics in its init function). At least, in the
+prometheus package, creation of metrics and other collectors is separate from
+registration. You first create the metric, and then you decide explicitly if
+you want to register it with a local or the global registry, and if you want
+to handle the error or risk a panic. With the constructors in the promauto
+package, registration is automatic, and if it fails, it will always
+panic. Furthermore, the constructors will often be called in the var section
+of a file, which means that panicking will happen as a side effect of merely
+importing a package.
+<p>A separate package allows conservative users to entirely ignore it. And
+whoever wants to use it, will do so explicitly, with an opportunity to read
+this warning.
+<p>Enjoy promauto responsibly!
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewCounter">func NewCounter(opts prometheus.CounterOpts) prometheus.Counter</a></dd>
+			
+				
+				<dd><a href="index.html#NewCounterFunc">func NewCounterFunc(opts prometheus.CounterOpts, function func() float64) prometheus.CounterFunc</a></dd>
+			
+				
+				<dd><a href="index.html#NewCounterVec">func NewCounterVec(opts prometheus.CounterOpts, labelNames []string) *prometheus.CounterVec</a></dd>
+			
+				
+				<dd><a href="index.html#NewGauge">func NewGauge(opts prometheus.GaugeOpts) prometheus.Gauge</a></dd>
+			
+				
+				<dd><a href="index.html#NewGaugeFunc">func NewGaugeFunc(opts prometheus.GaugeOpts, function func() float64) prometheus.GaugeFunc</a></dd>
+			
+				
+				<dd><a href="index.html#NewGaugeVec">func NewGaugeVec(opts prometheus.GaugeOpts, labelNames []string) *prometheus.GaugeVec</a></dd>
+			
+				
+				<dd><a href="index.html#NewHistogram">func NewHistogram(opts prometheus.HistogramOpts) prometheus.Histogram</a></dd>
+			
+				
+				<dd><a href="index.html#NewHistogramVec">func NewHistogramVec(opts prometheus.HistogramOpts, labelNames []string) *prometheus.HistogramVec</a></dd>
+			
+				
+				<dd><a href="index.html#NewSummary">func NewSummary(opts prometheus.SummaryOpts) prometheus.Summary</a></dd>
+			
+				
+				<dd><a href="index.html#NewSummaryVec">func NewSummaryVec(opts prometheus.SummaryOpts, labelNames []string) *prometheus.SummaryVec</a></dd>
+			
+				
+				<dd><a href="index.html#NewUntypedFunc">func NewUntypedFunc(opts prometheus.UntypedOpts, function func() float64) prometheus.UntypedFunc</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Factory">type Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#With">func With(r prometheus.Registerer) Factory</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewCounter">func (f Factory) NewCounter(opts prometheus.CounterOpts) prometheus.Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewCounterFunc">func (f Factory) NewCounterFunc(opts prometheus.CounterOpts, function func() float64) prometheus.CounterFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewCounterVec">func (f Factory) NewCounterVec(opts prometheus.CounterOpts, labelNames []string) *prometheus.CounterVec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewGauge">func (f Factory) NewGauge(opts prometheus.GaugeOpts) prometheus.Gauge</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewGaugeFunc">func (f Factory) NewGaugeFunc(opts prometheus.GaugeOpts, function func() float64) prometheus.GaugeFunc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewGaugeVec">func (f Factory) NewGaugeVec(opts prometheus.GaugeOpts, labelNames []string) *prometheus.GaugeVec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewHistogram">func (f Factory) NewHistogram(opts prometheus.HistogramOpts) prometheus.Histogram</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewHistogramVec">func (f Factory) NewHistogramVec(opts prometheus.HistogramOpts, labelNames []string) *prometheus.HistogramVec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewSummary">func (f Factory) NewSummary(opts prometheus.SummaryOpts) prometheus.Summary</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewSummaryVec">func (f Factory) NewSummaryVec(opts prometheus.SummaryOpts, labelNames []string) *prometheus.SummaryVec</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.NewUntypedFunc">func (f Factory) NewUntypedFunc(opts prometheus.UntypedOpts, function func() float64) prometheus.UntypedFunc</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go">auto.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewCounter">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=6790:6853#L157">NewCounter</a>
+				<a class="permalink" href="index.html#NewCounter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewCounter(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Counter">Counter</a></pre>
+			<p>NewCounter works like the function of the same name in the prometheus package
+but it automatically registers the Counter with the
+prometheus.DefaultRegisterer. If the registration fails, NewCounter panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCounterFunc">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=7548:7644#L173">NewCounterFunc</a>
+				<a class="permalink" href="index.html#NewCounterFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewCounterFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#CounterFunc">CounterFunc</a></pre>
+			<p>NewCounterFunc works like the function of the same name in the prometheus
+package but it automatically registers the CounterFunc with the
+prometheus.DefaultRegisterer. If the registration fails, NewCounterFunc
+panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCounterVec">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=7146:7237#L165">NewCounterVec</a>
+				<a class="permalink" href="index.html#NewCounterVec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewCounterVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#CounterVec">CounterVec</a></pre>
+			<p>NewCounterVec works like the function of the same name in the prometheus
+package but it automatically registers the CounterVec with the
+prometheus.DefaultRegisterer. If the registration fails, NewCounterVec
+panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGauge">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=7933:7990#L180">NewGauge</a>
+				<a class="permalink" href="index.html#NewGauge">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGauge(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+			<p>NewGauge works like the function of the same name in the prometheus package
+but it automatically registers the Gauge with the
+prometheus.DefaultRegisterer. If the registration fails, NewGauge panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGaugeFunc">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=8657:8747#L194">NewGaugeFunc</a>
+				<a class="permalink" href="index.html#NewGaugeFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGaugeFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeFunc">GaugeFunc</a></pre>
+			<p>NewGaugeFunc works like the function of the same name in the prometheus
+package but it automatically registers the GaugeFunc with the
+prometheus.DefaultRegisterer. If the registration fails, NewGaugeFunc panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewGaugeVec">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=8272:8357#L187">NewGaugeVec</a>
+				<a class="permalink" href="index.html#NewGaugeVec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewGaugeVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#GaugeVec">GaugeVec</a></pre>
+			<p>NewGaugeVec works like the function of the same name in the prometheus
+package but it automatically registers the GaugeVec with the
+prometheus.DefaultRegisterer. If the registration fails, NewGaugeVec panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewHistogram">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=9789:9858#L216">NewHistogram</a>
+				<a class="permalink" href="index.html#NewHistogram">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewHistogram(opts <a href="../index.html">prometheus</a>.<a href="../index.html#HistogramOpts">HistogramOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+			<p>NewHistogram works like the function of the same name in the prometheus
+package but it automatically registers the Histogram with the
+prometheus.DefaultRegisterer. If the registration fails, NewHistogram panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewHistogramVec">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=10159:10256#L224">NewHistogramVec</a>
+				<a class="permalink" href="index.html#NewHistogramVec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewHistogramVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#HistogramOpts">HistogramOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#HistogramVec">HistogramVec</a></pre>
+			<p>NewHistogramVec works like the function of the same name in the prometheus
+package but it automatically registers the HistogramVec with the
+prometheus.DefaultRegisterer. If the registration fails, NewHistogramVec
+panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewSummary">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=9040:9103#L201">NewSummary</a>
+				<a class="permalink" href="index.html#NewSummary">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewSummary(opts <a href="../index.html">prometheus</a>.<a href="../index.html#SummaryOpts">SummaryOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Summary">Summary</a></pre>
+			<p>NewSummary works like the function of the same name in the prometheus package
+but it automatically registers the Summary with the
+prometheus.DefaultRegisterer. If the registration fails, NewSummary panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewSummaryVec">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=9396:9487#L209">NewSummaryVec</a>
+				<a class="permalink" href="index.html#NewSummaryVec">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewSummaryVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#SummaryOpts">SummaryOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#SummaryVec">SummaryVec</a></pre>
+			<p>NewSummaryVec works like the function of the same name in the prometheus
+package but it automatically registers the SummaryVec with the
+prometheus.DefaultRegisterer. If the registration fails, NewSummaryVec
+panics.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewUntypedFunc">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=10569:10665#L232">NewUntypedFunc</a>
+				<a class="permalink" href="index.html#NewUntypedFunc">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewUntypedFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#UntypedOpts">UntypedOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#UntypedFunc">UntypedFunc</a></pre>
+			<p>NewUntypedFunc works like the function of the same name in the prometheus
+package but it automatically registers the UntypedFunc with the
+prometheus.DefaultRegisterer. If the registration fails, NewUntypedFunc
+panics.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Factory">type <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=11125:11173#L241">Factory</a>
+				<a class="permalink" href="index.html#Factory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Factory provides factory methods to create Collectors that are automatically
+registered with a Registerer. Create a Factory with the With function,
+providing a Registerer to auto-register created Collectors with. The zero
+value of a Factory creates Collectors that are not registered with any
+Registerer. All methods of the Factory panic if the registration fails.
+
+			<pre>type Factory struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="With">func <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=11401:11443#L248">With</a>
+					<a class="permalink" href="index.html#With">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func With(r <a href="../index.html">prometheus</a>.<a href="../index.html#Registerer">Registerer</a>) <a href="index.html#Factory">Factory</a></pre>
+				<p>With creates a Factory using the provided Registerer for registration of the
+created Collectors. If the provided Registerer is nil, the returned Factory
+creates Collectors that are not registered with any Registerer.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Factory.NewCounter">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=11625:11700#L252">NewCounter</a>
+					<a class="permalink" href="index.html#Factory.NewCounter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewCounter(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Counter">Counter</a></pre>
+				<p>NewCounter works like the function of the same name in the prometheus package
+but it automatically registers the Counter with the Factory&apos;s Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewCounterFunc">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=12338:12446#L274">NewCounterFunc</a>
+					<a class="permalink" href="index.html#Factory.NewCounterFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewCounterFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#CounterFunc">CounterFunc</a></pre>
+				<p>NewCounterFunc works like the function of the same name in the prometheus
+package but it automatically registers the CounterFunc with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewCounterVec">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=11959:12062#L263">NewCounterVec</a>
+					<a class="permalink" href="index.html#Factory.NewCounterVec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewCounterVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#CounterOpts">CounterOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#CounterVec">CounterVec</a></pre>
+				<p>NewCounterVec works like the function of the same name in the prometheus
+package but it automatically registers the CounterVec with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewGauge">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=12706:12775#L284">NewGauge</a>
+					<a class="permalink" href="index.html#Factory.NewGauge">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewGauge(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Gauge">Gauge</a></pre>
+				<p>NewGauge works like the function of the same name in the prometheus package
+but it automatically registers the Gauge with the Factory&apos;s Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewGaugeFunc">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=13395:13497#L306">NewGaugeFunc</a>
+					<a class="permalink" href="index.html#Factory.NewGaugeFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewGaugeFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeFunc">GaugeFunc</a></pre>
+				<p>NewGaugeFunc works like the function of the same name in the prometheus
+package but it automatically registers the GaugeFunc with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewGaugeVec">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=13028:13125#L295">NewGaugeVec</a>
+					<a class="permalink" href="index.html#Factory.NewGaugeVec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewGaugeVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#GaugeOpts">GaugeOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#GaugeVec">GaugeVec</a></pre>
+				<p>NewGaugeVec works like the function of the same name in the prometheus
+package but it automatically registers the GaugeVec with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewHistogram">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=14468:14549#L338">NewHistogram</a>
+					<a class="permalink" href="index.html#Factory.NewHistogram">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewHistogram(opts <a href="../index.html">prometheus</a>.<a href="../index.html#HistogramOpts">HistogramOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Histogram">Histogram</a></pre>
+				<p>NewHistogram works like the function of the same name in the prometheus
+package but it automatically registers the Histogram with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewHistogramVec">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=14814:14923#L349">NewHistogramVec</a>
+					<a class="permalink" href="index.html#Factory.NewHistogramVec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewHistogramVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#HistogramOpts">HistogramOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#HistogramVec">HistogramVec</a></pre>
+				<p>NewHistogramVec works like the function of the same name in the prometheus
+package but it automatically registers the HistogramVec with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewSummary">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=13759:13834#L316">NewSummary</a>
+					<a class="permalink" href="index.html#Factory.NewSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewSummary(opts <a href="../index.html">prometheus</a>.<a href="../index.html#SummaryOpts">SummaryOpts</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#Summary">Summary</a></pre>
+				<p>NewSummary works like the function of the same name in the prometheus package
+but it automatically registers the Summary with the Factory&apos;s Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewSummaryVec">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=14093:14196#L327">NewSummaryVec</a>
+					<a class="permalink" href="index.html#Factory.NewSummaryVec">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewSummaryVec(opts <a href="../index.html">prometheus</a>.<a href="../index.html#SummaryOpts">SummaryOpts</a>, labelNames []<a href="../../../../../builtin/index.html#string">string</a>) *<a href="../index.html">prometheus</a>.<a href="../index.html#SummaryVec">SummaryVec</a></pre>
+				<p>NewSummaryVec works like the function of the same name in the prometheus
+package but it automatically registers the SummaryVec with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.NewUntypedFunc">func (Factory) <a href="http://localhost:6060/src/github.com/prometheus/client_golang/prometheus/promauto/auto.go?s=15201:15309#L360">NewUntypedFunc</a>
+					<a class="permalink" href="index.html#Factory.NewUntypedFunc">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="index.html#Factory">Factory</a>) NewUntypedFunc(opts <a href="../index.html">prometheus</a>.<a href="../index.html#UntypedOpts">UntypedOpts</a>, function func() <a href="../../../../../builtin/index.html#float64">float64</a>) <a href="../index.html">prometheus</a>.<a href="../index.html#UntypedFunc">UntypedFunc</a></pre>
+				<p>NewUntypedFunc works like the function of the same name in the prometheus
+package but it automatically registers the UntypedFunc with the Factory&apos;s
+Registerer.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

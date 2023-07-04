@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>features - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package features
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/config/features"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package features defines which features are enabled for runtime
+in order to selectively enable certain features to maintain a stable runtime.
+<p>The process for implementing new features using this package is as follows:
+<ol>
+<li>Add a new CMD flag in flags.go, and place it in the proper list(s) var for its client.
+<li>Add a condition for the flag in the proper Configure function(s) below.
+<li>Place any &quot;new&quot; behavior in the `if flagEnabled` statement.
+<li>Place any &quot;previous&quot; behavior in the `else` statement.
+<li>Ensure any tests using the new feature fail if the flag isn&apos;t enabled.
+5a. Use the following to enable your flag for tests:
+cfg := &amp;featureconfig.Flags{
+VerifyAttestationSigs: true,
+}
+resetCfg := featureconfig.InitWithReset(cfg)
+defer resetCfg()
+<li>Add the string for the flags that should be running within E2E to E2EValidatorFlags
+and E2EBeaconChainFlags.
+</ol>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ActiveFlags">func ActiveFlags(flags []cli.Flag) []cli.Flag</a></dd>
+			
+				
+				<dd><a href="index.html#ConfigureBeaconChain">func ConfigureBeaconChain(ctx *cli.Context)</a></dd>
+			
+				
+				<dd><a href="index.html#ConfigureValidator">func ConfigureValidator(ctx *cli.Context)</a></dd>
+			
+				
+				<dd><a href="index.html#Init">func Init(c *Flags)</a></dd>
+			
+				
+				<dd><a href="index.html#InitWithReset">func InitWithReset(c *Flags) func()</a></dd>
+			
+			
+				
+				<dd><a href="index.html#Flags">type Flags</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Get">func Get() *Flags</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go">config.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/deprecated_flags.go">deprecated_flags.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/filter_flags.go">filter_flags.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/flags.go">flags.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// PyrmontTestnet flag for the multiclient Ethereum consensus testnet.</span>
+    <span id="PyrmontTestnet">PyrmontTestnet</span> = &amp;cli.<a href="index.html#BoolFlag">BoolFlag</a>{
+        <a href="index.html#Name">Name</a>:  &#34;pyrmont&#34;,
+        <a href="index.html#Usage">Usage</a>: &#34;This defines the flag through which we can run on the Pyrmont Multiclient Testnet&#34;,
+    }
+    <span class="comment">// PraterTestnet flag for the multiclient Ethereum consensus testnet.</span>
+    <span id="PraterTestnet">PraterTestnet</span> = &amp;cli.<a href="index.html#BoolFlag">BoolFlag</a>{
+        <a href="index.html#Name">Name</a>:  &#34;prater&#34;,
+        <a href="index.html#Usage">Usage</a>: &#34;Run Prysm configured for the Prater test network&#34;,
+    }
+    <span class="comment">// Mainnet flag for easier tooling, no-op</span>
+    <span id="Mainnet">Mainnet</span> = &amp;cli.<a href="index.html#BoolFlag">BoolFlag</a>{
+        <a href="index.html#Value">Value</a>: <a href="../../../../../builtin/index.html#true">true</a>,
+        <a href="index.html#Name">Name</a>:  &#34;mainnet&#34;,
+        <a href="index.html#Usage">Usage</a>: &#34;Run on Ethereum Beacon Chain Main Net. This is the default and can be omitted.&#34;,
+    }
+)</pre>
+			
+				<p>BeaconChainFlags contains a list of all the feature flags that apply to the beacon-chain client.
+
+				<pre>var <span id="BeaconChainFlags">BeaconChainFlags</span> = <a href="../../../../../builtin/index.html#append">append</a>(deprecatedFlags, []cli.<a href="index.html#Flag">Flag</a>{
+    devModeFlag,
+    writeSSZStateTransitionsFlag,
+    disableGRPCConnectionLogging,
+    attestationAggregationStrategy,
+    <a href="index.html#PyrmontTestnet">PyrmontTestnet</a>,
+    <a href="index.html#PraterTestnet">PraterTestnet</a>,
+    <a href="index.html#Mainnet">Mainnet</a>,
+    enablePeerScorer,
+    enableLargerGossipHistory,
+    checkPtInfoCache,
+    disableBroadcastSlashingFlag,
+    disableNextSlotStateCache,
+    forceOptMaxCoverAggregationStategy,
+    enableSlasherFlag,
+    disableProposerAttsSelectionUsingMaxCover,
+    disableOptimizedBalanceUpdate,
+    enableHistoricalSpaceRepresentation,
+    disableCorrectlyInsertOrphanedAtts,
+    disableGetBlockOptimizations,
+    disableCorrectlyPruneCanonicalAtts,
+    disableActiveBalanceCache,
+    disableBatchGossipVerification,
+    disableBalanceTrieComputation,
+}...)</pre>
+			
+				<p>E2EBeaconChainFlags contains a list of the beacon chain feature flags to be tested in E2E.
+
+				<pre>var <span id="E2EBeaconChainFlags">E2EBeaconChainFlags</span> = []<a href="../../../../../builtin/index.html#string">string</a>{
+    &#34;--attestation-aggregation-strategy=opt_max_cover&#34;,
+    &#34;--dev&#34;,
+    &#34;--use-check-point-cache&#34;,
+    &#34;--enable-active-balance-cache&#34;,
+}</pre>
+			
+				<p>E2EValidatorFlags contains a list of the validator feature flags to be tested in E2E.
+
+				<pre>var <span id="E2EValidatorFlags">E2EValidatorFlags</span> = []<a href="../../../../../builtin/index.html#string">string</a>{
+    &#34;--enable-doppelganger&#34;,
+}</pre>
+			
+				<p>ValidatorFlags contains a list of all the feature flags that apply to the validator client.
+
+				<pre>var <span id="ValidatorFlags">ValidatorFlags</span> = <a href="../../../../../builtin/index.html#append">append</a>(deprecatedFlags, []cli.<a href="index.html#Flag">Flag</a>{
+    writeWalletPasswordOnWebOnboarding,
+    enableExternalSlasherProtectionFlag,
+    disableAttestingHistoryDBCache,
+    <a href="index.html#PyrmontTestnet">PyrmontTestnet</a>,
+    <a href="index.html#PraterTestnet">PraterTestnet</a>,
+    <a href="index.html#Mainnet">Mainnet</a>,
+    dynamicKeyReloadDebounceInterval,
+    attestTimely,
+    enableSlashingProtectionPruning,
+    enableDoppelGangerProtection,
+}...)</pre>
+			
+		
+		
+			
+			
+			<h2 id="ActiveFlags">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/filter_flags.go?s=131:176#L1">ActiveFlags</a>
+				<a class="permalink" href="index.html#ActiveFlags">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ActiveFlags(flags []cli.<a href="index.html#Flag">Flag</a>) []cli.<a href="index.html#Flag">Flag</a></pre>
+			<p>ActiveFlags returns all of the flags that are not Hidden.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConfigureBeaconChain">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=6194:6237#L132">ConfigureBeaconChain</a>
+				<a class="permalink" href="index.html#ConfigureBeaconChain">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConfigureBeaconChain(ctx *cli.<a href="index.html#Context">Context</a>)</pre>
+			<p>ConfigureBeaconChain sets the global config based
+on what flags are enabled for the beacon-chain client.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConfigureValidator">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=9599:9640#L229">ConfigureValidator</a>
+				<a class="permalink" href="index.html#ConfigureValidator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConfigureValidator(ctx *cli.<a href="index.html#Context">Context</a>)</pre>
+			<p>ConfigureValidator sets the global config based
+on what flags are enabled for the validator client.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Init">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=5114:5133#L91">Init</a>
+				<a class="permalink" href="index.html#Init">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Init(c *<a href="index.html#Flags">Flags</a>)</pre>
+			<p>Init sets the global config equal to the config that is passed in.
+
+			
+			
+
+		
+			
+			
+			<h2 id="InitWithReset">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=5317:5352#L99">InitWithReset</a>
+				<a class="permalink" href="index.html#InitWithReset">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func InitWithReset(c *<a href="index.html#Flags">Flags</a>) func()</pre>
+			<p>InitWithReset sets the global config and returns function that is used to reset configuration.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Flags">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=1274:4792#L27">Flags</a>
+				<a class="permalink" href="index.html#Flags">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Flags is a struct to represent which features the client will perform on runtime.
+
+			<pre>type Flags struct {
+    <span class="comment">// Testnet Flags.</span>
+<span id="Flags.PyrmontTestnet"></span>    PyrmontTestnet <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// PyrmontTestnet defines the flag through which we can enable the node to run on the Pyrmont testnet.</span>
+
+    <span class="comment">// Feature related flags.</span>
+<span id="Flags.RemoteSlasherProtection"></span>    RemoteSlasherProtection             <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// RemoteSlasherProtection utilizes a beacon node with --slasher mode for validator slashing protection.</span>
+<span id="Flags.WriteSSZStateTransitions"></span>    WriteSSZStateTransitions            <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// WriteSSZStateTransitions to tmp directory.</span>
+<span id="Flags.SkipBLSVerify"></span>    SkipBLSVerify                       <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// Skips BLS verification across the runtime.</span>
+<span id="Flags.EnablePeerScorer"></span>    EnablePeerScorer                    <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnablePeerScorer enables experimental peer scoring in p2p.</span>
+<span id="Flags.EnableLargerGossipHistory"></span>    EnableLargerGossipHistory           <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableLargerGossipHistory increases the gossip history we store in our caches.</span>
+<span id="Flags.WriteWalletPasswordOnWebOnboarding"></span>    WriteWalletPasswordOnWebOnboarding  <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// WriteWalletPasswordOnWebOnboarding writes the password to disk after Prysm web signup.</span>
+<span id="Flags.DisableAttestingHistoryDBCache"></span>    DisableAttestingHistoryDBCache      <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// DisableAttestingHistoryDBCache for the validator client increases disk reads/writes.</span>
+<span id="Flags.ProposerAttsSelectionUsingMaxCover"></span>    ProposerAttsSelectionUsingMaxCover  <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// ProposerAttsSelectionUsingMaxCover enables max-cover algorithm when selecting attestations for proposing.</span>
+<span id="Flags.EnableOptimizedBalanceUpdate"></span>    EnableOptimizedBalanceUpdate        <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableOptimizedBalanceUpdate uses an updated method of performing balance updates.</span>
+<span id="Flags.EnableDoppelGanger"></span>    EnableDoppelGanger                  <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableDoppelGanger enables doppelganger protection on startup for the validator.</span>
+<span id="Flags.EnableHistoricalSpaceRepresentation"></span>    EnableHistoricalSpaceRepresentation <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableHistoricalSpaceRepresentation enables the saving of registry validators in separate buckets to save space</span>
+<span id="Flags.EnableGetBlockOptimizations"></span>    EnableGetBlockOptimizations         <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableGetBlockOptimizations optimizes some elements of the GetBlock() function.</span>
+<span id="Flags.EnableBatchVerification"></span>    EnableBatchVerification             <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableBatchVerification enables batch signature verification on gossip messages.</span>
+<span id="Flags.EnableBalanceTrieComputation"></span>    EnableBalanceTrieComputation        <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableBalanceTrieComputation enables our beacon state to use balance tries for hash tree root operations.</span>
+    <span class="comment">// Logging related toggles.</span>
+<span id="Flags.DisableGRPCConnectionLogs"></span>    DisableGRPCConnectionLogs <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// Disables logging when a new grpc client has connected.</span>
+
+    <span class="comment">// Slasher toggles.</span>
+<span id="Flags.DisableLookback"></span>    DisableLookback           <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// DisableLookback updates slasher to not use the lookback and update validator histories until epoch 0.</span>
+<span id="Flags.DisableBroadcastSlashings"></span>    DisableBroadcastSlashings <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// DisableBroadcastSlashings disables p2p broadcasting of proposer and attester slashings.</span>
+
+    <span class="comment">// Cache toggles.</span>
+<span id="Flags.EnableSSZCache"></span>    EnableSSZCache           <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableSSZCache see https://github.com/prysmaticlabs/prysm/pull/4558.</span>
+<span id="Flags.EnableNextSlotStateCache"></span>    EnableNextSlotStateCache <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableNextSlotStateCache enables next slot state cache to improve validator performance.</span>
+<span id="Flags.EnableActiveBalanceCache"></span>    EnableActiveBalanceCache <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// EnableActiveBalanceCache enables active balance cache.</span>
+
+    <span class="comment">// Bug fixes related flags.</span>
+<span id="Flags.AttestTimely"></span>    AttestTimely <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// AttestTimely fixes #8185. It is gated behind a flag to ensure beacon node&#39;s fix can safely roll out first. We&#39;ll invert this in v1.1.0.</span>
+
+<span id="Flags.EnableSlasher"></span>    EnableSlasher <a href="../../../../../builtin/index.html#bool">bool</a> <span class="comment">// Enable slasher in the beacon node runtime.</span>
+<span id="Flags.EnableSlashingProtectionPruning"></span>    <span class="comment">// EnableSlashingProtectionPruning for the validator client.</span>
+    EnableSlashingProtectionPruning <a href="../../../../../builtin/index.html#bool">bool</a>
+
+    <span class="comment">// Bug fixes related flags.</span>
+<span id="Flags.CorrectlyInsertOrphanedAtts"></span>    CorrectlyInsertOrphanedAtts <a href="../../../../../builtin/index.html#bool">bool</a>
+<span id="Flags.CorrectlyPruneCanonicalAtts"></span>    CorrectlyPruneCanonicalAtts <a href="../../../../../builtin/index.html#bool">bool</a>
+
+<span id="Flags.KeystoreImportDebounceInterval"></span>    <span class="comment">// KeystoreImportDebounceInterval specifies the time duration the validator waits to reload new keys if they have</span>
+    <span class="comment">// changed on disk. This feature is for advanced use cases only.</span>
+    KeystoreImportDebounceInterval <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a>
+
+<span id="Flags.AttestationAggregationStrategy"></span>    AttestationAggregationStrategy <a href="../../../../../builtin/index.html#string">string</a> <span class="comment">// AttestationAggregationStrategy defines aggregation strategy to be used when aggregating.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Get">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/config/features/config.go?s=4888:4905#L80">Get</a>
+					<a class="permalink" href="index.html#Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Get() *<a href="index.html#Flags">Flags</a></pre>
+				<p>Get retrieves feature config.
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

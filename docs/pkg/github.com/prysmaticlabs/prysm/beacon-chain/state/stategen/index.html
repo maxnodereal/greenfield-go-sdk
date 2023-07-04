@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>stategen - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package stategen
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/prysmaticlabs/prysm/beacon-chain/state/stategen"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package stategen defines functions to regenerate beacon chain states
+by replaying blocks from a stored state checkpoint, useful for
+optimization and reducing a beacon node&apos;s resource consumption.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#MockStateManager">type MockStateManager</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMockService">func NewMockService() *MockStateManager</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.AddStateForRoot">func (m *MockStateManager) AddStateForRoot(state state.BeaconState, blockRoot [32]byte)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.AddStateForSlot">func (m *MockStateManager) AddStateForSlot(state state.BeaconState, slot types.Slot)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.DisableSaveHotStateToDB">func (_ *MockStateManager) DisableSaveHotStateToDB(_ context.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.EnableSaveHotStateToDB">func (_ *MockStateManager) EnableSaveHotStateToDB(_ context.Context)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.ForceCheckpoint">func (_ *MockStateManager) ForceCheckpoint(_ context.Context, _ []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.HasState">func (_ *MockStateManager) HasState(_ context.Context, _ [32]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.HasStateInCache">func (_ *MockStateManager) HasStateInCache(_ context.Context, _ [32]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.LoadBlocks">func (_ *MockStateManager) LoadBlocks(_ context.Context, _, _ types.Slot, _ [32]byte) ([]block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.MigrateToCold">func (_ *MockStateManager) MigrateToCold(_ context.Context, _ [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.RecoverStateSummary">func (_ *MockStateManager) RecoverStateSummary(_ context.Context, _ [32]byte) (*ethpb.StateSummary, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.ReplayBlocks">func (_ *MockStateManager) ReplayBlocks(_ context.Context, _ state.BeaconState, _ []block.SignedBeaconBlock, _ types.Slot) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.Resume">func (_ *MockStateManager) Resume(_ context.Context, _ state.BeaconState) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.SaveFinalizedState">func (_ *MockStateManager) SaveFinalizedState(_ types.Slot, _ [32]byte, _ state.BeaconState)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.SaveState">func (_ *MockStateManager) SaveState(_ context.Context, _ [32]byte, _ state.BeaconState) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.StateByRoot">func (m *MockStateManager) StateByRoot(_ context.Context, blockRoot [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.StateByRootIfCachedNoCopy">func (_ *MockStateManager) StateByRootIfCachedNoCopy(_ [32]byte) state.BeaconState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.StateByRootInitialSync">func (_ *MockStateManager) StateByRootInitialSync(_ context.Context, _ [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MockStateManager.StateBySlot">func (m *MockStateManager) StateBySlot(_ context.Context, slot types.Slot) (state.BeaconState, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#State">type State</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#New">func New(beaconDB db.NoHeadAccessDatabase) *State</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.DisableSaveHotStateToDB">func (s *State) DisableSaveHotStateToDB(ctx context.Context) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.EnableSaveHotStateToDB">func (s *State) EnableSaveHotStateToDB(_ context.Context)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.ForceCheckpoint">func (s *State) ForceCheckpoint(ctx context.Context, root []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.HasState">func (s *State) HasState(ctx context.Context, blockRoot [32]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.HasStateInCache">func (s *State) HasStateInCache(ctx context.Context, blockRoot [32]byte) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.LoadBlocks">func (s *State) LoadBlocks(ctx context.Context, startSlot, endSlot types.Slot, endBlockRoot [32]byte) ([]block.SignedBeaconBlock, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.MigrateToCold">func (s *State) MigrateToCold(ctx context.Context, fRoot [32]byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.RecoverStateSummary">func (s *State) RecoverStateSummary(ctx context.Context, blockRoot [32]byte) (*ethpb.StateSummary, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.ReplayBlocks">func (_ *State) ReplayBlocks(ctx context.Context, state state.BeaconState, signed []block.SignedBeaconBlock, targetSlot types.Slot) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.Resume">func (s *State) Resume(ctx context.Context, fState state.BeaconState) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SaveFinalizedState">func (s *State) SaveFinalizedState(fSlot types.Slot, fRoot [32]byte, fState state.BeaconState)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.SaveState">func (s *State) SaveState(ctx context.Context, root [32]byte, st state.BeaconState) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.StateByRoot">func (s *State) StateByRoot(ctx context.Context, blockRoot [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.StateByRootIfCachedNoCopy">func (s *State) StateByRootIfCachedNoCopy(blockRoot [32]byte) state.BeaconState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.StateByRootInitialSync">func (s *State) StateByRootInitialSync(ctx context.Context, blockRoot [32]byte) (state.BeaconState, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#State.StateBySlot">func (s *State) StateBySlot(ctx context.Context, slot types.Slot) (state.BeaconState, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateManager">type StateManager</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/epoch_boundary_state_cache.go">epoch_boundary_state_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/errors.go">errors.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go">getter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/hot_state_cache.go">hot_state_cache.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/log.go">log.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/metrics.go">metrics.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/migrate.go">migrate.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go">mock.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/replay.go">replay.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go">service.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/setter.go">setter.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="MockStateManager">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=324:448#L3">MockStateManager</a>
+				<a class="permalink" href="index.html#MockStateManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>MockStateManager is a fake implementation of StateManager.
+
+			<pre>type MockStateManager struct {
+<span id="MockStateManager.StatesByRoot"></span>    StatesByRoot map[[32]<a href="../../../../../../builtin/index.html#byte">byte</a>]<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>
+<span id="MockStateManager.StatesBySlot"></span>    StatesBySlot map[<a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>]<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockService">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=471:510#L9">NewMockService</a>
+					<a class="permalink" href="index.html#NewMockService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMockService() *<a href="index.html#MockStateManager">MockStateManager</a></pre>
+				<p>NewMockService --
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockStateManager.AddStateForRoot">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=3048:3135#L109">AddStateForRoot</a>
+					<a class="permalink" href="index.html#MockStateManager.AddStateForRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockStateManager">MockStateManager</a>) AddStateForRoot(state <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>)</pre>
+				<p>AddStateForRoot --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.AddStateForSlot">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=3198:3282#L114">AddStateForSlot</a>
+					<a class="permalink" href="index.html#MockStateManager.AddStateForSlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockStateManager">MockStateManager</a>) AddStateForSlot(state <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>)</pre>
+				<p>AddStateForSlot --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.DisableSaveHotStateToDB">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2922:2997#L104">DisableSaveHotStateToDB</a>
+					<a class="permalink" href="index.html#MockStateManager.DisableSaveHotStateToDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) DisableSaveHotStateToDB(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DisableSaveHotStateToDB --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.EnableSaveHotStateToDB">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2795:2863#L99">EnableSaveHotStateToDB</a>
+					<a class="permalink" href="index.html#MockStateManager.EnableSaveHotStateToDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) EnableSaveHotStateToDB(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>)</pre>
+				<p>EnableSaveHotStateToDB --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.ForceCheckpoint">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2660:2737#L94">ForceCheckpoint</a>
+					<a class="permalink" href="index.html#MockStateManager.ForceCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) ForceCheckpoint(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ForceCheckpoint --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.HasState">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1595:1675#L56">HasState</a>
+					<a class="permalink" href="index.html#MockStateManager.HasState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) HasState(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasState --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.HasStateInCache">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1726:1813#L61">HasStateInCache</a>
+					<a class="permalink" href="index.html#MockStateManager.HasStateInCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) HasStateInCache(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasStateInCache --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.LoadBlocks">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1425:1551#L47">LoadBlocks</a>
+					<a class="permalink" href="index.html#MockStateManager.LoadBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) LoadBlocks(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    _, _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>,
+    _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>,
+) ([]<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadBlocks --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.MigrateToCold">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1098:1175#L32">MigrateToCold</a>
+					<a class="permalink" href="index.html#MockStateManager.MigrateToCold">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) MigrateToCold(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>MigrateToCold --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.RecoverStateSummary">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2359:2470#L81">RecoverStateSummary</a>
+					<a class="permalink" href="index.html#MockStateManager.RecoverStateSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) RecoverStateSummary(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>,
+) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RecoverStateSummary --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.ReplayBlocks">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1223:1379#L37">ReplayBlocks</a>
+					<a class="permalink" href="index.html#MockStateManager.ReplayBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) ReplayBlocks(
+    _ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    _ <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>,
+    _ []<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+    _ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>,
+) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReplayBlocks --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.Resume">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=803:903#L22">Resume</a>
+					<a class="permalink" href="index.html#MockStateManager.Resume">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) Resume(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Resume --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.SaveFinalizedState">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=957:1049#L27">SaveFinalizedState</a>
+					<a class="permalink" href="index.html#MockStateManager.SaveFinalizedState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) SaveFinalizedState(_ <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, _ <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>)</pre>
+				<p>SaveFinalizedState --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.SaveState">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2515:2609#L89">SaveState</a>
+					<a class="permalink" href="index.html#MockStateManager.SaveState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) SaveState(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, _ <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveState --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.StateByRoot">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=1860:1964#L66">StateByRoot</a>
+					<a class="permalink" href="index.html#MockStateManager.StateByRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockStateManager">MockStateManager</a>) StateByRoot(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateByRoot --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.StateByRootIfCachedNoCopy">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=679:761#L17">StateByRootIfCachedNoCopy</a>
+					<a class="permalink" href="index.html#MockStateManager.StateByRootIfCachedNoCopy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) StateByRootIfCachedNoCopy(_ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a></pre>
+				<p>StateByRootIfCached
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.StateByRootInitialSync">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2038:2145#L71">StateByRootInitialSync</a>
+					<a class="permalink" href="index.html#MockStateManager.StateByRootInitialSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#MockStateManager">MockStateManager</a>) StateByRootInitialSync(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, _ [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateByRootInitialSync --
+
+				
+				
+				
+			
+				
+				<h3 id="MockStateManager.StateBySlot">func (*MockStateManager) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/mock.go?s=2192:2293#L76">StateBySlot</a>
+					<a class="permalink" href="index.html#MockStateManager.StateBySlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="index.html#MockStateManager">MockStateManager</a>) StateBySlot(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateBySlot --
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="State">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go?s=2184:2462#L35">State</a>
+				<a class="permalink" href="index.html#State">&#xb6;</a>
+				
+				
+			</h2>
+			<p>State is a concrete implementation of StateManager.
+
+			<pre>type State struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go?s=3054:3103#L64">New</a>
+					<a class="permalink" href="index.html#New">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func New(beaconDB <a href="../../db/index.html">db</a>.<a href="../../db/index.html#NoHeadAccessDatabase">NoHeadAccessDatabase</a>) *<a href="index.html#State">State</a></pre>
+				<p>New returns a new state management object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="State.DisableSaveHotStateToDB">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/setter.go?s=3739:3805#L105">DisableSaveHotStateToDB</a>
+					<a class="permalink" href="index.html#State.DisableSaveHotStateToDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) DisableSaveHotStateToDB(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>DisableSaveHotStateToDB exits the mode that saves beacon state to DB for the hot states.
+This usually gets triggered once there&apos;s finality after long duration since finality.
+
+				
+				
+				
+			
+				
+				<h3 id="State.EnableSaveHotStateToDB">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/setter.go?s=3176:3233#L88">EnableSaveHotStateToDB</a>
+					<a class="permalink" href="index.html#State.EnableSaveHotStateToDB">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) EnableSaveHotStateToDB(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>)</pre>
+				<p>EnableSaveHotStateToDB enters the mode that saves hot beacon state to the DB.
+This usually gets triggered when there&apos;s long duration since finality.
+
+				
+				
+				
+			
+				
+				<h3 id="State.ForceCheckpoint">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/setter.go?s=828:899#L16">ForceCheckpoint</a>
+					<a class="permalink" href="index.html#State.ForceCheckpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) ForceCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>ForceCheckpoint initiates a cold state save of the given state. This method does not update the
+&quot;last archived state&quot; but simply saves the specified state from the root argument into the DB.
+
+				
+				
+				
+			
+				
+				<h3 id="State.HasState">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=477:556#L7">HasState</a>
+					<a class="permalink" href="index.html#State.HasState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) HasState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasState returns true if the state exists in cache or in DB.
+
+				
+				
+				
+			
+				
+				<h3 id="State.HasStateInCache">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=792:878#L19">HasStateInCache</a>
+					<a class="permalink" href="index.html#State.HasStateInCache">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) HasStateInCache(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>HasStateInCache returns true if the state exists in cache.
+
+				
+				
+				
+			
+				
+				<h3 id="State.LoadBlocks">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/replay.go?s=2288:2424#L69">LoadBlocks</a>
+					<a class="permalink" href="index.html#State.LoadBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) LoadBlocks(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, startSlot, endSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, endBlockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>LoadBlocks loads the blocks between start slot and end slot by recursively fetching from end block root.
+The Blocks are returned in slot-descending order.
+
+				
+				
+				
+			
+				
+				<h3 id="State.MigrateToCold">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/migrate.go?s=453:525#L7">MigrateToCold</a>
+					<a class="permalink" href="index.html#State.MigrateToCold">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) MigrateToCold(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, fRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>MigrateToCold advances the finalized info in between the cold and hot state sections.
+It moves the recent finalized states from the hot section to the cold section and
+only preserve the ones that&apos;s on archived point.
+
+				
+				
+				
+			
+				
+				<h3 id="State.RecoverStateSummary">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=4547:4652#L130">RecoverStateSummary</a>
+					<a class="permalink" href="index.html#State.RecoverStateSummary">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) RecoverStateSummary(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>RecoverStateSummary recovers state summary object of a given block root by using the saved block in DB.
+
+				
+				
+				
+			
+				
+				<h3 id="State.ReplayBlocks">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/replay.go?s=863:1028#L15">ReplayBlocks</a>
+					<a class="permalink" href="index.html#State.ReplayBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (_ *<a href="index.html#State">State</a>) ReplayBlocks(
+    ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>,
+    state <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>,
+    signed []<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>,
+    targetSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>,
+) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>ReplayBlocks replays the input blocks on the input state until the target slot is reached.
+
+				
+				
+				
+			
+				
+				<h3 id="State.Resume">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go?s=3611:3707#L78">Resume</a>
+					<a class="permalink" href="index.html#State.Resume">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) Resume(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, fState <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Resume resumes a new state management object from previously saved finalized check point in DB.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SaveFinalizedState">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go?s=4707:4801#L110">SaveFinalizedState</a>
+					<a class="permalink" href="index.html#State.SaveFinalizedState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) SaveFinalizedState(fSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, fRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, fState <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>)</pre>
+				<p>SaveFinalizedState saves the finalized slot, root and state into memory to be used by state gen service.
+This used for migration at the correct start slot and used for hot state play back to ensure
+lower bound to start is always at the last finalized state.
+
+				
+				
+				
+			
+				
+				<h3 id="State.SaveState">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/setter.go?s=419:508#L7">SaveState</a>
+					<a class="permalink" href="index.html#State.SaveState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) SaveState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, st <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) <a href="../../../../../../builtin/index.html#error">error</a></pre>
+				<p>SaveState saves the state in the cache and/or DB.
+
+				
+				
+				
+			
+				
+				<h3 id="State.StateByRoot">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=1437:1532#L40">StateByRoot</a>
+					<a class="permalink" href="index.html#State.StateByRoot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) StateByRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateByRoot retrieves the state using input block root.
+
+				
+				
+				
+			
+				
+				<h3 id="State.StateByRootIfCachedNoCopy">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=1173:1252#L31">StateByRootIfCachedNoCopy</a>
+					<a class="permalink" href="index.html#State.StateByRootIfCachedNoCopy">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) StateByRootIfCachedNoCopy(blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a></pre>
+				<p>StateByRootIfCached retrieves a state using the input block root only if the state is already in the cache
+
+				
+				
+				
+			
+				
+				<h3 id="State.StateByRootInitialSync">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=2232:2338#L56">StateByRootInitialSync</a>
+					<a class="permalink" href="index.html#State.StateByRootInitialSync">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) StateByRootInitialSync(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateByRootInitialSync retrieves the state from the DB for the initial syncing phase.
+It assumes initial syncing using a block list rather than a block tree hence the returned
+state is not copied.
+It invalidates cache for parent root because pre state will get mutated.
+Do not use this method for anything other than initial syncing purpose or block tree is applied.
+
+				
+				
+				
+			
+				
+				<h3 id="State.StateBySlot">func (*State) <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/getter.go?s=3721:3813#L105">StateBySlot</a>
+					<a class="permalink" href="index.html#State.StateBySlot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (s *<a href="index.html#State">State</a>) StateBySlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>StateBySlot retrieves the state using input slot.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateManager">type <a href="http://localhost:6060/src/github.com/prysmaticlabs/prysm/beacon-chain/state/stategen/service.go?s=839:2127#L15">StateManager</a>
+				<a class="permalink" href="index.html#StateManager">&#xb6;</a>
+				
+				
+			</h2>
+			<p>StateManager represents a management object that handles the internal
+logic of maintaining both hot and cold states in DB.
+
+			<pre>type StateManager interface {
+    Resume(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, fState <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    SaveFinalizedState(fSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, fRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, fState <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>)
+    MigrateToCold(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, fRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    ReplayBlocks(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, state <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, signed []<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, targetSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    LoadBlocks(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, startSlot, endSlot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>, endBlockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) ([]<a href="../../../proto/prysm/v1alpha1/block/index.html">block</a>.<a href="../../../proto/prysm/v1alpha1/block/index.html#SignedBeaconBlock">SignedBeaconBlock</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    HasState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    HasStateInCache(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../../../../../../builtin/index.html#bool">bool</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    StateByRoot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    StateByRootIfCachedNoCopy(blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>
+    StateByRootInitialSync(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    StateBySlot(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, slot <a href="../../../../eth2-types/index.html">types</a>.<a href="../../../../eth2-types/index.html#Slot">Slot</a>) (<a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    RecoverStateSummary(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, blockRoot [32]<a href="../../../../../../builtin/index.html#byte">byte</a>) (*<a href="../../../proto/prysm/v1alpha1/index.html">ethpb</a>.<a href="../../../proto/prysm/v1alpha1/index.html#StateSummary">StateSummary</a>, <a href="../../../../../../builtin/index.html#error">error</a>)
+    SaveState(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root [32]<a href="../../../../../../builtin/index.html#byte">byte</a>, st <a href="../index.html">state</a>.<a href="../index.html#BeaconState">BeaconState</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    ForceCheckpoint(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>, root []<a href="../../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+    EnableSaveHotStateToDB(_ <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>)
+    DisableSaveHotStateToDB(ctx <a href="../../../../../../context/index.html">context</a>.<a href="../../../../../../context/index.html#Context">Context</a>) <a href="../../../../../../builtin/index.html#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

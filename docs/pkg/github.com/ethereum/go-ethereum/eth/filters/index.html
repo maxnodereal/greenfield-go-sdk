@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>filters - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="../../../../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package filters
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ethereum/go-ethereum/eth/filters"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package filters implements an ethereum filtering system for block,
+transactions and log events.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#Backend">type Backend</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#Config">type Config</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#EventSystem">type EventSystem</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEventSystem">func NewEventSystem(sys *FilterSystem, lightMode bool) *EventSystem</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSystem.SubscribeLogs">func (es *EventSystem) SubscribeLogs(crit ethereum.FilterQuery, logs chan []*types.Log) (*Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSystem.SubscribeNewHeads">func (es *EventSystem) SubscribeNewHeads(headers chan *types.Header) *Subscription</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EventSystem.SubscribePendingTxs">func (es *EventSystem) SubscribePendingTxs(hashes chan []common.Hash) *Subscription</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Filter">type Filter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Filter.Logs">func (f *Filter) Logs(ctx context.Context) ([]*types.Log, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilterAPI">type FilterAPI</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFilterAPI">func NewFilterAPI(system *FilterSystem, lightMode bool) *FilterAPI</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.GetFilterChanges">func (api *FilterAPI) GetFilterChanges(id rpc.ID) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.GetFilterLogs">func (api *FilterAPI) GetFilterLogs(ctx context.Context, id rpc.ID) ([]*types.Log, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.GetLogs">func (api *FilterAPI) GetLogs(ctx context.Context, crit FilterCriteria) ([]*types.Log, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.Logs">func (api *FilterAPI) Logs(ctx context.Context, crit FilterCriteria) (*rpc.Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.NewBlockFilter">func (api *FilterAPI) NewBlockFilter() rpc.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.NewFilter">func (api *FilterAPI) NewFilter(crit FilterCriteria) (rpc.ID, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.NewHeads">func (api *FilterAPI) NewHeads(ctx context.Context) (*rpc.Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.NewPendingTransactionFilter">func (api *FilterAPI) NewPendingTransactionFilter() rpc.ID</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.NewPendingTransactions">func (api *FilterAPI) NewPendingTransactions(ctx context.Context) (*rpc.Subscription, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterAPI.UninstallFilter">func (api *FilterAPI) UninstallFilter(id rpc.ID) bool</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilterCriteria">type FilterCriteria</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterCriteria.UnmarshalJSON">func (args *FilterCriteria) UnmarshalJSON(data []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FilterSystem">type FilterSystem</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFilterSystem">func NewFilterSystem(backend Backend, config Config) *FilterSystem</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterSystem.NewBlockFilter">func (sys *FilterSystem) NewBlockFilter(block common.Hash, addresses []common.Address, topics [][]common.Hash) *Filter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FilterSystem.NewRangeFilter">func (sys *FilterSystem) NewRangeFilter(begin, end int64, addresses []common.Address, topics [][]common.Hash) *Filter</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Subscription">type Subscription</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Err">func (sub *Subscription) Err() &lt;-chan error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Subscription.Unsubscribe">func (sub *Subscription) Unsubscribe()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Type">type Type</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go">api.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter.go">filter.go</a>
+			
+				<a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go">filter_system.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Backend">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=1825:2724#L46">Backend</a>
+				<a class="permalink" href="index.html#Backend">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Backend interface {
+    ChainDb() <a href="../../ethdb/index.html">ethdb</a>.<a href="../../ethdb/index.html#Database">Database</a>
+    HeaderByNumber(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blockNr <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#BlockNumber">BlockNumber</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    HeaderByHash(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    GetReceipts(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) (<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Receipts">Receipts</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    GetLogs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, blockHash <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, number <a href="../../../../../builtin/index.html#uint64">uint64</a>) ([][]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>, <a href="../../../../../builtin/index.html#error">error</a>)
+    PendingBlockAndReceipts() (*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Block">Block</a>, <a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Receipts">Receipts</a>)
+
+    SubscribeNewTxsEvent(chan&lt;- <a href="../../core/index.html">core</a>.<a href="../../core/index.html#NewTxsEvent">NewTxsEvent</a>) <a href="../../event/index.html">event</a>.<a href="../../event/index.html#Subscription">Subscription</a>
+    SubscribeChainEvent(ch chan&lt;- <a href="../../core/index.html">core</a>.<a href="../../core/index.html#ChainEvent">ChainEvent</a>) <a href="../../event/index.html">event</a>.<a href="../../event/index.html#Subscription">Subscription</a>
+    SubscribeRemovedLogsEvent(ch chan&lt;- <a href="../../core/index.html">core</a>.<a href="../../core/index.html#RemovedLogsEvent">RemovedLogsEvent</a>) <a href="../../event/index.html">event</a>.<a href="../../event/index.html#Subscription">Subscription</a>
+    SubscribeLogsEvent(ch chan&lt;- []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>) <a href="../../event/index.html">event</a>.<a href="../../event/index.html#Subscription">Subscription</a>
+    SubscribePendingLogsEvent(ch chan&lt;- []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>) <a href="../../event/index.html">event</a>.<a href="../../event/index.html#Subscription">Subscription</a>
+
+    BloomStatus() (<a href="../../../../../builtin/index.html#uint64">uint64</a>, <a href="../../../../../builtin/index.html#uint64">uint64</a>)
+    ServiceFilter(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, session *<a href="../../core/bloombits/index.html">bloombits</a>.<a href="../../core/bloombits/index.html#MatcherSession">MatcherSession</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Config">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=1478:1653#L31">Config</a>
+				<a class="permalink" href="index.html#Config">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Config represents the configuration of the filter system.
+
+			<pre>type Config struct {
+<span id="Config.LogCacheSize"></span>    LogCacheSize <a href="../../../../../builtin/index.html#int">int</a>           <span class="comment">// maximum number of cached blocks (default: 32)</span>
+<span id="Config.Timeout"></span>    Timeout      <a href="../../../../../time/index.html">time</a>.<a href="../../../../../time/index.html#Duration">Duration</a> <span class="comment">// how long filters stay active (default: 5min)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EventSystem">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=5470:6548#L152">EventSystem</a>
+				<a class="permalink" href="index.html#EventSystem">&#xb6;</a>
+				
+				
+			</h2>
+			<p>EventSystem creates subscriptions, processes events and broadcasts them to the
+subscription which match the subscription criteria.
+
+			<pre>type EventSystem struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEventSystem">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=6906:6973#L181">NewEventSystem</a>
+					<a class="permalink" href="index.html#NewEventSystem">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEventSystem(sys *<a href="index.html#FilterSystem">FilterSystem</a>, lightMode <a href="../../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#EventSystem">EventSystem</a></pre>
+				<p>NewEventSystem creates a new manager that listens for event on the given mux,
+parses and filters them. It uses the all map to retrieve filter changes. The
+work loop holds its own index that is used to forward events to filters.
+<p>The returned manager has a loop that needs to be stopped with the Stop function
+or by stopping the given mux.
+
+				
+				
+			
+
+			
+				
+				<h3 id="EventSystem.SubscribeLogs">func (*EventSystem) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=9633:9743#L259">SubscribeLogs</a>
+					<a class="permalink" href="index.html#EventSystem.SubscribeLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSystem">EventSystem</a>) SubscribeLogs(crit ethereum.<a href="index.html#FilterQuery">FilterQuery</a>, logs chan []*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>) (*<a href="index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>SubscribeLogs creates a subscription that will write all logs matching the
+given criteria to the given logs channel. Default value for the from and to
+block is &quot;latest&quot;. If the fromBlock &gt; toBlock an error is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSystem.SubscribeNewHeads">func (*EventSystem) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=12723:12805#L348">SubscribeNewHeads</a>
+					<a class="permalink" href="index.html#EventSystem.SubscribeNewHeads">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSystem">EventSystem</a>) SubscribeNewHeads(headers chan *<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Header">Header</a>) *<a href="index.html#Subscription">Subscription</a></pre>
+				<p>SubscribeNewHeads creates a subscription that writes the header of a block that is
+imported in the chain.
+
+				
+				
+				
+			
+				
+				<h3 id="EventSystem.SubscribePendingTxs">func (*EventSystem) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=13241:13324#L364">SubscribePendingTxs</a>
+					<a class="permalink" href="index.html#EventSystem.SubscribePendingTxs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (es *<a href="index.html#EventSystem">EventSystem</a>) SubscribePendingTxs(hashes chan []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="index.html#Subscription">Subscription</a></pre>
+				<p>SubscribePendingTxs creates a subscription that writes transaction hashes for
+transactions that enter the transaction pool.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Filter">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter.go?s=1084:1348#L21">Filter</a>
+				<a class="permalink" href="index.html#Filter">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Filter can be used to retrieve and filter logs.
+
+			<pre>type Filter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Filter.Logs">func (*Filter) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter.go?s=3385:3449#L87">Logs</a>
+					<a class="permalink" href="index.html#Filter.Logs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="index.html#Filter">Filter</a>) Logs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) ([]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Logs searches the blockchain for matching log entries, returning all from the
+first block that contains matches, updating the start of the filter accordingly.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilterAPI">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=1682:1833#L38">FilterAPI</a>
+				<a class="permalink" href="index.html#FilterAPI">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterAPI offers support to create and manage filters. This will allow external clients to retrieve various
+information related to the Ethereum protocol such als blocks, transactions and logs.
+
+			<pre>type FilterAPI struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFilterAPI">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=1885:1951#L47">NewFilterAPI</a>
+					<a class="permalink" href="index.html#NewFilterAPI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFilterAPI(system *<a href="index.html#FilterSystem">FilterSystem</a>, lightMode <a href="../../../../../builtin/index.html#bool">bool</a>) *<a href="index.html#FilterAPI">FilterAPI</a></pre>
+				<p>NewFilterAPI returns a new FilterAPI instance.
+
+				
+				
+			
+
+			
+				
+				<h3 id="FilterAPI.GetFilterChanges">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=11788:11858#L391">GetFilterChanges</a>
+					<a class="permalink" href="index.html#FilterAPI.GetFilterChanges">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) GetFilterChanges(id <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a>) (interface{}, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetFilterChanges returns the logs for the filter with the given id since
+last time it was called. This can be used for polling.
+<p>For pending transaction and block filters the result is []common.Hash.
+(pending)Log filters return []Log.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.GetFilterLogs">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=10534:10623#L352">GetFilterLogs</a>
+					<a class="permalink" href="index.html#FilterAPI.GetFilterLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) GetFilterLogs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, id <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a>) ([]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetFilterLogs returns the logs for the filter with the given id.
+If the filter could not be found an empty array of logs is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.GetLogs">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=9283:9376#L309">GetLogs</a>
+					<a class="permalink" href="index.html#FilterAPI.GetLogs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) GetLogs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, crit <a href="index.html#FilterCriteria">FilterCriteria</a>) ([]*<a href="../../core/types/index.html">types</a>.<a href="../../core/types/index.html#Log">Log</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>GetLogs returns logs matching the given argument that are stored within the state.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.Logs">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=6805:6900#L224">Logs</a>
+					<a class="permalink" href="index.html#FilterAPI.Logs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) Logs(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>, crit <a href="index.html#FilterCriteria">FilterCriteria</a>) (*<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>Logs creates a subscription that fires for all new log that match the given filter criteria.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.NewBlockFilter">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=5284:5329#L162">NewBlockFilter</a>
+					<a class="permalink" href="index.html#FilterAPI.NewBlockFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) NewBlockFilter() <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a></pre>
+				<p>NewBlockFilter creates a filter that fetches blocks that are imported into the chain.
+It is part of the filter package since polling goes with eth_getFilterChanges.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.NewFilter">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=8418:8486#L276">NewFilter</a>
+					<a class="permalink" href="index.html#FilterAPI.NewFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) NewFilter(crit <a href="index.html#FilterCriteria">FilterCriteria</a>) (<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewFilter creates a new filter and returns the filter id. It can be
+used to retrieve logs when the state changes. This method cannot be
+used to fetch logs that are already stored in the state.
+<p>Default criteria for the from and to block are &quot;latest&quot;.
+Using &quot;latest&quot; as block number will return logs for mined blocks.
+Using &quot;pending&quot; as block number returns logs for not yet mined (pending) blocks.
+In case logs are removed (chain reorg) previously returned logs are returned
+again but with the removed property set to true.
+<p>In case &quot;fromBlock&quot; &gt; &quot;toBlock&quot; an error is returned.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.NewHeads">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=6095:6173#L194">NewHeads</a>
+					<a class="permalink" href="index.html#FilterAPI.NewHeads">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) NewHeads(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewHeads send a notification each time a new (header) block is appended to the chain.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.NewPendingTransactionFilter">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=3308:3366#L94">NewPendingTransactionFilter</a>
+					<a class="permalink" href="index.html#FilterAPI.NewPendingTransactionFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) NewPendingTransactionFilter() <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a></pre>
+				<p>NewPendingTransactionFilter creates a filter that fetches pending transaction hashes
+as transactions enter the pending state.
+<p>It is part of the filter package because this filter can be used through the
+`eth_getFilterChanges` polling method that is also used for log filters.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.NewPendingTransactions">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=4272:4364#L127">NewPendingTransactions</a>
+					<a class="permalink" href="index.html#FilterAPI.NewPendingTransactions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) NewPendingTransactions(ctx <a href="../../../../../context/index.html">context</a>.<a href="../../../../../context/index.html#Context">Context</a>) (*<a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#Subscription">Subscription</a>, <a href="../../../../../builtin/index.html#error">error</a>)</pre>
+				<p>NewPendingTransactions creates a subscription that is triggered each time a transaction
+enters the transaction pool and was signed from one of the transactions this nodes manages.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterAPI.UninstallFilter">func (*FilterAPI) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=10169:10222#L336">UninstallFilter</a>
+					<a class="permalink" href="index.html#FilterAPI.UninstallFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (api *<a href="index.html#FilterAPI">FilterAPI</a>) UninstallFilter(id <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a>) <a href="../../../../../builtin/index.html#bool">bool</a></pre>
+				<p>UninstallFilter removes the filter with the given filter id.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilterCriteria">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=7766:7806#L263">FilterCriteria</a>
+				<a class="permalink" href="index.html#FilterCriteria">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterCriteria represents a request to create a new filter.
+Same as ethereum.FilterQuery but with UnmarshalJSON() method.
+
+			<pre>type FilterCriteria ethereum.<a href="index.html#FilterQuery">FilterQuery</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FilterCriteria.UnmarshalJSON">func (*FilterCriteria) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/api.go?s=13067:13127#L437">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#FilterCriteria.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (args *<a href="index.html#FilterCriteria">FilterCriteria</a>) UnmarshalJSON(data []<a href="../../../../../builtin/index.html#byte">byte</a>) <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>UnmarshalJSON sets *args fields with given data.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FilterSystem">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=2781:2869#L65">FilterSystem</a>
+				<a class="permalink" href="index.html#FilterSystem">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FilterSystem holds resources shared by all filters.
+
+			<pre>type FilterSystem struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFilterSystem">func <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=2915:2981#L72">NewFilterSystem</a>
+					<a class="permalink" href="index.html#NewFilterSystem">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFilterSystem(backend <a href="index.html#Backend">Backend</a>, config <a href="index.html#Config">Config</a>) *<a href="index.html#FilterSystem">FilterSystem</a></pre>
+				<p>NewFilterSystem creates a filter system.
+
+				
+				
+			
+
+			
+				
+				<h3 id="FilterSystem.NewBlockFilter">func (*FilterSystem) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter.go?s=2607:2725#L68">NewBlockFilter</a>
+					<a class="permalink" href="index.html#FilterSystem.NewBlockFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sys *<a href="index.html#FilterSystem">FilterSystem</a>) NewBlockFilter(block <a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>, addresses []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, topics [][]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="index.html#Filter">Filter</a></pre>
+				<p>NewBlockFilter creates a new filter which directly inspects the contents of
+a block to figure out whether it is interesting or not.
+
+				
+				
+				
+			
+				
+				<h3 id="FilterSystem.NewRangeFilter">func (*FilterSystem) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter.go?s=1492:1609#L35">NewRangeFilter</a>
+					<a class="permalink" href="index.html#FilterSystem.NewRangeFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sys *<a href="index.html#FilterSystem">FilterSystem</a>) NewRangeFilter(begin, end <a href="../../../../../builtin/index.html#int64">int64</a>, addresses []<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Address">Address</a>, topics [][]<a href="../../common/index.html">common</a>.<a href="../../common/index.html#Hash">Hash</a>) *<a href="index.html#Filter">Filter</a></pre>
+				<p>NewRangeFilter creates a new filter which uses a bloom filter on blocks to
+figure out whether a particular block is interesting or not.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Subscription">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=8111:8227#L212">Subscription</a>
+				<a class="permalink" href="index.html#Subscription">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Subscription is created when the client registers itself for a particular event.
+
+			<pre>type Subscription struct {
+<span id="Subscription.ID"></span>    ID <a href="../../rpc/index.html">rpc</a>.<a href="../../rpc/index.html#ID">ID</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Subscription.Err">func (*Subscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=8288:8331#L220">Err</a>
+					<a class="permalink" href="index.html#Subscription.Err">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sub *<a href="index.html#Subscription">Subscription</a>) Err() &lt;-chan <a href="../../../../../builtin/index.html#error">error</a></pre>
+				<p>Err returns a channel that is closed when unsubscribed.
+
+				
+				
+				
+			
+				
+				<h3 id="Subscription.Unsubscribe">func (*Subscription) <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=8429:8467#L225">Unsubscribe</a>
+					<a class="permalink" href="index.html#Subscription.Unsubscribe">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sub *<a href="index.html#Subscription">Subscription</a>) Unsubscribe()</pre>
+				<p>Unsubscribe uninstalls the subscription from the event broadcast loop.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Type">type <a href="http://localhost:6060/src/github.com/ethereum/go-ethereum/eth/filters/filter_system.go?s=3866:3880#L106">Type</a>
+				<a class="permalink" href="index.html#Type">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Type determines the kind of filter and is used to put the filter in to
+the correct bucket when added.
+
+			<pre>type Type <a href="../../../../../builtin/index.html#byte">byte</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// UnknownSubscription indicates an unknown subscription type</span>
+    <span id="UnknownSubscription">UnknownSubscription</span> <a href="index.html#Type">Type</a> = <a href="../../../../../builtin/index.html#iota">iota</a>
+    <span class="comment">// LogsSubscription queries for new or removed (chain reorg) logs</span>
+    <span id="LogsSubscription">LogsSubscription</span>
+    <span class="comment">// PendingLogsSubscription queries for logs in pending blocks</span>
+    <span id="PendingLogsSubscription">PendingLogsSubscription</span>
+    <span class="comment">// MinedAndPendingLogsSubscription queries for logs in mined and pending blocks.</span>
+    <span id="MinedAndPendingLogsSubscription">MinedAndPendingLogsSubscription</span>
+    <span class="comment">// PendingTransactionsSubscription queries tx hashes for pending</span>
+    <span class="comment">// transactions entering the pending state</span>
+    <span id="PendingTransactionsSubscription">PendingTransactionsSubscription</span>
+    <span class="comment">// BlocksSubscription queries hashes for blocks that are imported</span>
+    <span id="BlocksSubscription">BlocksSubscription</span>
+    <span class="comment">// LastSubscription keeps track of the last index</span>
+    <span id="LastIndexSubscription">LastIndexSubscription</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.10.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
