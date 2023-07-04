@@ -1,0 +1,297 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/bnb-chain/greenfield-go-sdk/client/api_sp.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="/src/github.com">github.com</a>/<a href="/src/github.com/bnb-chain">bnb-chain</a>/<a href="/src/github.com/bnb-chain/greenfield-go-sdk">greenfield-go-sdk</a>/<a href="/src/github.com/bnb-chain/greenfield-go-sdk/client">client</a>/<span class="text-muted">api_sp.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/client">github.com/bnb-chain/greenfield-go-sdk/client</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package client
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;context&#34;
+<span id="L5" class="ln">     5  </span>	&#34;errors&#34;
+<span id="L6" class="ln">     6  </span>	&#34;net/url&#34;
+<span id="L7" class="ln">     7  </span>	&#34;strings&#34;
+<span id="L8" class="ln">     8  </span>	&#34;time&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;cosmossdk.io/math&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/bnb-chain/greenfield-go-sdk/pkg/utils&#34;
+<span id="L12" class="ln">    12  </span>	&#34;github.com/bnb-chain/greenfield-go-sdk/types&#34;
+<span id="L13" class="ln">    13  </span>	gnfdSdkTypes &#34;github.com/bnb-chain/greenfield/sdk/types&#34;
+<span id="L14" class="ln">    14  </span>	spTypes &#34;github.com/bnb-chain/greenfield/x/sp/types&#34;
+<span id="L15" class="ln">    15  </span>	sdk &#34;github.com/cosmos/cosmos-sdk/types&#34;
+<span id="L16" class="ln">    16  </span>	&#34;github.com/cosmos/cosmos-sdk/x/authz&#34;
+<span id="L17" class="ln">    17  </span>	govTypes &#34;github.com/cosmos/cosmos-sdk/x/gov/types&#34;
+<span id="L18" class="ln">    18  </span>)
+<span id="L19" class="ln">    19  </span>
+<span id="L20" class="ln">    20  </span>type SP interface {
+<span id="L21" class="ln">    21  </span>	<span class="comment">// ListStorageProviders return the storage provider info on chain</span>
+<span id="L22" class="ln">    22  </span>	<span class="comment">// isInService indicates if only display the sp with STATUS_IN_SERVICE status</span>
+<span id="L23" class="ln">    23  </span>	ListStorageProviders(ctx context.Context, isInService bool) ([]spTypes.StorageProvider, error)
+<span id="L24" class="ln">    24  </span>	<span class="comment">// GetStorageProviderInfo return the sp info with the sp chain address</span>
+<span id="L25" class="ln">    25  </span>	GetStorageProviderInfo(ctx context.Context, SPAddr sdk.AccAddress) (*spTypes.StorageProvider, error)
+<span id="L26" class="ln">    26  </span>	<span class="comment">// GetStoragePrice returns the storage price for a particular storage provider, including update time, read price, store price and .etc.</span>
+<span id="L27" class="ln">    27  </span>	GetStoragePrice(ctx context.Context, SPAddr string) (*spTypes.SpStoragePrice, error)
+<span id="L28" class="ln">    28  </span>	<span class="comment">// GetSecondarySpStorePrice returns the secondary storage price, including update time and store price</span>
+<span id="L29" class="ln">    29  </span>	GetSecondarySpStorePrice(ctx context.Context) (*spTypes.SecondarySpStorePrice, error)
+<span id="L30" class="ln">    30  </span>	<span class="comment">// GrantDepositForStorageProvider submit a grant transaction to allow gov module account to deduct the specified number of tokens</span>
+<span id="L31" class="ln">    31  </span>	GrantDepositForStorageProvider(ctx context.Context, spAddr string, depositAmount math.Int, opts types.GrantDepositForStorageProviderOptions) (string, error)
+<span id="L32" class="ln">    32  </span>	<span class="comment">// CreateStorageProvider submits a proposal to create a storage provider to the greenfield blockchain, and it returns a proposal ID</span>
+<span id="L33" class="ln">    33  </span>	CreateStorageProvider(ctx context.Context, fundingAddr, sealAddr, approvalAddr, gcAddr string, endpoint string, depositAmount math.Int, description spTypes.Description, opts types.CreateStorageProviderOptions) (uint64, string, error)
+<span id="L34" class="ln">    34  </span>	<span class="comment">// UpdateSpStoragePrice updates the read price, storage price and free read quota for a particular storage provider</span>
+<span id="L35" class="ln">    35  </span>	UpdateSpStoragePrice(ctx context.Context, spAddr string, readPrice, storePrice sdk.Dec, freeReadQuota uint64, TxOption gnfdSdkTypes.TxOption) (string, error)
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span>func (c *client) GetStoragePrice(ctx context.Context, spAddr string) (*spTypes.SpStoragePrice, error) {
+<span id="L39" class="ln">    39  </span>	spAcc, err := sdk.AccAddressFromHexUnsafe(spAddr)
+<span id="L40" class="ln">    40  </span>	if err != nil {
+<span id="L41" class="ln">    41  </span>		return nil, err
+<span id="L42" class="ln">    42  </span>	}
+<span id="L43" class="ln">    43  </span>	resp, err := c.chainClient.QueryGetSpStoragePriceByTime(ctx, &amp;spTypes.QueryGetSpStoragePriceByTimeRequest{
+<span id="L44" class="ln">    44  </span>		SpAddr:    spAcc.String(),
+<span id="L45" class="ln">    45  </span>		Timestamp: 0,
+<span id="L46" class="ln">    46  </span>	})
+<span id="L47" class="ln">    47  </span>	if err != nil {
+<span id="L48" class="ln">    48  </span>		return nil, err
+<span id="L49" class="ln">    49  </span>	}
+<span id="L50" class="ln">    50  </span>	return &amp;resp.SpStoragePrice, nil
+<span id="L51" class="ln">    51  </span>}
+<span id="L52" class="ln">    52  </span>
+<span id="L53" class="ln">    53  </span>func (c *client) GetSecondarySpStorePrice(ctx context.Context) (*spTypes.SecondarySpStorePrice, error) {
+<span id="L54" class="ln">    54  </span>	resp, err := c.chainClient.QueryGetSecondarySpStorePriceByTime(ctx, &amp;spTypes.QueryGetSecondarySpStorePriceByTimeRequest{
+<span id="L55" class="ln">    55  </span>		Timestamp: 0,
+<span id="L56" class="ln">    56  </span>	})
+<span id="L57" class="ln">    57  </span>	if err != nil {
+<span id="L58" class="ln">    58  </span>		return nil, err
+<span id="L59" class="ln">    59  </span>	}
+<span id="L60" class="ln">    60  </span>	return &amp;resp.SecondarySpStorePrice, nil
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// ListStorageProviders return the storage provider info on chain</span>
+<span id="L64" class="ln">    64  </span><span class="comment">// isInService indicates if only display the sp with STATUS_IN_SERVICE status</span>
+<span id="L65" class="ln">    65  </span>func (c *client) ListStorageProviders(ctx context.Context, isInService bool) ([]spTypes.StorageProvider, error) {
+<span id="L66" class="ln">    66  </span>	request := &amp;spTypes.QueryStorageProvidersRequest{}
+<span id="L67" class="ln">    67  </span>	gnfdRep, err := c.chainClient.StorageProviders(ctx, request)
+<span id="L68" class="ln">    68  </span>	if err != nil {
+<span id="L69" class="ln">    69  </span>		return nil, err
+<span id="L70" class="ln">    70  </span>	}
+<span id="L71" class="ln">    71  </span>
+<span id="L72" class="ln">    72  </span>	spList := gnfdRep.GetSps()
+<span id="L73" class="ln">    73  </span>	spInfoList := make([]spTypes.StorageProvider, 0)
+<span id="L74" class="ln">    74  </span>	for _, info := range spList {
+<span id="L75" class="ln">    75  </span>		if isInService &amp;&amp; info.Status != spTypes.STATUS_IN_SERVICE {
+<span id="L76" class="ln">    76  </span>			continue
+<span id="L77" class="ln">    77  </span>		}
+<span id="L78" class="ln">    78  </span>		spInfoList = append(spInfoList, *info)
+<span id="L79" class="ln">    79  </span>	}
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span>	return spInfoList, nil
+<span id="L82" class="ln">    82  </span>}
+<span id="L83" class="ln">    83  </span>
+<span id="L84" class="ln">    84  </span><span class="comment">// GetStorageProviderInfo return the sp info with the sp chain address</span>
+<span id="L85" class="ln">    85  </span>func (c *client) GetStorageProviderInfo(ctx context.Context, SPAddr sdk.AccAddress) (*spTypes.StorageProvider, error) {
+<span id="L86" class="ln">    86  </span>	request := &amp;spTypes.QueryStorageProviderRequest{
+<span id="L87" class="ln">    87  </span>		SpAddress: SPAddr.String(),
+<span id="L88" class="ln">    88  </span>	}
+<span id="L89" class="ln">    89  </span>
+<span id="L90" class="ln">    90  </span>	gnfdRep, err := c.chainClient.StorageProvider(ctx, request)
+<span id="L91" class="ln">    91  </span>	if err != nil {
+<span id="L92" class="ln">    92  </span>		return nil, err
+<span id="L93" class="ln">    93  </span>	}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span>	return gnfdRep.StorageProvider, nil
+<span id="L96" class="ln">    96  </span>}
+<span id="L97" class="ln">    97  </span>
+<span id="L98" class="ln">    98  </span>func (c *client) getSPUrlList() (map[string]*url.URL, error) {
+<span id="L99" class="ln">    99  </span>	ctx := context.Background()
+<span id="L100" class="ln">   100  </span>	spInfo := make(map[string]*url.URL, 0)
+<span id="L101" class="ln">   101  </span>	request := &amp;spTypes.QueryStorageProvidersRequest{}
+<span id="L102" class="ln">   102  </span>	gnfdRep, err := c.chainClient.StorageProviders(ctx, request)
+<span id="L103" class="ln">   103  </span>	if err != nil {
+<span id="L104" class="ln">   104  </span>		return nil, err
+<span id="L105" class="ln">   105  </span>	}
+<span id="L106" class="ln">   106  </span>
+<span id="L107" class="ln">   107  </span>	spList := gnfdRep.GetSps()
+<span id="L108" class="ln">   108  </span>	if len(spList) == 0 {
+<span id="L109" class="ln">   109  </span>		return nil, errors.New(&#34;no SP found on chain&#34;)
+<span id="L110" class="ln">   110  </span>	}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span>	for _, info := range spList {
+<span id="L113" class="ln">   113  </span>		var useHttps bool
+<span id="L114" class="ln">   114  </span>		if strings.Contains(info.Endpoint, &#34;https&#34;) {
+<span id="L115" class="ln">   115  </span>			useHttps = true
+<span id="L116" class="ln">   116  </span>		} else {
+<span id="L117" class="ln">   117  </span>			useHttps = c.secure
+<span id="L118" class="ln">   118  </span>		}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span>		urlInfo, urlErr := utils.GetEndpointURL(info.Endpoint, useHttps)
+<span id="L121" class="ln">   121  </span>		if urlErr != nil {
+<span id="L122" class="ln">   122  </span>			return nil, urlErr
+<span id="L123" class="ln">   123  </span>		}
+<span id="L124" class="ln">   124  </span>		spInfo[info.GetOperator().String()] = urlInfo
+<span id="L125" class="ln">   125  </span>	}
+<span id="L126" class="ln">   126  </span>
+<span id="L127" class="ln">   127  </span>	return spInfo, nil
+<span id="L128" class="ln">   128  </span>}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span><span class="comment">// CreateStorageProvider will submit a CreateStorageProvider proposal and return proposalID, TxHash and err if it has.</span>
+<span id="L131" class="ln">   131  </span>func (c *client) CreateStorageProvider(ctx context.Context, fundingAddr, sealAddr, approvalAddr, gcAddr string, endpoint string, depositAmount math.Int, description spTypes.Description, opts types.CreateStorageProviderOptions) (uint64, string, error) {
+<span id="L132" class="ln">   132  </span>	defaultAccount := c.MustGetDefaultAccount()
+<span id="L133" class="ln">   133  </span>	govModuleAddress, err := c.GetModuleAccountByName(ctx, govTypes.ModuleName)
+<span id="L134" class="ln">   134  </span>	if err != nil {
+<span id="L135" class="ln">   135  </span>		return 0, &#34;&#34;, err
+<span id="L136" class="ln">   136  </span>	}
+<span id="L137" class="ln">   137  </span>	if opts.ProposalDepositAmount.IsNil() {
+<span id="L138" class="ln">   138  </span>		opts.ProposalDepositAmount = math.NewIntWithDecimal(1, gnfdSdkTypes.DecimalBNB)
+<span id="L139" class="ln">   139  </span>	}
+<span id="L140" class="ln">   140  </span>	if opts.ReadPrice.IsNil() {
+<span id="L141" class="ln">   141  </span>		opts.ReadPrice = sdk.NewDec(1)
+<span id="L142" class="ln">   142  </span>	}
+<span id="L143" class="ln">   143  </span>	if opts.StorePrice.IsNil() {
+<span id="L144" class="ln">   144  </span>		opts.StorePrice = sdk.NewDec(1)
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span>	fundingAcc, err := sdk.AccAddressFromHexUnsafe(fundingAddr)
+<span id="L148" class="ln">   148  </span>	if err != nil {
+<span id="L149" class="ln">   149  </span>		return 0, &#34;&#34;, err
+<span id="L150" class="ln">   150  </span>	}
+<span id="L151" class="ln">   151  </span>	sealAcc, err := sdk.AccAddressFromHexUnsafe(sealAddr)
+<span id="L152" class="ln">   152  </span>	if err != nil {
+<span id="L153" class="ln">   153  </span>		return 0, &#34;&#34;, err
+<span id="L154" class="ln">   154  </span>	}
+<span id="L155" class="ln">   155  </span>	approvalAcc, err := sdk.AccAddressFromHexUnsafe(approvalAddr)
+<span id="L156" class="ln">   156  </span>	if err != nil {
+<span id="L157" class="ln">   157  </span>		return 0, &#34;&#34;, err
+<span id="L158" class="ln">   158  </span>	}
+<span id="L159" class="ln">   159  </span>	gcAcc, err := sdk.AccAddressFromHexUnsafe(gcAddr)
+<span id="L160" class="ln">   160  </span>	if err != nil {
+<span id="L161" class="ln">   161  </span>		return 0, &#34;&#34;, err
+<span id="L162" class="ln">   162  </span>	}
+<span id="L163" class="ln">   163  </span>	msgCreateStorageProvider, err := spTypes.NewMsgCreateStorageProvider(
+<span id="L164" class="ln">   164  </span>		govModuleAddress.GetAddress(),
+<span id="L165" class="ln">   165  </span>		defaultAccount.GetAddress(),
+<span id="L166" class="ln">   166  </span>		fundingAcc, sealAcc, approvalAcc, gcAcc, description,
+<span id="L167" class="ln">   167  </span>		endpoint,
+<span id="L168" class="ln">   168  </span>		sdk.NewCoin(gnfdSdkTypes.Denom, depositAmount),
+<span id="L169" class="ln">   169  </span>		opts.ReadPrice,
+<span id="L170" class="ln">   170  </span>		opts.FreeReadQuota,
+<span id="L171" class="ln">   171  </span>		opts.StorePrice,
+<span id="L172" class="ln">   172  </span>	)
+<span id="L173" class="ln">   173  </span>	if err != nil {
+<span id="L174" class="ln">   174  </span>		return 0, &#34;&#34;, err
+<span id="L175" class="ln">   175  </span>	}
+<span id="L176" class="ln">   176  </span>	err = msgCreateStorageProvider.ValidateBasic()
+<span id="L177" class="ln">   177  </span>	if err != nil {
+<span id="L178" class="ln">   178  </span>		return 0, &#34;&#34;, err
+<span id="L179" class="ln">   179  </span>	}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span>	return c.SubmitProposal(ctx, []sdk.Msg{msgCreateStorageProvider}, opts.ProposalDepositAmount, opts.ProposalTitle, opts.ProposalSummary, types.SubmitProposalOptions{Metadata: opts.ProposalMetaData, TxOption: opts.TxOption})
+<span id="L182" class="ln">   182  </span>}
+<span id="L183" class="ln">   183  </span>
+<span id="L184" class="ln">   184  </span>func (c *client) GrantDepositForStorageProvider(ctx context.Context, spAddr string, depositAmount math.Int, opts types.GrantDepositForStorageProviderOptions) (string, error) {
+<span id="L185" class="ln">   185  </span>	granter := c.MustGetDefaultAccount()
+<span id="L186" class="ln">   186  </span>	govModuleAddress, err := c.GetModuleAccountByName(ctx, govTypes.ModuleName)
+<span id="L187" class="ln">   187  </span>	if err != nil {
+<span id="L188" class="ln">   188  </span>		return &#34;&#34;, err
+<span id="L189" class="ln">   189  </span>	}
+<span id="L190" class="ln">   190  </span>	spAcc, err := sdk.AccAddressFromHexUnsafe(spAddr)
+<span id="L191" class="ln">   191  </span>	if err != nil {
+<span id="L192" class="ln">   192  </span>		return &#34;&#34;, err
+<span id="L193" class="ln">   193  </span>	}
+<span id="L194" class="ln">   194  </span>	coin := sdk.NewCoin(gnfdSdkTypes.Denom, depositAmount)
+<span id="L195" class="ln">   195  </span>	authorization := spTypes.NewDepositAuthorization(spAcc, &amp;coin)
+<span id="L196" class="ln">   196  </span>
+<span id="L197" class="ln">   197  </span>	if opts.Expiration == nil {
+<span id="L198" class="ln">   198  </span>		expiration := time.Now().Add(24 * time.Hour)
+<span id="L199" class="ln">   199  </span>		opts.Expiration = &amp;expiration
+<span id="L200" class="ln">   200  </span>	}
+<span id="L201" class="ln">   201  </span>	msgGrant, err := authz.NewMsgGrant(granter.GetAddress(), govModuleAddress.GetAddress(), authorization, opts.Expiration)
+<span id="L202" class="ln">   202  </span>	if err != nil {
+<span id="L203" class="ln">   203  </span>		return &#34;&#34;, err
+<span id="L204" class="ln">   204  </span>	}
+<span id="L205" class="ln">   205  </span>	resp, err := c.chainClient.BroadcastTx(ctx, []sdk.Msg{msgGrant}, &amp;opts.TxOption)
+<span id="L206" class="ln">   206  </span>	if err != nil {
+<span id="L207" class="ln">   207  </span>		return &#34;&#34;, err
+<span id="L208" class="ln">   208  </span>	}
+<span id="L209" class="ln">   209  </span>	return resp.TxResponse.TxHash, nil
+<span id="L210" class="ln">   210  </span>}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span>func (c *client) UpdateSpStoragePrice(ctx context.Context, spAddr string, readPrice, storePrice sdk.Dec, freeReadQuota uint64, TxOption gnfdSdkTypes.TxOption) (string, error) {
+<span id="L213" class="ln">   213  </span>	spAcc, err := sdk.AccAddressFromHexUnsafe(spAddr)
+<span id="L214" class="ln">   214  </span>	if err != nil {
+<span id="L215" class="ln">   215  </span>		return &#34;&#34;, err
+<span id="L216" class="ln">   216  </span>	}
+<span id="L217" class="ln">   217  </span>	msgUpdateStoragePrice := &amp;spTypes.MsgUpdateSpStoragePrice{
+<span id="L218" class="ln">   218  </span>		SpAddress:     spAcc.String(),
+<span id="L219" class="ln">   219  </span>		ReadPrice:     readPrice,
+<span id="L220" class="ln">   220  </span>		StorePrice:    storePrice,
+<span id="L221" class="ln">   221  </span>		FreeReadQuota: freeReadQuota,
+<span id="L222" class="ln">   222  </span>	}
+<span id="L223" class="ln">   223  </span>	resp, err := c.chainClient.BroadcastTx(ctx, []sdk.Msg{msgUpdateStoragePrice}, &amp;TxOption)
+<span id="L224" class="ln">   224  </span>	if err != nil {
+<span id="L225" class="ln">   225  </span>		return &#34;&#34;, err
+<span id="L226" class="ln">   226  </span>	}
+<span id="L227" class="ln">   227  </span>	return resp.TxResponse.TxHash, nil
+<span id="L228" class="ln">   228  </span>}
+<span id="L229" class="ln">   229  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.19.10.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

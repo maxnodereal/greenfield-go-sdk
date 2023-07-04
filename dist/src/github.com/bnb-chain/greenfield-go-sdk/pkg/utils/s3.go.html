@@ -1,0 +1,111 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/bnb-chain/greenfield-go-sdk/pkg/utils/s3.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.19.10";</script>
+<script src="/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="/src/github.com">github.com</a>/<a href="/src/github.com/bnb-chain">bnb-chain</a>/<a href="/src/github.com/bnb-chain/greenfield-go-sdk">greenfield-go-sdk</a>/<a href="/src/github.com/bnb-chain/greenfield-go-sdk/pkg">pkg</a>/<a href="/src/github.com/bnb-chain/greenfield-go-sdk/pkg/utils">utils</a>/<span class="text-muted">s3.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/pkg/github.com/bnb-chain/greenfield-go-sdk/pkg/utils">github.com/bnb-chain/greenfield-go-sdk/pkg/utils</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package utils
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/hex&#34;
+<span id="L5" class="ln">     5  </span>	&#34;regexp&#34;
+<span id="L6" class="ln">     6  </span>	&#34;strings&#34;
+<span id="L7" class="ln">     7  </span>	&#34;unicode/utf8&#34;
+<span id="L8" class="ln">     8  </span>)
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span><span class="comment">// EncodePath encodes the strings from UTF-8 byte representations to HTML hex escape sequences</span>
+<span id="L11" class="ln">    11  </span>func EncodePath(pathName string) string {
+<span id="L12" class="ln">    12  </span>	reservedNames := regexp.MustCompile(&#34;^[a-zA-Z0-9-_.~/]+$&#34;)
+<span id="L13" class="ln">    13  </span>	<span class="comment">// no need to encode</span>
+<span id="L14" class="ln">    14  </span>	if reservedNames.MatchString(pathName) {
+<span id="L15" class="ln">    15  </span>		return pathName
+<span id="L16" class="ln">    16  </span>	}
+<span id="L17" class="ln">    17  </span>	var encodedPathname strings.Builder
+<span id="L18" class="ln">    18  </span>	for _, s := range pathName {
+<span id="L19" class="ln">    19  </span>		if &#39;A&#39; &lt;= s &amp;&amp; s &lt;= &#39;Z&#39; || &#39;a&#39; &lt;= s &amp;&amp; s &lt;= &#39;z&#39; || &#39;0&#39; &lt;= s &amp;&amp; s &lt;= &#39;9&#39; { <span class="comment">// §2.3 Unreserved characters (mark)</span>
+<span id="L20" class="ln">    20  </span>			encodedPathname.WriteRune(s)
+<span id="L21" class="ln">    21  </span>			continue
+<span id="L22" class="ln">    22  </span>		}
+<span id="L23" class="ln">    23  </span>		switch s {
+<span id="L24" class="ln">    24  </span>		case &#39;-&#39;, &#39;_&#39;, &#39;.&#39;, &#39;~&#39;, &#39;/&#39;:
+<span id="L25" class="ln">    25  </span>			encodedPathname.WriteRune(s)
+<span id="L26" class="ln">    26  </span>			continue
+<span id="L27" class="ln">    27  </span>		default:
+<span id="L28" class="ln">    28  </span>			len := utf8.RuneLen(s)
+<span id="L29" class="ln">    29  </span>			if len &lt; 0 {
+<span id="L30" class="ln">    30  </span>				<span class="comment">// if utf8 cannot convert return the same string as is</span>
+<span id="L31" class="ln">    31  </span>				return pathName
+<span id="L32" class="ln">    32  </span>			}
+<span id="L33" class="ln">    33  </span>			u := make([]byte, len)
+<span id="L34" class="ln">    34  </span>			utf8.EncodeRune(u, s)
+<span id="L35" class="ln">    35  </span>			for _, r := range u {
+<span id="L36" class="ln">    36  </span>				hex := hex.EncodeToString([]byte{r})
+<span id="L37" class="ln">    37  </span>				encodedPathname.WriteString(&#34;%&#34; + strings.ToUpper(hex))
+<span id="L38" class="ln">    38  </span>			}
+<span id="L39" class="ln">    39  </span>		}
+<span id="L40" class="ln">    40  </span>	}
+<span id="L41" class="ln">    41  </span>	return encodedPathname.String()
+<span id="L42" class="ln">    42  </span>}
+<span id="L43" class="ln">    43  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.19.10.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
